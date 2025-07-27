@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import CourseCard from "../CourseCard";
+import Link from "next/link";
 
 const liveCourses = [
     {
@@ -17,7 +18,7 @@ const liveCourses = [
         instructor: "Sarah Johnson",
     },
     {
-        id: "python-data-science-ml",
+        id: "react-development-bootcamp",
         image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
         batchName: "Batch 12",
         rating: 4.9,
@@ -82,10 +83,15 @@ export default function CoursesSection() {
 
                 {/* View All Courses Button */}
                 <div className="text-center">
-                    <Button size="lg" className="px-8 py-3 h-auto text-base">
-                        View All Courses
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    <Link href="/courses">
+                        <Button
+                            size="lg"
+                            className="px-8 py-3 h-auto text-base"
+                        >
+                            View All Courses
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

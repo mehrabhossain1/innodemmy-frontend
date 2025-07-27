@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Users, Award, TrendingUp } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
     return (
@@ -41,13 +42,15 @@ export default function HeroSection() {
 
                         {/* CTA Button */}
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button
-                                size="lg"
-                                className="text-base px-8 py-3 h-auto"
-                            >
-                                Explore All Courses
-                                <ArrowRight className="ml-2 h-5 w-5" />
-                            </Button>
+                            <Link href="/courses">
+                                <Button
+                                    size="lg"
+                                    className="text-base px-8 py-3 h-auto"
+                                >
+                                    Explore All Courses
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </Button>
+                            </Link>
                             <Button
                                 variant="outline"
                                 size="lg"
