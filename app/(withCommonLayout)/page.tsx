@@ -1,7 +1,7 @@
 const HomePage = () => {
     return (
         <>
-            Homepage
+            Homepage Hero
             {/* <HeroSection />
       <Specialist />
       <TopRatedDoctors />
