@@ -1,0 +1,96 @@
+import { Badge } from "@/components/ui/badge";
+import { Calendar, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+interface BlogCardProps {
+    id: string;
+    title: string;
+    description: string;
+    publishedDate: string;
+    image: string;
+    category: string;
+    author: string;
+    readTime: string;
+}
+
+export default function BlogCard({
+    id,
+    title,
+    description,
+    publishedDate,
+    image,
+    category,
+    author,
+    readTime,
+}: BlogCardProps) {
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
+    return (
+        <article className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+            {/* Blog Image */}
+            <div className="relative overflow-hidden">
+                <Link href={`/blogs/${id}`}>
+                    <Image
+                        src={image || "/placeholder.svg"}
+                        alt={title}
+                        width={400}
+                        height={240}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                </Link>
+                <div className="absolute top-3 left-3">
+                    <Badge
+                        variant="secondary"
+                        className="bg-white/90 text-gray-700 border-0"
+                    >
+                        {category}
+                    </Badge>
+                </div>
+            </div>
+
+            {/* Blog Content */}
+            <div className="p-6 space-y-4">
+                {/* Published Date and Read Time */}
+                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDate(publishedDate)}</span>
+                    </div>
+                    <span>•</span>
+                    <span>{readTime} read</span>
+                </div>
+
+                {/* Title */}
+                <Link href={`/blogs/${id}`}>
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors cursor-pointer">
+                        {title}
+                    </h3>
+                </Link>
+
+                {/* Description */}
+                <p className="text-gray-600 line-clamp-3 leading-relaxed">
+                    {description}
+                </p>
+
+                {/* Author and Read More */}
+                <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                    <span className="text-sm text-gray-600">by {author}</span>
+                    <Link
+                        href={`/blogs/${id}`}
+                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                        Read More
+                        <ArrowRight className="w-3 h-3 ml-1" />
+                    </Link>
+                </div>
+            </div>
+        </article>
+    );
+}
