@@ -1,0 +1,177 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Search, Menu, X } from "lucide-react";
+
+export default function Navbar() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    return (
+        <nav className="bg-white shadow-md sticky top-0 z-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16">
+                    {/* Logo */}
+                    <div className="flex-shrink-0">
+                        <Link href="/">
+                            <span className="text-2xl font-bold text-blue-600">
+                                LMS
+                            </span>
+                        </Link>
+                    </div>
+
+                    {/* Search Bar */}
+                    <div className="hidden md:flex flex-1 mx-6">
+                        <div className="relative w-full max-w-md">
+                            <Search
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                                size={20}
+                            />
+                            <Input
+                                type="text"
+                                placeholder="Search courses..."
+                                className="pl-10 w-full"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center space-x-4">
+                        <Link
+                            href="/"
+                            className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/live-courses"
+                            className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                        >
+                            Live Courses
+                        </Link>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                                >
+                                    More
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem>
+                                    <Link href="/blogs" className="w-full">
+                                        Blogs
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href="/career" className="w-full">
+                                        Career
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href="/about" className="w-full">
+                                        About Us
+                                    </Link>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <Button asChild variant="outline">
+                            <Link href="/login">Login</Link>
+                        </Button>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden">
+                        <Button
+                            variant="ghost"
+                            onClick={() =>
+                                setIsMobileMenuOpen(!isMobileMenuOpen)
+                            }
+                        >
+                            {isMobileMenuOpen ? (
+                                <X size={24} />
+                            ) : (
+                                <Menu size={24} />
+                            )}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                <div className="md:hidden bg-white border-t">
+                    <div className="px-4 pt-2 pb-3 space-y-1">
+                        <div className="relative mb-3">
+                            <Search
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                                size={20}
+                            />
+                            <Input
+                                type="text"
+                                placeholder="Search courses..."
+                                className="pl-10 w-full"
+                            />
+                        </div>
+                        <Link
+                            href="/"
+                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/live-courses"
+                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Live Courses
+                        </Link>
+                        <Link
+                            href="/blogs"
+                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Blogs
+                        </Link>
+                        <Link
+                            href="/career"
+                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Career
+                        </Link>
+                        <Link
+                            href="/about"
+                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            About Us
+                        </Link>
+                        <Button
+                            asChild
+                            variant="outline"
+                            className="w-full mt-2"
+                        >
+                            <Link
+                                href="/login"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Login
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
+            )}
+        </nav>
+    );
+}
