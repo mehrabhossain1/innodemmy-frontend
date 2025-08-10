@@ -52,7 +52,7 @@ export default function Navbar() {
                             Home
                         </Link>
                         <Link
-                            href="/live-courses"
+                            href="/courses"
                             className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
                         >
                             Live Courses

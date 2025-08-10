@@ -129,7 +129,7 @@ export default function WhyBestChoiceSection() {
                                 collapsible
                                 className="space-y-4"
                             >
-                                {accordionItems.map((item, index) => (
+                                {accordionItems.map((item) => (
                                     <AccordionItem
                                         key={item.id}
                                         value={item.id}
@@ -172,7 +172,7 @@ export default function WhyBestChoiceSection() {
 
                     {/* Right Side - Feature Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {featureCards.map((card, index) => (
+                        {featureCards.map((card) => (
                             <Card
                                 key={card.id}
                                 className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer`}
