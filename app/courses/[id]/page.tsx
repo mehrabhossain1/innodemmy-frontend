@@ -5,6 +5,8 @@ import { ArrowLeft, Star, Play, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
+// import CourseModules from "@/components/CourseModules";
+import CourseOverview from "@/components/CourseOverview";
 
 // Define the type for params
 interface CoursePageProps {
@@ -260,6 +262,10 @@ export default function CoursePage({ params }: CoursePageProps) {
                     </div>
                 </div>
             </div>
+
+            {/* <CourseModules /> */}
+
+            <CourseOverview />
         </div>
     );
 }
