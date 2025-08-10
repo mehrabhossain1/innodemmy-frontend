@@ -8,6 +8,7 @@ import CourseBenefits from "./courseoverviewsection/CourseBenefits";
 import Projects from "./courseoverviewsection/Projects";
 import WhoFor from "./courseoverviewsection/WhoFor";
 import FAQ from "./courseoverviewsection/FAQ";
+import InstructorAndMentorPanel from "./courseoverviewsection/InstructorAndMentorPanel";
 
 export default function CourseOverview() {
     const curriculumRef = useRef<HTMLDivElement>(null);
@@ -43,9 +44,13 @@ export default function CourseOverview() {
             <div ref={curriculumRef}>
                 <Curriculum />
             </div>
+            <div className="mt-16">
+                <InstructorAndMentorPanel />
+            </div>
             <div ref={benefitsRef} className="mt-16">
                 <CourseBenefits />
             </div>
+
             <div ref={projectsRef} className="mt-16">
                 <Projects />
             </div>
