@@ -3,9 +3,9 @@ import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
 import { User } from '@/lib/models';
 
-export const PUT = withAdminAuth(async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const PUT = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { id } = params;
+    const id = request.nextUrl.pathname.split('/').pop() as string;
     const { name, role, email } = await request.json();
 
     if (!name || !role || !email) {
@@ -66,9 +66,9 @@ export const PUT = withAdminAuth(async (request: NextRequest, { params }: { para
   }
 });
 
-export const DELETE = withAdminAuth(async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const DELETE = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { id } = params;
+    const id = request.nextUrl.pathname.split('/').pop() as string;
 
     const db = await getDatabase();
     const users = db.collection<User>('users');

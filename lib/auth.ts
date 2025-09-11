@@ -1,8 +1,14 @@
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from './models';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+
+export type DecodedToken = JwtPayload & {
+  userId: string;
+  email: string;
+  role: 'student' | 'admin';
+};
 
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 12);
@@ -24,10 +30,11 @@ export function generateToken(user: User): string {
   );
 }
 
-export function verifyToken(token: string): any {
+export function verifyToken(token: string): DecodedToken | null {
   try {
-    return jwt.verify(token, JWT_SECRET);
-  } catch (error) {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    return decoded as DecodedToken;
+  } catch (_error) {
     return null;
   }
 }

@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
-import { Enrollment, User, Course } from '@/lib/models';
+import { Enrollment } from '@/lib/models';
 import { ObjectId } from 'mongodb';
 
-export const GET = withAdminAuth(async (request: NextRequest) => {
+export const GET = withAdminAuth(async (_request: NextRequest) => {
   try {
     const db = await getDatabase();
-    const enrollments = db.collection<Enrollment>('enrollments');
-    const users = db.collection<User>('users');
-    const courses = db.collection<Course>('courses');
+    const enrollments = db.collection('enrollments');
+    const users = db.collection('users');
+    const courses = db.collection('courses');
 
     const allEnrollments = await enrollments.find({}).toArray();
 

@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
 
 export const GET = withAuth(async (request: NextRequest) => {
   try {
-    const user = (request as any).user;
+    const user = (request as unknown as { user: { userId: string } }).user;
     const db = await getDatabase();
     const enrollments = db.collection<Enrollment>('enrollments');
     const courses = db.collection('courses');
@@ -38,7 +38,7 @@ export const GET = withAuth(async (request: NextRequest) => {
 
 export const POST = withAuth(async (request: NextRequest) => {
   try {
-    const user = (request as any).user;
+    const user = (request as unknown as { user: { userId: string } }).user;
     const { courseId, paymentProof, paymentAmount, paymentMethod, transactionId } = await request.json();
 
     if (!courseId || !paymentProof || !paymentAmount || !paymentMethod) {

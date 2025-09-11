@@ -4,11 +4,11 @@ import { withAdminAuth } from '@/lib/middleware';
 import { Enrollment } from '@/lib/models';
 import { ObjectId } from 'mongodb';
 
-export const PUT = withAdminAuth(async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const PUT = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { id } = params;
+    const id = request.nextUrl.pathname.split('/').pop() as string;
     const { status, adminNotes } = await request.json();
-    const adminUser = (request as any).user;
+    const adminUser = (request as unknown as { user: { userId: string } }).user;
 
     if (!status || !['pending', 'approved', 'rejected'].includes(status)) {
       return NextResponse.json(
@@ -26,12 +26,12 @@ export const PUT = withAdminAuth(async (request: NextRequest, { params }: { para
     }
 
     const db = await getDatabase();
-    const enrollments = db.collection<Enrollment>('enrollments');
+    const enrollments = db.collection('enrollments');
 
-    const updateData: any = {
+    const updateData: Partial<Enrollment & { approvedAt: Date; approvedBy: string; enrolledAt: Date; adminNotes: string }> = {
       status,
       updatedAt: new Date(),
-    };
+    } as Partial<Enrollment & { approvedAt: Date; approvedBy: string; enrolledAt: Date; adminNotes: string }>;
 
     if (adminNotes) {
       updateData.adminNotes = adminNotes;

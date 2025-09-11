@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from './auth';
+import { verifyToken, DecodedToken } from './auth';
 
-export function withAuth(handler: Function) {
-  return async (request: NextRequest, ...args: any[]) => {
+type ApiHandler = (request: NextRequest, ...args: unknown[]) => Promise<NextResponse> | NextResponse;
+
+export function withAuth(handler: ApiHandler) {
+  return async (request: NextRequest, ...args: unknown[]) => {
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
     
     if (!token) {
@@ -15,14 +17,14 @@ export function withAuth(handler: Function) {
     }
 
     // Add user info to request
-    (request as any).user = decoded;
+    (request as unknown as { user: DecodedToken }).user = decoded;
     
     return handler(request, ...args);
   };
 }
 
-export function withAdminAuth(handler: Function) {
-  return async (request: NextRequest, ...args: any[]) => {
+export function withAdminAuth(handler: ApiHandler) {
+  return async (request: NextRequest, ...args: unknown[]) => {
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
     
     if (!token) {
@@ -39,7 +41,7 @@ export function withAdminAuth(handler: Function) {
     }
 
     // Add user info to request
-    (request as any).user = decoded;
+    (request as unknown as { user: DecodedToken }).user = decoded;
     
     return handler(request, ...args);
   };

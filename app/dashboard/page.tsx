@@ -31,7 +31,7 @@ export default function DashboardPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ name: string; role: 'student' | 'admin' } | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -119,10 +119,8 @@ export default function DashboardPage() {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
-  const getEnrollmentStatus = (courseId: string) => {
-    const enrollment = enrollments.find(e => e.courseId === courseId);
-    return enrollment ? enrollment.status : null;
-  };
+  // helper retained for potential future use
+  const getEnrollmentStatus = (_courseId: string) => null;
 
   const isEnrolled = (courseId: string) => {
     const enrollment = enrollments.find(e => e.courseId === courseId);
@@ -202,7 +200,6 @@ export default function DashboardPage() {
           <h2 className="text-2xl font-bold mb-4">Available Courses</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((course) => {
-              const enrollmentStatus = getEnrollmentStatus(course._id);
               const enrolled = isEnrolled(course._id);
               const pending = hasPendingEnrollment(course._id);
 
