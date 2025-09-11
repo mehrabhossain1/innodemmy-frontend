@@ -172,6 +172,8 @@ export default function AdminDashboard() {
   const handleEnrollmentStatus = async (enrollmentId: string, status: 'approved' | 'rejected') => {
     try {
       const token = localStorage.getItem('token');
+      console.log('Updating enrollment:', enrollmentId, 'to status:', status);
+      
       const response = await fetch(`/api/admin/enrollments/${enrollmentId}`, {
         method: 'PUT',
         headers: {
@@ -181,11 +183,21 @@ export default function AdminDashboard() {
         body: JSON.stringify({ status })
       });
 
+      console.log('Response status:', response.status);
+      
       if (response.ok) {
+        const result = await response.json();
+        console.log('Update successful:', result);
         fetchData();
+        alert(`Enrollment ${status} successfully!`);
+      } else {
+        const error = await response.json();
+        console.error('Update failed:', error);
+        alert(`Failed to ${status} enrollment: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error updating enrollment:', error);
+      alert('Network error. Please try again.');
     }
   };
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
 import { Enrollment, User, Course } from '@/lib/models';
+import { ObjectId } from 'mongodb';
 
 export const GET = withAdminAuth(async (request: NextRequest) => {
   try {
@@ -15,8 +16,8 @@ export const GET = withAdminAuth(async (request: NextRequest) => {
     // Populate user and course information
     const enrollmentsWithDetails = await Promise.all(
       allEnrollments.map(async (enrollment) => {
-        const user = await users.findOne({ _id: enrollment.userId });
-        const course = await courses.findOne({ _id: enrollment.courseId });
+        const user = await users.findOne({ _id: new ObjectId(enrollment.userId) });
+        const course = await courses.findOne({ _id: new ObjectId(enrollment.courseId) });
         
         return {
           ...enrollment,

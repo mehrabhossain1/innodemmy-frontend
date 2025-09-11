@@ -2,18 +2,31 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { withAuth } from '@/lib/middleware';
 import { Enrollment } from '@/lib/models';
+import { ObjectId } from 'mongodb';
 
 export const GET = withAuth(async (request: NextRequest) => {
   try {
     const user = (request as any).user;
     const db = await getDatabase();
     const enrollments = db.collection<Enrollment>('enrollments');
+    const courses = db.collection('courses');
 
     const userEnrollments = await enrollments
       .find({ userId: user.userId })
       .toArray();
 
-    return NextResponse.json({ enrollments: userEnrollments });
+    // Populate course information for each enrollment
+    const enrollmentsWithCourses = await Promise.all(
+      userEnrollments.map(async (enrollment) => {
+        const course = await courses.findOne({ _id: new ObjectId(enrollment.courseId) });
+        return {
+          ...enrollment,
+          course: course || null,
+        };
+      })
+    );
+
+    return NextResponse.json({ enrollments: enrollmentsWithCourses });
   } catch (error) {
     console.error('Get enrollments error:', error);
     return NextResponse.json(

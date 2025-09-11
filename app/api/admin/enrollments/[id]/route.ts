@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
 import { Enrollment } from '@/lib/models';
+import { ObjectId } from 'mongodb';
 
 export const PUT = withAdminAuth(async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
@@ -12,6 +13,14 @@ export const PUT = withAdminAuth(async (request: NextRequest, { params }: { para
     if (!status || !['pending', 'approved', 'rejected'].includes(status)) {
       return NextResponse.json(
         { error: 'Valid status is required (pending, approved, rejected)' },
+        { status: 400 }
+      );
+    }
+
+    // Validate ObjectId format
+    if (!ObjectId.isValid(id)) {
+      return NextResponse.json(
+        { error: 'Invalid enrollment ID format' },
         { status: 400 }
       );
     }
@@ -35,7 +44,7 @@ export const PUT = withAdminAuth(async (request: NextRequest, { params }: { para
     }
 
     const result = await enrollments.updateOne(
-      { _id: id },
+      { _id: new ObjectId(id) },
       { $set: updateData }
     );
 
@@ -46,7 +55,7 @@ export const PUT = withAdminAuth(async (request: NextRequest, { params }: { para
       );
     }
 
-    const updatedEnrollment = await enrollments.findOne({ _id: id });
+    const updatedEnrollment = await enrollments.findOne({ _id: new ObjectId(id) });
 
     return NextResponse.json({
       enrollment: updatedEnrollment,

@@ -164,8 +164,8 @@ export default function DashboardPage() {
                   <CardContent className="p-6">
                     <div className="flex justify-between items-center">
                       <div>
-                        <h3 className="font-semibold">{enrollment.course.title}</h3>
-                        <p className="text-sm text-gray-600">{enrollment.course.description}</p>
+                        <h3 className="font-semibold">{enrollment.course?.title || 'Course not found'}</h3>
+                        <p className="text-sm text-gray-600">{enrollment.course?.description || 'No description available'}</p>
                         <p className="text-sm text-gray-500">
                           Amount: ${enrollment.paymentAmount}
                         </p>
