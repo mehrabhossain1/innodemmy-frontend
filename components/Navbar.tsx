@@ -10,10 +10,12 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, LogOut, User } from "lucide-react";
+import { useAuth } from "@/lib/hooks/useAuth";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { user, logout } = useAuth();
 
     return (
         <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -84,9 +86,51 @@ export default function Navbar() {
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <Button asChild>
-                            <Link href="/login">Login</Link>
-                        </Button>
+
+                        {user ? (
+                            // Show user info and actions for logged-in users
+                            <div className="flex items-center space-x-2">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
+                                        >
+                                            <User size={18} />
+                                            <span className="text-sm">
+                                                {user.name} ({user.role})
+                                            </span>
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                        <DropdownMenuItem>
+                                            <Link
+                                                href={
+                                                    user.role === "admin"
+                                                        ? "/admin/dashboard"
+                                                        : "/dashboard"
+                                                }
+                                                className="w-full"
+                                            >
+                                                Dashboard
+                                            </Link>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem onClick={logout}>
+                                            <LogOut
+                                                size={16}
+                                                className="mr-2"
+                                            />
+                                            Logout
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+                        ) : (
+                            // Show login button for non-logged-in users
+                            <Button asChild>
+                                <Link href="/login">Login</Link>
+                            </Button>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -156,18 +200,64 @@ export default function Navbar() {
                         >
                             About Us
                         </Link>
-                        <Button
-                            asChild
-                            variant="outline"
-                            className="w-full mt-2"
-                        >
-                            <Link
-                                href="/login"
-                                onClick={() => setIsMobileMenuOpen(false)}
+
+                        {user ? (
+                            // Show user info and actions for logged-in users
+                            <div className="border-t pt-3 mt-3 space-y-2">
+                                <div className="px-3 py-2 text-sm text-gray-600">
+                                    Logged in as:{" "}
+                                    <span className="font-semibold">
+                                        {user.name}
+                                    </span>
+                                </div>
+                                <div className="px-3 py-1 text-xs text-gray-500 uppercase">
+                                    Role: {user.role}
+                                </div>
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    className="w-full"
+                                >
+                                    <Link
+                                        href={
+                                            user.role === "admin"
+                                                ? "/admin/dashboard"
+                                                : "/dashboard"
+                                        }
+                                        onClick={() =>
+                                            setIsMobileMenuOpen(false)
+                                        }
+                                    >
+                                        Dashboard
+                                    </Link>
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => {
+                                        logout();
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                >
+                                    <LogOut size={16} className="mr-2" />
+                                    Logout
+                                </Button>
+                            </div>
+                        ) : (
+                            // Show login button for non-logged-in users
+                            <Button
+                                asChild
+                                variant="outline"
+                                className="w-full mt-2"
                             >
-                                Login
-                            </Link>
-                        </Button>
+                                <Link
+                                    href="/login"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Login
+                                </Link>
+                            </Button>
+                        )}
                     </div>
                 </div>
             )}

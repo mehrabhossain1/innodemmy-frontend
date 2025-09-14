@@ -1,39 +1,47 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Link from 'next/link';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
+import { useAuth } from "@/lib/hooks/useAuth";
 
 export default function LoginPage() {
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        email: "",
+        password: "",
     });
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
     const router = useRouter();
+    const { login } = useAuth();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setError("");
         setLoading(true);
 
         try {
-            const response = await fetch('/api/auth/signin', {
-                method: 'POST',
+            const response = await fetch("/api/auth/signin", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
             });
@@ -41,20 +49,19 @@ export default function LoginPage() {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
-                
+                login(data.token, data.user);
+
                 // Redirect based on user role
-                if (data.user.role === 'admin') {
-                    router.push('/admin/dashboard');
+                if (data.user.role === "admin") {
+                    router.push("/admin/dashboard");
                 } else {
-                    router.push('/dashboard');
+                    router.push("/dashboard");
                 }
             } else {
-                setError(data.error || 'Login failed');
+                setError(data.error || "Login failed");
             }
         } catch {
-            setError('Network error. Please try again.');
+            setError("Network error. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -64,7 +71,9 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <Card className="w-full max-w-md">
                 <CardHeader className="space-y-1">
-                    <CardTitle className="text-2xl font-bold text-center">Sign in</CardTitle>
+                    <CardTitle className="text-2xl font-bold text-center">
+                        Sign in
+                    </CardTitle>
                     <CardDescription className="text-center">
                         Enter your email and password to sign in
                     </CardDescription>
@@ -96,15 +105,24 @@ export default function LoginPage() {
                             />
                         </div>
                         {error && (
-                            <div className="text-red-600 text-sm text-center">{error}</div>
+                            <div className="text-red-600 text-sm text-center">
+                                {error}
+                            </div>
                         )}
-                        <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? 'Signing in...' : 'Sign in'}
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            disabled={loading}
+                        >
+                            {loading ? "Signing in..." : "Sign in"}
                         </Button>
                     </form>
                     <div className="mt-4 text-center text-sm">
-                        Don't have an account?{' '}
-                        <Link href="/register" className="text-blue-600 hover:underline">
+                        Don't have an account?{" "}
+                        <Link
+                            href="/register"
+                            className="text-blue-600 hover:underline"
+                        >
                             Sign up
                         </Link>
                     </div>
