@@ -3,7 +3,7 @@ import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
 import { Course } from '@/lib/models';
 
-export const GET = withAdminAuth(async (_request: NextRequest) => {
+export const GET = withAdminAuth(async () => {
   try {
     const db = await getDatabase();
     const courses = db.collection<Course>('courses');

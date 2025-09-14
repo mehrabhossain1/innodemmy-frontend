@@ -52,7 +52,8 @@ export const PUT = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    const { password: _, ...userWithoutPassword } = updatedUser;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = updatedUser;
 
     return NextResponse.json({
       user: userWithoutPassword,

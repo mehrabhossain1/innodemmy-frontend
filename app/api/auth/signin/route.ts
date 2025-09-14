@@ -39,7 +39,8 @@ export async function POST(request: NextRequest) {
     const token = generateToken(user);
 
     // Return user without password
-    const { password: _, ...userWithoutPassword } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = user;
 
     return NextResponse.json({
       user: userWithoutPassword,

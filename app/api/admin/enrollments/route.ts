@@ -1,10 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
-import { Enrollment } from '@/lib/models';
 import { ObjectId } from 'mongodb';
 
-export const GET = withAdminAuth(async (_request: NextRequest) => {
+export const GET = withAdminAuth(async () => {
   try {
     const db = await getDatabase();
     const enrollments = db.collection('enrollments');

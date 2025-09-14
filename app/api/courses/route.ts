@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
 import { Course } from '@/lib/models';
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     const db = await getDatabase();
     const courses = db.collection<Course>('courses');

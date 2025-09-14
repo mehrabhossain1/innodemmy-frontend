@@ -119,8 +119,6 @@ export default function DashboardPage() {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
-  // helper retained for potential future use
-  const getEnrollmentStatus = (_courseId: string) => null;
 
   const isEnrolled = (courseId: string) => {
     const enrollment = enrollments.find(e => e.courseId === courseId);

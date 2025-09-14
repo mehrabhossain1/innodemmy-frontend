@@ -3,7 +3,7 @@ import { getDatabase } from '@/lib/mongodb';
 import { withAdminAuth } from '@/lib/middleware';
 import { User } from '@/lib/models';
 
-export const GET = withAdminAuth(async (request: NextRequest) => {
+export const GET = withAdminAuth(async () => {
   try {
     const db = await getDatabase();
     const users = db.collection<User>('users');
@@ -11,7 +11,8 @@ export const GET = withAdminAuth(async (request: NextRequest) => {
     const allUsers = await users.find({}).toArray();
     
     // Remove passwords from response
-    const usersWithoutPasswords = allUsers.map(({ password, ...user }) => user);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const usersWithoutPasswords = allUsers.map(({ password: _password, ...user }) => user);
 
     return NextResponse.json({ users: usersWithoutPasswords });
   } catch (error) {
@@ -75,7 +76,8 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    const { password: _, ...userWithoutPassword } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = user;
 
     return NextResponse.json({
       user: userWithoutPassword,
