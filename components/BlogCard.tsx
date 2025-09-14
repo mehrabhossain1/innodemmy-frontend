@@ -94,3 +94,6 @@ export default function BlogCard({
         </article>
     );
 }
+
+
+//this is emplty
