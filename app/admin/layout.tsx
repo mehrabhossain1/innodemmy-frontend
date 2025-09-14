@@ -6,13 +6,19 @@ import { useAuth } from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminDashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const { user, isLoading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         if (!isLoading && !user) {
             router.push("/login");
+            return;
+        }
+
+        if (!isLoading && user && user.role !== "admin") {
+            router.push("/dashboard");
+            return;
         }
     }, [user, isLoading, router]);
 
@@ -24,8 +30,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         );
     }
 
-    if (!user) {
-        return null; // Will redirect to login
+    if (!user || user.role !== "admin") {
+        return null; // Will redirect
     }
 
     return (
@@ -41,4 +47,4 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-export default DashboardLayout;
+export default AdminDashboardLayout;
