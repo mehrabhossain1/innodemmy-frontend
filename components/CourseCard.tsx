@@ -7,7 +7,6 @@ import {
     BookOpen,
     FolderOpen,
     Play,
-    ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,28 +39,30 @@ export default function CourseCard({
     instructor,
 }: CourseCardProps) {
     return (
-        <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+        <div 
+            className="bg-white rounded-2xl overflow-hidden group transition-all duration-200 ease-out hover:-translate-y-2 hover:shadow-lg shadow-sm border border-indigo-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+        >
             {/* Course Image */}
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden aspect-video">
                 <Image
                     src={image || "/placeholder.svg"}
                     alt={title}
                     width={400}
                     height={240}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200 ease-out"
                 />
                 {isLive && (
-                    <div className="absolute top-3 left-3">
-                        <Badge className="bg-red-500 hover:bg-red-600 text-white border-0">
+                    <div className="absolute top-4 left-4">
+                        <Badge className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white border-0 px-3 py-1 text-sm font-medium">
                             <Play className="w-3 h-3 mr-1" />
                             LIVE
                         </Badge>
                     </div>
                 )}
-                <div className="absolute top-3 right-3">
+                <div className="absolute top-4 right-4">
                     <Badge
                         variant="secondary"
-                        className="bg-white/90 text-gray-700 border-0"
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 px-3 py-1 text-sm font-medium"
                     >
                         {batchName}
                     </Badge>
@@ -84,17 +85,17 @@ export default function CourseCard({
                             />
                         ))}
                     </div>
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-sm font-semibold text-gray-900">
                         {rating}
                     </span>
                     <span className="text-sm text-gray-500">
-                        ({totalReviews})
+                        ({totalReviews} reviews)
                     </span>
                 </div>
 
                 {/* Title */}
-                <Link href={`/courses/${id}`}>
-                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors cursor-pointer">
+                <Link href={`/courses/${id}`} aria-describedby={`course-${id}-description`}>
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-indigo-600 transition-colors cursor-pointer">
                         {title}
                     </h3>
                 </Link>
@@ -106,7 +107,7 @@ export default function CourseCard({
                         <Button
                             size="sm"
                             variant="outline"
-                            className="border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 bg-transparent text-xs px-3 py-1 h-auto"
+                            className="border-emerald-200 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-300 bg-transparent text-xs px-3 py-1 h-auto"
                         >
                             <Certificate className="w-3 h-3 mr-1" />
                             Certificate
@@ -115,32 +116,31 @@ export default function CourseCard({
                 )}
 
                 {/* Course Stats */}
-                <div className="grid grid-cols-3 gap-4 py-3 border-t border-gray-100">
+                <div className="grid grid-cols-3 gap-3 py-4 border-t border-indigo-100">
                     <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4 text-gray-400" />
+                        <Users className="w-4 h-4 text-indigo-400" />
                         <span className="text-sm text-gray-600">
                             {totalJoined.toLocaleString()}
                         </span>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <BookOpen className="w-4 h-4 text-gray-400" />
+                        <BookOpen className="w-4 h-4 text-purple-400" />
                         <span className="text-sm text-gray-600">
-                            {totalLessons} lessons
+                            {totalLessons}
                         </span>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <FolderOpen className="w-4 h-4 text-gray-400" />
+                        <FolderOpen className="w-4 h-4 text-emerald-400" />
                         <span className="text-sm text-gray-600">
-                            {totalProjects} projects
+                            {totalProjects}
                         </span>
                     </div>
                 </div>
 
                 {/* View Details Button */}
-                <Link href={`/courses/${id}`}>
-                    <Button className="w-full">
-                        View Details
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                <Link href={`/courses/${id}`} id={`course-${id}-description`}>
+                    <Button className="w-full sm:w-auto sm:ml-auto sm:block transition-all duration-200 ease-out bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600">
+                        View Details →
                     </Button>
                 </Link>
             </div>

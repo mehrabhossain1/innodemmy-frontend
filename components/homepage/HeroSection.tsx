@@ -5,25 +5,20 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <section className="py-20 lg:py-32">
+        <section className="py-20 lg:py-32 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
                     <div className="space-y-8">
-                        {/* Badge */}
-                        <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-200">
-                            <TrendingUp className="w-4 h-4 mr-2" />
-                            Trusted by 50,000+ professionals
-                        </div>
 
                         {/* Main Heading */}
                         <div className="space-y-4">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                                 Advance your skills to{" "}
-                                <span className="text-blue-600 relative">
+                                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent relative">
                                     elevate
                                     <svg
-                                        className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                                        className="absolute -bottom-2 left-0 w-full h-3 text-indigo-200"
                                         viewBox="0 0 200 12"
                                         fill="currentColor"
                                     >
@@ -45,7 +40,7 @@ export default function HeroSection() {
                             <Link href="/courses">
                                 <Button
                                     size="lg"
-                                    className="text-base px-8 py-3 h-auto"
+                                    className="text-base px-8 py-3 h-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
                                 >
                                     Explore All Courses
                                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -54,31 +49,40 @@ export default function HeroSection() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="text-base px-8 py-3 h-auto bg-transparent"
+                                className="text-base px-8 py-3 h-auto bg-transparent border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-200 ease-out"
                             >
                                 Watch Demo
                             </Button>
                         </div>
 
                         {/* Stats */}
-                        <div className="flex items-center space-x-8 pt-4">
-                            <div className="flex items-center space-x-2">
-                                <Users className="h-5 w-5 text-gray-400" />
-                                <span className="text-sm text-gray-600">
-                                    50,000+ Students
-                                </span>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
+                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <Users className="h-6 w-6 text-white" />
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-gray-900">50,000+</div>
+                                    <div className="text-sm text-gray-600">Students</div>
+                                </div>
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <BookOpen className="h-5 w-5 text-gray-400" />
-                                <span className="text-sm text-gray-600">
-                                    500+ Courses
-                                </span>
+                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                                    <BookOpen className="h-6 w-6 text-white" />
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-gray-900">500+</div>
+                                    <div className="text-sm text-gray-600">Courses</div>
+                                </div>
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <Award className="h-5 w-5 text-gray-400" />
-                                <span className="text-sm text-gray-600">
-                                    95% Success Rate
-                                </span>
+                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                                    <Award className="h-6 w-6 text-white" />
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-gray-900">95%</div>
+                                    <div className="text-sm text-gray-600">Success Rate</div>
+                                </div>
                             </div>
                         </div>
 
@@ -128,15 +132,15 @@ export default function HeroSection() {
                                 alt="Professional learning illustration"
                                 width={600}
                                 height={600}
-                                className="w-full h-auto rounded-2xl shadow-2xl"
+                                className="w-full h-auto rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 ease-out"
                             />
                         </div>
 
                         {/* Floating Cards */}
-                        <div className="absolute -top-4 -left-4 bg-white rounded-lg shadow-lg p-4 border border-gray-100 z-20">
+                        <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 z-20 hover:shadow-xl transition-all duration-200 ease-out">
                             <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                    <Award className="w-5 h-5 text-green-600" />
+                                <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                                    <Award className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-semibold text-gray-900">
@@ -149,10 +153,10 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 border border-gray-100 z-20">
+                        <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 z-20 hover:shadow-xl transition-all duration-200 ease-out">
                             <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <TrendingUp className="w-5 h-5 text-blue-600" />
+                                <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <TrendingUp className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-semibold text-gray-900">
@@ -166,7 +170,7 @@ export default function HeroSection() {
                         </div>
 
                         {/* Background Decoration */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-2xl transform rotate-3 -z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50 to-purple-50 rounded-2xl transform rotate-3 -z-10"></div>
                     </div>
                 </div>
             </div>

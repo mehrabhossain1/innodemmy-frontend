@@ -4,40 +4,40 @@ import Image from "next/image";
 
 const reviews = [
     {
-        name: "Jack",
-        username: "@jack",
-        body: "I've never seen anything like this before. It's amazing. I love it.",
-        img: "https://avatar.vercel.sh/jack",
+        name: "Sarah Johnson",
+        username: "Software Engineer",
+        body: "Innodemy's React course completely transformed my career. The hands-on projects and expert mentorship helped me land my dream job at a top tech company.",
+        img: "https://avatar.vercel.sh/sarah",
     },
     {
-        name: "Jill",
-        username: "@jill",
-        body: "I don't know what to say. I'm speechless. This is amazing.",
-        img: "https://avatar.vercel.sh/jill",
+        name: "Michael Chen",
+        username: "Data Scientist",
+        body: "The Python for Data Science course was exceptional. The instructors are industry experts who provide real-world insights you can't find anywhere else.",
+        img: "https://avatar.vercel.sh/michael",
     },
     {
-        name: "John",
-        username: "@john",
-        body: "I'm at a loss for words. This is amazing. I love it.",
-        img: "https://avatar.vercel.sh/john",
+        name: "Emma Rodriguez",
+        username: "UI/UX Designer",
+        body: "I transitioned from marketing to design with Innodemy's UI/UX course. The portfolio projects and career guidance were invaluable for my career change.",
+        img: "https://avatar.vercel.sh/emma",
     },
     {
-        name: "Jane",
-        username: "@jane",
-        body: "I'm at a loss for words. This is amazing. I love it.",
-        img: "https://avatar.vercel.sh/jane",
+        name: "David Kim",
+        username: "Full Stack Developer",
+        body: "The comprehensive curriculum and live coding sessions helped me master both frontend and backend development. Highly recommend to anyone serious about learning.",
+        img: "https://avatar.vercel.sh/david",
     },
     {
-        name: "Jenny",
-        username: "@jenny",
-        body: "I'm at a loss for words. This is amazing. I love it.",
-        img: "https://avatar.vercel.sh/jenny",
+        name: "Lisa Wang",
+        username: "Product Manager",
+        body: "Innodemy's courses taught me the technical skills I needed to communicate effectively with my development team. The practical approach is unmatched.",
+        img: "https://avatar.vercel.sh/lisa",
     },
     {
-        name: "James",
-        username: "@james",
-        body: "I'm at a loss for words. This is amazing. I love it.",
-        img: "https://avatar.vercel.sh/james",
+        name: "Ahmed Hassan",
+        username: "DevOps Engineer",
+        body: "The cloud computing and DevOps courses gave me the exact skills needed for modern infrastructure. The instructors are current industry practitioners.",
+        img: "https://avatar.vercel.sh/ahmed",
     },
 ];
 
@@ -58,18 +58,15 @@ const ReviewCard = ({
     return (
         <figure
             className={cn(
-                "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                // light styles
-                "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-                // dark styles
-                "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+                "relative h-full w-80 cursor-pointer overflow-hidden rounded-2xl border p-6 bg-white shadow-lg hover:shadow-xl transition-all duration-200 ease-out",
+                "border-gray-100 hover:border-indigo-200"
             )}
         >
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center gap-3 mb-4">
                 <Image
                     className="rounded-full"
-                    width="32"
-                    height="32"
+                    width="48"
+                    height="48"
                     alt=""
                     src={img}
                     loading="lazy"
@@ -77,30 +74,28 @@ const ReviewCard = ({
                     unoptimized
                 />
                 <div className="flex flex-col">
-                    <figcaption className="text-sm font-medium dark:text-white">
+                    <figcaption className="text-sm font-semibold text-gray-900">
                         {name}
                     </figcaption>
-                    <p className="text-xs font-medium dark:text-white/40">
+                    <p className="text-xs font-medium text-indigo-600">
                         {username}
                     </p>
                 </div>
             </div>
-            <blockquote className="mt-2 text-sm">{body}</blockquote>
+            <blockquote className="text-sm text-gray-600 leading-relaxed">{body}</blockquote>
         </figure>
     );
 };
 
 export function TechnologyStackSection() {
     return (
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                    Technology Stack
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-white">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    What Our Students Say
                 </h2>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Join our interactive live sessions and learn directly from
-                    industry experts. Get real-time feedback and collaborate
-                    with fellow learners.
+                    Hear from our successful graduates who have transformed their careers with Innodemy's expert-led courses and hands-on learning experiences.
                 </p>
             </div>
 

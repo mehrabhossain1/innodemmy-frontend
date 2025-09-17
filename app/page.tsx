@@ -7,7 +7,7 @@ import WhyBestChoiceSection from "@/components/homepage/WhyBestChoiceSection";
 
 export default function Home() {
     return (
-        <main>
+        <main className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
             <HeroSection />
             <CoursesSection />
             <WhyBestChoiceSection />
