@@ -10,11 +10,6 @@ export default function HeroSection() {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
                     <div className="space-y-8">
-                        {/* Badge */}
-                        <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 border border-indigo-200 shadow-sm">
-                            <TrendingUp className="w-4 h-4 mr-2" />
-                            Trusted by 50,000+ professionals
-                        </div>
 
                         {/* Main Heading */}
                         <div className="space-y-4">

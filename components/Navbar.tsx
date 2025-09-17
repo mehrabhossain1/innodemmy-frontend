@@ -46,16 +46,16 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <div className="hidden md:flex items-center space-x-8">
                         <Link
                             href="/"
-                            className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                            className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
                         >
                             Home
                         </Link>
                         <Link
                             href="/courses"
-                            className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                            className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
                         >
                             Live Courses
                         </Link>
@@ -63,7 +63,7 @@ export default function Navbar() {
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="ghost"
-                                    className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                                    className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
                                 >
                                     More
                                 </Button>
@@ -94,7 +94,7 @@ export default function Navbar() {
                                     <DropdownMenuTrigger asChild>
                                         <Button
                                             variant="ghost"
-                                            className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
+                                            className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
                                         >
                                             <User size={18} />
                                             <span className="text-sm">
@@ -167,35 +167,35 @@ export default function Navbar() {
                         </div>
                         <Link
                             href="/"
-                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Home
                         </Link>
                         <Link
                             href="/live-courses"
-                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Live Courses
                         </Link>
                         <Link
                             href="/blogs"
-                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Blogs
                         </Link>
                         <Link
                             href="/career"
-                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Career
                         </Link>
                         <Link
                             href="/aboutus"
-                            className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             About Us
