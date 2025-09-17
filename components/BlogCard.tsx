@@ -33,7 +33,7 @@ export default function BlogCard({
     };
 
     return (
-        <article className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+        <article className="bg-white dark:bg-slate-800 rounded-xl transition-all duration-300 overflow-hidden group border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
             {/* Blog Image */}
             <div className="relative overflow-hidden">
                 <Link href={`/blogs/${id}`}>
@@ -48,7 +48,7 @@ export default function BlogCard({
                 <div className="absolute top-3 left-3">
                     <Badge
                         variant="secondary"
-                        className="bg-white/90 text-gray-700 border-0"
+                        className="bg-white/95 dark:bg-slate-800/95 text-gray-700 dark:text-gray-300 border-0"
                     >
                         {category}
                     </Badge>
@@ -58,7 +58,7 @@ export default function BlogCard({
             {/* Blog Content */}
             <div className="p-6 space-y-4">
                 {/* Published Date and Read Time */}
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center space-x-1">
                         <Calendar className="w-4 h-4" />
                         <span>{formatDate(publishedDate)}</span>
@@ -69,19 +69,19 @@ export default function BlogCard({
 
                 {/* Title */}
                 <Link href={`/blogs/${id}`}>
-                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors cursor-pointer">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 transition-colors cursor-pointer">
                         {title}
                     </h3>
                 </Link>
 
                 {/* Description */}
-                <p className="text-gray-600 line-clamp-3 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed">
                     {description}
                 </p>
 
                 {/* Author and Read More */}
-                <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                    <span className="text-sm text-gray-600">by {author}</span>
+                <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">by {author}</span>
                     <Link
                         href={`/blogs/${id}`}
                         className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
