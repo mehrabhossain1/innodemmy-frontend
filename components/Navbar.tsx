@@ -80,7 +80,7 @@ export default function Navbar() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                    <Link href="/about" className="w-full">
+                                    <Link href="/aboutus" className="w-full">
                                         About Us
                                     </Link>
                                 </DropdownMenuItem>
@@ -194,7 +194,7 @@ export default function Navbar() {
                             Career
                         </Link>
                         <Link
-                            href="/about"
+                            href="/aboutus"
                             className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
