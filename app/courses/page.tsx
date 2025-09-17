@@ -11,7 +11,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, BookOpen, ArrowLeft } from "lucide-react";
+import { Search, Filter, BookOpen, ArrowLeft, X, TrendingUp, Star } from "lucide-react";
 import CourseCard from "@/components/CourseCard";
 import Link from "next/link";
 
@@ -285,47 +285,59 @@ export default function AllCoursesPage() {
     ]);
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
             {/* Header */}
-            <div className="bg-white border-b">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="bg-gradient-to-r from-white to-blue-50 border-b border-blue-200 shadow-sm">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-6">
                             <Link
                                 href="/"
-                                className="inline-flex items-center text-blue-600 hover:text-blue-700"
+                                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 transition-colors duration-200"
                             >
                                 <ArrowLeft className="w-4 h-4 mr-2" />
                                 Back to Home
                             </Link>
-                            <div className="h-6 w-px bg-gray-300" />
-                            <div className="flex items-center space-x-2">
-                                <BookOpen className="h-6 w-6 text-blue-600" />
-                                <h1 className="text-2xl font-bold text-gray-900">
+                            <div className="h-8 w-px bg-gray-300" />
+                            <div className="flex items-center space-x-3">
+                                <BookOpen className="h-8 w-8 text-indigo-600" />
+                                <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                                     All Courses
                                 </h1>
                             </div>
                         </div>
-                        <Badge variant="secondary" className="text-sm">
+                        <Badge className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm px-4 py-2">
+                            <TrendingUp className="w-4 h-4 mr-2" />
                             {filteredAndSortedCourses.length} courses found
                         </Badge>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Filters and Search */}
-                <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+            {/* Sticky Filter Bar */}
+            <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-indigo-200 shadow-sm">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <div className="bg-gradient-to-r from-white to-indigo-50 rounded-2xl shadow-sm border border-indigo-100 p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
                         {/* Search */}
                         <div className="lg:col-span-2 relative">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400 h-5 w-5" />
                             <Input
                                 placeholder="Search courses or instructors..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10"
+                                className="pl-12 h-12 text-base placeholder:text-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                aria-label="Search courses"
                             />
+                            {searchTerm && (
+                                <button
+                                    onClick={() => setSearchTerm("")}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-400 hover:text-indigo-600 transition-colors duration-200"
+                                    aria-label="Clear search"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            )}
                         </div>
 
                         {/* Category Filter */}
@@ -333,7 +345,7 @@ export default function AllCoursesPage() {
                             value={selectedCategory}
                             onValueChange={setSelectedCategory}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by category">
                                 <SelectValue placeholder="Category" />
                             </SelectTrigger>
                             <SelectContent>
@@ -350,7 +362,7 @@ export default function AllCoursesPage() {
                             value={selectedDifficulty}
                             onValueChange={setSelectedDifficulty}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by difficulty">
                                 <SelectValue placeholder="Difficulty" />
                             </SelectTrigger>
                             <SelectContent>
@@ -370,7 +382,7 @@ export default function AllCoursesPage() {
                             value={selectedType}
                             onValueChange={setSelectedType}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by course type">
                                 <SelectValue placeholder="Course Type" />
                             </SelectTrigger>
                             <SelectContent>
@@ -384,15 +396,21 @@ export default function AllCoursesPage() {
 
                         {/* Sort By */}
                         <Select value={sortBy} onValueChange={setSortBy}>
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Sort courses">
                                 <SelectValue placeholder="Sort by" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="popular">
-                                    Most Popular
+                                    <div className="flex items-center">
+                                        <TrendingUp className="w-4 h-4 mr-2" />
+                                        Most Popular
+                                    </div>
                                 </SelectItem>
                                 <SelectItem value="rating">
-                                    Highest Rated
+                                    <div className="flex items-center">
+                                        <Star className="w-4 h-4 mr-2" />
+                                        Highest Rated
+                                    </div>
                                 </SelectItem>
                                 <SelectItem value="newest">Newest</SelectItem>
                                 <SelectItem value="price-low">
@@ -405,50 +423,54 @@ export default function AllCoursesPage() {
                         </Select>
                     </div>
 
-                    {/* Active Filters */}
-                    <div className="flex flex-wrap gap-2 mt-4">
-                        {selectedCategory !== "All" && (
-                            <Badge
-                                variant="secondary"
-                                className="cursor-pointer"
-                                onClick={() => setSelectedCategory("All")}
-                            >
-                                {selectedCategory} ×
-                            </Badge>
-                        )}
-                        {selectedDifficulty !== "All" && (
-                            <Badge
-                                variant="secondary"
-                                className="cursor-pointer"
-                                onClick={() => setSelectedDifficulty("All")}
-                            >
-                                {selectedDifficulty} ×
-                            </Badge>
-                        )}
-                        {selectedType !== "All" && (
-                            <Badge
-                                variant="secondary"
-                                className="cursor-pointer"
-                                onClick={() => setSelectedType("All")}
-                            >
-                                {selectedType} ×
-                            </Badge>
-                        )}
-                        {searchTerm && (
-                            <Badge
-                                variant="secondary"
-                                className="cursor-pointer"
-                                onClick={() => setSearchTerm("")}
-                            >
-                                "{searchTerm}" ×
-                            </Badge>
-                        )}
+                        {/* Active Filters */}
+                        <div className="flex flex-wrap gap-2 mt-6">
+                            {selectedCategory !== "All" && (
+                                <Badge
+                                    variant="secondary"
+                                    className="cursor-pointer hover:bg-indigo-100 transition-colors duration-200"
+                                    onClick={() => setSelectedCategory("All")}
+                                >
+                                    {selectedCategory} ×
+                                </Badge>
+                            )}
+                            {selectedDifficulty !== "All" && (
+                                <Badge
+                                    variant="secondary"
+                                    className="cursor-pointer hover:bg-indigo-100 transition-colors duration-200"
+                                    onClick={() => setSelectedDifficulty("All")}
+                                >
+                                    {selectedDifficulty} ×
+                                </Badge>
+                            )}
+                            {selectedType !== "All" && (
+                                <Badge
+                                    variant="secondary"
+                                    className="cursor-pointer hover:bg-indigo-100 transition-colors duration-200"
+                                    onClick={() => setSelectedType("All")}
+                                >
+                                    {selectedType} ×
+                                </Badge>
+                            )}
+                            {searchTerm && (
+                                <Badge
+                                    variant="secondary"
+                                    className="cursor-pointer hover:bg-indigo-100 transition-colors duration-200"
+                                    onClick={() => setSearchTerm("")}
+                                >
+                                    "{searchTerm}" ×
+                                </Badge>
+                            )}
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
                 {/* Course Grid */}
                 {filteredAndSortedCourses.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {filteredAndSortedCourses.map((course) => (
                             <CourseCard
                                 key={course.id}
@@ -467,24 +489,25 @@ export default function AllCoursesPage() {
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-12">
+                    <div className="text-center py-16">
                         <div className="max-w-md mx-auto">
-                            <Filter className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            <Filter className="h-16 w-16 text-gray-400 mx-auto mb-6" />
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                                 No courses found
                             </h3>
-                            <p className="text-gray-600 mb-4">
-                                Try adjusting your search criteria or filters to
-                                find more courses.
+                            <p className="text-gray-600 mb-6 leading-relaxed">
+                                Try adjusting your search criteria or filters to find more courses.
                             </p>
                             <Button
                                 variant="outline"
+                                size="lg"
                                 onClick={() => {
                                     setSearchTerm("");
                                     setSelectedCategory("All");
                                     setSelectedDifficulty("All");
                                     setSelectedType("All");
                                 }}
+                                className="px-8 py-3"
                             >
                                 Clear All Filters
                             </Button>
@@ -494,13 +517,34 @@ export default function AllCoursesPage() {
 
                 {/* Load More Button (for pagination) */}
                 {filteredAndSortedCourses.length > 0 && (
-                    <div className="text-center mt-12">
-                        <Button variant="outline" size="lg">
+                    <div className="text-center mt-16">
+                        <Button variant="outline" size="lg" className="px-8 py-3">
                             Load More Courses
                         </Button>
                     </div>
                 )}
             </div>
+
+            {/* Footer */}
+            <footer className="bg-gradient-to-r from-indigo-100 to-purple-100 border-t border-indigo-200 mt-16">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="text-center">
+                        <div className="flex items-center justify-center space-x-2 mb-4">
+                            <BookOpen className="h-6 w-6 text-indigo-600" />
+                            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Innodemy</span>
+                        </div>
+                        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                            Empowering learners with world-class technology education. 
+                            Join thousands of students who have transformed their careers with our courses.
+                        </p>
+                        <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
+                            <span>© 2024 Innodemy. All rights reserved.</span>
+                            <span>•</span>
+                            <span>Trusted by 10,000+ students</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
