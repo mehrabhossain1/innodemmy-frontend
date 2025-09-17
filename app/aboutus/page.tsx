@@ -104,7 +104,7 @@ export default function AboutUsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 sm:p-12"
+            className="bg-white dark:bg-slate-800 rounded-2xl p-8 sm:p-12"
           >
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
               Our mission is simple yet impactful: to bridge the gap between traditional education and the
@@ -150,7 +150,7 @@ export default function AboutUsPage() {
             className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
           >
             <motion.div variants={cardHover}>
-              <Card className="h-full hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-slate-800">
+              <Card className="h-full transition-all duration-300 bg-white dark:bg-slate-800">
                 <CardHeader>
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -172,7 +172,7 @@ export default function AboutUsPage() {
             </motion.div>
 
             <motion.div variants={cardHover}>
-              <Card className="h-full hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-slate-800">
+              <Card className="h-full transition-all duration-300 bg-white dark:bg-slate-800">
                 <CardHeader>
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center">
@@ -236,7 +236,7 @@ export default function AboutUsPage() {
                 variants={cardHover}
                 className="group"
               >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 group-hover:border-blue-200 bg-white dark:bg-slate-800">
+                <Card className="h-full transition-all duration-300 group-hover:border-blue-200 bg-white dark:bg-slate-800">
                   <CardContent className="p-6 text-center">
                     <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{value.title}</h3>
@@ -265,7 +265,7 @@ export default function AboutUsPage() {
           >
             <Target className="w-16 h-16 text-blue-600 mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">What Sets Us Apart</h2>
-            <div className="max-w-4xl mx-auto mb-8 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg border-l-4 border-blue-600">
+            <div className="max-w-4xl mx-auto mb-8 p-6 bg-white dark:bg-slate-800 rounded-xl border-l-4 border-blue-600">
               <p className="text-xl font-semibold text-gray-800 dark:text-gray-200 leading-relaxed">
                 While many offer online courses, <span className="text-blue-600 font-bold">Innodemy stands out</span> for its end-to-end learning experience:
               </p>
@@ -291,7 +291,7 @@ export default function AboutUsPage() {
                 variants={cardHover}
                 className="group"
               >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 group-hover:border-blue-200 bg-white dark:bg-slate-800">
+                <Card className="h-full transition-all duration-300 group-hover:border-blue-200 bg-white dark:bg-slate-800">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <feature.icon className="w-8 h-8 text-blue-600 mt-1 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
