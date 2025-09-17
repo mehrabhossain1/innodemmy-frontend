@@ -101,11 +101,11 @@ const featureCards = [
 
 export default function WhyBestChoiceSection() {
     return (
-        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
                         Why Innodemy is Your Best Choice
                     </h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -119,7 +119,7 @@ export default function WhyBestChoiceSection() {
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Left Side - Accordion */}
                     <div className="space-y-6">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                             <h3 className="text-2xl font-bold text-gray-900 mb-6">
                                 What Sets Us Apart
                             </h3>
@@ -133,7 +133,7 @@ export default function WhyBestChoiceSection() {
                                     <AccordionItem
                                         key={item.id}
                                         value={item.id}
-                                        className="border border-gray-200 rounded-lg px-4 data-[state=open]:border-blue-200 data-[state=open]:bg-blue-50/30"
+                                        className="border border-gray-200 rounded-2xl px-6 data-[state=open]:border-indigo-200 data-[state=open]:bg-indigo-50/30"
                                     >
                                         <AccordionTrigger className="hover:no-underline py-4">
                                             <div className="flex items-center space-x-3 text-left">
@@ -156,31 +156,31 @@ export default function WhyBestChoiceSection() {
                         </div>
 
                         {/* Call to Action */}
-                        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow-lg">
                             <h4 className="text-xl font-bold mb-2">
                                 Ready to Start Your Journey?
                             </h4>
-                            <p className="text-blue-100 mb-4">
+                            <p className="text-indigo-100 mb-4">
                                 Join thousands of learners who have transformed
                                 their careers with Innodemy.
                             </p>
-                            <Button className="bg-white text-blue-600 hover:bg-gray-100">
+                            <Button className="bg-white text-indigo-600 hover:bg-gray-100 shadow-sm">
                                 Explore Courses
                             </Button>
                         </div>
                     </div>
 
                     {/* Right Side - Feature Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {featureCards.map((card) => (
                             <Card
                                 key={card.id}
-                                className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer`}
+                                className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer rounded-2xl`}
                             >
                                 <CardContent className="p-6">
                                     <div className="flex flex-col items-center text-center space-y-4">
                                         {/* Icon */}
-                                        <div className="p-3 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
+                                        <div className="p-4 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
                                             {card.icon}
                                         </div>
 
@@ -201,10 +201,10 @@ export default function WhyBestChoiceSection() {
                 </div>
 
                 {/* Bottom Stats */}
-                <div className="mt-16 bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+                <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div className="text-center">
-                            <div className="text-3xl font-bold text-blue-600 mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
                                 50,000+
                             </div>
                             <div className="text-sm text-gray-600">
@@ -212,7 +212,7 @@ export default function WhyBestChoiceSection() {
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold text-green-600 mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
                                 500+
                             </div>
                             <div className="text-sm text-gray-600">
@@ -220,7 +220,7 @@ export default function WhyBestChoiceSection() {
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold text-purple-600 mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
                                 95%
                             </div>
                             <div className="text-sm text-gray-600">
@@ -228,7 +228,7 @@ export default function WhyBestChoiceSection() {
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold text-orange-600 mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">
                                 24/7
                             </div>
                             <div className="text-sm text-gray-600">

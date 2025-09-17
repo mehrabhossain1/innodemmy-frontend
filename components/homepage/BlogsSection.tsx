@@ -53,11 +53,11 @@ const featuredBlogs = [
 
 export default function BlogsSection() {
     return (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
                         Latest from Our Blog
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function BlogsSection() {
                 </div>
 
                 {/* Blog Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     {featuredBlogs.map((blog) => (
                         <BlogCard
                             key={blog.id}
@@ -90,7 +90,7 @@ export default function BlogsSection() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="px-8 py-3 h-auto text-base bg-transparent"
+                            className="px-8 py-3 h-auto text-base bg-transparent border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-200 ease-out"
                         >
                             Read All Blogs
                             <ArrowRight className="ml-2 h-5 w-5" />

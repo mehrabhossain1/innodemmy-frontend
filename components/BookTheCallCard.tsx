@@ -133,14 +133,14 @@ export default function BookTheCallCard() {
     }
 
     return (
-        <Card className="w-full container mx-auto bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 shadow-lg mt-20">
+        <Card className="w-full container mx-auto bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200 shadow-lg mt-20 rounded-2xl">
             <CardContent className="p-0">
                 <div className="grid lg:grid-cols-2 gap-0">
                     {/* Left Side - Content */}
                     <div className="p-8 lg:p-10 space-y-6">
                         {/* Header */}
                         <div className="space-y-4">
-                            <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-blue-300">
+                            <Badge className="bg-indigo-100 text-indigo-700 hover:bg-indigo-200 border-indigo-300">
                                 <Phone className="w-3 h-3 mr-1" />
                                 Free Consultation
                             </Badge>
@@ -189,7 +189,7 @@ export default function BookTheCallCard() {
                         {/* Social Proof */}
                         <div className="flex items-center space-x-3 pt-4">
                             <div className="flex items-center space-x-2">
-                                <Users className="w-5 h-5 text-blue-600" />
+                                <Users className="w-5 h-5 text-indigo-600" />
                                 <span className="text-sm font-medium text-gray-700">
                                     1500+ students got consultation
                                 </span>
@@ -198,7 +198,7 @@ export default function BookTheCallCard() {
                     </div>
 
                     {/* Right Side - Form */}
-                    <div className="bg-white p-8 lg:p-10 border-l border-gray-200">
+                    <div className="bg-white p-8 lg:p-10 border-l border-indigo-200 rounded-r-2xl">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="text-center mb-6">
                                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -333,7 +333,7 @@ export default function BookTheCallCard() {
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 h-auto text-base font-medium"
+                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-3 h-auto text-base font-medium shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
                             >
                                 {isSubmitting ? (
                                     <div className="flex items-center space-x-2">
@@ -353,14 +353,14 @@ export default function BookTheCallCard() {
                                 By submitting this form, you agree to our{" "}
                                 <a
                                     href="#"
-                                    className="text-blue-600 hover:underline"
+                                    className="text-indigo-600 hover:underline"
                                 >
                                     Privacy Policy
                                 </a>{" "}
                                 and{" "}
                                 <a
                                     href="#"
-                                    className="text-blue-600 hover:underline"
+                                    className="text-indigo-600 hover:underline"
                                 >
                                     Terms of Service
                                 </a>
