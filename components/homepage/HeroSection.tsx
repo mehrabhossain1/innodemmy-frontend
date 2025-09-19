@@ -5,12 +5,11 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <section className="py-20 lg:py-32 bg-white">
+        <section className="py-20 lg:py-32 bg-primary">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
                     <div className="space-y-8">
-
                         {/* Main Heading */}
                         <div className="space-y-4">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
@@ -62,8 +61,12 @@ export default function HeroSection() {
                                     <Users className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-900">50,000+</div>
-                                    <div className="text-sm text-gray-600">Students</div>
+                                    <div className="text-2xl font-bold text-gray-900">
+                                        50,000+
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                        Students
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
@@ -71,8 +74,12 @@ export default function HeroSection() {
                                     <BookOpen className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-900">500+</div>
-                                    <div className="text-sm text-gray-600">Courses</div>
+                                    <div className="text-2xl font-bold text-gray-900">
+                                        500+
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                        Courses
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
@@ -80,8 +87,12 @@ export default function HeroSection() {
                                     <Award className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-900">95%</div>
-                                    <div className="text-sm text-gray-600">Success Rate</div>
+                                    <div className="text-2xl font-bold text-gray-900">
+                                        95%
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                        Success Rate
+                                    </div>
                                 </div>
                             </div>
                         </div>

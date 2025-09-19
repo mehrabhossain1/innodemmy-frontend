@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Search, Menu, X, LogOut, User } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
+import Image from "next/image";
+
+import logo from "@/assets/Logo.png";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,9 +27,11 @@ export default function Navbar() {
                     {/* Logo */}
                     <div className="flex-shrink-0">
                         <Link href="/">
-                            <span className="text-2xl font-bold text-blue-600">
-                                LMS
-                            </span>
+                            <Image
+                                src={logo}
+                                alt="InnoDemmy Logo"
+                                className="h-8 w-auto"
+                            />
                         </Link>
                     </div>
 
