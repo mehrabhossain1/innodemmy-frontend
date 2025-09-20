@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/mongodb';
-import { Course } from '@/lib/models';
 import { ObjectId } from 'mongodb';
 
 export async function GET(
@@ -10,7 +9,7 @@ export async function GET(
   try {
     const { id } = await params;
     const db = await getDatabase();
-    const courses = db.collection<Course>('courses');
+    const courses = db.collection('courses');
 
     // Check if id is a valid ObjectId
     if (!ObjectId.isValid(id)) {
