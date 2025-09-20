@@ -21,7 +21,7 @@ export default function DashboardHeader() {
     };
 
     return (
-        <header className=" bg-white shadow-sm border-b border-gray-200 px-6 py-4 mb-6">
+        <header className=" bg-white sticky top-0 z-50 shadow-sm border-b border-gray-200 px-6 py-4 mb-6">
             <div className="container mx-auto grid grid-cols-3 items-center">
                 {/* Left: Logo */}
                 <div className="flex items-center">
