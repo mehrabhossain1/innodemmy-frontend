@@ -1,59 +1,82 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Star, Play, CheckCircle } from "lucide-react";
-import Image from "next/image";
+import { BookOpen, FileText, ClipboardList, FolderOpen } from "lucide-react";
 import Link from "next/link";
-import { use } from "react";
-// import CourseModules from "@/components/CourseModules";
-import CourseOverview from "@/components/CourseOverview";
+import { use, useState, useEffect } from "react";
+import DashboardHeader from "@/components/DashboardHeader";
+import PageHeader from "@/components/dashboard/PageHeader";
+import Sidebar from "@/components/dashboard/Sidebar";
 
 // Define the type for params
 interface CoursePageProps {
     params: Promise<{ id: string }>;
 }
 
-// This would typically come from your database or API
-const getCourseData = (id: string) => {
-    const courses = {
-        "react-development-bootcamp": {
-            id: "react-development-bootcamp",
-            title: "Complete React Development Bootcamp with Next.js 15",
-            image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
-            batchName: "Batch 15",
-            rating: 4.8,
-            totalReviews: 234,
-            isLive: true,
-            instructor: "Sarah Johnson",
-            instructorImage:
-                "https://cdn-icons-png.flaticon.com/512/219/219988.png",
-            price: 299,
-            originalPrice: 499,
-            totalJoined: 1250,
-            totalLessons: 45,
-            totalProjects: 8,
-            duration: "12 weeks",
-            description:
-                "Master React development from basics to advanced concepts including Next.js 15, TypeScript, and modern development practices.",
-            whatYouWillLearn: [
-                "Build modern React applications with hooks and context",
-                "Master Next.js 15 with App Router and Server Components",
-                "Implement TypeScript for type-safe development",
-                "Create responsive designs with Tailwind CSS",
-                "Deploy applications to production",
-                "Work with APIs and database integration",
-            ],
-        },
-        // Add other courses here...
-    };
+interface Lesson {
+    title: string;
+    description: string;
+    duration: string;
+    videoUrl?: string;
+    content?: string;
+}
 
-    return courses[id as keyof typeof courses] || null;
-};
+interface CourseModule {
+    title: string;
+    description: string;
+    duration: string;
+    lessons: Lesson[];
+}
+
+interface Course {
+    _id: string;
+    title: string;
+    description: string;
+    price: number;
+    instructor: string;
+    duration: string;
+    level: string;
+    category: string;
+    thumbnail?: string;
+    modules: CourseModule[];
+    isActive: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
+
 
 export default function CoursePage({ params }: CoursePageProps) {
     const { id } = use(params);
+    const [course, setCourse] = useState<Course | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    const course = getCourseData(id);
+    useEffect(() => {
+        const fetchCourse = async () => {
+            try {
+                const response = await fetch(`/api/courses/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setCourse(data.course);
+                } else {
+                    setCourse(null);
+                }
+            } catch (error) {
+                console.error("Failed to fetch course:", error);
+                setCourse(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourse();
+    }, [id]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-lg">Loading...</div>
+            </div>
+        );
+    }
 
     if (!course) {
         return (
@@ -62,8 +85,8 @@ export default function CoursePage({ params }: CoursePageProps) {
                     <h1 className="text-2xl font-bold text-gray-900 mb-4">
                         Course Not Found
                     </h1>
-                    <Link href="/">
-                        <Button>Back to Home</Button>
+                    <Link href="/dashboard">
+                        <Button>Back to Dashboard</Button>
                     </Link>
                 </div>
             </div>
@@ -71,201 +94,93 @@ export default function CoursePage({ params }: CoursePageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <div className="bg-white border-b">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <Link
-                        href="/courses"
-                        className="inline-flex items-center text-blue-600 hover:text-blue-700"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Courses
-                    </Link>
-                </div>
-            </div>
+        <div className="min-h-screen">
+            {/* Dashboard Header - Full Width */}
+            <DashboardHeader />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* Course Header */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="flex items-center space-x-3">
-                                    <Badge variant="secondary">
-                                        {course.batchName}
-                                    </Badge>
-                                    {course.isLive && (
-                                        <Badge className="bg-red-500 hover:bg-red-600 text-white">
-                                            <Play className="w-3 h-3 mr-1" />
-                                            LIVE
-                                        </Badge>
-                                    )}
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex items-center space-x-1">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star
-                                                key={i}
-                                                className={`w-4 h-4 ${
-                                                    i <
-                                                    Math.floor(course.rating)
-                                                        ? "text-yellow-400 fill-current"
-                                                        : "text-gray-300"
-                                                }`}
-                                            />
-                                        ))}
-                                    </div>
-                                    <span className="text-sm font-medium">
-                                        {course.rating}
-                                    </span>
-                                    <span className="text-sm text-gray-500">
-                                        ({course.totalReviews} reviews)
-                                    </span>
-                                </div>
+            {/* Page Header - Full Width, aligned with Dashboard Header */}
+            <PageHeader />
+
+            {/* Main Content Layout */}
+            <div className="flex container mx-auto mt-6 space-x-6">
+                {/* Sidebar */}
+                <Sidebar />
+
+                {/* Main Content Area */}
+                <div className="flex-1">
+                    {/* Course Title */}
+                    <div className="text-center mb-8">
+                        <h1 className="text-3xl font-bold text-black mb-6">
+                            {course.title}
+                        </h1>
+                        
+                        {/* Course Stats */}
+                        <div className="flex items-center justify-center space-x-8 text-gray-600">
+                            <div className="flex items-center space-x-2">
+                                <BookOpen className="w-5 h-5" />
+                                <span className="text-lg">
+                                    {course.modules?.reduce((total, module) => total + module.lessons.length, 0) || 0} Lessons
+                                </span>
                             </div>
-
-                            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                                {course.title}
-                            </h1>
-                            <p className="text-lg text-gray-600 mb-6">
-                                {course.description}
-                            </p>
-
-                            {/* Course Image */}
-                            <div className="relative rounded-lg overflow-hidden">
-                                <Image
-                                    src={course.image || "/placeholder.svg"}
-                                    alt={course.title}
-                                    width={600}
-                                    height={400}
-                                    className="w-full h-64 object-cover"
-                                />
+                            <div className="flex items-center space-x-2">
+                                <FileText className="w-5 h-5" />
+                                <span className="text-lg">0 quizzes</span>
                             </div>
-                        </div>
-
-                        {/* What You'll Learn */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                                What you'll learn
-                            </h2>
-                            <div className="grid md:grid-cols-2 gap-3">
-                                {course.whatYouWillLearn.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex items-start space-x-3"
-                                    >
-                                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                                        <span className="text-gray-700">
-                                            {item}
-                                        </span>
-                                    </div>
-                                ))}
+                            <div className="flex items-center space-x-2">
+                                <ClipboardList className="w-5 h-5" />
+                                <span className="text-lg">0 Assignments</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <FolderOpen className="w-5 h-5" />
+                                <span className="text-lg">0 Projects</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Sidebar */}
-                    <div className="space-y-6">
-                        {/* Enrollment Card */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm sticky top-4">
-                            <div className="text-center mb-6">
-                                <div className="flex items-center justify-center space-x-2 mb-2">
-                                    <span className="text-3xl font-bold text-gray-900">
-                                        ${course.price}
-                                    </span>
-                                    <span className="text-lg text-gray-500 line-through">
-                                        ${course.originalPrice}
-                                    </span>
-                                </div>
-                                <p className="text-sm text-green-600 font-medium">
-                                    Save ${course.originalPrice - course.price}
-                                </p>
+                    {/* Progress Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        {/* Course Progress Card */}
+                        <div className="bg-white border border-gray-300 rounded-lg p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-semibold text-black">Course Progress</h3>
+                                <span className="text-lg font-semibold text-blue-600">0%</span>
                             </div>
-
-                            <Button className="w-full mb-4" size="lg">
-                                Enroll Now
-                            </Button>
-
-                            <div className="space-y-3 text-sm">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-600">
-                                        Duration
-                                    </span>
-                                    <span className="font-medium">
-                                        {course.duration}
-                                    </span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-600">
-                                        Students
-                                    </span>
-                                    <span className="font-medium">
-                                        {course.totalJoined.toLocaleString()}
-                                    </span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-600">
-                                        Lessons
-                                    </span>
-                                    <span className="font-medium">
-                                        {course.totalLessons}
-                                    </span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-600">
-                                        Projects
-                                    </span>
-                                    <span className="font-medium">
-                                        {course.totalProjects}
-                                    </span>
-                                </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div className="bg-blue-600 h-2 rounded-full" style={{width: '0%'}}></div>
                             </div>
                         </div>
 
-                        {/* Instructor Card */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                                Your Instructor
-                            </h3>
-                            <div className="flex items-center space-x-4">
-                                <Image
-                                    src={
-                                        course.instructorImage ||
-                                        "/placeholder.svg"
-                                    }
-                                    alt={course.instructor}
-                                    width={60}
-                                    height={60}
-                                    className="w-15 h-15 rounded-full object-cover"
-                                />
-                                <div>
-                                    <h4 className="font-semibold text-gray-900">
-                                        {course.instructor}
-                                    </h4>
-                                    <p className="text-sm text-gray-600">
-                                        Senior React Developer
-                                    </p>
-                                    <div className="flex items-center space-x-1 mt-1">
-                                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                                        <span className="text-sm font-medium">
-                                            {course.rating}
-                                        </span>
-                                        <span className="text-sm text-gray-500">
-                                            instructor rating
-                                        </span>
-                                    </div>
-                                </div>
+                        {/* Quiz Card */}
+                        <div className="bg-white border border-gray-300 rounded-lg p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-semibold text-black">Quiz</h3>
+                                <span className="text-lg font-semibold text-green-600">0/0</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div className="bg-green-600 h-2 rounded-full" style={{width: '0%'}}></div>
+                            </div>
+                        </div>
+
+                        {/* Assignment Card */}
+                        <div className="bg-white border border-gray-300 rounded-lg p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-semibold text-black">Assignment</h3>
+                                <span className="text-lg font-semibold text-green-600">0/0</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div className="bg-green-600 h-2 rounded-full" style={{width: '0%'}}></div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Certificate Button */}
+                    <div className="text-center">
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded">
+                            Certificate
+                        </Button>
+                    </div>
                 </div>
             </div>
-
-            {/* <CourseModules /> */}
-
-            <CourseOverview />
         </div>
     );
 }
