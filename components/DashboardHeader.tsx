@@ -44,14 +44,6 @@ export default function DashboardHeader() {
                 {/* Right: User Profile */}
                 <div className="flex justify-end">
                     <div className="flex items-center space-x-3">
-                        <div className="text-right">
-                            <p className="text-sm font-medium text-gray-900">
-                                {user?.name || "Guest User"}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                                {user?.email || "guest@example.com"}
-                            </p>
-                        </div>
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold text-sm">
                             {getUserInitials()}
                         </div>
