@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { withAdminAuth } from '@/lib/middleware';
-import { Course } from '@/lib/models';
+import { withAdminAuth } from '@/src/core/infrastructure/middleware/AuthMiddleware';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { CourseLevel } from '@/src/core/domain/entities/Course';
 
 export const GET = withAdminAuth(async () => {
   try {
-    const db = await getDatabase();
-    const courses = db.collection<Course>('courses');
+    // Use clean architecture - Get All Courses Use Case
+    const getAllCoursesUseCase = UseCaseFactory.createGetAllCoursesUseCase();
+    const courses = await getAllCoursesUseCase.execute(false); // false = include inactive
 
-    const allCourses = await courses.find({}).toArray();
+    // Convert to legacy format for backward compatibility
+    const coursesResponse = LegacyModelAdapter.coursesToLegacy(courses);
 
-    return NextResponse.json({ courses: allCourses });
+    return NextResponse.json({ courses: coursesResponse });
   } catch (error) {
     console.error('Get courses error:', error);
     return NextResponse.json(
@@ -50,35 +53,24 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    const db = await getDatabase();
-    const courses = db.collection<Course>('courses');
-
-    const newCourse: Omit<Course, '_id'> = {
+    // Use clean architecture - Create Course Use Case
+    const createCourseUseCase = UseCaseFactory.createCreateCourseUseCase();
+    const course = await createCourseUseCase.execute({
       title,
       description,
       price,
       instructor,
       duration,
-      level: level as 'beginner' | 'intermediate' | 'advanced',
+      level: level as CourseLevel,
       category,
       thumbnail,
-      modules: modules || [],
-      isActive: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+      modules: modules || []
+    });
 
-    const result = await courses.insertOne(newCourse);
-    const course = await courses.findOne({ _id: result.insertedId });
+    // Convert to legacy format for backward compatibility
+    const courseResponse = LegacyModelAdapter.courseToLegacy(course);
 
-    if (!course) {
-      return NextResponse.json(
-        { error: 'Failed to create course' },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({ course });
+    return NextResponse.json({ course: courseResponse });
   } catch (error) {
     console.error('Create course error:', error);
     return NextResponse.json(

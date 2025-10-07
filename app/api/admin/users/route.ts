@@ -1,20 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { withAdminAuth } from '@/lib/middleware';
-import { User } from '@/lib/models';
+import { withAdminAuth } from '@/src/core/infrastructure/middleware/AuthMiddleware';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { UserRole } from '@/src/core/domain/entities/User';
 
 export const GET = withAdminAuth(async () => {
   try {
-    const db = await getDatabase();
-    const users = db.collection<User>('users');
+    // Use clean architecture - Get All Users Use Case
+    const getAllUsersUseCase = UseCaseFactory.createGetAllUsersUseCase();
+    const users = await getAllUsersUseCase.execute();
 
-    const allUsers = await users.find({}).toArray();
-    
-    // Remove passwords from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const usersWithoutPasswords = allUsers.map(({ password: _password, ...user }) => user);
+    // Convert to legacy format for backward compatibility
+    const usersResponse = LegacyModelAdapter.usersToLegacy(users);
 
-    return NextResponse.json({ users: usersWithoutPasswords });
+    return NextResponse.json({ users: usersResponse });
   } catch (error) {
     console.error('Get users error:', error);
     return NextResponse.json(
@@ -42,48 +41,32 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    const db = await getDatabase();
-    const users = db.collection<User>('users');
+    // Use clean architecture - Create User Use Case
+    const createUserUseCase = UseCaseFactory.createCreateUserUseCase();
+    const user = await createUserUseCase.execute({
+      email,
+      password,
+      name,
+      role: role as UserRole
+    });
 
-    // Check if user already exists
-    const existingUser = await users.findOne({ email });
-    if (existingUser) {
+    // Convert to legacy format for backward compatibility
+    const userResponse = LegacyModelAdapter.userToLegacy(user);
+
+    return NextResponse.json({
+      user: userResponse,
+    });
+  } catch (error) {
+    console.error('Create user error:', error);
+    
+    // Handle specific errors
+    if (error instanceof Error && error.message.includes('already exists')) {
       return NextResponse.json(
         { error: 'User already exists' },
         { status: 400 }
       );
     }
 
-    const { hashPassword } = await import('@/lib/auth');
-    const hashedPassword = await hashPassword(password);
-
-    const newUser: Omit<User, '_id'> = {
-      email,
-      password: hashedPassword,
-      name,
-      role: role as 'student' | 'admin',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    const result = await users.insertOne(newUser);
-    const user = await users.findOne({ _id: result.insertedId });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Failed to create user' },
-        { status: 500 }
-      );
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _password, ...userWithoutPassword } = user;
-
-    return NextResponse.json({
-      user: userWithoutPassword,
-    });
-  } catch (error) {
-    console.error('Create user error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

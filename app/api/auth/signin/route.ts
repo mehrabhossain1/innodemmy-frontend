@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { verifyPassword, generateToken } from '@/lib/auth';
-import { User } from '@/lib/models';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,40 +13,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const db = await getDatabase();
-    const users = db.collection<User>('users');
+    // Use clean architecture - Login Use Case
+    const loginUseCase = UseCaseFactory.createLoginUseCase();
+    const result = await loginUseCase.execute({ email, password });
 
-    // Find user
-    const user = await users.findOne({ email });
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
-    }
-
-    // Verify password
-    const isValidPassword = await verifyPassword(password, user.password);
-    if (!isValidPassword) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
-    }
-
-    // Generate token
-    const token = generateToken(user);
-
-    // Return user without password
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _password, ...userWithoutPassword } = user;
+    // Convert to legacy format for backward compatibility
+    const userResponse = LegacyModelAdapter.userToLegacy(result.user);
 
     return NextResponse.json({
-      user: userWithoutPassword,
-      token,
+      user: userResponse,
+      token: result.token,
     });
   } catch (error) {
     console.error('Signin error:', error);
+    
+    // Handle specific errors
+    if (error instanceof Error && error.message.includes('Invalid credentials')) {
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

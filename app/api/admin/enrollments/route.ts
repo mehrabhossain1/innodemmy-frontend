@@ -1,20 +1,26 @@
 import { NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { withAdminAuth } from '@/lib/middleware';
+import { withAdminAuth } from '@/src/core/infrastructure/middleware/AuthMiddleware';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { getDatabase } from '@/src/core/infrastructure/database/MongoDBConnection';
 import { ObjectId } from 'mongodb';
 
 export const GET = withAdminAuth(async () => {
   try {
+    // Use clean architecture - Get Enrollments Use Case
+    const getEnrollmentsUseCase = UseCaseFactory.createGetEnrollmentsUseCase();
+    const enrollments = await getEnrollmentsUseCase.execute(); // Get all enrollments
+
+    // Convert to legacy format for backward compatibility
+    const enrollmentsResponse = LegacyModelAdapter.enrollmentsToLegacy(enrollments);
+
+    // Populate user and course information (maintain existing functionality)
     const db = await getDatabase();
-    const enrollments = db.collection('enrollments');
     const users = db.collection('users');
     const courses = db.collection('courses');
 
-    const allEnrollments = await enrollments.find({}).toArray();
-
-    // Populate user and course information
     const enrollmentsWithDetails = await Promise.all(
-      allEnrollments.map(async (enrollment) => {
+      enrollmentsResponse.map(async (enrollment) => {
         const user = await users.findOne({ _id: new ObjectId(enrollment.userId) });
         const course = await courses.findOne({ _id: new ObjectId(enrollment.courseId) });
         

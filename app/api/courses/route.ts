@@ -1,15 +1,17 @@
 import { NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { Course } from '@/lib/models';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
 
 export async function GET() {
   try {
-    const db = await getDatabase();
-    const courses = db.collection<Course>('courses');
+    // Use clean architecture - Get All Courses Use Case
+    const getAllCoursesUseCase = UseCaseFactory.createGetAllCoursesUseCase();
+    const courses = await getAllCoursesUseCase.execute(true); // true = active only
 
-    const allCourses = await courses.find({ isActive: true }).toArray();
+    // Convert to legacy format for backward compatibility
+    const coursesResponse = LegacyModelAdapter.coursesToLegacy(courses);
 
-    return NextResponse.json({ courses: allCourses });
+    return NextResponse.json({ courses: coursesResponse });
   } catch (error) {
     console.error('Get courses error:', error);
     return NextResponse.json(

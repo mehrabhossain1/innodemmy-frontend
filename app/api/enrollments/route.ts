@@ -1,23 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { withAuth } from '@/lib/middleware';
-import { Enrollment } from '@/lib/models';
+import { withAuth, AuthenticatedRequest } from '@/src/core/infrastructure/middleware/AuthMiddleware';
+import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { getDatabase } from '@/src/core/infrastructure/database/MongoDBConnection';
 import { ObjectId } from 'mongodb';
 
-export const GET = withAuth(async (request: NextRequest) => {
+export const GET = withAuth(async (request: AuthenticatedRequest) => {
   try {
-    const user = (request as unknown as { user: { userId: string } }).user;
+    const user = request.user!;
+    
+    // Use clean architecture - Get Enrollments Use Case
+    const getEnrollmentsUseCase = UseCaseFactory.createGetEnrollmentsUseCase();
+    const enrollments = await getEnrollmentsUseCase.execute(user.userId);
+
+    // Convert to legacy format for backward compatibility
+    const enrollmentsResponse = LegacyModelAdapter.enrollmentsToLegacy(enrollments);
+
+    // Populate course information for each enrollment (maintain existing functionality)
     const db = await getDatabase();
-    const enrollments = db.collection<Enrollment>('enrollments');
     const courses = db.collection('courses');
 
-    const userEnrollments = await enrollments
-      .find({ userId: user.userId })
-      .toArray();
-
-    // Populate course information for each enrollment
     const enrollmentsWithCourses = await Promise.all(
-      userEnrollments.map(async (enrollment) => {
+      enrollmentsResponse.map(async (enrollment) => {
         const course = await courses.findOne({ _id: new ObjectId(enrollment.courseId) });
         return {
           ...enrollment,
@@ -36,9 +40,9 @@ export const GET = withAuth(async (request: NextRequest) => {
   }
 });
 
-export const POST = withAuth(async (request: NextRequest) => {
+export const POST = withAuth(async (request: AuthenticatedRequest) => {
   try {
-    const user = (request as unknown as { user: { userId: string } }).user;
+    const user = request.user!;
     const { courseId, paymentProof, paymentAmount, paymentMethod, transactionId } = await request.json();
 
     if (!courseId || !paymentProof || !paymentAmount || !paymentMethod) {
@@ -48,48 +52,39 @@ export const POST = withAuth(async (request: NextRequest) => {
       );
     }
 
-    const db = await getDatabase();
-    const enrollments = db.collection<Enrollment>('enrollments');
-
-    // Check if user already has a pending or approved enrollment for this course
-    const existingEnrollment = await enrollments.findOne({
+    // Use clean architecture - Create Enrollment Use Case
+    const createEnrollmentUseCase = UseCaseFactory.createCreateEnrollmentUseCase();
+    const enrollment = await createEnrollmentUseCase.execute({
       userId: user.userId,
       courseId,
-      status: { $in: ['pending', 'approved'] }
+      paymentProof,
+      paymentAmount,
+      paymentMethod,
+      transactionId
     });
 
-    if (existingEnrollment) {
+    // Convert to legacy format for backward compatibility
+    const enrollmentResponse = LegacyModelAdapter.enrollmentToLegacy(enrollment);
+
+    return NextResponse.json({ enrollment: enrollmentResponse });
+  } catch (error) {
+    console.error('Create enrollment error:', error);
+    
+    // Handle specific errors
+    if (error instanceof Error && error.message.includes('already enrolled')) {
       return NextResponse.json(
         { error: 'You already have an enrollment request for this course' },
         { status: 400 }
       );
     }
 
-    const newEnrollment: Omit<Enrollment, '_id'> = {
-      userId: user.userId,
-      courseId,
-      status: 'pending',
-      paymentProof,
-      paymentAmount,
-      paymentMethod,
-      transactionId,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    const result = await enrollments.insertOne(newEnrollment);
-    const enrollment = await enrollments.findOne({ _id: result.insertedId });
-
-    if (!enrollment) {
+    if (error instanceof Error && error.message.includes('not found')) {
       return NextResponse.json(
-        { error: 'Failed to create enrollment request' },
-        { status: 500 }
+        { error: 'Course not found' },
+        { status: 404 }
       );
     }
 
-    return NextResponse.json({ enrollment });
-  } catch (error) {
-    console.error('Create enrollment error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
