@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { withAdminAuth, AuthenticatedRequest } from '@/src/core/infrastructure/middleware/AuthMiddleware';
 import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
 import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';

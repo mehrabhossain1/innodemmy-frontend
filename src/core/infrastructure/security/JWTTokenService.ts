@@ -5,6 +5,8 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { User } from '@/src/core/domain/entities/User';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+
 export interface DecodedToken extends JwtPayload {
   userId: string;
   email: string;
@@ -18,29 +20,21 @@ export interface ITokenService {
 }
 
 export class JWTTokenService implements ITokenService {
-  private readonly secret: string;
-  private readonly expiresIn: string;
-
-  constructor() {
-    this.secret = process.env.JWT_SECRET || 'your-secret-key';
-    this.expiresIn = '7d';
-  }
-
   generateToken(user: User): string {
     return jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role
+      { 
+        userId: user.id, 
+        email: user.email, 
+        role: user.role 
       },
-      this.secret,
-      { expiresIn: this.expiresIn }
+      JWT_SECRET,
+      { expiresIn: '7d' }
     );
   }
 
   verifyToken(token: string): DecodedToken | null {
     try {
-      const decoded = jwt.verify(token, this.secret);
+      const decoded = jwt.verify(token, JWT_SECRET);
       return decoded as DecodedToken;
     } catch {
       return null;

@@ -2,7 +2,7 @@
  * MongoDB Course Repository Implementation - Infrastructure Layer
  */
 import { ObjectId } from 'mongodb';
-import { ICourseRepository } from '@/src/core/domain/repositories/ICourseRepository';
+import { ICourseRepository, CourseCreateData, CourseUpdateData } from '@/src/core/domain/repositories/ICourseRepository';
 import { Course, CourseLevel, CourseModule } from '@/src/core/domain/entities/Course';
 import { getDatabase } from '../database/MongoDBConnection';
 
@@ -70,7 +70,7 @@ export class MongoCourseRepository implements ICourseRepository {
     return docs.map(doc => this.mapToEntity(doc));
   }
 
-  async create(courseData: Omit<Course, 'id'>): Promise<Course> {
+  async create(courseData: CourseCreateData): Promise<Course> {
     const collection = await this.getCollection();
     const doc: Omit<CourseDocument, '_id'> = {
       title: courseData.title,
@@ -97,7 +97,7 @@ export class MongoCourseRepository implements ICourseRepository {
     return this.mapToEntity(insertedDoc);
   }
 
-  async update(id: string, courseData: Partial<Course>): Promise<Course> {
+  async update(id: string, courseData: CourseUpdateData): Promise<Course> {
     const collection = await this.getCollection();
     const updateData: Partial<CourseDocument> = {
       ...courseData,
@@ -124,10 +124,10 @@ export class MongoCourseRepository implements ICourseRepository {
   }
 
   async activate(id: string): Promise<Course> {
-    return this.update(id, { isActive: true } as Partial<Course>);
+    return this.update(id, { isActive: true });
   }
 
   async deactivate(id: string): Promise<Course> {
-    return this.update(id, { isActive: false } as Partial<Course>);
+    return this.update(id, { isActive: false });
   }
 }

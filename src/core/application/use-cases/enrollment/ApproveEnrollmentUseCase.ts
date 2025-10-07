@@ -21,10 +21,11 @@ export class ApproveEnrollmentUseCase {
     // Save to repository
     const updatedEnrollment = await this.enrollmentRepository.update(enrollmentId, {
       status: approvedEnrollment.status,
+      adminNotes: approvedEnrollment.adminNotes,
       approvedAt: approvedEnrollment.approvedAt,
       approvedBy: approvedEnrollment.approvedBy,
-      adminNotes: approvedEnrollment.adminNotes
-    } as any);
+      updatedAt: new Date()
+    });
 
     // Map to response DTO
     return {

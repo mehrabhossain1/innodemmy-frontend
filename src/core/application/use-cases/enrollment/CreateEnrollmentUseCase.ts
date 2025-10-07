@@ -41,11 +41,16 @@ export class CreateEnrollmentUseCase {
 
     // Create enrollment
     const enrollment = await this.enrollmentRepository.create({
-      ...enrollmentData,
+      userId: enrollmentData.userId,
+      courseId: enrollmentData.courseId,
       status: EnrollmentStatus.PENDING,
+      paymentAmount: enrollmentData.paymentAmount,
+      paymentMethod: enrollmentData.paymentMethod,
       createdAt: new Date(),
-      updatedAt: new Date()
-    } as any);
+      updatedAt: new Date(),
+      paymentProof: enrollmentData.paymentProof,
+      transactionId: enrollmentData.transactionId
+    });
 
     // Map to response DTO
     return {

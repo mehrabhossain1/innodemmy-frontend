@@ -20,12 +20,19 @@ export class CreateCourseUseCase {
 
     // Create course
     const course = await this.courseRepository.create({
-      ...courseData,
+      title: courseData.title,
+      description: courseData.description,
+      price: courseData.price,
+      instructor: courseData.instructor,
+      duration: courseData.duration,
+      level: courseData.level,
+      category: courseData.category,
       modules: courseData.modules || [],
       isActive: true,
+      thumbnail: courseData.thumbnail,
       createdAt: new Date(),
       updatedAt: new Date()
-    } as any);
+    });
 
     // Map to response DTO
     return {

@@ -19,7 +19,7 @@ export class Course {
     public readonly updatedAt?: Date
   ) {}
 
-  isAccessibleBy(userRole: string): boolean {
+  isAccessibleBy(): boolean {
     return this.isActive;
   }
 

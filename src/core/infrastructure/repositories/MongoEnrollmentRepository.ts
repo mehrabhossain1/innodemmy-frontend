@@ -2,7 +2,7 @@
  * MongoDB Enrollment Repository Implementation - Infrastructure Layer
  */
 import { ObjectId } from 'mongodb';
-import { IEnrollmentRepository } from '@/src/core/domain/repositories/IEnrollmentRepository';
+import { IEnrollmentRepository, EnrollmentCreateData, EnrollmentUpdateData } from '@/src/core/domain/repositories/IEnrollmentRepository';
 import { Enrollment, EnrollmentStatus } from '@/src/core/domain/entities/Enrollment';
 import { getDatabase } from '../database/MongoDBConnection';
 
@@ -78,7 +78,7 @@ export class MongoEnrollmentRepository implements IEnrollmentRepository {
     return docs.map(doc => this.mapToEntity(doc));
   }
 
-  async create(enrollmentData: Omit<Enrollment, 'id'>): Promise<Enrollment> {
+  async create(enrollmentData: EnrollmentCreateData): Promise<Enrollment> {
     const collection = await this.getCollection();
     const doc: Omit<EnrollmentDocument, '_id'> = {
       userId: enrollmentData.userId,
@@ -106,7 +106,7 @@ export class MongoEnrollmentRepository implements IEnrollmentRepository {
     return this.mapToEntity(insertedDoc);
   }
 
-  async update(id: string, enrollmentData: Partial<Enrollment>): Promise<Enrollment> {
+  async update(id: string, enrollmentData: EnrollmentUpdateData): Promise<Enrollment> {
     const collection = await this.getCollection();
     const updateData: Partial<EnrollmentDocument> = {
       ...enrollmentData,
