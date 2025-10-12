@@ -184,12 +184,7 @@ export default function AdminDashboard() {
     ) => {
         try {
             const token = localStorage.getItem("token");
-            console.log(
-                "Updating enrollment:",
-                enrollmentId,
-                "to status:",
-                status
-            );
+            // Updating enrollment to status: ${status}
 
             const response = await fetch(
                 `/api/admin/enrollments/${enrollmentId}`,
@@ -203,11 +198,11 @@ export default function AdminDashboard() {
                 }
             );
 
-            console.log("Response status:", response.status);
+            // Response status checked
 
             if (response.ok) {
-                const result = await response.json();
-                console.log("Update successful:", result);
+                await response.json();
+                // Update successful
                 fetchData();
                 alert(`Enrollment ${status} successfully!`);
             } else {

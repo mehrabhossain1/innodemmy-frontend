@@ -28,13 +28,13 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         // Add your login logic here
-        console.log("Login:", loginData);
+        // Login logic will be implemented here
     };
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         // Add your register logic here
-        console.log("Register:", registerData);
+        // Register logic will be implemented here
     };
 
     if (!isOpen) return null;
