@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { User, BookOpen, LogOut } from "lucide-react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 import logo from "@/assets/Logo.png";
 
@@ -47,7 +48,7 @@ export default function DashboardHeader() {
     };
 
     return (
-        <header className=" bg-white sticky top-0 z-50 shadow-sm border-b border-gray-200 px-6 py-4 mb-6">
+        <header className="bg-background sticky top-0 z-50 shadow-sm border-b border-border px-6 py-4 mb-6">
             <div className="container mx-auto grid grid-cols-3 items-center">
                 {/* Left: Logo */}
                 <div className="flex items-center">
@@ -62,7 +63,7 @@ export default function DashboardHeader() {
 
                 {/* Middle: Welcome Message */}
                 <div className="flex justify-center">
-                    <h1 className="text-xl font-semibold text-gray-900">
+                    <h1 className="text-xl font-semibold text-foreground">
                         Welcome back, {user?.name || "Guest"}!
                     </h1>
                 </div>
@@ -70,9 +71,10 @@ export default function DashboardHeader() {
                 {/* Right: User Profile */}
                 <div className="flex justify-end relative" ref={dropdownRef}>
                     <div className="flex items-center space-x-3">
+                        <ThemeToggle />
                         <button
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
-                            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold text-sm hover:bg-primary/90 transition-colors"
+                            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
                         >
                             {getUserInitials()}
                         </button>
@@ -89,23 +91,23 @@ export default function DashboardHeader() {
 
                             {/* Sliding Panel */}
                             <div
-                                className={`fixed right-0 top-0 h-full w-80 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
+                                className={`fixed right-0 top-0 h-full w-80 bg-background shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
                                     isProfileOpen
                                         ? "translate-x-0"
                                         : "translate-x-full"
                                 }`}
                             >
                                 {/* Header */}
-                                <div className="p-4 border-b border-gray-200">
+                                <div className="p-4 border-b border-border">
                                     <div className="flex items-center justify-between">
-                                        <h2 className="text-lg font-semibold text-gray-900">
+                                        <h2 className="text-lg font-semibold text-foreground">
                                             Profile
                                         </h2>
                                         <button
                                             onClick={() =>
                                                 setIsProfileOpen(false)
                                             }
-                                            className="text-gray-400 hover:text-gray-600 transition-colors"
+                                            className="text-muted-foreground hover:text-foreground transition-colors"
                                         >
                                             <svg
                                                 className="w-6 h-6"
@@ -125,17 +127,17 @@ export default function DashboardHeader() {
                                 </div>
 
                                 {/* User Info Section */}
-                                <div className="p-4 border-b border-gray-100">
+                                <div className="p-4 border-b border-border">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-lg">
                                             {getUserInitials()}
                                         </div>
                                         <div>
-                                            <h3 className="font-medium text-gray-900">
+                                            <h3 className="font-medium text-foreground">
                                                 {user?.name ||
                                                     "Mehrab Hossan Munna"}
                                             </h3>
-                                            <p className="text-sm text-gray-500">
+                                            <p className="text-sm text-muted-foreground">
                                                 {user?.email ||
                                                     "mehrab.munna@gmail.com"}
                                             </p>
@@ -148,7 +150,7 @@ export default function DashboardHeader() {
                                     <div className="py-2">
                                         <Link
                                             href="/dashboard/profile"
-                                            className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                                            className="flex items-center space-x-3 px-4 py-3 text-foreground hover:bg-accent transition-colors"
                                             onClick={() =>
                                                 setIsProfileOpen(false)
                                             }
@@ -159,7 +161,7 @@ export default function DashboardHeader() {
 
                                         <Link
                                             href="/dashboard/courses"
-                                            className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                                            className="flex items-center space-x-3 px-4 py-3 text-foreground hover:bg-accent transition-colors"
                                             onClick={() =>
                                                 setIsProfileOpen(false)
                                             }
@@ -169,7 +171,7 @@ export default function DashboardHeader() {
                                         </Link>
                                         <Link
                                             href="/dashboard/courses"
-                                            className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                                            className="flex items-center space-x-3 px-4 py-3 text-foreground hover:bg-accent transition-colors"
                                             onClick={() =>
                                                 setIsProfileOpen(false)
                                             }
@@ -179,7 +181,7 @@ export default function DashboardHeader() {
                                         </Link>
                                         <Link
                                             href="/dashboard/courses"
-                                            className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                                            className="flex items-center space-x-3 px-4 py-3 text-foreground hover:bg-accent transition-colors"
                                             onClick={() =>
                                                 setIsProfileOpen(false)
                                             }
@@ -188,10 +190,10 @@ export default function DashboardHeader() {
                                             <span>Teach to Innodemmy</span>
                                         </Link>
 
-                                        <div className="border-t border-gray-100 mt-2 pt-2">
+                                        <div className="border-t border-border mt-2 pt-2">
                                             <button
                                                 onClick={handleLogout}
-                                                className="flex items-center space-x-3 w-full px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+                                                className="flex items-center space-x-3 w-full px-4 py-3 text-destructive hover:bg-destructive/10 transition-colors"
                                             >
                                                 <LogOut className="w-5 h-5" />
                                                 <span>Log out</span>

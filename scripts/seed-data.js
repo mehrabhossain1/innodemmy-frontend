@@ -49,7 +49,7 @@ async function seedData() {
                 level: "beginner",
                 category: "Web Development",
                 thumbnail:
-                    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500",
+                    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500",
                 modules: [
                     {
                         title: "HTML & CSS Fundamentals",
@@ -101,7 +101,7 @@ async function seedData() {
                 level: "intermediate",
                 category: "Data Science",
                 thumbnail:
-                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500",
+                    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500",
                 modules: [
                     {
                         title: "Python Fundamentals",
@@ -153,7 +153,7 @@ async function seedData() {
                 level: "intermediate",
                 category: "Mobile Development",
                 thumbnail:
-                    "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500",
+                    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500",
                 modules: [
                     {
                         title: "React Native Basics",

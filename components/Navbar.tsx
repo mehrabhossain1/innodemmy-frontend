@@ -13,15 +13,18 @@ import {
 import { Search, Menu, X, LogOut, User } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import AuthSidebar from "@/components/AuthSidebar";
 
 import logo from "@/assets/Logo.png";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
     const { user, logout } = useAuth();
 
     return (
-        <nav className="bg-white shadow-md sticky top-0 z-50">
+        <nav className="bg-background shadow-md sticky top-0 z-50 border-b border-border">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
@@ -51,24 +54,24 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center space-x-4">
                         <Link
                             href="/"
-                            className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
+                            className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
                         >
                             Home
                         </Link>
                         <Link
                             href="/courses"
-                            className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
+                            className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
                         >
-                            Live Courses
+                            All Courses
                         </Link>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="ghost"
-                                    className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
+                                    className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
                                 >
                                     More
                                 </Button>
@@ -92,6 +95,8 @@ export default function Navbar() {
                             </DropdownMenuContent>
                         </DropdownMenu>
 
+                        <ThemeToggle />
+
                         {user ? (
                             // Show user info and actions for logged-in users
                             <div className="flex items-center space-x-2">
@@ -99,7 +104,7 @@ export default function Navbar() {
                                     <DropdownMenuTrigger asChild>
                                         <Button
                                             variant="ghost"
-                                            className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg hover:scale-105"
+                                            className="flex items-center space-x-2 text-foreground hover:text-primary transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
                                         >
                                             <User size={18} />
                                             <span className="text-sm">
@@ -132,8 +137,8 @@ export default function Navbar() {
                             </div>
                         ) : (
                             // Show login button for non-logged-in users
-                            <Button asChild>
-                                <Link href="/login">Login</Link>
+                            <Button onClick={() => setIsAuthSidebarOpen(true)}>
+                                Login
                             </Button>
                         )}
                     </div>
@@ -157,7 +162,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden bg-white border-t">
+                <div className="md:hidden bg-background border-t border-border">
                     <div className="px-4 pt-2 pb-3 space-y-1">
                         <div className="relative mb-3">
                             <Search
@@ -170,37 +175,43 @@ export default function Navbar() {
                                 className="pl-10 w-full"
                             />
                         </div>
+                        <div className="flex items-center justify-between mb-3">
+                            <span className="text-sm font-medium text-muted-foreground">
+                                Theme
+                            </span>
+                            <ThemeToggle />
+                        </div>
                         <Link
                             href="/"
-                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Home
                         </Link>
                         <Link
-                            href="/live-courses"
-                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
+                            href="/courses"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Live Courses
+                            All Courses
                         </Link>
                         <Link
                             href="/blogs"
-                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Blogs
                         </Link>
                         <Link
                             href="/career"
-                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Career
                         </Link>
                         <Link
                             href="/aboutus"
-                            className="block text-gray-700 hover:text-indigo-600 px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-indigo-50 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             About Us
@@ -208,14 +219,14 @@ export default function Navbar() {
 
                         {user ? (
                             // Show user info and actions for logged-in users
-                            <div className="border-t pt-3 mt-3 space-y-2">
-                                <div className="px-3 py-2 text-sm text-gray-600">
+                            <div className="border-t border-border pt-3 mt-3 space-y-2">
+                                <div className="px-3 py-2 text-sm text-muted-foreground">
                                     Logged in as:{" "}
-                                    <span className="font-semibold">
+                                    <span className="font-semibold text-foreground">
                                         {user.name}
                                     </span>
                                 </div>
-                                <div className="px-3 py-1 text-xs text-gray-500 uppercase">
+                                <div className="px-3 py-1 text-xs text-muted-foreground uppercase">
                                     Role: {user.role}
                                 </div>
                                 <Button
@@ -251,21 +262,25 @@ export default function Navbar() {
                         ) : (
                             // Show login button for non-logged-in users
                             <Button
-                                asChild
                                 variant="outline"
                                 className="w-full mt-2"
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setIsAuthSidebarOpen(true);
+                                }}
                             >
-                                <Link
-                                    href="/login"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    Login
-                                </Link>
+                                Login
                             </Button>
                         )}
                     </div>
                 </div>
             )}
+
+            {/* Auth Sidebar */}
+            <AuthSidebar
+                isOpen={isAuthSidebarOpen}
+                onClose={() => setIsAuthSidebarOpen(false)}
+            />
         </nav>
     );
 }

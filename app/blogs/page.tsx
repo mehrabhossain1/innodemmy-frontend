@@ -35,7 +35,7 @@ const allBlogs = [
         description:
             "Explore the latest trends shaping web development, from AI integration to progressive web apps. Learn how these technologies will impact developers and businesses in the coming year. Discover the tools and frameworks that are gaining momentum and how to prepare for the future of web development.",
         publishedDate: "2024-01-15",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Technology",
         author: "Sarah Johnson",
         readTime: "5 min",
@@ -46,7 +46,7 @@ const allBlogs = [
         description:
             "Deep dive into React Hooks and learn how to build more efficient and maintainable React applications. This comprehensive guide covers useState, useEffect, custom hooks, and advanced patterns. Perfect for developers looking to level up their React skills and write cleaner code.",
         publishedDate: "2024-01-12",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Development",
         author: "Alex Thompson",
         readTime: "8 min",
@@ -57,7 +57,7 @@ const allBlogs = [
         description:
             "Learn the fundamental principles of user interface and user experience design that create exceptional digital products. From color theory to user psychology, this guide covers everything you need to know to design interfaces that users love and businesses value.",
         publishedDate: "2024-01-10",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Design",
         author: "Emma Rodriguez",
         readTime: "6 min",
@@ -68,7 +68,7 @@ const allBlogs = [
         description:
             "Discover how to successfully transition into a machine learning career, regardless of your current background. This comprehensive guide covers the essential skills, learning path, portfolio projects, and job search strategies to land your first ML role in today's competitive market.",
         publishedDate: "2024-01-08",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Career",
         author: "Dr. Michael Chen",
         readTime: "10 min",
@@ -79,7 +79,7 @@ const allBlogs = [
         description:
             "Learn how to optimize JavaScript performance for better user experience and faster web applications. This guide covers code splitting, lazy loading, memory management, and modern optimization techniques that every developer should know.",
         publishedDate: "2024-01-05",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Development",
         author: "Kevin Zhang",
         readTime: "7 min",
@@ -90,7 +90,7 @@ const allBlogs = [
         description:
             "Maximize your productivity while working remotely with proven strategies and tools. From setting up the perfect home office to managing time effectively, this guide helps tech professionals thrive in remote work environments.",
         publishedDate: "2024-01-03",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Career",
         author: "Lisa Chen",
         readTime: "6 min",
@@ -101,7 +101,7 @@ const allBlogs = [
         description:
             "Master modern CSS layout techniques with this comprehensive comparison of CSS Grid and Flexbox. Learn when to use each method, their strengths and limitations, and practical examples to improve your web design skills.",
         publishedDate: "2024-01-01",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Development",
         author: "Maria Garcia",
         readTime: "9 min",
@@ -112,7 +112,7 @@ const allBlogs = [
         description:
             "Stay ahead in data science with the latest tools and libraries. From Python frameworks to visualization tools, discover what's trending in the data science community and how to incorporate these tools into your workflow.",
         publishedDate: "2023-12-28",
-        image: "https://img.freepik.com/free-photo/online-blog_53876-123696.jpg?t=st=1753634546~exp=1753638146~hmac=e830741e8b8d35d3f6ac3da5091881f8a6e5f2724eae0f3246f5c10ff3251d3e&w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         category: "Data Science",
         author: "Dr. Robert Kim",
         readTime: "8 min",

@@ -68,16 +68,16 @@ export default function Sidebar() {
 
     return (
         <div
-            className={`bg-gray-900 text-white transition-all duration-300 ${
+            className={`bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-all duration-300 ${
                 isCollapsed ? "w-16" : "w-64"
             } min-h-screen flex flex-col`}
         >
             {/* Header */}
-            <div className="p-4 border-b border-gray-700">
+            <div className="p-4 border-b border-sidebar-border">
                 <div className="flex items-center justify-between">
                     {!isCollapsed && (
                         <Link href="/">
-                            <span className="text-xl font-bold text-blue-400">
+                            <span className="text-xl font-bold text-primary">
                                 LMS Dashboard
                             </span>
                         </Link>
@@ -86,7 +86,7 @@ export default function Sidebar() {
                         variant="ghost"
                         size="sm"
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        className="text-white hover:bg-gray-800 p-2"
+                        className="text-sidebar-foreground hover:bg-sidebar-accent p-2"
                     >
                         {isCollapsed ? <Menu size={20} /> : <X size={20} />}
                     </Button>
@@ -95,23 +95,23 @@ export default function Sidebar() {
 
             {/* User Info */}
             {user && (
-                <div className="p-4 border-b border-gray-700">
+                <div className="p-4 border-b border-sidebar-border">
                     {isCollapsed ? (
                         <div className="flex justify-center">
-                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
                                 <User size={16} />
                             </div>
                         </div>
                     ) : (
                         <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
                                 <User size={20} />
                             </div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-white truncate">
+                                <p className="text-sm font-medium text-sidebar-foreground truncate">
                                     {user.name}
                                 </p>
-                                <p className="text-xs text-gray-400 capitalize">
+                                <p className="text-xs text-muted-foreground capitalize">
                                     {user.role}
                                 </p>
                             </div>
@@ -131,8 +131,8 @@ export default function Sidebar() {
                                     href={item.href}
                                     className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                                         isActive(item.href)
-                                            ? "bg-blue-600 text-white"
-                                            : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                                            ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                                     }`}
                                 >
                                     <Icon size={20} />
@@ -149,13 +149,13 @@ export default function Sidebar() {
             </nav>
 
             {/* Logout */}
-            <div className="p-4 border-t border-gray-700">
+            <div className="p-4 border-t border-sidebar-border">
                 {isCollapsed ? (
                     <Button
                         variant="ghost"
                         size="sm"
                         onClick={logout}
-                        className="w-full text-gray-300 hover:bg-gray-800 hover:text-white p-2"
+                        className="w-full text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground p-2"
                     >
                         <LogOut size={20} />
                     </Button>
@@ -163,7 +163,7 @@ export default function Sidebar() {
                     <Button
                         variant="ghost"
                         onClick={logout}
-                        className="w-full justify-start text-gray-300 hover:bg-gray-800 hover:text-white"
+                        className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                     >
                         <LogOut size={16} className="mr-3" />
                         Logout

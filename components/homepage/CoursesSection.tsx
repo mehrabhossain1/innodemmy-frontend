@@ -6,7 +6,7 @@ import Link from "next/link";
 const liveCourses = [
     {
         id: "react-development-bootcamp",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 15",
         rating: 4.8,
         totalReviews: 234,
@@ -19,7 +19,7 @@ const liveCourses = [
     },
     {
         id: "react-development-bootcamp",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 12",
         rating: 4.9,
         totalReviews: 189,
@@ -32,7 +32,7 @@ const liveCourses = [
     },
     {
         id: "ui-ux-design-complete",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 8",
         rating: 4.7,
         totalReviews: 156,
@@ -47,14 +47,14 @@ const liveCourses = [
 
 export default function CoursesSection() {
     return (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-4">
                         Featured Courses
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Join our interactive live sessions and learn directly
                         from industry experts. Get real-time feedback and
                         collaborate with fellow learners.
@@ -86,7 +86,7 @@ export default function CoursesSection() {
                     <Link href="/courses">
                         <Button
                             size="lg"
-                            className="px-8 py-3 h-auto text-base bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
+                            className="px-8 py-3 h-auto text-base shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
                         >
                             View All Courses
                             <ArrowRight className="ml-2 h-5 w-5" />

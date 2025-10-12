@@ -1,23 +1,34 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Users, Award, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <section className="py-20 lg:py-32">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="relative py-16 lg:py-24 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950/20 dark:via-indigo-950/20 dark:to-purple-950/20"></div>
+            <div className="absolute inset-0 opacity-60">
+                <div className="w-full h-full" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233B82F6' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat'
+                }}></div>
+            </div>
+            {/* Additional Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-transparent to-indigo-100/30 dark:from-blue-900/20 dark:via-transparent dark:to-indigo-900/20"></div>
+            
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left Content */}
                     <div className="space-y-8">
                         {/* Main Heading */}
-                        <div className="space-y-4">
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        <div className="space-y-6">
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
                                 Advance your skills to{" "}
-                                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent relative">
+                                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent relative">
                                     elevate
                                     <svg
-                                        className="absolute -bottom-2 left-0 w-full h-3 text-indigo-200"
+                                        className="absolute -bottom-2 left-0 w-full h-3 text-primary/30"
                                         viewBox="0 0 200 12"
                                         fill="currentColor"
                                     >
@@ -26,7 +37,7 @@ export default function HeroSection() {
                                 </span>{" "}
                                 your career
                             </h1>
-                            <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+                            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
                                 Join thousands of professionals who are
                                 transforming their careers through our
                                 expert-led courses and hands-on learning
@@ -35,155 +46,61 @@ export default function HeroSection() {
                         </div>
 
                         {/* CTA Button */}
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
                             <Link href="/courses">
                                 <Button
                                     size="lg"
-                                    className="text-base px-8 py-3 h-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
+                                    className="text-lg px-10 py-4 h-auto shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1"
                                 >
                                     Explore All Courses
-                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                    <ArrowRight className="ml-3 h-5 w-5" />
                                 </Button>
                             </Link>
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="text-base px-8 py-3 h-auto bg-transparent border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-200 ease-out"
+                                className="text-lg px-10 py-4 h-auto transition-all duration-300 ease-out transform hover:-translate-y-1"
                             >
                                 Watch Demo
                             </Button>
                         </div>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
-                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-                                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
-                                    <Users className="h-6 w-6 text-white" />
-                                </div>
-                                <div>
-                                    <div className="text-2xl font-bold text-gray-900">
-                                        50,000+
-                                    </div>
-                                    <div className="text-sm text-gray-600">
-                                        Students
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-                                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
-                                    <BookOpen className="h-6 w-6 text-white" />
-                                </div>
-                                <div>
-                                    <div className="text-2xl font-bold text-gray-900">
-                                        500+
-                                    </div>
-                                    <div className="text-sm text-gray-600">
-                                        Courses
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-                                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                                    <Award className="h-6 w-6 text-white" />
-                                </div>
-                                <div>
-                                    <div className="text-2xl font-bold text-gray-900">
-                                        95%
-                                    </div>
-                                    <div className="text-sm text-gray-600">
-                                        Success Rate
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* Company Logos */}
-                        <div className="pt-8">
-                            <p className="text-sm text-gray-500 mb-4">
-                                Trusted by employees at
-                            </p>
-                            <div className="flex items-center space-x-8 opacity-60">
-                                <Image
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdEEO-mCKk-1ZV-y9xarZawuakiH4VY381g&s"
-                                    alt="Google"
-                                    width={120}
-                                    height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-                                />
-                                <Image
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdEEO-mCKk-1ZV-y9xarZawuakiH4VY381g&s"
-                                    alt="Microsoft"
-                                    width={120}
-                                    height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-                                />
-                                <Image
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdEEO-mCKk-1ZV-y9xarZawuakiH4VY381g&s"
-                                    alt="Amazon"
-                                    width={120}
-                                    height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-                                />
-                                <Image
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdEEO-mCKk-1ZV-y9xarZawuakiH4VY381g&s"
-                                    alt="Netflix"
-                                    width={120}
-                                    height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-                                />
-                            </div>
-                        </div>
                     </div>
 
                     {/* Right Content - Hero Image/Illustration */}
                     <div className="relative">
                         <div className="relative z-10">
-                            <Image
-                                src="https://img.freepik.com/free-vector/flat-university-concept_23-2148174524.jpg?t=st=1753631695~exp=1753635295~hmac=78d72ac25daa2325e9bf811a7a23cabf5d122c74e2306c9938ed0d93d618031b&w=1380"
-                                alt="Professional learning illustration"
-                                width={600}
-                                height={600}
-                                className="w-full h-auto rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 ease-out"
-                            />
-                        </div>
-
-                        {/* Floating Cards */}
-                        <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 z-20 hover:shadow-xl transition-all duration-200 ease-out">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
-                                    <Award className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-gray-900">
-                                        Course Completed
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                        React Development
-                                    </p>
-                                </div>
+                            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                                <Image
+                                    src="https://www.kinderpedia.co/templates/yootheme/cache/47/invatarea_activa_online-47a6c606.jpeg"
+                                    alt="Online learning academy illustration"
+                                    width={600}
+                                    height={600}
+                                    className="w-full h-auto hover:scale-105 transition-transform duration-500 ease-out"
+                                />
+                                {/* Overlay gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent"></div>
                             </div>
                         </div>
 
-                        <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 z-20 hover:shadow-xl transition-all duration-200 ease-out">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
-                                    <TrendingUp className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-gray-900">
-                                        Skill Progress
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                        85% Complete
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
+                        {/* Floating Elements */}
+                        <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-xl"></div>
+                        
                         {/* Background Decoration */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50 to-purple-50 rounded-2xl transform rotate-3 -z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl transform rotate-2 -z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tl from-primary/10 to-transparent rounded-3xl transform -rotate-1 -z-20"></div>
                     </div>
                 </div>
+            </div>
+            
+            {/* Bottom Wave */}
+            <div className="absolute bottom-0 left-0 right-0">
+                <svg className="w-full h-16 text-background" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="currentColor"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="currentColor" opacity="0.5"></path>
+                </svg>
             </div>
         </section>
     );

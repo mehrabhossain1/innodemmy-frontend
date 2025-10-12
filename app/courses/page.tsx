@@ -19,7 +19,7 @@ const allCourses = [
     // Development Courses
     {
         id: "react-development-bootcamp",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 15",
         rating: 4.8,
         totalReviews: 234,
@@ -35,7 +35,7 @@ const allCourses = [
     },
     {
         id: "python-data-science-ml",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 12",
         rating: 4.9,
         totalReviews: 189,
@@ -51,7 +51,7 @@ const allCourses = [
     },
     {
         id: "javascript-fundamentals",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 22",
         rating: 4.6,
         totalReviews: 156,
@@ -67,7 +67,7 @@ const allCourses = [
     },
     {
         id: "devops-aws-docker",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 20",
         rating: 4.6,
         totalReviews: 298,
@@ -84,7 +84,7 @@ const allCourses = [
     // Design Courses
     {
         id: "ui-ux-design-complete",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 8",
         rating: 4.7,
         totalReviews: 156,
@@ -100,7 +100,7 @@ const allCourses = [
     },
     {
         id: "graphic-design-masterclass",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 5",
         rating: 4.5,
         totalReviews: 89,
@@ -117,7 +117,7 @@ const allCourses = [
     // Business Courses
     {
         id: "digital-marketing-strategy",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 18",
         rating: 4.4,
         totalReviews: 203,
@@ -133,7 +133,7 @@ const allCourses = [
     },
     {
         id: "project-management-agile",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 11",
         rating: 4.3,
         totalReviews: 167,
@@ -150,7 +150,7 @@ const allCourses = [
     // More Development
     {
         id: "flutter-mobile-development",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 7",
         rating: 4.7,
         totalReviews: 134,
@@ -166,7 +166,7 @@ const allCourses = [
     },
     {
         id: "blockchain-web3-development",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 3",
         rating: 4.8,
         totalReviews: 98,
@@ -183,7 +183,7 @@ const allCourses = [
     // Data Science
     {
         id: "data-analysis-excel-sql",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 16",
         rating: 4.2,
         totalReviews: 245,
@@ -199,7 +199,7 @@ const allCourses = [
     },
     {
         id: "ai-machine-learning-tensorflow",
-        image: "https://img.freepik.com/premium-psd/school-education-admission-youtube-thumbnail-web-banner-template_1060129-201.jpg?w=1380",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         batchName: "Batch 9",
         rating: 4.9,
         totalReviews: 156,

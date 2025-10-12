@@ -101,14 +101,14 @@ const featureCards = [
 
 export default function WhyBestChoiceSection() {
     return (
-        <section className="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <section className="py-16 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950/20 dark:via-teal-950/20 dark:to-cyan-950/20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-4">
                         Why Innodemy is Your Best Choice
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                         Discover what makes Innodemy the preferred learning
                         platform for thousands of students and professionals
                         worldwide. We're committed to your success every step of
@@ -119,8 +119,8 @@ export default function WhyBestChoiceSection() {
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Left Side - Accordion */}
                     <div className="space-y-6">
-                        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                        <div className="bg-card rounded-2xl p-8 shadow-lg border border-border">
+                            <h3 className="text-2xl font-bold text-foreground mb-6">
                                 What Sets Us Apart
                             </h3>
 
@@ -133,20 +133,20 @@ export default function WhyBestChoiceSection() {
                                     <AccordionItem
                                         key={item.id}
                                         value={item.id}
-                                        className="border border-gray-200 rounded-2xl px-6 data-[state=open]:border-indigo-200 data-[state=open]:bg-indigo-50/30"
+                                        className="border border-border rounded-2xl px-6 data-[state=open]:border-primary data-[state=open]:bg-accent"
                                     >
                                         <AccordionTrigger className="hover:no-underline py-4">
                                             <div className="flex items-center space-x-3 text-left">
                                                 <div className="flex-shrink-0">
                                                     {item.icon}
                                                 </div>
-                                                <span className="font-semibold text-gray-900">
+                                                <span className="font-semibold text-foreground">
                                                     {item.title}
                                                 </span>
                                             </div>
                                         </AccordionTrigger>
                                         <AccordionContent className="pb-4 pt-2">
-                                            <p className="text-gray-600 leading-relaxed ml-8">
+                                            <p className="text-muted-foreground leading-relaxed ml-8">
                                                 {item.content}
                                             </p>
                                         </AccordionContent>
@@ -156,15 +156,15 @@ export default function WhyBestChoiceSection() {
                         </div>
 
                         {/* Call to Action */}
-                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow-lg">
+                        <div className="bg-primary rounded-2xl p-8 text-primary-foreground shadow-lg">
                             <h4 className="text-xl font-bold mb-2">
                                 Ready to Start Your Journey?
                             </h4>
-                            <p className="text-indigo-100 mb-4">
+                            <p className="text-primary-foreground/80 mb-4">
                                 Join thousands of learners who have transformed
                                 their careers with Innodemy.
                             </p>
-                            <Button className="bg-white text-indigo-600 hover:bg-gray-100 shadow-sm">
+                            <Button className="bg-background text-foreground hover:bg-background/90 shadow-sm">
                                 Explore Courses
                             </Button>
                         </div>
@@ -201,37 +201,37 @@ export default function WhyBestChoiceSection() {
                 </div>
 
                 {/* Bottom Stats */}
-                <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="mt-16 bg-card rounded-2xl p-8 shadow-lg border border-border">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
                                 50,000+
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-muted-foreground">
                                 Students Enrolled
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 dark:from-emerald-400 to-teal-600 dark:to-teal-400 bg-clip-text text-transparent mb-2">
                                 500+
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-muted-foreground">
                                 Expert Courses
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 dark:from-purple-400 to-pink-600 dark:to-pink-400 bg-clip-text text-transparent mb-2">
                                 95%
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-muted-foreground">
                                 Success Rate
                             </div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 dark:from-orange-400 to-red-600 dark:to-red-400 bg-clip-text text-transparent mb-2">
                                 24/7
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-muted-foreground">
                                 Support Available
                             </div>
                         </div>
