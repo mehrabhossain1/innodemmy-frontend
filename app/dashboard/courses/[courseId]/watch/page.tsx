@@ -140,7 +140,7 @@ export default function CourseWatchPage() {
 
     useEffect(() => {
         if (!isLoading && !user) {
-            router.push("/login");
+            router.push("/");
             return;
         }
 

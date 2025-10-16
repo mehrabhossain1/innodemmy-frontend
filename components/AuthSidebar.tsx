@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { X, Mail, Phone, Lock, User as UserIcon, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { useAuth } from "@/lib/hooks/useAuth";
 
 interface AuthSidebarProps {
     isOpen: boolean;
@@ -15,26 +17,128 @@ interface AuthSidebarProps {
 export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
     const [activeTab, setActiveTab] = useState<"login" | "register">("login");
     const [loginData, setLoginData] = useState({
-        email: "",
+        identifier: "",
         password: "",
     });
     const [registerData, setRegisterData] = useState({
         name: "",
         email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const router = useRouter();
+    const { login } = useAuth();
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Add your login logic here
-        // Login logic will be implemented here
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/auth/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                login(data.token, data.user);
+                setSuccess("Login successful! Redirecting...");
+                setLoginData({ identifier: "", password: "" });
+
+                setTimeout(() => {
+                    onClose();
+                    if (data.user.role === "admin") {
+                        router.push("/admin/dashboard");
+                    } else {
+                        router.push("/dashboard");
+                    }
+                }, 1000);
+            } else {
+                setError(data.error || "Login failed");
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Add your register logic here
-        // Register logic will be implemented here
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        // Validate: at least one of email or phone is required
+        if (!registerData.email && !registerData.phone) {
+            setError("Please provide either an email or phone number");
+            setLoading(false);
+            return;
+        }
+
+        if (registerData.password !== registerData.confirmPassword) {
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
+        }
+
+        if (registerData.password.length < 6) {
+            setError("Password must be at least 6 characters long");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: registerData.name,
+                    email: registerData.email || null,
+                    phone: registerData.phone || null,
+                    password: registerData.password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                login(data.token, data.user);
+                setSuccess("Account created successfully! Redirecting...");
+                setRegisterData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    password: "",
+                    confirmPassword: "",
+                });
+
+                setTimeout(() => {
+                    onClose();
+                    router.push("/dashboard");
+                }, 1000);
+            } else {
+                setError(data.error || "Registration failed");
+            }
+        } catch (err) {
+            console.error("Registration error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (!isOpen) return null;
@@ -43,30 +147,27 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
         <>
             {/* Backdrop */}
             <div
-                className="fixed inset-0 bg-black/50 z-50 transition-opacity"
+                className="fixed inset-0 bg-black/50 z-50 transition-opacity backdrop-blur-sm"
                 onClick={onClose}
             />
 
             {/* Sidebar */}
             <div
-                className={`fixed right-0 top-0 h-full w-full sm:w-[450px] bg-background shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+                className={`fixed right-0 top-0 h-full w-full sm:w-[480px] bg-background shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
                     isOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-border">
-                    <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                            <svg className="w-6 h-6 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 6.5V9C15 9.55 14.95 10.05 14.85 10.5C14.85 10.5 14.85 10.5 14.85 10.5L21 11V9ZM3 9V11L9.15 10.5C9.05 10.05 9 9.55 9 9V6.5L3 7V9ZM12 8C8.13 8 5 11.13 5 15C5 18.87 8.13 22 12 22C15.87 22 19 18.87 19 15C19 11.13 15.87 8 12 8Z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-bold text-foreground">
-                                {activeTab === "login" ? "লগইন করুন" : "নতুন অ্যাকাউন্ট"}
-                            </h2>
-                            <p className="text-sm text-muted-foreground">Innodemy এ স্বাগতম</p>
-                        </div>
+                <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/5 to-primary/10">
+                    <div>
+                        <h2 className="text-2xl font-bold text-foreground">
+                            {activeTab === "login" ? "Welcome Back!" : "Join Innodemy"}
+                        </h2>
+                        <p className="text-sm text-muted-foreground mt-1">
+                            {activeTab === "login"
+                                ? "Sign in to continue your learning journey"
+                                : "Start your learning journey today"}
+                        </p>
                     </div>
                     <button
                         onClick={onClose}
@@ -79,115 +180,143 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 {/* Tabs */}
                 <div className="flex border-b border-border">
                     <button
-                        onClick={() => setActiveTab("login")}
-                        className={`flex-1 py-4 text-center font-semibold transition-colors ${
+                        onClick={() => {
+                            setActiveTab("login");
+                            setError("");
+                            setSuccess("");
+                        }}
+                        className={`flex-1 py-4 text-center font-semibold transition-all ${
                             activeTab === "login"
                                 ? "text-primary border-b-2 border-primary bg-accent/50"
                                 : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
                         }`}
                     >
-                        লগইন
+                        Login
                     </button>
                     <button
-                        onClick={() => setActiveTab("register")}
-                        className={`flex-1 py-4 text-center font-semibold transition-colors ${
+                        onClick={() => {
+                            setActiveTab("register");
+                            setError("");
+                            setSuccess("");
+                        }}
+                        className={`flex-1 py-4 text-center font-semibold transition-all ${
                             activeTab === "register"
                                 ? "text-primary border-b-2 border-primary bg-accent/50"
                                 : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
                         }`}
                     >
-                        নতুন একাউন্ট
+                        Register
                     </button>
-                </div>
-
-                {/* Welcome Image Section */}
-                <div className="px-6 py-4 bg-gradient-to-r from-primary/10 to-primary/5 border-b border-border">
-                    <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-2xl flex items-center justify-center">
-                            <svg className="w-8 h-8 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM17 12H15.5V15.5H12V17H17V12ZM6.5 7H9V8.5H6.5V7ZM6.5 9.5H9V11H6.5V9.5ZM6.5 12H9V13.5H6.5V12Z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-foreground">শেখা শুরু করুন</h3>
-                            <p className="text-sm text-muted-foreground">বিশেষজ্ঞদের সাথে আপনার দক্ষতা বৃদ্ধি করুন</p>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 overflow-y-auto h-[calc(100%-220px)]">
+                    {/* Success/Error Messages */}
+                    {success && (
+                        <div className="mb-4 p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-lg flex items-center gap-3">
+                            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <p className="text-green-800 dark:text-green-200 text-sm font-medium">
+                                {success}
+                            </p>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="mb-4 p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg">
+                            <p className="text-red-800 dark:text-red-200 text-sm font-medium">
+                                {error}
+                            </p>
+                        </div>
+                    )}
+
                     {activeTab === "login" ? (
-                        <form onSubmit={handleLogin} className="space-y-6">
+                        <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="login-email" className="text-foreground">
-                                    ইমেইল বা ফোন নম্বর
+                                <Label htmlFor="login-identifier" className="text-foreground font-medium">
+                                    Email or Phone Number
                                 </Label>
-                                <Input
-                                    id="login-email"
-                                    type="text"
-                                    placeholder="আপনার ইমেইল বা ফোন নম্বর লিখুন"
-                                    value={loginData.email}
-                                    onChange={(e) =>
-                                        setLoginData({ ...loginData, email: e.target.value })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="login-identifier"
+                                        type="text"
+                                        placeholder="your@email.com or +1234567890"
+                                        value={loginData.identifier}
+                                        onChange={(e) =>
+                                            setLoginData({ ...loginData, identifier: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                    Enter the email or phone you registered with
+                                </p>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="login-password" className="text-foreground">
-                                    পাসওয়ার্ড
+                                <Label htmlFor="login-password" className="text-foreground font-medium">
+                                    Password
                                 </Label>
-                                <Input
-                                    id="login-password"
-                                    type="password"
-                                    placeholder="আপনার পাসওয়ার্ড লিখুন"
-                                    value={loginData.password}
-                                    onChange={(e) =>
-                                        setLoginData({ ...loginData, password: e.target.value })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="login-password"
+                                        type="password"
+                                        placeholder="Enter your password"
+                                        value={loginData.password}
+                                        onChange={(e) =>
+                                            setLoginData({ ...loginData, password: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
                             </div>
 
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                disabled={loading}
                             >
-                                প্রবেশ করুন →
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        Signing in...
+                                    </div>
+                                ) : (
+                                    "Sign In"
+                                )}
                             </Button>
 
                             <div className="flex items-center justify-between text-sm">
                                 <Link
                                     href="/forgot-password"
-                                    className="text-primary hover:underline"
+                                    className="text-primary hover:underline font-medium"
                                     onClick={onClose}
                                 >
-                                    পাসওয়ার্ড ভুলে গেছেন?
+                                    Forgot Password?
                                 </Link>
                                 <button
                                     type="button"
                                     onClick={() => setActiveTab("register")}
-                                    className="text-primary hover:underline"
+                                    className="text-primary hover:underline font-medium"
                                 >
-                                    নতুন একাউন্ট তৈরি করুন
+                                    Create Account
                                 </button>
                             </div>
 
-                            <div className="pt-6 border-t border-border">
+                            <div className="pt-4 border-t border-border">
                                 <div className="flex items-center justify-center space-x-4 mb-4">
                                     <div className="flex-1 h-px bg-border"></div>
-                                    <span className="text-sm text-muted-foreground px-3">অথবা</span>
+                                    <span className="text-sm text-muted-foreground px-3">OR</span>
                                     <div className="flex-1 h-px bg-border"></div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <Button
                                         type="button"
                                         variant="outline"
-                                        className="h-11 hover:bg-red-50 dark:hover:bg-red-950"
+                                        className="h-11"
                                     >
                                         <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                             <path
@@ -200,7 +329,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                     <Button
                                         type="button"
                                         variant="outline"
-                                        className="h-11 hover:bg-blue-50 dark:hover:bg-blue-950"
+                                        className="h-11"
                                     >
                                         <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                             <path
@@ -214,111 +343,152 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                             </div>
                         </form>
                     ) : (
-                        <form onSubmit={handleRegister} className="space-y-6">
+                        <form onSubmit={handleRegister} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="register-name" className="text-foreground">
-                                    পূর্ণ নাম
+                                <Label htmlFor="register-name" className="text-foreground font-medium">
+                                    Full Name <span className="text-red-500">*</span>
                                 </Label>
-                                <Input
-                                    id="register-name"
-                                    type="text"
-                                    placeholder="আপনার পূর্ণ নাম লিখুন"
-                                    value={registerData.name}
-                                    onChange={(e) =>
-                                        setRegisterData({ ...registerData, name: e.target.value })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-name"
+                                        type="text"
+                                        placeholder="John Doe"
+                                        value={registerData.name}
+                                        onChange={(e) =>
+                                            setRegisterData({ ...registerData, name: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-email" className="text-foreground">
-                                    ইমেইল বা ফোন নম্বর
+                                <Label htmlFor="register-email" className="text-foreground font-medium">
+                                    Email Address <span className="text-muted-foreground text-xs">(Optional)</span>
                                 </Label>
-                                <Input
-                                    id="register-email"
-                                    type="text"
-                                    placeholder="আপনার ইমেইল বা ফোন নম্বর লিখুন"
-                                    value={registerData.email}
-                                    onChange={(e) =>
-                                        setRegisterData({ ...registerData, email: e.target.value })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        value={registerData.email}
+                                        onChange={(e) =>
+                                            setRegisterData({ ...registerData, email: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                    />
+                                </div>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-password" className="text-foreground">
-                                    পাসওয়ার্ড
+                                <Label htmlFor="register-phone" className="text-foreground font-medium">
+                                    Phone Number <span className="text-muted-foreground text-xs">(Optional)</span>
                                 </Label>
-                                <Input
-                                    id="register-password"
-                                    type="password"
-                                    placeholder="একটি শক্তিশালী পাসওয়ার্ড লিখুন"
-                                    value={registerData.password}
-                                    onChange={(e) =>
-                                        setRegisterData({
-                                            ...registerData,
-                                            password: e.target.value,
-                                        })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-phone"
+                                        type="tel"
+                                        placeholder="+1234567890"
+                                        value={registerData.phone}
+                                        onChange={(e) =>
+                                            setRegisterData({ ...registerData, phone: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                    />
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                    Provide at least one: email or phone number
+                                </p>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-confirm-password" className="text-foreground">
-                                    পাসওয়ার্ড নিশ্চিত করুন
+                                <Label htmlFor="register-password" className="text-foreground font-medium">
+                                    Password <span className="text-red-500">*</span>
                                 </Label>
-                                <Input
-                                    id="register-confirm-password"
-                                    type="password"
-                                    placeholder="পাসওয়ার্ড আবার লিখুন"
-                                    value={registerData.confirmPassword}
-                                    onChange={(e) =>
-                                        setRegisterData({
-                                            ...registerData,
-                                            confirmPassword: e.target.value,
-                                        })
-                                    }
-                                    className="h-12"
-                                    required
-                                />
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-password"
+                                        type="password"
+                                        placeholder="At least 6 characters"
+                                        value={registerData.password}
+                                        onChange={(e) =>
+                                            setRegisterData({
+                                                ...registerData,
+                                                password: e.target.value,
+                                            })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="register-confirm-password" className="text-foreground font-medium">
+                                    Confirm Password <span className="text-red-500">*</span>
+                                </Label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-confirm-password"
+                                        type="password"
+                                        placeholder="Re-enter your password"
+                                        value={registerData.confirmPassword}
+                                        onChange={(e) =>
+                                            setRegisterData({
+                                                ...registerData,
+                                                confirmPassword: e.target.value,
+                                            })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
                             </div>
 
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                disabled={loading}
                             >
-                                একাউন্ট তৈরি করুন →
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        Creating Account...
+                                    </div>
+                                ) : (
+                                    "Create Account"
+                                )}
                             </Button>
 
                             <div className="text-center text-sm">
                                 <span className="text-muted-foreground">
-                                    ইতিমধ্যে একাউন্ট আছে?{" "}
+                                    Already have an account?{" "}
                                 </span>
                                 <button
                                     type="button"
                                     onClick={() => setActiveTab("login")}
                                     className="text-primary hover:underline font-semibold"
                                 >
-                                    লগইন করুন
+                                    Sign In
                                 </button>
                             </div>
 
                             <p className="text-xs text-muted-foreground text-center">
-                                একাউন্ট তৈরি করে আপনি আমাদের{" "}
+                                By creating an account, you agree to our{" "}
                                 <Link href="/terms" className="text-primary hover:underline">
-                                    শর্তাবলী
+                                    Terms of Service
                                 </Link>{" "}
-                                এবং{" "}
+                                and{" "}
                                 <Link href="/privacy" className="text-primary hover:underline">
-                                    গোপনীয়তা নীতি
-                                </Link>{" "}
-                                সম্মত হচ্ছেন।
+                                    Privacy Policy
+                                </Link>
+                                .
                             </p>
                         </form>
                     )}
@@ -326,16 +496,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                 {/* Footer Note */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-t border-border">
-                    <div className="flex items-center justify-center space-x-2 mb-2">
-                        <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                            <svg className="w-3 h-3 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 6.5V9C15 9.55 14.95 10.05 14.85 10.5C14.85 10.5 14.85 10.5 14.85 10.5L21 11V9ZM3 9V11L9.15 10.5C9.05 10.05 9 9.55 9 9V6.5L3 7V9ZM12 8C8.13 8 5 11.13 5 15C5 18.87 8.13 22 12 22C15.87 22 19 18.87 19 15C19 11.13 15.87 8 12 8Z"/>
-                            </svg>
-                        </div>
-                        <span className="text-sm font-medium text-foreground">Innodemy</span>
-                    </div>
                     <p className="text-xs text-center text-muted-foreground">
-                        সাহায্যের প্রয়োজন? যোগাযোগ করুন:{" "}
+                        Need help? Contact us:{" "}
+                        <a href="mailto:Contact@innodemy.com" className="text-primary hover:underline font-medium">
+                            Contact@innodemy.com
+                        </a>
+                        {" or "}
                         <a href="tel:+8801704258972" className="text-primary hover:underline font-medium">
                             +880 1704 258972
                         </a>
@@ -345,4 +511,3 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
         </>
     );
 }
-

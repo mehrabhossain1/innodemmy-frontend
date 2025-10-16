@@ -76,7 +76,7 @@ export default function AdminDashboard() {
         const user = localStorage.getItem("user");
 
         if (!token || !user) {
-            router.push("/login");
+            router.push("/");
             return;
         }
 

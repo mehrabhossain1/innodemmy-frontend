@@ -19,6 +19,7 @@ export class LegacyModelAdapter {
     return {
       _id: dto.id,
       email: dto.email,
+      phone: dto.phone,
       name: dto.name,
       role: dto.role,
       createdAt: dto.createdAt,

@@ -12,7 +12,7 @@ const AdminDashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         if (!isLoading && !user) {
-            router.push("/login");
+            router.push("/");
             return;
         }
 

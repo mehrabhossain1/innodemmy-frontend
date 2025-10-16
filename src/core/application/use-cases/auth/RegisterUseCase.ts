@@ -16,15 +16,18 @@ export class RegisterUseCase {
   ) {}
 
   async execute(registerData: CreateUserDTO): Promise<AuthResponseDTO> {
-    // Validate input
-    if (!registerData.email || !registerData.password || !registerData.name) {
-      throw new Error('Email, password, and name are required');
+    // Validate input - at least one of email or phone is required
+    if ((!registerData.email && !registerData.phone) || !registerData.password || !registerData.name) {
+      throw new Error('Email or phone, password, and name are required');
     }
 
     // Check if user already exists
-    const existingUser = await this.userRepository.exists(registerData.email);
+    const existingUser = await this.userRepository.existsByEmailOrPhone(
+      registerData.email,
+      registerData.phone
+    );
     if (existingUser) {
-      throw new Error('User already exists');
+      throw new Error('User with this email or phone already exists');
     }
 
     // Hash password
@@ -32,7 +35,8 @@ export class RegisterUseCase {
 
     // Create user
     const user = await this.userRepository.create({
-      email: registerData.email,
+      email: registerData.email || null,
+      phone: registerData.phone || null,
       password: hashedPassword,
       name: registerData.name,
       role: registerData.role || UserRole.STUDENT,
@@ -47,6 +51,7 @@ export class RegisterUseCase {
     const userResponse: UserResponseDTO = {
       id: user.id,
       email: user.email,
+      phone: user.phone,
       name: user.name,
       role: user.role,
       createdAt: user.createdAt,

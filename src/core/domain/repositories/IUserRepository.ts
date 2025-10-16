@@ -8,10 +8,13 @@ export interface IUserRepository {
   findById(id: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
   findByEmailWithPassword(email: string): Promise<UserWithPassword | null>;
+  findByEmailOrPhone(identifier: string): Promise<User | null>;
+  findByEmailOrPhoneWithPassword(identifier: string): Promise<UserWithPassword | null>;
   findAll(): Promise<User[]>;
   create(user: Omit<UserWithPassword, 'id'>): Promise<User>;
   update(id: string, user: Partial<User>): Promise<User>;
   delete(id: string): Promise<boolean>;
   exists(email: string): Promise<boolean>;
+  existsByEmailOrPhone(email?: string | null, phone?: string | null): Promise<boolean>;
 }
 

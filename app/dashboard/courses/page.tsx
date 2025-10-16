@@ -43,7 +43,7 @@ export default function MyCoursesPage() {
 
     useEffect(() => {
         if (!isLoading && !user) {
-            router.push("/login");
+            router.push("/");
             return;
         }
 

@@ -16,12 +16,12 @@ export class LoginUseCase {
 
   async execute(loginData: LoginDTO): Promise<AuthResponseDTO> {
     // Validate input
-    if (!loginData.email || !loginData.password) {
-      throw new Error('Email and password are required');
+    if (!loginData.identifier || !loginData.password) {
+      throw new Error('Email/Phone and password are required');
     }
 
-    // Find user with password
-    const user = await this.userRepository.findByEmailWithPassword(loginData.email);
+    // Find user with password (try email or phone)
+    const user = await this.userRepository.findByEmailOrPhoneWithPassword(loginData.identifier);
     if (!user) {
       throw new Error('Invalid credentials');
     }
@@ -37,7 +37,7 @@ export class LoginUseCase {
     }
 
     // Get user without password
-    const userEntity = await this.userRepository.findByEmail(loginData.email);
+    const userEntity = await this.userRepository.findByEmailOrPhone(loginData.identifier);
     if (!userEntity) {
       throw new Error('User not found');
     }
@@ -49,6 +49,7 @@ export class LoginUseCase {
     const userResponse: UserResponseDTO = {
       id: userEntity.id,
       email: userEntity.email,
+      phone: userEntity.phone,
       name: userEntity.name,
       role: userEntity.role,
       createdAt: userEntity.createdAt,

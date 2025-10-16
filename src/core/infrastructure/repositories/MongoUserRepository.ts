@@ -8,7 +8,8 @@ import { getDatabase } from '../database/MongoDBConnection';
 
 interface UserDocument {
   _id?: ObjectId;
-  email: string;
+  email?: string | null;
+  phone?: string | null;
   password: string;
   name: string;
   role: string;
@@ -19,13 +20,25 @@ interface UserDocument {
 export class MongoUserRepository implements IUserRepository {
   private async getCollection() {
     const db = await getDatabase();
-    return db.collection<UserDocument>('users');
+    const collection = db.collection<UserDocument>('users');
+
+    // Create indexes for email and phone (both optional, but unique when present)
+    try {
+      await collection.createIndex({ email: 1 }, { unique: true, sparse: true });
+      await collection.createIndex({ phone: 1 }, { unique: true, sparse: true });
+    } catch (error) {
+      // Indexes may already exist
+      console.log('Indexes already exist or error creating them:', error);
+    }
+
+    return collection;
   }
 
   private mapToEntity(doc: UserDocument): User {
     return new User(
       doc._id?.toString() || '',
-      doc.email,
+      doc.email || null,
+      doc.phone || null,
       doc.name,
       doc.role as UserRole,
       doc.createdAt,
@@ -36,7 +49,8 @@ export class MongoUserRepository implements IUserRepository {
   private mapToEntityWithPassword(doc: UserDocument): UserWithPassword {
     return {
       id: doc._id?.toString(),
-      email: doc.email,
+      email: doc.email || null,
+      phone: doc.phone || null,
       password: doc.password,
       name: doc.name,
       role: doc.role as UserRole,
@@ -63,6 +77,36 @@ export class MongoUserRepository implements IUserRepository {
     return doc ? this.mapToEntityWithPassword(doc) : null;
   }
 
+  async findByPhone(phone: string): Promise<User | null> {
+    const collection = await this.getCollection();
+    const doc = await collection.findOne({ phone });
+    return doc ? this.mapToEntity(doc) : null;
+  }
+
+  async findByPhoneWithPassword(phone: string): Promise<UserWithPassword | null> {
+    const collection = await this.getCollection();
+    const doc = await collection.findOne({ phone });
+    return doc ? this.mapToEntityWithPassword(doc) : null;
+  }
+
+  async findByEmailOrPhone(identifier: string): Promise<User | null> {
+    const collection = await this.getCollection();
+    // Try to find by email first, then by phone
+    const doc = await collection.findOne({
+      $or: [{ email: identifier }, { phone: identifier }]
+    });
+    return doc ? this.mapToEntity(doc) : null;
+  }
+
+  async findByEmailOrPhoneWithPassword(identifier: string): Promise<UserWithPassword | null> {
+    const collection = await this.getCollection();
+    // Try to find by email first, then by phone
+    const doc = await collection.findOne({
+      $or: [{ email: identifier }, { phone: identifier }]
+    });
+    return doc ? this.mapToEntityWithPassword(doc) : null;
+  }
+
   async findAll(): Promise<User[]> {
     const collection = await this.getCollection();
     const docs = await collection.find({}).toArray();
@@ -72,7 +116,8 @@ export class MongoUserRepository implements IUserRepository {
   async create(userData: Omit<UserWithPassword, 'id'>): Promise<User> {
     const collection = await this.getCollection();
     const doc: Omit<UserDocument, '_id'> = {
-      email: userData.email,
+      email: userData.email || null,
+      phone: userData.phone || null,
       password: userData.password,
       name: userData.name,
       role: userData.role,
@@ -119,6 +164,23 @@ export class MongoUserRepository implements IUserRepository {
   async exists(email: string): Promise<boolean> {
     const collection = await this.getCollection();
     const count = await collection.countDocuments({ email });
+    return count > 0;
+  }
+
+  async existsByPhone(phone: string): Promise<boolean> {
+    const collection = await this.getCollection();
+    const count = await collection.countDocuments({ phone });
+    return count > 0;
+  }
+
+  async existsByEmailOrPhone(email?: string | null, phone?: string | null): Promise<boolean> {
+    const collection = await this.getCollection();
+    const query: Array<{ email?: string; phone?: string }> = [];
+    if (email) query.push({ email });
+    if (phone) query.push({ phone });
+    if (query.length === 0) return false;
+
+    const count = await collection.countDocuments({ $or: query });
     return count > 0;
   }
 }
