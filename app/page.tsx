@@ -16,8 +16,8 @@ export default function Home() {
             <FreeMasterclassSection />
             <WhyBestChoiceSection />
             <TechnologyStackSection />
-            <BookTheCallCard />
             <BlogsSection />
+            <BookTheCallCard />
         </main>
     );
 }

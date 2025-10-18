@@ -82,7 +82,9 @@ const ReviewCard = ({
                     </p>
                 </div>
             </div>
-            <blockquote className="text-sm text-gray-600 leading-relaxed">{body}</blockquote>
+            <blockquote className="text-sm text-gray-600 leading-relaxed">
+                {body}
+            </blockquote>
         </figure>
     );
 };
@@ -92,11 +94,8 @@ export function TechnologyStackSection() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-white">
             <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                    What Our Students Say
+                    Technology Stack
                 </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Hear from our successful graduates who have transformed their careers with Innodemy's expert-led courses and hands-on learning experiences.
-                </p>
             </div>
 
             <Marquee pauseOnHover className="[--duration:20s]">
