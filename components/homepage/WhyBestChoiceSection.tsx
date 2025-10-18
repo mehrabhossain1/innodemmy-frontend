@@ -199,44 +199,6 @@ export default function WhyBestChoiceSection() {
                         ))}
                     </div>
                 </div>
-
-                {/* Bottom Stats */}
-                <div className="mt-16 bg-card rounded-2xl p-8 shadow-lg border border-border">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
-                                50,000+
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                Students Enrolled
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 dark:from-emerald-400 to-teal-600 dark:to-teal-400 bg-clip-text text-transparent mb-2">
-                                500+
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                Expert Courses
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 dark:from-purple-400 to-pink-600 dark:to-pink-400 bg-clip-text text-transparent mb-2">
-                                95%
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                Success Rate
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 dark:from-orange-400 to-red-600 dark:to-red-400 bg-clip-text text-transparent mb-2">
-                                24/7
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                Support Available
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     );
