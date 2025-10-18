@@ -15,6 +15,7 @@ const liveCourses = [
         totalJoined: 1250,
         totalLessons: 45,
         totalProjects: 8,
+        totalAssignments: 10,
         instructor: "Sarah Johnson",
     },
     {
@@ -28,6 +29,7 @@ const liveCourses = [
         totalJoined: 980,
         totalLessons: 52,
         totalProjects: 12,
+        totalAssignments: 14,
         instructor: "Dr. Michael Chen",
     },
     {
@@ -41,6 +43,7 @@ const liveCourses = [
         totalJoined: 750,
         totalLessons: 38,
         totalProjects: 6,
+        totalAssignments: 6,
         instructor: "Emma Rodriguez",
     },
 ];
@@ -76,6 +79,7 @@ export default function CoursesSection() {
                             totalJoined={course.totalJoined}
                             totalLessons={course.totalLessons}
                             totalProjects={course.totalProjects}
+                            totalAssignments={course.totalAssignments}
                             instructor={course.instructor}
                         />
                     ))}
