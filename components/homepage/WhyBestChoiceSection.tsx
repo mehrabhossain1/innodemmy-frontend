@@ -13,52 +13,47 @@ const featureCards = [
         id: "affordable",
         title: "Best learning at affordable prices",
         description:
-            "High-quality education accessible to everyone with competitive pricing and flexible payment options.",
+            "Best quality education accessible to everyone with affordable pricing",
         icon: <DollarSign className="w-8 h-8 text-green-600" />,
         bgColor: "bg-green-50",
         borderColor: "border-green-200",
     },
     {
         id: "project-based",
-        title: "Project-based learning",
-        description:
-            "Learn by doing with hands-on projects that simulate real-world scenarios and build your portfolio.",
+        title: "Project Based Learning",
+        description: "",
         icon: <FolderOpen className="w-8 h-8 text-purple-600" />,
         bgColor: "bg-purple-50",
         borderColor: "border-purple-200",
     },
     {
         id: "mentors",
-        title: "Nation's leading industry mentors panel",
-        description:
-            "Learn from the best in the industry with our carefully selected panel of expert mentors and instructors.",
+        title: "Nation's leading industry mentors",
+        description: "",
         icon: <Users className="w-8 h-8 text-blue-600" />,
         bgColor: "bg-blue-50",
         borderColor: "border-blue-200",
     },
     {
         id: "support",
-        title: "Dedicated support sessions with every course",
-        description:
-            "Get personalized help and guidance through dedicated support sessions included with every course.",
+        title: "Dedicated support sessions",
+        description: "",
         icon: <HeadphonesIcon className="w-8 h-8 text-orange-600" />,
         bgColor: "bg-orange-50",
         borderColor: "border-orange-200",
     },
     {
         id: "certificate",
-        title: "Certificate awarded upon course completion",
-        description:
-            "Earn industry-recognized certificates that validate your skills and enhance your professional profile.",
+        title: "Certification",
+        description: "",
         icon: <Award className="w-8 h-8 text-yellow-600" />,
         bgColor: "bg-yellow-50",
         borderColor: "border-yellow-200",
     },
     {
         id: "continued-support",
-        title: "Continued exclusive support after course completion",
-        description:
-            "Enjoy ongoing support and access to exclusive resources even after completing your course.",
+        title: "Continued exclusive support",
+        description: "",
         icon: <LifeBuoy className="w-8 h-8 text-red-600" />,
         bgColor: "bg-red-50",
         borderColor: "border-red-200",
@@ -75,10 +70,10 @@ export default function WhyBestChoiceSection() {
                         Why Innodemy is Your Best Choice
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                        Discover what makes Innodemy the preferred learning
-                        platform for thousands of students and professionals
-                        worldwide. We're committed to your success every step of
-                        the way.
+                        Innodemy stands out through its commitment to quality,
+                        relevance, and learner success. Acquire in-demand skills
+                        with expert instruction, real-world projects, and
+                        collaborative learning
                     </p>
                 </div>
 
