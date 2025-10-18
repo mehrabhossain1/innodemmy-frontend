@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
     Star,
-    BadgeIcon as Certificate,
+    Award,
     Users,
     BookOpen,
     FolderOpen,
@@ -39,8 +39,8 @@ export default function CourseCard({
     instructor,
 }: CourseCardProps) {
     return (
-        <div 
-            className="bg-card rounded-2xl overflow-hidden group transition-all duration-200 ease-out hover:-translate-y-2 hover:shadow-lg shadow-sm border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        <div
+            className="bg-card rounded-xl overflow-hidden group transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg shadow-sm border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
             {/* Course Image */}
             <div className="relative overflow-hidden aspect-video">
@@ -52,17 +52,17 @@ export default function CourseCard({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200 ease-out"
                 />
                 {isLive && (
-                    <div className="absolute top-4 left-4">
-                        <Badge className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white border-0 px-3 py-1 text-sm font-medium">
+                    <div className="absolute top-2 left-2">
+                        <Badge className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white border-0 px-2 py-0.5 text-xs font-medium">
                             <Play className="w-3 h-3 mr-1" />
                             LIVE
                         </Badge>
                     </div>
                 )}
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-2 right-2">
                     <Badge
                         variant="secondary"
-                        className="bg-primary text-primary-foreground border-0 px-3 py-1 text-sm font-medium"
+                        className="bg-primary text-primary-foreground border-0 px-2 py-0.5 text-xs font-medium"
                     >
                         {batchName}
                     </Badge>
@@ -70,9 +70,9 @@ export default function CourseCard({
             </div>
 
             {/* Course Content */}
-            <div className="p-6 space-y-4">
+            <div className="p-4 space-y-3">
                 {/* Rating */}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-1.5">
                     <div className="flex items-center space-x-1">
                         {[...Array(5)].map((_, i) => (
                             <Star
@@ -95,7 +95,7 @@ export default function CourseCard({
 
                 {/* Title */}
                 <Link href={`/courses/${id}`} aria-describedby={`course-${id}-description`}>
-                    <h3 className="text-lg font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer">
+                    <h3 className="text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer">
                         {title}
                     </h3>
                 </Link>
@@ -103,13 +103,13 @@ export default function CourseCard({
                 {/* Instructor and Certificate */}
                 {instructor && (
                     <div className="flex items-center justify-between">
-                        <p className="text-sm text-muted-foreground">by {instructor}</p>
+                        <p className="text-xs text-muted-foreground">by {instructor}</p>
                         <Button
                             size="sm"
                             variant="outline"
-                            className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:border-emerald-300 dark:hover:border-emerald-700 bg-transparent text-xs px-3 py-1 h-auto"
+                            className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:border-emerald-300 dark:hover:border-emerald-700 bg-transparent text-xs px-2 py-0.5 h-auto"
                         >
-                            <Certificate className="w-3 h-3 mr-1" />
+                            <Award className="w-3 h-3 mr-1" />
                             Certificate
                         </Button>
                     </div>
