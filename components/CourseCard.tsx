@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
     Star,
-    Award,
     Users,
     BookOpen,
     FolderOpen,
-    Play,
+    FileText,
+    Award,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +22,7 @@ interface CourseCardProps {
     totalJoined: number;
     totalLessons: number;
     totalProjects: number;
+    totalAssignments: number;
     instructor?: string;
 }
 
@@ -36,111 +37,112 @@ export default function CourseCard({
     totalJoined,
     totalLessons,
     totalProjects,
+    totalAssignments,
     instructor,
 }: CourseCardProps) {
     return (
         <div
-            className="bg-card rounded-xl overflow-hidden group transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg shadow-sm border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="bg-card rounded-lg overflow-hidden group transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl shadow-md border border-border"
         >
-            {/* Course Image */}
-            <div className="relative overflow-hidden aspect-video">
+            {/* Course Image - Reduced height */}
+            <div className="relative overflow-hidden h-44">
                 <Image
                     src={image || "/placeholder.svg"}
                     alt={title}
                     width={400}
-                    height={240}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200 ease-out"
+                    height={176}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                 />
-                {isLive && (
-                    <div className="absolute top-2 left-2">
-                        <Badge className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white border-0 px-2 py-0.5 text-xs font-medium">
-                            <Play className="w-3 h-3 mr-1" />
-                            LIVE
-                        </Badge>
-                    </div>
-                )}
-                <div className="absolute top-2 right-2">
-                    <Badge
-                        variant="secondary"
-                        className="bg-primary text-primary-foreground border-0 px-2 py-0.5 text-xs font-medium"
-                    >
+                {/* Batch Badge - Top Left */}
+                <div className="absolute top-3 left-3">
+                    <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white border-0 px-3 py-1 text-xs font-semibold rounded-md">
                         {batchName}
                     </Badge>
                 </div>
             </div>
 
             {/* Course Content */}
-            <div className="p-4 space-y-3">
-                {/* Rating */}
-                <div className="flex items-center space-x-1.5">
+            <div className="p-4 space-y-3 min-h-[280px] flex flex-col">
+                {/* Rating - Top Right aligned */}
+                <div className="flex items-center justify-between">
+                    <div></div>
                     <div className="flex items-center space-x-1">
-                        {[...Array(5)].map((_, i) => (
-                            <Star
-                                key={i}
-                                className={`w-4 h-4 ${
-                                    i < Math.floor(rating)
-                                        ? "text-yellow-400 fill-current"
-                                        : "text-gray-300"
-                                }`}
-                            />
-                        ))}
+                        <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                                <Star
+                                    key={i}
+                                    className={`w-3.5 h-3.5 ${
+                                        i < Math.floor(rating)
+                                            ? "text-yellow-400 fill-yellow-400"
+                                            : "text-gray-300 fill-gray-300"
+                                    }`}
+                                />
+                            ))}
+                        </div>
+                        <span className="text-xs font-bold text-foreground ml-1">
+                            {rating} ({totalReviews})
+                        </span>
                     </div>
-                    <span className="text-sm font-semibold text-foreground">
-                        {rating}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                        ({totalReviews} reviews)
-                    </span>
                 </div>
 
                 {/* Title */}
                 <Link href={`/courses/${id}`} aria-describedby={`course-${id}-description`}>
-                    <h3 className="text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer">
+                    <h3 className="text-lg font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-tight">
                         {title}
                     </h3>
                 </Link>
 
-                {/* Instructor and Certificate */}
+                {/* Live Class Indicator */}
+                {isLive && (
+                    <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></div>
+                        <span className="text-sm text-foreground">Live class</span>
+                    </div>
+                )}
+
+                {/* Certificate Badge */}
                 {instructor && (
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between py-1">
                         <p className="text-xs text-muted-foreground">by {instructor}</p>
-                        <Button
-                            size="sm"
-                            variant="outline"
-                            className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:border-emerald-300 dark:hover:border-emerald-700 bg-transparent text-xs px-2 py-0.5 h-auto"
-                        >
-                            <Award className="w-3 h-3 mr-1" />
-                            Certificate
-                        </Button>
+                        <div className="flex items-center space-x-1 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 px-2 py-1 rounded-md text-xs font-medium">
+                            <Award className="w-3 h-3" />
+                            <span>Certificate</span>
+                        </div>
                     </div>
                 )}
 
                 {/* Course Stats */}
-                <div className="grid grid-cols-3 gap-3 py-4 border-t border-border">
+                <div className="grid grid-cols-2 gap-3 pt-2 flex-grow">
                     <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-muted-foreground">
-                            {totalJoined.toLocaleString()}
+                        <Users className="w-4 h-4 text-foreground" />
+                        <span className="text-sm text-foreground font-medium">
+                            {totalJoined} Joined
                         </span>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <BookOpen className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-muted-foreground">
-                            {totalLessons}
+                        <BookOpen className="w-4 h-4 text-foreground" />
+                        <span className="text-sm text-foreground font-medium">
+                            {totalLessons}+ Lessons
                         </span>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <FolderOpen className="w-4 h-4 text-emerald-500" />
-                        <span className="text-sm text-muted-foreground">
-                            {totalProjects}
+                        <FolderOpen className="w-4 h-4 text-foreground" />
+                        <span className="text-sm text-foreground font-medium">
+                            {totalProjects}+ Projects
+                        </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <FileText className="w-4 h-4 text-foreground" />
+                        <span className="text-sm text-foreground font-medium">
+                            {totalAssignments}+ Assignments
                         </span>
                     </div>
                 </div>
 
                 {/* View Details Button */}
                 <Link href={`/courses/${id}`} id={`course-${id}-description`}>
-                    <Button className="w-full sm:w-auto sm:ml-auto sm:block transition-all duration-200 ease-out">
-                        View Details →
+                    <Button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-sm h-10 rounded-md transition-all duration-200 ease-out mt-2">
+                        View Details
                     </Button>
                 </Link>
             </div>
