@@ -26,6 +26,7 @@ interface Course {
     totalJoined: number;
     totalLessons: number;
     totalProjects: number;
+    totalAssignments: number;
 }
 
 interface Enrollment {
@@ -136,6 +137,9 @@ export default function DashboardPage() {
                                         }
                                         totalProjects={
                                             enrollment.course.totalProjects || 0
+                                        }
+                                        totalAssignments={
+                                            enrollment.course.totalAssignments || 0
                                         }
                                         instructor={
                                             enrollment.course.instructor

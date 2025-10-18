@@ -28,6 +28,7 @@ const allCourses = [
         totalJoined: 1250,
         totalLessons: 45,
         totalProjects: 8,
+        totalAssignments: 10,
         instructor: "Sarah Johnson",
         category: "Development",
         difficulty: "Intermediate",
@@ -44,6 +45,7 @@ const allCourses = [
         totalJoined: 980,
         totalLessons: 52,
         totalProjects: 12,
+        totalAssignments: 14,
         instructor: "Dr. Michael Chen",
         category: "Data Science",
         difficulty: "Advanced",
@@ -60,6 +62,7 @@ const allCourses = [
         totalJoined: 2100,
         totalLessons: 32,
         totalProjects: 6,
+        totalAssignments: 8,
         instructor: "Alex Thompson",
         category: "Development",
         difficulty: "Beginner",
@@ -76,6 +79,7 @@ const allCourses = [
         totalJoined: 1100,
         totalLessons: 48,
         totalProjects: 10,
+        totalAssignments: 12,
         instructor: "James Wilson",
         category: "DevOps",
         difficulty: "Advanced",
@@ -93,6 +97,7 @@ const allCourses = [
         totalJoined: 750,
         totalLessons: 38,
         totalProjects: 6,
+        totalAssignments: 6,
         instructor: "Emma Rodriguez",
         category: "Design",
         difficulty: "Intermediate",
@@ -109,6 +114,7 @@ const allCourses = [
         totalJoined: 450,
         totalLessons: 28,
         totalProjects: 5,
+        totalAssignments: 5,
         instructor: "Maria Garcia",
         category: "Design",
         difficulty: "Beginner",
@@ -126,6 +132,7 @@ const allCourses = [
         totalJoined: 890,
         totalLessons: 35,
         totalProjects: 4,
+        totalAssignments: 7,
         instructor: "David Kim",
         category: "Business",
         difficulty: "Intermediate",
@@ -142,6 +149,7 @@ const allCourses = [
         totalJoined: 650,
         totalLessons: 25,
         totalProjects: 3,
+        totalAssignments: 5,
         instructor: "Lisa Chen",
         category: "Business",
         difficulty: "Intermediate",
@@ -159,6 +167,7 @@ const allCourses = [
         totalJoined: 720,
         totalLessons: 42,
         totalProjects: 7,
+        totalAssignments: 9,
         instructor: "Raj Patel",
         category: "Development",
         difficulty: "Intermediate",
@@ -175,6 +184,7 @@ const allCourses = [
         totalJoined: 380,
         totalLessons: 38,
         totalProjects: 9,
+        totalAssignments: 11,
         instructor: "Kevin Zhang",
         category: "Development",
         difficulty: "Advanced",
@@ -192,6 +202,7 @@ const allCourses = [
         totalJoined: 1450,
         totalLessons: 30,
         totalProjects: 5,
+        totalAssignments: 6,
         instructor: "Anna Kowalski",
         category: "Data Science",
         difficulty: "Beginner",
@@ -208,6 +219,7 @@ const allCourses = [
         totalJoined: 560,
         totalLessons: 55,
         totalProjects: 15,
+        totalAssignments: 18,
         instructor: "Dr. Robert Kim",
         category: "Data Science",
         difficulty: "Advanced",
@@ -484,6 +496,7 @@ export default function AllCoursesPage() {
                                 totalJoined={course.totalJoined}
                                 totalLessons={course.totalLessons}
                                 totalProjects={course.totalProjects}
+                                totalAssignments={course.totalAssignments}
                                 instructor={course.instructor}
                             />
                         ))}
