@@ -1,11 +1,4 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
     DollarSign,
     FolderOpen,
@@ -13,34 +6,7 @@ import {
     HeadphonesIcon,
     Award,
     LifeBuoy,
-    GraduationCap,
-    Target,
-    Lightbulb,
 } from "lucide-react";
-
-const accordionItems = [
-    {
-        id: "gateway",
-        title: "Gateway to Advanced Opportunities",
-        content:
-            "Innodemy is more than a skill development platform — it's a gateway to advanced research opportunities and career transitions for students and professionals.",
-        icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
-    },
-    {
-        id: "comprehensive",
-        title: "Comprehensive Career Guidance",
-        content:
-            "Each course is strategically designed to provide learners with comprehensive guidance, from skill acquisition to career preparation, scholarships, and higher education.",
-        icon: <Target className="w-5 h-5 text-blue-600" />,
-    },
-    {
-        id: "beyond-teaching",
-        title: "Beyond Teaching - Complete Support",
-        content:
-            "Innodemy goes beyond teaching — supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
-        icon: <Lightbulb className="w-5 h-5 text-blue-600" />,
-    },
-];
 
 const featureCards = [
     {
@@ -116,88 +82,33 @@ export default function WhyBestChoiceSection() {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    {/* Left Side - Accordion */}
-                    <div className="space-y-6">
-                        <div className="bg-card rounded-2xl p-8 shadow-lg border border-border">
-                            <h3 className="text-2xl font-bold text-foreground mb-6">
-                                What Sets Us Apart
-                            </h3>
-
-                            <Accordion
-                                type="single"
-                                collapsible
-                                className="space-y-4"
-                            >
-                                {accordionItems.map((item) => (
-                                    <AccordionItem
-                                        key={item.id}
-                                        value={item.id}
-                                        className="border border-border rounded-2xl px-6 data-[state=open]:border-primary data-[state=open]:bg-accent"
-                                    >
-                                        <AccordionTrigger className="hover:no-underline py-4">
-                                            <div className="flex items-center space-x-3 text-left">
-                                                <div className="flex-shrink-0">
-                                                    {item.icon}
-                                                </div>
-                                                <span className="font-semibold text-foreground">
-                                                    {item.title}
-                                                </span>
-                                            </div>
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pb-4 pt-2">
-                                            <p className="text-muted-foreground leading-relaxed ml-8">
-                                                {item.content}
-                                            </p>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
-                            </Accordion>
-                        </div>
-
-                        {/* Call to Action */}
-                        <div className="bg-primary rounded-2xl p-8 text-primary-foreground shadow-lg">
-                            <h4 className="text-xl font-bold mb-2">
-                                Ready to Start Your Journey?
-                            </h4>
-                            <p className="text-primary-foreground/80 mb-4">
-                                Join thousands of learners who have transformed
-                                their careers with Innodemy.
-                            </p>
-                            <Button className="bg-background text-foreground hover:bg-background/90 shadow-sm">
-                                Explore Courses
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* Right Side - Feature Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {featureCards.map((card) => (
-                            <Card
-                                key={card.id}
-                                className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer rounded-2xl`}
-                            >
-                                <CardContent className="p-6">
-                                    <div className="flex flex-col items-center text-center space-y-4">
-                                        {/* Icon */}
-                                        <div className="p-4 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                            {card.icon}
-                                        </div>
-
-                                        {/* Title */}
-                                        <h4 className="font-bold text-gray-900 text-sm leading-tight">
-                                            {card.title}
-                                        </h4>
-
-                                        {/* Description */}
-                                        <p className="text-xs text-gray-600 leading-relaxed">
-                                            {card.description}
-                                        </p>
+                {/* Feature Cards - 3 Columns */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {featureCards.map((card) => (
+                        <Card
+                            key={card.id}
+                            className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer rounded-2xl`}
+                        >
+                            <CardContent className="p-6">
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    {/* Icon */}
+                                    <div className="p-4 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
+                                        {card.icon}
                                     </div>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
+
+                                    {/* Title */}
+                                    <h4 className="font-bold text-gray-900 text-sm leading-tight">
+                                        {card.title}
+                                    </h4>
+
+                                    {/* Description */}
+                                    <p className="text-xs text-gray-600 leading-relaxed">
+                                        {card.description}
+                                    </p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>
