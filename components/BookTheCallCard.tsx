@@ -8,8 +8,19 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Phone, Users, CheckCircle, Calendar } from "lucide-react";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+    CheckCircle,
+    Calendar,
+    GraduationCap,
+    Target,
+    Lightbulb,
+} from "lucide-react";
 
 interface FormData {
     fullName: string;
@@ -23,6 +34,30 @@ interface FormErrors {
     email?: string;
     phoneNumber?: string;
 }
+
+const accordionItems = [
+    {
+        id: "gateway",
+        title: "Gateway to Advanced Opportunities",
+        content:
+            "Innodemy is more than a skill development platform — it's a gateway to advanced research opportunities and career transitions for students and professionals.",
+        icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
+    },
+    {
+        id: "comprehensive",
+        title: "Comprehensive Career Guidance",
+        content:
+            "Each course is strategically designed to provide learners with comprehensive guidance, from skill acquisition to career preparation, scholarships, and higher education.",
+        icon: <Target className="w-5 h-5 text-blue-600" />,
+    },
+    {
+        id: "beyond-teaching",
+        title: "Beyond Teaching - Complete Support",
+        content:
+            "Innodemy goes beyond teaching — supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
+        icon: <Lightbulb className="w-5 h-5 text-blue-600" />,
+    },
+];
 
 export default function BookTheCallCard() {
     const [formData, setFormData] = useState<FormData>({
@@ -133,85 +168,77 @@ export default function BookTheCallCard() {
     }
 
     return (
-        <Card className="w-full container mx-auto bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200 shadow-lg mt-20 rounded-2xl">
+        <Card className="w-full container mx-auto border shadow-lg mt-20 rounded-2xl">
             <CardContent className="p-0">
                 <div className="grid lg:grid-cols-2 gap-0">
-                    {/* Left Side - Content */}
-                    <div className="p-8 lg:p-10 space-y-6">
-                        {/* Header */}
-                        <div className="space-y-4">
-                            <Badge className="bg-indigo-100 text-indigo-700 hover:bg-indigo-200 border-indigo-300">
-                                <Phone className="w-3 h-3 mr-1" />
-                                Free Consultation
-                            </Badge>
+                    {/* Left Side - Accordion */}
+                    <div className="space-y-4 p-6">
+                        <div className="rounded-xl p-6 border">
+                            <h3 className="text-xl font-bold text-foreground mb-4">
+                                What Sets Us Apart
+                            </h3>
 
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-                                Get Your Free Consultation Today!
-                            </h2>
+                            <Accordion
+                                type="single"
+                                collapsible
+                                className="space-y-3"
+                            >
+                                {accordionItems.map((item) => (
+                                    <AccordionItem
+                                        key={item.id}
+                                        value={item.id}
+                                        className="border rounded-xl px-4 data-[state=open]:border-primary"
+                                    >
+                                        <AccordionTrigger className="hover:no-underline py-3">
+                                            <div className="flex items-center space-x-3 text-left">
+                                                <div className="flex-shrink-0">
+                                                    {item.icon}
+                                                </div>
+                                                <span className="font-semibold text-foreground text-sm">
+                                                    {item.title}
+                                                </span>
+                                            </div>
+                                        </AccordionTrigger>
+                                        <AccordionContent className="pb-3 pt-1">
+                                            <p className="text-muted-foreground text-sm leading-relaxed ml-8">
+                                                {item.content}
+                                            </p>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </div>
 
-                            <p className="text-lg text-gray-600 leading-relaxed">
-                                Speak with our expert career counselors to
-                                discover the perfect learning path for your
-                                goals. Get personalized course recommendations,
-                                career guidance, and exclusive insights into
-                                industry trends.
+                        {/* Call to Action */}
+                        <div className="bg-primary rounded-xl p-6 text-primary-foreground shadow">
+                            <h4 className="text-lg font-bold mb-1">
+                                Ready to Start Your Journey?
+                            </h4>
+                            <p className="text-primary-foreground/80 mb-3 text-sm">
+                                Join thousands of learners who have transformed
+                                their careers with Innodemy.
                             </p>
-                        </div>
-
-                        {/* Benefits */}
-                        <div className="space-y-3">
-                            <div className="flex items-center space-x-3">
-                                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                <span className="text-gray-700">
-                                    Personalized career roadmap
-                                </span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                <span className="text-gray-700">
-                                    Course recommendations based on your goals
-                                </span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                <span className="text-gray-700">
-                                    Industry insights and salary expectations
-                                </span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                <span className="text-gray-700">
-                                    Scholarship and funding guidance
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Social Proof */}
-                        <div className="flex items-center space-x-3 pt-4">
-                            <div className="flex items-center space-x-2">
-                                <Users className="w-5 h-5 text-indigo-600" />
-                                <span className="text-sm font-medium text-gray-700">
-                                    1500+ students got consultation
-                                </span>
-                            </div>
+                            <Button className="bg-background text-foreground hover:bg-background/90 shadow-sm">
+                                Explore Courses
+                            </Button>
                         </div>
                     </div>
 
                     {/* Right Side - Form */}
-                    <div className="bg-white p-8 lg:p-10 border-l border-indigo-200 rounded-r-2xl">
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="text-center mb-6">
-                                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <div className="p-6 border-l rounded-r-2xl flex items-center justify-center">
+                        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+                            <div className="text-center mb-4">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-1">
                                     Get Your Free Consultation Today!
                                 </h3>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-xs text-gray-600">
                                     Fill out the form below to schedule your
                                     free consultation
                                 </p>
                             </div>
 
                             {/* Full Name */}
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 <Label
                                     htmlFor="fullName"
                                     className="text-sm font-medium text-gray-700"
@@ -243,7 +270,7 @@ export default function BookTheCallCard() {
                             </div>
 
                             {/* Email */}
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 <Label
                                     htmlFor="email"
                                     className="text-sm font-medium text-gray-700"
@@ -275,7 +302,7 @@ export default function BookTheCallCard() {
                             </div>
 
                             {/* Phone Number */}
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 <Label
                                     htmlFor="phoneNumber"
                                     className="text-sm font-medium text-gray-700"
@@ -307,7 +334,7 @@ export default function BookTheCallCard() {
                             </div>
 
                             {/* Message */}
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 <Label
                                     htmlFor="message"
                                     className="text-sm font-medium text-gray-700"
@@ -324,7 +351,7 @@ export default function BookTheCallCard() {
                                             e.target.value
                                         )
                                     }
-                                    rows={4}
+                                    rows={3}
                                     className="resize-none"
                                 />
                             </div>
@@ -333,7 +360,7 @@ export default function BookTheCallCard() {
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-3 h-auto text-base font-medium shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
+                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-2 h-auto text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
                             >
                                 {isSubmitting ? (
                                     <div className="flex items-center space-x-2">
