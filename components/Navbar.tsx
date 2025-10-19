@@ -92,6 +92,21 @@ export default function Navbar() {
                                         About Us
                                     </Link>
                                 </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href="/terms-and-condition" className="w-full">
+                                        Terms & Conditions
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href="/refund-policy" className="w-full">
+                                        Refund Policy
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href="/privacy-policy" className="w-full">
+                                        Privacy Policy
+                                    </Link>
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 
@@ -215,6 +230,27 @@ export default function Navbar() {
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             About Us
+                        </Link>
+                        <Link
+                            href="/terms-and-condition"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Terms & Conditions
+                        </Link>
+                        <Link
+                            href="/refund-policy"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Refund Policy
+                        </Link>
+                        <Link
+                            href="/privacy-policy"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Privacy Policy
                         </Link>
 
                         {user ? (
