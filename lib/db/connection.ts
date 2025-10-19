@@ -1,18 +1,18 @@
 /**
- * MongoDB Connection - Infrastructure Layer
- * Handles database connection and initialization
+ * MongoDB Connection
+ * Handles database connection with connection pooling
  */
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db } from 'mongodb';
 
-const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/innodemmy";
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/innodemmy';
 const options = {};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (process.env.NODE_ENV === "development") {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
+if (process.env.NODE_ENV === 'development') {
+  // In development mode, use a global variable to preserve the connection
+  // across module reloads caused by HMR (Hot Module Replacement)
   const globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>;
   };
@@ -23,14 +23,17 @@ if (process.env.NODE_ENV === "development") {
   }
   clientPromise = globalWithMongo._mongoClientPromise;
 } else {
-  // In production mode, it's best to not use a global variable.
+  // In production mode, create a new client
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 
 export default clientPromise;
 
+/**
+ * Get the database instance
+ */
 export async function getDatabase(): Promise<Db> {
   const client = await clientPromise;
-  return client.db("innodemybackend");
+  return client.db('innodemybackend');
 }

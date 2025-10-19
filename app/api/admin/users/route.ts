@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { withAdminAuth } from '@/src/core/infrastructure/middleware/AuthMiddleware';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
-import { UserRole } from '@/src/core/domain/entities/User';
+import { withAdminAuth } from '@/lib/utils/auth-middleware';
+import { listAllUsers, createNewUser } from '@/lib/services/users';
 
 export const GET = withAdminAuth(async () => {
   try {
-    // Use clean architecture - Get All Users Use Case
-    const getAllUsersUseCase = UseCaseFactory.createGetAllUsersUseCase();
-    const users = await getAllUsersUseCase.execute();
+    // Get all users
+    const users = await listAllUsers();
 
-    // Convert to legacy format for backward compatibility
-    const usersResponse = LegacyModelAdapter.usersToLegacy(users);
-
-    return NextResponse.json({ users: usersResponse });
+    return NextResponse.json({ users });
   } catch (error) {
     console.error('Get users error:', error);
     return NextResponse.json(
@@ -25,11 +19,12 @@ export const GET = withAdminAuth(async () => {
 
 export const POST = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { email, password, name, role } = await request.json();
+    const { email, phone, password, name, role } = await request.json();
 
-    if (!email || !password || !name || !role) {
+    // Validate: at least one of email or phone is required
+    if ((!email && !phone) || !password || !name || !role) {
       return NextResponse.json(
-        { error: 'Email, password, name, and role are required' },
+        { error: 'Email or phone, password, name, and role are required' },
         { status: 400 }
       );
     }
@@ -41,30 +36,22 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    // Use clean architecture - Create User Use Case
-    const createUserUseCase = UseCaseFactory.createCreateUserUseCase();
-    const user = await createUserUseCase.execute({
-      email,
+    // Create user
+    const user = await createNewUser({
+      email: email || null,
+      phone: phone || null,
       password,
       name,
-      role: role as UserRole
+      role,
     });
 
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(user);
-
-    return NextResponse.json({
-      user: userResponse,
-    });
+    return NextResponse.json({ user });
   } catch (error) {
     console.error('Create user error:', error);
-    
+
     // Handle specific errors
     if (error instanceof Error && error.message.includes('already exists')) {
-      return NextResponse.json(
-        { error: 'User already exists' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'User already exists' }, { status: 400 });
     }
 
     return NextResponse.json(

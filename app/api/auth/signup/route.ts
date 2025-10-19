@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
-import { UserRole } from '@/src/core/domain/entities/User';
+import { register } from '@/lib/services/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,26 +16,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use clean architecture - Register Use Case
-    console.log('Creating register use case...');
-    const registerUseCase = UseCaseFactory.createRegisterUseCase();
-
-    console.log('Executing register use case...');
-    const result = await registerUseCase.execute({
+    // Register user
+    const result = await register({
       email: email || null,
       phone: phone || null,
       password,
       name,
-      role: UserRole.STUDENT
+      role: 'student'
     });
 
-    console.log('User registered successfully:', { email, phone, userId: result.user.id });
-
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(result.user);
+    console.log('User registered successfully:', { email, phone, userId: result.user?._id });
 
     return NextResponse.json({
-      user: userResponse,
+      user: result.user,
       token: result.token,
     });
   } catch (error) {

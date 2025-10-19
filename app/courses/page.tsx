@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +15,49 @@ import { Search, Filter, BookOpen, ArrowLeft, X, TrendingUp, Star } from "lucide
 import CourseCard from "@/components/CourseCard";
 import Link from "next/link";
 
-const allCourses = [
+interface Course {
+    id: string;
+    image: string;
+    batchName?: string;
+    rating?: number;
+    totalReviews?: number;
+    title: string;
+    isLive?: boolean;
+    totalJoined?: number;
+    totalLessons: number;
+    totalProjects?: number;
+    totalAssignments?: number;
+    instructor: string;
+    category: string;
+    difficulty: string;
+    price: number;
+}
+
+interface ApiModule {
+    lessons?: unknown[];
+}
+
+interface ApiCourse {
+    _id?: string;
+    id?: string;
+    thumbnail?: string;
+    batchName?: string;
+    rating?: number;
+    totalReviews?: number;
+    title: string;
+    isLive?: boolean;
+    totalJoined?: number;
+    modules?: ApiModule[];
+    totalProjects?: number;
+    projects?: unknown[];
+    totalAssignments?: number;
+    instructor: string;
+    category: string;
+    level?: string;
+    price: number;
+}
+
+const fallbackCourses: Course[] = [
     // Development Courses
     {
         id: "react-development-bootcamp",
@@ -244,6 +286,48 @@ export default function AllCoursesPage() {
     const [selectedDifficulty, setSelectedDifficulty] = useState("All");
     const [selectedType, setSelectedType] = useState("All");
     const [sortBy, setSortBy] = useState("popular");
+    const [allCourses, setAllCourses] = useState<Course[]>(fallbackCourses);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('/api/courses');
+                if (response.ok) {
+                    const data = await response.json();
+                    // Map API response to Course interface
+                    const mappedCourses: Course[] = data.courses.map((course: ApiCourse) => ({
+                        id: course._id || course.id || '',
+                        image: course.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                        batchName: course.batchName || "Batch 1",
+                        rating: course.rating || 4.5,
+                        totalReviews: course.totalReviews || 0,
+                        title: course.title,
+                        isLive: course.isLive ?? false,
+                        totalJoined: course.totalJoined || 0,
+                        totalLessons: course.modules?.reduce((total: number, module: ApiModule) => total + (module.lessons?.length || 0), 0) || 0,
+                        totalProjects: course.totalProjects || course.projects?.length || 0,
+                        totalAssignments: course.totalAssignments || 0,
+                        instructor: course.instructor,
+                        category: course.category,
+                        difficulty: course.level || "Beginner",
+                        price: course.price,
+                    }));
+                    setAllCourses(mappedCourses);
+                } else {
+                    console.error('Failed to fetch courses, using fallback data');
+                    setAllCourses(fallbackCourses);
+                }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+                setAllCourses(fallbackCourses);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
+    }, []);
 
     const filteredAndSortedCourses = useMemo(() => {
         const filtered = allCourses.filter((course) => {
@@ -275,20 +359,21 @@ export default function AllCoursesPage() {
         filtered.sort((a, b) => {
             switch (sortBy) {
                 case "rating":
-                    return b.rating - a.rating;
+                    return (b.rating || 0) - (a.rating || 0);
                 case "price-low":
                     return a.price - b.price;
                 case "price-high":
                     return b.price - a.price;
                 case "newest":
-                    return b.totalReviews - a.totalReviews; // Using reviews as proxy for newness
+                    return (b.totalReviews || 0) - (a.totalReviews || 0); // Using reviews as proxy for newness
                 default: // popular
-                    return b.totalJoined - a.totalJoined;
+                    return (b.totalJoined || 0) - (a.totalJoined || 0);
             }
         });
 
         return filtered;
     }, [
+        allCourses,
         searchTerm,
         selectedCategory,
         selectedDifficulty,
@@ -480,6 +565,21 @@ export default function AllCoursesPage() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+                {/* Loading State */}
+                {loading ? (
+                    <div className="text-center py-16">
+                        <div className="max-w-md mx-auto">
+                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto mb-6"></div>
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                                Loading courses...
+                            </h3>
+                            <p className="text-gray-600">
+                                Please wait while we fetch the latest courses for you.
+                            </p>
+                        </div>
+                    </div>
+                ) : (
+                    <>
                 {/* Course Grid */}
                 {filteredAndSortedCourses.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -535,6 +635,8 @@ export default function AllCoursesPage() {
                             Load More Courses
                         </Button>
                     </div>
+                )}
+                </>
                 )}
             </div>
 

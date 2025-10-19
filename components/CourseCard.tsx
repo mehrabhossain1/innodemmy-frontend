@@ -14,30 +14,30 @@ import Link from "next/link";
 interface CourseCardProps {
     id: string;
     image: string;
-    batchName: string;
-    rating: number;
-    totalReviews: number;
+    batchName?: string;
+    rating?: number;
+    totalReviews?: number;
     title: string;
-    isLive: boolean;
-    totalJoined: number;
+    isLive?: boolean;
+    totalJoined?: number;
     totalLessons: number;
-    totalProjects: number;
-    totalAssignments: number;
+    totalProjects?: number;
+    totalAssignments?: number;
     instructor?: string;
 }
 
 export default function CourseCard({
     id,
     image,
-    batchName,
-    rating,
-    totalReviews,
+    batchName = "Batch 1",
+    rating = 4.5,
+    totalReviews = 0,
     title,
-    isLive,
-    totalJoined,
+    isLive = false,
+    totalJoined = 0,
     totalLessons,
-    totalProjects,
-    totalAssignments,
+    totalProjects = 0,
+    totalAssignments = 0,
     instructor,
 }: CourseCardProps) {
     return (

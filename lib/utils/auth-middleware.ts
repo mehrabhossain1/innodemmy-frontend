@@ -1,34 +1,37 @@
 /**
- * Auth Middleware - Infrastructure Layer
- * Provides authentication middleware compatible with Next.js API routes
+ * Authentication middleware
+ * Provides authentication for Next.js API routes
  */
 import { NextRequest, NextResponse } from 'next/server';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
+import { verifyToken, extractTokenFromHeader } from '../services/auth';
 
 export interface AuthenticatedRequest extends NextRequest {
   user?: {
     userId: string;
-    email: string;
+    email: string | null;
+    phone: string | null;
     role: string;
   };
 }
 
-type ApiHandler = (request: AuthenticatedRequest, ...args: unknown[]) => Promise<NextResponse> | NextResponse;
+type ApiHandler<T = unknown> = (
+  request: AuthenticatedRequest,
+  context: T
+) => Promise<NextResponse> | NextResponse;
 
 /**
  * Middleware for authenticated routes
  */
-export function withAuth(handler: ApiHandler) {
-  return async (request: NextRequest, ...args: unknown[]) => {
-    const tokenService = UseCaseFactory.getTokenService();
+export function withAuth<T = unknown>(handler: ApiHandler<T>) {
+  return async (request: NextRequest, context: T) => {
     const authHeader = request.headers.get('authorization');
-    const token = tokenService.extractTokenFromHeader(authHeader);
-    
+    const token = extractTokenFromHeader(authHeader);
+
     if (!token) {
       return NextResponse.json({ error: 'No token provided' }, { status: 401 });
     }
 
-    const decoded = tokenService.verifyToken(token);
+    const decoded = verifyToken(token);
     if (!decoded) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
@@ -38,27 +41,27 @@ export function withAuth(handler: ApiHandler) {
     authRequest.user = {
       userId: decoded.userId,
       email: decoded.email,
-      role: decoded.role
+      phone: decoded.phone,
+      role: decoded.role,
     };
-    
-    return handler(authRequest, ...args);
+
+    return handler(authRequest, context);
   };
 }
 
 /**
  * Middleware for admin-only routes
  */
-export function withAdminAuth(handler: ApiHandler) {
-  return async (request: NextRequest, ...args: unknown[]) => {
-    const tokenService = UseCaseFactory.getTokenService();
+export function withAdminAuth<T = unknown>(handler: ApiHandler<T>) {
+  return async (request: NextRequest, context: T) => {
     const authHeader = request.headers.get('authorization');
-    const token = tokenService.extractTokenFromHeader(authHeader);
-    
+    const token = extractTokenFromHeader(authHeader);
+
     if (!token) {
       return NextResponse.json({ error: 'No token provided' }, { status: 401 });
     }
 
-    const decoded = tokenService.verifyToken(token);
+    const decoded = verifyToken(token);
     if (!decoded) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
@@ -72,9 +75,10 @@ export function withAdminAuth(handler: ApiHandler) {
     authRequest.user = {
       userId: decoded.userId,
       email: decoded.email,
-      role: decoded.role
+      phone: decoded.phone,
+      role: decoded.role,
     };
-    
-    return handler(authRequest, ...args);
+
+    return handler(authRequest, context);
   };
 }

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { login } from '@/lib/services/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,17 +14,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use clean architecture - Login Use Case
-    const loginUseCase = UseCaseFactory.createLoginUseCase();
-    const result = await loginUseCase.execute({ identifier, password });
+    // Login user
+    const result = await login(identifier, password);
 
     console.log('Login successful for:', { identifier });
 
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(result.user);
-
     return NextResponse.json({
-      user: userResponse,
+      user: result.user,
       token: result.token,
     });
   } catch (error) {
