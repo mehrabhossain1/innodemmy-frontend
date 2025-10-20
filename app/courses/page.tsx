@@ -11,7 +11,15 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, BookOpen, ArrowLeft, X, TrendingUp, Star } from "lucide-react";
+import {
+    Search,
+    Filter,
+    BookOpen,
+    ArrowLeft,
+    X,
+    TrendingUp,
+    Star,
+} from "lucide-react";
 import CourseCard from "@/components/CourseCard";
 import Link from "next/link";
 
@@ -292,34 +300,48 @@ export default function AllCoursesPage() {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('/api/courses');
+                const response = await fetch("/api/courses");
                 if (response.ok) {
                     const data = await response.json();
                     // Map API response to Course interface
-                    const mappedCourses: Course[] = data.courses.map((course: ApiCourse) => ({
-                        id: course._id || course.id || '',
-                        image: course.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                        batchName: course.batchName || "Batch 1",
-                        rating: course.rating || 4.5,
-                        totalReviews: course.totalReviews || 0,
-                        title: course.title,
-                        isLive: course.isLive ?? false,
-                        totalJoined: course.totalJoined || 0,
-                        totalLessons: course.modules?.reduce((total: number, module: ApiModule) => total + (module.lessons?.length || 0), 0) || 0,
-                        totalProjects: course.totalProjects || course.projects?.length || 0,
-                        totalAssignments: course.totalAssignments || 0,
-                        instructor: course.instructor,
-                        category: course.category,
-                        difficulty: course.level || "Beginner",
-                        price: course.price,
-                    }));
+                    const mappedCourses: Course[] = data.courses.map(
+                        (course: ApiCourse) => ({
+                            id: course._id || course.id || "",
+                            image:
+                                course.thumbnail ||
+                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                            batchName: course.batchName || "Batch 1",
+                            rating: course.rating || 4.5,
+                            totalReviews: course.totalReviews || 0,
+                            title: course.title,
+                            isLive: course.isLive ?? false,
+                            totalJoined: course.totalJoined || 0,
+                            totalLessons:
+                                course.modules?.reduce(
+                                    (total: number, module: ApiModule) =>
+                                        total + (module.lessons?.length || 0),
+                                    0
+                                ) || 0,
+                            totalProjects:
+                                course.totalProjects ||
+                                course.projects?.length ||
+                                0,
+                            totalAssignments: course.totalAssignments || 0,
+                            instructor: course.instructor,
+                            category: course.category,
+                            difficulty: course.level || "Beginner",
+                            price: course.price,
+                        })
+                    );
                     setAllCourses(mappedCourses);
                 } else {
-                    console.error('Failed to fetch courses, using fallback data');
+                    console.error(
+                        "Failed to fetch courses, using fallback data"
+                    );
                     setAllCourses(fallbackCourses);
                 }
             } catch (error) {
-                console.error('Error fetching courses:', error);
+                console.error("Error fetching courses:", error);
                 setAllCourses(fallbackCourses);
             } finally {
                 setLoading(false);
@@ -416,109 +438,128 @@ export default function AllCoursesPage() {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="bg-gradient-to-r from-white to-indigo-50 rounded-2xl shadow-sm border border-indigo-100 p-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-                        {/* Search */}
-                        <div className="lg:col-span-2 relative">
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400 h-5 w-5" />
-                            <Input
-                                placeholder="Search courses or instructors..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-12 h-12 text-base placeholder:text-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
-                                aria-label="Search courses"
-                            />
-                            {searchTerm && (
-                                <button
-                                    onClick={() => setSearchTerm("")}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-400 hover:text-indigo-600 transition-colors duration-200"
-                                    aria-label="Clear search"
-                                >
-                                    <X className="h-4 w-4" />
-                                </button>
-                            )}
-                        </div>
-
-                        {/* Category Filter */}
-                        <Select
-                            value={selectedCategory}
-                            onValueChange={setSelectedCategory}
-                        >
-                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by category">
-                                <SelectValue placeholder="Category" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {categories.map((category) => (
-                                    <SelectItem key={category} value={category}>
-                                        {category}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-
-                        {/* Difficulty Filter */}
-                        <Select
-                            value={selectedDifficulty}
-                            onValueChange={setSelectedDifficulty}
-                        >
-                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by difficulty">
-                                <SelectValue placeholder="Difficulty" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {difficulties.map((difficulty) => (
-                                    <SelectItem
-                                        key={difficulty}
-                                        value={difficulty}
+                            {/* Search */}
+                            <div className="lg:col-span-2 relative">
+                                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400 h-5 w-5" />
+                                <Input
+                                    placeholder="Search courses or instructors..."
+                                    value={searchTerm}
+                                    onChange={(e) =>
+                                        setSearchTerm(e.target.value)
+                                    }
+                                    className="pl-12 h-12 text-base placeholder:text-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                    aria-label="Search courses"
+                                />
+                                {searchTerm && (
+                                    <button
+                                        onClick={() => setSearchTerm("")}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-400 hover:text-indigo-600 transition-colors duration-200"
+                                        aria-label="Clear search"
                                     >
-                                        {difficulty}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                                        <X className="h-4 w-4" />
+                                    </button>
+                                )}
+                            </div>
 
-                        {/* Course Type Filter */}
-                        <Select
-                            value={selectedType}
-                            onValueChange={setSelectedType}
-                        >
-                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Filter by course type">
-                                <SelectValue placeholder="Course Type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {courseTypes.map((type) => (
-                                    <SelectItem key={type} value={type}>
-                                        {type}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                            {/* Category Filter */}
+                            <Select
+                                value={selectedCategory}
+                                onValueChange={setSelectedCategory}
+                            >
+                                <SelectTrigger
+                                    className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                    aria-label="Filter by category"
+                                >
+                                    <SelectValue placeholder="Category" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {categories.map((category) => (
+                                        <SelectItem
+                                            key={category}
+                                            value={category}
+                                        >
+                                            {category}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
 
-                        {/* Sort By */}
-                        <Select value={sortBy} onValueChange={setSortBy}>
-                            <SelectTrigger className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200" aria-label="Sort courses">
-                                <SelectValue placeholder="Sort by" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="popular">
-                                    <div className="flex items-center">
-                                        <TrendingUp className="w-4 h-4 mr-2" />
-                                        Most Popular
-                                    </div>
-                                </SelectItem>
-                                <SelectItem value="rating">
-                                    <div className="flex items-center">
-                                        <Star className="w-4 h-4 mr-2" />
-                                        Highest Rated
-                                    </div>
-                                </SelectItem>
-                                <SelectItem value="newest">Newest</SelectItem>
-                                <SelectItem value="price-low">
-                                    Price: Low to High
-                                </SelectItem>
-                                <SelectItem value="price-high">
-                                    Price: High to Low
-                                </SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
+                            {/* Difficulty Filter */}
+                            <Select
+                                value={selectedDifficulty}
+                                onValueChange={setSelectedDifficulty}
+                            >
+                                <SelectTrigger
+                                    className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                    aria-label="Filter by difficulty"
+                                >
+                                    <SelectValue placeholder="Difficulty" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {difficulties.map((difficulty) => (
+                                        <SelectItem
+                                            key={difficulty}
+                                            value={difficulty}
+                                        >
+                                            {difficulty}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+
+                            {/* Course Type Filter */}
+                            <Select
+                                value={selectedType}
+                                onValueChange={setSelectedType}
+                            >
+                                <SelectTrigger
+                                    className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                    aria-label="Filter by course type"
+                                >
+                                    <SelectValue placeholder="Course Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {courseTypes.map((type) => (
+                                        <SelectItem key={type} value={type}>
+                                            {type}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+
+                            {/* Sort By */}
+                            <Select value={sortBy} onValueChange={setSortBy}>
+                                <SelectTrigger
+                                    className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200"
+                                    aria-label="Sort courses"
+                                >
+                                    <SelectValue placeholder="Sort by" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="popular">
+                                        <div className="flex items-center">
+                                            <TrendingUp className="w-4 h-4 mr-2" />
+                                            Most Popular
+                                        </div>
+                                    </SelectItem>
+                                    <SelectItem value="rating">
+                                        <div className="flex items-center">
+                                            <Star className="w-4 h-4 mr-2" />
+                                            Highest Rated
+                                        </div>
+                                    </SelectItem>
+                                    <SelectItem value="newest">
+                                        Newest
+                                    </SelectItem>
+                                    <SelectItem value="price-low">
+                                        Price: Low to High
+                                    </SelectItem>
+                                    <SelectItem value="price-high">
+                                        Price: High to Low
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
 
                         {/* Active Filters */}
                         <div className="flex flex-wrap gap-2 mt-6">
@@ -564,7 +605,6 @@ export default function AllCoursesPage() {
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
                 {/* Loading State */}
                 {loading ? (
                     <div className="text-center py-16">
@@ -574,69 +614,77 @@ export default function AllCoursesPage() {
                                 Loading courses...
                             </h3>
                             <p className="text-gray-600">
-                                Please wait while we fetch the latest courses for you.
+                                Please wait while we fetch the latest courses
+                                for you.
                             </p>
                         </div>
                     </div>
                 ) : (
                     <>
-                {/* Course Grid */}
-                {filteredAndSortedCourses.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        {filteredAndSortedCourses.map((course) => (
-                            <CourseCard
-                                key={course.id}
-                                id={course.id}
-                                image={course.image}
-                                batchName={course.batchName}
-                                rating={course.rating}
-                                totalReviews={course.totalReviews}
-                                title={course.title}
-                                isLive={course.isLive}
-                                totalJoined={course.totalJoined}
-                                totalLessons={course.totalLessons}
-                                totalProjects={course.totalProjects}
-                                totalAssignments={course.totalAssignments}
-                                instructor={course.instructor}
-                            />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-center py-16">
-                        <div className="max-w-md mx-auto">
-                            <Filter className="h-16 w-16 text-gray-400 mx-auto mb-6" />
-                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                                No courses found
-                            </h3>
-                            <p className="text-gray-600 mb-6 leading-relaxed">
-                                Try adjusting your search criteria or filters to find more courses.
-                            </p>
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                onClick={() => {
-                                    setSearchTerm("");
-                                    setSelectedCategory("All");
-                                    setSelectedDifficulty("All");
-                                    setSelectedType("All");
-                                }}
-                                className="px-8 py-3"
-                            >
-                                Clear All Filters
-                            </Button>
-                        </div>
-                    </div>
-                )}
+                        {/* Course Grid */}
+                        {filteredAndSortedCourses.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                                {filteredAndSortedCourses.map((course) => (
+                                    <CourseCard
+                                        key={course.id}
+                                        id={course.id}
+                                        image={course.image}
+                                        batchName={course.batchName}
+                                        rating={course.rating}
+                                        totalReviews={course.totalReviews}
+                                        title={course.title}
+                                        isLive={course.isLive}
+                                        totalJoined={course.totalJoined}
+                                        totalLessons={course.totalLessons}
+                                        totalProjects={course.totalProjects}
+                                        totalAssignments={
+                                            course.totalAssignments
+                                        }
+                                        instructor={course.instructor}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-16">
+                                <div className="max-w-md mx-auto">
+                                    <Filter className="h-16 w-16 text-gray-400 mx-auto mb-6" />
+                                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                                        No courses found
+                                    </h3>
+                                    <p className="text-gray-600 mb-6 leading-relaxed">
+                                        Try adjusting your search criteria or
+                                        filters to find more courses.
+                                    </p>
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        onClick={() => {
+                                            setSearchTerm("");
+                                            setSelectedCategory("All");
+                                            setSelectedDifficulty("All");
+                                            setSelectedType("All");
+                                        }}
+                                        className="px-8 py-3"
+                                    >
+                                        Clear All Filters
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
 
-                {/* Load More Button (for pagination) */}
-                {filteredAndSortedCourses.length > 0 && (
-                    <div className="text-center mt-16">
-                        <Button variant="outline" size="lg" className="px-8 py-3">
-                            Load More Courses
-                        </Button>
-                    </div>
-                )}
-                </>
+                        {/* Load More Button (for pagination) */}
+                        {filteredAndSortedCourses.length > 0 && (
+                            <div className="text-center mt-16">
+                                <Button
+                                    variant="outline"
+                                    size="lg"
+                                    className="px-8 py-3"
+                                >
+                                    Load More Courses
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 
@@ -646,11 +694,14 @@ export default function AllCoursesPage() {
                     <div className="text-center">
                         <div className="flex items-center justify-center space-x-2 mb-4">
                             <BookOpen className="h-6 w-6 text-indigo-600" />
-                            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Innodemy</span>
+                            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                                Innodemy
+                            </span>
                         </div>
                         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                            Empowering learners with world-class technology education. 
-                            Join thousands of students who have transformed their careers with our courses.
+                            Empowering learners with world-class technology
+                            education. Join thousands of students who have
+                            transformed their careers with our courses.
                         </p>
                         <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
                             <span>© 2024 Innodemy. All rights reserved.</span>

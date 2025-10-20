@@ -1,54 +1,98 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";
 
-const liveCourses = [
-    {
-        id: "react-development-bootcamp",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        batchName: "Batch 15",
-        rating: 4.8,
-        totalReviews: 234,
-        title: "Complete React Development Bootcamp with Next.js 15",
-        isLive: true,
-        totalJoined: 1250,
-        totalLessons: 45,
-        totalProjects: 8,
-        totalAssignments: 10,
-        instructor: "Sarah Johnson",
-    },
-    {
-        id: "react-development-bootcamp",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        batchName: "Batch 12",
-        rating: 4.9,
-        totalReviews: 189,
-        title: "Python for Data Science and Machine Learning Masterclass",
-        isLive: true,
-        totalJoined: 980,
-        totalLessons: 52,
-        totalProjects: 12,
-        totalAssignments: 14,
-        instructor: "Dr. Michael Chen",
-    },
-    {
-        id: "ui-ux-design-complete",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        batchName: "Batch 8",
-        rating: 4.7,
-        totalReviews: 156,
-        title: "UI/UX Design Complete Course - Figma to Prototype",
-        isLive: false,
-        totalJoined: 750,
-        totalLessons: 38,
-        totalProjects: 6,
-        totalAssignments: 6,
-        instructor: "Emma Rodriguez",
-    },
-];
+interface Course {
+    id: string;
+    image: string;
+    batchName?: string;
+    rating?: number;
+    totalReviews?: number;
+    title: string;
+    isLive?: boolean;
+    totalJoined?: number;
+    totalLessons: number;
+    totalProjects?: number;
+    totalAssignments?: number;
+    instructor: string;
+}
+
+interface ApiModule {
+    lessons?: unknown[];
+}
+
+interface ApiCourse {
+    _id?: string;
+    id?: string;
+    thumbnail?: string;
+    batchName?: string;
+    rating?: number;
+    totalReviews?: number;
+    title: string;
+    isLive?: boolean;
+    totalJoined?: number;
+    modules?: ApiModule[];
+    totalProjects?: number;
+    projects?: unknown[];
+    totalAssignments?: number;
+    instructor: string;
+}
 
 export default function CoursesSection() {
+    const [courses, setCourses] = useState<Course[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch("/api/courses");
+                if (response.ok) {
+                    const data = await response.json();
+                    // Map API response to Course interface
+                    const mappedCourses: Course[] = data.courses.map(
+                        (course: ApiCourse) => ({
+                            id: course._id || course.id || "",
+                            image:
+                                course.thumbnail ||
+                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                            batchName: course.batchName || "Batch 1",
+                            rating: course.rating || 4.5,
+                            totalReviews: course.totalReviews || 0,
+                            title: course.title,
+                            isLive: course.isLive ?? false,
+                            totalJoined: course.totalJoined || 0,
+                            totalLessons:
+                                course.modules?.reduce(
+                                    (total: number, module: ApiModule) =>
+                                        total + (module.lessons?.length || 0),
+                                    0
+                                ) || 0,
+                            totalProjects:
+                                course.totalProjects ||
+                                course.projects?.length ||
+                                0,
+                            totalAssignments: course.totalAssignments || 0,
+                            instructor: course.instructor,
+                        })
+                    );
+                    // Show only first 3 courses for homepage
+                    setCourses(mappedCourses.slice(0, 3));
+                } else {
+                    console.error("Failed to fetch courses");
+                }
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
+    }, []);
     return (
         <section className="py-16 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,25 +109,36 @@ export default function CoursesSection() {
                 </div>
 
                 {/* Course Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    {liveCourses.map((course, index) => (
-                        <CourseCard
-                            key={index}
-                            id={course.id}
-                            image={course.image}
-                            batchName={course.batchName}
-                            rating={course.rating}
-                            totalReviews={course.totalReviews}
-                            title={course.title}
-                            isLive={course.isLive}
-                            totalJoined={course.totalJoined}
-                            totalLessons={course.totalLessons}
-                            totalProjects={course.totalProjects}
-                            totalAssignments={course.totalAssignments}
-                            instructor={course.instructor}
-                        />
-                    ))}
-                </div>
+                {loading ? (
+                    <div className="text-center py-16">
+                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
+                        <p className="text-muted-foreground">Loading courses...</p>
+                    </div>
+                ) : courses.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        {courses.map((course) => (
+                            <CourseCard
+                                key={course.id}
+                                id={course.id}
+                                image={course.image}
+                                batchName={course.batchName}
+                                rating={course.rating}
+                                totalReviews={course.totalReviews}
+                                title={course.title}
+                                isLive={course.isLive}
+                                totalJoined={course.totalJoined}
+                                totalLessons={course.totalLessons}
+                                totalProjects={course.totalProjects}
+                                totalAssignments={course.totalAssignments}
+                                instructor={course.instructor}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-16">
+                        <p className="text-muted-foreground">No courses available at the moment.</p>
+                    </div>
+                )}
 
                 {/* View All Courses Button */}
                 <div className="text-center">
