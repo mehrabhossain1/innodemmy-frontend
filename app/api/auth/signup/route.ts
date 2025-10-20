@@ -7,19 +7,19 @@ export async function POST(request: NextRequest) {
 
     console.log('Signup request received:', { email, phone, name });
 
-    // Validate: at least one of email or phone is required
-    if ((!email && !phone) || !password || !name) {
+    // Validate: both email and phone are required
+    if (!email || !phone || !password || !name) {
       console.error('Missing required fields:', { email: !!email, phone: !!phone, password: !!password, name: !!name });
       return NextResponse.json(
-        { error: 'Email or phone, password, and name are required' },
+        { error: 'Email, phone, password, and name are all required' },
         { status: 400 }
       );
     }
 
     // Register user
     const result = await register({
-      email: email || null,
-      phone: phone || null,
+      email,
+      phone,
       password,
       name,
       role: 'student'

@@ -17,7 +17,7 @@ interface AuthSidebarProps {
 export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
     const [activeTab, setActiveTab] = useState<"login" | "register">("login");
     const [loginData, setLoginData] = useState({
-        identifier: "",
+        email: "",
         password: "",
     });
     const [registerData, setRegisterData] = useState({
@@ -53,7 +53,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
             if (response.ok) {
                 login(data.token, data.user);
                 setSuccess("Login successful! Redirecting...");
-                setLoginData({ identifier: "", password: "" });
+                setLoginData({ email: "", password: "" });
 
                 setTimeout(() => {
                     onClose();
@@ -80,9 +80,9 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
         setSuccess("");
         setLoading(true);
 
-        // Validate: at least one of email or phone is required
-        if (!registerData.email && !registerData.phone) {
-            setError("Please provide either an email or phone number");
+        // Validate: both email and phone are required
+        if (!registerData.email || !registerData.phone) {
+            setError("Please provide both email and phone number");
             setLoading(false);
             return;
         }
@@ -107,8 +107,8 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 },
                 body: JSON.stringify({
                     name: registerData.name,
-                    email: registerData.email || null,
-                    phone: registerData.phone || null,
+                    email: registerData.email,
+                    phone: registerData.phone,
                     password: registerData.password,
                 }),
             });
@@ -232,26 +232,23 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                     {activeTab === "login" ? (
                         <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="login-identifier" className="text-foreground font-medium">
-                                    Email or Phone Number
+                                <Label htmlFor="login-email" className="text-foreground font-medium">
+                                    Email Address
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                                     <Input
-                                        id="login-identifier"
-                                        type="text"
-                                        placeholder="your@email.com or +1234567890"
-                                        value={loginData.identifier}
+                                        id="login-email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        value={loginData.email}
                                         onChange={(e) =>
-                                            setLoginData({ ...loginData, identifier: e.target.value })
+                                            setLoginData({ ...loginData, email: e.target.value })
                                         }
                                         className="h-12 pl-10"
                                         required
                                     />
                                 </div>
-                                <p className="text-xs text-muted-foreground">
-                                    Enter the email or phone you registered with
-                                </p>
                             </div>
 
                             <div className="space-y-2">
@@ -366,7 +363,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <div className="space-y-2">
                                 <Label htmlFor="register-email" className="text-foreground font-medium">
-                                    Email Address <span className="text-muted-foreground text-xs">(Optional)</span>
+                                    Email Address <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -379,13 +376,14 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                             setRegisterData({ ...registerData, email: e.target.value })
                                         }
                                         className="h-12 pl-10"
+                                        required
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <Label htmlFor="register-phone" className="text-foreground font-medium">
-                                    Phone Number <span className="text-muted-foreground text-xs">(Optional)</span>
+                                    Phone Number <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -398,11 +396,9 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                             setRegisterData({ ...registerData, phone: e.target.value })
                                         }
                                         className="h-12 pl-10"
+                                        required
                                     />
                                 </div>
-                                <p className="text-xs text-muted-foreground">
-                                    Provide at least one: email or phone number
-                                </p>
                             </div>
 
                             <div className="space-y-2">

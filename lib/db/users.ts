@@ -38,24 +38,24 @@ export async function findUserById(id: string) {
 }
 
 /**
- * Find user by email or phone (without password)
+ * Find user by email (without password)
  */
-export async function findUserByIdentifier(identifier: string) {
+export async function findUserByIdentifier(email: string) {
   const collection = await getUsersCollection();
   const user = await collection.findOne(
-    { $or: [{ email: identifier }, { phone: identifier }] },
+    { email: email },
     { projection: { password: 0 } }
   );
   return user;
 }
 
 /**
- * Find user by email or phone (with password for authentication)
+ * Find user by email (with password for authentication)
  */
-export async function findUserByIdentifierWithPassword(identifier: string) {
+export async function findUserByIdentifierWithPassword(email: string) {
   const collection = await getUsersCollection();
   const user = await collection.findOne({
-    $or: [{ email: identifier }, { phone: identifier }],
+    email: email,
   });
   return user;
 }
@@ -63,13 +63,12 @@ export async function findUserByIdentifierWithPassword(identifier: string) {
 /**
  * Check if user exists by email or phone
  */
-export async function userExists(email?: string | null, phone?: string | null) {
+export async function userExists(email: string, phone: string) {
   const collection = await getUsersCollection();
   const query: Array<{ email?: string; phone?: string }> = [];
 
   if (email) query.push({ email });
   if (phone) query.push({ phone });
-  if (query.length === 0) return false;
 
   const count = await collection.countDocuments({ $or: query });
   return count > 0;

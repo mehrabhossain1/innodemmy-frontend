@@ -3,21 +3,21 @@ import { login } from '@/lib/services/auth';
 
 export async function POST(request: NextRequest) {
   try {
-    const { identifier, password } = await request.json();
+    const { email, password } = await request.json();
 
-    console.log('Login attempt with:', { identifier });
+    console.log('Login attempt with:', { email });
 
-    if (!identifier || !password) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email/Phone and password are required' },
+        { error: 'Email and password are required' },
         { status: 400 }
       );
     }
 
     // Login user
-    const result = await login(identifier, password);
+    const result = await login(email, password);
 
-    console.log('Login successful for:', { identifier });
+    console.log('Login successful for:', { email });
 
     return NextResponse.json({
       user: result.user,
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     // Handle specific errors
     if (error instanceof Error && error.message.includes('Invalid credentials')) {
       return NextResponse.json(
-        { error: 'Invalid email/phone or password' },
+        { error: 'Invalid email or password' },
         { status: 401 }
       );
     }

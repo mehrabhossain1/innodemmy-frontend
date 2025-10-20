@@ -15,22 +15,22 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 export interface DecodedToken extends JwtPayload {
   userId: string;
-  email: string | null;
-  phone: string | null;
+  email: string;
+  phone: string;
   role: string;
 }
 
 /**
- * Login with email or phone and password
+ * Login with email and password
  */
-export async function login(identifier: string, password: string) {
+export async function login(email: string, password: string) {
   // Validate input
-  if (!identifier || !password) {
-    throw new Error('Email/Phone and password are required');
+  if (!email || !password) {
+    throw new Error('Email and password are required');
   }
 
-  // Find user with password
-  const user = await findUserByIdentifierWithPassword(identifier);
+  // Find user with password by email only
+  const user = await findUserByIdentifierWithPassword(email);
   if (!user) {
     throw new Error('Invalid credentials');
   }
@@ -42,7 +42,7 @@ export async function login(identifier: string, password: string) {
   }
 
   // Get user without password
-  const userWithoutPassword = await findUserByIdentifier(identifier);
+  const userWithoutPassword = await findUserByIdentifier(email);
   if (!userWithoutPassword) {
     throw new Error('User not found');
   }
@@ -69,14 +69,14 @@ export async function login(identifier: string, password: string) {
  */
 export async function register(data: {
   name: string;
-  email?: string | null;
-  phone?: string | null;
+  email: string;
+  phone: string;
   password: string;
   role?: 'student' | 'admin';
 }) {
-  // Validate input - at least one of email or phone is required
-  if ((!data.email && !data.phone) || !data.password || !data.name) {
-    throw new Error('Email or phone, password, and name are required');
+  // Validate input - both email and phone are required
+  if (!data.email || !data.phone || !data.password || !data.name) {
+    throw new Error('Email, phone, password, and name are all required');
   }
 
   // Check if user already exists
@@ -90,8 +90,8 @@ export async function register(data: {
 
   // Create user
   const user = await createUser({
-    email: data.email || null,
-    phone: data.phone || null,
+    email: data.email,
+    phone: data.phone,
     password: hashedPassword,
     name: data.name,
     role: data.role || 'student',
@@ -125,8 +125,8 @@ export async function register(data: {
  */
 export function generateToken(user: {
   _id?: string;
-  email?: string | null;
-  phone?: string | null;
+  email: string;
+  phone: string;
   role: string;
 }): string {
   return jwt.sign(
