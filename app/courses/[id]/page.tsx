@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, CheckCircle2, ArrowLeft, Play } from "lucide-react";
+import { Star, CheckCircle2, ArrowLeft, Play, Edit } from "lucide-react";
 import {
     Accordion,
     AccordionContent,
@@ -11,6 +11,8 @@ import {
 import Link from "next/link";
 import { use, useState, useEffect } from "react";
 import Image from "next/image";
+import { useAuth } from "@/lib/hooks/useAuth";
+import { CourseModuleEditor } from "@/components/CourseModuleEditor";
 
 // Define the type for params
 interface CoursePageProps {
@@ -48,10 +50,184 @@ interface Course {
     updatedAt: string;
 }
 
+interface CourseModuleData {
+    class: string;
+    title: string;
+    topics: string[];
+    exercises: string[];
+}
+
+const defaultCourseModules: CourseModuleData[] = [
+    {
+        class: "Class 1",
+        title: "Module 1: Getting Started with Python",
+        topics: [
+            "What is Python and why use it?",
+            "Installing Python (Anaconda, VS Code, Jupyter)",
+            "Python syntax, indentation, comments",
+            "Variables and naming rules",
+            "Built-in data types: int, float, str, bool",
+            "Type casting and type()",
+            "Operators: arithmetic, comparison, logical",
+        ],
+        exercises: [
+            "Personal info script",
+            "Simple calculator",
+            "Even/Odd number checker",
+        ],
+    },
+    {
+        class: "Class 2",
+        title: "Module 2: Strings, Input/Output & Control Flow",
+        topics: [
+            "String indexing, slicing, methods (split(), join(), replace(), strip())",
+            "f-strings and .format()",
+            "input() and console interactions",
+            "if, elif, else statements",
+            "for, while loops",
+            "break, continue, pass",
+            "Nested loops and logic patterns",
+        ],
+        exercises: ["Password generator", "Word/character counter"],
+    },
+    {
+        class: "Class 3",
+        title: "Module 3: Data Structures & List Comprehensions",
+        topics: [
+            "Lists, Tuples, Sets, Dictionaries",
+            "CRUD operations on collections",
+            "get(), .update(), .items()",
+            "Nested structures",
+            "zip(), enumerate(), sorted()",
+            "List comprehensions and dictionary/set comprehensions",
+        ],
+        exercises: ["Student record manager", "Word frequency counter"],
+    },
+    {
+        class: "Class 4",
+        title: "Module 4: Functions, Recursion & Modules",
+        topics: [
+            "Defining and calling functions",
+            "Parameters, return values, scope",
+            "Default, keyword, variable-length arguments",
+            "Recursion: factorial, Fibonacci, directory scan",
+            "Anonymous functions: lambda",
+            "map(), filter(), reduce()",
+            "Built-in functions: map(), filter(), reduce()",
+            "Writing your own modules and imports",
+        ],
+        exercises: [
+            "Recursive file search",
+            "Word filter with lambda and filter()",
+        ],
+    },
+    {
+        class: "Class 5",
+        title: "Module 5: File Handling, CSV & JSON",
+        topics: [
+            "Working with text files",
+            "CSV files using csv module",
+            "JSON: parsing, serialization",
+            "with statement, open(), read(), write()",
+            "File loops and data cleaning",
+            "File system navigation: os, pathlib",
+        ],
+        exercises: [
+            "CSV data cleaner & summarizer",
+            "JSON user profile builder",
+        ],
+    },
+    {
+        class: "Class 6",
+        title: "Module 6: Error Handling & Debugging",
+        topics: [
+            "Error types: syntax, runtime, logic",
+            "Try-Except blocks, else, finally",
+            "Custom exceptions with raise",
+            "Basic debugger: pdb",
+            "Logging intro (optional)",
+        ],
+        exercises: ["File reader with missing file handler"],
+    },
+    {
+        class: "Class 7",
+        title: "Module 7: Object-Oriented Programming (OOP)",
+        topics: [
+            "Classes, objects, __init__, attributes",
+            "Class methods and self",
+            "Inheritance and method overriding",
+            "Encapsulation and __str__",
+            "Composition (optional)",
+        ],
+        exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
+    },
+    {
+        class: "Class 8",
+        title: "Module 8: Advanced Python (Generators, Decorators, Virtualenv)",
+        topics: [
+            "Generators: yield, lazy evaluation",
+            "Decorators: writing and applying",
+            "Closures and first-class functions",
+            "Introduction to virtualenv & pip",
+            "Installing external libraries",
+        ],
+        exercises: ["Generator for large file line processing"],
+    },
+    {
+        class: "Class 9",
+        title: "Module 9: Web Scraping & APIs",
+        topics: [
+            "Web scraping with requests, BeautifulSoup",
+            "Parsing HTML: tags, classes, attributes",
+            "Error handling for HTTP requests",
+            "Working with APIs (e.g., OpenWeatherMap)",
+            "Exporting data to CSV/JSON",
+        ],
+        exercises: [
+            "News headline scraper",
+            "Weather report fetcher",
+            "Job listings to CSV from web",
+        ],
+    },
+    {
+        class: "Class 10",
+        title: "Project Support 1",
+        topics: ["Dedicated time for project guidance and troubleshooting"],
+        exercises: [],
+    },
+    {
+        class: "Class 11",
+        title: "Project Support 2",
+        topics: ["Continued project development and mentoring"],
+        exercises: [],
+    },
+    {
+        class: "Class 12",
+        title: "Project Support 3",
+        topics: ["Final project review and completion"],
+        exercises: [],
+    },
+];
+
 export default function CoursePage({ params }: CoursePageProps) {
     const { id } = use(params);
     const [course, setCourse] = useState<Course | null>(null);
     const [loading, setLoading] = useState(true);
+    const { user } = useAuth();
+    const [isEditingModules, setIsEditingModules] = useState(false);
+    const [courseModules, setCourseModules] = useState<CourseModuleData[]>(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem(`courseModules-${id}`);
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    console.error("Failed to parse saved modules:", e);
+                }
+            }
+        }
+        return defaultCourseModules;
+    });
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -73,6 +249,12 @@ export default function CoursePage({ params }: CoursePageProps) {
 
         fetchCourse();
     }, [id]);
+
+    const handleSaveModules = (updatedModules: CourseModuleData[]) => {
+        setCourseModules(updatedModules);
+        localStorage.setItem(`courseModules-${id}`, JSON.stringify(updatedModules));
+        setIsEditingModules(false);
+    };
 
     if (loading) {
         return (
@@ -107,158 +289,6 @@ export default function CoursePage({ params }: CoursePageProps) {
     const reviews = 238;
     const students = 1256;
     const originalPrice = 499;
-
-    const courseModules = [
-        {
-            class: "Class 1",
-            title: "Module 1: Getting Started with Python",
-            topics: [
-                "What is Python and why use it?",
-                "Installing Python (Anaconda, VS Code, Jupyter)",
-                "Python syntax, indentation, comments",
-                "Variables and naming rules",
-                "Built-in data types: int, float, str, bool",
-                "Type casting and type()",
-                "Operators: arithmetic, comparison, logical",
-            ],
-            exercises: [
-                "Personal info script",
-                "Simple calculator",
-                "Even/Odd number checker",
-            ],
-        },
-        {
-            class: "Class 2",
-            title: "Module 2: Strings, Input/Output & Control Flow",
-            topics: [
-                "String indexing, slicing, methods (split(), join(), replace(), strip())",
-                "f-strings and .format()",
-                "input() and console interactions",
-                "if, elif, else statements",
-                "for, while loops",
-                "break, continue, pass",
-                "Nested loops and logic patterns",
-            ],
-            exercises: ["Password generator", "Word/character counter"],
-        },
-        {
-            class: "Class 3",
-            title: "Module 3: Data Structures & List Comprehensions",
-            topics: [
-                "Lists, Tuples, Sets, Dictionaries",
-                "CRUD operations on collections",
-                "get(), .update(), .items()",
-                "Nested structures",
-                "zip(), enumerate(), sorted()",
-                "List comprehensions and dictionary/set comprehensions",
-            ],
-            exercises: ["Student record manager", "Word frequency counter"],
-        },
-        {
-            class: "Class 4",
-            title: "Module 4: Functions, Recursion & Modules",
-            topics: [
-                "Defining and calling functions",
-                "Parameters, return values, scope",
-                "Default, keyword, variable-length arguments",
-                "Recursion: factorial, Fibonacci, directory scan",
-                "Anonymous functions: lambda",
-                "map(), filter(), reduce()",
-                "Built-in functions: map(), filter(), reduce()",
-                "Writing your own modules and imports",
-            ],
-            exercises: [
-                "Recursive file search",
-                "Word filter with lambda and filter()",
-            ],
-        },
-        {
-            class: "Class 5",
-            title: "Module 5: File Handling, CSV & JSON",
-            topics: [
-                "Working with text files",
-                "CSV files using csv module",
-                "JSON: parsing, serialization",
-                "with statement, open(), read(), write()",
-                "File loops and data cleaning",
-                "File system navigation: os, pathlib",
-            ],
-            exercises: [
-                "CSV data cleaner & summarizer",
-                "JSON user profile builder",
-            ],
-        },
-        {
-            class: "Class 6",
-            title: "Module 6: Error Handling & Debugging",
-            topics: [
-                "Error types: syntax, runtime, logic",
-                "Try-Except blocks, else, finally",
-                "Custom exceptions with raise",
-                "Basic debugger: pdb",
-                "Logging intro (optional)",
-            ],
-            exercises: ["File reader with missing file handler"],
-        },
-        {
-            class: "Class 7",
-            title: "Module 7: Object-Oriented Programming (OOP)",
-            topics: [
-                "Classes, objects, __init__, attributes",
-                "Class methods and self",
-                "Inheritance and method overriding",
-                "Encapsulation and __str__",
-                "Composition (optional)",
-            ],
-            exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
-        },
-        {
-            class: "Class 8",
-            title: "Module 8: Advanced Python (Generators, Decorators, Virtualenv)",
-            topics: [
-                "Generators: yield, lazy evaluation",
-                "Decorators: writing and applying",
-                "Closures and first-class functions",
-                "Introduction to virtualenv & pip",
-                "Installing external libraries",
-            ],
-            exercises: ["Generator for large file line processing"],
-        },
-        {
-            class: "Class 9",
-            title: "Module 9: Web Scraping & APIs",
-            topics: [
-                "Web scraping with requests, BeautifulSoup",
-                "Parsing HTML: tags, classes, attributes",
-                "Error handling for HTTP requests",
-                "Working with APIs (e.g., OpenWeatherMap)",
-                "Exporting data to CSV/JSON",
-            ],
-            exercises: [
-                "News headline scraper",
-                "Weather report fetcher",
-                "Job listings to CSV from web",
-            ],
-        },
-        {
-            class: "Class 10",
-            title: "Project Support 1",
-            topics: ["Dedicated time for project guidance and troubleshooting"],
-            exercises: [],
-        },
-        {
-            class: "Class 11",
-            title: "Project Support 2",
-            topics: ["Continued project development and mentoring"],
-            exercises: [],
-        },
-        {
-            class: "Class 12",
-            title: "Project Support 3",
-            topics: ["Final project review and completion"],
-            exercises: [],
-        },
-    ];
 
     const instructors = [
         {
@@ -404,9 +434,24 @@ export default function CoursePage({ params }: CoursePageProps) {
 
                         {/* Course Modules */}
                         <div className="bg-card border rounded-lg p-6">
-                            <h2 className="text-2xl font-bold mb-6">
-                                Course Curriculum
-                            </h2>
+                            <div className="flex items-center justify-between mb-6">
+                                <div>
+                                    <h2 className="text-2xl font-bold">
+                                        Course Curriculum
+                                    </h2>
+                                </div>
+                                {user && user.role === "admin" && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setIsEditingModules(true)}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <Edit className="w-4 h-4" />
+                                        Edit Modules
+                                    </Button>
+                                )}
+                            </div>
                             <p className="text-muted-foreground mb-4">
                                 12 Live Classes Plan, 4 Weeks, 10 Modules
                             </p>
@@ -1278,6 +1323,16 @@ export default function CoursePage({ params }: CoursePageProps) {
                     </div>
                 </div>
             </div>
+
+            {/* Course Module Editor Modal */}
+            {isEditingModules && (
+                <CourseModuleEditor
+                    modules={courseModules}
+                    onSave={handleSaveModules}
+                    onCancel={() => setIsEditingModules(false)}
+                    isOpen={isEditingModules}
+                />
+            )}
         </div>
     );
 }
