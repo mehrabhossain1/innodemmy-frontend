@@ -1,113 +1,194 @@
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
-import Image from "next/image";
+import {
+    Code2,
+    Database,
+    Cloud,
+    Cpu,
+    Globe,
+    Smartphone,
+    GitBranch,
+    Shield,
+    Zap,
+    Box,
+    Server,
+    Layers,
+} from "lucide-react";
 
-const reviews = [
+interface Technology {
+    name: string;
+    icon: React.ReactNode;
+    category: string;
+    color: string;
+}
+
+const technologies: Technology[] = [
     {
-        name: "Sarah Johnson",
-        username: "Software Engineer",
-        body: "Innodemy's React course completely transformed my career. The hands-on projects and expert mentorship helped me land my dream job at a top tech company.",
-        img: "https://avatar.vercel.sh/sarah",
+        name: "React",
+        icon: <Code2 className="w-8 h-8" />,
+        category: "Frontend",
+        color: "from-cyan-500 to-blue-500",
     },
     {
-        name: "Michael Chen",
-        username: "Data Scientist",
-        body: "The Python for Data Science course was exceptional. The instructors are industry experts who provide real-world insights you can't find anywhere else.",
-        img: "https://avatar.vercel.sh/michael",
+        name: "Next.js",
+        icon: <Layers className="w-8 h-8" />,
+        category: "Framework",
+        color: "from-gray-800 to-gray-600",
     },
     {
-        name: "Emma Rodriguez",
-        username: "UI/UX Designer",
-        body: "I transitioned from marketing to design with Innodemy's UI/UX course. The portfolio projects and career guidance were invaluable for my career change.",
-        img: "https://avatar.vercel.sh/emma",
+        name: "TypeScript",
+        icon: <Code2 className="w-8 h-8" />,
+        category: "Language",
+        color: "from-blue-600 to-blue-400",
     },
     {
-        name: "David Kim",
-        username: "Full Stack Developer",
-        body: "The comprehensive curriculum and live coding sessions helped me master both frontend and backend development. Highly recommend to anyone serious about learning.",
-        img: "https://avatar.vercel.sh/david",
+        name: "Node.js",
+        icon: <Server className="w-8 h-8" />,
+        category: "Backend",
+        color: "from-green-600 to-green-400",
     },
     {
-        name: "Lisa Wang",
-        username: "Product Manager",
-        body: "Innodemy's courses taught me the technical skills I needed to communicate effectively with my development team. The practical approach is unmatched.",
-        img: "https://avatar.vercel.sh/lisa",
+        name: "Python",
+        icon: <Code2 className="w-8 h-8" />,
+        category: "Language",
+        color: "from-yellow-500 to-blue-500",
     },
     {
-        name: "Ahmed Hassan",
-        username: "DevOps Engineer",
-        body: "The cloud computing and DevOps courses gave me the exact skills needed for modern infrastructure. The instructors are current industry practitioners.",
-        img: "https://avatar.vercel.sh/ahmed",
+        name: "MongoDB",
+        icon: <Database className="w-8 h-8" />,
+        category: "Database",
+        color: "from-green-500 to-green-700",
+    },
+    {
+        name: "AWS",
+        icon: <Cloud className="w-8 h-8" />,
+        category: "Cloud",
+        color: "from-orange-500 to-orange-600",
+    },
+    {
+        name: "Docker",
+        icon: <Box className="w-8 h-8" />,
+        category: "DevOps",
+        color: "from-blue-500 to-blue-600",
+    },
+    {
+        name: "Git",
+        icon: <GitBranch className="w-8 h-8" />,
+        category: "Version Control",
+        color: "from-red-500 to-orange-500",
+    },
+    {
+        name: "GraphQL",
+        icon: <Globe className="w-8 h-8" />,
+        category: "API",
+        color: "from-pink-500 to-purple-500",
+    },
+    {
+        name: "TensorFlow",
+        icon: <Cpu className="w-8 h-8" />,
+        category: "AI/ML",
+        color: "from-orange-600 to-yellow-500",
+    },
+    {
+        name: "React Native",
+        icon: <Smartphone className="w-8 h-8" />,
+        category: "Mobile",
+        color: "from-cyan-400 to-blue-500",
+    },
+    {
+        name: "Kubernetes",
+        icon: <Box className="w-8 h-8" />,
+        category: "DevOps",
+        color: "from-blue-600 to-indigo-600",
+    },
+    {
+        name: "Firebase",
+        icon: <Zap className="w-8 h-8" />,
+        category: "Backend",
+        color: "from-yellow-500 to-orange-500",
+    },
+    {
+        name: "PostgreSQL",
+        icon: <Database className="w-8 h-8" />,
+        category: "Database",
+        color: "from-blue-700 to-blue-500",
+    },
+    {
+        name: "JWT",
+        icon: <Shield className="w-8 h-8" />,
+        category: "Security",
+        color: "from-purple-600 to-pink-600",
     },
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+const firstRow = technologies.slice(0, technologies.length / 2);
+const secondRow = technologies.slice(technologies.length / 2);
 
-const ReviewCard = ({
-    img,
+const TechnologyCard = ({
     name,
-    username,
-    body,
-}: {
-    img: string;
-    name: string;
-    username: string;
-    body: string;
-}) => {
+    icon,
+    category,
+    color,
+}: Technology) => {
     return (
-        <figure
+        <div
             className={cn(
-                "relative h-full w-80 cursor-pointer overflow-hidden rounded-2xl border p-6 bg-white shadow-lg hover:shadow-xl transition-all duration-200 ease-out",
-                "border-gray-100 hover:border-indigo-200"
+                "relative w-64 cursor-pointer overflow-hidden rounded-2xl border p-6",
+                "bg-card hover:shadow-xl transition-all duration-300 ease-out",
+                "border-border hover:border-primary/50",
+                "group"
             )}
         >
-            <div className="flex flex-row items-center gap-3 mb-4">
-                <Image
-                    className="rounded-full"
-                    width="48"
-                    height="48"
-                    alt=""
-                    src={img}
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    unoptimized
-                />
-                <div className="flex flex-col">
-                    <figcaption className="text-sm font-semibold text-gray-900">
+            <div className="flex flex-col items-center gap-4 text-center">
+                <div
+                    className={cn(
+                        "flex items-center justify-center w-16 h-16 rounded-xl",
+                        "bg-gradient-to-br shadow-lg transition-transform duration-300",
+                        "group-hover:scale-110 group-hover:shadow-xl",
+                        color,
+                        "text-white"
+                    )}
+                >
+                    {icon}
+                </div>
+                <div className="space-y-1">
+                    <h3 className="text-lg font-bold text-foreground">
                         {name}
-                    </figcaption>
-                    <p className="text-xs font-medium text-indigo-600">
-                        {username}
+                    </h3>
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        {category}
                     </p>
                 </div>
             </div>
-            <blockquote className="text-sm text-gray-600 leading-relaxed">
-                {body}
-            </blockquote>
-        </figure>
+        </div>
     );
 };
 
 export function TechnologyStackSection() {
     return (
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-white">
-            <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                    Technology Stack
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-background">
+            <div className="text-center mb-12 px-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span className="bg-gradient-to-r from-[#226481] to-[#e9ae30] bg-clip-text text-transparent">
+                        Technology Stack
+                    </span>
                 </h2>
+                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Master the most in-demand technologies used by top companies worldwide
+                </p>
             </div>
 
-            <Marquee pauseOnHover className="[--duration:20s]">
-                {firstRow.map((review) => (
-                    <ReviewCard key={review.username} {...review} />
+            <Marquee pauseOnHover className="[--duration:30s] mb-4">
+                {firstRow.map((tech, index) => (
+                    <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
                 ))}
             </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:20s]">
-                {secondRow.map((review) => (
-                    <ReviewCard key={review.username} {...review} />
+            <Marquee reverse pauseOnHover className="[--duration:30s]">
+                {secondRow.map((tech, index) => (
+                    <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
                 ))}
             </Marquee>
+
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
         </div>
