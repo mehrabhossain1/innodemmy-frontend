@@ -13,6 +13,7 @@ import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { CourseModuleEditor } from "@/components/CourseModuleEditor";
+import { ProjectsEditor } from "@/components/ProjectsEditor";
 
 // Define the type for params
 interface CoursePageProps {
@@ -209,12 +210,27 @@ const defaultCourseModules: CourseModuleData[] = [
     },
 ];
 
+const defaultProjects: string[] = [
+    "Password generator",
+    "Number guessing game",
+    "Recursive file search",
+    "CSV data cleaner & summarizer",
+    "JSON user profile builder",
+    "File reader with missing file handler",
+    "Bank account system (OOP)",
+    "Tic-Tac-Toe with OOP",
+    "Generator for large file line processing",
+    "News headline scraper",
+];
+
 export default function CoursePage({ params }: CoursePageProps) {
     const { id } = use(params);
     const [course, setCourse] = useState<Course | null>(null);
     const [loading, setLoading] = useState(true);
     const { user } = useAuth();
     const [isEditingModules, setIsEditingModules] = useState(false);
+    const [isEditingProjects, setIsEditingProjects] = useState(false);
+
     const [courseModules, setCourseModules] = useState<CourseModuleData[]>(() => {
         if (typeof window !== "undefined") {
             const saved = localStorage.getItem(`courseModules-${id}`);
@@ -227,6 +243,20 @@ export default function CoursePage({ params }: CoursePageProps) {
             }
         }
         return defaultCourseModules;
+    });
+
+    const [projects, setProjects] = useState<string[]>(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem(`courseProjects-${id}`);
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    console.error("Failed to parse saved projects:", e);
+                }
+            }
+        }
+        return defaultProjects;
     });
 
     useEffect(() => {
@@ -254,6 +284,12 @@ export default function CoursePage({ params }: CoursePageProps) {
         setCourseModules(updatedModules);
         localStorage.setItem(`courseModules-${id}`, JSON.stringify(updatedModules));
         setIsEditingModules(false);
+    };
+
+    const handleSaveProjects = (updatedProjects: string[]) => {
+        setProjects(updatedProjects);
+        localStorage.setItem(`courseProjects-${id}`, JSON.stringify(updatedProjects));
+        setIsEditingProjects(false);
     };
 
     if (loading) {
@@ -793,111 +829,35 @@ export default function CoursePage({ params }: CoursePageProps) {
 
                         {/* Projects */}
                         <div className="bg-card border rounded-lg p-6">
-                            <h2 className="text-2xl font-bold mb-6">
-                                Projects
-                            </h2>
+                            <div className="flex items-center justify-between mb-6">
+                                <div>
+                                    <h2 className="text-2xl font-bold">
+                                        Projects
+                                    </h2>
+                                </div>
+                                {user && user.role === "admin" && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setIsEditingProjects(true)}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <Edit className="w-4 h-4" />
+                                        Edit Projects
+                                    </Button>
+                                )}
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Project 1 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Password generator
-                                        </p>
+                                {projects.map((project, index) => (
+                                    <div key={index} className="flex items-start gap-3">
+                                        <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
+                                        <div>
+                                            <p className="text-foreground font-medium">
+                                                {project}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-
-                                {/* Project 2 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Number guessing game
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 3 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Recursive file search
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 4 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            CSV data cleaner & summarizer
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 5 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            JSON user profile builder
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 6 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            File reader with missing file
-                                            handler
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 7 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Bank account system (OOP)
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 8 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Tic-Tac-Toe with OOP
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 9 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            Generator for large file line
-                                            processing
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Project 10 */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-foreground font-medium">
-                                            News headline scraper
-                                        </p>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
 
@@ -1331,6 +1291,16 @@ export default function CoursePage({ params }: CoursePageProps) {
                     onSave={handleSaveModules}
                     onCancel={() => setIsEditingModules(false)}
                     isOpen={isEditingModules}
+                />
+            )}
+
+            {/* Projects Editor Modal */}
+            {isEditingProjects && (
+                <ProjectsEditor
+                    projects={projects}
+                    onSave={handleSaveProjects}
+                    onCancel={() => setIsEditingProjects(false)}
+                    isOpen={isEditingProjects}
                 />
             )}
         </div>
