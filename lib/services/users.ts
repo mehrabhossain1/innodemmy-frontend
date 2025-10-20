@@ -10,14 +10,14 @@ import { createUser, getAllUsers, findUserById, updateUser, deleteUser } from '.
  */
 export async function createNewUser(data: {
   name: string;
-  email?: string | null;
-  phone?: string | null;
+  email: string;
+  phone: string;
   password: string;
   role: 'student' | 'admin';
 }) {
-  // Validate input
-  if ((!data.email && !data.phone) || !data.password || !data.name) {
-    throw new Error('Email or phone, password, and name are required');
+  // Validate input - both email and phone are required
+  if (!data.email || !data.phone || !data.password || !data.name) {
+    throw new Error('Email, phone, password, and name are all required');
   }
 
   // Hash password
@@ -25,8 +25,8 @@ export async function createNewUser(data: {
 
   // Create user
   const user = await createUser({
-    email: data.email || null,
-    phone: data.phone || null,
+    email: data.email,
+    phone: data.phone,
     password: hashedPassword,
     name: data.name,
     role: data.role,
@@ -56,8 +56,8 @@ export async function getUserById(id: string) {
  */
 export async function updateUserById(id: string, data: {
   name?: string;
-  email?: string | null;
-  phone?: string | null;
+  email?: string;
+  phone?: string;
   role?: 'student' | 'admin';
 }) {
   return updateUser(id, data);

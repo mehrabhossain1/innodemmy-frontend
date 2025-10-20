@@ -21,10 +21,10 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
   try {
     const { email, phone, password, name, role } = await request.json();
 
-    // Validate: at least one of email or phone is required
-    if ((!email && !phone) || !password || !name || !role) {
+    // Validate: both email and phone are required
+    if (!email || !phone || !password || !name || !role) {
       return NextResponse.json(
-        { error: 'Email or phone, password, name, and role are required' },
+        { error: 'Email, phone, password, name, and role are all required' },
         { status: 400 }
       );
     }
@@ -38,8 +38,8 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
 
     // Create user
     const user = await createNewUser({
-      email: email || null,
-      phone: phone || null,
+      email,
+      phone,
       password,
       name,
       role,
