@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -17,14 +16,17 @@ export default function Footer() {
                     </div>
                     <div className="mb-6">
                         <span className="text-sm text-muted-foreground leading-relaxed">
-                            Empowering learners with world-class technology education and career transformation.
+                            Empowering learners with world-class technology
+                            education and career transformation.
                         </span>
                     </div>
                 </div>
 
                 {/* Quick Links Section */}
                 <div className="relative">
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">Quick Links</h3>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">
+                        Quick Links
+                    </h3>
                     <ul className="space-y-3">
                         <li>
                             <Link
@@ -57,7 +59,9 @@ export default function Footer() {
 
                 {/* Company Section */}
                 <div className="relative">
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">Company</h3>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">
+                        Company
+                    </h3>
                     <ul className="space-y-3">
                         <li>
                             <Link
@@ -69,7 +73,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link
-                                href="/privacy"
+                                href="/privacy-policy"
                                 className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                             >
                                 Privacy Policy
@@ -77,7 +81,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link
-                                href="/refund"
+                                href="/refund-policy"
                                 className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                             >
                                 Refund Policy
@@ -85,7 +89,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link
-                                href="/terms"
+                                href="/terms-and-condition"
                                 className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                             >
                                 Terms and Condition
@@ -98,12 +102,16 @@ export default function Footer() {
 
                 {/* Contact Section */}
                 <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">Contact</h3>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">
+                        Contact
+                    </h3>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">
                             <Mail className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Contact@innodemy.com</p>
+                                <p className="text-sm text-muted-foreground">
+                                    Contact@innodemy.com
+                                </p>
                             </div>
                         </div>
                         <div className="flex items-start space-x-3">
@@ -117,8 +125,12 @@ export default function Footer() {
                         <div className="flex items-start space-x-3">
                             <Phone className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                             <div>
-                                <p className="text-sm text-muted-foreground">+8801704258972</p>
-                                <p className="text-sm text-muted-foreground">+880175260272</p>
+                                <p className="text-sm text-muted-foreground">
+                                    +8801704258972
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    +880175260272
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -126,8 +138,10 @@ export default function Footer() {
 
                 {/* Trust Section */}
                 <div className="lg:col-span-1">
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">Trust & Security</h3>
-                    
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-6">
+                        Trust & Security
+                    </h3>
+
                     {/* Trust Badge */}
                     <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-800">
                         <div className="flex items-center space-x-3 mb-2">
@@ -135,8 +149,12 @@ export default function Footer() {
                                 <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Guaranteed</p>
-                                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Secure Payment</p>
+                                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">
+                                    Guaranteed
+                                </p>
+                                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">
+                                    Secure Payment
+                                </p>
                             </div>
                         </div>
                         <p className="text-xs text-emerald-700 dark:text-emerald-400">
@@ -147,7 +165,9 @@ export default function Footer() {
 
                 {/* Payment Methods Section - Absolute Right Corner */}
                 <div className="absolute right-4 top-1/2 transform translate-y-4">
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2 text-right">Payment Methods</h3>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2 text-right">
+                        Payment Methods
+                    </h3>
                     <div className="flex flex-wrap gap-3 justify-end">
                         <div className="bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-medium">
                             bKash
