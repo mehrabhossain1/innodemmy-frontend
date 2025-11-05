@@ -261,16 +261,29 @@ export default function Navbar() {
                             </div>
                         ) : (
                             // Show login button for non-logged-in users
-                            <Button
-                                variant="outline"
-                                className="w-full mt-2"
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false);
-                                    setIsAuthSidebarOpen(true);
-                                }}
-                            >
-                                Login
-                            </Button>
+                            <>
+                                {" "}
+                                <Button
+                                    variant="outline"
+                                    className="w-full mt-2"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    variant="default"
+                                    className="w-full mt-2"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                >
+                                    Register
+                                </Button>
+                            </>
                         )}
                     </div>
                 </div>

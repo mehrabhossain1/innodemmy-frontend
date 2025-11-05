@@ -1,102 +1,118 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
+import img1 from "@/assets/HomePage/Web Home Page first.jpg";
+import img2 from "@/assets/HomePage/Web home page 2nd.jpg";
+import img3 from "@/assets/HomePage/Web home page 3rd.jpg";
+import img4 from "@/assets/HomePage/Web home page 4th.jpg";
+
+// Define carousel slides with images and their associated course links
+const slides = [
+    { image: img1, courseLink: "/courses/web-development" },
+    { image: img2, courseLink: "/courses/data-science" },
+    { image: img3, courseLink: "/courses/mobile-development" },
+    { image: img4, courseLink: "/courses/digital-marketing" },
+];
 
 export default function HeroSection() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Auto-play carousel
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        }, 5000); // Change slide every 5 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const goToPrevious = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+        );
+    };
+
+    const goToNext = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    };
+
+    const goToSlide = (index: number) => {
+        setCurrentIndex(index);
+    };
+
     return (
-        <section className="relative py-16 lg:py-24 pb-32 overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950/20 dark:via-indigo-950/20 dark:to-purple-950/20"></div>
-            <div className="absolute inset-0 opacity-60">
-                <div
-                    className="w-full h-full"
-                    style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233B82F6' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                        backgroundRepeat: "repeat",
-                    }}
-                ></div>
-            </div>
-            {/* Additional Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-transparent to-indigo-100/30 dark:from-blue-900/20 dark:via-transparent dark:to-indigo-900/20"></div>
-
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    {/* Left Content */}
-                    <div className="space-y-8">
-                        {/* Main Heading */}
-                        <div className="space-y-6">
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
-                                Advance your skills to{" "}
-                                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent relative">
-                                    elevate
-                                    <svg
-                                        className="absolute -bottom-2 left-0 w-full h-3 text-primary/30"
-                                        viewBox="0 0 200 12"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M0,8 Q50,0 100,4 T200,6 L200,12 L0,12 Z" />
-                                    </svg>
-                                </span>{" "}
-                                your career
-                            </h1>
-                            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                                Join thousands of professionals who are
-                                transforming their careers through our
-                                expert-led courses and hands-on learning
-                                experiences.
-                            </p>
-                        </div>
-
-                        {/* CTA Button */}
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <Link href="/courses">
-                                <Button
-                                    size="lg"
-                                    className="text-lg px-10 py-4 h-auto shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1"
-                                >
-                                    Explore All Courses
-                                    <ArrowRight className="ml-3 h-5 w-5" />
-                                </Button>
-                            </Link>
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                className="text-lg px-10 py-4 h-auto transition-all duration-300 ease-out transform hover:-translate-y-1"
-                            >
-                                Watch Demo
-                            </Button>
-                        </div>
+        <section className="relative w-full h-[300px] xs:h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] max-h-[700px] overflow-hidden">
+            {/* Carousel Images */}
+            <div className="relative w-full h-full">
+                {slides.map((slide, index) => (
+                    <div
+                        key={index}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                            index === currentIndex ? "opacity-100" : "opacity-0"
+                        }`}
+                    >
+                        <Image
+                            src={slide.image}
+                            alt={`Hero slide ${index + 1}`}
+                            fill
+                            className="object-cover"
+                            priority={index === 0}
+                        />
+                        {/* Transparent gradient overlay that blends with the image */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent"></div>
                     </div>
-
-                    {/* Right Content - Hero Image/Illustration */}
-                    <div className="relative">
-                        <div className="relative z-10">
-                            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                                <Image
-                                    src="https://www.kinderpedia.co/templates/yootheme/cache/47/invatarea_activa_online-47a6c606.jpeg"
-                                    alt="Online learning academy illustration"
-                                    width={600}
-                                    height={600}
-                                    className="w-full h-auto hover:scale-105 transition-transform duration-500 ease-out"
-                                />
-                                {/* Overlay gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent"></div>
-                            </div>
-                        </div>
-
-                        {/* Floating Elements */}
-                        <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
-                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-xl"></div>
-
-                        {/* Background Decoration */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl transform rotate-2 -z-10"></div>
-                        <div className="absolute inset-0 bg-gradient-to-tl from-primary/10 to-transparent rounded-3xl transform -rotate-1 -z-20"></div>
-                    </div>
-                </div>
+                ))}
             </div>
 
-            {/* Bottom Wave */}
+            {/* Browse Course Button with backdrop blur */}
+            <div className="absolute bottom-40 left-80 z-20">
+                <Link href={slides[currentIndex].courseLink}>
+                    <Button
+                        size="lg"
+                        className="text-base sm:text-lg px-10 sm:px-16 py-2 sm:py-3 h-auto shadow-xl hover:shadow-2xl transition-all duration-300 ease-out transform hover:scale-105 bg-secondary/95 hover:bg-secondary backdrop-blur-sm"
+                    >
+                        Browse Course
+                    </Button>
+                </Link>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+                onClick={goToPrevious}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black p-2 rounded-full transition-all duration-300 shadow-lg"
+                aria-label="Previous slide"
+            >
+                <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+            </button>
+
+            <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black p-2 rounded-full transition-all duration-300 shadow-lg"
+                aria-label="Next slide"
+            >
+                <ChevronRight className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+            </button>
+
+            {/* Dots Navigation */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === currentIndex
+                                ? "bg-white scale-125"
+                                : "bg-white/50 hover:bg-white/75"
+                        }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+            </div>
         </section>
     );
 }
