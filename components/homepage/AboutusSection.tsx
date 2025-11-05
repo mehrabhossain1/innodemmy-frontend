@@ -1,10 +1,48 @@
 export default function AboutusSection() {
+    const stats = [
+        {
+            count: "50,000+",
+            label: "Students Enrolled",
+        },
+        {
+            count: "500+",
+            label: "Expert Courses",
+        },
+        {
+            count: "95%",
+            label: "Success Rate",
+        },
+        {
+            count: "24/7",
+            label: "Support Available",
+        },
+    ];
+
     return (
-        <section className="py-16 md:py-24 bg-gradient-to-br from-[#0a3d3d] via-[#0d4d4d] to-[#0a3d3d] dark:from-[#051f1f] dark:via-[#082828] dark:to-[#051f1f]">
+        <section className="relative pt-0 pb-16 md:pb-24 bg-gradient-to-br from-[#0a3d3d] via-[#0d4d4d] to-[#0a3d3d] dark:from-[#051f1f] dark:via-[#082828] dark:to-[#051f1f]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                {/* Statistics Card - 50% overlapping Hero, 50% in About Section */}
+                <div className="relative z-20 -translate-y-1/2 mb-8">
+                    <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-200 dark:border-gray-800">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                            {stats.map((stat, index) => (
+                                <div key={index} className="text-center">
+                                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1">
+                                        {stat.count}
+                                    </div>
+                                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                        {stat.label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* About Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
                     {/* Left Side - Text Content */}
-                    <div className="text-white space-y-6">
+                    <div className="flex flex-col justify-center text-white space-y-6 w-full">
                         {/* Section Title */}
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
                             About InnoDemy
@@ -51,7 +89,7 @@ export default function AboutusSection() {
                     </div>
 
                     {/* Right Side - Image/Graphic */}
-                    <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative w-full h-[300px] sm:h-[400px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0d5858] to-[#0a3d3d] flex items-center justify-center">
                             {/* Circuit Board Pattern Background */}
                             <div className="absolute inset-0 opacity-20">
