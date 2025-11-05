@@ -6,11 +6,13 @@ import FreeMasterclassSection from "@/components/homepage/FreeMasterclassSection
 import HeroSection from "@/components/homepage/HeroSection";
 import { TechnologyStackSection } from "@/components/homepage/TechnologyStackSection";
 import WhyBestChoiceSection from "@/components/homepage/WhyBestChoiceSection";
+import AboutusSection from "@/components/homepage/AboutusSection";
 
 export default function Home() {
     return (
         <main className="bg-background">
             <HeroSection />
+            <AboutusSection />
             <CountsSection />
             <CoursesSection />
             <FreeMasterclassSection />
