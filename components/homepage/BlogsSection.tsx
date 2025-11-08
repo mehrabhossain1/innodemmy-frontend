@@ -1,8 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
 import Link from "next/link";
 import BlogCard from "../BlogCard";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import * as React from "react";
 
 const featuredBlogs = [
     {
@@ -49,40 +59,85 @@ const featuredBlogs = [
         author: "Dr. Michael Chen",
         readTime: "10 min",
     },
+    {
+        id: "machine-learning-career-guides2",
+        title: "Breaking into Machine Learning: A Career Transition Guide",
+        description:
+            "Discover how to successfully transition into a machine learning career, regardless of your current background. This comprehensive guide covers the essential skills, learning path, portfolio projects, and job search strategies to land your first ML role in today's competitive market.",
+        publishedDate: "2024-01-08",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        category: "Career",
+        author: "Dr. Michael Chen",
+        readTime: "10 min",
+    },
+    {
+        id: "machine-learning-career-guide3",
+        title: "Breaking into Machine Learning: A Career Transition Guide",
+        description:
+            "Discover how to successfully transition into a machine learning career, regardless of your current background. This comprehensive guide covers the essential skills, learning path, portfolio projects, and job search strategies to land your first ML role in today's competitive market.",
+        publishedDate: "2024-01-08",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        category: "Career",
+        author: "Dr. Michael Chen",
+        readTime: "10 min",
+    },
 ];
 
 export default function BlogsSection() {
+    const plugin = React.useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    );
+
     return (
-        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
                         Latest from Our Blog
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         Stay updated with the latest insights, tutorials, and
                         industry trends from our expert instructors and thought
                         leaders in technology and design.
                     </p>
                 </div>
 
-                {/* Blog Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                    {featuredBlogs.map((blog) => (
-                        <BlogCard
-                            key={blog.id}
-                            id={blog.id}
-                            title={blog.title}
-                            description={blog.description}
-                            publishedDate={blog.publishedDate}
-                            image={blog.image}
-                            category={blog.category}
-                            author={blog.author}
-                            readTime={blog.readTime}
-                        />
-                    ))}
-                </div>
+                {/* Blog Cards Carousel */}
+                <Carousel
+                    plugins={[plugin.current]}
+                    className="w-full mb-16"
+                    onMouseEnter={plugin.current.stop}
+                    onMouseLeave={plugin.current.reset}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                >
+                    <CarouselContent className="-ml-2 md:-ml-4">
+                        {featuredBlogs.map((blog) => (
+                            <CarouselItem
+                                key={blog.id}
+                                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4"
+                            >
+                                <BlogCard
+                                    id={blog.id}
+                                    title={blog.title}
+                                    description={blog.description}
+                                    publishedDate={blog.publishedDate}
+                                    image={blog.image}
+                                    category={blog.category}
+                                    author={blog.author}
+                                    readTime={blog.readTime}
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+
+                    {/* Navigation Buttons */}
+                    <CarouselPrevious className="hidden md:flex -left-12 bg-white dark:bg-gray-800 hover:bg-indigo-600 hover:text-white border-2 border-indigo-200 shadow-lg" />
+                    <CarouselNext className="hidden md:flex -right-12 bg-white dark:bg-gray-800 hover:bg-indigo-600 hover:text-white border-2 border-indigo-200 shadow-lg" />
+                </Carousel>
 
                 {/* Read All Blogs Button */}
                 <div className="text-center">
