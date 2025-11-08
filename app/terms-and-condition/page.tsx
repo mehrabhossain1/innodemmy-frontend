@@ -364,29 +364,6 @@ export default function TermsAndConditionPage() {
                             </div>
                         </CardContent>
                     </Card>
-
-                    {/* Contact Us */}
-                    <Card className="border-l-4 border-secondary shadow-sm mb-8">
-                        <CardContent className="p-8">
-                            <div className="flex items-start gap-4 mb-4">
-                                <Phone className="w-8 h-8 text-secondary mt-1 flex-shrink-0" />
-                                <div>
-                                    <h2 className="text-2xl font-bold text-foreground mb-4">
-                                        10. Contact Us
-                                    </h2>
-                                    <p className="text-muted-foreground leading-relaxed mb-4">
-                                        If you have any questions, concerns, or
-                                        suggestions regarding these Terms,
-                                        please contact us at:
-                                    </p>
-                                    <div className="flex items-center gap-2 text-primary font-semibold">
-                                        <Phone className="w-5 h-5" />
-                                        <span>+8801805208858</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
                 </div>
             </section>
 
