@@ -136,10 +136,18 @@ export default function Navbar() {
                                 </DropdownMenu>
                             </div>
                         ) : (
-                            // Show login button for non-logged-in users
-                            <Button onClick={() => setIsAuthSidebarOpen(true)}>
-                                Login
-                            </Button>
+                            // Show login and register buttons for non-logged-in users
+                            <div className="flex items-center space-x-2">
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setIsAuthSidebarOpen(true)}
+                                >
+                                    Login
+                                </Button>
+                                <Button onClick={() => setIsAuthSidebarOpen(true)}>
+                                    Register
+                                </Button>
+                            </div>
                         )}
                     </div>
 
