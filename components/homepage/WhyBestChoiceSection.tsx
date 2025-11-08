@@ -21,7 +21,7 @@ const featureCards = [
     {
         id: "project-based",
         title: "Project Based Learning",
-        description: "",
+        description: "Gain hands-on experience through real-world projects",
         icon: <FolderOpen className="w-8 h-8 text-purple-600" />,
         bgColor: "bg-purple-50",
         borderColor: "border-purple-200",
@@ -29,7 +29,7 @@ const featureCards = [
     {
         id: "mentors",
         title: "Nation's leading industry mentors",
-        description: "",
+        description: "Learn directly from professionals shaping the future of tech",
         icon: <Users className="w-8 h-8 text-blue-600" />,
         bgColor: "bg-blue-50",
         borderColor: "border-blue-200",
@@ -37,7 +37,7 @@ const featureCards = [
     {
         id: "support",
         title: "Dedicated support sessions",
-        description: "",
+        description: "One-on-one guidance to help you overcome challenges",
         icon: <HeadphonesIcon className="w-8 h-8 text-orange-600" />,
         bgColor: "bg-orange-50",
         borderColor: "border-orange-200",
@@ -45,7 +45,7 @@ const featureCards = [
     {
         id: "certificate",
         title: "Certification",
-        description: "",
+        description: "Earn industry-recognized credentials that strengthen your profile",
         icon: <Award className="w-8 h-8 text-yellow-600" />,
         bgColor: "bg-yellow-50",
         borderColor: "border-yellow-200",
@@ -53,7 +53,7 @@ const featureCards = [
     {
         id: "continued-support",
         title: "Continued exclusive support",
-        description: "",
+        description: "Ongoing mentorship and resources even after course completion",
         icon: <LifeBuoy className="w-8 h-8 text-red-600" />,
         bgColor: "bg-red-50",
         borderColor: "border-red-200",
