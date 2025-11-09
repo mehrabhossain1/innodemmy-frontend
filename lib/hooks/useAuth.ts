@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export interface User {
+    _id?: string;
     name: string;
     email: string;
-    phone: string;
     role: "student" | "admin";
+    isVerified: boolean;
 }
 
 export function useAuth() {

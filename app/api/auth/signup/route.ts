@@ -1,55 +1,74 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { register } from '@/lib/services/auth';
+import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
 
-export async function POST(request: NextRequest) {
+async function signupHandler(request: NextRequest) {
   try {
-    const { email, phone, password, name } = await request.json();
+    const { email, password, name } = await request.json();
 
-    console.log('Signup request received:', { email, phone, name });
+    console.log('Signup request received:', { email, name });
 
-    // Validate: both email and phone are required
-    if (!email || !phone || !password || !name) {
-      console.error('Missing required fields:', { email: !!email, phone: !!phone, password: !!password, name: !!name });
+    // Validate required fields
+    if (!email || !password || !name) {
+      console.error('Missing required fields:', { email: !!email, password: !!password, name: !!name });
       return NextResponse.json(
-        { error: 'Email, phone, password, and name are all required' },
+        { success: false, error: 'Email, password, and name are required' },
         { status: 400 }
       );
     }
 
-    // Register user
+    // Register user (creates unverified user and sends OTP)
     const result = await register({
       email,
-      phone,
       password,
       name,
       role: 'student'
     });
 
-    console.log('User registered successfully:', { email, phone, userId: result.user?._id });
+    console.log('User registered successfully, OTP sent to:', email);
 
     return NextResponse.json({
-      user: result.user,
-      token: result.token,
+      success: true,
+      message: result.message,
+      email: result.email,
     });
   } catch (error) {
     console.error('Signup error details:', error);
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
     // Handle specific errors
-    if (error instanceof Error && error.message.includes('already exists')) {
-      return NextResponse.json(
-        { error: 'User with this email or phone already exists' },
-        { status: 400 }
-      );
+    if (error instanceof Error) {
+      if (error.message.includes('already exists')) {
+        return NextResponse.json(
+          { success: false, error: 'User with this email already exists' },
+          { status: 400 }
+        );
+      }
+
+      if (error.message.includes('Invalid email format')) {
+        return NextResponse.json(
+          { success: false, error: 'Invalid email format' },
+          { status: 400 }
+        );
+      }
+
+      if (error.message.includes('Failed to send')) {
+        return NextResponse.json(
+          { success: false, error: 'Failed to send verification email. Please try again.' },
+          { status: 500 }
+        );
+      }
     }
 
-    // Return detailed error message for debugging
+    // Return error message
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Final error message:', errorMessage);
 
     return NextResponse.json(
-      { error: `Registration failed: ${errorMessage}` },
+      { success: false, error: `Registration failed: ${errorMessage}` },
       { status: 500 }
     );
   }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.SIGNUP, signupHandler);

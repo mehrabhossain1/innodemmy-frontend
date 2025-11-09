@@ -1,10 +1,15 @@
 export interface User {
   _id?: string;
   email: string;
-  phone: string;
   password: string;
   name: string;
   role: 'student' | 'admin';
+  isVerified: boolean;
+  verificationCode?: string;
+  verificationCodeExpiry?: Date;
+  resetPasswordCode?: string;
+  resetPasswordCodeExpiry?: Date;
+  otpAttempts: number;
   createdAt: Date;
   updatedAt: Date;
 }

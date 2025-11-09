@@ -11,25 +11,26 @@ import { createUser, getAllUsers, findUserById, updateUser, deleteUser } from '.
 export async function createNewUser(data: {
   name: string;
   email: string;
-  phone: string;
   password: string;
   role: 'student' | 'admin';
+  isVerified?: boolean; // Admin can create pre-verified users
 }) {
-  // Validate input - both email and phone are required
-  if (!data.email || !data.phone || !data.password || !data.name) {
-    throw new Error('Email, phone, password, and name are all required');
+  // Validate input
+  if (!data.email || !data.password || !data.name) {
+    throw new Error('Email, password, and name are required');
   }
 
   // Hash password
   const hashedPassword = await hashPassword(data.password);
 
-  // Create user
+  // Create user (admin-created users are verified by default)
   const user = await createUser({
     email: data.email,
-    phone: data.phone,
     password: hashedPassword,
     name: data.name,
     role: data.role,
+    isVerified: data.isVerified !== undefined ? data.isVerified : true, // Default to verified for admin-created users
+    otpAttempts: 0,
     createdAt: new Date(),
     updatedAt: new Date(),
   });
@@ -57,8 +58,8 @@ export async function getUserById(id: string) {
 export async function updateUserById(id: string, data: {
   name?: string;
   email?: string;
-  phone?: string;
   role?: 'student' | 'admin';
+  isVerified?: boolean;
 }) {
   return updateUser(id, data);
 }

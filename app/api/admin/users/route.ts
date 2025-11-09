@@ -19,12 +19,12 @@ export const GET = withAdminAuth(async () => {
 
 export const POST = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { email, phone, password, name, role } = await request.json();
+    const { email, password, name, role, isVerified } = await request.json();
 
-    // Validate: both email and phone are required
-    if (!email || !phone || !password || !name || !role) {
+    // Validate required fields
+    if (!email || !password || !name || !role) {
       return NextResponse.json(
-        { error: 'Email, phone, password, name, and role are all required' },
+        { error: 'Email, password, name, and role are required' },
         { status: 400 }
       );
     }
@@ -36,13 +36,13 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    // Create user
+    // Create user (admin-created users are verified by default)
     const user = await createNewUser({
       email,
-      phone,
       password,
       name,
       role,
+      isVerified: isVerified !== undefined ? isVerified : true, // Default to verified for admin-created users
     });
 
     return NextResponse.json({ user });

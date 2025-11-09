@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { login } from '@/lib/services/auth';
+import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
 
-export async function POST(request: NextRequest) {
+async function signinHandler(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
@@ -9,17 +10,18 @@ export async function POST(request: NextRequest) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { success: false, error: 'Email and password are required' },
         { status: 400 }
       );
     }
 
-    // Login user
+    // Login user (only verified users can login)
     const result = await login(email, password);
 
     console.log('Login successful for:', { email });
 
     return NextResponse.json({
+      success: true,
       user: result.user,
       token: result.token,
     });
@@ -27,17 +29,32 @@ export async function POST(request: NextRequest) {
     console.error('Signin error:', error);
 
     // Handle specific errors
-    if (error instanceof Error && error.message.includes('Invalid credentials')) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      );
+    if (error instanceof Error) {
+      if (error.message.includes('Invalid credentials')) {
+        return NextResponse.json(
+          { success: false, error: 'Invalid email or password' },
+          { status: 401 }
+        );
+      }
+
+      if (error.message.includes('verify your email')) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: error.message,
+            needsVerification: true
+          },
+          { status: 403 }
+        );
+      }
     }
 
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Login failed: ${errorMessage}` },
+      { success: false, error: `Login failed: ${errorMessage}` },
       { status: 500 }
     );
   }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.LOGIN, signinHandler);
