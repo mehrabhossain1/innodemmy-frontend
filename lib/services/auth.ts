@@ -14,14 +14,12 @@ import {
   updateResetPasswordCode,
   clearResetPasswordCode,
   incrementOTPAttempts,
-  resetOTPAttempts,
   updateUserPassword,
 } from '../db/users';
 import { generateOTP, hashOTP, verifyOTP, isOTPExpired, canAttemptOTP, generateOTPExpiry } from './otp';
 import { sendVerificationEmail, sendPasswordResetEmail, resendVerificationEmail } from './email';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1d';
 
 export interface DecodedToken extends JwtPayload {
   userId: string;
@@ -371,7 +369,7 @@ export function generateToken(user: {
       role: user.role,
     },
     JWT_SECRET,
-    { expiresIn: JWT_EXPIRES_IN }
+    { expiresIn: '1d' }
   );
 }
 

@@ -8,7 +8,6 @@ import {
     Eye,
     AlertTriangle,
     FileText,
-    Phone,
     CheckCircle,
     Info,
     Lock,
