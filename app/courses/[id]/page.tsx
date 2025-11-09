@@ -1,6 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import {
+    ArrowLeft,
+    Star,
+    Clock,
+    Calendar,
+    Video,
+    Users,
+    Award,
+    CheckCircle2,
+    ChevronDown,
+    Play,
+} from "lucide-react";
 import Link from "next/link";
 import { use, useState, useEffect } from "react";
 import Image from "next/image";
@@ -53,6 +64,8 @@ export default function CoursePage({ params }: CoursePageProps) {
     const [enrollmentStatus, setEnrollmentStatus] = useState<string | null>(
         null
     );
+    const [activeTab, setActiveTab] = useState<string>("curriculum");
+    const [expandedModules, setExpandedModules] = useState<number[]>([]);
 
     useEffect(() => {
         async function fetchCourse() {
@@ -99,6 +112,14 @@ export default function CoursePage({ params }: CoursePageProps) {
         checkEnrollment();
     }, [user, id]);
 
+    const toggleModule = (index: number) => {
+        setExpandedModules((prev) =>
+            prev.includes(index)
+                ? prev.filter((i) => i !== index)
+                : [...prev, index]
+        );
+    };
+
     if (loading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
@@ -133,13 +154,13 @@ export default function CoursePage({ params }: CoursePageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-white to-blue-50 border-b border-blue-200 shadow-sm">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="min-h-screen bg-white">
+            {/* Back Button */}
+            <div className="bg-white border-b">
+                <div className="container mx-auto px-4 py-4">
                     <Link
                         href="/courses"
-                        className="inline-flex items-center text-indigo-600 hover:text-indigo-700 transition-colors duration-200"
+                        className="inline-flex items-center text-gray-600 hover:text-gray-900"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back to Courses
@@ -147,330 +168,455 @@ export default function CoursePage({ params }: CoursePageProps) {
                 </div>
             </div>
 
-            {/* Course Content */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="max-w-4xl mx-auto">
-                    {/* Course Image */}
-                    {course.thumbnail && (
-                        <div className="relative overflow-hidden rounded-lg mb-8 h-96">
-                            <Image
-                                src={course.thumbnail}
-                                alt={course.title}
-                                fill
-                                className="object-cover"
-                            />
+            {/* Hero Section */}
+            <div className="container mx-auto px-4 py-8 max-w-7xl">
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Left: Course Info */}
+                    <div className="lg:col-span-2">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            {course.title}
+                        </h1>
+
+                        {/* Rating */}
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="flex items-center bg-yellow-100 px-3 py-1 rounded">
+                                <Star className="w-4 h-4 fill-yellow-500 text-yellow-500 mr-1" />
+                                <span className="font-semibold">4.8</span>
+                            </div>
+                            <span className="text-gray-600">(313 Ratings)</span>
                         </div>
-                    )}
 
-                    {/* Course Title */}
-                    <h1 className="text-4xl font-bold text-gray-900 mb-6">
-                        {course.title}
-                    </h1>
-
-                    {/* Course Description */}
-                    <div className="bg-white rounded-lg p-8 shadow-md mb-8">
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                            About This Course
-                        </h2>
-                        <p className="text-gray-700 leading-relaxed text-lg">
+                        {/* Description */}
+                        <p className="text-gray-700 text-lg leading-relaxed mb-6">
                             {course.description}
                         </p>
-                    </div>
 
-                    {/* Course Meta */}
-                    <div className="bg-white rounded-lg p-6 shadow-md">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                            Course Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600">
-                            {course.category && (
-                                <div>
-                                    <span className="font-medium">
-                                        Category:
-                                    </span>{" "}
-                                    {course.category}
-                                </div>
-                            )}
-                            {course.batchName && (
-                                <div>
-                                    <span className="font-medium">Batch:</span>{" "}
-                                    {course.batchName}
-                                </div>
-                            )}
-                            {course.price && (
-                                <div>
-                                    <span className="font-medium">Price:</span>{" "}
-                                    {course.price} BDT
-                                </div>
-                            )}
-                            {course.totalWeeks && (
-                                <div>
-                                    <span className="font-medium">
-                                        Duration:
-                                    </span>{" "}
-                                    {course.totalWeeks} Weeks
-                                </div>
-                            )}
-                            {course.totalClasses && (
-                                <div>
-                                    <span className="font-medium">
-                                        Total Classes:
-                                    </span>{" "}
-                                    {course.totalClasses}
-                                </div>
-                            )}
-                            {course.totalModules && (
-                                <div>
-                                    <span className="font-medium">
-                                        Modules:
-                                    </span>{" "}
-                                    {course.totalModules}
-                                </div>
-                            )}
-                            {course.totalProjects && (
-                                <div>
-                                    <span className="font-medium">
-                                        Projects:
-                                    </span>{" "}
-                                    {course.totalProjects}
-                                </div>
-                            )}
-                            <div>
-                                <span className="font-medium">Created:</span>{" "}
-                                {new Date(
-                                    course.createdAt
-                                ).toLocaleDateString()}
-                            </div>
-                            <div>
-                                <span className="font-medium">
-                                    Last Updated:
-                                </span>{" "}
-                                {new Date(
-                                    course.updatedAt
-                                ).toLocaleDateString()}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* This Course is Ideal For */}
-                    {course.idealFor && course.idealFor.length > 0 && (
-                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                                This Course is Ideal For:
-                            </h2>
-                            <ul className="space-y-4">
-                                {course.idealFor.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className="flex items-start text-gray-700"
-                                    >
-                                        <span className="text-indigo-600 font-bold mr-3 mt-1">
-                                            {index + 1}.
-                                        </span>
-                                        <span className="text-lg leading-relaxed">
-                                            {item}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {/* Course Modules */}
-                    {course.modules && course.modules.length > 0 && (
-                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                                Modules & Topics Covered
-                            </h2>
-                            <div className="space-y-8">
-                                {course.modules.map((module, index) => (
-                                    <div
-                                        key={index}
-                                        className="border-l-4 border-l-indigo-500 pl-6 pb-6 border-b border-b-gray-200 last:border-b-0"
-                                    >
-                                        <div className="mb-4">
-                                            <span className="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold mb-2">
-                                                Class {module.classNumber}
-                                            </span>
-                                            <h3 className="text-xl font-bold text-gray-900 mt-2">
-                                                {module.moduleTitle}
-                                            </h3>
-                                        </div>
-
-                                        {module.topics &&
-                                            module.topics.length > 0 && (
-                                                <div className="mb-4">
-                                                    <h4 className="text-md font-semibold text-gray-800 mb-3">
-                                                        Topics:
-                                                    </h4>
-                                                    <ul className="space-y-2">
-                                                        {module.topics.map(
-                                                            (
-                                                                topic,
-                                                                topicIndex
-                                                            ) => (
-                                                                <li
-                                                                    key={
-                                                                        topicIndex
-                                                                    }
-                                                                    className="flex items-start text-gray-700"
-                                                                >
-                                                                    <span className="text-indigo-500 mr-2 mt-1">
-                                                                        •
-                                                                    </span>
-                                                                    <span>
-                                                                        {topic}
-                                                                    </span>
-                                                                </li>
-                                                            )
-                                                        )}
-                                                    </ul>
-                                                </div>
-                                            )}
-
-                                        {module.exercises &&
-                                            module.exercises.length > 0 && (
-                                                <div>
-                                                    <h4 className="text-md font-semibold text-gray-800 mb-3">
-                                                        Exercises:
-                                                    </h4>
-                                                    <ul className="space-y-2">
-                                                        {module.exercises.map(
-                                                            (
-                                                                exercise,
-                                                                exerciseIndex
-                                                            ) => (
-                                                                <li
-                                                                    key={
-                                                                        exerciseIndex
-                                                                    }
-                                                                    className="flex items-start text-gray-700"
-                                                                >
-                                                                    <span className="text-green-500 mr-2 mt-1">
-                                                                        ✓
-                                                                    </span>
-                                                                    <span className="font-medium">
-                                                                        {
-                                                                            exercise
-                                                                        }
-                                                                    </span>
-                                                                </li>
-                                                            )
-                                                        )}
-                                                    </ul>
-                                                </div>
-                                            )}
+                        {/* Course Image */}
+                        {course.thumbnail && (
+                            <div className="relative aspect-video rounded-lg overflow-hidden mb-8 group cursor-pointer">
+                                <Image
+                                    src={course.thumbnail}
+                                    alt={course.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition">
+                                    <div className="bg-white rounded-full p-4">
+                                        <Play className="w-8 h-8 text-indigo-600" />
                                     </div>
-                                ))}
+                                </div>
                             </div>
-                        </div>
-                    )}
-
-                    {/* Frequently Asked Questions */}
-                    {course.faq && course.faq.length > 0 && (
-                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                                Frequently Asked Questions (FAQ)
-                            </h2>
-                            <div className="space-y-6">
-                                {course.faq.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0"
-                                    >
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                                            Q{index + 1}: {item.question}
-                                        </h3>
-                                        <p className="text-gray-700 leading-relaxed">
-                                            {item.answer}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Enrollment Button/Status */}
-                    <div className="mt-8 flex justify-center">
-                        {!user ? (
-                            <div className="text-center">
-                                <p className="text-gray-600 mb-4">
-                                    Please log in to enroll in this course
-                                </p>
-                                <Link href="/login">
-                                    <Button
-                                        size="lg"
-                                        className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-12 py-6 text-lg"
-                                    >
-                                        Login to Enroll
-                                    </Button>
-                                </Link>
-                            </div>
-                        ) : hasEnrollment ? (
-                            <div className="text-center w-full max-w-md">
-                                {enrollmentStatus === "pending" && (
-                                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                                        <h4 className="text-lg font-semibold text-yellow-800 mb-2">
-                                            Enrollment Pending
-                                        </h4>
-                                        <p className="text-yellow-700">
-                                            Your enrollment request is being
-                                            reviewed by our admin team. You'll
-                                            be notified within 24 hours.
-                                        </p>
-                                    </div>
-                                )}
-                                {enrollmentStatus === "approved" && (
-                                    <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                                        <h4 className="text-lg font-semibold text-green-800 mb-2">
-                                            Enrolled Successfully!
-                                        </h4>
-                                        <p className="text-green-700 mb-4">
-                                            You have access to this course.
-                                        </p>
-                                        <Link href="/dashboard/courses">
-                                            <Button className="bg-green-600 hover:bg-green-700">
-                                                Go to My Courses
-                                            </Button>
-                                        </Link>
-                                    </div>
-                                )}
-                                {enrollmentStatus === "rejected" && (
-                                    <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                                        <h4 className="text-lg font-semibold text-red-800 mb-2">
-                                            Enrollment Rejected
-                                        </h4>
-                                        <p className="text-red-700">
-                                            Your enrollment request was
-                                            rejected. Please contact support for
-                                            more information.
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        ) : (
-                            <Button
-                                size="lg"
-                                onClick={() => setEnrollmentDialogOpen(true)}
-                                className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-12 py-6 text-lg"
-                            >
-                                Enroll Now
-                            </Button>
                         )}
                     </div>
 
-                    {/* Enrollment Dialog */}
-                    {course && (
-                        <EnrollmentDialog
-                            open={enrollmentDialogOpen}
-                            onOpenChange={setEnrollmentDialogOpen}
-                            courseId={course._id}
-                            courseTitle={course.title}
-                            coursePrice={course.price}
-                        />
-                    )}
+                    {/* Right: Pricing Card */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-white border-2 border-gray-200 rounded-lg p-6 sticky top-4">
+                            {course.price && (
+                                <div className="mb-6">
+                                    <div className="flex items-baseline gap-3 mb-2">
+                                        <span className="text-4xl font-bold text-gray-900">
+                                            ৳{course.price}
+                                        </span>
+                                        <span className="text-xl text-gray-400 line-through">
+                                            ৳{Math.round(course.price * 1.6)}
+                                        </span>
+                                    </div>
+                                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded inline-block text-sm font-semibold">
+                                        প্রোমো অ্যাপ্লাইড
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Course Highlights */}
+                            <div className="space-y-4 mb-6">
+                                {course.totalClasses && (
+                                    <div className="flex items-center gap-3 text-gray-700">
+                                        <Video className="w-5 h-5 text-indigo-600" />
+                                        <span>
+                                            {course.totalClasses} টি লাইভ ক্লাস
+                                        </span>
+                                    </div>
+                                )}
+                                {course.totalProjects && (
+                                    <div className="flex items-center gap-3 text-gray-700">
+                                        <Award className="w-5 h-5 text-indigo-600" />
+                                        <span>
+                                            {course.totalProjects} টি
+                                            প্রজেক্টসমূহ
+                                        </span>
+                                    </div>
+                                )}
+                                {course.totalWeeks && (
+                                    <div className="flex items-center gap-3 text-gray-700">
+                                        <Clock className="w-5 h-5 text-indigo-600" />
+                                        <span>{course.totalWeeks} সপ্তাহ</span>
+                                    </div>
+                                )}
+                                <div className="flex items-center gap-3 text-gray-700">
+                                    <Users className="w-5 h-5 text-indigo-600" />
+                                    <span>জব প্লেসমেন্ট সাপোর্ট</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-gray-700">
+                                    <Video className="w-5 h-5 text-indigo-600" />
+                                    <span>
+                                        ক্লাস রেকর্ডিং এ লাইফটাইম এক্সেস
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Enrollment Button */}
+                            {!user ? (
+                                <Link href="/login">
+                                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg">
+                                        ব্যাচে ভর্তি হোন
+                                    </Button>
+                                </Link>
+                            ) : hasEnrollment ? (
+                                <div className="text-center">
+                                    {enrollmentStatus === "pending" && (
+                                        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                            <p className="text-yellow-800 font-semibold">
+                                                Enrollment Pending
+                                            </p>
+                                        </div>
+                                    )}
+                                    {enrollmentStatus === "approved" && (
+                                        <Link href="/dashboard/courses">
+                                            <Button className="w-full bg-green-600 hover:bg-green-700">
+                                                Go to My Courses
+                                            </Button>
+                                        </Link>
+                                    )}
+                                    {enrollmentStatus === "rejected" && (
+                                        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                            <p className="text-red-800 font-semibold">
+                                                Enrollment Rejected
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <Button
+                                    onClick={() =>
+                                        setEnrollmentDialogOpen(true)
+                                    }
+                                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg"
+                                >
+                                    ব্যাচে ভর্তি হোন
+                                </Button>
+                            )}
+
+                            {/* Batch Info */}
+                            {course.batchName && (
+                                <div className="mt-6 pt-6 border-t">
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <p className="text-gray-600 mb-1">
+                                                ব্যাচ শুরু
+                                            </p>
+                                            <p className="font-semibold text-gray-900">
+                                                {course.batchName}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-600 mb-1">
+                                                লাইভ ক্লাস
+                                            </p>
+                                            <p className="font-semibold text-gray-900">
+                                                রাত ৯:০০- ১০:৩০ (বৃহ,রবি)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
+
+                {/* Navigation Tabs */}
+                <div className="mt-12 border-b">
+                    <div className="flex gap-8 overflow-x-auto">
+                        {[
+                            "curriculum",
+                            "projects",
+                            "features",
+                            "idealFor",
+                            "faq",
+                        ].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => setActiveTab(tab)}
+                                className={`pb-4 px-2 font-semibold whitespace-nowrap transition-colors ${
+                                    activeTab === tab
+                                        ? "text-indigo-600 border-b-2 border-indigo-600"
+                                        : "text-gray-600 hover:text-gray-900"
+                                }`}
+                            >
+                                {tab === "curriculum" && "কারিকুলাম"}
+                                {tab === "projects" && "প্রজেক্টসমুহ"}
+                                {tab === "features" && "কোর্সে আপনি পাচ্ছেন"}
+                                {tab === "idealFor" && "কোর্সটি যাদের জন্য"}
+                                {tab === "faq" && "FAQ"}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Curriculum Section */}
+                {activeTab === "curriculum" &&
+                    course.modules &&
+                    course.modules.length > 0 && (
+                        <div className="mt-12">
+                            <div className="mb-8">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                                    কারিকুলাম
+                                </h2>
+                                <div className="flex gap-6 text-gray-600">
+                                    <div className="flex items-center gap-2">
+                                        <Award className="w-5 h-5" />
+                                        <span>{course.totalModules} মডিউল</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Video className="w-5 h-5" />
+                                        <span>
+                                            {course.totalClasses} লাইভ ক্লাস
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4">
+                                {course.modules.map((module, index) => (
+                                    <div
+                                        key={index}
+                                        className="border border-gray-200 rounded-lg overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleModule(index)}
+                                            className="w-full flex items-center justify-between p-6 bg-gray-50 hover:bg-gray-100 transition"
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-sm font-semibold">
+                                                    সপ্তাহ {module.classNumber}
+                                                </span>
+                                                <h3 className="font-bold text-gray-900 text-left">
+                                                    {module.moduleTitle}
+                                                </h3>
+                                            </div>
+                                            <ChevronDown
+                                                className={`w-5 h-5 text-gray-600 transition-transform ${
+                                                    expandedModules.includes(
+                                                        index
+                                                    )
+                                                        ? "rotate-180"
+                                                        : ""
+                                                }`}
+                                            />
+                                        </button>
+
+                                        {expandedModules.includes(index) && (
+                                            <div className="p-6 bg-white border-t">
+                                                {module.topics &&
+                                                    module.topics.length >
+                                                        0 && (
+                                                        <div className="mb-4">
+                                                            <h4 className="font-semibold text-gray-900 mb-3">
+                                                                Topics:
+                                                            </h4>
+                                                            <ul className="space-y-2">
+                                                                {module.topics.map(
+                                                                    (
+                                                                        topic,
+                                                                        topicIndex
+                                                                    ) => (
+                                                                        <li
+                                                                            key={
+                                                                                topicIndex
+                                                                            }
+                                                                            className="flex items-start gap-2 text-gray-700"
+                                                                        >
+                                                                            <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                                                            <span>
+                                                                                {
+                                                                                    topic
+                                                                                }
+                                                                            </span>
+                                                                        </li>
+                                                                    )
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                {module.exercises &&
+                                                    module.exercises.length >
+                                                        0 && (
+                                                        <div>
+                                                            <h4 className="font-semibold text-gray-900 mb-3">
+                                                                Exercises:
+                                                            </h4>
+                                                            <ul className="space-y-2">
+                                                                {module.exercises.map(
+                                                                    (
+                                                                        exercise,
+                                                                        exerciseIndex
+                                                                    ) => (
+                                                                        <li
+                                                                            key={
+                                                                                exerciseIndex
+                                                                            }
+                                                                            className="flex items-start gap-2 text-gray-700"
+                                                                        >
+                                                                            <CheckCircle2 className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                                                                            <span className="font-medium">
+                                                                                {
+                                                                                    exercise
+                                                                                }
+                                                                            </span>
+                                                                        </li>
+                                                                    )
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                {/* Course Features */}
+                {activeTab === "features" && (
+                    <div className="mt-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                            কোর্সে আপনি পাচ্ছেন
+                        </h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {[
+                                {
+                                    icon: Calendar,
+                                    title: `${course.totalWeeks} মাসের গাইডেড জার্নি`,
+                                    desc: "একদম বিগিনার ফ্রেন্ডলি ওয়েতে আপডেটেড কারিকুলাম",
+                                },
+                                {
+                                    icon: Video,
+                                    title: `${course.totalClasses}টি লাইভ ক্লাস`,
+                                    desc: "ইন্ডাস্ট্রি এক্সপার্টের কাছে শিখুন লাইভে",
+                                },
+                                {
+                                    icon: Award,
+                                    title: `${course.totalProjects} টি প্রজেক্ট`,
+                                    desc: "ইন্ডাস্ট্রি স্ট্যান্ডার্ড প্রজেক্ট এড করুন সিভিতে",
+                                },
+                                {
+                                    icon: Users,
+                                    title: "প্রতিদিন ২ বেলা সাপোর্ট ক্লাস",
+                                    desc: "প্র্যাক্টিস করতে গিয়ে প্রবলেমে পড়লে লাইভ সাপোর্ট নিন",
+                                },
+                                {
+                                    icon: Video,
+                                    title: "লাইফটাইম এক্সেস",
+                                    desc: "প্রিরেকর্ডেড ভিডিও, রিসোর্স এবং ক্লাস রেকর্ডিং এ থাকবে লাইফ টাইম এক্সেস",
+                                },
+                                {
+                                    icon: Award,
+                                    title: "সার্টিফিকেট",
+                                    desc: "কোর্স শেষ করে পাবেন শেয়ারেবল কোর্স কমপ্লিশন সার্টিফিকেট",
+                                },
+                            ].map((feature, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg"
+                                >
+                                    <feature.icon className="w-12 h-12 text-indigo-600 mb-4" />
+                                    <h3 className="font-bold text-gray-900 mb-2">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-gray-700 text-sm">
+                                        {feature.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Ideal For Section */}
+                {activeTab === "idealFor" &&
+                    course.idealFor &&
+                    course.idealFor.length > 0 && (
+                        <div className="mt-12">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                                কোর্সটি আপনারই জন্য
+                            </h2>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {course.idealFor.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-start gap-3 bg-white border border-gray-200 rounded-lg p-4"
+                                    >
+                                        <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                                        <p className="text-gray-700">{item}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                {/* FAQ Section */}
+                {activeTab === "faq" && course.faq && course.faq.length > 0 && (
+                    <div className="mt-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                            প্রায়ই জিজ্ঞেস করা প্রশ্ন
+                        </h2>
+                        <div className="space-y-4">
+                            {course.faq.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="border border-gray-200 rounded-lg p-6 bg-white"
+                                >
+                                    <h3 className="font-bold text-gray-900 mb-3">
+                                        {index + 1}. {item.question}
+                                    </h3>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        {item.answer}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Projects Section */}
+                {activeTab === "projects" && (
+                    <div className="mt-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                            যেসকল রিয়েল লাইফ প্রোজেক্ট করানো হবে
+                        </h2>
+                        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-lg text-center">
+                            <Award className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
+                            <p className="text-gray-700 text-lg">
+                                {course.totalProjects} টি ইন্ডাস্ট্রি
+                                স্ট্যান্ডার্ড প্রজেক্ট করবেন এই কোর্সে
+                            </p>
+                        </div>
+                    </div>
+                )}
             </div>
+
+            {/* Enrollment Dialog */}
+            {course && (
+                <EnrollmentDialog
+                    open={enrollmentDialogOpen}
+                    onOpenChange={setEnrollmentDialogOpen}
+                    courseId={course._id}
+                    courseTitle={course.title}
+                    coursePrice={course.price}
+                />
+            )}
         </div>
     );
 }
