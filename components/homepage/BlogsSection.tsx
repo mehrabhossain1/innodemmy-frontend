@@ -30,7 +30,7 @@ export default function BlogsSection() {
 
                 if (data.success) {
                     // Get only the first 6 blogs for the homepage
-                    setBlogs(data.blogs.slice(0, 6));
+                    setBlogs(data.blogs.slice(0, 4));
                 }
             } catch (error) {
                 console.error("Error fetching blogs:", error);
@@ -96,7 +96,9 @@ export default function BlogsSection() {
                                             blog.thumbnail ||
                                             "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                         }
-                                        category={blog.category || "Uncategorized"}
+                                        category={
+                                            blog.category || "Uncategorized"
+                                        }
                                         author={blog.author || "Innodemy Team"}
                                         readTime={`${blog.minRead} min`}
                                     />
