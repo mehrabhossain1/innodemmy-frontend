@@ -385,8 +385,8 @@ export default function CoursePage({ params }: CoursePageProps) {
                     </div>
                 </div>
                 {/* Navigation Tabs */}
-                <div className="mt-12 border-b sticky top-0 bg-white z-40">
-                    <div className="flex gap-8 overflow-x-auto">
+                <div className="mt-12 border-b sticky top-16 bg-white z-40 shadow-sm">
+                    <div className="flex gap-8 overflow-x-auto scrollbar-hide">
                         {[
                             { id: "curriculum", label: "কারিকুলাম" },
                             { id: "projects", label: "প্রজেক্টসমুহ" },
