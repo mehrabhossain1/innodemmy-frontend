@@ -113,37 +113,11 @@ export default function DashboardPage() {
                                     <CourseCard
                                         key={enrollment._id}
                                         id={enrollment.course._id}
-                                        image={
-                                            enrollment.course.thumbnail ||
-                                            "/placeholder.svg"
-                                        }
-                                        batchName={
-                                            enrollment.course.batchName ||
-                                            enrollment.course.category
-                                        }
-                                        rating={enrollment.course.rating || 4.5}
-                                        totalReviews={
-                                            enrollment.course.totalReviews || 0
-                                        }
                                         title={enrollment.course.title}
-                                        isLive={
-                                            enrollment.course.isLive || false
+                                        description={
+                                            enrollment.course.description
                                         }
-                                        totalJoined={
-                                            enrollment.course.totalJoined || 0
-                                        }
-                                        totalLessons={
-                                            enrollment.course.totalLessons || 0
-                                        }
-                                        totalProjects={
-                                            enrollment.course.totalProjects || 0
-                                        }
-                                        totalAssignments={
-                                            enrollment.course.totalAssignments || 0
-                                        }
-                                        instructor={
-                                            enrollment.course.instructor
-                                        }
+                                        thumbnail={enrollment.course.thumbnail}
                                     />
                                 ))}
                             </div>

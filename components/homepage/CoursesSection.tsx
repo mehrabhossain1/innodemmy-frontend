@@ -8,38 +8,21 @@ import Link from "next/link";
 
 interface Course {
     id: string;
+    title: string;
+    description: string;
     image: string;
     batchName?: string;
-    rating?: number;
-    totalReviews?: number;
-    title: string;
-    isLive?: boolean;
-    totalJoined?: number;
-    totalLessons: number;
-    totalProjects?: number;
-    totalAssignments?: number;
-    instructor: string;
-}
-
-interface ApiModule {
-    lessons?: unknown[];
+    instructor?: string;
 }
 
 interface ApiCourse {
     _id?: string;
     id?: string;
+    title: string;
+    description: string;
     thumbnail?: string;
     batchName?: string;
-    rating?: number;
-    totalReviews?: number;
-    title: string;
-    isLive?: boolean;
-    totalJoined?: number;
-    modules?: ApiModule[];
-    totalProjects?: number;
-    projects?: unknown[];
-    totalAssignments?: number;
-    instructor: string;
+    instructor?: string;
 }
 
 export default function CoursesSection() {
@@ -56,26 +39,12 @@ export default function CoursesSection() {
                     const mappedCourses: Course[] = data.courses.map(
                         (course: ApiCourse) => ({
                             id: course._id || course.id || "",
+                            title: course.title,
+                            description: course.description || "",
                             image:
                                 course.thumbnail ||
                                 "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                            batchName: course.batchName || "Batch 1",
-                            rating: course.rating || 4.5,
-                            totalReviews: course.totalReviews || 0,
-                            title: course.title,
-                            isLive: course.isLive ?? false,
-                            totalJoined: course.totalJoined || 0,
-                            totalLessons:
-                                course.modules?.reduce(
-                                    (total: number, module: ApiModule) =>
-                                        total + (module.lessons?.length || 0),
-                                    0
-                                ) || 0,
-                            totalProjects:
-                                course.totalProjects ||
-                                course.projects?.length ||
-                                0,
-                            totalAssignments: course.totalAssignments || 0,
+                            batchName: course.batchName,
                             instructor: course.instructor,
                         })
                     );
@@ -112,7 +81,9 @@ export default function CoursesSection() {
                 {loading ? (
                     <div className="text-center py-16">
                         <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
-                        <p className="text-muted-foreground">Loading courses...</p>
+                        <p className="text-muted-foreground">
+                            Loading courses...
+                        </p>
                     </div>
                 ) : courses.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -120,23 +91,17 @@ export default function CoursesSection() {
                             <CourseCard
                                 key={course.id}
                                 id={course.id}
-                                image={course.image}
-                                batchName={course.batchName}
-                                rating={course.rating}
-                                totalReviews={course.totalReviews}
                                 title={course.title}
-                                isLive={course.isLive}
-                                totalJoined={course.totalJoined}
-                                totalLessons={course.totalLessons}
-                                totalProjects={course.totalProjects}
-                                totalAssignments={course.totalAssignments}
-                                instructor={course.instructor}
+                                description={course.description}
+                                thumbnail={course.image}
                             />
                         ))}
                     </div>
                 ) : (
                     <div className="text-center py-16">
-                        <p className="text-muted-foreground">No courses available at the moment.</p>
+                        <p className="text-muted-foreground">
+                            No courses available at the moment.
+                        </p>
                     </div>
                 )}
 
