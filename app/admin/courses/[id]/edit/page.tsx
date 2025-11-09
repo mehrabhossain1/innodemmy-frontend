@@ -24,6 +24,7 @@ interface CourseData {
         topics: string[];
         exercises: string[];
     }>;
+    projects?: string[];
 }
 
 interface EditCoursePageProps {

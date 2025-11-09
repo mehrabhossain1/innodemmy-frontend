@@ -34,6 +34,7 @@ interface CourseData {
     idealFor?: string[];
     faq?: FAQ[];
     modules?: ClassModule[];
+    projects?: string[];
 }
 
 interface CourseFormProps {
@@ -58,10 +59,12 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
             idealFor: [],
             faq: [],
             modules: [],
+            projects: [],
         }
     );
 
     const [idealForInput, setIdealForInput] = useState("");
+    const [projectInput, setProjectInput] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
     const handleInputChange = (
@@ -223,6 +226,24 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
                       }
                     : module
             ),
+        }));
+    };
+
+    // Project handlers
+    const addProject = () => {
+        if (projectInput.trim()) {
+            setFormData((prev) => ({
+                ...prev,
+                projects: [...(prev.projects || []), projectInput.trim()],
+            }));
+            setProjectInput("");
+        }
+    };
+
+    const removeProject = (index: number) => {
+        setFormData((prev) => ({
+            ...prev,
+            projects: prev.projects?.filter((_, i) => i !== index),
         }));
     };
 
@@ -509,6 +530,52 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
                             onRemoveExercise={removeExerciseFromModule}
                         />
                     ))}
+                </div>
+            </div>
+
+            {/* Projects Section */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                    Course Projects
+                </h2>
+
+                <div className="space-y-3">
+                    {formData.projects?.map((project, index) => (
+                        <div
+                            key={index}
+                            className="flex items-start gap-2 p-3 bg-gray-50 rounded"
+                        >
+                            <span className="text-indigo-600 font-bold">
+                                {index + 1}.
+                            </span>
+                            <span className="flex-1">{project}</span>
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => removeProject(index)}
+                            >
+                                <X className="w-4 h-4 text-red-600" />
+                            </Button>
+                        </div>
+                    ))}
+
+                    <div className="flex gap-2">
+                        <Input
+                            value={projectInput}
+                            onChange={(e) => setProjectInput(e.target.value)}
+                            placeholder="e.g., Build a Calculator Application"
+                            onKeyPress={(e) => {
+                                if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    addProject();
+                                }
+                            }}
+                        />
+                        <Button type="button" onClick={addProject}>
+                            <Plus className="w-4 h-4" />
+                        </Button>
+                    </div>
                 </div>
             </div>
 
