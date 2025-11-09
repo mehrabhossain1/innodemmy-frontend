@@ -1,24 +1,49 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Use Resend's onboarding domain for testing (no verification needed)
 // To use your own domain, verify it in Resend dashboard first
-const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev';
-const FROM_NAME = process.env.FROM_NAME || 'Innodemy';
+const FROM_EMAIL = process.env.FROM_EMAIL || "onboarding@resend.dev";
+const FROM_NAME = process.env.FROM_NAME || "Innodemy";
+
+// Development mode - log OTPs to console instead of sending emails
+const IS_DEV_MODE =
+    process.env.NODE_ENV === "development" ||
+    process.env.EMAIL_DEV_MODE === "true";
 
 /**
  * Send email verification OTP to user
  */
-export async function sendVerificationEmail(email: string, code: string, name: string): Promise<void> {
-  try {
-    console.log(`Sending verification email to ${email} from ${FROM_EMAIL}`);
+export async function sendVerificationEmail(
+    email: string,
+    code: string,
+    name: string
+): Promise<void> {
+    try {
+        console.log(
+            `Sending verification email to ${email} from ${FROM_EMAIL}`
+        );
 
-    const result = await resend.emails.send({
-      from: `${FROM_NAME} <${FROM_EMAIL}>`,
-      to: email,
-      subject: 'Verify Your Email - Innodemy',
-      html: `
+        // In development mode, just log the OTP to console
+        if (IS_DEV_MODE) {
+            console.log("\n" + "=".repeat(60));
+            console.log("📧 DEVELOPMENT MODE - Email Not Sent");
+            console.log("=".repeat(60));
+            console.log(`To: ${email}`);
+            console.log(`Name: ${name}`);
+            console.log(`Subject: Verify Your Email - Innodemy`);
+            console.log("\n🔐 YOUR VERIFICATION CODE:");
+            console.log(`\n    ${code}\n`);
+            console.log("=".repeat(60) + "\n");
+            return;
+        }
+
+        const result = await resend.emails.send({
+            from: `${FROM_NAME} <${FROM_EMAIL}>`,
+            to: email,
+            subject: "Verify Your Email - Innodemy",
+            html: `
         <!DOCTYPE html>
         <html>
           <head>
@@ -147,28 +172,51 @@ export async function sendVerificationEmail(email: string, code: string, name: s
           </body>
         </html>
       `,
-    });
+        });
 
-    console.log(`Verification email sent successfully to ${email}. Email ID:`, result.data?.id);
-  } catch (error) {
-    console.error('Failed to send verification email:', error);
-    console.error('Error details:', JSON.stringify(error, null, 2));
-    throw new Error('Failed to send verification email');
-  }
+        console.log(
+            `Verification email sent successfully to ${email}. Email ID:`,
+            result.data?.id
+        );
+    } catch (error) {
+        console.error("Failed to send verification email:", error);
+        console.error("Error details:", JSON.stringify(error, null, 2));
+        throw new Error("Failed to send verification email");
+    }
 }
 
 /**
  * Send password reset OTP to user
  */
-export async function sendPasswordResetEmail(email: string, code: string, name: string): Promise<void> {
-  try {
-    console.log(`Sending password reset email to ${email} from ${FROM_EMAIL}`);
+export async function sendPasswordResetEmail(
+    email: string,
+    code: string,
+    name: string
+): Promise<void> {
+    try {
+        console.log(
+            `Sending password reset email to ${email} from ${FROM_EMAIL}`
+        );
 
-    const result = await resend.emails.send({
-      from: `${FROM_NAME} <${FROM_EMAIL}>`,
-      to: email,
-      subject: 'Reset Your Password - Innodemy',
-      html: `
+        // In development mode, just log the OTP to console
+        if (IS_DEV_MODE) {
+            console.log("\n" + "=".repeat(60));
+            console.log("📧 DEVELOPMENT MODE - Email Not Sent");
+            console.log("=".repeat(60));
+            console.log(`To: ${email}`);
+            console.log(`Name: ${name}`);
+            console.log(`Subject: Reset Your Password - Innodemy`);
+            console.log("\n🔐 YOUR PASSWORD RESET CODE:");
+            console.log(`\n    ${code}\n`);
+            console.log("=".repeat(60) + "\n");
+            return;
+        }
+
+        const result = await resend.emails.send({
+            from: `${FROM_NAME} <${FROM_EMAIL}>`,
+            to: email,
+            subject: "Reset Your Password - Innodemy",
+            html: `
         <!DOCTYPE html>
         <html>
           <head>
@@ -314,19 +362,26 @@ export async function sendPasswordResetEmail(email: string, code: string, name: 
           </body>
         </html>
       `,
-    });
+        });
 
-    console.log(`Password reset email sent successfully to ${email}. Email ID:`, result.data?.id);
-  } catch (error) {
-    console.error('Failed to send password reset email:', error);
-    console.error('Error details:', JSON.stringify(error, null, 2));
-    throw new Error('Failed to send password reset email');
-  }
+        console.log(
+            `Password reset email sent successfully to ${email}. Email ID:`,
+            result.data?.id
+        );
+    } catch (error) {
+        console.error("Failed to send password reset email:", error);
+        console.error("Error details:", JSON.stringify(error, null, 2));
+        throw new Error("Failed to send password reset email");
+    }
 }
 
 /**
  * Resend verification email with new OTP code
  */
-export async function resendVerificationEmail(email: string, code: string, name: string): Promise<void> {
-  return sendVerificationEmail(email, code, name);
+export async function resendVerificationEmail(
+    email: string,
+    code: string,
+    name: string
+): Promise<void> {
+    return sendVerificationEmail(email, code, name);
 }
