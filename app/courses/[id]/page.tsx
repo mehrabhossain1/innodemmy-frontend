@@ -198,17 +198,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                             {course.title}
                         </h1>
 
-                        {/* Rating */}
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="flex items-center bg-yellow-400 px-3 py-1.5 rounded">
-                                <Star className="w-4 h-4 fill-white text-white mr-1" />
-                                <span className="font-bold text-white">
-                                    4.8
-                                </span>
-                            </div>
-                            <span className="text-gray-600">(313 Ratings)</span>
-                        </div>
-
                         {/* Description */}
                         <div className="text-gray-700 text-base leading-relaxed mb-8 space-y-3">
                             <p>{course.description}</p>
@@ -421,41 +410,50 @@ export default function CoursePage({ params }: CoursePageProps) {
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">
                                 কারিকুলাম
                             </h2>
-                            <div className="flex gap-6 text-gray-600">
-                                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                                    কারিকুলাম
-                                </h2>
-                                <div className="flex gap-6 text-gray-600">
-                                    <div className="flex items-center gap-2">
-                                        <Award className="w-5 h-5" />
-                                        <span>{course.totalModules} মডিউল</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Video className="w-5 h-5" />
-                                        <span>
-                                            {course.totalClasses} লাইভ ক্লাস
-                                        </span>
-                                    </div>
+                            <div className="flex gap-6 text-gray-600 mb-6">
+                                <div className="flex items-center gap-2">
+                                    <Award className="w-5 h-5" />
+                                    <span>{course.totalModules} মডিউল</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Video className="w-5 h-5" />
+                                    <span>
+                                        {course.totalClasses} লাইভ ক্লাস রুম
+                                    </span>
                                 </div>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="grid md:grid-cols-2 gap-4 items-start">
                                 {course.modules.map((module, index) => (
                                     <div
                                         key={index}
-                                        className="border border-gray-200 rounded-lg overflow-hidden"
+                                        className="border border-gray-200 rounded-lg overflow-hidden h-fit"
                                     >
                                         <button
                                             onClick={() => toggleModule(index)}
-                                            className="w-full flex items-center justify-between p-6 bg-gray-50 hover:bg-gray-100 transition"
+                                            className="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition"
                                         >
-                                            <div className="flex items-center gap-4">
-                                                <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-sm font-semibold">
-                                                    সপ্তাহ {module.classNumber}
-                                                </span>
-                                                <h3 className="font-bold text-gray-900 text-left">
+                                            <div className="flex items-center gap-4 flex-1">
+                                                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white px-4 py-2 rounded font-bold text-sm flex items-center gap-1">
+                                                    Class
+                                                    <span className="text-lg">
+                                                        {module.classNumber ||
+                                                            index + 1}
+                                                    </span>
+                                                </div>
+                                                <h3 className="font-bold text-gray-900 text-left flex-1">
                                                     {module.moduleTitle}
                                                 </h3>
+                                            </div>
+                                            <div className="flex items-center gap-4 mr-4">
+                                                <div className="flex items-center gap-2 text-gray-600">
+                                                    <Video className="w-4 h-4" />
+                                                    <span className="text-sm">
+                                                        {module.topics
+                                                            ?.length || 0}{" "}
+                                                        live class
+                                                    </span>
+                                                </div>
                                             </div>
                                             <ChevronDown
                                                 className={`w-5 h-5 text-gray-600 transition-transform ${
@@ -469,25 +467,27 @@ export default function CoursePage({ params }: CoursePageProps) {
                                         </button>
 
                                         {expandedModules.includes(index) && (
-                                            <div className="p-6 bg-white border-t">
+                                            <div className="p-6 bg-gray-50 border-t">
+                                                {/* Module & Topics Covered */}
                                                 {module.topics &&
                                                     module.topics.length >
                                                         0 && (
-                                                        <div className="mb-4">
-                                                            <h4 className="font-semibold text-gray-900 mb-3">
+                                                        <div className="mb-6">
+                                                            <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                                                <Video className="w-5 h-5" />
                                                                 Topics:
                                                             </h4>
-                                                            <ul className="space-y-2">
+                                                            <div className="space-y-3">
                                                                 {module.topics.map(
                                                                     (
                                                                         topic,
                                                                         topicIndex
                                                                     ) => (
-                                                                        <li
+                                                                        <div
                                                                             key={
                                                                                 topicIndex
                                                                             }
-                                                                            className="flex items-start gap-2 text-gray-700"
+                                                                            className="flex items-start gap-3 text-gray-700 bg-white p-3 rounded"
                                                                         >
                                                                             <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                                                                             <span>
@@ -495,42 +495,44 @@ export default function CoursePage({ params }: CoursePageProps) {
                                                                                     topic
                                                                                 }
                                                                             </span>
-                                                                        </li>
+                                                                        </div>
                                                                     )
                                                                 )}
-                                                            </ul>
+                                                            </div>
                                                         </div>
                                                     )}
 
+                                                {/* Exercises */}
                                                 {module.exercises &&
                                                     module.exercises.length >
                                                         0 && (
                                                         <div>
-                                                            <h4 className="font-semibold text-gray-900 mb-3">
+                                                            <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                                                <Award className="w-5 h-5" />
                                                                 Exercises:
                                                             </h4>
-                                                            <ul className="space-y-2">
+                                                            <div className="space-y-3">
                                                                 {module.exercises.map(
                                                                     (
                                                                         exercise,
                                                                         exerciseIndex
                                                                     ) => (
-                                                                        <li
+                                                                        <div
                                                                             key={
                                                                                 exerciseIndex
                                                                             }
-                                                                            className="flex items-start gap-2 text-gray-700"
+                                                                            className="flex items-start gap-3 text-gray-700 bg-white p-3 rounded"
                                                                         >
-                                                                            <CheckCircle2 className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" />
-                                                                            <span className="font-medium">
+                                                                            <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                                                            <span>
                                                                                 {
                                                                                     exercise
                                                                                 }
                                                                             </span>
-                                                                        </li>
+                                                                        </div>
                                                                     )
                                                                 )}
-                                                            </ul>
+                                                            </div>
                                                         </div>
                                                     )}
                                             </div>
