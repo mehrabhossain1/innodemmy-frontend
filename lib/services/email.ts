@@ -8,9 +8,8 @@ const FROM_EMAIL = process.env.FROM_EMAIL || "onboarding@resend.dev";
 const FROM_NAME = process.env.FROM_NAME || "Innodemy";
 
 // Development mode - log OTPs to console instead of sending emails
-const IS_DEV_MODE =
-    process.env.NODE_ENV === "development" ||
-    process.env.EMAIL_DEV_MODE === "true";
+// Only enable dev mode if EMAIL_DEV_MODE is explicitly set to "true"
+const IS_DEV_MODE = process.env.EMAIL_DEV_MODE === "true";
 
 /**
  * Send email verification OTP to user
@@ -24,6 +23,14 @@ export async function sendVerificationEmail(
         console.log(
             `Sending verification email to ${email} from ${FROM_EMAIL}`
         );
+        console.log("🔍 Email Config:", {
+            NODE_ENV: process.env.NODE_ENV,
+            EMAIL_DEV_MODE: process.env.EMAIL_DEV_MODE,
+            IS_DEV_MODE,
+            RESEND_API_KEY: process.env.RESEND_API_KEY
+                ? "***" + process.env.RESEND_API_KEY.slice(-4)
+                : "NOT SET",
+        });
 
         // In development mode, just log the OTP to console
         if (IS_DEV_MODE) {
