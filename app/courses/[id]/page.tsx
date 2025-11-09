@@ -215,7 +215,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                             {course.totalClasses && (
                                 <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
                                     <div className="text-2xl font-bold mb-1">
-                                        {course.totalClasses}+
+                                        {course.totalClasses}
                                     </div>
                                     <div className="text-sm">Live Class</div>
                                 </div>
@@ -450,16 +450,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                                                     {module.moduleTitle}
                                                 </h3>
                                             </div>
-                                            <div className="flex items-center gap-4 mr-4">
-                                                <div className="flex items-center gap-2 text-gray-600">
-                                                    <Video className="w-4 h-4" />
-                                                    <span className="text-sm">
-                                                        {module.topics
-                                                            ?.length || 0}{" "}
-                                                        live class
-                                                    </span>
-                                                </div>
-                                            </div>
+
                                             <ChevronDown
                                                 className={`w-5 h-5 text-gray-600 transition-transform ${
                                                     expandedModules.includes(
@@ -685,7 +676,7 @@ export default function CoursePage({ params }: CoursePageProps) {
             </div>
 
             {/* Sticky Bottom Bar */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50">
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50 ">
                 <div className="container mx-auto px-4 py-3">
                     <div className="flex items-center justify-between gap-4">
                         {/* Price Section */}
