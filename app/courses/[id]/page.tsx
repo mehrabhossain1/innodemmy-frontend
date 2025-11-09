@@ -170,165 +170,205 @@ export default function CoursePage({ params }: CoursePageProps) {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-8 max-w-7xl">
-                <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Left: Course Info */}
+                <div className="grid lg:grid-cols-3 gap-6">
+                    {/* Left: Course Info - 2 columns */}
                     <div className="lg:col-span-2">
+                        {/* Live Course Badge */}
+                        <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-4">
+                            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+                            লাইভ কোর্স
+                        </div>
+
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                             {course.title}
                         </h1>
 
                         {/* Rating */}
-                        <div className="flex items-center gap-2 mb-6">
-                            <div className="flex items-center bg-yellow-100 px-3 py-1 rounded">
-                                <Star className="w-4 h-4 fill-yellow-500 text-yellow-500 mr-1" />
-                                <span className="font-semibold">4.8</span>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="flex items-center bg-yellow-400 px-3 py-1.5 rounded">
+                                <Star className="w-4 h-4 fill-white text-white mr-1" />
+                                <span className="font-bold text-white">
+                                    4.8
+                                </span>
                             </div>
                             <span className="text-gray-600">(313 Ratings)</span>
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                            {course.description}
-                        </p>
+                        <div className="text-gray-700 text-base leading-relaxed mb-8 space-y-3">
+                            <p>{course.description}</p>
+                        </div>
 
-                        {/* Course Image */}
+                        {/* Course Stats Grid */}
+                        <div className="grid grid-cols-3 gap-4 mb-8">
+                            {course.totalClasses && (
+                                <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                    <div className="text-2xl font-bold mb-1">
+                                        {course.totalClasses}+
+                                    </div>
+                                    <div className="text-sm">Live Class</div>
+                                </div>
+                            )}
+                            {course.totalModules && (
+                                <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                    <div className="text-2xl font-bold mb-1">
+                                        {course.totalModules}
+                                    </div>
+                                    <div className="text-sm">Modules</div>
+                                </div>
+                            )}
+                            {course.totalProjects && (
+                                <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                    <div className="text-2xl font-bold mb-1">
+                                        {course.totalProjects}+
+                                    </div>
+                                    <div className="text-sm">Projects</div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Batch Info Grid */}
+                        <div className="grid grid-cols-3 gap-4 mb-8">
+                            {course.batchName && (
+                                <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                    <div className="text-sm mb-1">
+                                        Batch Start:
+                                    </div>
+                                    <div className="font-bold text-sm">
+                                        {course.batchName}
+                                    </div>
+                                </div>
+                            )}
+                            <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                <div className="text-sm mb-1">Class Days</div>
+                                <div className="font-bold text-sm">
+                                    Friday / Saturday
+                                </div>
+                            </div>
+                            <div className="bg-blue-600 text-white p-4 rounded-lg text-center">
+                                <div className="text-sm mb-1">Class Time</div>
+                                <div className="font-bold text-sm">
+                                    8pm – 10 Pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right: Video & Enrollment - 1 column */}
+                    <div className="lg:col-span-1">
+                        {/* Video Thumbnail */}
                         {course.thumbnail && (
-                            <div className="relative aspect-video rounded-lg overflow-hidden mb-8 group cursor-pointer">
+                            <div className="relative aspect-video rounded-lg overflow-hidden group cursor-pointer shadow-xl mb-4">
                                 <Image
                                     src={course.thumbnail}
                                     alt={course.title}
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition">
-                                    <div className="bg-white rounded-full p-4">
-                                        <Play className="w-8 h-8 text-indigo-600" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-purple-900/40 flex items-center justify-center group-hover:from-orange-500/30 group-hover:to-purple-900/50 transition">
+                                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform shadow-lg">
+                                        <Play className="w-12 h-12 text-red-600 fill-red-600" />
                                     </div>
+                                </div>
+                                {/* Video Corner Label */}
+                                <div className="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1.5 rounded shadow-lg flex items-center gap-2">
+                                    <Video className="w-4 h-4" />
+                                    <span className="text-xs font-bold">
+                                        ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস
+                                    </span>
                                 </div>
                             </div>
                         )}
-                    </div>
 
-                    {/* Right: Pricing Card */}
-                    <div className="lg:col-span-1">
-                        <div className="bg-white border-2 border-gray-200 rounded-lg p-6 sticky top-4">
-                            {course.price && (
-                                <div className="mb-6">
-                                    <div className="flex items-baseline gap-3 mb-2">
-                                        <span className="text-4xl font-bold text-gray-900">
-                                            ৳{course.price}
-                                        </span>
-                                        <span className="text-xl text-gray-400 line-through">
-                                            ৳{Math.round(course.price * 1.6)}
-                                        </span>
-                                    </div>
-                                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded inline-block text-sm font-semibold">
-                                        প্রোমো অ্যাপ্লাইড
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Course Highlights */}
-                            <div className="space-y-4 mb-6">
-                                {course.totalClasses && (
-                                    <div className="flex items-center gap-3 text-gray-700">
-                                        <Video className="w-5 h-5 text-indigo-600" />
-                                        <span>
-                                            {course.totalClasses} টি লাইভ ক্লাস
-                                        </span>
-                                    </div>
-                                )}
-                                {course.totalProjects && (
-                                    <div className="flex items-center gap-3 text-gray-700">
-                                        <Award className="w-5 h-5 text-indigo-600" />
-                                        <span>
-                                            {course.totalProjects} টি
-                                            প্রজেক্টসমূহ
-                                        </span>
-                                    </div>
-                                )}
-                                {course.totalWeeks && (
-                                    <div className="flex items-center gap-3 text-gray-700">
-                                        <Clock className="w-5 h-5 text-indigo-600" />
-                                        <span>{course.totalWeeks} সপ্তাহ</span>
-                                    </div>
-                                )}
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <Users className="w-5 h-5 text-indigo-600" />
-                                    <span>জব প্লেসমেন্ট সাপোর্ট</span>
-                                </div>
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <Video className="w-5 h-5 text-indigo-600" />
-                                    <span>
-                                        ক্লাস রেকর্ডিং এ লাইফটাইম এক্সেস
+                        {/* Share & Book Section */}
+                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <h3 className="font-bold text-gray-900 mb-3 text-center">
+                                Share & Book
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg py-2.5 hover:bg-gray-50 transition">
+                                    <svg
+                                        className="w-5 h-5 text-blue-600"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                    </svg>
+                                    <span className="text-sm font-medium text-gray-700">
+                                        Share Course
                                     </span>
+                                </button>
+                                <button className="flex items-center justify-center gap-2 bg-green-500 text-white rounded-lg py-2.5 hover:bg-green-600 transition">
+                                    <svg
+                                        className="w-5 h-5"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                    </svg>
+                                    <span className="text-sm font-medium">
+                                        Book Session
+                                    </span>
+                                </button>
+                            </div>
+
+                            {/* Coupon Badge */}
+                            <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3 flex items-center justify-between">
+                                <div>
+                                    {course.price && (
+                                        <>
+                                            <div className="flex items-baseline gap-2">
+                                                <span className="text-2xl font-bold text-gray-900">
+                                                    {course.price} TK
+                                                </span>
+                                                <span className="text-sm text-gray-400 line-through">
+                                                    {Math.round(
+                                                        course.price * 1.6
+                                                    )}
+                                                    TK
+                                                </span>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
+                                <button className="bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-blue-700 transition">
+                                    📋 Coupon
+                                </button>
                             </div>
 
                             {/* Enrollment Button */}
                             {!user ? (
                                 <Link href="/login">
-                                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg">
-                                        ব্যাচে ভর্তি হোন
+                                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 text-base rounded-lg">
+                                        Enroll Now
                                     </Button>
                                 </Link>
                             ) : hasEnrollment ? (
-                                <div className="text-center">
-                                    {enrollmentStatus === "pending" && (
-                                        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                                            <p className="text-yellow-800 font-semibold">
-                                                Enrollment Pending
-                                            </p>
-                                        </div>
-                                    )}
-                                    {enrollmentStatus === "approved" && (
-                                        <Link href="/dashboard/courses">
-                                            <Button className="w-full bg-green-600 hover:bg-green-700">
-                                                Go to My Courses
-                                            </Button>
-                                        </Link>
-                                    )}
-                                    {enrollmentStatus === "rejected" && (
-                                        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                                            <p className="text-red-800 font-semibold">
-                                                Enrollment Rejected
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
+                                enrollmentStatus === "approved" ? (
+                                    <Link href="/dashboard/courses">
+                                        <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 text-base rounded-lg">
+                                            Go to My Courses
+                                        </Button>
+                                    </Link>
+                                ) : (
+                                    <Button
+                                        disabled
+                                        className="w-full bg-gray-400 text-white font-bold py-4 text-base rounded-lg"
+                                    >
+                                        {enrollmentStatus === "pending"
+                                            ? "Enrollment Pending"
+                                            : "Enrollment Rejected"}
+                                    </Button>
+                                )
                             ) : (
                                 <Button
                                     onClick={() =>
                                         setEnrollmentDialogOpen(true)
                                     }
-                                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg"
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 text-base rounded-lg"
                                 >
-                                    ব্যাচে ভর্তি হোন
+                                    Enroll Now
                                 </Button>
-                            )}
-
-                            {/* Batch Info */}
-                            {course.batchName && (
-                                <div className="mt-6 pt-6 border-t">
-                                    <div className="space-y-3 text-sm">
-                                        <div>
-                                            <p className="text-gray-600 mb-1">
-                                                ব্যাচ শুরু
-                                            </p>
-                                            <p className="font-semibold text-gray-900">
-                                                {course.batchName}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-gray-600 mb-1">
-                                                লাইভ ক্লাস
-                                            </p>
-                                            <p className="font-semibold text-gray-900">
-                                                রাত ৯:০০- ১০:৩০ (বৃহ,রবি)
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
                             )}
                         </div>
                     </div>
