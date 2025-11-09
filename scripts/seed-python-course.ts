@@ -7,9 +7,8 @@ export const pythonCourse = {
     title: "Python",
     description: "This is the test course",
     thumbnail: "https://img-c.udemycdn.com/course/750x422/2314160_8d61_6.jpg",
-};
-
-// Function to seed the course
+    price: 1500,
+}; // Function to seed the course
 async function seedCourse() {
     try {
         console.log("🌱 Seeding Python course to database...");

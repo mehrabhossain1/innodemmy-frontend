@@ -19,36 +19,46 @@ export interface Course {
     title: string;
     description: string;
     thumbnail?: string;
+    price?: number; // Course price
+    enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;
 }
 
+// Enrollment payment method types
+export type PaymentMethod = "bkash" | "nagad";
+
+// Enrollment status types
+export type EnrollmentStatus = "pending" | "approved" | "rejected";
+
+// Main Enrollment model
 export interface Enrollment {
     _id?: string;
-    userId: string;
-    courseId: string;
-    status: "pending" | "approved" | "rejected";
-    paymentProof?: string;
-    paymentAmount: number;
-    paymentMethod: string;
-    transactionId?: string;
-    adminNotes?: string;
-    enrolledAt?: Date;
-    approvedAt?: Date;
-    approvedBy?: string;
-    createdAt: Date;
+    userId: string; // Reference to User
+    courseId: string; // Reference to Course
+    status: EnrollmentStatus;
+    paymentMethod: PaymentMethod;
+    transactionId: string;
+    amount: number; // Amount paid
+    adminNotes?: string; // Admin can add notes when approving/rejecting
+    approvedBy?: string; // Admin user ID who approved
+    approvedAt?: Date; // When it was approved
+    rejectedAt?: Date; // When it was rejected
+    createdAt: Date; // When enrollment was requested
     updatedAt: Date;
 }
 
-export interface EnrollmentRequest {
-    _id?: string;
-    userId: string;
-    courseId: string;
-    paymentProof: string;
-    paymentAmount: number;
-    paymentMethod: string;
-    transactionId?: string;
-    status: "pending" | "approved" | "rejected";
-    createdAt: Date;
-    updatedAt: Date;
+// Extended Enrollment with populated user and course data
+export interface EnrollmentWithDetails extends Enrollment {
+    user?: {
+        _id: string;
+        name: string;
+        email: string;
+    };
+    course?: {
+        _id: string;
+        title: string;
+        description: string;
+        thumbnail?: string;
+    };
 }

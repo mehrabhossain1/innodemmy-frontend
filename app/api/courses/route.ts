@@ -25,6 +25,7 @@ export async function POST(request: Request) {
             title: body.title,
             description: body.description,
             thumbnail: body.thumbnail,
+            price: body.price,
             createdAt: new Date(),
             updatedAt: new Date(),
         });
