@@ -41,6 +41,7 @@ export interface Course {
     idealFor?: string[]; // Who this course is ideal for (array of strings)
     faq?: FAQ[]; // Frequently Asked Questions
     modules?: ClassModule[]; // Course modules with topics and exercises
+    projects?: string[]; // List of project names
     enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;

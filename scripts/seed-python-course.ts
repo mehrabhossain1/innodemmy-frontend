@@ -13,7 +13,7 @@ export const pythonCourse = {
     totalClasses: 20,
     totalWeeks: 12,
     totalModules: 8,
-    totalProjects: 5,
+    totalProjects: 10,
     idealFor: [
         "Individuals interested in machine learning who want to build a strong foundation in programming",
         "Students and professionals aspiring to pursue a career in software development or data science",
@@ -28,6 +28,18 @@ export const pythonCourse = {
             question: "Do I need any prior programming knowledge to join?",
             answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
         },
+    ],
+    projects: [
+        "Password generator",
+        "Number guessing game",
+        "Recursive file search",
+        "CSV data cleaner & summarizer",
+        "JSON user profile builder",
+        "File reader with missing file handler",
+        "Bank account system (OOP)",
+        "Tic-Tac-Toe with OOP",
+        "Generator for large file line processing",
+        "News headline scraper",
     ],
     modules: [
         {

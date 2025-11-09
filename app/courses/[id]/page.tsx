@@ -48,6 +48,7 @@ interface Course {
     idealFor?: string[];
     faq?: FAQ[];
     modules?: ClassModule[];
+    projects?: string[];
     createdAt: string;
     updatedAt: string;
 }
@@ -647,13 +648,34 @@ export default function CoursePage({ params }: CoursePageProps) {
                     <h2 className="text-3xl font-bold text-gray-900 mb-8">
                         যেসকল রিয়েল লাইফ প্রোজেক্ট করানো হবে
                     </h2>
-                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-lg text-center">
-                        <Award className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
-                        <p className="text-gray-700 text-lg">
-                            {course.totalProjects} টি ইন্ডাস্ট্রি স্ট্যান্ডার্ড
-                            প্রজেক্ট করবেন এই কোর্সে
-                        </p>
-                    </div>
+                    {course.projects && course.projects.length > 0 ? (
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {course.projects.map((project, index) => (
+                                <div
+                                    key={index}
+                                    className="flex items-start gap-3 bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-4"
+                                >
+                                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                                        {index + 1}
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-bold text-gray-900">
+                                            {project}
+                                        </h3>
+                                    </div>
+                                    <Award className="w-6 h-6 text-indigo-600 flex-shrink-0" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-lg text-center">
+                            <Award className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
+                            <p className="text-gray-700 text-lg">
+                                {course.totalProjects} টি ইন্ডাস্ট্রি
+                                স্ট্যান্ডার্ড প্রজেক্ট করবেন এই কোর্সে
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
 
