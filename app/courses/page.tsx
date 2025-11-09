@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -38,30 +38,6 @@ interface Course {
     instructor: string;
     category: string;
     difficulty: string;
-    price: number;
-}
-
-interface ApiModule {
-    lessons?: unknown[];
-}
-
-interface ApiCourse {
-    _id?: string;
-    id?: string;
-    thumbnail?: string;
-    batchName?: string;
-    rating?: number;
-    totalReviews?: number;
-    title: string;
-    isLive?: boolean;
-    totalJoined?: number;
-    modules?: ApiModule[];
-    totalProjects?: number;
-    projects?: unknown[];
-    totalAssignments?: number;
-    instructor: string;
-    category: string;
-    level?: string;
     price: number;
 }
 
@@ -294,62 +270,8 @@ export default function AllCoursesPage() {
     const [selectedDifficulty, setSelectedDifficulty] = useState("All");
     const [selectedType, setSelectedType] = useState("All");
     const [sortBy, setSortBy] = useState("popular");
-    const [allCourses, setAllCourses] = useState<Course[]>(fallbackCourses);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                const response = await fetch("/api/courses");
-                if (response.ok) {
-                    const data = await response.json();
-                    // Map API response to Course interface
-                    const mappedCourses: Course[] = data.courses.map(
-                        (course: ApiCourse) => ({
-                            id: course._id || course.id || "",
-                            image:
-                                course.thumbnail ||
-                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                            batchName: course.batchName || "Batch 1",
-                            rating: course.rating || 4.5,
-                            totalReviews: course.totalReviews || 0,
-                            title: course.title,
-                            isLive: course.isLive ?? false,
-                            totalJoined: course.totalJoined || 0,
-                            totalLessons:
-                                course.modules?.reduce(
-                                    (total: number, module: ApiModule) =>
-                                        total + (module.lessons?.length || 0),
-                                    0
-                                ) || 0,
-                            totalProjects:
-                                course.totalProjects ||
-                                course.projects?.length ||
-                                0,
-                            totalAssignments: course.totalAssignments || 0,
-                            instructor: course.instructor,
-                            category: course.category,
-                            difficulty: course.level || "Beginner",
-                            price: course.price,
-                        })
-                    );
-                    setAllCourses(mappedCourses);
-                } else {
-                    console.error(
-                        "Failed to fetch courses, using fallback data"
-                    );
-                    setAllCourses(fallbackCourses);
-                }
-            } catch (error) {
-                console.error("Error fetching courses:", error);
-                setAllCourses(fallbackCourses);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCourses();
-    }, []);
+    const [allCourses] = useState<Course[]>(fallbackCourses);
+    const [loading] = useState(false);
 
     const filteredAndSortedCourses = useMemo(() => {
         const filtered = allCourses.filter((course) => {

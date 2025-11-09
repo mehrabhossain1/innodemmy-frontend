@@ -9,7 +9,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
-import { use, useState, useEffect } from "react";
+import { use, useState } from "react";
 import Image from "next/image";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { CourseModuleEditor } from "@/components/CourseModuleEditor";
@@ -225,25 +225,44 @@ const defaultProjects: string[] = [
 
 export default function CoursePage({ params }: CoursePageProps) {
     const { id } = use(params);
-    const [course, setCourse] = useState<Course | null>(null);
-    const [loading, setLoading] = useState(true);
     const { user } = useAuth();
     const [isEditingModules, setIsEditingModules] = useState(false);
     const [isEditingProjects, setIsEditingProjects] = useState(false);
 
-    const [courseModules, setCourseModules] = useState<CourseModuleData[]>(() => {
-        if (typeof window !== "undefined") {
-            const saved = localStorage.getItem(`courseModules-${id}`);
-            if (saved) {
-                try {
-                    return JSON.parse(saved);
-                } catch (e) {
-                    console.error("Failed to parse saved modules:", e);
+    // Hardcoded course data - you can customize this later
+    const course: Course = {
+        _id: id,
+        title: "Complete Python Programming Bootcamp - Beginner to Advanced",
+        description:
+            "Master Python programming from basics to advanced concepts with hands-on projects",
+        price: 199,
+        instructor: "Dr. Sarah Johnson",
+        duration: "4 weeks",
+        level: "Beginner",
+        category: "Development",
+        thumbnail:
+            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        modules: [],
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+    };
+
+    const [courseModules, setCourseModules] = useState<CourseModuleData[]>(
+        () => {
+            if (typeof window !== "undefined") {
+                const saved = localStorage.getItem(`courseModules-${id}`);
+                if (saved) {
+                    try {
+                        return JSON.parse(saved);
+                    } catch (e) {
+                        console.error("Failed to parse saved modules:", e);
+                    }
                 }
             }
+            return defaultCourseModules;
         }
-        return defaultCourseModules;
-    });
+    );
 
     const [projects, setProjects] = useState<string[]>(() => {
         if (typeof window !== "undefined") {
@@ -259,63 +278,25 @@ export default function CoursePage({ params }: CoursePageProps) {
         return defaultProjects;
     });
 
-    useEffect(() => {
-        const fetchCourse = async () => {
-            try {
-                const response = await fetch(`/api/courses/${id}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setCourse(data.course);
-                } else {
-                    setCourse(null);
-                }
-            } catch (error) {
-                console.error("Failed to fetch course:", error);
-                setCourse(null);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCourse();
-    }, [id]);
-
     const handleSaveModules = (updatedModules: CourseModuleData[]) => {
         setCourseModules(updatedModules);
-        localStorage.setItem(`courseModules-${id}`, JSON.stringify(updatedModules));
+        localStorage.setItem(
+            `courseModules-${id}`,
+            JSON.stringify(updatedModules)
+        );
         setIsEditingModules(false);
     };
 
     const handleSaveProjects = (updatedProjects: string[]) => {
         setProjects(updatedProjects);
-        localStorage.setItem(`courseProjects-${id}`, JSON.stringify(updatedProjects));
+        localStorage.setItem(
+            `courseProjects-${id}`,
+            JSON.stringify(updatedProjects)
+        );
         setIsEditingProjects(false);
     };
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-background">
-                <div className="text-lg">Loading...</div>
-            </div>
-        );
-    }
-
-    if (!course) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-background">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-4">
-                        Course Not Found
-                    </h1>
-                    <Link href="/courses">
-                        <Button>Back to Courses</Button>
-                    </Link>
-                </div>
-            </div>
-        );
-    }
-
-    // Sample data - these would come from the API
+    // Sample data
     const totalLessons =
         course.modules?.reduce(
             (total, module) => total + module.lessons.length,
@@ -480,7 +461,9 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => setIsEditingModules(true)}
+                                        onClick={() =>
+                                            setIsEditingModules(true)
+                                        }
                                         className="flex items-center gap-2"
                                     >
                                         <Edit className="w-4 h-4" />
@@ -839,7 +822,9 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => setIsEditingProjects(true)}
+                                        onClick={() =>
+                                            setIsEditingProjects(true)
+                                        }
                                         className="flex items-center gap-2"
                                     >
                                         <Edit className="w-4 h-4" />
@@ -849,7 +834,10 @@ export default function CoursePage({ params }: CoursePageProps) {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {projects.map((project, index) => (
-                                    <div key={index} className="flex items-start gap-3">
+                                    <div
+                                        key={index}
+                                        className="flex items-start gap-3"
+                                    >
                                         <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0 mt-0.5" />
                                         <div>
                                             <p className="text-foreground font-medium">
