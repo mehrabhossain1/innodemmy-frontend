@@ -1,14 +1,32 @@
 "use client";
 
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, Share2, BookmarkPlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Blog } from "@/lib/models";
+import { HtmlContent } from "@/components/ui/html-content";
 
-// This would typically come from your database or API
-const getBlogData = (id: string) => {
+// Fetch blog from API
+const getBlogData = async (id: string): Promise<Blog | null> => {
+    try {
+        const response = await fetch(`/api/blogs/${id}`);
+        const data = await response.json();
+
+        if (data.success) {
+            return data.blog;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching blog:", error);
+        return null;
+    }
+};
+
+// Old hardcoded function for reference (to be removed)
+const getBlogDataOld = (id: string) => {
     const blogs = {
         "future-of-web-development-2024": {
             id: "future-of-web-development-2024",
@@ -111,8 +129,33 @@ interface BlogPageProps {
 export default function BlogDetailPage({ params }: BlogPageProps) {
     // Unwrap params using React.use
     const { id } = use(params);
+    const [blog, setBlog] = useState<Blog | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    const blog = getBlogData(id);
+    useEffect(() => {
+        async function loadBlog() {
+            const blogData = await getBlogData(id);
+            setBlog(blogData);
+            setLoading(false);
+        }
+        loadBlog();
+    }, [id]);
+
+    const formatDate = (dateString: string | Date) => {
+        return new Date(dateString).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600"></div>
+            </div>
+        );
+    }
 
     if (!blog) {
         return (
@@ -128,14 +171,6 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
             </div>
         );
     }
-
-    const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-    };
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -157,17 +192,17 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                     {/* Article Header */}
                     <header className="mb-8">
                         <div className="flex items-center space-x-3 mb-4">
-                            <Badge variant="secondary">{blog.category}</Badge>
+                            <Badge variant="secondary">{blog.category || "Uncategorized"}</Badge>
                             <div className="flex items-center space-x-4 text-sm text-gray-500">
                                 <div className="flex items-center space-x-1">
                                     <Calendar className="w-4 h-4" />
                                     <span>
-                                        {formatDate(blog.publishedDate)}
+                                        {formatDate(blog.date)}
                                     </span>
                                 </div>
                                 <div className="flex items-center space-x-1">
                                     <Clock className="w-4 h-4" />
-                                    <span>{blog.readTime} read</span>
+                                    <span>{blog.minRead} min read</span>
                                 </div>
                             </div>
                         </div>
@@ -176,27 +211,19 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                             {blog.title}
                         </h1>
 
-                        <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                            {blog.description}
-                        </p>
-
                         {/* Author and Actions */}
                         <div className="flex items-center justify-between py-4 border-t border-b border-gray-200">
                             <div className="flex items-center space-x-4">
-                                <Image
-                                    src={blog.authorImage || "/placeholder.svg"}
-                                    alt={blog.author}
-                                    width={48}
-                                    height={48}
-                                    className="w-12 h-12 rounded-full object-cover"
-                                />
+                                <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                                    {blog.author?.[0]?.toUpperCase() || "I"}
+                                </div>
                                 <div>
                                     <p className="font-semibold text-gray-900">
-                                        {blog.author}
+                                        {blog.author || "Innodemy Team"}
                                     </p>
                                     <p className="text-sm text-gray-600">
                                         Published{" "}
-                                        {formatDate(blog.publishedDate)}
+                                        {formatDate(blog.date)}
                                     </p>
                                 </div>
                             </div>
@@ -215,64 +242,57 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                     </header>
 
                     {/* Featured Image */}
-                    <div className="mb-8">
-                        <Image
-                            src={blog.image || "/placeholder.svg"}
-                            alt={blog.title}
-                            width={800}
-                            height={400}
-                            className="w-full h-64 sm:h-96 object-cover rounded-xl shadow-lg"
-                        />
-                    </div>
+                    {blog.thumbnail && (
+                        <div className="mb-8">
+                            <Image
+                                src={blog.thumbnail}
+                                alt={blog.title}
+                                width={800}
+                                height={400}
+                                className="w-full h-64 sm:h-96 object-cover rounded-xl shadow-lg"
+                            />
+                        </div>
+                    )}
 
                     {/* Article Content */}
-                    <div className="prose prose-lg max-w-none mb-8">
-                        <div
-                            dangerouslySetInnerHTML={{ __html: blog.content }}
-                        />
-                    </div>
+                    <HtmlContent
+                        html={blog.content}
+                        className="prose prose-lg max-w-none mb-8"
+                    />
 
                     {/* Tags */}
-                    <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                            Tags
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                            {blog.tags.map((tag, index) => (
-                                <Badge
-                                    key={index}
-                                    variant="outline"
-                                    className="text-sm"
-                                >
-                                    {tag}
-                                </Badge>
-                            ))}
+                    {blog.tags && blog.tags.length > 0 && (
+                        <div className="mb-8">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                                Tags
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                                {blog.tags.map((tag, index) => (
+                                    <Badge
+                                        key={index}
+                                        variant="outline"
+                                        className="text-sm"
+                                    >
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* Author Bio */}
                     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                         <div className="flex items-start space-x-4">
-                            <Image
-                                src={blog.authorImage || "/placeholder.svg"}
-                                alt={blog.author}
-                                width={80}
-                                height={80}
-                                className="w-20 h-20 rounded-full object-cover"
-                            />
+                            <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-3xl flex-shrink-0">
+                                {blog.author?.[0]?.toUpperCase() || "I"}
+                            </div>
                             <div className="flex-1">
                                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                    {blog.author}
+                                    {blog.author || "Innodemy Team"}
                                 </h3>
                                 <p className="text-gray-600 mb-3">
-                                    Senior developer and instructor with over 8
-                                    years of experience in web development.
-                                    Passionate about sharing knowledge and
-                                    helping others grow in their tech careers.
+                                    Dedicated to providing quality educational content and helping students achieve their learning goals.
                                 </p>
-                                <Button variant="outline" size="sm">
-                                    View Profile
-                                </Button>
                             </div>
                         </div>
                     </div>

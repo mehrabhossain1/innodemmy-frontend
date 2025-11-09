@@ -84,3 +84,19 @@ export interface EnrollmentWithDetails extends Enrollment {
         thumbnail?: string;
     };
 }
+
+// Blog model
+export interface Blog {
+    _id?: string;
+    title: string; // Blog post title
+    content: string; // Blog post content (HTML from rich text editor)
+    date: Date; // Publication date
+    minRead: number; // Estimated reading time in minutes
+    author?: string; // Optional author name
+    thumbnail?: string; // Optional blog thumbnail image
+    category?: string; // Optional blog category
+    tags?: string[]; // Optional tags for the blog
+    published?: boolean; // Whether the blog is published or draft
+    createdAt: Date;
+    updatedAt: Date;
+}

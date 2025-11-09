@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Blog } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -27,106 +28,6 @@ import {
 
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
-
-const allBlogs = [
-    {
-        id: "future-of-web-development-2024",
-        title: "The Future of Web Development: Trends to Watch in 2024",
-        description:
-            "Explore the latest trends shaping web development, from AI integration to progressive web apps. Learn how these technologies will impact developers and businesses in the coming year. Discover the tools and frameworks that are gaining momentum and how to prepare for the future of web development.",
-        publishedDate: "2024-01-15",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Technology",
-        author: "Sarah Johnson",
-        readTime: "5 min",
-    },
-    {
-        id: "mastering-react-hooks-guide",
-        title: "Mastering React Hooks: A Complete Developer's Guide",
-        description:
-            "Deep dive into React Hooks and learn how to build more efficient and maintainable React applications. This comprehensive guide covers useState, useEffect, custom hooks, and advanced patterns. Perfect for developers looking to level up their React skills and write cleaner code.",
-        publishedDate: "2024-01-12",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Development",
-        author: "Alex Thompson",
-        readTime: "8 min",
-    },
-    {
-        id: "ui-ux-design-principles-2024",
-        title: "Essential UI/UX Design Principles Every Designer Should Know",
-        description:
-            "Learn the fundamental principles of user interface and user experience design that create exceptional digital products. From color theory to user psychology, this guide covers everything you need to know to design interfaces that users love and businesses value.",
-        publishedDate: "2024-01-10",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Design",
-        author: "Emma Rodriguez",
-        readTime: "6 min",
-    },
-    {
-        id: "machine-learning-career-guide",
-        title: "Breaking into Machine Learning: A Career Transition Guide",
-        description:
-            "Discover how to successfully transition into a machine learning career, regardless of your current background. This comprehensive guide covers the essential skills, learning path, portfolio projects, and job search strategies to land your first ML role in today's competitive market.",
-        publishedDate: "2024-01-08",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Career",
-        author: "Dr. Michael Chen",
-        readTime: "10 min",
-    },
-    {
-        id: "javascript-performance-optimization",
-        title: "JavaScript Performance Optimization: Best Practices and Techniques",
-        description:
-            "Learn how to optimize JavaScript performance for better user experience and faster web applications. This guide covers code splitting, lazy loading, memory management, and modern optimization techniques that every developer should know.",
-        publishedDate: "2024-01-05",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Development",
-        author: "Kevin Zhang",
-        readTime: "7 min",
-    },
-    {
-        id: "remote-work-productivity-tips",
-        title: "Remote Work Productivity: Tips for Tech Professionals",
-        description:
-            "Maximize your productivity while working remotely with proven strategies and tools. From setting up the perfect home office to managing time effectively, this guide helps tech professionals thrive in remote work environments.",
-        publishedDate: "2024-01-03",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Career",
-        author: "Lisa Chen",
-        readTime: "6 min",
-    },
-    {
-        id: "css-grid-flexbox-mastery",
-        title: "CSS Grid vs Flexbox: When to Use Each Layout Method",
-        description:
-            "Master modern CSS layout techniques with this comprehensive comparison of CSS Grid and Flexbox. Learn when to use each method, their strengths and limitations, and practical examples to improve your web design skills.",
-        publishedDate: "2024-01-01",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Development",
-        author: "Maria Garcia",
-        readTime: "9 min",
-    },
-    {
-        id: "data-science-tools-2024",
-        title: "Top Data Science Tools and Libraries to Learn in 2024",
-        description:
-            "Stay ahead in data science with the latest tools and libraries. From Python frameworks to visualization tools, discover what's trending in the data science community and how to incorporate these tools into your workflow.",
-        publishedDate: "2023-12-28",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        category: "Data Science",
-        author: "Dr. Robert Kim",
-        readTime: "8 min",
-    },
-];
-
-const categories = [
-    "All",
-    "Technology",
-    "Development",
-    "Design",
-    "Career",
-    "Data Science",
-];
 
 // Animation variants
 const fadeInUp = {
@@ -162,15 +63,47 @@ export default function BlogsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [sortBy, setSortBy] = useState("newest");
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [categories, setCategories] = useState<string[]>(["All"]);
+
+    // Fetch blogs from API
+    useEffect(() => {
+        async function fetchBlogs() {
+            try {
+                const response = await fetch("/api/blogs");
+                const data = await response.json();
+
+                if (data.success) {
+                    setBlogs(data.blogs);
+
+                    // Extract unique categories
+                    const uniqueCategories = new Set<string>(["All"]);
+                    data.blogs.forEach((blog: Blog) => {
+                        if (blog.category) {
+                            uniqueCategories.add(blog.category);
+                        }
+                    });
+                    setCategories(Array.from(uniqueCategories));
+                }
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchBlogs();
+    }, []);
 
     const filteredAndSortedBlogs = useMemo(() => {
-        const filtered = allBlogs.filter((blog) => {
+        const filtered = blogs.filter((blog) => {
             const matchesSearch =
                 blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                blog.description
+                blog.content
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
-                blog.author.toLowerCase().includes(searchTerm.toLowerCase());
+                (blog.author && blog.author.toLowerCase().includes(searchTerm.toLowerCase()));
             const matchesCategory =
                 selectedCategory === "All" ||
                 blog.category === selectedCategory;
@@ -183,21 +116,21 @@ export default function BlogsPage() {
             switch (sortBy) {
                 case "oldest":
                     return (
-                        new Date(a.publishedDate).getTime() -
-                        new Date(b.publishedDate).getTime()
+                        new Date(a.date).getTime() -
+                        new Date(b.date).getTime()
                     );
                 case "title":
                     return a.title.localeCompare(b.title);
                 default: // newest
                     return (
-                        new Date(b.publishedDate).getTime() -
-                        new Date(a.publishedDate).getTime()
+                        new Date(b.date).getTime() -
+                        new Date(a.date).getTime()
                     );
             }
         });
 
         return filtered;
-    }, [searchTerm, selectedCategory, sortBy]);
+    }, [blogs, searchTerm, selectedCategory, sortBy]);
 
     return (
         <div className="min-h-screen">
@@ -383,13 +316,17 @@ export default function BlogsPage() {
             </motion.section>
 
             {/* Blog Grid Section */}
-            <motion.section 
+            <motion.section
                 className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-300 dark:bg-slate-700"
                 {...fadeInUp}
                 viewport={{ once: true }}
             >
                 <div className="max-w-7xl mx-auto">
-                    {filteredAndSortedBlogs.length > 0 ? (
+                    {loading ? (
+                        <div className="flex justify-center items-center py-16">
+                            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600"></div>
+                        </div>
+                    ) : filteredAndSortedBlogs.length > 0 ? (
                         <motion.div
                             variants={staggerContainer}
                             initial="initial"
@@ -399,19 +336,19 @@ export default function BlogsPage() {
                         >
                             {filteredAndSortedBlogs.map((blog) => (
                                 <motion.div
-                                    key={blog.id}
+                                    key={blog._id}
                                     variants={cardHover}
                                     className="group"
                                 >
                                     <BlogCard
-                                        id={blog.id}
+                                        id={blog._id!}
                                         title={blog.title}
-                                        description={blog.description}
-                                        publishedDate={blog.publishedDate}
-                                        image={blog.image}
-                                        category={blog.category}
-                                        author={blog.author}
-                                        readTime={blog.readTime}
+                                        description={blog.content.substring(0, 200).replace(/<[^>]*>/g, '') + '...'}
+                                        publishedDate={new Date(blog.date).toISOString().split('T')[0]}
+                                        image={blog.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}
+                                        category={blog.category || "Uncategorized"}
+                                        author={blog.author || "Innodemy Team"}
+                                        readTime={`${blog.minRead} min`}
                                     />
                                 </motion.div>
                             ))}

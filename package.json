@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "node scripts/seed-data.js",
+    "seed:blogs": "tsx scripts/seed-blogs.ts",
     "migrate:users": "tsx scripts/migrate-users.ts"
   },
   "dependencies": {
