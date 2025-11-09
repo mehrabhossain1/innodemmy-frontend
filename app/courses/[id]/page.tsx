@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
     ArrowLeft,
     Star,
-    Clock,
     Calendar,
     Video,
     Users,
@@ -118,6 +117,22 @@ export default function CoursePage({ params }: CoursePageProps) {
                 ? prev.filter((i) => i !== index)
                 : [...prev, index]
         );
+    };
+
+    const scrollToSection = (sectionId: string) => {
+        setActiveTab(sectionId);
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const offset = 100; // Offset for sticky header
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+                elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+        }
     };
 
     if (loading) {
@@ -375,40 +390,38 @@ export default function CoursePage({ params }: CoursePageProps) {
                 </div>
 
                 {/* Navigation Tabs */}
-                <div className="mt-12 border-b">
+                <div className="mt-12 border-b sticky top-0 bg-white z-40">
                     <div className="flex gap-8 overflow-x-auto">
                         {[
-                            "curriculum",
-                            "projects",
-                            "features",
-                            "idealFor",
-                            "faq",
+                            { id: "curriculum", label: "কারিকুলাম" },
+                            { id: "projects", label: "প্রজেক্টসমুহ" },
+                            { id: "features", label: "কোর্সে আপনি পাচ্ছেন" },
+                            { id: "idealFor", label: "কোর্সটি যাদের জন্য" },
+                            { id: "faq", label: "FAQ" },
                         ].map((tab) => (
                             <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
+                                key={tab.id}
+                                onClick={() => scrollToSection(tab.id)}
                                 className={`pb-4 px-2 font-semibold whitespace-nowrap transition-colors ${
-                                    activeTab === tab
+                                    activeTab === tab.id
                                         ? "text-indigo-600 border-b-2 border-indigo-600"
                                         : "text-gray-600 hover:text-gray-900"
                                 }`}
                             >
-                                {tab === "curriculum" && "কারিকুলাম"}
-                                {tab === "projects" && "প্রজেক্টসমুহ"}
-                                {tab === "features" && "কোর্সে আপনি পাচ্ছেন"}
-                                {tab === "idealFor" && "কোর্সটি যাদের জন্য"}
-                                {tab === "faq" && "FAQ"}
+                                {tab.label}
                             </button>
                         ))}
                     </div>
                 </div>
 
                 {/* Curriculum Section */}
-                {activeTab === "curriculum" &&
-                    course.modules &&
-                    course.modules.length > 0 && (
-                        <div className="mt-12">
-                            <div className="mb-8">
+                {course.modules && course.modules.length > 0 && (
+                    <div id="curriculum" className="mt-12 scroll-mt-24">
+                        <div className="mb-8">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                                কারিকুলাম
+                            </h2>
+                            <div className="flex gap-6 text-gray-600">
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                                     কারিকুলাম
                                 </h2>
@@ -526,89 +539,86 @@ export default function CoursePage({ params }: CoursePageProps) {
                                 ))}
                             </div>
                         </div>
-                    )}
+                    </div>
+                )}
 
                 {/* Course Features */}
-                {activeTab === "features" && (
-                    <div className="mt-12">
+                <div id="features" className="mt-12 scroll-mt-24">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                        কোর্সে আপনি পাচ্ছেন
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            {
+                                icon: Calendar,
+                                title: `${course.totalWeeks} মাসের গাইডেড জার্নি`,
+                                desc: "একদম বিগিনার ফ্রেন্ডলি ওয়েতে আপডেটেড কারিকুলাম",
+                            },
+                            {
+                                icon: Video,
+                                title: `${course.totalClasses}টি লাইভ ক্লাস`,
+                                desc: "ইন্ডাস্ট্রি এক্সপার্টের কাছে শিখুন লাইভে",
+                            },
+                            {
+                                icon: Award,
+                                title: `${course.totalProjects} টি প্রজেক্ট`,
+                                desc: "ইন্ডাস্ট্রি স্ট্যান্ডার্ড প্রজেক্ট এড করুন সিভিতে",
+                            },
+                            {
+                                icon: Users,
+                                title: "প্রতিদিন ২ বেলা সাপোর্ট ক্লাস",
+                                desc: "প্র্যাক্টিস করতে গিয়ে প্রবলেমে পড়লে লাইভ সাপোর্ট নিন",
+                            },
+                            {
+                                icon: Video,
+                                title: "লাইফটাইম এক্সেস",
+                                desc: "প্রিরেকর্ডেড ভিডিও, রিসোর্স এবং ক্লাস রেকর্ডিং এ থাকবে লাইফ টাইম এক্সেস",
+                            },
+                            {
+                                icon: Award,
+                                title: "সার্টিফিকেট",
+                                desc: "কোর্স শেষ করে পাবেন শেয়ারেবল কোর্স কমপ্লিশন সার্টিফিকেট",
+                            },
+                        ].map((feature, index) => (
+                            <div
+                                key={index}
+                                className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg"
+                            >
+                                <feature.icon className="w-12 h-12 text-indigo-600 mb-4" />
+                                <h3 className="font-bold text-gray-900 mb-2">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-gray-700 text-sm">
+                                    {feature.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Ideal For Section */}
+                {course.idealFor && course.idealFor.length > 0 && (
+                    <div id="idealFor" className="mt-12 scroll-mt-24">
                         <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                            কোর্সে আপনি পাচ্ছেন
+                            কোর্সটি আপনারই জন্য
                         </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[
-                                {
-                                    icon: Calendar,
-                                    title: `${course.totalWeeks} মাসের গাইডেড জার্নি`,
-                                    desc: "একদম বিগিনার ফ্রেন্ডলি ওয়েতে আপডেটেড কারিকুলাম",
-                                },
-                                {
-                                    icon: Video,
-                                    title: `${course.totalClasses}টি লাইভ ক্লাস`,
-                                    desc: "ইন্ডাস্ট্রি এক্সপার্টের কাছে শিখুন লাইভে",
-                                },
-                                {
-                                    icon: Award,
-                                    title: `${course.totalProjects} টি প্রজেক্ট`,
-                                    desc: "ইন্ডাস্ট্রি স্ট্যান্ডার্ড প্রজেক্ট এড করুন সিভিতে",
-                                },
-                                {
-                                    icon: Users,
-                                    title: "প্রতিদিন ২ বেলা সাপোর্ট ক্লাস",
-                                    desc: "প্র্যাক্টিস করতে গিয়ে প্রবলেমে পড়লে লাইভ সাপোর্ট নিন",
-                                },
-                                {
-                                    icon: Video,
-                                    title: "লাইফটাইম এক্সেস",
-                                    desc: "প্রিরেকর্ডেড ভিডিও, রিসোর্স এবং ক্লাস রেকর্ডিং এ থাকবে লাইফ টাইম এক্সেস",
-                                },
-                                {
-                                    icon: Award,
-                                    title: "সার্টিফিকেট",
-                                    desc: "কোর্স শেষ করে পাবেন শেয়ারেবল কোর্স কমপ্লিশন সার্টিফিকেট",
-                                },
-                            ].map((feature, index) => (
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {course.idealFor.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg"
+                                    className="flex items-start gap-3 bg-white border border-gray-200 rounded-lg p-4"
                                 >
-                                    <feature.icon className="w-12 h-12 text-indigo-600 mb-4" />
-                                    <h3 className="font-bold text-gray-900 mb-2">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="text-gray-700 text-sm">
-                                        {feature.desc}
-                                    </p>
+                                    <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                                    <p className="text-gray-700">{item}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* Ideal For Section */}
-                {activeTab === "idealFor" &&
-                    course.idealFor &&
-                    course.idealFor.length > 0 && (
-                        <div className="mt-12">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                                কোর্সটি আপনারই জন্য
-                            </h2>
-                            <div className="grid md:grid-cols-2 gap-4">
-                                {course.idealFor.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex items-start gap-3 bg-white border border-gray-200 rounded-lg p-4"
-                                    >
-                                        <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                                        <p className="text-gray-700">{item}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
                 {/* FAQ Section */}
-                {activeTab === "faq" && course.faq && course.faq.length > 0 && (
-                    <div className="mt-12">
+                {course.faq && course.faq.length > 0 && (
+                    <div id="faq" className="mt-12 scroll-mt-24">
                         <h2 className="text-3xl font-bold text-gray-900 mb-8">
                             প্রায়ই জিজ্ঞেস করা প্রশ্ন
                         </h2>
@@ -631,20 +641,18 @@ export default function CoursePage({ params }: CoursePageProps) {
                 )}
 
                 {/* Projects Section */}
-                {activeTab === "projects" && (
-                    <div className="mt-12">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                            যেসকল রিয়েল লাইফ প্রোজেক্ট করানো হবে
-                        </h2>
-                        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-lg text-center">
-                            <Award className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
-                            <p className="text-gray-700 text-lg">
-                                {course.totalProjects} টি ইন্ডাস্ট্রি
-                                স্ট্যান্ডার্ড প্রজেক্ট করবেন এই কোর্সে
-                            </p>
-                        </div>
+                <div id="projects" className="mt-12 scroll-mt-24">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                        যেসকল রিয়েল লাইফ প্রোজেক্ট করানো হবে
+                    </h2>
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-lg text-center">
+                        <Award className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
+                        <p className="text-gray-700 text-lg">
+                            {course.totalProjects} টি ইন্ডাস্ট্রি স্ট্যান্ডার্ড
+                            প্রজেক্ট করবেন এই কোর্সে
+                        </p>
                     </div>
-                )}
+                </div>
             </div>
 
             {/* Sticky Bottom Bar */}
