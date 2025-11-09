@@ -25,6 +25,7 @@ export interface Course {
     totalWeeks?: number; // Total duration in weeks
     totalModules?: number; // Total number of modules
     totalProjects?: number; // Total number of projects
+    idealFor?: string[]; // Who this course is ideal for (array of strings)
     enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;

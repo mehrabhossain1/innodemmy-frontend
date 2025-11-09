@@ -31,6 +31,7 @@ export async function POST(request: Request) {
             totalWeeks: body.totalWeeks,
             totalModules: body.totalModules,
             totalProjects: body.totalProjects,
+            idealFor: body.idealFor,
             createdAt: new Date(),
             updatedAt: new Date(),
         });

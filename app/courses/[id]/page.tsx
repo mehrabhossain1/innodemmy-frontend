@@ -22,6 +22,7 @@ interface Course {
     totalWeeks?: number;
     totalModules?: number;
     totalProjects?: number;
+    idealFor?: string[];
     createdAt: string;
     updatedAt: string;
 }
@@ -229,6 +230,30 @@ export default function CoursePage({ params }: CoursePageProps) {
                             </div>
                         </div>
                     </div>
+
+                    {/* This Course is Ideal For */}
+                    {course.idealFor && course.idealFor.length > 0 && (
+                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
+                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                                This Course is Ideal For:
+                            </h2>
+                            <ul className="space-y-4">
+                                {course.idealFor.map((item, index) => (
+                                    <li
+                                        key={index}
+                                        className="flex items-start text-gray-700"
+                                    >
+                                        <span className="text-indigo-600 font-bold mr-3 mt-1">
+                                            {index + 1}.
+                                        </span>
+                                        <span className="text-lg leading-relaxed">
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
 
                     {/* Enrollment Button/Status */}
                     <div className="mt-8 flex justify-center">

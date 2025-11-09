@@ -13,6 +13,11 @@ export const pythonCourse = {
     totalWeeks: 12,
     totalModules: 8,
     totalProjects: 5,
+    idealFor: [
+        "Individuals interested in machine learning who want to build a strong foundation in programming",
+        "Students and professionals aspiring to pursue a career in software development or data science",
+        "Anyone looking to enhance their Python programming skills",
+    ],
 }; // Function to seed the course
 async function seedCourse() {
     try {
