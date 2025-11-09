@@ -49,7 +49,7 @@ export default function CoursesSection() {
                         })
                     );
                     // Show only first 3 courses for homepage
-                    setCourses(mappedCourses.slice(0, 3));
+                    setCourses(mappedCourses.slice(0, 6));
                 } else {
                     console.error("Failed to fetch courses");
                 }
