@@ -6,8 +6,10 @@
 export const pythonCourse = {
     title: "Python",
     description: "This is the test course",
+    category: "Programming",
     thumbnail: "https://img-c.udemycdn.com/course/750x422/2314160_8d61_6.jpg",
     price: 1500,
+    totalClasses: 20,
 }; // Function to seed the course
 async function seedCourse() {
     try {

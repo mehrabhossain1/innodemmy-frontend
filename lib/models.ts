@@ -18,8 +18,10 @@ export interface Course {
     _id?: string;
     title: string;
     description: string;
+    category?: string; // Course category
     thumbnail?: string;
     price?: number; // Course price
+    totalClasses?: number; // Total number of classes in the course
     enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;

@@ -24,8 +24,10 @@ export async function POST(request: Request) {
         const course = await createNewCourse({
             title: body.title,
             description: body.description,
+            category: body.category,
             thumbnail: body.thumbnail,
             price: body.price,
+            totalClasses: body.totalClasses,
             createdAt: new Date(),
             updatedAt: new Date(),
         });
