@@ -16,6 +16,12 @@ import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import EnrollmentDialog from "@/components/EnrollmentDialog";
 import { useAuth } from "@/lib/hooks/useAuth";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface CoursePageProps {
     params: Promise<{ id: string }>;
@@ -378,7 +384,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
                     </div>
                 </div>
-
                 {/* Navigation Tabs */}
                 <div className="mt-12 border-b sticky top-0 bg-white z-40">
                     <div className="flex gap-8 overflow-x-auto">
@@ -403,7 +408,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                         ))}
                     </div>
                 </div>
-
                 {/* Curriculum Section */}
                 {course.modules && course.modules.length > 0 && (
                     <div id="curriculum" className="mt-12 scroll-mt-24">
@@ -544,7 +548,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
                     </div>
                 )}
-
                 {/* Course Features */}
                 <div id="features" className="mt-12 scroll-mt-24">
                     <h2 className="text-3xl font-bold text-gray-900 mb-8">
@@ -598,7 +601,6 @@ export default function CoursePage({ params }: CoursePageProps) {
                         ))}
                     </div>
                 </div>
-
                 {/* Ideal For Section */}
                 {course.idealFor && course.idealFor.length > 0 && (
                     <div id="idealFor" className="mt-12 scroll-mt-24">
@@ -618,31 +620,34 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
                     </div>
                 )}
-
                 {/* FAQ Section */}
                 {course.faq && course.faq.length > 0 && (
                     <div id="faq" className="mt-12 scroll-mt-24">
                         <h2 className="text-3xl font-bold text-gray-900 mb-8">
                             প্রায়ই জিজ্ঞেস করা প্রশ্ন
                         </h2>
-                        <div className="space-y-4">
+                        <Accordion
+                            type="single"
+                            collapsible
+                            className="space-y-4"
+                        >
                             {course.faq.map((item, index) => (
-                                <div
+                                <AccordionItem
                                     key={index}
-                                    className="border border-gray-200 rounded-lg p-6 bg-white"
+                                    value={`item-${index}`}
+                                    className="border border-gray-200 rounded-lg bg-white px-6"
                                 >
-                                    <h3 className="font-bold text-gray-900 mb-3">
+                                    <AccordionTrigger className="text-left font-bold text-gray-900 hover:no-underline">
                                         {index + 1}. {item.question}
-                                    </h3>
-                                    <p className="text-gray-700 leading-relaxed">
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-gray-700 leading-relaxed">
                                         {item.answer}
-                                    </p>
-                                </div>
+                                    </AccordionContent>
+                                </AccordionItem>
                             ))}
-                        </div>
+                        </Accordion>
                     </div>
-                )}
-
+                )}{" "}
                 {/* Projects Section */}
                 <div id="projects" className="mt-12 scroll-mt-24">
                     <h2 className="text-3xl font-bold text-gray-900 mb-8">
