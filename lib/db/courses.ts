@@ -56,9 +56,17 @@ export async function updateCourse(
     courseData: Partial<Omit<Course, "_id">>
 ) {
     const collection = await getCoursesCollection();
+
+    // Remove immutable fields if they exist
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { _id, createdAt, ...updateData } = courseData as Record<
+        string,
+        unknown
+    >;
+
     await collection.updateOne(
         { _id: new ObjectId(id) },
-        { $set: { ...courseData, updatedAt: new Date() } }
+        { $set: { ...updateData, updatedAt: new Date() } }
     );
 
     const course = await collection.findOne({ _id: new ObjectId(id) });
