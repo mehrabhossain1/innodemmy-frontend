@@ -16,6 +16,13 @@ interface FAQ {
     answer: string;
 }
 
+interface ClassModule {
+    classNumber: number;
+    moduleTitle: string;
+    topics: string[];
+    exercises: string[];
+}
+
 interface Course {
     _id: string;
     title: string;
@@ -29,6 +36,7 @@ interface Course {
     totalProjects?: number;
     idealFor?: string[];
     faq?: FAQ[];
+    modules?: ClassModule[];
     createdAt: string;
     updatedAt: string;
 }
@@ -258,6 +266,96 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                    )}
+
+                    {/* Course Modules */}
+                    {course.modules && course.modules.length > 0 && (
+                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
+                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                                Modules & Topics Covered
+                            </h2>
+                            <div className="space-y-8">
+                                {course.modules.map((module, index) => (
+                                    <div
+                                        key={index}
+                                        className="border-l-4 border-l-indigo-500 pl-6 pb-6 border-b border-b-gray-200 last:border-b-0"
+                                    >
+                                        <div className="mb-4">
+                                            <span className="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold mb-2">
+                                                Class {module.classNumber}
+                                            </span>
+                                            <h3 className="text-xl font-bold text-gray-900 mt-2">
+                                                {module.moduleTitle}
+                                            </h3>
+                                        </div>
+
+                                        {module.topics &&
+                                            module.topics.length > 0 && (
+                                                <div className="mb-4">
+                                                    <h4 className="text-md font-semibold text-gray-800 mb-3">
+                                                        Topics:
+                                                    </h4>
+                                                    <ul className="space-y-2">
+                                                        {module.topics.map(
+                                                            (
+                                                                topic,
+                                                                topicIndex
+                                                            ) => (
+                                                                <li
+                                                                    key={
+                                                                        topicIndex
+                                                                    }
+                                                                    className="flex items-start text-gray-700"
+                                                                >
+                                                                    <span className="text-indigo-500 mr-2 mt-1">
+                                                                        •
+                                                                    </span>
+                                                                    <span>
+                                                                        {topic}
+                                                                    </span>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            )}
+
+                                        {module.exercises &&
+                                            module.exercises.length > 0 && (
+                                                <div>
+                                                    <h4 className="text-md font-semibold text-gray-800 mb-3">
+                                                        Exercises:
+                                                    </h4>
+                                                    <ul className="space-y-2">
+                                                        {module.exercises.map(
+                                                            (
+                                                                exercise,
+                                                                exerciseIndex
+                                                            ) => (
+                                                                <li
+                                                                    key={
+                                                                        exerciseIndex
+                                                                    }
+                                                                    className="flex items-start text-gray-700"
+                                                                >
+                                                                    <span className="text-green-500 mr-2 mt-1">
+                                                                        ✓
+                                                                    </span>
+                                                                    <span className="font-medium">
+                                                                        {
+                                                                            exercise
+                                                                        }
+                                                                    </span>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
 

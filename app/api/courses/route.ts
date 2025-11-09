@@ -33,6 +33,7 @@ export async function POST(request: Request) {
             totalProjects: body.totalProjects,
             idealFor: body.idealFor,
             faq: body.faq,
+            modules: body.modules,
             createdAt: new Date(),
             updatedAt: new Date(),
         });

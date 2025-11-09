@@ -28,6 +28,42 @@ export const pythonCourse = {
             answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
         },
     ],
+    modules: [
+        {
+            classNumber: 4,
+            moduleTitle: "Module 4: Functions, Recursion & Modules",
+            topics: [
+                "Defining and calling functions",
+                "Parameters, return values, scope",
+                "Default, keyword, variable-length arguments",
+                "Recursion: factorial, Fibonacci, directory scan",
+                "Anonymous functions: lambda",
+                "map(), filter(), reduce()",
+                "Built-in functions: map(), filter(), reduce()",
+                "Writing your own modules and imports",
+            ],
+            exercises: [
+                "Recursive file search",
+                "Word filter with lambda and filter()",
+            ],
+        },
+        {
+            classNumber: 5,
+            moduleTitle: "Module 5: File Handling, CSV & JSON",
+            topics: [
+                "Working with text files",
+                "CSV files using csv module",
+                "JSON: parsing, serialization",
+                "with statement, open(), read(), write()",
+                "File loops and data cleaning",
+                "File system navigation: os, pathlib",
+            ],
+            exercises: [
+                "CSV data cleaner & summarizer",
+                "JSON user profile builder",
+            ],
+        },
+    ],
 }; // Function to seed the course
 async function seedCourse() {
     try {
