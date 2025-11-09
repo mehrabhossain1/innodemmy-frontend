@@ -154,7 +154,7 @@ export default function CoursePage({ params }: CoursePageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white pb-24">
             {/* Back Button */}
             <div className="bg-white border-b">
                 <div className="container mx-auto px-4 py-4">
@@ -605,6 +605,69 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
                     </div>
                 )}
+            </div>
+
+            {/* Sticky Bottom Bar */}
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50">
+                <div className="container mx-auto px-4 py-3">
+                    <div className="flex items-center justify-between gap-4">
+                        {/* Price Section */}
+                        <div className="flex flex-col">
+                            {course.price && (
+                                <>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-2xl font-bold text-gray-900">
+                                            ৳{course.price}
+                                        </span>
+                                        <span className="text-sm text-gray-400 line-through">
+                                            ৳{Math.round(course.price * 1.6)}
+                                        </span>
+                                    </div>
+                                    <span className="text-xs text-green-700 bg-green-100 px-2 py-0.5 rounded inline-block w-fit mt-1">
+                                        প্রোমো অ্যাপ্লাইড
+                                    </span>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Enrollment Button */}
+                        <div className="flex-shrink-0">
+                            {!user ? (
+                                <Link href="/login">
+                                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-6 py-5 text-base whitespace-nowrap">
+                                        ব্যাচে ভর্তি হোন →
+                                    </Button>
+                                </Link>
+                            ) : hasEnrollment ? (
+                                enrollmentStatus === "approved" ? (
+                                    <Link href="/dashboard/courses">
+                                        <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-5 text-base">
+                                            Go to Course
+                                        </Button>
+                                    </Link>
+                                ) : (
+                                    <Button
+                                        disabled
+                                        className="bg-gray-400 text-white font-bold px-6 py-5 text-base"
+                                    >
+                                        {enrollmentStatus === "pending"
+                                            ? "Pending"
+                                            : "Rejected"}
+                                    </Button>
+                                )
+                            ) : (
+                                <Button
+                                    onClick={() =>
+                                        setEnrollmentDialogOpen(true)
+                                    }
+                                    className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-6 py-5 text-base whitespace-nowrap"
+                                >
+                                    ব্যাচে ভর্তি হোন →
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Enrollment Dialog */}
