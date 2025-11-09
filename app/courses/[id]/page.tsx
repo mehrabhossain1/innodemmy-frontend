@@ -28,6 +28,7 @@ interface Course {
     title: string;
     description: string;
     category?: string;
+    batchName?: string;
     thumbnail?: string;
     price?: number;
     totalClasses?: number;
@@ -188,6 +189,12 @@ export default function CoursePage({ params }: CoursePageProps) {
                                         Category:
                                     </span>{" "}
                                     {course.category}
+                                </div>
+                            )}
+                            {course.batchName && (
+                                <div>
+                                    <span className="font-medium">Batch:</span>{" "}
+                                    {course.batchName}
                                 </div>
                             )}
                             {course.price && (

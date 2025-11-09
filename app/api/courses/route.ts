@@ -25,6 +25,7 @@ export async function POST(request: Request) {
             title: body.title,
             description: body.description,
             category: body.category,
+            batchName: body.batchName,
             thumbnail: body.thumbnail,
             price: body.price,
             totalClasses: body.totalClasses,

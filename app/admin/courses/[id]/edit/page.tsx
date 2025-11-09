@@ -9,6 +9,7 @@ interface CourseData {
     title: string;
     description: string;
     category?: string;
+    batchName?: string;
     thumbnail?: string;
     price?: number;
     totalClasses?: number;

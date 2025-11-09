@@ -24,6 +24,7 @@ interface CourseData {
     title: string;
     description: string;
     category?: string;
+    batchName?: string;
     thumbnail?: string;
     price?: number;
     totalClasses?: number;
@@ -47,6 +48,7 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
             title: "",
             description: "",
             category: "",
+            batchName: "",
             thumbnail: "",
             price: 0,
             totalClasses: 0,
@@ -279,6 +281,19 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
                             />
                         </div>
 
+                        <div>
+                            <Label htmlFor="batchName">Batch Name</Label>
+                            <Input
+                                id="batchName"
+                                name="batchName"
+                                value={formData.batchName}
+                                onChange={handleInputChange}
+                                placeholder="e.g., Batch 1"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
                         <div>
                             <Label htmlFor="price">Price (BDT)</Label>
                             <Input

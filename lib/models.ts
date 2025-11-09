@@ -31,6 +31,7 @@ export interface Course {
     title: string;
     description: string;
     category?: string; // Course category
+    batchName?: string; // Batch name for the course
     thumbnail?: string;
     price?: number; // Course price
     totalClasses?: number; // Total number of classes in the course
