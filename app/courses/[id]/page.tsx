@@ -15,8 +15,13 @@ interface Course {
     _id: string;
     title: string;
     description: string;
+    category?: string;
     thumbnail?: string;
     price?: number;
+    totalClasses?: number;
+    totalWeeks?: number;
+    totalModules?: number;
+    totalProjects?: number;
     createdAt: string;
     updatedAt: string;
 }
@@ -162,10 +167,50 @@ export default function CoursePage({ params }: CoursePageProps) {
                             Course Details
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600">
+                            {course.category && (
+                                <div>
+                                    <span className="font-medium">
+                                        Category:
+                                    </span>{" "}
+                                    {course.category}
+                                </div>
+                            )}
                             {course.price && (
                                 <div>
                                     <span className="font-medium">Price:</span>{" "}
                                     {course.price} BDT
+                                </div>
+                            )}
+                            {course.totalWeeks && (
+                                <div>
+                                    <span className="font-medium">
+                                        Duration:
+                                    </span>{" "}
+                                    {course.totalWeeks} Weeks
+                                </div>
+                            )}
+                            {course.totalClasses && (
+                                <div>
+                                    <span className="font-medium">
+                                        Total Classes:
+                                    </span>{" "}
+                                    {course.totalClasses}
+                                </div>
+                            )}
+                            {course.totalModules && (
+                                <div>
+                                    <span className="font-medium">
+                                        Modules:
+                                    </span>{" "}
+                                    {course.totalModules}
+                                </div>
+                            )}
+                            {course.totalProjects && (
+                                <div>
+                                    <span className="font-medium">
+                                        Projects:
+                                    </span>{" "}
+                                    {course.totalProjects}
                                 </div>
                             )}
                             <div>

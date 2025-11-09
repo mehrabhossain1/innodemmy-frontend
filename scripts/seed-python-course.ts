@@ -10,6 +10,9 @@ export const pythonCourse = {
     thumbnail: "https://img-c.udemycdn.com/course/750x422/2314160_8d61_6.jpg",
     price: 1500,
     totalClasses: 20,
+    totalWeeks: 12,
+    totalModules: 8,
+    totalProjects: 5,
 }; // Function to seed the course
 async function seedCourse() {
     try {

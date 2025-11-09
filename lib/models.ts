@@ -22,6 +22,9 @@ export interface Course {
     thumbnail?: string;
     price?: number; // Course price
     totalClasses?: number; // Total number of classes in the course
+    totalWeeks?: number; // Total duration in weeks
+    totalModules?: number; // Total number of modules
+    totalProjects?: number; // Total number of projects
     enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;

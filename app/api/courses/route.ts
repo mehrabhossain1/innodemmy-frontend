@@ -28,6 +28,9 @@ export async function POST(request: Request) {
             thumbnail: body.thumbnail,
             price: body.price,
             totalClasses: body.totalClasses,
+            totalWeeks: body.totalWeeks,
+            totalModules: body.totalModules,
+            totalProjects: body.totalProjects,
             createdAt: new Date(),
             updatedAt: new Date(),
         });
