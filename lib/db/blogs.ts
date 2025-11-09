@@ -110,9 +110,12 @@ export async function updateBlog(id: string, blogData: Partial<Blog>): Promise<B
     const collection = await getBlogsCollection();
     const now = new Date();
 
+    // Remove _id from blogData if it exists (can't update _id)
+    const { _id, ...updateData } = blogData as any;
+
     const result = await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { ...blogData, updatedAt: now } },
+        { $set: { ...updateData, updatedAt: now } },
         { returnDocument: "after" }
     );
 
