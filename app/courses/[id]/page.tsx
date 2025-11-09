@@ -22,6 +22,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HtmlContent } from "@/components/ui/html-content";
 
 interface CoursePageProps {
     params: Promise<{ id: string }>;
@@ -206,9 +207,10 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </h1>
 
                         {/* Description */}
-                        <div className="text-gray-700 text-base leading-relaxed mb-8 space-y-3">
-                            <p>{course.description}</p>
-                        </div>
+                        <HtmlContent
+                            html={course.description}
+                            className="text-gray-700 text-base leading-relaxed mb-8 prose prose-sm max-w-none"
+                        />
 
                         {/* Course Stats Grid */}
                         <div className="grid grid-cols-3 gap-4 mb-8">

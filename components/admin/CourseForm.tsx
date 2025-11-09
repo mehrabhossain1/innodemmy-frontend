@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { Plus, Trash2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -279,13 +280,9 @@ export default function CourseForm({ initialData, onSubmit }: CourseFormProps) {
 
                     <div>
                         <Label htmlFor="description">Description *</Label>
-                        <Textarea
-                            id="description"
-                            name="description"
+                        <RichTextEditor
                             value={formData.description}
-                            onChange={handleInputChange}
-                            required
-                            rows={4}
+                            onChange={(value) => setFormData((prev) => ({ ...prev, description: value }))}
                             placeholder="Brief description of the course"
                         />
                     </div>
