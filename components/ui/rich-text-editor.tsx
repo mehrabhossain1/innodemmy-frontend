@@ -23,7 +23,11 @@ interface RichTextEditorProps {
   placeholder?: string;
 }
 
-const MenuBar = ({ editor }: { editor: any }) => {
+interface MenuBarProps {
+  editor: ReturnType<typeof useEditor>;
+}
+
+const MenuBar = ({ editor }: MenuBarProps) => {
   if (!editor) {
     return null;
   }
@@ -146,6 +150,10 @@ export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorP
       editor.commands.setContent(value || "");
     }
   }, [value, editor]);
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div className="border border-gray-300 rounded-md overflow-hidden bg-white">

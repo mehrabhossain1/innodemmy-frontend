@@ -110,8 +110,11 @@ export async function updateBlog(id: string, blogData: Partial<Blog>): Promise<B
     const collection = await getBlogsCollection();
     const now = new Date();
 
-    // Remove _id from blogData if it exists (can't update _id)
-    const { _id, ...updateData } = blogData as any;
+    // Remove _id and timestamps from blogData if they exist (can't update these via $set)
+    const updateData: Partial<Omit<Blog, '_id' | 'createdAt' | 'updatedAt'>> = { ...blogData };
+    delete (updateData as Record<string, unknown>)['_id'];
+    delete (updateData as Record<string, unknown>)['createdAt'];
+    delete (updateData as Record<string, unknown>)['updatedAt'];
 
     const result = await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },

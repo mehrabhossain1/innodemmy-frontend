@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
     ArrowLeft,
-    Star,
     Calendar,
     Video,
     Users,
