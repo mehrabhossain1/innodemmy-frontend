@@ -11,6 +11,11 @@ interface CoursePageProps {
     params: Promise<{ id: string }>;
 }
 
+interface FAQ {
+    question: string;
+    answer: string;
+}
+
 interface Course {
     _id: string;
     title: string;
@@ -23,6 +28,7 @@ interface Course {
     totalModules?: number;
     totalProjects?: number;
     idealFor?: string[];
+    faq?: FAQ[];
     createdAt: string;
     updatedAt: string;
 }
@@ -252,6 +258,30 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                    )}
+
+                    {/* Frequently Asked Questions */}
+                    {course.faq && course.faq.length > 0 && (
+                        <div className="bg-white rounded-lg p-8 shadow-md mt-8">
+                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                                Frequently Asked Questions (FAQ)
+                            </h2>
+                            <div className="space-y-6">
+                                {course.faq.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0"
+                                    >
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                                            Q{index + 1}: {item.question}
+                                        </h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            {item.answer}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
 

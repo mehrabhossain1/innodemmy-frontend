@@ -14,6 +14,11 @@ export interface User {
     updatedAt: Date;
 }
 
+export interface FAQ {
+    question: string;
+    answer: string;
+}
+
 export interface Course {
     _id?: string;
     title: string;
@@ -26,6 +31,7 @@ export interface Course {
     totalModules?: number; // Total number of modules
     totalProjects?: number; // Total number of projects
     idealFor?: string[]; // Who this course is ideal for (array of strings)
+    faq?: FAQ[]; // Frequently Asked Questions
     enrolledCount?: number; // Total enrolled students
     createdAt: Date;
     updatedAt: Date;

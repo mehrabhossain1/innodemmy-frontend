@@ -18,6 +18,16 @@ export const pythonCourse = {
         "Students and professionals aspiring to pursue a career in software development or data science",
         "Anyone looking to enhance their Python programming skills",
     ],
+    faq: [
+        {
+            question: "Who is this course designed for?",
+            answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
+        },
+        {
+            question: "Do I need any prior programming knowledge to join?",
+            answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
+        },
+    ],
 }; // Function to seed the course
 async function seedCourse() {
     try {
