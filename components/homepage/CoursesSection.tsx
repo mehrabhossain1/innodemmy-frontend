@@ -50,7 +50,7 @@ export default function CoursesSection() {
                         })
                     );
                     // Show only first 3 courses for homepage
-                    setCourses(mappedCourses.slice(0, 6));
+                    setCourses(mappedCourses.slice(0, 8));
                 } else {
                     console.error("Failed to fetch courses");
                 }
@@ -87,7 +87,7 @@ export default function CoursesSection() {
                         </p>
                     </div>
                 ) : courses.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                         {courses.map((course) => (
                             <CourseCard
                                 key={course.id}
