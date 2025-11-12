@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Container from "@/components/Container";
+import { Button } from "@/components/ui/button";
 import {
     Carousel,
     CarouselContent,
@@ -74,12 +75,19 @@ export default function HeroSection() {
                                                     world
                                                 </p>
                                                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
-                                                    <button className="px-6 md:px-8 py-3 md:py-4 bg-secondary hover:bg-secondary/90 text-foreground font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                    <Button
+                                                        size="lg"
+                                                        variant="secondary"
+                                                        className="font-semibold shadow-lg hover:shadow-xl"
+                                                    >
                                                         Explore Courses →
-                                                    </button>
-                                                    <button className="px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                    </Button>
+                                                    <Button
+                                                        size="lg"
+                                                        className="font-semibold shadow-lg hover:shadow-xl"
+                                                    >
                                                         Get Started Free
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>

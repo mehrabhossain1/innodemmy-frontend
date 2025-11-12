@@ -1,38 +1,53 @@
 import Container from "../Container";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Users, BookOpen, Target, Clock } from "lucide-react";
 
 export default function AboutusSection() {
     const stats = [
         {
-            count: "50,000+",
-            label: "Students Enrolled",
+            count: "৫০,০০০+",
+            label: "শিক্ষার্থী নথিভুক্ত",
+            icon: Users,
         },
         {
-            count: "500+",
-            label: "Expert Courses",
+            count: "৫০০+",
+            label: "বিশেষজ্ঞ কোর্স",
+            icon: BookOpen,
         },
         {
-            count: "95%",
-            label: "Success Rate",
+            count: "৯৫%",
+            label: "সফলতার হার",
+            icon: Target,
         },
         {
-            count: "24/7",
-            label: "Support Available",
+            count: "২৪/৭",
+            label: "সহায়তা উপলব্ধ",
+            icon: Clock,
         },
     ];
 
     return (
-        <section className="relative pt-0 pb-16 md:pb-24 bg-gradient-to-br from-[#0a3d3d] via-[#0d4d4d] to-[#0a3d3d] dark:from-[#051f1f] dark:via-[#082828] dark:to-[#051f1f]">
+        <section className="relative w-full bg-background py-16">
             <Container>
-                {/* Statistics Card - 50% overlapping Hero, 50% in About Section */}
-                <div className="relative z-20 -translate-y-1/2 mb-8">
-                    <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-200 dark:border-gray-800">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Statistics Card */}
+                <div className="mb-16">
+                    <div className="bg-card rounded-2xl p-8 shadow-xl border border-border">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                             {stats.map((stat, index) => (
-                                <div key={index} className="text-center">
-                                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1">
+                                <div
+                                    key={index}
+                                    className="text-center space-y-2"
+                                >
+                                    <div className="flex justify-center mb-3">
+                                        <div className="p-3 bg-primary/10 rounded-full">
+                                            <stat.icon className="w-6 h-6 text-primary" />
+                                        </div>
+                                    </div>
+                                    <div className="text-4xl font-bold text-foreground">
                                         {stat.count}
                                     </div>
-                                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                    <div className="text-sm text-muted-foreground">
                                         {stat.label}
                                     </div>
                                 </div>
@@ -41,175 +56,75 @@ export default function AboutusSection() {
                     </div>
                 </div>
 
-                {/* About Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-                    {/* Left Side - Text Content */}
-                    <div className="flex flex-col justify-center text-white space-y-6 w-full">
-                        {/* Section Title */}
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-                            About InnoDemy
-                        </h2>
+                {/* About Content Card */}
+                <div className="bg-card rounded-2xl overflow-hidden shadow-xl border border-border">
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                        {/* Left Side - Text Content */}
+                        <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-6">
+                            <h2 className="text-4xl font-bold text-foreground">
+                                About{" "}
+                                <span className="text-secondary">Inno</span>
+                                <span className="text-accent">Demy</span>
+                            </h2>
 
-                        {/* First Paragraph */}
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-100/90">
-                            InnoDemy is a future-focused learning platform that
-                            connects ambitious learners with the skills they
-                            need to stay ahead in a digital world. We offer
-                            programs in{" "}
-                            <span className="font-semibold text-[#4dd4d4]">
-                                Clinical Research
-                            </span>
-                            ,{" "}
-                            <span className="font-semibold text-[#4dd4d4]">
-                                Programming
-                            </span>
-                            ,{" "}
-                            <span className="font-semibold text-[#4dd4d4]">
-                                Data Science & Machine Learning
-                            </span>
-                            ,{" "}
-                            <span className="font-semibold text-[#4dd4d4]">
-                                VLSI
-                            </span>
-                            , and{" "}
-                            <span className="font-semibold text-[#4dd4d4]">
-                                Core Engineering
-                            </span>{" "}
-                            shaping the next wave of technology and discovery.
-                        </p>
+                            <p className="text-base text-muted-foreground leading-relaxed">
+                                InnoDemy is a future-focused learning platform
+                                that connects ambitious learners with the skills
+                                they need to stay ahead in a digital world. We
+                                offer programs in{" "}
+                                <span className="font-semibold text-primary">
+                                    Clinical Research
+                                </span>
+                                ,{" "}
+                                <span className="font-semibold text-primary">
+                                    Programming
+                                </span>
+                                ,{" "}
+                                <span className="font-semibold text-primary">
+                                    Data Science & Machine Learning
+                                </span>
+                                ,{" "}
+                                <span className="font-semibold text-primary">
+                                    VLSI
+                                </span>
+                                , and{" "}
+                                <span className="font-semibold text-primary">
+                                    Core Engineering
+                                </span>{" "}
+                                shaping the next wave of technology and
+                                discovery.
+                            </p>
 
-                        {/* Second Paragraph */}
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-100/90">
-                            At InnoDemy, learning goes beyond theory. Each
-                            course combines hands-on projects, industry case
-                            studies, and research-backed insights to help
-                            learners think critically, experiment boldly, and
-                            apply knowledge with confidence. We turn curiosity
-                            into capability empowering professionals who don't
-                            just follow trends, but create them.
-                        </p>
-                    </div>
+                            <p className="text-base text-muted-foreground leading-relaxed">
+                                At InnoDemy, learning goes beyond theory. Each
+                                course combines hands-on projects, industry case
+                                studies, and research-backed insights to help
+                                learners think critically, experiment boldly,
+                                and apply knowledge with confidence. We turn
+                                curiosity into capability empowering
+                                professionals who don&apos;t just follow trends,
+                                but create them.
+                            </p>
 
-                    {/* Right Side - Image/Graphic */}
-                    <div className="relative w-full h-[300px] sm:h-[400px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#0d5858] to-[#0a3d3d] flex items-center justify-center">
-                            {/* Circuit Board Pattern Background */}
-                            <div className="absolute inset-0 opacity-20">
-                                <svg
-                                    className="w-full h-full"
-                                    viewBox="0 0 400 400"
-                                    xmlns="http://www.w3.org/2000/svg"
+                            <div className="pt-4">
+                                <Button
+                                    size="lg"
+                                    className="font-semibold shadow-lg hover:shadow-xl"
                                 >
-                                    {/* Vertical lines */}
-                                    <line
-                                        x1="100"
-                                        y1="0"
-                                        x2="100"
-                                        y2="400"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    <line
-                                        x1="200"
-                                        y1="0"
-                                        x2="200"
-                                        y2="400"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    <line
-                                        x1="300"
-                                        y1="0"
-                                        x2="300"
-                                        y2="400"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    {/* Horizontal lines */}
-                                    <line
-                                        x1="0"
-                                        y1="100"
-                                        x2="400"
-                                        y2="100"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    <line
-                                        x1="0"
-                                        y1="200"
-                                        x2="400"
-                                        y2="200"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    <line
-                                        x1="0"
-                                        y1="300"
-                                        x2="400"
-                                        y2="300"
-                                        stroke="#4dd4d4"
-                                        strokeWidth="2"
-                                    />
-                                    {/* Connection points */}
-                                    <circle
-                                        cx="100"
-                                        cy="100"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="200"
-                                        cy="100"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="300"
-                                        cy="100"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="100"
-                                        cy="200"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="200"
-                                        cy="200"
-                                        r="8"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="300"
-                                        cy="200"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="100"
-                                        cy="300"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="200"
-                                        cy="300"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                    <circle
-                                        cx="300"
-                                        cy="300"
-                                        r="5"
-                                        fill="#4dd4d4"
-                                    />
-                                </svg>
+                                    Learn More About Us →
+                                </Button>
                             </div>
+                        </div>
 
-                            {/* Glowing effect */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#4dd4d4]/20 rounded-full blur-3xl"></div>
+                        {/* Right Side - Image */}
+                        <div className="relative h-[300px] lg:h-auto bg-muted">
+                            <Image
+                                src="https://img.freepik.com/free-vector/e-learning-infographic-set_1284-16836.jpg"
+                                alt="E-learning infographic"
+                                fill
+                                className="object-cover"
+                                quality={90}
+                            />
                         </div>
                     </div>
                 </div>
