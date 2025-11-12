@@ -7,6 +7,7 @@ import {
     Award,
     LifeBuoy,
 } from "lucide-react";
+import Container from "../Container";
 
 const featureCards = [
     {
@@ -29,7 +30,8 @@ const featureCards = [
     {
         id: "mentors",
         title: "Nation's leading industry mentors",
-        description: "Learn directly from professionals shaping the future of tech",
+        description:
+            "Learn directly from professionals shaping the future of tech",
         icon: <Users className="w-8 h-8 text-blue-600" />,
         bgColor: "bg-blue-50",
         borderColor: "border-blue-200",
@@ -45,7 +47,8 @@ const featureCards = [
     {
         id: "certificate",
         title: "Certification",
-        description: "Earn industry-recognized credentials that strengthen your profile",
+        description:
+            "Earn industry-recognized credentials that strengthen your profile",
         icon: <Award className="w-8 h-8 text-yellow-600" />,
         bgColor: "bg-yellow-50",
         borderColor: "border-yellow-200",
@@ -53,7 +56,8 @@ const featureCards = [
     {
         id: "continued-support",
         title: "Continued exclusive support",
-        description: "Ongoing mentorship and resources even after course completion",
+        description:
+            "Ongoing mentorship and resources even after course completion",
         icon: <LifeBuoy className="w-8 h-8 text-red-600" />,
         bgColor: "bg-red-50",
         borderColor: "border-red-200",
@@ -63,7 +67,7 @@ const featureCards = [
 export default function WhyBestChoiceSection() {
     return (
         <section className="py-16 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950/20 dark:via-teal-950/20 dark:to-cyan-950/20">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-4">
@@ -105,7 +109,7 @@ export default function WhyBestChoiceSection() {
                         </Card>
                     ))}
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

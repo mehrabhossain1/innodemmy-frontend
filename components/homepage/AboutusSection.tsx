@@ -1,3 +1,5 @@
+import Container from "../Container";
+
 export default function AboutusSection() {
     const stats = [
         {
@@ -20,7 +22,7 @@ export default function AboutusSection() {
 
     return (
         <section className="relative pt-0 pb-16 md:pb-24 bg-gradient-to-br from-[#0a3d3d] via-[#0d4d4d] to-[#0a3d3d] dark:from-[#051f1f] dark:via-[#082828] dark:to-[#051f1f]">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Container>
                 {/* Statistics Card - 50% overlapping Hero, 50% in About Section */}
                 <div className="relative z-20 -translate-y-1/2 mb-8">
                     <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-200 dark:border-gray-800">
@@ -211,7 +213,7 @@ export default function AboutusSection() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

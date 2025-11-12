@@ -21,6 +21,7 @@ import {
     Target,
     Lightbulb,
 } from "lucide-react";
+import Container from "./Container";
 
 interface FormData {
     fullName: string;
@@ -168,7 +169,7 @@ export default function BookTheCallCard() {
     }
 
     return (
-        <Card className="w-full container mx-auto border shadow-lg mt-20 rounded-2xl">
+        <Container>
             <CardContent className="p-0">
                 <div className="grid lg:grid-cols-2 gap-0">
                     {/* Left Side - Accordion */}
@@ -226,7 +227,10 @@ export default function BookTheCallCard() {
 
                     {/* Right Side - Form */}
                     <div className="p-6 border-l rounded-r-2xl flex items-center justify-center">
-                        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-4 w-full max-w-md"
+                        >
                             <div className="text-center mb-4">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-1">
                                     Get Your Free Consultation Today!
@@ -397,6 +401,6 @@ export default function BookTheCallCard() {
                     </div>
                 </div>
             </CardContent>
-        </Card>
+        </Container>
     );
 }

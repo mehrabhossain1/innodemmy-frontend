@@ -1,4 +1,4 @@
-import BookTheCallCard from "@/components/BookTheCallCard";
+// import BookTheCallCard from "@/components/BookTheCallCard";
 import BlogsSection from "@/components/homepage/BlogsSection";
 import CoursesSection from "@/components/homepage/CoursesSection";
 import FreeMasterclassSection from "@/components/homepage/FreeMasterclassSection";
@@ -9,7 +9,7 @@ import AboutusSection from "@/components/homepage/AboutusSection";
 
 export default function Home() {
     return (
-        <main className="bg-background">
+        <main className="">
             <HeroSection />
             <AboutusSection />
             <CoursesSection />
@@ -17,7 +17,7 @@ export default function Home() {
             <WhyBestChoiceSection />
             <TechnologyStackSection />
             <BlogsSection />
-            <BookTheCallCard />
+            {/* <BookTheCallCard /> */}
         </main>
     );
 }

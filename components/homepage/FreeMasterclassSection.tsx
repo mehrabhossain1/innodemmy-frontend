@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
+import Container from "../Container";
 
 const masterclasses = [
     {
@@ -78,7 +79,7 @@ export default function FreeMasterclassSection() {
 
     return (
         <section className="py-16 bg-muted/30">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent mb-4">
@@ -218,7 +219,7 @@ export default function FreeMasterclassSection() {
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

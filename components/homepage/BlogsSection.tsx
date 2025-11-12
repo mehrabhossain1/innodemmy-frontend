@@ -14,6 +14,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
 import { Blog } from "@/lib/models";
+import Container from "../Container";
 
 export default function BlogsSection() {
     const [blogs, setBlogs] = React.useState<Blog[]>([]);
@@ -44,7 +45,7 @@ export default function BlogsSection() {
 
     return (
         <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
@@ -131,7 +132,7 @@ export default function BlogsSection() {
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }
