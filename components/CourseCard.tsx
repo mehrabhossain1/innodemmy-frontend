@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { BookOpen, Users, Clock } from "lucide-react";
 
 interface CourseCardProps {
     id: string;
     title: string;
     description: string;
     thumbnail?: string;
+    modules?: number;
+    students?: number;
+    duration?: string;
 }
 
 export default function CourseCard({
@@ -14,9 +18,12 @@ export default function CourseCard({
     title,
     description,
     thumbnail,
+    modules = 14,
+    students = 39,
+    duration = "১ দিন বাকি",
 }: CourseCardProps) {
     return (
-        <div className="bg-card rounded-lg overflow-hidden group transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl shadow-md border border-border">
+        <div className="bg-card rounded-xl overflow-hidden group transition-all duration-300 ease-out shadow-sm border-2 border-border hover:border-primary">
             <div className="relative overflow-hidden h-48">
                 <Image
                     src={
@@ -26,27 +33,51 @@ export default function CourseCard({
                     alt={title}
                     width={400}
                     height={192}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                    className="w-full h-full object-cover"
                 />
+                {/* Badge */}
+                <div className="absolute top-3 left-3 bg-destructive text-white px-2 py-1 rounded text-xs font-semibold">
+                    ব্যাচ ১৪
+                </div>
             </div>
 
-            <div className="p-5 space-y-4 min-h-[200px] flex flex-col">
-                <Link
-                    href={`/courses/${id}`}
-                    aria-describedby={`course-${id}-description`}
-                >
-                    <h3 className="text-xl font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-tight">
+            <div className="p-4 space-y-3">
+                {/* Stats */}
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                        <BookOpen className="h-3.5 w-3.5" />
+                        <span>{modules} টি মডিউল</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                        <Users className="h-3.5 w-3.5" />
+                        <span>{students} সিট বাকি</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        <span>{duration}</span>
+                    </div>
+                </div>
+
+                {/* Title */}
+                <Link href={`/courses/${id}`}>
+                    <h3 className="text-base font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-tight">
                         {title}
                     </h3>
                 </Link>
 
-                <p className="text-sm text-muted-foreground line-clamp-3 flex-grow">
+                {/* Description */}
+                <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
                     {description}
                 </p>
 
-                <Link href={`/courses/${id}`} id={`course-${id}-description`}>
-                    <Button className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold text-sm h-10 rounded-md transition-all duration-200 ease-out mt-auto">
-                        View Details
+                {/* Button */}
+                <Link href={`/courses/${id}`}>
+                    <Button
+                        variant="ghost"
+                        className="w-full justify-start px-0 text-sm font-semibold text-foreground hover:text-primary hover:bg-transparent group-hover:gap-2 transition-all"
+                    >
+                        বিস্তারিত দেখি
+                        <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
                     </Button>
                 </Link>
             </div>
