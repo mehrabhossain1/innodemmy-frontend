@@ -100,3 +100,23 @@ export interface Blog {
     createdAt: Date;
     updatedAt: Date;
 }
+
+// Webinar model
+export interface Webinar {
+    id: string; // Unique identifier for the webinar
+    title: string; // Webinar title
+    description: string; // Detailed description
+    image: string; // Thumbnail image URL
+    videoUrl: string; // Video URL (YouTube, Vimeo, etc.)
+    duration: string; // Duration in format like "2h 30m"
+    instructor: string; // Instructor name
+    instructorBio?: string; // Instructor biography
+    instructorImage?: string; // Instructor profile image
+    views: number; // Number of views
+    topics: string[]; // Topics covered in the webinar
+    date: string; // Webinar date
+    language?: string; // Language of the webinar
+    published?: boolean; // Whether the webinar is published
+    createdAt?: Date;
+    updatedAt?: Date;
+}

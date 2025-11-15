@@ -14,68 +14,13 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
 import Container from "../Container";
-
-const masterclasses = [
-    {
-        id: "web-development-fundamentals",
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "Web Development Fundamentals: From Zero to Hero",
-        duration: "2h 30m",
-        instructor: "Sarah Johnson",
-        views: 15420,
-        topics: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    },
-    {
-        id: "python-data-analysis",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "Python for Data Analysis: Getting Started with Pandas",
-        duration: "1h 45m",
-        instructor: "Dr. Michael Chen",
-        views: 12350,
-        topics: ["Python", "Pandas", "Data Analysis", "NumPy"],
-    },
-    {
-        id: "ui-ux-principles",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "UI/UX Design Principles: Creating User-Centric Interfaces",
-        duration: "2h 15m",
-        instructor: "Emma Rodriguez",
-        views: 18920,
-        topics: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-    },
-    {
-        id: "ui-ux-principles",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "UI/UX Design Principles: Creating User-Centric Interfaces",
-        duration: "2h 15m",
-        instructor: "Emma Rodriguez",
-        views: 18920,
-        topics: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-    },
-    {
-        id: "ui-ux-principles",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "UI/UX Design Principles: Creating User-Centric Interfaces",
-        duration: "2h 15m",
-        instructor: "Emma Rodriguez",
-        views: 18920,
-        topics: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-    },
-    {
-        id: "ui-ux-principles",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        title: "UI/UX Design Principles: Creating User-Centric Interfaces",
-        duration: "2h 15m",
-        instructor: "Emma Rodriguez",
-        views: 18920,
-        topics: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-    },
-];
+import { getAllWebinars } from "@/lib/data/webinars";
 
 export default function FreeMasterclassSection() {
     const plugin = React.useRef(
         Autoplay({ delay: 3000, stopOnInteraction: true })
     );
+    const webinars = getAllWebinars();
 
     return (
         <section className="py-16 bg-muted/30">
@@ -104,7 +49,7 @@ export default function FreeMasterclassSection() {
                     }}
                 >
                     <CarouselContent className="-ml-2 md:-ml-4">
-                        {masterclasses.map((masterclass, index) => (
+                        {webinars.map((masterclass, index) => (
                             <CarouselItem
                                 key={index}
                                 className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
@@ -142,7 +87,7 @@ export default function FreeMasterclassSection() {
                                     <div className="p-5 space-y-3">
                                         {/* Title */}
                                         <Link
-                                            href={`/masterclass/${masterclass.id}`}
+                                            href={`/webinar/${masterclass.id}`}
                                         >
                                             <h3 className="text-lg font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-tight">
                                                 {masterclass.title}
@@ -185,7 +130,7 @@ export default function FreeMasterclassSection() {
 
                                         {/* Watch Now Button */}
                                         <Link
-                                            href={`/masterclass/${masterclass.id}`}
+                                            href={`/webinar/${masterclass.id}`}
                                         >
                                             <Button className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white font-semibold text-sm h-10 rounded-md transition-all duration-200 ease-out mt-3">
                                                 <Play
@@ -208,13 +153,13 @@ export default function FreeMasterclassSection() {
 
                 {/* View All Masterclasses Button */}
                 <div className="text-center">
-                    <Link href="/masterclass">
+                    <Link href="/courses">
                         <Button
                             size="lg"
                             variant="outline"
                             className="px-8 py-3 h-auto text-base shadow-lg hover:shadow-xl transition-all duration-200 ease-out border-2 hover:bg-secondary hover:text-white hover:border-secondary"
                         >
-                            Explore All Masterclasses
+                            Explore All Courses
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </Link>
