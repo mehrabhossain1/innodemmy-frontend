@@ -5,32 +5,149 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Users, BookOpen, Target, Clock, Award, Rocket, Zap, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+// Counter component with animation
+function AnimatedCounter({
+    end,
+    duration = 2500,
+    suffix = "",
+    prefix = "",
+    isBengali = false,
+    delay = 0
+}: {
+    end: number;
+    duration?: number;
+    suffix?: string;
+    prefix?: string;
+    isBengali?: boolean;
+    delay?: number;
+}) {
+    const [count, setCount] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const countRef = useRef<HTMLDivElement>(null);
+    const hasAnimated = useRef(false);
+
+    // Convert English numbers to Bengali
+    const toBengaliNumber = (num: number) => {
+        const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return num.toString().split('').map(digit =>
+            digit === '.' ? '.' : bengaliDigits[parseInt(digit)]
+        ).join('');
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !hasAnimated.current) {
+                    setIsVisible(true);
+                    hasAnimated.current = true;
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (countRef.current) {
+            observer.observe(countRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) return;
+
+        let startTime: number | null = null;
+        let animationFrame: number;
+        let delayTimeout: NodeJS.Timeout;
+
+        const animate = (currentTime: number) => {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Enhanced easing function - combination of easeInOutCubic for ultra-smooth animation
+            const easeInOutCubic = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            // Add slight elasticity at the end for more natural feel
+            const elasticEnd = progress > 0.95
+                ? easeInOutCubic + Math.sin((progress - 0.95) * 20) * 0.01 * (1 - progress)
+                : easeInOutCubic;
+
+            const currentCount = Math.floor(elasticEnd * end);
+
+            setCount(currentCount);
+
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(animate);
+            } else {
+                setCount(end);
+            }
+        };
+
+        // Start animation after delay
+        if (delay > 0) {
+            delayTimeout = setTimeout(() => {
+                animationFrame = requestAnimationFrame(animate);
+            }, delay);
+        } else {
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        return () => {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            if (delayTimeout) {
+                clearTimeout(delayTimeout);
+            }
+        };
+    }, [isVisible, end, duration, delay]);
+
+    const displayCount = isBengali ? toBengaliNumber(count) : count.toLocaleString();
+
+    return (
+        <div ref={countRef} className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+            {prefix}{displayCount}{suffix}
+        </div>
+    );
+}
 
 export default function AboutusSection() {
     const stats = [
         {
-            count: "৫০,০০০+",
+            target: 50000,
+            suffix: "+",
             label: "শিক্ষার্থী নথিভুক্ত",
             icon: Users,
             color: "from-primary to-primary/70",
+            isBengali: true,
         },
         {
-            count: "৫০০+",
+            target: 500,
+            suffix: "+",
             label: "বিশেষজ্ঞ কোর্স",
             icon: BookOpen,
             color: "from-secondary to-secondary/70",
+            isBengali: true,
         },
         {
-            count: "৯৫%",
+            target: 95,
+            suffix: "%",
             label: "সফলতার হার",
             icon: Target,
             color: "from-primary to-primary/70",
+            isBengali: true,
         },
         {
-            count: "২৪/৭",
+            target: 24,
+            suffix: "/৭",
             label: "সহায়তা উপলব্ধ",
             icon: Clock,
             color: "from-secondary to-secondary/70",
+            isBengali: true,
         },
     ];
 
@@ -80,23 +197,30 @@ export default function AboutusSection() {
                     </p>
                 </div>
 
-                {/* Statistics Cards - Modern Gradient Style */}
+                {/* Statistics Cards - Modern Gradient Style with Smooth Animation */}
                 <div className="mb-16">
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
                                 className="relative group"
+                                style={{
+                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                                }}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50 group-hover:opacity-70"></div>
                                 <div className="relative bg-card rounded-2xl p-6 md:p-8 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                                     <div className="flex flex-col items-center space-y-3">
-                                        <div className={`p-3 md:p-4 bg-gradient-to-br ${stat.color} rounded-xl shadow-md`}>
+                                        <div className={`p-3 md:p-4 bg-gradient-to-br ${stat.color} rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}>
                                             <stat.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                                         </div>
-                                        <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
-                                            {stat.count}
-                                        </div>
+                                        <AnimatedCounter
+                                            end={stat.target}
+                                            duration={2500}
+                                            suffix={stat.suffix}
+                                            isBengali={stat.isBengali}
+                                            delay={index * 100}
+                                        />
                                         <div className="text-xs md:text-sm text-muted-foreground font-medium text-center">
                                             {stat.label}
                                         </div>
@@ -106,6 +230,19 @@ export default function AboutusSection() {
                         ))}
                     </div>
                 </div>
+
+                <style jsx>{`
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                `}</style>
 
                 {/* Main About Content - Enhanced Design */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border bg-card">
