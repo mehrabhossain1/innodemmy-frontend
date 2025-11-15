@@ -131,33 +131,59 @@ const TechnologyCard = ({
     color,
 }: Technology) => {
     return (
-        <div
-            className={cn(
-                "relative w-64 cursor-pointer overflow-hidden rounded-2xl border p-6",
-                "bg-card hover:shadow-xl transition-all duration-300 ease-out",
-                "border-border hover:border-primary/50",
-                "group"
-            )}
-        >
-            <div className="flex flex-col items-center gap-4 text-center">
-                <div
-                    className={cn(
-                        "flex items-center justify-center w-16 h-16 rounded-xl",
-                        "bg-gradient-to-br shadow-lg transition-transform duration-300",
-                        "group-hover:scale-110 group-hover:shadow-xl",
-                        color,
-                        "text-white"
-                    )}
-                >
-                    {icon}
-                </div>
-                <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-foreground">
-                        {name}
-                    </h3>
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        {category}
-                    </p>
+        <div className="relative w-72 group">
+            {/* Glow Effect */}
+            <div className={cn(
+                "absolute -inset-0.5 bg-gradient-to-r rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500",
+                color
+            )}></div>
+
+            <div
+                className={cn(
+                    "relative cursor-pointer overflow-hidden rounded-2xl border p-6",
+                    "bg-white/5 backdrop-blur-sm hover:bg-white/10",
+                    "border-white/10 hover:border-white/20",
+                    "transition-all duration-300 ease-out",
+                    "hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1"
+                )}
+            >
+                <div className="flex items-center gap-5">
+                    {/* Icon Container */}
+                    <div className="relative">
+                        <div
+                            className={cn(
+                                "flex items-center justify-center w-14 h-14 rounded-xl",
+                                "bg-gradient-to-br shadow-lg transition-all duration-300",
+                                "group-hover:scale-110 group-hover:rotate-6",
+                                color,
+                                "text-white"
+                            )}
+                        >
+                            {icon}
+                        </div>
+                        {/* Icon Glow */}
+                        <div className={cn(
+                            "absolute inset-0 bg-gradient-to-br rounded-xl blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-300",
+                            color
+                        )}></div>
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="flex-1 space-y-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-secondary transition-colors duration-300">
+                            {name}
+                        </h3>
+                        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+                            {category}
+                        </p>
+                    </div>
+
+                    {/* Arrow Indicator */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                        <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,31 +192,61 @@ const TechnologyCard = ({
 
 export function TechnologyStackSection() {
     return (
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 bg-background">
-            <div className="text-center mb-12 px-4">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                    <span className="bg-gradient-to-r from-[#226481] to-[#e9ae30] bg-clip-text text-transparent">
-                        Technology Stack
-                    </span>
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Master the most in-demand technologies used by top companies worldwide
-                </p>
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-16 md:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0" style={{
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                    backgroundSize: '50px 50px'
+                }}></div>
             </div>
 
-            <Marquee pauseOnHover className="[--duration:30s] mb-4">
-                {firstRow.map((tech, index) => (
-                    <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
-                ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:30s]">
-                {secondRow.map((tech, index) => (
-                    <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
-                ))}
-            </Marquee>
+            {/* Gradient Orbs */}
+            <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
 
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+            {/* Content */}
+            <div className="relative z-10 w-full">
+                {/* Section Header */}
+                <div className="text-center mb-12 md:mb-16 px-4">
+                    <div className="inline-block mb-4">
+                        <span className="text-sm font-semibold text-secondary bg-secondary/10 px-4 py-1.5 rounded-full border border-secondary/20">
+                            🚀 Tech We Teach
+                        </span>
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                        <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            Master Modern
+                        </span>{" "}
+                        <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
+                            Tech Stack
+                        </span>
+                    </h2>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Learn the most in-demand technologies used by industry leaders.
+                        Build real-world expertise that employers value.
+                    </p>
+                </div>
+
+                {/* Marquee Rows */}
+                <Marquee pauseOnHover className="[--duration:40s] mb-6">
+                    {firstRow.map((tech, index) => (
+                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                    ))}
+                </Marquee>
+                <Marquee reverse pauseOnHover className="[--duration:40s]">
+                    {secondRow.map((tech, index) => (
+                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                    ))}
+                </Marquee>
+            </div>
+
+            {/* Gradient Fade Edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent"></div>
+
+            {/* Bottom Glow Line */}
+            <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-secondary/50 to-transparent"></div>
         </div>
     );
 }
