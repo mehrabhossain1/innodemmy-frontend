@@ -3,7 +3,16 @@
 import Container from "../Container";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Users, BookOpen, Target, Clock, Award, Rocket, Zap, TrendingUp } from "lucide-react";
+import {
+    Users,
+    BookOpen,
+    Target,
+    Clock,
+    Award,
+    Rocket,
+    Zap,
+    TrendingUp,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +23,7 @@ function AnimatedCounter({
     suffix = "",
     prefix = "",
     isBengali = false,
-    delay = 0
+    delay = 0,
 }: {
     end: number;
     duration?: number;
@@ -30,10 +39,25 @@ function AnimatedCounter({
 
     // Convert English numbers to Bengali
     const toBengaliNumber = (num: number) => {
-        const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-        return num.toString().split('').map(digit =>
-            digit === '.' ? '.' : bengaliDigits[parseInt(digit)]
-        ).join('');
+        const bengaliDigits = [
+            "০",
+            "১",
+            "২",
+            "৩",
+            "৪",
+            "৫",
+            "৬",
+            "৭",
+            "৮",
+            "৯",
+        ];
+        return num
+            .toString()
+            .split("")
+            .map((digit) =>
+                digit === "." ? "." : bengaliDigits[parseInt(digit)]
+            )
+            .join("");
     };
 
     useEffect(() => {
@@ -67,14 +91,17 @@ function AnimatedCounter({
             const progress = Math.min(elapsed / duration, 1);
 
             // Enhanced easing function - combination of easeInOutCubic for ultra-smooth animation
-            const easeInOutCubic = progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            const easeInOutCubic =
+                progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
             // Add slight elasticity at the end for more natural feel
-            const elasticEnd = progress > 0.95
-                ? easeInOutCubic + Math.sin((progress - 0.95) * 20) * 0.01 * (1 - progress)
-                : easeInOutCubic;
+            const elasticEnd =
+                progress > 0.95
+                    ? easeInOutCubic +
+                      Math.sin((progress - 0.95) * 20) * 0.01 * (1 - progress)
+                    : easeInOutCubic;
 
             const currentCount = Math.floor(elasticEnd * end);
 
@@ -106,11 +133,18 @@ function AnimatedCounter({
         };
     }, [isVisible, end, duration, delay]);
 
-    const displayCount = isBengali ? toBengaliNumber(count) : count.toLocaleString();
+    const displayCount = isBengali
+        ? toBengaliNumber(count)
+        : count.toLocaleString();
 
     return (
-        <div ref={countRef} className="text-2xl md:text-3xl lg:text-3xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
-            {prefix}{displayCount}{suffix}
+        <div
+            ref={countRef}
+            className="text-2xl md:text-3xl lg:text-3xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent"
+        >
+            {prefix}
+            {displayCount}
+            {suffix}
         </div>
     );
 }
@@ -189,7 +223,7 @@ export default function AboutusSection() {
                             Inno
                         </span>
                         <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                            Demy
+                            demy
                         </span>
                     </h2>
                     <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -205,13 +239,17 @@ export default function AboutusSection() {
                                 key={index}
                                 className="relative group"
                                 style={{
-                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                                    animation: `fadeInUp 0.6s ease-out ${
+                                        index * 0.1
+                                    }s both`,
                                 }}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl lg:rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-50 group-hover:opacity-70"></div>
                                 <div className="relative bg-card rounded-xl lg:rounded-2xl p-4 md:p-6 lg:p-5 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                                     <div className="flex flex-col items-center space-y-2 lg:space-y-2.5">
-                                        <div className={`p-2 md:p-3 lg:p-2.5 bg-gradient-to-br ${stat.color} rounded-lg lg:rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                                        <div
+                                            className={`p-2 md:p-3 lg:p-2.5 bg-gradient-to-br ${stat.color} rounded-lg lg:rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}
+                                        >
                                             <stat.icon className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 text-white" />
                                         </div>
                                         <AnimatedCounter
@@ -267,9 +305,9 @@ export default function AboutusSection() {
                             </div>
 
                             <p className="text-sm md:text-base lg:text-sm xl:text-base text-muted-foreground leading-relaxed">
-                                InnoDemy connects ambitious learners with the skills
-                                they need to stay ahead in a digital world. We
-                                offer programs in{" "}
+                                InnoDemy connects ambitious learners with the
+                                skills they need to stay ahead in a digital
+                                world. We offer programs in{" "}
                                 <span className="font-semibold text-primary">
                                     Clinical Research
                                 </span>
@@ -301,7 +339,10 @@ export default function AboutusSection() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-3">
-                                <Link href="/about" className="flex-1 sm:flex-initial">
+                                <Link
+                                    href="/about"
+                                    className="flex-1 sm:flex-initial"
+                                >
                                     <Button
                                         size="default"
                                         className="w-full lg:px-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
@@ -309,7 +350,10 @@ export default function AboutusSection() {
                                         Learn More About Us
                                     </Button>
                                 </Link>
-                                <Link href="/courses" className="flex-1 sm:flex-initial">
+                                <Link
+                                    href="/courses"
+                                    className="flex-1 sm:flex-initial"
+                                >
                                     <Button
                                         size="default"
                                         variant="outline"
@@ -343,8 +387,12 @@ export default function AboutusSection() {
                                 key={index}
                                 className="group bg-card rounded-lg lg:rounded-xl p-4 lg:p-5 border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
-                                <div className={`inline-flex p-2 lg:p-2.5 rounded-lg bg-${feature.color}/10 mb-3 lg:mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                                    <feature.icon className={`w-5 h-5 lg:w-5 lg:h-5 text-${feature.color}`} />
+                                <div
+                                    className={`inline-flex p-2 lg:p-2.5 rounded-lg bg-${feature.color}/10 mb-3 lg:mb-3 group-hover:scale-110 transition-transform duration-300`}
+                                >
+                                    <feature.icon
+                                        className={`w-5 h-5 lg:w-5 lg:h-5 text-${feature.color}`}
+                                    />
                                 </div>
                                 <h4 className="text-base lg:text-base font-bold text-foreground mb-1.5 lg:mb-2">
                                     {feature.title}
