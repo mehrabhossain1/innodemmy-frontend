@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
     DollarSign,
@@ -12,104 +14,166 @@ import Container from "../Container";
 const featureCards = [
     {
         id: "affordable",
-        title: "Best learning at affordable prices",
+        title: "Affordable Excellence",
         description:
-            "Best quality education accessible to everyone with affordable pricing",
-        icon: <DollarSign className="w-8 h-8 text-green-600" />,
-        bgColor: "bg-green-50",
-        borderColor: "border-green-200",
+            "Premium education at prices that won't break the bank. Quality learning for everyone.",
+        icon: DollarSign,
+        gradient: "from-emerald-500 to-teal-500",
+        iconColor: "text-emerald-500",
+        bgGradient: "from-emerald-500/10 to-teal-500/10",
     },
     {
         id: "project-based",
-        title: "Project Based Learning",
-        description: "Gain hands-on experience through real-world projects",
-        icon: <FolderOpen className="w-8 h-8 text-purple-600" />,
-        bgColor: "bg-purple-50",
-        borderColor: "border-purple-200",
+        title: "Real-World Projects",
+        description: "Build your portfolio with hands-on projects that mirror industry challenges.",
+        icon: FolderOpen,
+        gradient: "from-violet-500 to-purple-500",
+        iconColor: "text-violet-500",
+        bgGradient: "from-violet-500/10 to-purple-500/10",
     },
     {
         id: "mentors",
-        title: "Nation's leading industry mentors",
+        title: "Expert Mentors",
         description:
-            "Learn directly from professionals shaping the future of tech",
-        icon: <Users className="w-8 h-8 text-blue-600" />,
-        bgColor: "bg-blue-50",
-        borderColor: "border-blue-200",
+            "Learn from industry leaders who have shaped successful tech products and companies.",
+        icon: Users,
+        gradient: "from-blue-500 to-cyan-500",
+        iconColor: "text-blue-500",
+        bgGradient: "from-blue-500/10 to-cyan-500/10",
     },
     {
         id: "support",
-        title: "Dedicated support sessions",
-        description: "One-on-one guidance to help you overcome challenges",
-        icon: <HeadphonesIcon className="w-8 h-8 text-orange-600" />,
-        bgColor: "bg-orange-50",
-        borderColor: "border-orange-200",
+        title: "24/7 Support",
+        description: "Get help whenever you need it with dedicated one-on-one support sessions.",
+        icon: HeadphonesIcon,
+        gradient: "from-orange-500 to-amber-500",
+        iconColor: "text-orange-500",
+        bgGradient: "from-orange-500/10 to-amber-500/10",
     },
     {
         id: "certificate",
-        title: "Certification",
+        title: "Industry Certification",
         description:
-            "Earn industry-recognized credentials that strengthen your profile",
-        icon: <Award className="w-8 h-8 text-yellow-600" />,
-        bgColor: "bg-yellow-50",
-        borderColor: "border-yellow-200",
+            "Earn recognized certificates that boost your career and validate your expertise.",
+        icon: Award,
+        gradient: "from-yellow-500 to-orange-500",
+        iconColor: "text-yellow-500",
+        bgGradient: "from-yellow-500/10 to-orange-500/10",
     },
     {
         id: "continued-support",
-        title: "Continued exclusive support",
+        title: "Lifetime Access",
         description:
-            "Ongoing mentorship and resources even after course completion",
-        icon: <LifeBuoy className="w-8 h-8 text-red-600" />,
-        bgColor: "bg-red-50",
-        borderColor: "border-red-200",
+            "Continue learning with exclusive resources and community support long after graduation.",
+        icon: LifeBuoy,
+        gradient: "from-rose-500 to-pink-500",
+        iconColor: "text-rose-500",
+        bgGradient: "from-rose-500/10 to-pink-500/10",
     },
 ];
 
 export default function WhyBestChoiceSection() {
     return (
-        <section className="py-16 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950/20 dark:via-teal-950/20 dark:to-cyan-950/20">
-            <Container>
+        <section className="relative py-16 md:py-20 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+            </div>
+
+            <Container className="relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-4">
-                        Why Innodemy is Your Best Choice
+                <div className="text-center mb-12 md:mb-16">
+                    <div className="inline-block mb-4">
+                        <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
+                            ✨ Why Choose Us
+                        </span>
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                        <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                            Innodemy
+                        </span>{" "}
+                        <span className="text-foreground">
+                            is Your Best Choice
+                        </span>
                     </h2>
-                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                        Innodemy stands out through its commitment to quality,
-                        relevance, and learner success. Acquire in-demand skills
-                        with expert instruction, real-world projects, and
-                        collaborative learning
+                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                        Experience world-class education designed for real-world success.
+                        Our unique approach combines expert mentorship, hands-on projects,
+                        and lifetime support to accelerate your career.
                     </p>
                 </div>
 
-                {/* Feature Cards - 3 Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {featureCards.map((card) => (
-                        <Card
-                            key={card.id}
-                            className={`${card.bgColor} ${card.borderColor} border-2 hover:shadow-lg transition-all duration-300 group cursor-pointer rounded-2xl`}
-                        >
-                            <CardContent className="p-6">
-                                <div className="flex flex-col items-center text-center space-y-4">
-                                    {/* Icon */}
-                                    <div className="p-4 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                        {card.icon}
-                                    </div>
+                {/* Feature Cards - Enhanced Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {featureCards.map((card, index) => {
+                        const IconComponent = card.icon;
+                        return (
+                            <div
+                                key={card.id}
+                                className="group relative"
+                                style={{
+                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                                }}
+                            >
+                                {/* Gradient Glow Effect */}
+                                <div className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}></div>
 
-                                    {/* Title */}
-                                    <h4 className="font-bold text-gray-900 text-sm leading-tight">
-                                        {card.title}
-                                    </h4>
+                                <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer rounded-2xl h-full overflow-hidden">
+                                    {/* Subtle Background Gradient */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-                                    {/* Description */}
-                                    <p className="text-xs text-gray-600 leading-relaxed">
-                                        {card.description}
-                                    </p>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
+                                    <CardContent className="relative p-6 md:p-8">
+                                        <div className="flex flex-col items-start text-left space-y-4">
+                                            {/* Icon with Gradient Background */}
+                                            <div className={`relative p-4 bg-gradient-to-br ${card.gradient} rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                                <IconComponent className="w-7 h-7 text-white" />
+
+                                                {/* Icon Glow */}
+                                                <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                                            </div>
+
+                                            {/* Title */}
+                                            <h4 className="font-bold text-foreground text-lg leading-tight group-hover:text-primary transition-colors duration-300">
+                                                {card.title}
+                                            </h4>
+
+                                            {/* Description */}
+                                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                                {card.description}
+                                            </p>
+
+                                            {/* Decorative Arrow */}
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
+                                                <span>Learn more</span>
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+
+                                    {/* Corner Accent */}
+                                    <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
+                                </Card>
+                            </div>
+                        );
+                    })}
                 </div>
             </Container>
+
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </section>
     );
 }
