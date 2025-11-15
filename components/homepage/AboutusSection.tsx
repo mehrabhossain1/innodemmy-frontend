@@ -109,7 +109,7 @@ function AnimatedCounter({
     const displayCount = isBengali ? toBengaliNumber(count) : count.toLocaleString();
 
     return (
-        <div ref={countRef} className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+        <div ref={countRef} className="text-2xl md:text-3xl lg:text-3xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
             {prefix}{displayCount}{suffix}
         </div>
     );
@@ -179,11 +179,11 @@ export default function AboutusSection() {
     ];
 
     return (
-        <section className="relative w-full bg-gradient-to-b from-background via-muted/20 to-background py-16 md:py-20">
+        <section className="relative w-full bg-gradient-to-b from-background via-muted/20 to-background py-12 md:py-16 lg:py-14">
             <Container>
                 {/* Section Header */}
-                <div className="text-center mb-12 md:mb-16">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                <div className="text-center mb-8 md:mb-10 lg:mb-10">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3">
                         About{" "}
                         <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
                             Inno
@@ -192,14 +192,14 @@ export default function AboutusSection() {
                             Demy
                         </span>
                     </h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                         Empowering the next generation of innovators and leaders
                     </p>
                 </div>
 
                 {/* Statistics Cards - Modern Gradient Style with Smooth Animation */}
-                <div className="mb-16">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="mb-10 md:mb-12 lg:mb-10">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-4">
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
@@ -208,11 +208,11 @@ export default function AboutusSection() {
                                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
                                 }}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50 group-hover:opacity-70"></div>
-                                <div className="relative bg-card rounded-2xl p-6 md:p-8 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                                    <div className="flex flex-col items-center space-y-3">
-                                        <div className={`p-3 md:p-4 bg-gradient-to-br ${stat.color} rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                                            <stat.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl lg:rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-50 group-hover:opacity-70"></div>
+                                <div className="relative bg-card rounded-xl lg:rounded-2xl p-4 md:p-6 lg:p-5 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                                    <div className="flex flex-col items-center space-y-2 lg:space-y-2.5">
+                                        <div className={`p-2 md:p-3 lg:p-2.5 bg-gradient-to-br ${stat.color} rounded-lg lg:rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                                            <stat.icon className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 text-white" />
                                         </div>
                                         <AnimatedCounter
                                             end={stat.target}
@@ -221,7 +221,7 @@ export default function AboutusSection() {
                                             isBengali={stat.isBengali}
                                             delay={index * 100}
                                         />
-                                        <div className="text-xs md:text-sm text-muted-foreground font-medium text-center">
+                                        <div className="text-xs md:text-sm lg:text-xs text-muted-foreground font-medium text-center">
                                             {stat.label}
                                         </div>
                                     </div>
@@ -245,20 +245,20 @@ export default function AboutusSection() {
                 `}</style>
 
                 {/* Main About Content - Enhanced Design */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border bg-card">
+                <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl border border-border bg-card">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
 
                     <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
                         {/* Left Side - Text Content */}
-                        <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-6 md:space-y-8">
-                            <div className="space-y-4">
+                        <div className="p-6 md:p-10 lg:p-8 xl:p-12 flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-5">
+                            <div className="space-y-3 lg:space-y-3">
                                 <div className="inline-block">
-                                    <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-1.5 rounded-full">
+                                    <span className="text-xs lg:text-sm font-semibold text-primary bg-primary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full">
                                         Who We Are
                                     </span>
                                 </div>
 
-                                <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                                <h3 className="text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold text-foreground leading-tight">
                                     A Future-Focused Learning Platform for{" "}
                                     <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
                                         Tomorrow&apos;s Leaders
@@ -266,7 +266,7 @@ export default function AboutusSection() {
                                 </h3>
                             </div>
 
-                            <p className="text-base text-muted-foreground leading-relaxed">
+                            <p className="text-sm md:text-base lg:text-sm xl:text-base text-muted-foreground leading-relaxed">
                                 InnoDemy connects ambitious learners with the skills
                                 they need to stay ahead in a digital world. We
                                 offer programs in{" "}
@@ -292,7 +292,7 @@ export default function AboutusSection() {
                                 shaping the next wave of technology.
                             </p>
 
-                            <p className="text-base text-muted-foreground leading-relaxed">
+                            <p className="text-sm md:text-base lg:text-sm xl:text-base text-muted-foreground leading-relaxed">
                                 Learning goes beyond theory at InnoDemy. Each
                                 course combines hands-on projects, industry case
                                 studies, and research-backed insights to help
@@ -300,20 +300,20 @@ export default function AboutusSection() {
                                 and apply knowledge with confidence.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-3">
                                 <Link href="/about" className="flex-1 sm:flex-initial">
                                     <Button
-                                        size="lg"
-                                        className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                                        size="default"
+                                        className="w-full lg:px-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
                                     >
                                         Learn More About Us
                                     </Button>
                                 </Link>
                                 <Link href="/courses" className="flex-1 sm:flex-initial">
                                     <Button
-                                        size="lg"
+                                        size="default"
                                         variant="outline"
-                                        className="w-full border-2 hover:bg-secondary hover:text-white hover:border-secondary font-semibold transition-all duration-200"
+                                        className="w-full lg:px-6 border-2 hover:bg-secondary hover:text-white hover:border-secondary font-semibold transition-all duration-200"
                                     >
                                         Browse Courses
                                     </Button>
@@ -322,7 +322,7 @@ export default function AboutusSection() {
                         </div>
 
                         {/* Right Side - Image with Overlay */}
-                        <div className="relative h-[300px] lg:h-auto min-h-[400px] bg-gradient-to-br from-primary/10 to-secondary/10">
+                        <div className="relative h-[250px] md:h-[300px] lg:h-auto lg:min-h-[350px] xl:min-h-[400px] bg-gradient-to-br from-primary/10 to-secondary/10">
                             <Image
                                 src="https://img.freepik.com/free-vector/e-learning-infographic-set_1284-16836.jpg"
                                 alt="E-learning infographic"
@@ -336,20 +336,20 @@ export default function AboutusSection() {
                 </div>
 
                 {/* Features Grid - New Addition */}
-                <div className="mt-16">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="mt-10 md:mt-12 lg:mt-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-4">
                         {features.map((feature, index) => (
                             <div
                                 key={index}
-                                className="group bg-card rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                className="group bg-card rounded-lg lg:rounded-xl p-4 lg:p-5 border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
-                                <div className={`inline-flex p-3 rounded-lg bg-${feature.color}/10 mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                                    <feature.icon className={`w-6 h-6 text-${feature.color}`} />
+                                <div className={`inline-flex p-2 lg:p-2.5 rounded-lg bg-${feature.color}/10 mb-3 lg:mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                                    <feature.icon className={`w-5 h-5 lg:w-5 lg:h-5 text-${feature.color}`} />
                                 </div>
-                                <h4 className="text-lg font-bold text-foreground mb-2">
+                                <h4 className="text-base lg:text-base font-bold text-foreground mb-1.5 lg:mb-2">
                                     {feature.title}
                                 </h4>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed">
                                     {feature.description}
                                 </p>
                             </div>
