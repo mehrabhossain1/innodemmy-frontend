@@ -46,7 +46,7 @@ export async function sendVerificationEmail(
             return;
         }
 
-        const result = await resend.emails.send({
+        const { data, error } = await resend.emails.send({
             from: `${FROM_NAME} <${FROM_EMAIL}>`,
             to: email,
             subject: "Verify Your Email - Innodemy",
@@ -181,9 +181,24 @@ export async function sendVerificationEmail(
       `,
         });
 
+        // Check for Resend API errors
+        if (error) {
+            console.error("❌ Resend API Error:", error);
+
+            // Handle domain verification error
+            if (error.message && error.message.includes("verify a domain")) {
+                console.error("\n⚠️  SOLUTION: You have two options:");
+                console.error("   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console");
+                console.error("   2. Verify a custom domain at https://resend.com/domains\n");
+                throw new Error("Email service requires domain verification. Please contact support.");
+            }
+
+            throw new Error(`Email service error: ${error.message}`);
+        }
+
         console.log(
-            `Verification email sent successfully to ${email}. Email ID:`,
-            result.data?.id
+            `✅ Verification email sent successfully to ${email}. Email ID:`,
+            data?.id
         );
     } catch (error) {
         console.error("Failed to send verification email:", error);
@@ -219,7 +234,7 @@ export async function sendPasswordResetEmail(
             return;
         }
 
-        const result = await resend.emails.send({
+        const { data, error } = await resend.emails.send({
             from: `${FROM_NAME} <${FROM_EMAIL}>`,
             to: email,
             subject: "Reset Your Password - Innodemy",
@@ -371,9 +386,24 @@ export async function sendPasswordResetEmail(
       `,
         });
 
+        // Check for Resend API errors
+        if (error) {
+            console.error("❌ Resend API Error:", error);
+
+            // Handle domain verification error
+            if (error.message && error.message.includes("verify a domain")) {
+                console.error("\n⚠️  SOLUTION: You have two options:");
+                console.error("   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console");
+                console.error("   2. Verify a custom domain at https://resend.com/domains\n");
+                throw new Error("Email service requires domain verification. Please contact support.");
+            }
+
+            throw new Error(`Email service error: ${error.message}`);
+        }
+
         console.log(
-            `Password reset email sent successfully to ${email}. Email ID:`,
-            result.data?.id
+            `✅ Password reset email sent successfully to ${email}. Email ID:`,
+            data?.id
         );
     } catch (error) {
         console.error("Failed to send password reset email:", error);
