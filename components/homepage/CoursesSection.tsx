@@ -82,35 +82,60 @@ export default function CoursesSection() {
     }, []);
 
     return (
-        <section className="py-16 bg-muted/30">
-            <Container>
+        <section className="relative py-16 md:py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0" style={{
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                    backgroundSize: '40px 40px'
+                }}></div>
+            </div>
+
+            {/* Gradient Orbs */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+
+            <Container className="relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                        <span className="text-destructive">(↔)</span> আপকামিং লাইভ কোর্স
+                <div className="text-center mb-12 md:mb-16">
+                    <div className="inline-block mb-4">
+                        <span className="text-sm font-semibold text-secondary bg-secondary/10 px-4 py-1.5 rounded-full border border-secondary/20">
+                            ⭐ Popular Picks
+                        </span>
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                        <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            Featured
+                        </span>{" "}
+                        <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
+                            Courses
+                        </span>
                     </h2>
+                    <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                        Explore our hand-picked courses designed to help you master in-demand skills
+                    </p>
                 </div>
 
-                {/* Category Tabs */}
+                {/* Category Tabs - Enhanced Dark Design */}
                 <div className="relative mb-12">
                     <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-hide">
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="shrink-0 hidden md:flex"
+                            className="shrink-0 hidden md:flex bg-white/5 hover:bg-white/10 text-white border border-white/10"
                         >
                             <ChevronLeft className="h-5 w-5" />
                         </Button>
 
-                        <div className="flex gap-2 flex-1 overflow-x-auto scrollbar-hide">
+                        <div className="flex gap-3 flex-1 overflow-x-auto scrollbar-hide">
                             {categories.map((category) => (
                                 <button
                                     key={category.id}
                                     onClick={() => setActiveCategory(category.id)}
-                                    className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all duration-200 ${
+                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all duration-300 ${
                                         activeCategory === category.id
-                                            ? "bg-primary/10 border-primary text-primary"
-                                            : "bg-card border-border hover:border-primary/50 text-foreground"
+                                            ? "bg-gradient-to-r from-primary to-primary/80 border-primary text-white shadow-lg shadow-primary/20"
+                                            : "bg-white/5 border-white/10 hover:border-primary/50 text-gray-300 hover:bg-white/10 backdrop-blur-sm"
                                     }`}
                                 >
                                     <category.icon className="h-4 w-4" />
@@ -119,7 +144,7 @@ export default function CoursesSection() {
                                             {category.label}
                                         </div>
                                         {category.count && (
-                                            <div className="text-xs text-muted-foreground">
+                                            <div className={`text-xs ${activeCategory === category.id ? 'text-white/80' : 'text-gray-500'}`}>
                                                 {category.count}
                                             </div>
                                         )}
@@ -131,7 +156,7 @@ export default function CoursesSection() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="shrink-0 hidden md:flex"
+                            className="shrink-0 hidden md:flex bg-white/5 hover:bg-white/10 text-white border border-white/10"
                         >
                             <ChevronRight className="h-5 w-5" />
                         </Button>
@@ -141,47 +166,69 @@ export default function CoursesSection() {
                 {/* Course Cards Grid */}
                 {loading ? (
                     <div className="text-center py-16">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
-                        <p className="text-muted-foreground">
-                            Loading courses...
+                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-secondary mx-auto mb-4"></div>
+                        <p className="text-gray-400 text-lg">
+                            Loading featured courses...
                         </p>
                     </div>
                 ) : courses.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                        {courses.map((course) => (
-                            <CourseCard
+                        {courses.map((course, index) => (
+                            <div
                                 key={course.id}
-                                id={course.id}
-                                title={course.title}
-                                description={course.description}
-                                thumbnail={course.image}
-                                modules={course.modules}
-                                students={course.students}
-                                duration={course.duration}
-                            />
+                                style={{
+                                    animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
+                                }}
+                            >
+                                <CourseCard
+                                    id={course.id}
+                                    title={course.title}
+                                    description={course.description}
+                                    thumbnail={course.image}
+                                    modules={course.modules}
+                                    students={course.students}
+                                    duration={course.duration}
+                                />
+                            </div>
                         ))}
                     </div>
                 ) : (
                     <div className="text-center py-16">
-                        <p className="text-muted-foreground">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-4">
+                            <Code className="w-8 h-8 text-gray-500" />
+                        </div>
+                        <p className="text-gray-400 text-lg">
                             No courses available at the moment.
                         </p>
                     </div>
                 )}
 
-                {/* View All Courses Button */}
+                {/* View All Courses Button - Enhanced */}
                 <div className="text-center">
                     <Link href="/courses">
                         <Button
                             size="lg"
-                            className="px-8 py-3 h-auto text-base shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
+                            className="px-8 py-6 h-auto text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-xl border-2 border-secondary/20 hover:border-secondary/40 group"
                         >
-                            বিস্তারিত দেখি
-                            <ArrowRight className="ml-2 h-5 w-5" />
+                            View All Courses
+                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                     </Link>
                 </div>
             </Container>
+
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </section>
     );
 }
