@@ -1,19 +1,20 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import Container from "@/components/Container";
+import CourseCard from "@/components/CourseCard";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import {
-    Search,
-    Filter,
-    BookOpen,
     ArrowLeft,
-    X,
+    BookOpen,
+    Filter,
+    Search,
     TrendingUp,
+    X,
 } from "lucide-react";
-import CourseCard from "@/components/CourseCard";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 interface Course {
     _id: string;
@@ -56,27 +57,27 @@ export default function CoursesPage() {
     }, [allCourses, searchTerm]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-            <div className="bg-gradient-to-r from-white to-blue-50 border-b border-blue-200 shadow-sm">
+        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
+            <div className="bg-gradient-to-r from-white to-primary/5 border-b border-primary/20 shadow-sm">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-6">
                             <Link
                                 href="/"
-                                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 transition-colors duration-200"
+                                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors duration-200"
                             >
                                 <ArrowLeft className="w-4 h-4 mr-2" />
                                 Back to Home
                             </Link>
                             <div className="h-8 w-px bg-gray-300" />
                             <div className="flex items-center space-x-3">
-                                <BookOpen className="h-8 w-8 text-indigo-600" />
-                                <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                                <BookOpen className="h-8 w-8 text-primary" />
+                                <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                                     All Courses
                                 </h1>
                             </div>
                         </div>
-                        <Badge className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm px-4 py-2">
+                        <Badge className="bg-gradient-to-r from-primary to-secondary text-white border-0 text-sm px-4 py-2">
                             <TrendingUp className="w-4 h-4 mr-2" />
                             {filteredCourses.length} courses found
                         </Badge>
@@ -84,32 +85,10 @@ export default function CoursesPage() {
                 </div>
             </div>
 
-            <div className="bg-white/95 backdrop-blur-sm border-b border-indigo-200 shadow-sm">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="relative max-w-xl mx-auto">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                        <Input
-                            placeholder="Search courses..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10 pr-10 h-12 border-indigo-200 focus:border-indigo-400"
-                        />
-                        {searchTerm && (
-                            <button
-                                onClick={() => setSearchTerm("")}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <Container className="py-10">
                 {loading ? (
                     <div className="text-center py-20">
-                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600 mb-6"></div>
+                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mb-6"></div>
                         <p className="text-gray-600 text-lg">
                             Loading courses...
                         </p>
@@ -152,30 +131,7 @@ export default function CoursesPage() {
                         )}
                     </>
                 )}
-            </div>
-
-            <footer className="bg-gradient-to-r from-indigo-100 to-purple-100 border-t border-indigo-200 mt-16">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="text-center">
-                        <div className="flex items-center justify-center space-x-2 mb-4">
-                            <BookOpen className="h-6 w-6 text-indigo-600" />
-                            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                                Innodemy
-                            </span>
-                        </div>
-                        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                            Empowering learners with world-class technology
-                            education. Join thousands of students who have
-                            transformed their careers with our courses.
-                        </p>
-                        <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
-                            <span>© 2024 Innodemy. All rights reserved.</span>
-                            <span>•</span>
-                            <span>Trusted by 10,000+ students</span>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            </Container>
         </div>
     );
 }
