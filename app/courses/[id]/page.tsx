@@ -350,7 +350,7 @@ export default function CoursePage({ params }: CoursePageProps) {
 
                             {/* Enrollment Button */}
                             {!user ? (
-                                <Link href="/login">
+                                <Link href={`/checkout?course=${course._id}`}>
                                     <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-bold py-4 text-base rounded-lg">
                                         Enroll Now
                                     </Button>
@@ -373,14 +373,11 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     </Button>
                                 )
                             ) : (
-                                <Button
-                                    onClick={() =>
-                                        setEnrollmentDialogOpen(true)
-                                    }
-                                    className="w-full bg-secondary hover:bg-secondary/90 text-white font-bold py-4 text-base rounded-lg"
-                                >
-                                    Enroll Now
-                                </Button>
+                                <Link href={`/checkout?course=${course._id}`}>
+                                    <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-bold py-4 text-base rounded-lg">
+                                        Enroll Now
+                                    </Button>
+                                </Link>
                             )}
                         </div>
                     </div>
@@ -848,7 +845,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                         {/* Enrollment Button */}
                         <div className="flex-shrink-0">
                             {!user ? (
-                                <Link href="/login">
+                                <Link href={`/checkout?course=${course._id}`}>
                                     <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
                                         ব্যাচে ভর্তি হোন →
                                     </Button>
@@ -871,14 +868,11 @@ export default function CoursePage({ params }: CoursePageProps) {
                                     </Button>
                                 )
                             ) : (
-                                <Button
-                                    onClick={() =>
-                                        setEnrollmentDialogOpen(true)
-                                    }
-                                    className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20"
-                                >
-                                    ব্যাচে ভর্তি হোন →
-                                </Button>
+                                <Link href={`/checkout?course=${course._id}`}>
+                                    <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
+                                        ব্যাচে ভর্তি হোন →
+                                    </Button>
+                                </Link>
                             )}
                         </div>
                     </div>
