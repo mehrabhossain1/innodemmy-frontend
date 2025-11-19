@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, Users, Clock } from "lucide-react";
+import { BookOpen, Award, Video, FolderOpen, Star } from "lucide-react";
 
 interface CourseCardProps {
     id: string;
@@ -11,6 +11,9 @@ interface CourseCardProps {
     modules?: number;
     students?: number;
     duration?: string;
+    batchName?: string;
+    rating?: number;
+    totalRatings?: number;
 }
 
 export default function CourseCard({
@@ -18,18 +21,21 @@ export default function CourseCard({
     title,
     description,
     thumbnail,
-    modules = 14,
-    students = 39,
-    duration = "১ দিন বাকি",
+    modules = 60,
+    students = 5,
+    duration,
+    batchName = "Batch-2",
+    rating = 4.6,
+    totalRatings = 8,
 }: CourseCardProps) {
     return (
         <div className="relative group">
             {/* Glow effect on hover */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-            <div className="relative bg-card/50 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border hover:border-primary/30 transition-all duration-300 ease-out shadow-lg hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full">
+            <div className="relative bg-card backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 ease-out shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full">
                 {/* Image Section */}
-                <div className="relative overflow-hidden h-48">
+                <div className="relative overflow-hidden h-44">
                     <Image
                         src={
                             thumbnail ||
@@ -37,61 +43,83 @@ export default function CourseCard({
                         }
                         alt={title}
                         width={400}
-                        height={192}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        height={176}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
-
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3 bg-gradient-to-r from-secondary to-secondary/80 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg backdrop-blur-sm">
-                        ব্যাচ ১৪
-                    </div>
-
-                    {/* Duration Badge */}
-                    <div className="absolute top-3 right-3 bg-card/80 backdrop-blur-md text-foreground px-3 py-1.5 rounded-lg text-xs font-semibold border border-border">
-                        <Clock className="h-3 w-3 inline mr-1" />
-                        {duration}
-                    </div>
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 </div>
 
                 {/* Content Section */}
-                <div className="p-5 space-y-3 lg:space-y-3">
+                <div className="p-4 space-y-3">
+                    {/* Batch Badge and Rating */}
+                    <div className="flex items-center justify-between">
+                        <div className="bg-primary text-white px-3 py-1 rounded text-xs font-bold">
+                            {batchName}
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className={`w-3.5 h-3.5 ${
+                                            i < Math.floor(rating)
+                                                ? "fill-yellow-400 text-yellow-400"
+                                                : "fill-gray-300 text-gray-300"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-sm font-bold text-foreground ml-1">
+                                {rating}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                                ({totalRatings})
+                            </span>
+                        </div>
+                    </div>
+
                     {/* Title */}
                     <Link href={`/courses/${id}`}>
-                        <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-tight">
+                        <h3 className="text-base font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-snug">
                             {title}
                         </h3>
                     </Link>
 
-                    {/* Description */}
-                    <p className="text-xs lg:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                        {description}
-                    </p>
-
-                    {/* Stats */}
-                    <div className="flex items-center gap-4 text-xs pt-2 border-t border-border">
-                        <div className="flex items-center gap-1.5">
-                            <div className="p-1.5 bg-primary/10 rounded-md">
-                                <BookOpen className="h-3.5 w-3.5 text-primary" />
+                    {/* Features Grid */}
+                    <div className="grid grid-cols-2 gap-2 py-2">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <div className="w-5 h-5 flex items-center justify-center">
+                                <Video className="h-3.5 w-3.5 text-pink-500" />
                             </div>
-                            <span className="text-foreground">{modules} মডিউল</span>
+                            <span>Live class</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <div className="p-1.5 bg-secondary/10 rounded-md">
-                                <Users className="h-3.5 w-3.5 text-secondary" />
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <div className="w-5 h-5 flex items-center justify-center">
+                                <Award className="h-3.5 w-3.5 text-purple-500" />
                             </div>
-                            <span className="text-foreground">{students} সিট</span>
+                            <span>Certificate</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <div className="w-5 h-5 flex items-center justify-center">
+                                <BookOpen className="h-3.5 w-3.5 text-orange-500" />
+                            </div>
+                            <span>{modules}+ Lessons</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <div className="w-5 h-5 flex items-center justify-center">
+                                <FolderOpen className="h-3.5 w-3.5 text-blue-500" />
+                            </div>
+                            <span>{students}+ Projects</span>
                         </div>
                     </div>
 
                     {/* Button */}
                     <Link href={`/courses/${id}`}>
                         <Button
-                            className="w-full bg-gradient-to-r from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 text-foreground border-2 border-border hover:border-primary/40 font-semibold rounded-lg transition-all duration-300 group/btn"
+                            className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                         >
                             View Details
-                            <span className="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
                         </Button>
                     </Link>
                 </div>
