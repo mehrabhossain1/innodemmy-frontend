@@ -10,7 +10,18 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, Menu, X, LogOut, ChevronDown, Code, Cpu, TrendingUp, Palette, GraduationCap } from "lucide-react";
+import {
+    Search,
+    Menu,
+    X,
+    LogOut,
+    ChevronDown,
+    Code,
+    Cpu,
+    TrendingUp,
+    Palette,
+    GraduationCap,
+} from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -24,28 +35,28 @@ const courseCategories = [
         name: "Web Development",
         icon: Code,
         count: "12 Courses",
-        color: "text-blue-500"
+        color: "text-blue-500",
     },
     {
         id: "data",
         name: "Data Science",
         icon: Cpu,
         count: "8 Courses",
-        color: "text-purple-500"
+        color: "text-purple-500",
     },
     {
         id: "business",
         name: "Business & Marketing",
         icon: TrendingUp,
         count: "6 Courses",
-        color: "text-orange-500"
+        color: "text-orange-500",
     },
     {
         id: "design",
         name: "Product & Design",
         icon: Palette,
         count: "4 Courses",
-        color: "text-pink-500"
+        color: "text-pink-500",
     },
 ];
 
@@ -79,9 +90,12 @@ export default function Navbar() {
                             onMouseLeave={() => setIsCoursesOpen(false)}
                         >
                             <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-accent">
-                                <GraduationCap className="h-4 w-4" />
                                 All Courses
-                                <ChevronDown className={`h-4 w-4 transition-transform ${isCoursesOpen ? 'rotate-180' : ''}`} />
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isCoursesOpen ? "rotate-180" : ""
+                                    }`}
+                                />
                             </button>
 
                             {/* Mega Menu Dropdown */}
@@ -94,27 +108,35 @@ export default function Navbar() {
                                                 Course Categories
                                             </h3>
                                             <div className="space-y-1">
-                                                {courseCategories.map((category) => (
-                                                    <Link
-                                                        key={category.id}
-                                                        href={`/courses?category=${category.id}`}
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
-                                                    >
-                                                        <div className="flex-shrink-0">
-                                                            <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                                                                <category.icon className={`h-5 w-5 ${category.color}`} />
+                                                {courseCategories.map(
+                                                    (category) => (
+                                                        <Link
+                                                            key={category.id}
+                                                            href={`/courses?category=${category.id}`}
+                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
+                                                        >
+                                                            <div className="flex-shrink-0">
+                                                                <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                                                    <category.icon
+                                                                        className={`h-5 w-5 ${category.color}`}
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="flex-1">
-                                                            <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors">
-                                                                {category.name}
+                                                            <div className="flex-1">
+                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors">
+                                                                    {
+                                                                        category.name
+                                                                    }
+                                                                </div>
+                                                                <div className="text-xs text-gray-500 dark:text-muted-foreground">
+                                                                    {
+                                                                        category.count
+                                                                    }
+                                                                </div>
                                                             </div>
-                                                            <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                                {category.count}
-                                                            </div>
-                                                        </div>
-                                                    </Link>
-                                                ))}
+                                                        </Link>
+                                                    )
+                                                )}
                                             </div>
                                         </div>
 
@@ -129,10 +151,12 @@ export default function Navbar() {
                                                     className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
                                                 >
                                                     <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1">
-                                                        Full Stack Web Development
+                                                        Full Stack Web
+                                                        Development
                                                     </div>
                                                     <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                        JavaScript, React, Node.js
+                                                        JavaScript, React,
+                                                        Node.js
                                                     </div>
                                                 </Link>
                                                 <Link
@@ -151,7 +175,8 @@ export default function Navbar() {
                                                     className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
                                                 >
                                                     <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1">
-                                                        App Development with Flutter
+                                                        App Development with
+                                                        Flutter
                                                     </div>
                                                     <div className="text-xs text-gray-500 dark:text-muted-foreground">
                                                         Flutter, Dart, AI
@@ -221,23 +246,38 @@ export default function Navbar() {
                                         <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
                                             {user.name.charAt(0).toUpperCase()}
                                         </div>
-                                        <span className="text-sm font-medium">{user.name}</span>
+                                        <span className="text-sm font-medium">
+                                            {user.name}
+                                        </span>
                                         <ChevronDown className="h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-48">
+                                <DropdownMenuContent
+                                    align="end"
+                                    className="w-48"
+                                >
                                     <div className="px-2 py-1.5 text-sm text-muted-foreground">
-                                        Role: <span className="font-medium text-foreground">{user.role}</span>
+                                        Role:{" "}
+                                        <span className="font-medium text-foreground">
+                                            {user.role}
+                                        </span>
                                     </div>
                                     <DropdownMenuItem>
                                         <Link
-                                            href={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
+                                            href={
+                                                user.role === "admin"
+                                                    ? "/admin/dashboard"
+                                                    : "/dashboard"
+                                            }
                                             className="w-full"
                                         >
                                             Dashboard
                                         </Link>
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={logout} className="text-red-600">
+                                    <DropdownMenuItem
+                                        onClick={logout}
+                                        className="text-red-600"
+                                    >
                                         <LogOut size={16} className="mr-2" />
                                         Logout
                                     </DropdownMenuItem>
@@ -267,9 +307,15 @@ export default function Navbar() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            onClick={() =>
+                                setIsMobileMenuOpen(!isMobileMenuOpen)
+                            }
                         >
-                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            {isMobileMenuOpen ? (
+                                <X size={24} />
+                            ) : (
+                                <Menu size={24} />
+                            )}
                         </Button>
                     </div>
                 </div>
@@ -293,7 +339,9 @@ export default function Navbar() {
                         </div>
 
                         <div className="flex items-center justify-between mb-3 px-3">
-                            <span className="text-sm font-medium text-muted-foreground">Theme</span>
+                            <span className="text-sm font-medium text-muted-foreground">
+                                Theme
+                            </span>
                             <ThemeToggle />
                         </div>
 
@@ -329,15 +377,28 @@ export default function Navbar() {
                         {user ? (
                             <div className="border-t border-gray-200 dark:border-border pt-3 mt-3 space-y-2">
                                 <div className="px-3 py-2 text-sm text-muted-foreground">
-                                    Logged in as: <span className="font-semibold text-foreground">{user.name}</span>
+                                    Logged in as:{" "}
+                                    <span className="font-semibold text-foreground">
+                                        {user.name}
+                                    </span>
                                 </div>
                                 <div className="px-3 py-1 text-xs text-muted-foreground uppercase">
                                     Role: {user.role}
                                 </div>
-                                <Button asChild variant="outline" className="w-full">
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    className="w-full"
+                                >
                                     <Link
-                                        href={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
-                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        href={
+                                            user.role === "admin"
+                                                ? "/admin/dashboard"
+                                                : "/dashboard"
+                                        }
+                                        onClick={() =>
+                                            setIsMobileMenuOpen(false)
+                                        }
                                     >
                                         Dashboard
                                     </Link>
