@@ -45,7 +45,7 @@ export default function HeroSection() {
                         <CarouselContent>
                             {heroImages.map((image, index) => (
                                 <CarouselItem key={index}>
-                                    <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+                                    <div className="relative w-full h-[500px]">
                                         <Image
                                             src={image.src}
                                             alt={image.alt}
@@ -57,8 +57,8 @@ export default function HeroSection() {
                                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
 
                                         <div className="absolute inset-0 flex items-center">
-                                            <div className="w-full md:w-2/3 lg:w-1/2 px-8 md:px-12 lg:px-16 text-white space-y-4 md:space-y-6">
-                                                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+                                            <div className="w-full md:w-2/3 px-8 md:px-12 lg:px-20 text-white space-y-4 md:space-y-6">
+                                                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight">
                                                     Transform Your Future with{" "}
                                                     <span className="text-secondary">
                                                         World-Class
