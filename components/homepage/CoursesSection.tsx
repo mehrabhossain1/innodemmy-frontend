@@ -80,21 +80,8 @@ export default function CoursesSection() {
     }, []);
 
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
-                    backgroundSize: '40px 40px',
-                    color: 'hsl(var(--primary) / 0.1)'
-                }}></div>
-            </div>
-
-            {/* Gradient Orbs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
-
-            <Container className="relative z-10">
+        <section className="relative py-12 md:py-16 lg:py-14 bg-background">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-8">
                     <div className="inline-block mb-3 lg:mb-3">
@@ -123,10 +110,10 @@ export default function CoursesSection() {
                                 <button
                                     key={category.id}
                                     onClick={() => setActiveCategory(category.id)}
-                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-3.5 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border-2 transition-all duration-300 ${
+                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-3.5 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
-                                            ? "bg-gradient-to-r from-primary to-primary/80 border-primary text-white shadow-lg shadow-primary/20"
-                                            : "bg-card/50 border-border hover:border-primary/30 text-foreground hover:bg-muted backdrop-blur-sm"
+                                            ? "bg-primary border-primary text-white shadow-md"
+                                            : "bg-white border-gray-200 hover:border-primary text-foreground hover:bg-gray-50"
                                     }`}
                                 >
                                     <category.icon className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
