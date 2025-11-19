@@ -27,7 +27,7 @@ export default function HeroSection() {
     return (
         <section className="relative w-full">
             <Container className="">
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="relative overflow-hidden rounded-2xl my-4">
                     <Carousel
                         opts={{
                             loop: true,
@@ -45,7 +45,7 @@ export default function HeroSection() {
                         <CarouselContent>
                             {heroImages.map((image, index) => (
                                 <CarouselItem key={index}>
-                                    <div className="relative w-full h-[500px]">
+                                    <div className="relative w-full h-[550px]">
                                         <Image
                                             src={image.src}
                                             alt={image.alt}
