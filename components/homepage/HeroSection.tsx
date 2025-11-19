@@ -25,9 +25,9 @@ const heroImages = [
 
 export default function HeroSection() {
     return (
-        <section className="relative w-full bg-background">
-            <Container className="py-8 md:py-12">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+        <section className="relative w-full">
+            <Container className="">
+                <div className="relative overflow-hidden rounded-2xl">
                     <Carousel
                         opts={{
                             loop: true,
