@@ -5,9 +5,16 @@ import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { getWebinarById } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
-import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Eye, User, Lock, LogIn } from "lucide-react";
+import {
+    ArrowLeft,
+    Calendar,
+    Clock,
+    Eye,
+    User,
+    Lock,
+    LogIn,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import AuthSidebar from "@/components/AuthSidebar";
@@ -15,7 +22,7 @@ import AuthSidebar from "@/components/AuthSidebar";
 export default function WebinarDetailsPage() {
     const router = useRouter();
     const params = useParams();
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
     const [webinar, setWebinar] = useState<Webinar | null>(null);
     const [showAuthSidebar, setShowAuthSidebar] = useState(false);
     const [justLoggedIn, setJustLoggedIn] = useState(false);
@@ -77,14 +84,16 @@ export default function WebinarDetailsPage() {
                                 />
                             </svg>
                         </div>
-                        <span className="font-semibold">Login successful! Enjoy the webinar</span>
+                        <span className="font-semibold">
+                            Login successful! Enjoy the webinar
+                        </span>
                     </div>
                 </div>
             )}
 
             {/* Hero Section */}
-            <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-background py-12 md:py-16">
-                <Container>
+            <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-background py-8">
+                <div className="container mx-auto px-4 max-w-7xl">
                     <Link href="/">
                         <Button
                             variant="ghost"
@@ -95,9 +104,9 @@ export default function WebinarDetailsPage() {
                         </Button>
                     </Link>
 
-                    <div className="grid md:grid-cols-2 gap-8 items-start">
-                        {/* Left: Content */}
-                        <div className="space-y-6">
+                    <div className="grid lg:grid-cols-3 gap-6">
+                        {/* Left: Content - 2 columns */}
+                        <div className="lg:col-span-2 space-y-6">
                             <div className="inline-block bg-green-500 text-white px-4 py-1.5 rounded-full text-sm font-bold">
                                 FREE WEBINAR
                             </div>
@@ -121,7 +130,9 @@ export default function WebinarDetailsPage() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Eye className="h-5 w-5 text-primary" />
-                                    <span>{webinar.views.toLocaleString()} views</span>
+                                    <span>
+                                        {webinar.views.toLocaleString()} views
+                                    </span>
                                 </div>
                             </div>
 
@@ -146,52 +157,61 @@ export default function WebinarDetailsPage() {
                             </div>
                         </div>
 
-                        {/* Right: Video and Instructor */}
-                        <div className="space-y-6">
+                        {/* Right: Video & Instructor - 1 column */}
+                        <div className="lg:col-span-1 space-y-4">
                             {/* Video Player */}
-                            <div className="bg-card rounded-lg overflow-hidden border border-border">
-                                <div className="aspect-video bg-black relative">
-                                    {user ? (
-                                        <iframe
-                                            src={webinar.videoUrl}
-                                            title={webinar.title}
-                                            className="w-full h-full"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                        ></iframe>
-                                    ) : (
-                                        <>
-                                            <Image
-                                                src={webinar.image}
-                                                alt={webinar.title}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                            {/* Login Overlay */}
-                                            <div className="absolute inset-0 bg-black/70 flex items-center justify-center backdrop-blur-sm">
-                                                <div className="text-center space-y-4 p-6">
-                                                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-2">
-                                                        <Lock className="w-8 h-8 text-white" />
-                                                    </div>
-                                                    <h3 className="text-white font-bold text-xl">
-                                                        Login Required
-                                                    </h3>
-                                                    <p className="text-white/80 text-sm max-w-xs">
-                                                        Please log in or create a free account to watch this webinar
-                                                    </p>
-                                                    <Button
-                                                        size="lg"
-                                                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold mt-4"
-                                                        onClick={() => setShowAuthSidebar(true)}
-                                                    >
-                                                        <LogIn className="mr-2 h-5 w-5" />
-                                                        Login to Watch
-                                                    </Button>
+                            <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                                {user ? (
+                                    <iframe
+                                        src={webinar.videoUrl}
+                                        title={webinar.title}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                ) : (
+                                    <>
+                                        <Image
+                                            src={webinar.image}
+                                            alt={webinar.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                        {/* Badges */}
+                                        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold">
+                                            FREE
+                                        </div>
+                                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
+                                            {webinar.duration}
+                                        </div>
+                                        {/* Login Overlay */}
+                                        <div className="absolute inset-0 bg-black/70 flex items-center justify-center backdrop-blur-sm">
+                                            <div className="text-center space-y-4 p-6">
+                                                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-2">
+                                                    <Lock className="w-8 h-8 text-white" />
                                                 </div>
+                                                <h3 className="text-white font-bold text-xl">
+                                                    Login Required
+                                                </h3>
+                                                <p className="text-white/80 text-sm max-w-xs">
+                                                    Please log in or create a
+                                                    free account to watch this
+                                                    webinar
+                                                </p>
+                                                <Button
+                                                    size="lg"
+                                                    className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold mt-4"
+                                                    onClick={() =>
+                                                        setShowAuthSidebar(true)
+                                                    }
+                                                >
+                                                    <LogIn className="mr-2 h-5 w-5" />
+                                                    Login to Watch
+                                                </Button>
                                             </div>
-                                        </>
-                                    )}
-                                </div>
+                                        </div>
+                                    </>
+                                )}
                             </div>
 
                             {/* Instructor Card */}
@@ -223,39 +243,28 @@ export default function WebinarDetailsPage() {
                                 <div className="pt-4 border-t border-border">
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <User className="h-4 w-4" />
-                                        <span>Executive - Product Experience</span>
+                                        <span>
+                                            Executive - Product Experience
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </Container>
+                </div>
             </div>
 
             {/* Additional Content Section */}
-            <Container className="py-12">
+            <div className="container mx-auto px-4 max-w-7xl py-12">
                 <div className="max-w-5xl mx-auto space-y-8">
-                    {/* Additional Info */}
-                    <div className="bg-muted/30 rounded-lg p-6 border border-border">
-                        <h3 className="font-bold text-xl mb-4">
-                            কোর্সফার্ম আপনাকে শেখান দেন শেখার জন্য!
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            আপনি যদি শিখতে চান, ই-কমার্স, এবং প্রভৃতি সেক্টরে কাজ করেন
-                            তাহলা প্রথমেই আপনাকে আর্টিফিশিয়াল ইন্টেলিজেন্স এবং মেশিন
-                            লার্নিং এর সাথে পেমেন্ট অটোমেশন কিভাবে কাজ করে সেটা জানতে
-                            হবে। এই বিনামূল্যের সেশনে আপনি শিখবেন কিভাবে ML ব্যবহার করে
-                            পেমেন্ট সিস্টেম আরও নিরাপদ এবং দ্রুত করা যায়।
-                        </p>
-                    </div>
-
                     {/* Call to Action */}
                     <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 border border-border">
                         <h3 className="font-bold text-2xl mb-3">
                             আরও শিখতে চান?
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                            আমাদের পূর্ণ কোর্সে এনরোল করুন এবং এক্সপার্ট হয়ে উঠুন!
+                            আমাদের পূর্ণ কোর্সে এনরোল করুন এবং এক্সপার্ট হয়ে
+                            উঠুন!
                         </p>
                         <Link href="/courses">
                             <Button
@@ -267,7 +276,7 @@ export default function WebinarDetailsPage() {
                         </Link>
                     </div>
                 </div>
-            </Container>
+            </div>
 
             {/* Auth Sidebar */}
             <AuthSidebar
