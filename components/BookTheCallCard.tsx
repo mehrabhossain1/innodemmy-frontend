@@ -141,12 +141,13 @@ export default function BookTheCallCard() {
 
     if (isSubmitted) {
         return (
-            <section className="relative py-16 md:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+            <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
                 {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 opacity-30">
                     <div className="absolute inset-0" style={{
-                        backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                        backgroundSize: '50px 50px'
+                        backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+                        backgroundSize: '40px 40px',
+                        color: 'hsl(var(--primary) / 0.1)'
                     }}></div>
                 </div>
 
@@ -157,26 +158,26 @@ export default function BookTheCallCard() {
                 <Container>
                     <div className="relative group max-w-2xl mx-auto">
                         {/* Glow Effect */}
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl opacity-20 blur-lg"></div>
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-                        <Card className="relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl overflow-hidden">
-                            <CardContent className="p-8 md:p-12">
-                                <div className="text-center space-y-6">
+                        <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border rounded-xl lg:rounded-2xl overflow-hidden">
+                            <CardContent className="p-6 md:p-8 lg:p-10">
+                                <div className="text-center space-y-4 lg:space-y-5">
                                     {/* Success Icon */}
                                     <div className="relative inline-block">
-                                        <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
-                                            <CheckCircle className="w-10 h-10 text-white" />
+                                        <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                                            <CheckCircle className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
                                         </div>
                                         {/* Icon Glow */}
-                                        <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full blur-md opacity-40"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full blur-md opacity-50"></div>
                                     </div>
 
                                     {/* Success Message */}
-                                    <div className="space-y-3">
-                                        <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                                    <div className="space-y-2 lg:space-y-3">
+                                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-foreground">
                                             Thank You!
                                         </h3>
-                                        <p className="text-gray-400 max-w-md mx-auto leading-relaxed">
+                                        <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
                                             Your consultation request has been submitted successfully. Our team will contact you within 24 hours to schedule your free consultation.
                                         </p>
                                     </div>
@@ -184,7 +185,7 @@ export default function BookTheCallCard() {
                                     {/* Action Button */}
                                     <Button
                                         onClick={() => setIsSubmitted(false)}
-                                        className="mt-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 shadow-lg shadow-green-500/20 hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-300 px-8 py-6 h-auto text-base font-semibold rounded-xl"
+                                        className="mt-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 shadow-lg shadow-green-500/20 hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-300 px-6 lg:px-8 py-4 lg:py-5 h-auto text-sm lg:text-base font-semibold rounded-lg lg:rounded-xl"
                                     >
                                         Book Another Consultation
                                     </Button>
@@ -198,12 +199,13 @@ export default function BookTheCallCard() {
     }
 
     return (
-        <section className="relative py-16 md:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
             {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 opacity-30">
                 <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                    backgroundSize: '50px 50px'
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+                    backgroundSize: '40px 40px',
+                    color: 'hsl(var(--primary) / 0.1)'
                 }}></div>
             </div>
 
@@ -213,21 +215,21 @@ export default function BookTheCallCard() {
 
             <Container className="relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-12 md:mb-16">
-                    <div className="inline-block mb-4">
-                        <span className="text-sm font-semibold text-secondary bg-secondary/10 px-4 py-1.5 rounded-full border border-secondary/20">
+                <div className="text-center mb-8 md:mb-10 lg:mb-8">
+                    <div className="inline-block mb-3 lg:mb-3">
+                        <span className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20">
                             📞 Free Consultation
                         </span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
+                        <span className="text-foreground">
                             Get Your Free
                         </span>{" "}
                         <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
                             Consultation
                         </span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Take the first step towards your dream career. Our expert counselors are ready to guide you.
                     </p>
                 </div>
@@ -235,21 +237,21 @@ export default function BookTheCallCard() {
                 {/* Main Content */}
                 <div className="relative group">
                     {/* Glow Effect */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-                    <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-white/10">
+                    <div className="relative bg-card/50 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border">
                         <div className="grid lg:grid-cols-2 gap-0">
                             {/* Left Side - Accordion */}
-                            <div className="space-y-6 p-6 md:p-8">
-                                <div className="space-y-4">
-                                    <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            <div className="space-y-5 lg:space-y-6 p-5 md:p-6 lg:p-7">
+                                <div className="space-y-3 lg:space-y-4">
+                                    <h3 className="text-xl lg:text-2xl font-bold text-foreground">
                                         What Sets Us Apart
                                     </h3>
 
                                     <Accordion
                                         type="single"
                                         collapsible
-                                        className="space-y-3"
+                                        className="space-y-2 lg:space-y-3"
                                     >
                                         {accordionItems.map((item) => {
                                             const IconComponent = item.icon;
@@ -257,20 +259,20 @@ export default function BookTheCallCard() {
                                                 <AccordionItem
                                                     key={item.id}
                                                     value={item.id}
-                                                    className="border-2 border-white/10 rounded-xl px-4 data-[state=open]:border-primary/50 bg-white/5 backdrop-blur-sm transition-all duration-300"
+                                                    className="border-2 border-border rounded-lg lg:rounded-xl px-3 lg:px-4 data-[state=open]:border-primary/50 bg-card backdrop-blur-sm transition-all duration-300"
                                                 >
-                                                    <AccordionTrigger className="hover:no-underline py-4">
-                                                        <div className="flex items-center space-x-3 text-left">
-                                                            <div className="flex-shrink-0 p-2 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg">
-                                                                <IconComponent className="w-5 h-5 text-primary" />
+                                                    <AccordionTrigger className="hover:no-underline py-3 lg:py-3.5">
+                                                        <div className="flex items-center space-x-2 lg:space-x-3 text-left">
+                                                            <div className="flex-shrink-0 p-1.5 lg:p-2 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md lg:rounded-lg">
+                                                                <IconComponent className="w-4 h-4 lg:w-5 lg:h-5 text-primary" />
                                                             </div>
-                                                            <span className="font-semibold text-white text-sm">
+                                                            <span className="font-semibold text-foreground text-xs lg:text-sm">
                                                                 {item.title}
                                                             </span>
                                                         </div>
                                                     </AccordionTrigger>
-                                                    <AccordionContent className="pb-4 pt-2">
-                                                        <p className="text-gray-400 text-sm leading-relaxed ml-12">
+                                                    <AccordionContent className="pb-3 lg:pb-4 pt-1 lg:pt-2">
+                                                        <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed ml-8 lg:ml-10">
                                                             {item.content}
                                                         </p>
                                                     </AccordionContent>
@@ -283,16 +285,16 @@ export default function BookTheCallCard() {
                                 {/* Call to Action */}
                                 <div className="relative group/cta">
                                     {/* CTA Glow */}
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary/70 rounded-xl opacity-20 blur transition-all duration-300 group-hover/cta:opacity-30"></div>
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary/70 rounded-lg lg:rounded-xl opacity-0 group-hover/cta:opacity-20 blur transition-all duration-300"></div>
 
-                                    <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl p-6 border-2 border-primary/30 backdrop-blur-sm">
-                                        <h4 className="text-lg font-bold text-white mb-2">
+                                    <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg lg:rounded-xl p-4 lg:p-5 border-2 border-primary/30 backdrop-blur-sm">
+                                        <h4 className="text-base lg:text-lg font-bold text-foreground mb-1.5 lg:mb-2">
                                             Ready to Start Your Journey?
                                         </h4>
-                                        <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                                        <p className="text-muted-foreground mb-3 lg:mb-4 text-xs lg:text-sm leading-relaxed">
                                             Join thousands of learners who have transformed their careers with Innodemy.
                                         </p>
-                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold">
+                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-4 lg:py-5 h-auto rounded-lg">
                                             Explore Courses
                                         </Button>
                                     </div>
@@ -300,25 +302,25 @@ export default function BookTheCallCard() {
                             </div>
 
                             {/* Right Side - Form */}
-                            <div className="p-6 md:p-8 border-l-0 lg:border-l-2 border-t-2 lg:border-t-0 border-white/10 flex items-center justify-center bg-white/5">
+                            <div className="p-5 md:p-6 lg:p-7 border-l-0 lg:border-l-2 border-t-2 lg:border-t-0 border-border flex items-center justify-center bg-muted/30">
                                 <form
                                     onSubmit={handleSubmit}
-                                    className="space-y-5 w-full max-w-md"
+                                    className="space-y-4 lg:space-y-4 w-full max-w-md"
                                 >
-                                    <div className="text-center mb-6">
-                                        <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
+                                    <div className="text-center mb-4 lg:mb-5">
+                                        <h3 className="text-xl md:text-2xl lg:text-2xl font-bold text-foreground mb-1.5 lg:mb-2">
                                             Book Your Call Now!
                                         </h3>
-                                        <p className="text-sm text-gray-400">
+                                        <p className="text-xs lg:text-sm text-muted-foreground">
                                             Fill out the form below to schedule your free consultation
                                         </p>
                                     </div>
 
                                     {/* Full Name */}
-                                    <div className="space-y-2">
+                                    <div className="space-y-1.5 lg:space-y-2">
                                         <Label
                                             htmlFor="fullName"
-                                            className="text-sm font-medium text-gray-300"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
                                         >
                                             Full Name *
                                         </Label>
@@ -333,24 +335,24 @@ export default function BookTheCallCard() {
                                                     e.target.value
                                                 )
                                             }
-                                            className={`bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary/20 ${
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
                                                 errors.fullName
                                                     ? "border-red-500 focus:border-red-500"
                                                     : ""
                                             }`}
                                         />
                                         {errors.fullName && (
-                                            <p className="text-xs text-red-400">
+                                            <p className="text-xs text-red-500">
                                                 {errors.fullName}
                                             </p>
                                         )}
                                     </div>
 
                                     {/* Email */}
-                                    <div className="space-y-2">
+                                    <div className="space-y-1.5 lg:space-y-2">
                                         <Label
                                             htmlFor="email"
-                                            className="text-sm font-medium text-gray-300"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
                                         >
                                             Email Address *
                                         </Label>
@@ -365,24 +367,24 @@ export default function BookTheCallCard() {
                                                     e.target.value
                                                 )
                                             }
-                                            className={`bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary/20 ${
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
                                                 errors.email
                                                     ? "border-red-500 focus:border-red-500"
                                                     : ""
                                             }`}
                                         />
                                         {errors.email && (
-                                            <p className="text-xs text-red-400">
+                                            <p className="text-xs text-red-500">
                                                 {errors.email}
                                             </p>
                                         )}
                                     </div>
 
                                     {/* Phone Number */}
-                                    <div className="space-y-2">
+                                    <div className="space-y-1.5 lg:space-y-2">
                                         <Label
                                             htmlFor="phoneNumber"
-                                            className="text-sm font-medium text-gray-300"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
                                         >
                                             Phone Number *
                                         </Label>
@@ -397,24 +399,24 @@ export default function BookTheCallCard() {
                                                     e.target.value
                                                 )
                                             }
-                                            className={`bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary/20 ${
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
                                                 errors.phoneNumber
                                                     ? "border-red-500 focus:border-red-500"
                                                     : ""
                                             }`}
                                         />
                                         {errors.phoneNumber && (
-                                            <p className="text-xs text-red-400">
+                                            <p className="text-xs text-red-500">
                                                 {errors.phoneNumber}
                                             </p>
                                         )}
                                     </div>
 
                                     {/* Message */}
-                                    <div className="space-y-2">
+                                    <div className="space-y-1.5 lg:space-y-2">
                                         <Label
                                             htmlFor="message"
-                                            className="text-sm font-medium text-gray-300"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
                                         >
                                             Write your message (optional)
                                         </Label>
@@ -429,7 +431,7 @@ export default function BookTheCallCard() {
                                                 )
                                             }
                                             rows={3}
-                                            className="resize-none bg-white/10 border-white/20 text-white placeholder:text-gray-500 focus:border-primary focus:ring-primary/20"
+                                            className="resize-none bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base"
                                         />
                                     </div>
 
@@ -437,23 +439,23 @@ export default function BookTheCallCard() {
                                     <Button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white py-6 h-auto text-base font-semibold shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-xl border-0"
+                                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white py-4 lg:py-5 h-auto text-sm lg:text-base font-semibold shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-0"
                                     >
                                         {isSubmitting ? (
                                             <div className="flex items-center justify-center space-x-2">
-                                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                                <div className="w-4 h-4 lg:w-5 lg:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                                 <span>Scheduling...</span>
                                             </div>
                                         ) : (
                                             <div className="flex items-center justify-center space-x-2">
-                                                <Calendar className="w-5 h-5" />
+                                                <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
                                                 <span>Schedule Free Consultation</span>
                                             </div>
                                         )}
                                     </Button>
 
                                     {/* Privacy Note */}
-                                    <p className="text-xs text-gray-500 text-center leading-relaxed">
+                                    <p className="text-[10px] lg:text-xs text-muted-foreground text-center leading-relaxed">
                                         By submitting this form, you agree to our{" "}
                                         <a
                                             href="#"
