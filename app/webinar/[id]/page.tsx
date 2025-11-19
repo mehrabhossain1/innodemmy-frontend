@@ -160,12 +160,12 @@ export default function WebinarDetailsPage() {
                         {/* Right: Video & Instructor - 1 column */}
                         <div className="lg:col-span-1 space-y-4">
                             {/* Video Player */}
-                            <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                            <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl bg-black">
                                 {user ? (
                                     <iframe
                                         src={webinar.videoUrl}
                                         title={webinar.title}
-                                        className="w-full h-full"
+                                        className="w-full h-full absolute inset-0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     ></iframe>
@@ -175,37 +175,44 @@ export default function WebinarDetailsPage() {
                                             src={webinar.image}
                                             alt={webinar.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-cover absolute inset-0"
                                         />
                                         {/* Badges */}
-                                        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold">
+                                        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
                                             FREE
                                         </div>
-                                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
+                                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold z-10">
                                             {webinar.duration}
                                         </div>
                                         {/* Login Overlay */}
-                                        <div className="absolute inset-0 bg-black/70 flex items-center justify-center backdrop-blur-sm">
-                                            <div className="text-center space-y-4 p-6">
-                                                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-2">
-                                                    <Lock className="w-8 h-8 text-white" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/75 to-black/85 flex items-center justify-center z-[5]">
+                                            <div className="text-center space-y-4 px-6 py-4 w-full max-w-[280px]">
+                                                {/* Lock Icon with Glow */}
+                                                <div className="relative inline-block mb-1">
+                                                    <div className="absolute inset-0 bg-primary/30 blur-xl rounded-full"></div>
+                                                    <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-primary/40">
+                                                        <Lock className="w-8 h-8 text-white" />
+                                                    </div>
                                                 </div>
-                                                <h3 className="text-white font-bold text-xl">
-                                                    Login Required
-                                                </h3>
-                                                <p className="text-white/80 text-sm max-w-xs">
-                                                    Please log in or create a
-                                                    free account to watch this
-                                                    webinar
-                                                </p>
+
+                                                {/* Text */}
+                                                <div className="space-y-1.5">
+                                                    <h3 className="text-white font-bold text-lg">
+                                                        Login Required
+                                                    </h3>
+                                                    <p className="text-white/70 text-xs leading-relaxed">
+                                                        Please log in or create a free account to watch this webinar
+                                                    </p>
+                                                </div>
+
+                                                {/* Button */}
                                                 <Button
-                                                    size="lg"
-                                                    className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold mt-4"
+                                                    className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white font-semibold shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 transition-all duration-300 text-sm py-2 h-auto"
                                                     onClick={() =>
                                                         setShowAuthSidebar(true)
                                                     }
                                                 >
-                                                    <LogIn className="mr-2 h-5 w-5" />
+                                                    <LogIn className="mr-2 h-4 w-4" />
                                                     Login to Watch
                                                 </Button>
                                             </div>
