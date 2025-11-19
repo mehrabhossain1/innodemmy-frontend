@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Palette, TrendingUp, Cpu, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Code, TrendingUp, Cpu } from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";
 import Container from "../Container";
@@ -32,12 +32,10 @@ interface ApiCourse {
 }
 
 const categories = [
-    { id: "all", label: "সকল কোর্স", icon: Code },
-    { id: "web", label: "Web & App Development", icon: Code, count: "১৬ কোর্স" },
-    { id: "product", label: "Product Management & Design", icon: Palette, count: "৪ কোর্স • ১ ওয়ার্কশপ" },
-    { id: "business", label: "Business & Marketing", icon: TrendingUp, count: "৩ কোর্স" },
-    { id: "data", label: "Data Engineering", icon: Cpu, count: "২ কোর্স • ১ ওয়ার্কশপ" },
-    { id: "creative", label: "Creatives", icon: Briefcase, count: "৩ কোর্স • ১ ওর্কশপ" },
+    { id: "all", label: "All Courses", icon: Code, count: "24 Courses" },
+    { id: "web", label: "Web Development", icon: Code, count: "12 Courses" },
+    { id: "data", label: "Data Science", icon: Cpu, count: "8 Courses" },
+    { id: "business", label: "Business & Marketing", icon: TrendingUp, count: "4 Courses" },
 ];
 
 export default function CoursesSection() {
@@ -119,16 +117,8 @@ export default function CoursesSection() {
 
                 {/* Category Tabs - Light Design */}
                 <div className="relative mb-8 md:mb-10 lg:mb-8">
-                    <div className="flex items-center gap-2 overflow-x-auto pb-3 lg:pb-3 scrollbar-hide">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="shrink-0 hidden md:flex h-9 w-9 lg:h-8 lg:w-8 bg-card hover:bg-muted text-foreground border border-border"
-                        >
-                            <ChevronLeft className="h-4 w-4 lg:h-4 lg:w-4" />
-                        </Button>
-
-                        <div className="flex gap-2 lg:gap-2.5 flex-1 overflow-x-auto scrollbar-hide">
+                    <div className="flex justify-center items-center overflow-x-auto pb-3 lg:pb-3 scrollbar-hide">
+                        <div className="flex gap-2 lg:gap-2.5 overflow-x-auto scrollbar-hide">
                             {categories.map((category) => (
                                 <button
                                     key={category.id}
@@ -153,14 +143,6 @@ export default function CoursesSection() {
                                 </button>
                             ))}
                         </div>
-
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="shrink-0 hidden md:flex h-9 w-9 lg:h-8 lg:w-8 bg-card hover:bg-muted text-foreground border border-border"
-                        >
-                            <ChevronRight className="h-4 w-4 lg:h-4 lg:w-4" />
-                        </Button>
                     </div>
                 </div>
 
