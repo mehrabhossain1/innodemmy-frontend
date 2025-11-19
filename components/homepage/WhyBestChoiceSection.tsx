@@ -123,18 +123,18 @@ export default function WhyBestChoiceSection() {
                                     {/* Subtle Background Gradient */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-                                    <CardContent className="relative p-5 md:p-6 lg:p-6">
-                                        <div className="flex flex-col items-start text-left space-y-3 lg:space-y-3">
+                                    <CardContent className="relative p-4 md:p-4 lg:p-5">
+                                        <div className="flex flex-col items-start text-left space-y-2 lg:space-y-2.5">
                                             {/* Icon with Gradient Background */}
-                                            <div className={`relative p-3 lg:p-3.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                                                <IconComponent className="w-6 h-6 lg:w-6 lg:h-6 text-white" />
+                                            <div className={`relative p-2 lg:p-2.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                                <IconComponent className="w-5 h-5 lg:w-5 lg:h-5 text-white" />
 
                                                 {/* Icon Glow */}
                                                 <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
                                             </div>
 
                                             {/* Title */}
-                                            <h4 className="font-bold text-foreground text-base lg:text-lg leading-tight group-hover:text-primary transition-colors duration-300">
+                                            <h4 className="font-bold text-foreground text-sm lg:text-base leading-tight group-hover:text-primary transition-colors duration-300">
                                                 {card.title}
                                             </h4>
 
@@ -146,7 +146,7 @@ export default function WhyBestChoiceSection() {
                                     </CardContent>
 
                                     {/* Corner Accent */}
-                                    <div className={`absolute top-0 right-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
+                                    <div className={`absolute top-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
                                 </Card>
                             </div>
                         );
