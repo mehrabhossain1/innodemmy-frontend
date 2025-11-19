@@ -74,7 +74,7 @@ const featureCards = [
 
 export default function WhyBestChoiceSection() {
     return (
-        <section className="relative py-16 md:py-20 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
@@ -83,13 +83,13 @@ export default function WhyBestChoiceSection() {
 
             <Container className="relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-12 md:mb-16">
-                    <div className="inline-block mb-4">
-                        <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
+                <div className="text-center mb-8 md:mb-10 lg:mb-8">
+                    <div className="inline-block mb-3 lg:mb-3">
+                        <span className="text-xs lg:text-sm font-semibold text-primary bg-primary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-primary/20">
                             ✨ Why Choose Us
                         </span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
                         <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                             Innodemy
                         </span>{" "}
@@ -97,7 +97,7 @@ export default function WhyBestChoiceSection() {
                             is Your Best Choice
                         </span>
                     </h2>
-                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Experience world-class education designed for real-world success.
                         Our unique approach combines expert mentorship, hands-on projects,
                         and lifetime support to accelerate your career.
@@ -105,7 +105,7 @@ export default function WhyBestChoiceSection() {
                 </div>
 
                 {/* Feature Cards - Enhanced Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-5">
                     {featureCards.map((card, index) => {
                         const IconComponent = card.icon;
                         return (
@@ -117,44 +117,36 @@ export default function WhyBestChoiceSection() {
                                 }}
                             >
                                 {/* Gradient Glow Effect */}
-                                <div className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}></div>
+                                <div className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}></div>
 
-                                <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer rounded-2xl h-full overflow-hidden">
+                                <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer rounded-xl lg:rounded-2xl h-full overflow-hidden">
                                     {/* Subtle Background Gradient */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-                                    <CardContent className="relative p-6 md:p-8">
-                                        <div className="flex flex-col items-start text-left space-y-4">
+                                    <CardContent className="relative p-5 md:p-6 lg:p-6">
+                                        <div className="flex flex-col items-start text-left space-y-3 lg:space-y-3">
                                             {/* Icon with Gradient Background */}
-                                            <div className={`relative p-4 bg-gradient-to-br ${card.gradient} rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                                                <IconComponent className="w-7 h-7 text-white" />
+                                            <div className={`relative p-3 lg:p-3.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                                <IconComponent className="w-6 h-6 lg:w-6 lg:h-6 text-white" />
 
                                                 {/* Icon Glow */}
-                                                <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                                                <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
                                             </div>
 
                                             {/* Title */}
-                                            <h4 className="font-bold text-foreground text-lg leading-tight group-hover:text-primary transition-colors duration-300">
+                                            <h4 className="font-bold text-foreground text-base lg:text-lg leading-tight group-hover:text-primary transition-colors duration-300">
                                                 {card.title}
                                             </h4>
 
                                             {/* Description */}
-                                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                            <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed">
                                                 {card.description}
                                             </p>
-
-                                            {/* Decorative Arrow */}
-                                            <div className="flex items-center gap-2 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
-                                                <span>Learn more</span>
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
                                         </div>
                                     </CardContent>
 
                                     {/* Corner Accent */}
-                                    <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
+                                    <div className={`absolute top-0 right-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
                                 </Card>
                             </div>
                         );

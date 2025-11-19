@@ -1,20 +1,11 @@
 "use client";
 
-import Container from "../Container";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-    Users,
-    BookOpen,
-    Target,
-    Clock,
-    Award,
-    Rocket,
-    Zap,
-    TrendingUp,
-} from "lucide-react";
+import { BookOpen, Clock, Target, Users } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import Container from "../Container";
 
 // Counter component with animation
 function AnimatedCounter({
@@ -185,33 +176,6 @@ export default function AboutusSection() {
         },
     ];
 
-    const features = [
-        {
-            icon: Award,
-            title: "Industry Expert Instructors",
-            description: "Learn from professionals with real-world experience",
-            color: "primary",
-        },
-        {
-            icon: Rocket,
-            title: "Project-Based Learning",
-            description: "Build your portfolio with hands-on projects",
-            color: "secondary",
-        },
-        {
-            icon: Zap,
-            title: "Fast-Track Your Career",
-            description: "Get job-ready skills in months, not years",
-            color: "primary",
-        },
-        {
-            icon: TrendingUp,
-            title: "Continuous Growth",
-            description: "Stay updated with latest industry trends",
-            color: "secondary",
-        },
-    ];
-
     return (
         <section className="relative w-full bg-gradient-to-b from-background via-muted/20 to-background py-12 md:py-16 lg:py-14">
             <Container>
@@ -376,32 +340,6 @@ export default function AboutusSection() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Features Grid - New Addition */}
-                <div className="mt-10 md:mt-12 lg:mt-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-4">
-                        {features.map((feature, index) => (
-                            <div
-                                key={index}
-                                className="group bg-card rounded-lg lg:rounded-xl p-4 lg:p-5 border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                            >
-                                <div
-                                    className={`inline-flex p-2 lg:p-2.5 rounded-lg bg-${feature.color}/10 mb-3 lg:mb-3 group-hover:scale-110 transition-transform duration-300`}
-                                >
-                                    <feature.icon
-                                        className={`w-5 h-5 lg:w-5 lg:h-5 text-${feature.color}`}
-                                    />
-                                </div>
-                                <h4 className="text-base lg:text-base font-bold text-foreground mb-1.5 lg:mb-2">
-                                    {feature.title}
-                                </h4>
-                                <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed">
-                                    {feature.description}
-                                </p>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </Container>
