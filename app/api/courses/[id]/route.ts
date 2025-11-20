@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCourseById, updateCourseById, deleteCourseById } from '@/lib/services/courses';
-import { ObjectId } from 'mongodb';
+import { getCourseById } from '@/lib/data/courses';
 
 export async function GET(
   request: Request,
@@ -9,24 +8,23 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // Check if id is a valid ObjectId
-    if (!ObjectId.isValid(id)) {
+    // Get course from hardcoded data
+    const course = getCourseById(id);
+
+    if (!course) {
       return NextResponse.json(
-        { error: 'Invalid course ID' },
-        { status: 400 }
+        { error: 'Course not found' },
+        { status: 404 }
       );
     }
-
-    const course = await getCourseById(id);
 
     return NextResponse.json({ course });
   } catch (error) {
     console.error('Get course error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Internal server error';
-    const status = error instanceof Error && error.message.includes('not found') ? 404 : 500;
     return NextResponse.json(
       { error: errorMessage },
-      { status }
+      { status: 500 }
     );
   }
 }
@@ -36,20 +34,12 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
-    const body = await request.json();
-
-    // Check if id is a valid ObjectId
-    if (!ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid course ID' },
-        { status: 400 }
-      );
-    }
-
-    const course = await updateCourseById(id, body);
-
-    return NextResponse.json({ course });
+    // PUT endpoint disabled for hardcoded data
+    // To update courses, edit lib/data/courses.ts directly
+    return NextResponse.json(
+      { error: 'Course updates are currently disabled. Courses are managed via hardcoded data.' },
+      { status: 501 }
+    );
   } catch (error) {
     console.error('Update course error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Internal server error';
@@ -65,19 +55,12 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
-
-    // Check if id is a valid ObjectId
-    if (!ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid course ID' },
-        { status: 400 }
-      );
-    }
-
-    await deleteCourseById(id);
-
-    return NextResponse.json({ message: 'Course deleted successfully' });
+    // DELETE endpoint disabled for hardcoded data
+    // To remove courses, edit lib/data/courses.ts directly
+    return NextResponse.json(
+      { error: 'Course deletion is currently disabled. Courses are managed via hardcoded data.' },
+      { status: 501 }
+    );
   } catch (error) {
     console.error('Delete course error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Internal server error';

@@ -192,11 +192,11 @@ export default function CoursePage({ params }: CoursePageProps) {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-8 max-w-7xl">
-                <div className="grid lg:grid-cols-3 gap-6">
+                <div className="grid lg:grid-cols-3 gap-8">
                     {/* Left: Course Info - 2 columns */}
                     <div className="lg:col-span-2">
                         {/* Live Course Badge */}
-                        <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-4">
+                        <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-3">
                             <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
                             লাইভ কোর্স
                         </div>
@@ -206,13 +206,15 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </h1>
 
                         {/* Description */}
-                        <HtmlContent
-                            html={course.description}
-                            className="text-gray-700 text-base leading-relaxed mb-8 prose prose-sm max-w-none"
-                        />
+                        <div className="mb-6 w-full">
+                            <HtmlContent
+                                html={course.description}
+                                className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify"
+                            />
+                        </div>
 
                         {/* Course Stats Grid */}
-                        <div className="grid grid-cols-3 gap-4 mb-8">
+                        <div className="grid grid-cols-3 gap-4 mb-4">
                             {course.totalClasses && (
                                 <div className="bg-primary text-white p-4 rounded-lg text-center">
                                     <div className="text-2xl font-bold mb-1">
@@ -240,7 +242,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
 
                         {/* Batch Info Grid */}
-                        <div className="grid grid-cols-3 gap-4 mb-8">
+                        <div className="grid grid-cols-3 gap-4">
                             {course.batchName && (
                                 <div className="bg-secondary text-white p-4 rounded-lg text-center">
                                     <div className="text-sm mb-1">

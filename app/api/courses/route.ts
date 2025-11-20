@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { listAllCourses, createNewCourse } from "@/lib/services/courses";
+import { getAllCourses } from "@/lib/data/courses";
 
 export async function GET() {
     try {
-        // Get all courses
-        const courses = await listAllCourses();
+        // Get all courses from hardcoded data
+        const courses = getAllCourses();
 
         return NextResponse.json({ courses });
     } catch (error) {
@@ -18,29 +18,12 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
-
-        // Create course with only the simplified model fields
-        const course = await createNewCourse({
-            title: body.title,
-            description: body.description,
-            category: body.category,
-            batchName: body.batchName,
-            thumbnail: body.thumbnail,
-            price: body.price,
-            totalClasses: body.totalClasses,
-            totalWeeks: body.totalWeeks,
-            totalModules: body.totalModules,
-            totalProjects: body.totalProjects,
-            idealFor: body.idealFor,
-            faq: body.faq,
-            modules: body.modules,
-            projects: body.projects,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        });
-
-        return NextResponse.json({ course }, { status: 201 });
+        // POST endpoint disabled for hardcoded data
+        // To add courses, update lib/data/courses.ts directly
+        return NextResponse.json(
+            { error: "Course creation is currently disabled. Courses are managed via hardcoded data." },
+            { status: 501 }
+        );
     } catch (error) {
         console.error("Create course error:", error);
         const errorMessage =
