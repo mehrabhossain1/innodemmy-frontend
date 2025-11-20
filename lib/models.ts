@@ -29,20 +29,24 @@ export interface ClassModule {
 export interface Course {
     _id?: string;
     title: string;
+    slug: string;
     description: string;
-    category?: string; // Course category
-    batchName?: string; // Batch name for the course
+    courseStartDate?: Date;
+    category?: string;
+    batchName?: string;
     thumbnail?: string;
-    price?: number; // Course price
-    totalClasses?: number; // Total number of classes in the course
-    totalWeeks?: number; // Total duration in weeks
-    totalModules?: number; // Total number of modules
-    totalProjects?: number; // Total number of projects
-    idealFor?: string[]; // Who this course is ideal for (array of strings)
-    faq?: FAQ[]; // Frequently Asked Questions
-    modules?: ClassModule[]; // Course modules with topics and exercises
-    projects?: string[]; // List of project names
-    enrolledCount?: number; // Total enrolled students
+    price?: number;
+    totalLiveClasses?: number;
+    totalWeeks?: number;
+    totalModules?: number;
+    totalProjects?: number;
+    totalExercises?: number;
+    //
+    idealFor?: string[];
+    faq?: FAQ[];
+    modules?: ClassModule[];
+    projects?: string[];
+    enrolledCount?: number;
     createdAt: Date;
     updatedAt: Date;
 }
