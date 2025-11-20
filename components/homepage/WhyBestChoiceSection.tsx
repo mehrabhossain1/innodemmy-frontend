@@ -25,7 +25,8 @@ const featureCards = [
     {
         id: "project-based",
         title: "Real-World Projects",
-        description: "Build your portfolio with hands-on projects that mirror industry challenges.",
+        description:
+            "Build your portfolio with hands-on projects that mirror industry challenges.",
         icon: FolderOpen,
         gradient: "from-violet-500 to-purple-500",
         iconColor: "text-violet-500",
@@ -44,7 +45,8 @@ const featureCards = [
     {
         id: "support",
         title: "24/7 Support",
-        description: "Get help whenever you need it with dedicated one-on-one support sessions.",
+        description:
+            "Get help whenever you need it with dedicated one-on-one support sessions.",
         icon: HeadphonesIcon,
         gradient: "from-orange-500 to-amber-500",
         iconColor: "text-orange-500",
@@ -52,7 +54,7 @@ const featureCards = [
     },
     {
         id: "certificate",
-        title: "Industry Certification",
+        title: "Certification",
         description:
             "Earn recognized certificates that boost your career and validate your expertise.",
         icon: Award,
@@ -98,9 +100,10 @@ export default function WhyBestChoiceSection() {
                         </span>
                     </h2>
                     <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Experience world-class education designed for real-world success.
-                        Our unique approach combines expert mentorship, hands-on projects,
-                        and lifetime support to accelerate your career.
+                        Experience world-class education designed for real-world
+                        success. Our unique approach combines expert mentorship,
+                        hands-on projects, and lifetime support to accelerate
+                        your career.
                     </p>
                 </div>
 
@@ -113,24 +116,34 @@ export default function WhyBestChoiceSection() {
                                 key={card.id}
                                 className="group relative"
                                 style={{
-                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                                    animation: `fadeInUp 0.6s ease-out ${
+                                        index * 0.1
+                                    }s both`,
                                 }}
                             >
                                 {/* Gradient Glow Effect */}
-                                <div className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}></div>
+                                <div
+                                    className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}
+                                ></div>
 
                                 <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer rounded-xl lg:rounded-2xl h-full overflow-hidden">
                                     {/* Subtle Background Gradient */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                    <div
+                                        className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                                    ></div>
 
                                     <CardContent className="relative p-4 md:p-4 lg:p-5">
                                         <div className="flex flex-col items-start text-left space-y-2 lg:space-y-2.5">
                                             {/* Icon with Gradient Background */}
-                                            <div className={`relative p-2 lg:p-2.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                            <div
+                                                className={`relative p-2 lg:p-2.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                                            >
                                                 <IconComponent className="w-5 h-5 lg:w-5 lg:h-5 text-white" />
 
                                                 {/* Icon Glow */}
-                                                <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                                                <div
+                                                    className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}
+                                                ></div>
                                             </div>
 
                                             {/* Title */}
@@ -146,7 +159,9 @@ export default function WhyBestChoiceSection() {
                                     </CardContent>
 
                                     {/* Corner Accent */}
-                                    <div className={`absolute top-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}></div>
+                                    <div
+                                        className={`absolute top-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${card.gradient} opacity-10 rounded-bl-full`}
+                                    ></div>
                                 </Card>
                             </div>
                         );

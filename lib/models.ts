@@ -47,6 +47,8 @@ export interface Course {
     faq?: FAQ[];
     modules?: ClassModule[];
     projects?: string[];
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 // Enrollment payment method types
