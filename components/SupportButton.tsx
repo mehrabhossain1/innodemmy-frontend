@@ -22,7 +22,7 @@ export default function SupportButton() {
     return (
         <>
             {/* Floating Support Button */}
-            <div className="fixed bottom-6 right-6 z-[9999]">
+            <div className="fixed bottom-[calc(1.5rem+40px)] right-6 z-[9999]">
                 {/* Expanded Card */}
                 {isOpen && (
                     <div className="absolute bottom-20 right-0 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-64 border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out">

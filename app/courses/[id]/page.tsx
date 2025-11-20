@@ -214,29 +214,41 @@ export default function CoursePage({ params }: CoursePageProps) {
                         </div>
 
                         {/* Course Stats Grid */}
-                        <div className="grid grid-cols-3 gap-4 mb-4">
+                        <div className="grid grid-cols-3 gap-4 mb-6">
                             {course.totalClasses && (
-                                <div className="bg-primary text-white p-4 rounded-lg text-center">
-                                    <div className="text-2xl font-bold mb-1">
+                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
+                                    <Video className="w-8 h-8 mx-auto mb-3 opacity-90" />
+                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
                                         {course.totalClasses}
                                     </div>
-                                    <div className="text-sm">Live Class</div>
+                                    <div className="text-sm font-medium opacity-90 relative z-10">
+                                        Live Class
+                                    </div>
                                 </div>
                             )}
                             {course.totalModules && (
-                                <div className="bg-primary text-white p-4 rounded-lg text-center">
-                                    <div className="text-2xl font-bold mb-1">
+                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
+                                    <Award className="w-8 h-8 mx-auto mb-3 opacity-90" />
+                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
                                         {course.totalModules}
                                     </div>
-                                    <div className="text-sm">Modules</div>
+                                    <div className="text-sm font-medium opacity-90 relative z-10">
+                                        Modules
+                                    </div>
                                 </div>
                             )}
                             {course.totalProjects && (
-                                <div className="bg-primary text-white p-4 rounded-lg text-center">
-                                    <div className="text-2xl font-bold mb-1">
+                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
+                                    <CheckCircle2 className="w-8 h-8 mx-auto mb-3 opacity-90" />
+                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
                                         {course.totalProjects}+
                                     </div>
-                                    <div className="text-sm">Projects</div>
+                                    <div className="text-sm font-medium opacity-90 relative z-10">
+                                        Projects
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -244,24 +256,34 @@ export default function CoursePage({ params }: CoursePageProps) {
                         {/* Batch Info Grid */}
                         <div className="grid grid-cols-3 gap-4">
                             {course.batchName && (
-                                <div className="bg-secondary text-white p-4 rounded-lg text-center">
-                                    <div className="text-sm mb-1">
-                                        Batch Start:
+                                <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                    <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+                                    <Calendar className="w-6 h-6 mx-auto mb-2 opacity-90" />
+                                    <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
+                                        Batch Start
                                     </div>
-                                    <div className="font-bold text-sm">
+                                    <div className="font-bold text-sm relative z-10">
                                         {course.batchName}
                                     </div>
                                 </div>
                             )}
-                            <div className="bg-secondary text-white p-4 rounded-lg text-center">
-                                <div className="text-sm mb-1">Class Days</div>
-                                <div className="font-bold text-sm">
+                            <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+                                <Calendar className="w-6 h-6 mx-auto mb-2 opacity-90" />
+                                <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
+                                    Class Days
+                                </div>
+                                <div className="font-bold text-sm relative z-10">
                                     Friday / Saturday
                                 </div>
                             </div>
-                            <div className="bg-secondary text-white p-4 rounded-lg text-center">
-                                <div className="text-sm mb-1">Class Time</div>
-                                <div className="font-bold text-sm">
+                            <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+                                <Video className="w-6 h-6 mx-auto mb-2 opacity-90" />
+                                <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
+                                    Class Time
+                                </div>
+                                <div className="font-bold text-sm relative z-10">
                                     8pm – 10 Pm
                                 </div>
                             </div>
@@ -823,7 +845,7 @@ export default function CoursePage({ params }: CoursePageProps) {
 
             {/* Sticky Bottom Bar */}
             <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50 ">
-                <div className="container mx-auto px-4 py-3">
+                <div className="max-w-7xl mx-auto px-4 py-3">
                     <div className="flex items-center justify-between gap-4">
                         {/* Price Section */}
                         <div className="flex flex-col">
