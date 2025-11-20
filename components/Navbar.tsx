@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,53 +18,81 @@ import {
     ChevronDown,
     Code,
     Cpu,
-    TrendingUp,
-    Palette,
-    GraduationCap,
+    FlaskConical,
+    Layers,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthSidebar from "@/components/AuthSidebar";
+import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
 
 import logo from "@/assets/Logo.png";
 
-const courseCategories = [
-    {
-        id: "web",
-        name: "Web Development",
-        icon: Code,
-        count: "12 Courses",
-        color: "text-blue-500",
-    },
-    {
-        id: "data",
-        name: "Data Science",
-        icon: Cpu,
-        count: "8 Courses",
-        color: "text-purple-500",
-    },
-    {
-        id: "business",
-        name: "Business & Marketing",
-        icon: TrendingUp,
-        count: "6 Courses",
-        color: "text-orange-500",
-    },
-    {
-        id: "design",
-        name: "Product & Design",
-        icon: Palette,
-        count: "4 Courses",
-        color: "text-pink-500",
-    },
-];
+// Map category names to icons
+const categoryIcons: Record<string, typeof Code> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
+    [COURSE_CATEGORIES.PROGRAMMING]: Code,
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
+    [COURSE_CATEGORIES.VLSI]: Layers,
+};
+
+// Map category names to colors
+const categoryColors: Record<string, string> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: "text-green-500",
+    [COURSE_CATEGORIES.PROGRAMMING]: "text-blue-500",
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: "text-purple-500",
+    [COURSE_CATEGORIES.VLSI]: "text-orange-500",
+};
+
+interface Course {
+    _id: string;
+    title: string;
+    description: string;
+    thumbnail?: string;
+    category?: string;
+}
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+    const [courses, setCourses] = useState<Course[]>([]);
+    const [loading, setLoading] = useState(true);
     const { user, logout } = useAuth();
+
+    // Fetch courses
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch("/api/courses");
+                if (response.ok) {
+                    const data = await response.json();
+                    setCourses(data.courses);
+                }
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    // Build dynamic categories with course counts
+    const courseCategories = getAllCategories().map(category => {
+        const categoryCoursesCount = courses.filter(c => c.category === category).length;
+        return {
+            id: category,
+            name: category,
+            icon: categoryIcons[category] || Code,
+            count: `${categoryCoursesCount} ${categoryCoursesCount === 1 ? 'Course' : 'Courses'}`,
+            color: categoryColors[category] || "text-gray-500",
+            courses: courses.filter(c => c.category === category).slice(0, 3)
+        };
+    }).filter(cat => cat.courses.length > 0); // Only show categories with courses
 
     return (
         <nav className="bg-white dark:bg-background shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-border">
@@ -100,7 +128,7 @@ export default function Navbar() {
 
                             {/* Mega Menu Dropdown */}
                             {isCoursesOpen && (
-                                <div className="absolute left-0 top-full mt-1 w-[800px] bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border p-6">
+                                <div className="absolute left-0 top-full mt-1 w-[900px] bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border p-6">
                                     <div className="grid grid-cols-2 gap-6">
                                         {/* Left: Categories */}
                                         <div>
@@ -110,10 +138,10 @@ export default function Navbar() {
                                             <div className="space-y-1">
                                                 {courseCategories.map(
                                                     (category) => (
-                                                        <Link
+                                                        <div
                                                             key={category.id}
-                                                            href={`/courses?category=${category.id}`}
-                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
+                                                            onMouseEnter={() => setHoveredCategory(category.id)}
+                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group cursor-pointer"
                                                         >
                                                             <div className="flex-shrink-0">
                                                                 <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/10 transition-colors">
@@ -124,64 +152,67 @@ export default function Navbar() {
                                                             </div>
                                                             <div className="flex-1">
                                                                 <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors">
-                                                                    {
-                                                                        category.name
-                                                                    }
+                                                                    {category.name}
                                                                 </div>
                                                                 <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                                    {
-                                                                        category.count
-                                                                    }
+                                                                    {category.count}
                                                                 </div>
                                                             </div>
-                                                        </Link>
+                                                        </div>
                                                     )
                                                 )}
                                             </div>
                                         </div>
 
-                                        {/* Right: Featured/Popular */}
+                                        {/* Right: Courses from Hovered Category */}
                                         <div className="border-l border-gray-200 dark:border-border pl-6">
                                             <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4">
-                                                Featured Courses
+                                                {hoveredCategory
+                                                    ? `${hoveredCategory} Courses`
+                                                    : "Courses"
+                                                }
                                             </h3>
                                             <div className="space-y-3">
-                                                <Link
-                                                    href="/courses"
-                                                    className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
-                                                >
-                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1">
-                                                        Full Stack Web
-                                                        Development
-                                                    </div>
-                                                    <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                        JavaScript, React,
-                                                        Node.js
-                                                    </div>
-                                                </Link>
-                                                <Link
-                                                    href="/courses"
-                                                    className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
-                                                >
-                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1">
-                                                        Data Science with Python
-                                                    </div>
-                                                    <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                        Python, Django, React
-                                                    </div>
-                                                </Link>
-                                                <Link
-                                                    href="/courses"
-                                                    className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
-                                                >
-                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1">
-                                                        App Development with
-                                                        Flutter
-                                                    </div>
-                                                    <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                        Flutter, Dart, AI
-                                                    </div>
-                                                </Link>
+                                                {(() => {
+                                                    const category = courseCategories.find(c => c.id === hoveredCategory);
+                                                    const coursesToShow = category?.courses || courseCategories[0]?.courses || [];
+
+                                                    if (coursesToShow.length === 0) {
+                                                        return (
+                                                            <div className="text-center py-8 text-muted-foreground text-sm">
+                                                                No courses available
+                                                            </div>
+                                                        );
+                                                    }
+
+                                                    return coursesToShow.map((course) => (
+                                                        <Link
+                                                            key={course._id}
+                                                            href={`/courses/${course._id}`}
+                                                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
+                                                        >
+                                                            {course.thumbnail && (
+                                                                <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                    <Image
+                                                                        src={course.thumbnail}
+                                                                        alt={course.title}
+                                                                        width={64}
+                                                                        height={64}
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                            <div className="flex-1 min-w-0">
+                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1 line-clamp-2">
+                                                                    {course.title}
+                                                                </div>
+                                                                <div className="text-xs text-gray-500 dark:text-muted-foreground line-clamp-1">
+                                                                    {course.description}
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    ));
+                                                })()}
                                             </div>
 
                                             {/* View All Button */}
@@ -189,7 +220,7 @@ export default function Navbar() {
                                                 href="/courses"
                                                 className="mt-4 block w-full"
                                             >
-                                                <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white">
+                                                <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white text-sm">
                                                     View All Courses
                                                 </Button>
                                             </Link>

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, TrendingUp, Cpu } from "lucide-react";
+import { ArrowRight, Code, TrendingUp, Cpu, FlaskConical, Layers } from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";
 import Container from "../Container";
+import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
 
 interface Course {
     id: string;
@@ -31,12 +32,13 @@ interface ApiCourse {
     category?: string;
 }
 
-const categories = [
-    { id: "all", label: "All Courses", icon: Code, count: "24 Courses" },
-    { id: "web", label: "Web Development", icon: Code, count: "12 Courses" },
-    { id: "data", label: "Data Science", icon: Cpu, count: "8 Courses" },
-    { id: "business", label: "Business & Marketing", icon: TrendingUp, count: "4 Courses" },
-];
+// Map category names to icons
+const categoryIcons: Record<string, typeof Code> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
+    [COURSE_CATEGORIES.PROGRAMMING]: Code,
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
+    [COURSE_CATEGORIES.VLSI]: Layers,
+};
 
 export default function CoursesSection() {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -59,13 +61,13 @@ export default function CoursesSection() {
                                 "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                             batchName: course.batchName,
                             instructor: course.instructor,
-                            category: course.category || "web",
+                            category: course.category,
                             modules: Math.floor(Math.random() * 20) + 10,
                             students: Math.floor(Math.random() * 50) + 10,
                             duration: `${Math.floor(Math.random() * 10) + 8} দিন বাকি`,
                         })
                     );
-                    setCourses(mappedCourses.slice(0, 8));
+                    setCourses(mappedCourses);
                 } else {
                     console.error("Failed to fetch courses");
                 }
@@ -78,6 +80,54 @@ export default function CoursesSection() {
 
         fetchCourses();
     }, []);
+
+    // Build dynamic categories with counts
+    const categories = useMemo(() => {
+        const allCategories = getAllCategories();
+        const categoryCounts: Record<string, number> = {};
+
+        // Count courses per category
+        courses.forEach(course => {
+            if (course.category) {
+                categoryCounts[course.category] = (categoryCounts[course.category] || 0) + 1;
+            }
+        });
+
+        // Build category tabs
+        const tabs = [
+            {
+                id: "all",
+                label: "All Courses",
+                icon: Code,
+                count: `${courses.length} Courses`
+            }
+        ];
+
+        // Add each category from constants
+        allCategories.forEach(category => {
+            const count = categoryCounts[category] || 0;
+            if (count > 0) { // Only show categories with courses
+                tabs.push({
+                    id: category,
+                    label: category,
+                    icon: categoryIcons[category] || Code,
+                    count: `${count} ${count === 1 ? 'Course' : 'Courses'}`
+                });
+            }
+        });
+
+        return tabs;
+    }, [courses]);
+
+    // Filter courses based on active category
+    const filteredCourses = useMemo(() => {
+        if (activeCategory === "all") {
+            return courses.slice(0, 8); // Show max 8 courses
+        }
+        return courses
+            .filter(course => course.category === activeCategory)
+            .slice(0, 8);
+    }, [courses, activeCategory]);
 
     return (
         <section className="relative py-12 md:py-16 lg:py-14 bg-background">
@@ -141,9 +191,9 @@ export default function CoursesSection() {
                             Loading featured courses...
                         </p>
                     </div>
-                ) : courses.length > 0 ? (
+                ) : filteredCourses.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-8 md:mb-10 lg:mb-8">
-                        {courses.map((course, index) => (
+                        {filteredCourses.map((course, index) => (
                             <div
                                 key={course.id}
                                 style={{
@@ -168,7 +218,10 @@ export default function CoursesSection() {
                             <Code className="w-7 h-7 lg:w-7 lg:h-7 text-muted-foreground" />
                         </div>
                         <p className="text-muted-foreground text-base lg:text-base">
-                            No courses available at the moment.
+                            {activeCategory === "all"
+                                ? "No courses available at the moment."
+                                : `No courses available in ${activeCategory} category.`
+                            }
                         </p>
                     </div>
                 )}
