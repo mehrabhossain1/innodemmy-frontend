@@ -14,22 +14,26 @@ export const coursesData: Course[] = [
         description: `এই কোর্সটি ডিজাইন করা হয়েছে মেশিন লার্নিং ও ডেটা সায়েন্সে দক্ষতা অর্জনের পূর্বশর্ত হিসেবে মজবুত পাইথন প্রোগ্রামিং দক্ষতা গড়ে তোলার জন্য। এখানে মেশিন লার্নিং অ্যালগরিদম বা থিওরি নয়, বরং প্রোগ্রামিংয়ের মূল ধারাগুলো দক্ষতার সাথে আয়ত্ত করার উপর জোর দেয়া হয়েছে।
 কোর্সের মাধ্যমে আপনি পাইথনের মৌলিক থেকে উন্নত ধারণাসমূহ হাতে-কলমে শিখবেন, যার মাধ্যমে বিভিন্ন প্রোগ্রামিং কনসেপ্ট যেমন ডেটা স্ট্রাকচার, ফাংশনাল প্রোগ্রামিং, অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং, এক্সেপশন হ্যান্ডলিং এবং ফাইল হ্যান্ডলিংয়ে দক্ষতা অর্জন করবেন।
 এছাড়াও, কোর্সে অন্তর্ভুক্ত ১০টি প্রকটিক্যাল প্রজেক্টের মাধ্যমে বাস্তব সমস্যা সমাধানের দক্ষতা বৃদ্ধি পাবে, যা আপনাকে প্রোগ্রামিং দক্ষতায় আত্মবিশ্বাসী করে তুলবে এবং মেশিন লার্নিং শেখার জন্য প্রয়োজনীয় ভিত্তি প্রস্তুত করবে।`,
+        thumbnail: "https://abctrainings.in/media/thumbnails/Python-01_2_1.png",
+        courseVideoUrl: "https://www.youtube.com/watch?v=example",
         courseStartDate: new Date("2025-02-01"),
         category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
         batchName: "Batch 1",
-        thumbnail: "https://abctrainings.in/media/thumbnails/Python-01_2_1.png",
         price: 8000,
         totalLiveClasses: 12,
         totalWeeks: 4,
         totalModules: 10,
         totalProjects: 10,
         totalExercises: 15,
-        enrolledCount: 156,
+
+        //
         idealFor: [
             "Individuals interested in machine learning who want to build a strong foundation in programming",
             "Students and professionals aspiring to pursue a career in software development or data science",
             "Anyone looking to enhance their Python programming skills",
         ],
+
+        //
         faq: [
             {
                 question: "Who is this course designed for?",
@@ -74,6 +78,8 @@ export const coursesData: Course[] = [
                 answer: "A computer with internet access and basic familiarity with installing software is sufficient. No advanced prerequisites.",
             },
         ],
+
+        //
         modules: [
             {
                 classNumber: 1,
@@ -240,8 +246,6 @@ export const coursesData: Course[] = [
             "Generator for large file line processing",
             "News headline scraper",
         ],
-        createdAt: new Date("2025-01-15"),
-        updatedAt: new Date("2025-01-15"),
     },
 
     //     {

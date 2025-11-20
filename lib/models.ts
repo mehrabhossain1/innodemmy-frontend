@@ -31,10 +31,11 @@ export interface Course {
     title: string;
     slug: string;
     description: string;
+    thumbnail: string;
+    courseVideoUrl: string;
     courseStartDate: Date;
     category: string;
     batchName: string;
-    thumbnail: string;
     price: number;
     totalLiveClasses: number;
     totalWeeks: number;
@@ -46,9 +47,6 @@ export interface Course {
     faq?: FAQ[];
     modules?: ClassModule[];
     projects?: string[];
-    enrolledCount?: number;
-    createdAt: Date;
-    updatedAt: Date;
 }
 
 // Enrollment payment method types
