@@ -24,7 +24,7 @@ export default function ClinicalResearchHeroSection({
     onVideoClick,
 }: ClinicalResearchHeroSectionProps) {
     return (
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="container mx-auto px-4 py-16 max-w-7xl">
             <div className="grid lg:grid-cols-3 gap-8">
                 {/* Left: Course Info - 2 columns */}
                 <div className="lg:col-span-2">
