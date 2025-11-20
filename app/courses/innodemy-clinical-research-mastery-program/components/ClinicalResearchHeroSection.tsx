@@ -110,11 +110,11 @@ export default function ClinicalResearchHeroSection({
                             <div>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-2xl font-bold text-gray-900">
-                                        {courseData.price.toLocaleString()} TK
+                                        ৳{courseData.price.toLocaleString()}
                                     </span>
                                     <span className="text-sm text-gray-400 line-through">
-                                        {courseData.originalPrice.toLocaleString()}{" "}
-                                        TK
+                                        ৳
+                                        {courseData.originalPrice.toLocaleString()}
                                     </span>
                                 </div>
                             </div>
