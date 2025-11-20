@@ -213,79 +213,109 @@ export default function CoursePage({ params }: CoursePageProps) {
                             />
                         </div>
 
-                        {/* Course Stats Grid */}
-                        <div className="grid grid-cols-3 gap-4 mb-6">
-                            {course.totalClasses && (
-                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                                    <Video className="w-8 h-8 mx-auto mb-3 opacity-90" />
-                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
-                                        {course.totalClasses}
-                                    </div>
-                                    <div className="text-sm font-medium opacity-90 relative z-10">
-                                        Live Class
-                                    </div>
-                                </div>
-                            )}
-                            {course.totalModules && (
-                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                                    <Award className="w-8 h-8 mx-auto mb-3 opacity-90" />
-                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
-                                        {course.totalModules}
-                                    </div>
-                                    <div className="text-sm font-medium opacity-90 relative z-10">
-                                        Modules
-                                    </div>
-                                </div>
-                            )}
-                            {course.totalProjects && (
-                                <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                    <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                                    <CheckCircle2 className="w-8 h-8 mx-auto mb-3 opacity-90" />
-                                    <div className="text-4xl font-extrabold mb-2 relative z-10">
-                                        {course.totalProjects}+
-                                    </div>
-                                    <div className="text-sm font-medium opacity-90 relative z-10">
-                                        Projects
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Batch Info Grid */}
-                        <div className="grid grid-cols-3 gap-4">
-                            {course.batchName && (
-                                <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                    <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
-                                    <Calendar className="w-6 h-6 mx-auto mb-2 opacity-90" />
-                                    <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
-                                        Batch Start
-                                    </div>
-                                    <div className="font-bold text-sm relative z-10">
-                                        {course.batchName}
-                                    </div>
-                                </div>
-                            )}
-                            <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
-                                <Calendar className="w-6 h-6 mx-auto mb-2 opacity-90" />
-                                <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
-                                    Class Days
-                                </div>
-                                <div className="font-bold text-sm relative z-10">
-                                    Friday / Saturday
-                                </div>
+                        {/* Course Stats Section */}
+                        <div className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-xl p-4 mb-6">
+                            {/* Header */}
+                            <div className="flex items-center justify-center gap-2 mb-4">
+                                <Award className="w-5 h-5 text-primary" />
+                                <h3 className="text-lg font-bold text-gray-900">
+                                    ব্যাচ হাইলাইট
+                                </h3>
                             </div>
-                            <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary to-secondary/80 text-white p-5 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
-                                <Video className="w-6 h-6 mx-auto mb-2 opacity-90" />
-                                <div className="text-xs font-medium mb-1.5 opacity-80 relative z-10">
-                                    Class Time
+
+                            {/* Stats Grid */}
+                            <div className="grid grid-cols-2 gap-3">
+                                {/* Live Class */}
+                                {course.totalClasses && (
+                                    <div className="bg-white rounded-lg p-3 border border-primary/10 hover:shadow-md transition-shadow">
+                                        <div className="flex items-start gap-2">
+                                            <div className="bg-primary/10 p-1.5 rounded-lg">
+                                                <Video className="w-4 h-4 text-primary" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-primary text-xs font-semibold mb-0.5">
+                                                    📚 লাইভ ক্লাস
+                                                </p>
+                                                <p className="text-gray-900 font-bold text-sm">
+                                                    রাত ৮.০০- ১০.০০{" "}
+                                                    <span className="text-primary">
+                                                        ({course.totalClasses}টি)
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Support Class */}
+                                <div className="bg-white rounded-lg p-3 border border-primary/10 hover:shadow-md transition-shadow">
+                                    <div className="flex items-start gap-2">
+                                        <div className="bg-secondary/10 p-1.5 rounded-lg">
+                                            <Users className="w-4 h-4 text-secondary" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-secondary text-xs font-semibold mb-0.5">
+                                                📋 সাপোর্ট ক্লাস
+                                            </p>
+                                            <p className="text-gray-900 font-bold text-sm">
+                                                প্রতিদিন ২টি (দুপুর ও রাত ৯ টায়)
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="font-bold text-sm relative z-10">
-                                    8pm – 10 Pm
+
+                                {/* Weeks/Batch Info */}
+                                <div className="bg-white rounded-lg p-3 border border-primary/10 hover:shadow-md transition-shadow">
+                                    <div className="flex items-start gap-2">
+                                        <div className="bg-primary/10 p-1.5 rounded-lg">
+                                            <Calendar className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-primary text-xs font-semibold mb-0.5">
+                                                📅 শুরু হবে
+                                            </p>
+                                            <p className="text-gray-900 font-bold text-sm">
+                                                {course.batchName || "আসন্ন ব্যাচ"}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                {/* Class Recording */}
+                                <div className="bg-white rounded-lg p-3 border border-primary/10 hover:shadow-md transition-shadow">
+                                    <div className="flex items-start gap-2">
+                                        <div className="bg-secondary/10 p-1.5 rounded-lg">
+                                            <CheckCircle2 className="w-4 h-4 text-secondary" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-secondary text-xs font-semibold mb-0.5">
+                                                💻 লাইফটাইম এক্সেস
+                                            </p>
+                                            <p className="text-gray-900 font-bold text-sm">
+                                                পাবেন
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Projects Count */}
+                                {course.totalProjects && (
+                                    <div className="bg-white rounded-lg p-3 border border-primary/10 hover:shadow-md transition-shadow col-span-2">
+                                        <div className="flex items-start gap-2">
+                                            <div className="bg-primary/10 p-1.5 rounded-lg">
+                                                <Award className="w-4 h-4 text-primary" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-primary text-xs font-semibold mb-0.5">
+                                                    🎯 লাইভ ক্লাসে
+                                                </p>
+                                                <p className="text-gray-900 font-bold text-sm">
+                                                    {course.totalProjects} টি প্রজেক্ট
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
