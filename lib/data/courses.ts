@@ -1,4 +1,5 @@
 import { Course } from '../models';
+import { COURSE_CATEGORIES } from '../constants/categories';
 
 /**
  * Hardcoded course data for Innodemy LMS
@@ -14,7 +15,7 @@ export const coursesData: Course[] = [
 কোর্সের মাধ্যমে আপনি পাইথনের মৌলিক থেকে উন্নত ধারণাসমূহ হাতে-কলমে শিখবেন, যার মাধ্যমে বিভিন্ন প্রোগ্রামিং কনসেপ্ট যেমন ডেটা স্ট্রাকচার, ফাংশনাল প্রোগ্রামিং, অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং, এক্সেপশন হ্যান্ডলিং এবং ফাইল হ্যান্ডলিংয়ে দক্ষতা অর্জন করবেন।
 
 এছাড়াও, কোর্সে অন্তর্ভুক্ত ১০টি প্রকটিক্যাল প্রজেক্টের মাধ্যমে বাস্তব সমস্যা সমাধানের দক্ষতা বৃদ্ধি পাবে, যা আপনাকে প্রোগ্রামিং দক্ষতায় আত্মবিশ্বাসী করে তুলবে এবং মেশিন লার্নিং শেখার জন্য প্রয়োজনীয় ভিত্তি প্রস্তুত করবে।`,
-    category: 'Programming',
+    category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
     batchName: 'Batch 1',
     thumbnail: '/images/courses/python-ml.jpg',
     price: 2500,
@@ -92,7 +93,7 @@ export const coursesData: Course[] = [
 The course adopts a tiered learning approach, progressing from foundational research literacy to advanced protocol development and data management. Integrated AI-powered tools (ChatGPT, Elicit, Scite, Litmaps, etc.) enhance learning efficiency and provide practical support throughout the research journey.
 
 Participants will master critical appraisal, gap analysis, study design selection, ethical compliance with BMRC guidelines, and complete protocol writing. By the end of this program, learners will be capable of developing BMRC-compliant research proposals ready for ethical review and implementation.`,
-    category: 'Research & Academia',
+    category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
     batchName: 'Cohort 2025',
     thumbnail: '/images/courses/clinical-research.jpg',
     price: 3500,
