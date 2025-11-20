@@ -42,9 +42,7 @@ export default function FreeMasterclassSection() {
                         <span className="bg-gradient-to-r from-secondary via-secondary/80 to-secondary/70 bg-clip-text text-transparent">
                             Free Masterclass
                         </span>{" "}
-                        <span className="text-foreground">
-                            Sessions
-                        </span>
+                        <span className="text-foreground">Sessions</span>
                     </h2>
                     <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                         Get a taste of our world-class teaching methodology.
@@ -85,7 +83,6 @@ export default function FreeMasterclassSection() {
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
                                                 {/* Gradient Overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
                                                 {/* Play Button */}
                                                 <div className="absolute inset-0 flex items-center justify-center">
@@ -119,7 +116,9 @@ export default function FreeMasterclassSection() {
                                                 <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-muted-foreground">
                                                     <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                                                         <span className="text-[10px] lg:text-xs font-bold text-primary">
-                                                            {masterclass.instructor.charAt(0)}
+                                                            {masterclass.instructor.charAt(
+                                                                0
+                                                            )}
                                                         </span>
                                                     </div>
                                                     <span className="font-medium">
@@ -139,9 +138,12 @@ export default function FreeMasterclassSection() {
                                                                 {topic}
                                                             </span>
                                                         ))}
-                                                    {masterclass.topics.length > 2 && (
+                                                    {masterclass.topics.length >
+                                                        2 && (
                                                         <span className="text-[10px] lg:text-xs bg-muted/50 text-muted-foreground px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium border border-border">
-                                                            +{masterclass.topics.length - 2}
+                                                            +
+                                                            {masterclass.topics
+                                                                .length - 2}
                                                         </span>
                                                     )}
                                                 </div>
@@ -149,9 +151,24 @@ export default function FreeMasterclassSection() {
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
                                                     <span className="text-[10px] lg:text-xs text-muted-foreground flex items-center gap-1">
-                                                        <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        <svg
+                                                            className="w-3 h-3 lg:w-4 lg:h-4"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                            />
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                            />
                                                         </svg>
                                                         {masterclass.views.toLocaleString()}
                                                     </span>

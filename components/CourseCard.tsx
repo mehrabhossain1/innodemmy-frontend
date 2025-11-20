@@ -47,7 +47,6 @@ export default function CourseCard({
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 </div>
 
                 {/* Content Section */}
@@ -116,9 +115,7 @@ export default function CourseCard({
 
                     {/* Button */}
                     <Link href={`/courses/${id}`}>
-                        <Button
-                            className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
-                        >
+                        <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                             View Details
                         </Button>
                     </Link>

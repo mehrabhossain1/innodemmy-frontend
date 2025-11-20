@@ -192,22 +192,22 @@ export default function Navbar() {
                                                             className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
                                                         >
                                                             {course.thumbnail && (
-                                                                <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                <div className="flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
                                                                     <Image
                                                                         src={course.thumbnail}
                                                                         alt={course.title}
-                                                                        width={64}
-                                                                        height={64}
+                                                                        width={240}
+                                                                        height={160}
                                                                         className="w-full h-full object-cover"
+                                                                        quality={95}
+                                                                        priority={false}
+                                                                        unoptimized
                                                                     />
                                                                 </div>
                                                             )}
-                                                            <div className="flex-1 min-w-0">
-                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors mb-1 line-clamp-2">
+                                                            <div className="flex-1 min-w-0 flex items-center">
+                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors line-clamp-2">
                                                                     {course.title}
-                                                                </div>
-                                                                <div className="text-xs text-gray-500 dark:text-muted-foreground line-clamp-1">
-                                                                    {course.description}
                                                                 </div>
                                                             </div>
                                                         </Link>
