@@ -250,245 +250,245 @@ export const coursesData: Course[] = [
     },
 
     // ML
-    {
-        _id: "2",
-        title: "ML",
-        slug: "ml",
-        description: ``,
-        thumbnail:
-            "https://cdn.shopaccino.com/igmguru/products/machine-learning-training-igmguru_1499895199_l.jpg?v=532",
-        courseVideoUrl: "https://www.youtube.com/watch?v=example",
-        courseStartDate: new Date("2025-02-01"),
-        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
-        batchName: "Batch 1",
-        price: 10000,
-        totalLiveClasses: 36,
-        totalWeeks: 0,
-        totalModules: 13,
-        totalProjects: 5,
-        totalExercises: 0,
+    // {
+    //     _id: "2",
+    //     title: "ML",
+    //     slug: "ml",
+    //     description: ``,
+    //     thumbnail:
+    //         "https://cdn.shopaccino.com/igmguru/products/machine-learning-training-igmguru_1499895199_l.jpg?v=532",
+    //     courseVideoUrl: "https://www.youtube.com/watch?v=example",
+    //     courseStartDate: new Date("2025-02-01"),
+    //     category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
+    //     batchName: "Batch 1",
+    //     price: 10000,
+    //     totalLiveClasses: 36,
+    //     totalWeeks: 0,
+    //     totalModules: 13,
+    //     totalProjects: 5,
+    //     totalExercises: 0,
 
-        //
-        idealFor: [
-            "Individuals interested in machine learning who want to build a strong foundation in programming",
-            "Students and professionals aspiring to pursue a career in software development or data science",
-            "Anyone looking to enhance their Python programming skills",
-        ],
+    //     //
+    //     idealFor: [
+    //         "Individuals interested in machine learning who want to build a strong foundation in programming",
+    //         "Students and professionals aspiring to pursue a career in software development or data science",
+    //         "Anyone looking to enhance their Python programming skills",
+    //     ],
 
-        //
-        faq: [
-            {
-                question: "Who is this course designed for?",
-                answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
-            },
-            {
-                question: "Do I need any prior programming knowledge to join?",
-                answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
-            },
-            {
-                question: "How is the course structured?",
-                answer: "The course consists of 9 live classes spread over 3 weeks covering core Python concepts and practical exercises. The final 3 classes are dedicated to project support and mentorship.",
-            },
-            {
-                question: "What programming environment/tools will be used?",
-                answer: "We will use popular tools like Anaconda, VS Code, and Jupyter notebooks to write and run Python code, ensuring an easy setup for beginners.",
-            },
-            {
-                question: "Are there any assignments or projects?",
-                answer: "Yes! There are 10 real-life projects including a password generator, recursive file search, bank account system, news scraper, and more to reinforce your learning.",
-            },
-            {
-                question:
-                    "Will I learn machine learning algorithms in this course?",
-                answer: "This course focuses on Python programming fundamentals required for machine learning, such as data handling, functions, OOP, and file operations. Machine learning-specific algorithms will be covered in follow-up courses.",
-            },
-            {
-                question: "What if I miss a live class?",
-                answer: "Recordings of all live classes will be provided so you can watch and learn at your convenience.",
-            },
-            {
-                question: "Will there be support outside of live classes?",
-                answer: "Yes, students can get project support during the final three classes and may also reach out through our designated communication channels for doubts and guidance.",
-            },
-            {
-                question:
-                    "How will this course help me in a machine learning career?",
-                answer: "A solid grasp of Python programming and data manipulation is crucial in machine learning. This course equips you with those skills, providing a strong foundation to build machine learning models confidently.",
-            },
-            {
-                question: "What are the prerequisites for this course?",
-                answer: "A computer with internet access and basic familiarity with installing software is sufficient. No advanced prerequisites.",
-            },
-        ],
+    //     //
+    //     faq: [
+    //         {
+    //             question: "Who is this course designed for?",
+    //             answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
+    //         },
+    //         {
+    //             question: "Do I need any prior programming knowledge to join?",
+    //             answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
+    //         },
+    //         {
+    //             question: "How is the course structured?",
+    //             answer: "The course consists of 9 live classes spread over 3 weeks covering core Python concepts and practical exercises. The final 3 classes are dedicated to project support and mentorship.",
+    //         },
+    //         {
+    //             question: "What programming environment/tools will be used?",
+    //             answer: "We will use popular tools like Anaconda, VS Code, and Jupyter notebooks to write and run Python code, ensuring an easy setup for beginners.",
+    //         },
+    //         {
+    //             question: "Are there any assignments or projects?",
+    //             answer: "Yes! There are 10 real-life projects including a password generator, recursive file search, bank account system, news scraper, and more to reinforce your learning.",
+    //         },
+    //         {
+    //             question:
+    //                 "Will I learn machine learning algorithms in this course?",
+    //             answer: "This course focuses on Python programming fundamentals required for machine learning, such as data handling, functions, OOP, and file operations. Machine learning-specific algorithms will be covered in follow-up courses.",
+    //         },
+    //         {
+    //             question: "What if I miss a live class?",
+    //             answer: "Recordings of all live classes will be provided so you can watch and learn at your convenience.",
+    //         },
+    //         {
+    //             question: "Will there be support outside of live classes?",
+    //             answer: "Yes, students can get project support during the final three classes and may also reach out through our designated communication channels for doubts and guidance.",
+    //         },
+    //         {
+    //             question:
+    //                 "How will this course help me in a machine learning career?",
+    //             answer: "A solid grasp of Python programming and data manipulation is crucial in machine learning. This course equips you with those skills, providing a strong foundation to build machine learning models confidently.",
+    //         },
+    //         {
+    //             question: "What are the prerequisites for this course?",
+    //             answer: "A computer with internet access and basic familiarity with installing software is sufficient. No advanced prerequisites.",
+    //         },
+    //     ],
 
-        //
-        modules: [
-            {
-                classNumber: 1,
-                moduleTitle: "Mathmatics for ML & DS",
-                topics: [
-                    "What is Python and why use it?",
-                    "Installing Python (Anaconda, VS Code, Jupyter)",
-                    "Python syntax, indentation, comments",
-                    "Variables and naming rules",
-                    "Built-in data types: int, float, str, bool",
-                    "Type casting and type()",
-                    "Operators: arithmetic, comparison, logical",
-                ],
-                exercises: [
-                    "Personal info script",
-                    "Simple calculator",
-                    "Even/Odd number checker",
-                ],
-            },
-            {
-                classNumber: 2,
-                moduleTitle: "Module 2: Strings, Input/Output & Control Flow",
-                topics: [
-                    "String indexing, slicing, methods (split(), join(), replace(), strip())",
-                    "f-strings and .format()",
-                    "input() and console interactions",
-                    "if, elif, else statements",
-                    "for, while loops",
-                    "break, continue, pass",
-                    "Nested loops and logic patterns",
-                ],
-                exercises: ["Password generator", "Word/character counter"],
-            },
-            {
-                classNumber: 3,
-                moduleTitle: "Module 3: Data Structures & List Comprehensions",
-                topics: [
-                    "Lists, Tuples, Sets, Dictionaries",
-                    "CRUD operations on collections",
-                    "get(), .update(), .items()",
-                    "Nested structures",
-                    "zip(), enumerate(), sorted()",
-                    "List comprehensions and dictionary/set comprehensions",
-                ],
-                exercises: ["Student record manager", "Word frequency counter"],
-            },
-            {
-                classNumber: 4,
-                moduleTitle: "Module 4: Functions, Recursion & Modules",
-                topics: [
-                    "Defining and calling functions",
-                    "Parameters, return values, scope",
-                    "Default, keyword, variable-length arguments",
-                    "Recursion: factorial, Fibonacci, directory scan",
-                    "Anonymous functions: lambda",
-                    "map(), filter(), reduce()",
-                    "Built-in functions: map(), filter(), reduce()",
-                    "Writing your own modules and imports",
-                ],
-                exercises: [
-                    "Recursive file search",
-                    "Word filter with lambda and filter()",
-                ],
-            },
-            {
-                classNumber: 5,
-                moduleTitle: "Module 5: File Handling, CSV & JSON",
-                topics: [
-                    "Working with text files",
-                    "CSV files using csv module",
-                    "JSON: parsing, serialization",
-                    "with statement, open(), read(), write()",
-                    "File loops and data cleaning",
-                    "File system navigation: os, pathlib",
-                ],
-                exercises: [
-                    "CSV data cleaner & summarizer",
-                    "JSON user profile builder",
-                ],
-            },
-            {
-                classNumber: 6,
-                moduleTitle: "Module 6: Error Handling & Debugging",
-                topics: [
-                    "Error types: syntax, runtime, logic",
-                    "Try-Except blocks, else, finally",
-                    "Custom exceptions with raise",
-                    "Basic debugger: pdb",
-                    "Logging intro (optional)",
-                ],
-                exercises: ["File reader with missing file handler"],
-            },
-            {
-                classNumber: 7,
-                moduleTitle: "Module 7: Object-Oriented Programming (OOP)",
-                topics: [
-                    "Classes, objects, __init__, attributes",
-                    "Class methods and self",
-                    "Inheritance and method overriding",
-                    "Encapsulation and __str__",
-                    "Composition (optional)",
-                ],
-                exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
-            },
-            {
-                classNumber: 8,
-                moduleTitle:
-                    "Module 8: Advanced Python (Generators, Decorators, Virtualenv)",
-                topics: [
-                    "Generators: yield, lazy evaluation",
-                    "Decorators: writing and applying",
-                    "Closures and first-class functions",
-                    "Introduction to virtualenv & pip",
-                    "Installing external libraries",
-                ],
-                exercises: ["Generator for large file line processing"],
-            },
-            {
-                classNumber: 9,
-                moduleTitle: "Module 9: Web Scraping & APIs",
-                topics: [
-                    "Web scraping with requests, BeautifulSoup",
-                    "Parsing HTML: tags, classes, attributes",
-                    "Error handling for HTTP requests",
-                    "Working with APIs (e.g., OpenWeatherMap)",
-                    "Exporting data to CSV/JSON",
-                ],
-                exercises: [
-                    "News headline scraper",
-                    "Weather report fetcher",
-                    "Job listings to CSV from web",
-                ],
-            },
-            {
-                classNumber: 10,
-                moduleTitle: "Module 10: Project Support 1",
-                topics: [],
-                exercises: [],
-            },
-            {
-                classNumber: 11,
-                moduleTitle: "Module 11: Project Support 2",
-                topics: [],
-                exercises: [],
-            },
-            {
-                classNumber: 12,
-                moduleTitle: "Module 12: Project Support 3",
-                topics: [],
-                exercises: [],
-            },
-        ],
+    //     //
+    //     modules: [
+    //         {
+    //             classNumber: 1,
+    //             moduleTitle: "Mathmatics for ML & DS",
+    //             topics: [
+    //                 "What is Python and why use it?",
+    //                 "Installing Python (Anaconda, VS Code, Jupyter)",
+    //                 "Python syntax, indentation, comments",
+    //                 "Variables and naming rules",
+    //                 "Built-in data types: int, float, str, bool",
+    //                 "Type casting and type()",
+    //                 "Operators: arithmetic, comparison, logical",
+    //             ],
+    //             exercises: [
+    //                 "Personal info script",
+    //                 "Simple calculator",
+    //                 "Even/Odd number checker",
+    //             ],
+    //         },
+    //         {
+    //             classNumber: 2,
+    //             moduleTitle: "Module 2: Strings, Input/Output & Control Flow",
+    //             topics: [
+    //                 "String indexing, slicing, methods (split(), join(), replace(), strip())",
+    //                 "f-strings and .format()",
+    //                 "input() and console interactions",
+    //                 "if, elif, else statements",
+    //                 "for, while loops",
+    //                 "break, continue, pass",
+    //                 "Nested loops and logic patterns",
+    //             ],
+    //             exercises: ["Password generator", "Word/character counter"],
+    //         },
+    //         {
+    //             classNumber: 3,
+    //             moduleTitle: "Module 3: Data Structures & List Comprehensions",
+    //             topics: [
+    //                 "Lists, Tuples, Sets, Dictionaries",
+    //                 "CRUD operations on collections",
+    //                 "get(), .update(), .items()",
+    //                 "Nested structures",
+    //                 "zip(), enumerate(), sorted()",
+    //                 "List comprehensions and dictionary/set comprehensions",
+    //             ],
+    //             exercises: ["Student record manager", "Word frequency counter"],
+    //         },
+    //         {
+    //             classNumber: 4,
+    //             moduleTitle: "Module 4: Functions, Recursion & Modules",
+    //             topics: [
+    //                 "Defining and calling functions",
+    //                 "Parameters, return values, scope",
+    //                 "Default, keyword, variable-length arguments",
+    //                 "Recursion: factorial, Fibonacci, directory scan",
+    //                 "Anonymous functions: lambda",
+    //                 "map(), filter(), reduce()",
+    //                 "Built-in functions: map(), filter(), reduce()",
+    //                 "Writing your own modules and imports",
+    //             ],
+    //             exercises: [
+    //                 "Recursive file search",
+    //                 "Word filter with lambda and filter()",
+    //             ],
+    //         },
+    //         {
+    //             classNumber: 5,
+    //             moduleTitle: "Module 5: File Handling, CSV & JSON",
+    //             topics: [
+    //                 "Working with text files",
+    //                 "CSV files using csv module",
+    //                 "JSON: parsing, serialization",
+    //                 "with statement, open(), read(), write()",
+    //                 "File loops and data cleaning",
+    //                 "File system navigation: os, pathlib",
+    //             ],
+    //             exercises: [
+    //                 "CSV data cleaner & summarizer",
+    //                 "JSON user profile builder",
+    //             ],
+    //         },
+    //         {
+    //             classNumber: 6,
+    //             moduleTitle: "Module 6: Error Handling & Debugging",
+    //             topics: [
+    //                 "Error types: syntax, runtime, logic",
+    //                 "Try-Except blocks, else, finally",
+    //                 "Custom exceptions with raise",
+    //                 "Basic debugger: pdb",
+    //                 "Logging intro (optional)",
+    //             ],
+    //             exercises: ["File reader with missing file handler"],
+    //         },
+    //         {
+    //             classNumber: 7,
+    //             moduleTitle: "Module 7: Object-Oriented Programming (OOP)",
+    //             topics: [
+    //                 "Classes, objects, __init__, attributes",
+    //                 "Class methods and self",
+    //                 "Inheritance and method overriding",
+    //                 "Encapsulation and __str__",
+    //                 "Composition (optional)",
+    //             ],
+    //             exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
+    //         },
+    //         {
+    //             classNumber: 8,
+    //             moduleTitle:
+    //                 "Module 8: Advanced Python (Generators, Decorators, Virtualenv)",
+    //             topics: [
+    //                 "Generators: yield, lazy evaluation",
+    //                 "Decorators: writing and applying",
+    //                 "Closures and first-class functions",
+    //                 "Introduction to virtualenv & pip",
+    //                 "Installing external libraries",
+    //             ],
+    //             exercises: ["Generator for large file line processing"],
+    //         },
+    //         {
+    //             classNumber: 9,
+    //             moduleTitle: "Module 9: Web Scraping & APIs",
+    //             topics: [
+    //                 "Web scraping with requests, BeautifulSoup",
+    //                 "Parsing HTML: tags, classes, attributes",
+    //                 "Error handling for HTTP requests",
+    //                 "Working with APIs (e.g., OpenWeatherMap)",
+    //                 "Exporting data to CSV/JSON",
+    //             ],
+    //             exercises: [
+    //                 "News headline scraper",
+    //                 "Weather report fetcher",
+    //                 "Job listings to CSV from web",
+    //             ],
+    //         },
+    //         {
+    //             classNumber: 10,
+    //             moduleTitle: "Module 10: Project Support 1",
+    //             topics: [],
+    //             exercises: [],
+    //         },
+    //         {
+    //             classNumber: 11,
+    //             moduleTitle: "Module 11: Project Support 2",
+    //             topics: [],
+    //             exercises: [],
+    //         },
+    //         {
+    //             classNumber: 12,
+    //             moduleTitle: "Module 12: Project Support 3",
+    //             topics: [],
+    //             exercises: [],
+    //         },
+    //     ],
 
-        //
-        projects: [
-            "Password generator",
-            "Number guessing game",
-            "Recursive file search",
-            "CSV data cleaner & summarizer",
-            "JSON user profile builder",
-            "File reader with missing file handler",
-            "Bank account system (OOP)",
-            "Tic-Tac-Toe with OOP",
-            "Generator for large file line processing",
-            "News headline scraper",
-        ],
-    },
+    //     //
+    //     projects: [
+    //         "Password generator",
+    //         "Number guessing game",
+    //         "Recursive file search",
+    //         "CSV data cleaner & summarizer",
+    //         "JSON user profile builder",
+    //         "File reader with missing file handler",
+    //         "Bank account system (OOP)",
+    //         "Tic-Tac-Toe with OOP",
+    //         "Generator for large file line processing",
+    //         "News headline scraper",
+    //     ],
+    // },
 ];
 
 /**
