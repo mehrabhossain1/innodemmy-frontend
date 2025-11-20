@@ -14,6 +14,7 @@ export const coursesData: Course[] = [
         description: `এই কোর্সটি ডিজাইন করা হয়েছে মেশিন লার্নিং ও ডেটা সায়েন্সে দক্ষতা অর্জনের পূর্বশর্ত হিসেবে মজবুত পাইথন প্রোগ্রামিং দক্ষতা গড়ে তোলার জন্য। এখানে মেশিন লার্নিং অ্যালগরিদম বা থিওরি নয়, বরং প্রোগ্রামিংয়ের মূল ধারাগুলো দক্ষতার সাথে আয়ত্ত করার উপর জোর দেয়া হয়েছে।
 কোর্সের মাধ্যমে আপনি পাইথনের মৌলিক থেকে উন্নত ধারণাসমূহ হাতে-কলমে শিখবেন, যার মাধ্যমে বিভিন্ন প্রোগ্রামিং কনসেপ্ট যেমন ডেটা স্ট্রাকচার, ফাংশনাল প্রোগ্রামিং, অবজেক্ট-ওরিয়েন্টেড প্রোগ্রামিং, এক্সেপশন হ্যান্ডলিং এবং ফাইল হ্যান্ডলিংয়ে দক্ষতা অর্জন করবেন।
 এছাড়াও, কোর্সে অন্তর্ভুক্ত ১০টি প্রকটিক্যাল প্রজেক্টের মাধ্যমে বাস্তব সমস্যা সমাধানের দক্ষতা বৃদ্ধি পাবে, যা আপনাকে প্রোগ্রামিং দক্ষতায় আত্মবিশ্বাসী করে তুলবে এবং মেশিন লার্নিং শেখার জন্য প্রয়োজনীয় ভিত্তি প্রস্তুত করবে।`,
+        courseStartDate: new Date("2025-02-01"),
         category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
         batchName: "Batch 1",
         thumbnail: "https://abctrainings.in/media/thumbnails/Python-01_2_1.png",
@@ -22,11 +23,12 @@ export const coursesData: Course[] = [
         totalWeeks: 4,
         totalModules: 10,
         totalProjects: 10,
+        totalExercises: 15,
         enrolledCount: 156,
         idealFor: [
             "Individuals interested in machine learning who want to build a strong foundation in programming",
-            "Beginners with little to no prior Python experience",
-            "Students and professionals looking to transition into data science and AI fields",
+            "Students and professionals aspiring to pursue a career in software development or data science",
+            "Anyone looking to enhance their Python programming skills",
         ],
         faq: [
             {
@@ -36,6 +38,40 @@ export const coursesData: Course[] = [
             {
                 question: "Do I need any prior programming knowledge to join?",
                 answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
+            },
+            {
+                question: "How is the course structured?",
+                answer: "The course consists of 9 live classes spread over 3 weeks covering core Python concepts and practical exercises. The final 3 classes are dedicated to project support and mentorship.",
+            },
+            {
+                question: "What programming environment/tools will be used?",
+                answer: "We will use popular tools like Anaconda, VS Code, and Jupyter notebooks to write and run Python code, ensuring an easy setup for beginners.",
+            },
+            {
+                question: "Are there any assignments or projects?",
+                answer: "Yes! There are 10 real-life projects including a password generator, recursive file search, bank account system, news scraper, and more to reinforce your learning.",
+            },
+            {
+                question:
+                    "Will I learn machine learning algorithms in this course?",
+                answer: "This course focuses on Python programming fundamentals required for machine learning, such as data handling, functions, OOP, and file operations. Machine learning-specific algorithms will be covered in follow-up courses.",
+            },
+            {
+                question: "What if I miss a live class?",
+                answer: "Recordings of all live classes will be provided so you can watch and learn at your convenience.",
+            },
+            {
+                question: "Will there be support outside of live classes?",
+                answer: "Yes, students can get project support during the final three classes and may also reach out through our designated communication channels for doubts and guidance.",
+            },
+            {
+                question:
+                    "How will this course help me in a machine learning career?",
+                answer: "A solid grasp of Python programming and data manipulation is crucial in machine learning. This course equips you with those skills, providing a strong foundation to build machine learning models confidently.",
+            },
+            {
+                question: "What are the prerequisites for this course?",
+                answer: "A computer with internet access and basic familiarity with installing software is sufficient. No advanced prerequisites.",
             },
         ],
         modules: [

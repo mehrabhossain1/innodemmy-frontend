@@ -31,16 +31,16 @@ export interface Course {
     title: string;
     slug: string;
     description: string;
-    courseStartDate?: Date;
-    category?: string;
-    batchName?: string;
-    thumbnail?: string;
-    price?: number;
-    totalLiveClasses?: number;
-    totalWeeks?: number;
-    totalModules?: number;
-    totalProjects?: number;
-    totalExercises?: number;
+    courseStartDate: Date;
+    category: string;
+    batchName: string;
+    thumbnail: string;
+    price: number;
+    totalLiveClasses: number;
+    totalWeeks: number;
+    totalModules: number;
+    totalProjects: number;
+    totalExercises: number;
     //
     idealFor?: string[];
     faq?: FAQ[];
