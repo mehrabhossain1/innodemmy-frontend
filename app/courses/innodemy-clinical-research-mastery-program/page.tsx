@@ -8,6 +8,26 @@ import { useState } from "react";
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
+    // Centralized Course Data
+    const courseData = {
+        title: "Innodemy Clinical Research Mastery Program",
+        description:
+            "ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।",
+        price: 5000,
+        originalPrice: 10000,
+        currency: "৳",
+        videoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
+        thumbnailUrl:
+            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        checkoutLink: "/checkout?course=clinical-research",
+        videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
+        enrollButtonText: "ব্যাচে ভর্তি হোন →",
+        enrollButtonTextShort: "Enroll Now",
+        promoLabel: "প্রোমো অ্যাপ্লাইড",
+        liveCourseLabel: "লাইভ কোর্স",
+    };
+
     return (
         <div className="min-h-screen bg-white pb-24">
             {/* Video Modal */}
@@ -26,8 +46,8 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                             <iframe
                                 width="100%"
                                 height="100%"
-                                src="https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1"
-                                title="YouTube video player"
+                                src={courseData.videoUrl}
+                                title={courseData.title}
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
@@ -47,22 +67,17 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                         {/* Live Course Badge */}
                         <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-3">
                             <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-                            লাইভ কোর্স
+                            {courseData.liveCourseLabel}
                         </div>
 
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Innodemy Clinical Research Mastery Program
+                            {courseData.title}
                         </h1>
 
                         {/* Description */}
                         <div className="mb-6 w-full">
                             <div className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify">
-                                ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার
-                                ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন
-                                ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি
-                                অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক
-                                কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ
-                                ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।
+                                {courseData.description}
                             </div>
                         </div>
                     </div>
@@ -75,8 +90,8 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                             onClick={() => setIsVideoPlaying(true)}
                         >
                             <Image
-                                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                alt="Innodemy Clinical Research Mastery Program"
+                                src={courseData.thumbnailUrl}
+                                alt={courseData.title}
                                 fill
                                 className="object-cover"
                             />
@@ -89,7 +104,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                             <div className="absolute top-3 left-3 bg-secondary text-white px-3 py-1.5 rounded shadow-lg flex items-center gap-2">
                                 <Video className="w-4 h-4" />
                                 <span className="text-xs font-bold">
-                                    ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস
+                                    {courseData.videoLabel}
                                 </span>
                             </div>
                         </div>
@@ -131,10 +146,12 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                                 <div>
                                     <div className="flex items-baseline gap-2">
                                         <span className="text-2xl font-bold text-gray-900">
-                                            15,000 TK
+                                            {courseData.price.toLocaleString()}{" "}
+                                            TK
                                         </span>
                                         <span className="text-sm text-gray-400 line-through">
-                                            24,000 TK
+                                            {courseData.originalPrice.toLocaleString()}{" "}
+                                            TK
                                         </span>
                                     </div>
                                 </div>
@@ -144,9 +161,9 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                             </div>
 
                             {/* Enrollment Button */}
-                            <Link href="/checkout?course=clinical-research">
+                            <Link href={courseData.checkoutLink}>
                                 <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-bold py-4 text-base rounded-lg">
-                                    Enroll Now
+                                    {courseData.enrollButtonTextShort}
                                 </Button>
                             </Link>
                         </div>
@@ -162,22 +179,24 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                         <div className="flex flex-col">
                             <div className="flex items-baseline gap-2">
                                 <span className="text-2xl font-bold text-gray-900">
-                                    ৳15,000
+                                    {courseData.currency}
+                                    {courseData.price.toLocaleString()}
                                 </span>
                                 <span className="text-sm text-gray-400 line-through">
-                                    ৳24,000
+                                    {courseData.currency}
+                                    {courseData.originalPrice.toLocaleString()}
                                 </span>
                             </div>
                             <span className="text-xs text-green-700 bg-green-100 px-2 py-0.5 rounded inline-block w-fit mt-1">
-                                প্রোমো অ্যাপ্লাইড
+                                {courseData.promoLabel}
                             </span>
                         </div>
 
                         {/* Enrollment Button */}
                         <div className="flex-shrink-0">
-                            <Link href="/checkout?course=clinical-research">
+                            <Link href={courseData.checkoutLink}>
                                 <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
-                                    ব্যাচে ভর্তি হোন →
+                                    {courseData.enrollButtonText}
                                 </Button>
                             </Link>
                         </div>
