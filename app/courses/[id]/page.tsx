@@ -20,6 +20,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import CourseHeroSection from "@/components/course/CourseHeroSection";
+import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 
 interface CoursePageProps {
     params: Promise<{ id: string }>;
@@ -635,64 +636,47 @@ export default function CoursePage({ params }: CoursePageProps) {
             </div>
 
             {/* Sticky Bottom Bar */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50 ">
-                <div className="max-w-7xl mx-auto px-4 py-3">
-                    <div className="flex items-center justify-between gap-4">
-                        {/* Price Section */}
-                        <div className="flex flex-col">
-                            {course.price && (
-                                <>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-2xl font-bold text-gray-900">
-                                            ৳{course.price}
-                                        </span>
-                                        <span className="text-sm text-gray-400 line-through">
-                                            ৳{Math.round(course.price * 1.6)}
-                                        </span>
-                                    </div>
-                                    <span className="text-xs text-green-700 bg-green-100 px-2 py-0.5 rounded inline-block w-fit mt-1">
-                                        প্রোমো অ্যাপ্লাইড
-                                    </span>
-                                </>
-                            )}
-                        </div>
-
-                        {/* Enrollment Button */}
-                        <div className="flex-shrink-0">
-                            {!user ? (
-                                <Link href={`/checkout?course=${course._id}`}>
-                                    <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
-                                        ব্যাচে ভর্তি হোন →
+            {course.price && (
+                <StickyEnrollmentBar
+                    price={course.price}
+                    originalPrice={Math.round(course.price * 1.6)}
+                    currency="৳"
+                    promoLabel="প্রোমো অ্যাপ্লাইড"
+                    showPromo={true}
+                    customButton={
+                        !user ? (
+                            <Link href={`/checkout?course=${course._id}`}>
+                                <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
+                                    ব্যাচে ভর্তি হোন →
+                                </Button>
+                            </Link>
+                        ) : hasEnrollment ? (
+                            enrollmentStatus === "approved" ? (
+                                <Link href="/dashboard/courses">
+                                    <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-5 text-base">
+                                        Go to Course
                                     </Button>
                                 </Link>
-                            ) : hasEnrollment ? (
-                                enrollmentStatus === "approved" ? (
-                                    <Link href="/dashboard/courses">
-                                        <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-5 text-base">
-                                            Go to Course
-                                        </Button>
-                                    </Link>
-                                ) : (
-                                    <Button
-                                        disabled
-                                        className="bg-gray-400 text-white font-bold px-6 py-5 text-base"
-                                    >
-                                        {enrollmentStatus === "pending"
-                                            ? "Pending"
-                                            : "Rejected"}
-                                    </Button>
-                                )
                             ) : (
-                                <Link href={`/checkout?course=${course._id}`}>
-                                    <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
-                                        ব্যাচে ভর্তি হোন →
-                                    </Button>
-                                </Link>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                <Button
+                                    disabled
+                                    className="bg-gray-400 text-white font-bold px-6 py-5 text-base"
+                                >
+                                    {enrollmentStatus === "pending"
+                                        ? "Pending"
+                                        : "Rejected"}
+                                </Button>
+                            )
+                        ) : (
+                            <Link href={`/checkout?course=${course._id}`}>
+                                <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">
+                                    ব্যাচে ভর্তি হোন →
+                                </Button>
+                            </Link>
+                        )
+                    }
+                />
+            )}
 
             {/* Enrollment Dialog */}
             {course && (
