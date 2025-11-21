@@ -142,7 +142,7 @@ const modules: Module[] = [
         subtitle: "From Research Question to Ethical and Operational Blueprint",
         essence:
             "Transform ideas into structured, ethical, and statistically sound BMRC-compliant research protocols.",
-        liveClasses: 5,
+        liveClasses: 7,
         color: "bg-red-500",
         bgColor: "bg-red-50",
         lightBgColor: "bg-red-100",
@@ -231,7 +231,7 @@ const modules: Module[] = [
         subtitle: "From Dataset to Decision-Ready Insight",
         essence:
             "Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance.",
-        liveClasses: 6,
+        liveClasses: 7,
         color: "bg-green-500",
         bgColor: "bg-green-50",
         lightBgColor: "bg-green-100",
@@ -239,9 +239,7 @@ const modules: Module[] = [
             {
                 id: 1,
                 title: "Data Entry, Coding & Cleaning",
-                overview: [
-                    "Preparing datasets and handling missing data.",
-                ],
+                overview: ["Preparing datasets and handling missing data."],
                 handsOn:
                     "Import data to SPSS; use ChatGPT to generate syntax for re-coding variables.",
             },
@@ -251,7 +249,8 @@ const modules: Module[] = [
                 overview: [
                     "Central tendency, dispersion, and data distribution.",
                 ],
-                practice: "Create frequency tables and charts via Excel Copilot.",
+                practice:
+                    "Create frequency tables and charts via Excel Copilot.",
             },
             {
                 id: 3,
@@ -259,24 +258,19 @@ const modules: Module[] = [
                 overview: [
                     "Applying Chi-square, t-test, ANOVA, correlation analysis.",
                 ],
-                aiTask:
-                    "Paste SPSS outputs into ChatGPT for automated result interpretation.",
+                aiTask: "Paste SPSS outputs into ChatGPT for automated result interpretation.",
             },
             {
                 id: 4,
                 title: "Regression & Predictive Models",
-                overview: [
-                    "Logistic, linear, and Cox regression concepts.",
-                ],
+                overview: ["Logistic, linear, and Cox regression concepts."],
                 practice:
                     "Run models and interpret AUC values with ChatGPT guidance.",
             },
             {
                 id: 5,
                 title: "Statistical Interpretation & Narrative Writing",
-                overview: [
-                    "Turning numbers into meaningful sentences.",
-                ],
+                overview: ["Turning numbers into meaningful sentences."],
                 aiPractice:
                     "Convert SPSS outputs into publication-ready paragraphs.",
             },
@@ -291,9 +285,7 @@ const modules: Module[] = [
             {
                 id: 7,
                 title: "Avoiding Statistical Errors",
-                overview: [
-                    "Common fallacies and diagnostic checks.",
-                ],
+                overview: ["Common fallacies and diagnostic checks."],
                 simulation:
                     "Analyze faulty datasets and correct them using AI feedback.",
                 deliverable:
@@ -309,7 +301,7 @@ const modules: Module[] = [
         subtitle: "Crafting and Communicating Scientific Evidence",
         essence:
             "Learn to write every section of a research paper, manage references, and communicate results effectively.",
-        liveClasses: 5,
+        liveClasses: 10,
         color: "bg-amber-500",
         bgColor: "bg-amber-50",
         lightBgColor: "bg-amber-100",
@@ -318,8 +310,7 @@ const modules: Module[] = [
                 id: 1,
                 title: "Structure of a Scientific Paper (IMRaD)",
                 overview: ["Understanding organization and flow."],
-                practice:
-                    "Rearrange a disordered paper with ChatGPT guidance.",
+                practice: "Rearrange a disordered paper with ChatGPT guidance.",
             },
             {
                 id: 2,
@@ -331,9 +322,7 @@ const modules: Module[] = [
             {
                 id: 3,
                 title: "Introduction Writing",
-                overview: [
-                    "Building the Global → Local → Gap → Aim story.",
-                ],
+                overview: ["Building the Global → Local → Gap → Aim story."],
                 practice:
                     "Use Scite to fetch citations; summarize context via ChatGPT.",
             },
@@ -365,32 +354,24 @@ const modules: Module[] = [
                 id: 7,
                 title: "References & Citation Management",
                 overview: ["Reference styles (Vancouver, Harvard)."],
-                handsOn:
-                    "Manage citations with Zotero and ChatGPT plugins.",
+                handsOn: "Manage citations with Zotero and ChatGPT plugins.",
             },
             {
                 id: 8,
                 title: "Journal Selection & Submission Strategy",
-                overview: [
-                    "Journal targeting and cover letter drafting.",
-                ],
+                overview: ["Journal targeting and cover letter drafting."],
                 aiPractice: "Use Journal Finder AI for 5 best fit journals.",
             },
             {
                 id: 9,
                 title: "Responding to Reviewers & Revision",
-                overview: [
-                    "Handling peer review feedback professionally.",
-                ],
-                simulation:
-                    "Upload comments to ChatGPT to draft responses.",
+                overview: ["Handling peer review feedback professionally."],
+                simulation: "Upload comments to ChatGPT to draft responses.",
             },
             {
                 id: 10,
                 title: "Conference Presentation Skills",
-                overview: [
-                    "Poster, oral presentation, and Q&A techniques.",
-                ],
+                overview: ["Poster, oral presentation, and Q&A techniques."],
                 handsOn:
                     "Design poster in Canva and generate speech script via ChatGPT.",
                 deliverable:
@@ -406,7 +387,7 @@ const modules: Module[] = [
         subtitle: "Move Beyond Research – Automate and Innovate",
         essence:
             "Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation.",
-        liveClasses: 4,
+        liveClasses: 5,
         color: "bg-purple-500",
         bgColor: "bg-purple-50",
         lightBgColor: "bg-purple-100",
@@ -423,11 +404,8 @@ const modules: Module[] = [
             {
                 id: 2,
                 title: "Advanced Biostatistics & Machine Learning",
-                overview: [
-                    "Predictive modeling and survival analysis.",
-                ],
-                handsOn:
-                    "Run regressions in Python and interpret via ChatGPT.",
+                overview: ["Predictive modeling and survival analysis."],
+                handsOn: "Run regressions in Python and interpret via ChatGPT.",
             },
             {
                 id: 3,
@@ -450,9 +428,7 @@ const modules: Module[] = [
             {
                 id: 5,
                 title: "AI in Research Workflow",
-                overview: [
-                    "End-to-end automation from literature to writing.",
-                ],
+                overview: ["End-to-end automation from literature to writing."],
                 task: "Build your own AI pipeline with Scite + Elicit + ChatGPT + Mendeley.",
                 deliverable:
                     "Systematic review or grant proposal + AI literature map.",
@@ -467,7 +443,7 @@ const modules: Module[] = [
         subtitle: "Prove It. Present It. Publish It.",
         essence:
             "Apply all learning to a real project—complete protocol, dataset, manuscript, and defend findings before expert panel.",
-        liveClasses: 3,
+        liveClasses: 0,
         projects: 1,
         color: "bg-teal-500",
         bgColor: "bg-teal-50",
@@ -565,15 +541,19 @@ export default function CourseModule() {
                                         {module.essence}
                                     </p>
                                     <div className="flex items-center gap-3 text-sm text-gray-700">
-                                        <div className="flex items-center gap-1.5">
-                                            <Video className="w-4 h-4" />
-                                            <span className="font-medium">
-                                                {module.liveClasses} Live Class
-                                                {module.liveClasses > 1
-                                                    ? "es"
-                                                    : ""}
-                                            </span>
-                                        </div>
+                                        {module.liveClasses !== undefined &&
+                                            module.liveClasses > 0 && (
+                                                <div className="flex items-center gap-1.5">
+                                                    <Video className="w-4 h-4" />
+                                                    <span className="font-medium">
+                                                        {module.liveClasses}{" "}
+                                                        Live Class
+                                                        {module.liveClasses > 1
+                                                            ? "es"
+                                                            : ""}
+                                                    </span>
+                                                </div>
+                                            )}
                                         {module.projects && (
                                             <div className="flex items-center gap-1.5">
                                                 <FileText className="w-4 h-4" />
