@@ -30,6 +30,7 @@ interface Topic {
     deliverable?: string;
     exercise?: string;
     practice?: string;
+    simulation?: string;
 }
 
 interface Module {
@@ -226,13 +227,77 @@ const modules: Module[] = [
         number: 3,
         tierLabel: "Tier",
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
+        subtitle: "From Dataset to Decision-Ready Insight",
         essence:
             "Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance.",
         liveClasses: 6,
         color: "bg-green-500",
         bgColor: "bg-green-50",
         lightBgColor: "bg-green-100",
-        topics: [],
+        topics: [
+            {
+                id: 1,
+                title: "Data Entry, Coding & Cleaning",
+                overview: [
+                    "Preparing datasets and handling missing data.",
+                ],
+                handsOn:
+                    "Import data to SPSS; use ChatGPT to generate syntax for re-coding variables.",
+            },
+            {
+                id: 2,
+                title: "Descriptive Statistics & Visualization",
+                overview: [
+                    "Central tendency, dispersion, and data distribution.",
+                ],
+                practice: "Create frequency tables and charts via Excel Copilot.",
+            },
+            {
+                id: 3,
+                title: "Inferential Statistics",
+                overview: [
+                    "Applying Chi-square, t-test, ANOVA, correlation analysis.",
+                ],
+                task: "Paste SPSS outputs into ChatGPT for automated result interpretation.",
+            },
+            {
+                id: 4,
+                title: "Regression & Predictive Models",
+                overview: [
+                    "Logistic, linear, and Cox regression concepts.",
+                ],
+                practice:
+                    "Run models and interpret AUC values with ChatGPT guidance.",
+            },
+            {
+                id: 5,
+                title: "Statistical Interpretation & Narrative Writing",
+                overview: [
+                    "Turning numbers into meaningful sentences.",
+                ],
+                aiPractice:
+                    "Convert SPSS outputs into publication-ready paragraphs.",
+            },
+            {
+                id: 6,
+                title: "Data Visualization for Publications",
+                overview: [
+                    "Preparing Forest Plots, Boxplots, Scatter Diagrams.",
+                ],
+                handsOn: "Design figures using Canva AI or GraphMaker.",
+            },
+            {
+                id: 7,
+                title: "Avoiding Statistical Errors",
+                overview: [
+                    "Common fallacies and diagnostic checks.",
+                ],
+                simulation:
+                    "Analyze faulty datasets and correct them using AI feedback.",
+                deliverable:
+                    "Cleaned dataset + analysis report + publication figures.",
+            },
+        ],
     },
     {
         id: 4,
@@ -427,7 +492,8 @@ export default function CourseModule() {
                                                 topic.task ||
                                                 topic.deliverable ||
                                                 topic.exercise ||
-                                                topic.practice;
+                                                topic.practice ||
+                                                topic.simulation;
 
                                             const borderColor =
                                                 module.id === 1
@@ -663,6 +729,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-pink-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.practice
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.simulation && (
+                                                                            <div className="bg-rose-50 p-3 rounded-lg border border-rose-100">
+                                                                                <h4 className="font-semibold text-rose-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-rose-600">
+                                                                                        🎮
+                                                                                    </span>
+                                                                                    Simulation:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-rose-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.simulation
                                                                                     )}
                                                                                 </p>
                                                                             </div>
