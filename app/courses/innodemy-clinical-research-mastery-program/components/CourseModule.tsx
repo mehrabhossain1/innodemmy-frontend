@@ -464,6 +464,7 @@ const modules: Module[] = [
         number: 6,
         tierLabel: "CAPSTONE",
         title: "Integrated Research Project & Publication Defense",
+        subtitle: "Prove It. Present It. Publish It.",
         essence:
             "Apply all learning to a real project—complete protocol, dataset, manuscript, and defend findings before expert panel.",
         liveClasses: 3,
@@ -471,7 +472,22 @@ const modules: Module[] = [
         color: "bg-teal-500",
         bgColor: "bg-teal-50",
         lightBgColor: "bg-teal-100",
-        topics: [],
+        topics: [
+            {
+                id: 1,
+                title: "Capstone Project Requirements",
+                overview: [
+                    "One BMRC-compliant protocol.",
+                    "One analyzed dataset (with SPSS outputs).",
+                    "One full IMRaD manuscript.",
+                    "A viva presentation before InnoDemy faculty.",
+                ],
+                aiIntegration:
+                    "ChatGPT for refinement | Scite for verification | Grammarly for proofing | PowerPoint Copilot for presentation.",
+                deliverable:
+                    "🏅 InnoDemy Certified Clinical Research Scholar (ICCRS)",
+            },
+        ],
     },
 ];
 
