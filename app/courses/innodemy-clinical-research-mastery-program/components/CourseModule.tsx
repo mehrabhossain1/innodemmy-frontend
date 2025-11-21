@@ -102,8 +102,7 @@ const modules: Module[] = [
                     "Appraisal checklists (CASP, STROBE, CONSORT).",
                     "Bias types and confounder identification.",
                 ],
-                handsOnTask:
-                    "Apply STROBE to a published observational study.",
+                handsOnTask: "Apply STROBE to a published observational study.",
                 aiSupport:
                     "Ask ChatGPT to generate bias summaries and checklist feedback.",
             },
@@ -134,7 +133,7 @@ const modules: Module[] = [
         id: 2,
         number: 2,
         tierLabel: "Tier",
-        title: "Protocol Development, Study Design & Data Framework",
+        title: "Protocol Development, Study Design & Data Frameworking",
         essence:
             "Transform ideas into structured, ethical, and statistically sound BMRC-compliant research protocols.",
         liveClasses: 5,
@@ -203,10 +202,10 @@ export default function CourseModule() {
     const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
 
     const toggleModule = (moduleId: number) => {
-        setExpandedModules(prev => {
+        setExpandedModules((prev) => {
             if (prev.includes(moduleId)) {
                 // Remove module from expanded list
-                return prev.filter(id => id !== moduleId);
+                return prev.filter((id) => id !== moduleId);
             } else {
                 // Add module to expanded list
                 return [...prev, moduleId];
