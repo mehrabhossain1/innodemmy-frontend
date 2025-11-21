@@ -24,6 +24,7 @@ interface Topic {
     aiPractice?: string;
     aiSupport?: string;
     handsOnTask?: string;
+    task?: string;
     deliverable?: string;
     exercise?: string;
 }
@@ -104,10 +105,26 @@ const modules: Module[] = [
                 aiSupport:
                     "Ask ChatGPT to generate bias summaries and checklist feedback.",
             },
-            { id: 5, title: "Identifying Research Gaps Using AI Tools" },
+            {
+                id: 5,
+                title: "Identifying Research Gaps Using AI Tools",
+                overview: [
+                    "Differentiating knowledge voids from replication needs.",
+                    "Mapping literature clusters with **Litmaps** and **Connected Papers**.",
+                ],
+                task: "Produce a visual gap map and brief gap statement.",
+            },
             {
                 id: 6,
                 title: "Developing Research Questions, Objectives & Hypotheses",
+                overview: [
+                    "PICO/PECO/PICOT frameworks and SMART objectives.",
+                    "Null vs alternative hypotheses and testing logic.",
+                ],
+                aiPractice:
+                    "Use ChatGPT to refine research objectives and draft hypotheses.",
+                deliverable:
+                    "Gap analysis document + finalized research question sheet.",
             },
         ],
     },
@@ -303,6 +320,7 @@ export default function CourseModule() {
                                                 topic.aiPractice ||
                                                 topic.aiSupport ||
                                                 topic.handsOnTask ||
+                                                topic.task ||
                                                 topic.deliverable ||
                                                 topic.exercise;
 
@@ -374,9 +392,9 @@ export default function CourseModule() {
                                                                                                     }
                                                                                                     className="leading-relaxed"
                                                                                                 >
-                                                                                                    {
+                                                                                                    {renderTextWithBold(
                                                                                                         point
-                                                                                                    }
+                                                                                                    )}
                                                                                                 </li>
                                                                                             )
                                                                                         )}
@@ -430,6 +448,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-green-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.handsOnTask
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.task && (
+                                                                            <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+                                                                                <h4 className="font-semibold text-indigo-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-indigo-600">
+                                                                                        ✅
+                                                                                    </span>
+                                                                                    Task:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-indigo-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.task
                                                                                     )}
                                                                                 </p>
                                                                             </div>
