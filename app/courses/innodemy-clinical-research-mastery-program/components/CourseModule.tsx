@@ -306,13 +306,97 @@ const modules: Module[] = [
         number: 4,
         tierLabel: "Tier",
         title: "Scientific Writing, Publication & Communication Mastery",
+        subtitle: "Crafting and Communicating Scientific Evidence",
         essence:
             "Learn to write every section of a research paper, manage references, and communicate results effectively.",
         liveClasses: 5,
         color: "bg-amber-500",
         bgColor: "bg-amber-50",
         lightBgColor: "bg-amber-100",
-        topics: [],
+        topics: [
+            {
+                id: 1,
+                title: "Structure of a Scientific Paper (IMRaD)",
+                overview: ["Understanding organization and flow."],
+                practice:
+                    "Rearrange a disordered paper with ChatGPT guidance.",
+            },
+            {
+                id: 2,
+                title: "Abstract Writing",
+                overview: ["Structured vs unstructured formats."],
+                aiPractice:
+                    "Generate abstracts and refine language with Grammarly AI.",
+            },
+            {
+                id: 3,
+                title: "Introduction Writing",
+                overview: [
+                    "Building the Global → Local → Gap → Aim story.",
+                ],
+                practice:
+                    "Use Scite to fetch citations; summarize context via ChatGPT.",
+            },
+            {
+                id: 4,
+                title: "Methods Writing",
+                overview: [
+                    "Translating protocol to publishable Methods section.",
+                ],
+                handsOn: "Create a Methods draft using ChatGPT templates.",
+            },
+            {
+                id: 5,
+                title: "Results Writing",
+                overview: ["Presenting quantitative findings logically."],
+                aiSupport:
+                    "Convert SPSS outputs into narrative sentences and tables.",
+            },
+            {
+                id: 6,
+                title: "Discussion Writing",
+                overview: [
+                    "Interpretation, comparison, limitations, and conclusion.",
+                ],
+                practice:
+                    "Generate discussion drafts and validate with Scite citations.",
+            },
+            {
+                id: 7,
+                title: "References & Citation Management",
+                overview: ["Reference styles (Vancouver, Harvard)."],
+                handsOn:
+                    "Manage citations with Zotero and ChatGPT plugins.",
+            },
+            {
+                id: 8,
+                title: "Journal Selection & Submission Strategy",
+                overview: [
+                    "Journal targeting and cover letter drafting.",
+                ],
+                aiPractice: "Use Journal Finder AI for 5 best fit journals.",
+            },
+            {
+                id: 9,
+                title: "Responding to Reviewers & Revision",
+                overview: [
+                    "Handling peer review feedback professionally.",
+                ],
+                simulation:
+                    "Upload comments to ChatGPT to draft responses.",
+            },
+            {
+                id: 10,
+                title: "Conference Presentation Skills",
+                overview: [
+                    "Poster, oral presentation, and Q&A techniques.",
+                ],
+                handsOn:
+                    "Design poster in Canva and generate speech script via ChatGPT.",
+                deliverable:
+                    "Full IMRaD manuscript + poster + reviewer reply pack.",
+            },
+        ],
     },
     {
         id: 5,
