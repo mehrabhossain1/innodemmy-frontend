@@ -157,7 +157,7 @@ export default function CourseModule() {
                 <hr className="my-2 border-gray-200" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
                 {modules.map((module) => (
                     <div
                         key={module.id}
@@ -172,7 +172,10 @@ export default function CourseModule() {
                         {/* Module Header */}
                         <div
                             className={`p-5 cursor-pointer`}
-                            onClick={() => toggleModule(module.id)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                toggleModule(module.id);
+                            }}
                         >
                             <div className="flex items-start gap-4">
                                 {/* Module Number Badge */}
@@ -227,7 +230,7 @@ export default function CourseModule() {
                                         className={`w-6 h-6 text-gray-600 transition-transform duration-300 ${
                                             expandedModule === module.id
                                                 ? "rotate-180"
-                                                : ""
+                                                : "rotate-0"
                                         }`}
                                     />
                                 </div>
