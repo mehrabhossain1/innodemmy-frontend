@@ -8,6 +8,7 @@ interface Topic {
     overview?: string[];
     aiPractice?: string;
     handsOnTask?: string;
+    deliverable?: string;
 }
 
 interface Module {
@@ -50,7 +51,18 @@ const modules: Module[] = [
                 handsOnTask:
                     "Categorize 10 sample studies into correct design types.",
             },
-            { id: 2, title: "Choosing a Researchable Topic" },
+            {
+                id: 2,
+                title: "Choosing a Researchable Topic",
+                overview: [
+                    "Criteria for novelty, feasibility, ethical and societal relevance.",
+                    "Aligning topics with BMRC priority areas and SDG health goals.",
+                ],
+                aiPractice:
+                    "Use Elicit or ResearchRabbit to discover current research trends.",
+                deliverable:
+                    "Topic shortlist with rationale and feasibility matrix.",
+            },
             {
                 id: 3,
                 title: "Reading & Deconstructing Scientific Articles (IMRaD Framework)",
@@ -253,7 +265,8 @@ export default function CourseModule() {
                                             const hasDetails =
                                                 topic.overview ||
                                                 topic.aiPractice ||
-                                                topic.handsOnTask;
+                                                topic.handsOnTask ||
+                                                topic.deliverable;
 
                                             return (
                                                 <div
@@ -362,6 +375,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-green-800">
                                                                                     {
                                                                                         topic.handsOnTask
+                                                                                    }
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.deliverable && (
+                                                                            <div className="bg-purple-50 p-3 rounded-lg border border-purple-100">
+                                                                                <h4 className="font-semibold text-purple-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-purple-600">
+                                                                                        📦
+                                                                                    </span>
+                                                                                    Deliverable:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-purple-800">
+                                                                                    {
+                                                                                        topic.deliverable
                                                                                     }
                                                                                 </p>
                                                                             </div>
