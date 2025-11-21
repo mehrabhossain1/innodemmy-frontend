@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ClinicalResearchHeroSection from "@/app/courses/innodemy-clinical-research-mastery-program/components/ClinicalResearchHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import CourseModule from "./components/CourseModule";
 
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -27,7 +28,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
     };
 
     return (
-        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white pb-24">
+        <div className="pb-24">
             {/* Video Modal */}
             {isVideoPlaying && (
                 <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
@@ -62,6 +63,9 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
             />
+
+            {/* Course Module */}
+            <CourseModule />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
