@@ -10,6 +10,7 @@ interface Topic {
 interface Module {
     id: number;
     number: number;
+    tierLabel: string;
     title: string;
     liveClasses: number;
     projects?: number;
@@ -23,27 +24,19 @@ const modules: Module[] = [
     {
         id: 1,
         number: 1,
-        title: "Overview of Data Analytics",
-        liveClasses: 1,
+        tierLabel: "Tier",
+        title: "Research Foundation & Scientific Literacy",
+        liveClasses: 4,
         color: "bg-blue-500",
         bgColor: "bg-blue-50",
         lightBgColor: "bg-blue-100",
-        topics: [
-            { id: 1, title: "What is Data Analytics?" },
-            { id: 2, title: "Component of Data Analyst" },
-            { id: 3, title: "Tools needed to be a Data Analyst" },
-            { id: 4, title: "Why Data Analytics?" },
-            { id: 5, title: "Scope of a Data Analyst" },
-            { id: 6, title: "Salary of a Data Analyst" },
-            { id: 7, title: "Freelancing with Data Analytics" },
-            { id: 8, title: "CHAT GPT and Data Analytics" },
-            { id: 9, title: "Use of CHAT GPT in Data Analytics" },
-        ],
+        topics: [],
     },
     {
         id: 2,
         number: 2,
-        title: "Excel for Data Analysis",
+        tierLabel: "Tier",
+        title: "Protocol Development, Study Design & Data Framework",
         liveClasses: 5,
         color: "bg-red-500",
         bgColor: "bg-red-50",
@@ -53,9 +46,9 @@ const modules: Module[] = [
     {
         id: 3,
         number: 3,
-        title: "Excel – Practical Applications on Projects",
-        liveClasses: 5,
-        projects: 4,
+        tierLabel: "Tier",
+        title: "Biostatistics, Data Analysis & Evidence Interpretation",
+        liveClasses: 6,
         color: "bg-green-500",
         bgColor: "bg-green-50",
         lightBgColor: "bg-green-100",
@@ -64,8 +57,9 @@ const modules: Module[] = [
     {
         id: 4,
         number: 4,
-        title: "AI for Data Analytics",
-        liveClasses: 3,
+        tierLabel: "Tier",
+        title: "Scientific Writing, Publication & Communication Mastery",
+        liveClasses: 5,
         color: "bg-amber-500",
         bgColor: "bg-amber-50",
         lightBgColor: "bg-amber-100",
@@ -74,8 +68,9 @@ const modules: Module[] = [
     {
         id: 5,
         number: 5,
-        title: "Power BI Fundamentals",
-        liveClasses: 6,
+        tierLabel: "Tier",
+        title: "Advanced Evidence Generation & AI-Enabled Research Practice (Optional Track)",
+        liveClasses: 4,
         color: "bg-purple-500",
         bgColor: "bg-purple-50",
         lightBgColor: "bg-purple-100",
@@ -84,9 +79,10 @@ const modules: Module[] = [
     {
         id: 6,
         number: 6,
-        title: "Power BI Hands-on Projects",
-        liveClasses: 5,
-        projects: 2,
+        tierLabel: "Capstone",
+        title: "Integrated Research Project & Publication Defense",
+        liveClasses: 3,
+        projects: 1,
         color: "bg-teal-500",
         bgColor: "bg-teal-50",
         lightBgColor: "bg-teal-100",
@@ -107,6 +103,7 @@ export default function CourseModule() {
                 <h2 className="text-3xl font-bold text-gray-900">
                     Course Module
                 </h2>
+                <hr className="my-2 border-gray-200" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,10 +127,12 @@ export default function CourseModule() {
                                     className={`${module.color} text-white rounded-xl px-4 py-3 flex-shrink-0 shadow-md`}
                                 >
                                     <div className="text-xs font-semibold">
-                                        Module
+                                        {module.tierLabel}
                                     </div>
                                     <div className="text-2xl font-bold">
-                                        {module.number}
+                                        {module.tierLabel === "Capstone"
+                                            ? ""
+                                            : module.number}
                                     </div>
                                 </div>
 
