@@ -2,6 +2,21 @@
 import { ChevronDown, Video, FileText } from "lucide-react";
 import { useState } from "react";
 
+// Helper function to render text with bold markdown
+const renderTextWithBold = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+            return (
+                <strong key={index} className="font-bold">
+                    {part.slice(2, -2)}
+                </strong>
+            );
+        }
+        return part;
+    });
+};
+
 interface Topic {
     id: number;
     title: string;
@@ -59,7 +74,7 @@ const modules: Module[] = [
                     "Aligning topics with BMRC priority areas and SDG health goals.",
                 ],
                 aiPractice:
-                    "Use Elicit or ResearchRabbit to discover current research trends.",
+                    "Use **Elicit** or **ResearchRabbit** to discover current research trends.",
                 deliverable:
                     "Topic shortlist with rationale and feasibility matrix.",
             },
@@ -356,9 +371,9 @@ export default function CourseModule() {
                                                                                     Practice:
                                                                                 </h4>
                                                                                 <p className="leading-relaxed text-blue-800">
-                                                                                    {
+                                                                                    {renderTextWithBold(
                                                                                         topic.aiPractice
-                                                                                    }
+                                                                                    )}
                                                                                 </p>
                                                                             </div>
                                                                         )}
@@ -373,9 +388,9 @@ export default function CourseModule() {
                                                                                     Task:
                                                                                 </h4>
                                                                                 <p className="leading-relaxed text-green-800">
-                                                                                    {
+                                                                                    {renderTextWithBold(
                                                                                         topic.handsOnTask
-                                                                                    }
+                                                                                    )}
                                                                                 </p>
                                                                             </div>
                                                                         )}
@@ -389,9 +404,9 @@ export default function CourseModule() {
                                                                                     Deliverable:
                                                                                 </h4>
                                                                                 <p className="leading-relaxed text-purple-800">
-                                                                                    {
+                                                                                    {renderTextWithBold(
                                                                                         topic.deliverable
-                                                                                    }
+                                                                                    )}
                                                                                 </p>
                                                                             </div>
                                                                         )}
