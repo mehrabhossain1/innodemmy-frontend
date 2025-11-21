@@ -403,13 +403,61 @@ const modules: Module[] = [
         number: 5,
         tierLabel: "Tier",
         title: "Advanced Evidence Generation & AI-Enabled Research Practice (Optional Track)",
+        subtitle: "Move Beyond Research – Automate and Innovate",
         essence:
             "Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation.",
         liveClasses: 4,
         color: "bg-purple-500",
         bgColor: "bg-purple-50",
         lightBgColor: "bg-purple-100",
-        topics: [],
+        topics: [
+            {
+                id: 1,
+                title: "Systematic Review & Meta-Analysis (PRISMA)",
+                overview: [
+                    "Building search strategy and data extraction templates.",
+                ],
+                aiPractice:
+                    "Use Elicit for search automation and ChatGPT for forest plot summaries.",
+            },
+            {
+                id: 2,
+                title: "Advanced Biostatistics & Machine Learning",
+                overview: [
+                    "Predictive modeling and survival analysis.",
+                ],
+                handsOn:
+                    "Run regressions in Python and interpret via ChatGPT.",
+            },
+            {
+                id: 3,
+                title: "Medical & Regulatory Writing",
+                overview: [
+                    "CSR, protocol synopsis, and investigator brochure drafting.",
+                ],
+                aiSupport:
+                    "Generate sections using ChatGPT regulatory templates.",
+            },
+            {
+                id: 4,
+                title: "Grant Proposal & Project Management",
+                overview: [
+                    "Gantt chart planning, budget design, and M&E frameworks.",
+                ],
+                aiPractice:
+                    "Use ChatGPT + Canva AI to create timeline and budget tables.",
+            },
+            {
+                id: 5,
+                title: "AI in Research Workflow",
+                overview: [
+                    "End-to-end automation from literature to writing.",
+                ],
+                task: "Build your own AI pipeline with Scite + Elicit + ChatGPT + Mendeley.",
+                deliverable:
+                    "Systematic review or grant proposal + AI literature map.",
+            },
+        ],
     },
     {
         id: 6,
