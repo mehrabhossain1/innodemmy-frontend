@@ -12,6 +12,7 @@ interface Module {
     number: number;
     tierLabel: string;
     title: string;
+    essence: string;
     liveClasses: number;
     projects?: number;
     color: string;
@@ -26,17 +27,26 @@ const modules: Module[] = [
         number: 1,
         tierLabel: "Tier",
         title: "Research Foundation & Scientific Literacy",
+        essence: "Understand research fundamentals, evaluate scientific literature, and identify research gaps using AI-powered tools.",
         liveClasses: 4,
         color: "bg-blue-500",
         bgColor: "bg-blue-50",
         lightBgColor: "bg-blue-100",
-        topics: [],
+        topics: [
+            { id: 1, title: "Understanding Clinical & Epidemiological Research" },
+            { id: 2, title: "Choosing a Researchable Topic" },
+            { id: 3, title: "Reading & Deconstructing Scientific Articles (IMRaD Framework)" },
+            { id: 4, title: "Critical Appraisal & Bias Detection" },
+            { id: 5, title: "Identifying Research Gaps Using AI Tools" },
+            { id: 6, title: "Developing Research Questions, Objectives & Hypotheses" },
+        ],
     },
     {
         id: 2,
         number: 2,
         tierLabel: "Tier",
         title: "Protocol Development, Study Design & Data Framework",
+        essence: "Transform ideas into structured, ethical, and statistically sound BMRC-compliant research protocols.",
         liveClasses: 5,
         color: "bg-red-500",
         bgColor: "bg-red-50",
@@ -48,6 +58,7 @@ const modules: Module[] = [
         number: 3,
         tierLabel: "Tier",
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
+        essence: "Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance.",
         liveClasses: 6,
         color: "bg-green-500",
         bgColor: "bg-green-50",
@@ -59,6 +70,7 @@ const modules: Module[] = [
         number: 4,
         tierLabel: "Tier",
         title: "Scientific Writing, Publication & Communication Mastery",
+        essence: "Learn to write every section of a research paper, manage references, and communicate results effectively.",
         liveClasses: 5,
         color: "bg-amber-500",
         bgColor: "bg-amber-50",
@@ -70,6 +82,7 @@ const modules: Module[] = [
         number: 5,
         tierLabel: "Tier",
         title: "Advanced Evidence Generation & AI-Enabled Research Practice (Optional Track)",
+        essence: "Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation.",
         liveClasses: 4,
         color: "bg-purple-500",
         bgColor: "bg-purple-50",
@@ -81,6 +94,7 @@ const modules: Module[] = [
         number: 6,
         tierLabel: "Capstone",
         title: "Integrated Research Project & Publication Defense",
+        essence: "Apply all learning to a real project—complete protocol, dataset, manuscript, and defend findings before expert panel.",
         liveClasses: 3,
         projects: 1,
         color: "bg-teal-500",
@@ -141,6 +155,9 @@ export default function CourseModule() {
                                     <h3 className="font-bold text-gray-900 mb-2 text-base leading-tight">
                                         {module.title}
                                     </h3>
+                                    <p className="text-xs text-gray-600 mb-3 leading-relaxed">
+                                        {module.essence}
+                                    </p>
                                     <div className="flex items-center gap-3 text-sm text-gray-700">
                                         <div className="flex items-center gap-1">
                                             <Video className="w-4 h-4" />
