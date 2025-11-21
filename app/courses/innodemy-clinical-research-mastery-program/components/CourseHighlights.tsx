@@ -26,7 +26,7 @@ export default function CourseHighlights() {
                         </div>
                         <div className="space-y-1">
                             <div className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                                14
+                                6
                             </div>
                             <div className="text-sm font-semibold text-gray-600">
                                 Modules
@@ -46,10 +46,10 @@ export default function CourseHighlights() {
                         </div>
                         <div className="space-y-1">
                             <div className="text-4xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 bg-clip-text text-transparent">
-                                49
+                                35
                             </div>
                             <div className="text-sm font-semibold text-gray-600">
-                                Live Class
+                                Live Classes
                             </div>
                         </div>
                     </div>
@@ -66,10 +66,10 @@ export default function CourseHighlights() {
                         </div>
                         <div className="space-y-1">
                             <div className="text-4xl font-bold bg-gradient-to-br from-teal-600 to-teal-800 bg-clip-text text-transparent">
-                                15
+                                10
                             </div>
                             <div className="text-sm font-semibold text-gray-600">
-                                Real World Project
+                                Projects
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export default function CourseHighlights() {
                                 Batch Number
                             </div>
                             <div className="text-xl font-bold text-gray-900">
-                                2523
+                                1
                             </div>
                         </div>
                     </div>
