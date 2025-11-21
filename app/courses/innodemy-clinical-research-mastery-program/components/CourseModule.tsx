@@ -24,6 +24,7 @@ interface Topic {
     aiPractice?: string;
     aiSupport?: string;
     aiIntegration?: string;
+    handsOn?: string;
     handsOnTask?: string;
     task?: string;
     deliverable?: string;
@@ -163,8 +164,7 @@ const modules: Module[] = [
                     "Defining independent, dependent, and confounding variables.",
                     "Constructing conceptual and analytical models.",
                 ],
-                handsOnTask:
-                    "Use **Canva AI** or **Lucidchart AI** to draw framework diagrams.",
+                handsOn: "Use Canva AI or Lucidchart AI to draw framework diagrams.",
             },
             {
                 id: 3,
@@ -380,6 +380,7 @@ export default function CourseModule() {
                                                 topic.aiPractice ||
                                                 topic.aiSupport ||
                                                 topic.aiIntegration ||
+                                                topic.handsOn ||
                                                 topic.handsOnTask ||
                                                 topic.task ||
                                                 topic.deliverable ||
@@ -523,6 +524,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-violet-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiIntegration
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.handsOn && (
+                                                                            <div className="bg-green-50 p-3 rounded-lg border border-green-100">
+                                                                                <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-green-600">
+                                                                                        ✋
+                                                                                    </span>
+                                                                                    Hands-On:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-green-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.handsOn
                                                                                     )}
                                                                                 </p>
                                                                             </div>
