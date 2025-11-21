@@ -24,6 +24,7 @@ interface Topic {
     aiPractice?: string;
     aiSupport?: string;
     aiIntegration?: string;
+    aiTask?: string;
     handsOn?: string;
     handsOnTask?: string;
     task?: string;
@@ -258,7 +259,8 @@ const modules: Module[] = [
                 overview: [
                     "Applying Chi-square, t-test, ANOVA, correlation analysis.",
                 ],
-                task: "Paste SPSS outputs into ChatGPT for automated result interpretation.",
+                aiTask:
+                    "Paste SPSS outputs into ChatGPT for automated result interpretation.",
             },
             {
                 id: 4,
@@ -487,6 +489,7 @@ export default function CourseModule() {
                                                 topic.aiPractice ||
                                                 topic.aiSupport ||
                                                 topic.aiIntegration ||
+                                                topic.aiTask ||
                                                 topic.handsOn ||
                                                 topic.handsOnTask ||
                                                 topic.task ||
@@ -632,6 +635,23 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-violet-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiIntegration
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.aiTask && (
+                                                                            <div className="bg-sky-50 p-3 rounded-lg border border-sky-100">
+                                                                                <h4 className="font-semibold text-sky-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-sky-600">
+                                                                                        🤖
+                                                                                    </span>
+                                                                                    AI
+                                                                                    Task:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-sky-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.aiTask
                                                                                     )}
                                                                                 </p>
                                                                             </div>
