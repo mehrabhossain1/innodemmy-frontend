@@ -164,7 +164,8 @@ const modules: Module[] = [
                     "Defining independent, dependent, and confounding variables.",
                     "Constructing conceptual and analytical models.",
                 ],
-                handsOn: "Use Canva AI or Lucidchart AI to draw framework diagrams.",
+                handsOn:
+                    "Use Canva AI or Lucidchart AI to draw framework diagrams.",
             },
             {
                 id: 3,
@@ -176,6 +177,47 @@ const modules: Module[] = [
                 aiIntegration:
                     "Compute sample size in Excel or ChatGPT math mode.",
                 deliverable: "Sample-size sheet with literature references.",
+            },
+            {
+                id: 4,
+                title: "CRF / Questionnaire Development & Validation",
+                overview: [
+                    "CRF structure, question types, and scoring.",
+                    "Pilot testing and reliability testing (Cronbach's alpha).",
+                ],
+                handsOn:
+                    "Design Google Form and run mini pilot with peer feedback.",
+            },
+            {
+                id: 5,
+                title: "Data Management Planning",
+                overview: [
+                    "Codebooks, data security, and back-up plans.",
+                    "Data entry and quality-control workflow.",
+                ],
+                aiPractice:
+                    "Use ChatGPT to auto-generate variable codes and validation rules.",
+            },
+            {
+                id: 6,
+                title: "Ethical Considerations & Informed Consent",
+                overview: [
+                    "BMRC guidelines, confidentiality, and local ethics context.",
+                ],
+                practice:
+                    "Write a participant information sheet and consent form with AI editing for readability.",
+            },
+            {
+                id: 7,
+                title: "Writing a BMRC-Compliant Protocol",
+                overview: [
+                    "Section-wise writing (Background, Objectives, Methods, Timeline, Budget).",
+                    "Referencing and final review for submission.",
+                ],
+                aiSupport:
+                    "Use structured ChatGPT prompts for each protocol section.",
+                deliverable:
+                    "Full BMRC-ready protocol + conceptual diagram + CRF toolset.",
             },
         ],
     },
@@ -584,7 +626,7 @@ export default function CourseModule() {
                                                                                     <span className="text-purple-600">
                                                                                         📦
                                                                                     </span>
-                                                                                    Deliverable:
+                                                                                    Deliverables:
                                                                                 </h4>
                                                                                 <p className="leading-relaxed text-purple-800">
                                                                                     {renderTextWithBold(
