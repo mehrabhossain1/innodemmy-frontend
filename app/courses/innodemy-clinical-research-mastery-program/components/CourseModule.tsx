@@ -134,13 +134,26 @@ const modules: Module[] = [
         number: 2,
         tierLabel: "Tier",
         title: "Protocol Development, Study Design & Data Frameworking",
+        subtitle: "From Research Question to Ethical and Operational Blueprint",
         essence:
             "Transform ideas into structured, ethical, and statistically sound BMRC-compliant research protocols.",
         liveClasses: 5,
         color: "bg-red-500",
         bgColor: "bg-red-50",
         lightBgColor: "bg-red-100",
-        topics: [],
+        topics: [
+            {
+                id: 1,
+                title: "Study Design Selection",
+                overview: [
+                    "Overview of observational and experimental designs.",
+                    "Strengths and limitations of each approach.",
+                ],
+                exercise: "Analyze five abstracts to select correct design type.",
+                aiSupport:
+                    "Ask ChatGPT to simulate design selection scenarios.",
+            },
+        ],
     },
     {
         id: 3,
@@ -313,8 +326,22 @@ export default function CourseModule() {
                                 <div className="px-5 pb-5">
                                     {/* Subtitle */}
                                     {module.subtitle && (
-                                        <div className="mb-4 text-center">
-                                            <p className="text-sm italic font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent whitespace-nowrap">
+                                        <div className="mb-4 text-center px-4">
+                                            <p
+                                                className={`text-sm italic font-semibold bg-clip-text text-transparent leading-snug ${
+                                                    module.id === 1
+                                                        ? "bg-gradient-to-r from-blue-600 to-purple-600"
+                                                        : module.id === 2
+                                                        ? "bg-gradient-to-r from-red-600 to-orange-600"
+                                                        : module.id === 3
+                                                        ? "bg-gradient-to-r from-green-600 to-teal-600"
+                                                        : module.id === 4
+                                                        ? "bg-gradient-to-r from-amber-600 to-yellow-600"
+                                                        : module.id === 5
+                                                        ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                        : "bg-gradient-to-r from-teal-600 to-cyan-600"
+                                                }`}
+                                            >
                                                 "{module.subtitle}"
                                             </p>
                                         </div>
@@ -333,12 +360,24 @@ export default function CourseModule() {
                                                 topic.deliverable ||
                                                 topic.exercise;
 
+                                            const borderColor = module.id === 1
+                                                ? "border-blue-300 bg-blue-50/50"
+                                                : module.id === 2
+                                                ? "border-red-300 bg-red-50/50"
+                                                : module.id === 3
+                                                ? "border-green-300 bg-green-50/50"
+                                                : module.id === 4
+                                                ? "border-amber-300 bg-amber-50/50"
+                                                : module.id === 5
+                                                ? "border-purple-300 bg-purple-50/50"
+                                                : "border-teal-300 bg-teal-50/50";
+
                                             return (
                                                 <div
                                                     key={topic.id}
                                                     className={`border rounded-lg p-2.5 transition-all duration-300 ${
                                                         isTopicExpanded
-                                                            ? "border-blue-300 bg-blue-50/50 shadow-sm"
+                                                            ? `${borderColor} shadow-sm`
                                                             : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
                                                     }`}
                                                 >
