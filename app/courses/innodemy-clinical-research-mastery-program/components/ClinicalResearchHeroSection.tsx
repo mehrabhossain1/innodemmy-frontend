@@ -1,8 +1,9 @@
 "use client";
-import { Video, Play, BookOpen, FileText, Users } from "lucide-react";
+import { Video, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import CourseHighlights from "./CourseHighlights";
 
 interface ClinicalResearchHeroSectionProps {
     courseData: {
@@ -46,72 +47,7 @@ export default function ClinicalResearchHeroSection({
                     </div>
 
                     {/* Course Highlights */}
-                    <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl p-6 border border-primary/20">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {/* Live Class */}
-                            <div className="flex flex-col items-center text-center space-y-2">
-                                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-1">
-                                    <BookOpen className="w-6 h-6 text-primary" />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-sm font-semibold text-primary">
-                                        📚 লাইভ ক্লাস
-                                    </div>
-                                    <div className="text-lg font-bold text-gray-900">
-                                        রাত ৯.০০- ১০.৩০
-                                    </div>
-                                    <div className="text-xs text-gray-600">
-                                        (বুধবার)
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Recorded Class */}
-                            <div className="flex flex-col items-center text-center space-y-2">
-                                <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-1">
-                                    <Video className="w-6 h-6 text-secondary" />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-sm font-semibold text-secondary">
-                                        📋 ক্লাস রেকর্ডিং এ লাইফটাইম এক্সেস
-                                    </div>
-                                    <div className="text-lg font-bold text-gray-900">
-                                        পাবেন
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Sheet Notes */}
-                            <div className="flex flex-col items-center text-center space-y-2">
-                                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-1">
-                                    <FileText className="w-6 h-6 text-primary" />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-sm font-semibold text-primary">
-                                        📄 শিট নোট
-                                    </div>
-                                    <div className="text-lg font-bold text-gray-900">
-                                        ৪ টি
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Batch */}
-                            <div className="flex flex-col items-center text-center space-y-2">
-                                <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-1">
-                                    <Users className="w-6 h-6 text-secondary" />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="text-sm font-semibold text-secondary">
-                                        🎯 ভর্তি চলছে
-                                    </div>
-                                    <div className="text-lg font-bold text-gray-900">
-                                        ১৪তম ব্যাচ
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <CourseHighlights />
                 </div>
 
                 {/* Right: Video & Enrollment - 1 column */}
