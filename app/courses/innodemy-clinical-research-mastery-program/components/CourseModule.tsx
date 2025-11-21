@@ -34,6 +34,7 @@ interface Module {
     number: number;
     tierLabel: string;
     title: string;
+    subtitle?: string;
     essence: string;
     liveClasses: number;
     projects?: number;
@@ -49,6 +50,7 @@ const modules: Module[] = [
         number: 1,
         tierLabel: "Tier",
         title: "Research Foundation & Scientific Literacy",
+        subtitle: "How to Think, Read, and Question Like a Researcher",
         essence:
             "Understand research fundamentals, evaluate scientific literature, and identify research gaps using AI-powered tools.",
         liveClasses: 6,
@@ -310,6 +312,14 @@ export default function CourseModule() {
                         {expandedModules.includes(module.id) &&
                             module.topics.length > 0 && (
                                 <div className="px-5 pb-5">
+                                    {/* Subtitle */}
+                                    {module.subtitle && (
+                                        <div className="mb-4 text-center">
+                                            <p className="text-sm italic font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent whitespace-nowrap">
+                                                "{module.subtitle}"
+                                            </p>
+                                        </div>
+                                    )}
                                     <div className="space-y-2.5">
                                         {module.topics.map((topic) => {
                                             const topicKey = `${module.id}-${topic.id}`;
