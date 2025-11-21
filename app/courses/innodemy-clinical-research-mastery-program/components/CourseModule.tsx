@@ -132,15 +132,19 @@ const modules: Module[] = [
 ];
 
 export default function CourseModule() {
-    const [expandedModule, setExpandedModule] = useState<number | null>(null);
+    const [expandedModules, setExpandedModules] = useState<number[]>([]);
     const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
 
     const toggleModule = (moduleId: number) => {
-        setExpandedModule(expandedModule === moduleId ? null : moduleId);
-        // Reset expanded topic when closing a module
-        if (expandedModule === moduleId) {
-            setExpandedTopic(null);
-        }
+        setExpandedModules(prev => {
+            if (prev.includes(moduleId)) {
+                // Remove module from expanded list
+                return prev.filter(id => id !== moduleId);
+            } else {
+                // Add module to expanded list
+                return [...prev, moduleId];
+            }
+        });
     };
 
     const toggleTopic = (moduleId: number, topicId: number) => {
@@ -164,7 +168,7 @@ export default function CourseModule() {
                         className={`${
                             module.bgColor
                         } rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 ${
-                            expandedModule === module.id
+                            expandedModules.includes(module.id)
                                 ? "shadow-lg"
                                 : "shadow-md hover:shadow-lg"
                         }`}
@@ -228,7 +232,7 @@ export default function CourseModule() {
                                 <div className="flex-shrink-0">
                                     <ChevronDown
                                         className={`w-6 h-6 text-gray-600 transition-transform duration-300 ${
-                                            expandedModule === module.id
+                                            expandedModules.includes(module.id)
                                                 ? "rotate-180"
                                                 : "rotate-0"
                                         }`}
@@ -238,7 +242,7 @@ export default function CourseModule() {
                         </div>
 
                         {/* Module Content - Topics */}
-                        {expandedModule === module.id &&
+                        {expandedModules.includes(module.id) &&
                             module.topics.length > 0 && (
                                 <div className="px-5 pb-5">
                                     <div className="space-y-2.5">
