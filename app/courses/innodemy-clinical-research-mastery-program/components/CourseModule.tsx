@@ -320,7 +320,7 @@ export default function CourseModule() {
                                             </p>
                                         </div>
                                     )}
-                                    <div className="space-y-2.5">
+                                    <div className="space-y-2">
                                         {module.topics.map((topic) => {
                                             const topicKey = `${module.id}-${topic.id}`;
                                             const isTopicExpanded =
@@ -337,14 +337,14 @@ export default function CourseModule() {
                                             return (
                                                 <div
                                                     key={topic.id}
-                                                    className={`border rounded-lg p-3 transition-all duration-300 ${
+                                                    className={`border rounded-lg p-2.5 transition-all duration-300 ${
                                                         isTopicExpanded
                                                             ? "border-blue-300 bg-blue-50/50 shadow-sm"
                                                             : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
                                                     }`}
                                                 >
                                                     <div
-                                                        className={`flex items-start gap-3 text-base text-gray-700 hover:text-gray-900 transition-colors ${
+                                                        className={`flex items-start gap-2 text-gray-700 hover:text-gray-900 transition-colors ${
                                                             hasDetails
                                                                 ? "cursor-pointer"
                                                                 : ""
@@ -359,12 +359,12 @@ export default function CourseModule() {
                                                             }
                                                         }}
                                                     >
-                                                        <span className="font-bold text-gray-900 min-w-[24px] text-lg">
+                                                        <span className="font-bold text-gray-900 min-w-[20px] text-base">
                                                             {topic.id}.
                                                         </span>
                                                         <div className="flex-1">
                                                             <div className="flex items-center justify-between">
-                                                                <span className="leading-relaxed font-medium text-base">
+                                                                <span className="leading-tight font-semibold text-base">
                                                                     {
                                                                         topic.title
                                                                     }
@@ -383,7 +383,7 @@ export default function CourseModule() {
                                                             {/* Expanded Topic Details */}
                                                             {isTopicExpanded &&
                                                                 hasDetails && (
-                                                                    <div className="mt-4 space-y-3 text-sm text-gray-600">
+                                                                    <div className="mt-3 space-y-2.5 text-sm text-gray-600">
                                                                         {topic.overview &&
                                                                             topic
                                                                                 .overview
