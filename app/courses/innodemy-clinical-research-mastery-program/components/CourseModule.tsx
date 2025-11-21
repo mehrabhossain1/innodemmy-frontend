@@ -23,6 +23,7 @@ interface Topic {
     overview?: string[];
     aiPractice?: string;
     aiSupport?: string;
+    aiIntegration?: string;
     handsOnTask?: string;
     task?: string;
     deliverable?: string;
@@ -150,9 +151,31 @@ const modules: Module[] = [
                     "Overview of observational and experimental designs.",
                     "Strengths and limitations of each approach.",
                 ],
-                practice: "Analyze five abstracts to select correct design type.",
+                practice:
+                    "Analyze five abstracts to select correct design type.",
                 aiSupport:
                     "Ask ChatGPT to simulate design selection scenarios.",
+            },
+            {
+                id: 2,
+                title: "Variable Identification & Conceptual Framework",
+                overview: [
+                    "Defining independent, dependent, and confounding variables.",
+                    "Constructing conceptual and analytical models.",
+                ],
+                handsOnTask:
+                    "Use **Canva AI** or **Lucidchart AI** to draw framework diagrams.",
+            },
+            {
+                id: 3,
+                title: "Sampling Strategy & Sample Size Determination",
+                overview: [
+                    "Probability vs non-probability sampling.",
+                    "Formulas for proportion, mean difference, correlation.",
+                ],
+                aiIntegration:
+                    "Compute sample size in Excel or ChatGPT math mode.",
+                deliverable: "Sample-size sheet with literature references.",
             },
         ],
     },
@@ -356,23 +379,25 @@ export default function CourseModule() {
                                                 topic.overview ||
                                                 topic.aiPractice ||
                                                 topic.aiSupport ||
+                                                topic.aiIntegration ||
                                                 topic.handsOnTask ||
                                                 topic.task ||
                                                 topic.deliverable ||
                                                 topic.exercise ||
                                                 topic.practice;
 
-                                            const borderColor = module.id === 1
-                                                ? "border-blue-300 bg-blue-50/50"
-                                                : module.id === 2
-                                                ? "border-red-300 bg-red-50/50"
-                                                : module.id === 3
-                                                ? "border-green-300 bg-green-50/50"
-                                                : module.id === 4
-                                                ? "border-amber-300 bg-amber-50/50"
-                                                : module.id === 5
-                                                ? "border-purple-300 bg-purple-50/50"
-                                                : "border-teal-300 bg-teal-50/50";
+                                            const borderColor =
+                                                module.id === 1
+                                                    ? "border-blue-300 bg-blue-50/50"
+                                                    : module.id === 2
+                                                    ? "border-red-300 bg-red-50/50"
+                                                    : module.id === 3
+                                                    ? "border-green-300 bg-green-50/50"
+                                                    : module.id === 4
+                                                    ? "border-amber-300 bg-amber-50/50"
+                                                    : module.id === 5
+                                                    ? "border-purple-300 bg-purple-50/50"
+                                                    : "border-teal-300 bg-teal-50/50";
 
                                             return (
                                                 <div
@@ -481,6 +506,23 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-cyan-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiSupport
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.aiIntegration && (
+                                                                            <div className="bg-violet-50 p-3 rounded-lg border border-violet-100">
+                                                                                <h4 className="font-semibold text-violet-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-violet-600">
+                                                                                        🤖
+                                                                                    </span>
+                                                                                    AI
+                                                                                    Integration:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-violet-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.aiIntegration
                                                                                     )}
                                                                                 </p>
                                                                             </div>
