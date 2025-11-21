@@ -27,6 +27,7 @@ interface Topic {
     task?: string;
     deliverable?: string;
     exercise?: string;
+    practice?: string;
 }
 
 interface Module {
@@ -149,7 +150,7 @@ const modules: Module[] = [
                     "Overview of observational and experimental designs.",
                     "Strengths and limitations of each approach.",
                 ],
-                exercise: "Analyze five abstracts to select correct design type.",
+                practice: "Analyze five abstracts to select correct design type.",
                 aiSupport:
                     "Ask ChatGPT to simulate design selection scenarios.",
             },
@@ -328,7 +329,7 @@ export default function CourseModule() {
                                     {module.subtitle && (
                                         <div className="mb-4 text-center px-4">
                                             <p
-                                                className={`text-sm italic font-semibold bg-clip-text text-transparent leading-snug ${
+                                                className={`text-[10px] italic font-semibold bg-clip-text text-transparent leading-snug ${
                                                     module.id === 1
                                                         ? "bg-gradient-to-r from-blue-600 to-purple-600"
                                                         : module.id === 2
@@ -358,7 +359,8 @@ export default function CourseModule() {
                                                 topic.handsOnTask ||
                                                 topic.task ||
                                                 topic.deliverable ||
-                                                topic.exercise;
+                                                topic.exercise ||
+                                                topic.practice;
 
                                             const borderColor = module.id === 1
                                                 ? "border-blue-300 bg-blue-50/50"
@@ -544,6 +546,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-orange-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.exercise
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.practice && (
+                                                                            <div className="bg-pink-50 p-3 rounded-lg border border-pink-100">
+                                                                                <h4 className="font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-pink-600">
+                                                                                        🎯
+                                                                                    </span>
+                                                                                    Practice:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-pink-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.practice
                                                                                     )}
                                                                                 </p>
                                                                             </div>
