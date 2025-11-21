@@ -22,8 +22,10 @@ interface Topic {
     title: string;
     overview?: string[];
     aiPractice?: string;
+    aiSupport?: string;
     handsOnTask?: string;
     deliverable?: string;
+    exercise?: string;
 }
 
 interface Module {
@@ -81,8 +83,27 @@ const modules: Module[] = [
             {
                 id: 3,
                 title: "Reading & Deconstructing Scientific Articles (IMRaD Framework)",
+                overview: [
+                    "Understanding article components and logic flow.",
+                    "Extracting key methodology and results.",
+                ],
+                aiPractice:
+                    "Use **Scite** to analyze citation strength and study impact.",
+                exercise:
+                    "Write a summary of an assigned paper in ≤ 200 words.",
             },
-            { id: 4, title: "Critical Appraisal & Bias Detection" },
+            {
+                id: 4,
+                title: "Critical Appraisal & Bias Detection",
+                overview: [
+                    "Appraisal checklists (CASP, STROBE, CONSORT).",
+                    "Bias types and confounder identification.",
+                ],
+                handsOnTask:
+                    "Apply STROBE to a published observational study.",
+                aiSupport:
+                    "Ask ChatGPT to generate bias summaries and checklist feedback.",
+            },
             { id: 5, title: "Identifying Research Gaps Using AI Tools" },
             {
                 id: 6,
@@ -280,8 +301,10 @@ export default function CourseModule() {
                                             const hasDetails =
                                                 topic.overview ||
                                                 topic.aiPractice ||
+                                                topic.aiSupport ||
                                                 topic.handsOnTask ||
-                                                topic.deliverable;
+                                                topic.deliverable ||
+                                                topic.exercise;
 
                                             return (
                                                 <div
@@ -378,6 +401,23 @@ export default function CourseModule() {
                                                                             </div>
                                                                         )}
 
+                                                                        {topic.aiSupport && (
+                                                                            <div className="bg-cyan-50 p-3 rounded-lg border border-cyan-100">
+                                                                                <h4 className="font-semibold text-cyan-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-cyan-600">
+                                                                                        🤖
+                                                                                    </span>
+                                                                                    AI
+                                                                                    Support:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-cyan-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.aiSupport
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
                                                                         {topic.handsOnTask && (
                                                                             <div className="bg-green-50 p-3 rounded-lg border border-green-100">
                                                                                 <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
@@ -406,6 +446,22 @@ export default function CourseModule() {
                                                                                 <p className="leading-relaxed text-purple-800">
                                                                                     {renderTextWithBold(
                                                                                         topic.deliverable
+                                                                                    )}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+
+                                                                        {topic.exercise && (
+                                                                            <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                                                                                <h4 className="font-semibold text-orange-900 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-orange-600">
+                                                                                        📝
+                                                                                    </span>
+                                                                                    Exercise:
+                                                                                </h4>
+                                                                                <p className="leading-relaxed text-orange-800">
+                                                                                    {renderTextWithBold(
+                                                                                        topic.exercise
                                                                                     )}
                                                                                 </p>
                                                                             </div>
