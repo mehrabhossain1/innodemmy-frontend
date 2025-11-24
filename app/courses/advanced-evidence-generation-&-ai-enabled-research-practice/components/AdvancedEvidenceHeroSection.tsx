@@ -25,7 +25,7 @@ export default function AdvancedEvidenceHeroSection({
     onVideoClick,
 }: AdvancedEvidenceHeroSectionProps) {
     return (
-        <div className="bg-gradient-to-br from-purple-50/50 via-indigo-50/30 to-white ">
+        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
             <div className="container mx-auto px-4 py-16 max-w-7xl">
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Left: Course Info - 2 columns */}
@@ -66,11 +66,11 @@ export default function AdvancedEvidenceHeroSection({
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                                    <Play className="w-12 h-12 text-purple-600 fill-purple-600" />
+                                    <Play className="w-12 h-12 text-primary fill-primary" />
                                 </div>
                             </div>
                             {/* Video Corner Label */}
-                            <div className="absolute top-3 left-3 bg-purple-600/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
+                            <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
                                 <Video className="w-4 h-4" />
                                 <span className="text-xs font-bold">
                                     {courseData.videoLabel}
@@ -81,7 +81,7 @@ export default function AdvancedEvidenceHeroSection({
                         {/* Enrollment Card */}
                         <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
                             {/* Pricing Section */}
-                            <div className="bg-gradient-to-br from-purple-50/50 via-purple-50/30 to-white p-5 border-b border-gray-100">
+                            <div className="bg-gradient-to-br from-primary/8 via-primary/5 to-white p-5 border-b border-gray-100">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
@@ -104,14 +104,14 @@ export default function AdvancedEvidenceHeroSection({
                                             </span>
                                         </div>
                                     </div>
-                                    <button className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md">
                                         📋 Coupon
                                     </button>
                                 </div>
 
                                 {/* Enrollment Button */}
                                 <Link href={courseData.checkoutLink}>
-                                    <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 hover:from-purple-700 hover:via-purple-600 hover:to-indigo-700 text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                                    <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
                                         {courseData.enrollButtonTextShort}
                                     </Button>
                                 </Link>
@@ -122,7 +122,7 @@ export default function AdvancedEvidenceHeroSection({
                                 <div className="grid grid-cols-2 gap-3">
                                     <button className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg py-3 transition-all duration-200 hover:shadow-sm">
                                         <svg
-                                            className="w-5 h-5 text-purple-600"
+                                            className="w-5 h-5 text-primary"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
