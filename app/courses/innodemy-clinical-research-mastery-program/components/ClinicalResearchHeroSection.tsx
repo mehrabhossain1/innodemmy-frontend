@@ -18,11 +18,13 @@ interface ClinicalResearchHeroSectionProps {
         liveCourseLabel: string;
     };
     onVideoClick: () => void;
+    onEnrollClick?: () => void;
 }
 
 export default function ClinicalResearchHeroSection({
     courseData,
     onVideoClick,
+    onEnrollClick,
 }: ClinicalResearchHeroSectionProps) {
     return (
         <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
@@ -110,11 +112,20 @@ export default function ClinicalResearchHeroSection({
                                 </div>
 
                                 {/* Enrollment Button */}
-                                <Link href={courseData.checkoutLink}>
-                                    <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                                {onEnrollClick ? (
+                                    <Button
+                                        onClick={onEnrollClick}
+                                        className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                                    >
                                         {courseData.enrollButtonTextShort}
                                     </Button>
-                                </Link>
+                                ) : (
+                                    <Link href={courseData.checkoutLink}>
+                                        <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                                            {courseData.enrollButtonTextShort}
+                                        </Button>
+                                    </Link>
+                                )}
                             </div>
 
                             {/* Action Buttons */}

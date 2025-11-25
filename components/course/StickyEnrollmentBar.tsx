@@ -13,6 +13,8 @@ interface StickyEnrollmentBarProps {
     showPromo?: boolean;
     // Optional custom button slot for complex enrollment logic
     customButton?: ReactNode;
+    // Optional callback for enrollment click (takes precedence over checkoutLink)
+    onEnrollClick?: () => void;
 }
 
 export default function StickyEnrollmentBar({
@@ -24,6 +26,7 @@ export default function StickyEnrollmentBar({
     checkoutLink,
     showPromo = true,
     customButton,
+    onEnrollClick,
 }: StickyEnrollmentBarProps) {
     return (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg z-50">
@@ -52,6 +55,13 @@ export default function StickyEnrollmentBar({
                     <div className="flex-shrink-0">
                         {customButton ? (
                             customButton
+                        ) : onEnrollClick ? (
+                            <Button
+                                onClick={onEnrollClick}
+                                className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20"
+                            >
+                                {enrollButtonText}
+                            </Button>
                         ) : checkoutLink ? (
                             <Link href={checkoutLink}>
                                 <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-6 py-5 text-base whitespace-nowrap shadow-lg shadow-secondary/20">

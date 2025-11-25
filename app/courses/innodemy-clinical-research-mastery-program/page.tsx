@@ -3,9 +3,11 @@ import { useState } from "react";
 import ClinicalResearchHeroSection from "@/app/courses/innodemy-clinical-research-mastery-program/components/ClinicalResearchHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
 
     // Centralized Course Data
     const courseData = {
@@ -29,6 +31,15 @@ const InnodemyClinicalResearchMasteryProgram = () => {
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="innodemy-clinical-research-mastery-program"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
                 <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
@@ -62,6 +73,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
             <ClinicalResearchHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
             {/* Course Module */}
@@ -74,7 +86,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>
