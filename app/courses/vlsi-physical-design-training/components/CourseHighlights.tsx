@@ -2,6 +2,7 @@
 import {
     Rocket,
     Video,
+    Briefcase,
     Users,
     Calendar,
     BookOpen,
@@ -12,7 +13,7 @@ export default function CourseHighlights() {
     return (
         <div className="space-y-6">
             {/* Top Row - Main Highlights */}
-            <div className="grid grid-cols-2 lg:grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
                 {/* Modules */}
                 <div className="group relative bg-gradient-to-br from-white to-blue-50/30 rounded-3xl p-6 shadow-lg shadow-blue-100/50 border border-blue-100/50 hover:shadow-xl hover:shadow-blue-200/50 hover:-translate-y-1 transition-all duration-300">
                     <div className="flex flex-col items-center text-center space-y-4">
@@ -48,6 +49,26 @@ export default function CourseHighlights() {
                             </div>
                             <div className="text-sm font-semibold text-gray-600">
                                 Live Classes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Projects */}
+                <div className="group relative bg-gradient-to-br from-white to-teal-50/30 rounded-3xl p-6 shadow-lg shadow-teal-100/50 border border-teal-100/50 hover:shadow-xl hover:shadow-teal-200/50 hover:-translate-y-1 transition-all duration-300">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-teal-500/20 blur-xl rounded-full group-hover:bg-teal-500/30 transition-all duration-300"></div>
+                            <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
+                                <Briefcase className="w-8 h-8 text-white" />
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-4xl font-bold bg-gradient-to-br from-teal-600 to-teal-800 bg-clip-text text-transparent">
+                                1
+                            </div>
+                            <div className="text-sm font-semibold text-gray-600">
+                                Projects
                             </div>
                         </div>
                     </div>
