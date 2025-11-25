@@ -619,6 +619,831 @@ export const coursesData: Course[] = [
         ],
     },
 
+    // Innodemy Clinical Research Mastery Program
+    {
+        _id: "4",
+        title: "Innodemy Clinical Research Mastery Program",
+        slug: "innodemy-clinical-research-mastery-program",
+        description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
+        thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-03-15"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 15000,
+        totalLiveClasses: 20,
+        totalWeeks: 10,
+        totalModules: 10,
+        totalProjects: 6,
+        totalExercises: 25,
+
+        //
+        idealFor: [
+            "Medical graduates aspiring to enter clinical research industry",
+            "Healthcare professionals seeking career transition to clinical research",
+            "Pharmacy and life sciences graduates interested in clinical trials",
+            "Research coordinators wanting to advance their skills",
+            "Anyone passionate about contributing to medical advancement through research",
+        ],
+
+        //
+        faq: [
+            {
+                question: "এই কোর্স কাদের জন্য?",
+                answer: "এই কোর্স মেডিকেল, ফার্মেসি, লাইফ সায়েন্স গ্র্যাজুয়েট এবং হেলথকেয়ার প্রফেশনালদের জন্য যারা ক্লিনিক্যাল রিসার্চে ক্যারিয়ার গড়তে চান।",
+            },
+            {
+                question: "কোর্সটি কতদিনের?",
+                answer: "এই সম্পূর্ণ প্রোগ্রামটি ১০ সপ্তাহের, যেখানে ২০টি লাইভ ক্লাস রয়েছে। প্রতিটি ক্লাস ইন্টারেক্টিভ এবং হ্যান্ডস-অন প্র্যাকটিসের সাথে।",
+            },
+            {
+                question: "কোর্স শেষে আমি কী কী শিখতে পারব?",
+                answer: "ক্লিনিক্যাল ট্রায়াল ডিজাইন, প্রোটোকল ডেভেলপমেন্ট, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট, GCP কমপ্লায়েন্স এবং আরও অনেক কিছু শিখবেন যা আপনাকে ইন্ডাস্ট্রি-রেডি করবে।",
+            },
+            {
+                question: "কি কোন পূর্ব অভিজ্ঞতা প্রয়োজন?",
+                answer: "মেডিকেল বা লাইফ সায়েন্স ব্যাকগ্রাউন্ড থাকলেই যথেষ্ট। ক্লিনিক্যাল রিসার্চের পূর্ব অভিজ্ঞতার প্রয়োজন নেই।",
+            },
+            {
+                question: "কোর্স শেষে চাকরির সুযোগ কেমন?",
+                answer: "ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে বর্তমানে প্রচুর চাকরির সুযোগ রয়েছে। কোর্স শেষে আপনি CRC, CRA, Data Manager সহ বিভিন্ন পজিশনের জন্য যোগ্য হবেন।",
+            },
+            {
+                question: "কোর্সে কি সার্টিফিকেট পাব?",
+                answer: "হ্যাঁ, কোর্স সফলভাবে সম্পন্ন করলে আপনি Innodemy থেকে সার্টিফিকেট পাবেন।",
+            },
+            {
+                question: "লাইভ ক্লাস মিস করলে কী হবে?",
+                answer: "সব লাইভ ক্লাসের রেকর্ডিং পাবেন যা আপনি যেকোনো সময় দেখতে পারবেন।",
+            },
+            {
+                question: "প্রজেক্ট সাপোর্ট পাব কি?",
+                answer: "হ্যাঁ, কোর্সে প্র্যাকটিক্যাল প্রজেক্ট এবং কেস স্টাডি রয়েছে যেখানে আপনি সম্পূর্ণ মেন্টরশিপ পাবেন।",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Clinical Research",
+                topics: [
+                    "Overview of clinical research industry",
+                    "Drug development process",
+                    "Phases of clinical trials",
+                    "Key stakeholders in clinical research",
+                    "Career opportunities in clinical research",
+                ],
+                exercises: [
+                    "Identify phases of given clinical trials",
+                    "Map stakeholder roles in a trial",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Clinical Trial Design",
+                topics: [
+                    "Study design types (RCT, cohort, case-control)",
+                    "Randomization and blinding",
+                    "Inclusion and exclusion criteria",
+                    "Primary and secondary endpoints",
+                    "Sample size determination",
+                ],
+                exercises: [
+                    "Design a basic clinical trial",
+                    "Calculate sample size for a study",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Protocol Development",
+                topics: [
+                    "Elements of clinical trial protocol",
+                    "Writing clear objectives and endpoints",
+                    "Study procedures and assessments",
+                    "Safety monitoring plans",
+                    "Protocol amendments",
+                ],
+                exercises: [
+                    "Draft protocol synopsis",
+                    "Review and critique sample protocols",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Good Clinical Practice (GCP)",
+                topics: [
+                    "ICH-GCP guidelines",
+                    "Ethical principles in research",
+                    "Informed consent process",
+                    "Subject rights and safety",
+                    "Documentation requirements",
+                ],
+                exercises: [
+                    "Practice informed consent process",
+                    "Identify GCP violations in case studies",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Regulatory Affairs",
+                topics: [
+                    "Regulatory authorities (FDA, EMA, DGHS)",
+                    "IND/NDA submission process",
+                    "Ethics committee approval",
+                    "Regulatory documentation",
+                    "Inspection preparedness",
+                ],
+                exercises: [
+                    "Prepare ethics committee submission",
+                    "Review regulatory documents",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Clinical Data Management",
+                topics: [
+                    "CRF design and eCRF systems",
+                    "Data collection and entry",
+                    "Data validation and cleaning",
+                    "Database lock procedures",
+                    "CDISC standards",
+                ],
+                exercises: [
+                    "Design a CRF for a study",
+                    "Perform data validation checks",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Pharmacovigilance & Safety",
+                topics: [
+                    "Adverse event reporting",
+                    "SAE vs SUSAR",
+                    "Safety databases",
+                    "Risk management plans",
+                    "Signal detection",
+                ],
+                exercises: [
+                    "Report adverse events correctly",
+                    "Analyze safety data from trials",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Clinical Trial Monitoring",
+                topics: [
+                    "Role of Clinical Research Associate (CRA)",
+                    "Site selection and initiation",
+                    "Monitoring visits (IMV, SMV, COV)",
+                    "Source data verification",
+                    "Monitoring reports",
+                ],
+                exercises: [
+                    "Conduct mock monitoring visit",
+                    "Write monitoring visit report",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle: "Module 9: Quality Assurance & Auditing",
+                topics: [
+                    "Quality management systems",
+                    "Standard Operating Procedures (SOPs)",
+                    "Internal audits",
+                    "Regulatory inspections",
+                    "CAPA (Corrective and Preventive Actions)",
+                ],
+                exercises: [
+                    "Develop SOP for a process",
+                    "Conduct mock audit",
+                ],
+            },
+            {
+                classNumber: 10,
+                moduleTitle: "Module 10: Career Development & Industry Insights",
+                topics: [
+                    "Resume building for clinical research",
+                    "Interview preparation",
+                    "Networking in the industry",
+                    "Continuing education and certifications",
+                    "Future trends in clinical research",
+                ],
+                exercises: [
+                    "Create professional CV",
+                    "Mock interviews",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete protocol development project",
+            "Clinical trial design case study",
+            "Data management system implementation",
+            "Pharmacovigilance case analysis",
+            "Monitoring visit simulation",
+            "Quality audit project",
+        ],
+    },
+
+    // Protocol Development, Study Design & Data Frameworking
+    {
+        _id: "5",
+        title: "Protocol Development, Study Design & Data Frameworking",
+        slug: "protocol-development-study-design-&-data-frameworking",
+        description: `Transform your research ideas into structured, ethical, and statistically sound BMRC-compliant research protocols. Master study design selection, data management, and ethical frameworks essential for conducting high-quality research.`,
+        thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-04-01"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 7000,
+        totalLiveClasses: 12,
+        totalWeeks: 6,
+        totalModules: 6,
+        totalProjects: 3,
+        totalExercises: 18,
+
+        //
+        idealFor: [
+            "Medical and health sciences students planning thesis research",
+            "Researchers preparing BMRC or ethics committee submissions",
+            "Healthcare professionals conducting clinical studies",
+            "Faculty members supervising research projects",
+            "Anyone seeking to develop robust research protocols",
+        ],
+
+        //
+        faq: [
+            {
+                question: "What is a research protocol?",
+                answer: "A research protocol is a detailed plan that outlines the objectives, design, methodology, statistical considerations, and organization of a research project. It ensures the study is conducted ethically and produces reliable results.",
+            },
+            {
+                question: "Do I need prior research experience?",
+                answer: "Basic understanding of research concepts is helpful, but not required. The course starts with fundamentals and progressively builds to advanced protocol development.",
+            },
+            {
+                question: "Will this help with BMRC submissions?",
+                answer: "Absolutely! The course specifically covers BMRC-compliant protocol development, including all required sections and ethical considerations for Bangladesh Medical Research Council submissions.",
+            },
+            {
+                question: "What study designs will be covered?",
+                answer: "The course covers all major study designs including experimental, observational (cohort, case-control, cross-sectional), and mixed-methods designs with guidance on selecting the appropriate design for your research question.",
+            },
+            {
+                question: "Will I learn about data management?",
+                answer: "Yes! Data frameworking and management are core components. You'll learn to create data collection forms, design databases, and plan data analysis strategies.",
+            },
+            {
+                question: "Is ethical approval covered?",
+                answer: "Yes, the course includes comprehensive coverage of ethical principles, informed consent, and preparing ethics committee submissions.",
+            },
+            {
+                question: "Can I develop my own protocol during the course?",
+                answer: "Definitely! Practical exercises and project work allow you to develop your own research protocol with instructor guidance and feedback.",
+            },
+            {
+                question: "What will I receive upon completion?",
+                answer: "You'll receive a course completion certificate and a complete, submission-ready research protocol developed during the course.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Research Protocol Development",
+                topics: [
+                    "Purpose and importance of research protocols",
+                    "Components of a research protocol",
+                    "BMRC protocol requirements and guidelines",
+                    "Research question formulation (PICO/FINER framework)",
+                    "Literature review strategies",
+                ],
+                exercises: [
+                    "Formulate a research question using PICO",
+                    "Identify protocol components in sample protocols",
+                    "Conduct focused literature search",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Study Design Selection",
+                topics: [
+                    "Experimental vs observational designs",
+                    "Randomized controlled trials (RCTs)",
+                    "Cohort, case-control, and cross-sectional studies",
+                    "Quasi-experimental designs",
+                    "Selecting appropriate design for research questions",
+                ],
+                exercises: [
+                    "Match research questions to study designs",
+                    "Critique study designs in published papers",
+                    "Design a study for a given research question",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Methodology Development",
+                topics: [
+                    "Study population and sampling strategies",
+                    "Inclusion and exclusion criteria",
+                    "Sample size calculation and power analysis",
+                    "Recruitment and retention strategies",
+                    "Study timeline and feasibility assessment",
+                ],
+                exercises: [
+                    "Define inclusion/exclusion criteria",
+                    "Calculate sample size for different designs",
+                    "Develop recruitment strategy",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Data Collection Framework",
+                topics: [
+                    "Variable identification and operationalization",
+                    "Data collection tools design (questionnaires, CRFs)",
+                    "Data quality and validation strategies",
+                    "Data management plan development",
+                    "Electronic vs paper-based data collection",
+                ],
+                exercises: [
+                    "Design a data collection form",
+                    "Create data dictionary",
+                    "Develop data quality control procedures",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Ethical Considerations & Regulatory Requirements",
+                topics: [
+                    "Ethical principles in research (Belmont Report)",
+                    "Informed consent process and documentation",
+                    "Risk-benefit assessment",
+                    "Vulnerable populations protection",
+                    "Ethics committee submission preparation",
+                ],
+                exercises: [
+                    "Draft informed consent form",
+                    "Conduct risk-benefit analysis",
+                    "Prepare ethics submission checklist",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Statistical Planning & Protocol Finalization",
+                topics: [
+                    "Statistical analysis plan development",
+                    "Outcome measures (primary and secondary)",
+                    "Data analysis techniques selection",
+                    "Protocol writing and formatting",
+                    "Budget preparation and resource planning",
+                ],
+                exercises: [
+                    "Develop statistical analysis plan",
+                    "Write complete protocol sections",
+                    "Finalize research protocol",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete research protocol development",
+            "Study design selection and justification project",
+            "Data collection framework design",
+        ],
+    },
+
+    // Research Foundation & Scientific Literacy
+    {
+        _id: "6",
+        title: "Research Foundation & Scientific Literacy",
+        slug: "research-foundation-&-scientific-literacy",
+        description: `Master the fundamentals of research thinking, scientific reading, and critical analysis. Learn to evaluate literature, identify gaps, and develop research questions using cutting-edge AI tools. Perfect for aspiring researchers and healthcare professionals.`,
+        thumbnail: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-02-20"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 5000,
+        totalLiveClasses: 10,
+        totalWeeks: 5,
+        totalModules: 5,
+        totalProjects: 2,
+        totalExercises: 15,
+
+        //
+        idealFor: [
+            "Medical and health sciences students beginning research journey",
+            "Healthcare professionals wanting to understand research literature",
+            "Early-career researchers building foundational skills",
+            "Anyone interested in evidence-based practice",
+            "Professionals preparing for advanced research courses",
+        ],
+
+        //
+        faq: [
+            {
+                question: "Is this course for beginners?",
+                answer: "Yes! This course is specifically designed for those new to research. No prior research experience is required. We start with fundamental concepts and build progressively.",
+            },
+            {
+                question: "What will I learn about scientific reading?",
+                answer: "You'll learn how to efficiently read research papers, understand study designs, critically evaluate methodology, interpret results, and assess the quality and reliability of published research.",
+            },
+            {
+                question: "Will AI tools be covered?",
+                answer: "Absolutely! We integrate modern AI tools throughout the course to help with literature searches, paper summarization, critical analysis, and research question development.",
+            },
+            {
+                question: "How is this different from a methodology course?",
+                answer: "This course focuses on developing research literacy and thinking skills rather than conducting research. It prepares you to understand and critically evaluate research before you design your own studies.",
+            },
+            {
+                question: "Will I be able to read research papers after this course?",
+                answer: "Yes! You'll gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
+            },
+            {
+                question: "Is this a prerequisite for other courses?",
+                answer: "While not mandatory, this course provides an excellent foundation for our advanced courses like Protocol Development, Biostatistics, and Evidence Generation.",
+            },
+            {
+                question: "What materials do I need?",
+                answer: "Just a computer with internet access. We'll provide access to databases, papers, and AI tools needed for the course.",
+            },
+            {
+                question: "How practical is this course?",
+                answer: "Very practical! Each session includes hands-on exercises with real research papers, literature searches, and critical analysis activities.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Research & Scientific Thinking",
+                topics: [
+                    "What is research and why it matters",
+                    "Types of research (basic, applied, clinical)",
+                    "Scientific method and research process",
+                    "Developing a research mindset",
+                    "Understanding evidence hierarchy",
+                ],
+                exercises: [
+                    "Identify research types in real studies",
+                    "Map the scientific method in practice",
+                    "Evaluate evidence levels",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Anatomy of a Research Paper",
+                topics: [
+                    "Structure of research papers (IMRaD format)",
+                    "Reading strategies for efficiency",
+                    "Understanding abstract, methods, results, discussion",
+                    "Identifying key information quickly",
+                    "Common pitfalls in reading research",
+                ],
+                exercises: [
+                    "Dissect a research paper structure",
+                    "Practice efficient reading techniques",
+                    "Extract key findings from papers",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Literature Search & Management",
+                topics: [
+                    "Major research databases (PubMed, Google Scholar, etc.)",
+                    "Effective search strategies and keywords",
+                    "Boolean operators and filters",
+                    "Reference management tools (Zotero, Mendeley)",
+                    "AI-powered literature search tools",
+                ],
+                exercises: [
+                    "Conduct systematic literature search",
+                    "Practice advanced search techniques",
+                    "Organize references using management tools",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Critical Appraisal Skills",
+                topics: [
+                    "Understanding study designs and their strengths",
+                    "Evaluating methodology quality",
+                    "Identifying bias and limitations",
+                    "Assessing statistical significance vs clinical importance",
+                    "Using critical appraisal checklists",
+                ],
+                exercises: [
+                    "Critically appraise published papers",
+                    "Identify strengths and weaknesses",
+                    "Use standardized appraisal tools",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Research Question Development & Gap Identification",
+                topics: [
+                    "Identifying research gaps in literature",
+                    "PICO/FINER frameworks for research questions",
+                    "Feasibility assessment",
+                    "From clinical problems to research questions",
+                    "Using AI for gap analysis and question refinement",
+                ],
+                exercises: [
+                    "Identify gaps in literature reviews",
+                    "Formulate research questions using frameworks",
+                    "Refine questions with AI assistance",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete literature review on chosen topic",
+            "Critical appraisal portfolio of 5 research papers",
+        ],
+    },
+
+    // VLSI Physical Design Training
+    {
+        _id: "7",
+        title: "VLSI Physical Design Training",
+        slug: "vlsi-physical-design-training",
+        description: `Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.`,
+        thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-03-10"),
+        category: COURSE_CATEGORIES.VLSI,
+        batchName: "Batch 1",
+        price: 18000,
+        totalLiveClasses: 30,
+        totalWeeks: 15,
+        totalModules: 12,
+        totalProjects: 8,
+        totalExercises: 30,
+
+        //
+        idealFor: [
+            "Electronics and Electrical Engineering graduates seeking VLSI careers",
+            "Fresh graduates looking to enter semiconductor industry",
+            "Working professionals wanting to transition to physical design",
+            "Engineers aiming for roles in chip design companies",
+            "Anyone passionate about semiconductor technology and ASIC design",
+        ],
+
+        //
+        faq: [
+            {
+                question: "Who should take this course?",
+                answer: "This course is ideal for Electronics/Electrical Engineering graduates, fresh graduates, and working professionals who want to build a career in VLSI physical design and the semiconductor industry.",
+            },
+            {
+                question: "Do I need prior VLSI experience?",
+                answer: "Basic knowledge of digital electronics is required. We start with fundamentals including Unix/Linux, scripting, and Verilog before moving to advanced physical design concepts.",
+            },
+            {
+                question: "What tools will I learn?",
+                answer: "You'll gain hands-on experience with industry-standard EDA tools used for synthesis, place & route, timing analysis, and signoff. We focus on practical tool usage throughout the course.",
+            },
+            {
+                question: "Will I work on real projects?",
+                answer: "Absolutely! The course includes 8 practical projects covering the entire physical design flow from RTL to GDSII, giving you industry-relevant hands-on experience.",
+            },
+            {
+                question: "What is the course duration?",
+                answer: "This comprehensive program spans 15 weeks with 30 live classes, covering everything from basics to advanced physical design concepts.",
+            },
+            {
+                question: "Will this help me get a job in semiconductor industry?",
+                answer: "Yes! The course is designed to make you industry-ready with practical skills, real projects, and comprehensive coverage of physical design flow. Many of our graduates work in leading semiconductor companies.",
+            },
+            {
+                question: "Is scripting knowledge required?",
+                answer: "No prior scripting knowledge is needed. We teach Bash and TCL scripting from scratch, which are essential for VLSI automation and tool customization.",
+            },
+            {
+                question: "What topics are covered?",
+                answer: "The course covers Unix/Linux, Bash & TCL scripting, Verilog RTL, synthesis, floorplanning, placement, CTS, routing, timing analysis, physical verification, and signoff - the complete physical design flow.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Unix/Linux Fundamentals",
+                topics: [
+                    "Introduction to Unix/Linux operating system",
+                    "File system navigation and commands",
+                    "File permissions and management",
+                    "Process management and system monitoring",
+                    "Text editors (vi/vim)",
+                ],
+                exercises: [
+                    "Basic Unix commands practice",
+                    "File manipulation exercises",
+                    "Shell navigation drills",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Bash Scripting",
+                topics: [
+                    "Shell scripting basics",
+                    "Variables, arrays, and operators",
+                    "Control structures (if, for, while)",
+                    "Functions and script debugging",
+                    "Practical automation scripts for VLSI",
+                ],
+                exercises: [
+                    "Write automation scripts",
+                    "File processing scripts",
+                    "Log parsing utilities",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: TCL Scripting",
+                topics: [
+                    "TCL language fundamentals",
+                    "Variables, lists, and arrays",
+                    "Control flow and procedures",
+                    "File I/O operations",
+                    "TCL for EDA tool automation",
+                ],
+                exercises: [
+                    "TCL scripting exercises",
+                    "Tool command automation",
+                    "Report generation scripts",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Digital Design Fundamentals",
+                topics: [
+                    "Digital logic review",
+                    "Combinational and sequential circuits",
+                    "Finite State Machines (FSM)",
+                    "Memory elements and timing",
+                    "Clock concepts and clock domains",
+                ],
+                exercises: [
+                    "Design combinational circuits",
+                    "FSM design and optimization",
+                    "Timing analysis exercises",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Verilog HDL",
+                topics: [
+                    "Verilog syntax and data types",
+                    "Behavioral and structural modeling",
+                    "Testbench development",
+                    "Simulation and debugging",
+                    "Synthesizable vs non-synthesizable code",
+                ],
+                exercises: [
+                    "Write Verilog modules",
+                    "Develop testbenches",
+                    "Simulation exercises",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: RTL Design & Synthesis",
+                topics: [
+                    "RTL coding guidelines",
+                    "Synthesis fundamentals",
+                    "Logic optimization",
+                    "Technology libraries",
+                    "Synthesis constraints and reports",
+                ],
+                exercises: [
+                    "RTL design projects",
+                    "Synthesis exercises",
+                    "Optimization techniques",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Physical Design Introduction",
+                topics: [
+                    "ASIC design flow overview",
+                    "Standard cells and technology nodes",
+                    "Design rules and constraints",
+                    "Power, Performance, Area (PPA) tradeoffs",
+                    "Physical design stages",
+                ],
+                exercises: [
+                    "Analyze design specifications",
+                    "Study technology libraries",
+                    "PPA analysis",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Floorplanning",
+                topics: [
+                    "Floorplanning objectives and strategies",
+                    "Core and die size calculation",
+                    "Macro placement and pin assignment",
+                    "Power planning (rings, stripes, rails)",
+                    "Blockages and keepout regions",
+                ],
+                exercises: [
+                    "Floorplan creation",
+                    "Power grid design",
+                    "Macro placement optimization",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle: "Module 9: Placement & Optimization",
+                topics: [
+                    "Placement algorithms and objectives",
+                    "Congestion analysis and optimization",
+                    "Timing-driven placement",
+                    "Density and legalization",
+                    "Pre-CTS optimization",
+                ],
+                exercises: [
+                    "Placement analysis",
+                    "Congestion fixes",
+                    "Optimization techniques",
+                ],
+            },
+            {
+                classNumber: 10,
+                moduleTitle: "Module 10: Clock Tree Synthesis (CTS)",
+                topics: [
+                    "Clock tree concepts and requirements",
+                    "Clock skew and latency",
+                    "CTS algorithms and structures",
+                    "Useful skew optimization",
+                    "Post-CTS optimization",
+                ],
+                exercises: [
+                    "CTS quality analysis",
+                    "Clock tree debugging",
+                    "Skew optimization",
+                ],
+            },
+            {
+                classNumber: 11,
+                moduleTitle: "Module 11: Routing & Signoff",
+                topics: [
+                    "Global and detailed routing",
+                    "Design Rule Checking (DRC)",
+                    "Antenna effects and fixes",
+                    "IR drop analysis",
+                    "Signoff checks and GDSII generation",
+                ],
+                exercises: [
+                    "Routing violation fixes",
+                    "DRC clean-up",
+                    "Final signoff checks",
+                ],
+            },
+            {
+                classNumber: 12,
+                moduleTitle: "Module 12: Static Timing Analysis (STA)",
+                topics: [
+                    "Timing fundamentals and concepts",
+                    "Setup and hold time analysis",
+                    "Multi-corner multi-mode (MCMM) analysis",
+                    "Timing constraints (SDC)",
+                    "Timing closure techniques",
+                ],
+                exercises: [
+                    "STA report analysis",
+                    "Timing violations debug",
+                    "ECO fixes implementation",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete Unix/Linux automation project",
+            "Bash & TCL scripting portfolio",
+            "Verilog RTL design and simulation",
+            "Full synthesis project",
+            "Floorplanning and power planning",
+            "Complete placement and CTS project",
+            "Routing and DRC clean-up project",
+            "End-to-end physical design flow (RTL to GDSII)",
+        ],
+    },
+
     // ML
     // {
     //     _id: "2",
