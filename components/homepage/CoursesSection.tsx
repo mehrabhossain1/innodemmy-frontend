@@ -10,6 +10,7 @@ import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories"
 
 interface Course {
     id: string;
+    slug?: string;
     title: string;
     description: string;
     image: string;
@@ -24,6 +25,7 @@ interface Course {
 interface ApiCourse {
     _id?: string;
     id?: string;
+    slug?: string;
     title: string;
     description: string;
     thumbnail?: string;
@@ -53,6 +55,7 @@ export default function CoursesSection() {
                     const data = await response.json();
                     const mappedCourses: Course[] = data.courses.map(
                         (course: ApiCourse) => ({
+                            slug: course.slug,
                             id: course._id || course.id || "",
                             title: course.title,
                             description: course.description || "",
@@ -201,6 +204,7 @@ export default function CoursesSection() {
                                 }}
                             >
                                 <CourseCard
+                                    slug={course.slug}
                                     id={course.id}
                                     title={course.title}
                                     description={course.description}

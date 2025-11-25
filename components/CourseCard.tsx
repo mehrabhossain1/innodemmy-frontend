@@ -5,6 +5,7 @@ import { BookOpen, Award, Video, FolderOpen, Star } from "lucide-react";
 
 interface CourseCardProps {
     id: string;
+    slug?: string;
     title: string;
     description: string;
     thumbnail?: string;
@@ -18,6 +19,7 @@ interface CourseCardProps {
 
 export default function CourseCard({
     id,
+    slug,
     title,
     description,
     thumbnail,
@@ -28,6 +30,8 @@ export default function CourseCard({
     rating = 4.6,
     totalRatings = 8,
 }: CourseCardProps) {
+    // Use slug for URL if available, otherwise fall back to id
+    const courseUrl = slug ? `/courses/${slug}` : `/courses/${id}`;
     return (
         <div className="relative group">
             {/* Glow effect on hover */}
@@ -79,7 +83,7 @@ export default function CourseCard({
                     </div>
 
                     {/* Title */}
-                    <Link href={`/courses/${id}`}>
+                    <Link href={courseUrl}>
                         <h3 className="text-base font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-snug">
                             {title}
                         </h3>
@@ -114,7 +118,7 @@ export default function CourseCard({
                     </div>
 
                     {/* Button */}
-                    <Link href={`/courses/${id}`}>
+                    <Link href={courseUrl}>
                         <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                             View Details
                         </Button>
