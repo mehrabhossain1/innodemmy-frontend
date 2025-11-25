@@ -18,6 +18,7 @@ import { useEffect, useMemo, useState } from "react";
 
 interface Course {
     _id: string;
+    slug?: string;
     title: string;
     description: string;
     thumbnail?: string;
@@ -101,6 +102,7 @@ export default function CoursesPage() {
                                     <CourseCard
                                         key={course._id}
                                         id={course._id}
+                                        slug={course.slug}
                                         title={course.title}
                                         description={course.description}
                                         thumbnail={course.thumbnail}
