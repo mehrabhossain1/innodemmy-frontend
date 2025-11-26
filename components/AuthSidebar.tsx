@@ -12,13 +12,21 @@ import { useAuth } from "@/lib/hooks/useAuth";
 interface AuthSidebarProps {
     isOpen: boolean;
     onClose: () => void;
+    initialView?: "login" | "register";
 }
 
 type AuthView = "login" | "register" | "verify-email" | "forgot-password" | "reset-password";
 
-export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
-    const [activeView, setActiveView] = useState<AuthView>("login");
+export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: AuthSidebarProps) {
+    const [activeView, setActiveView] = useState<AuthView>(initialView);
     const [pendingEmail, setPendingEmail] = useState("");
+
+    // Update active view when initialView changes
+    useEffect(() => {
+        if (isOpen) {
+            setActiveView(initialView);
+        }
+    }, [isOpen, initialView]);
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -363,7 +371,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 }`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/5 to-primary/10">
+                <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
                         {(activeView === "verify-email" || activeView === "forgot-password" || activeView === "reset-password") && (
                             <button
@@ -383,7 +391,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                             </h2>
                             <p className="text-sm text-muted-foreground mt-1">
                                 {activeView === "login" && "Sign in to continue your learning journey"}
-                                {activeView === "register" && "Start your learning journey today"}
+                                {activeView === "register" && "Create your account to get started"}
                                 {activeView === "verify-email" && "Enter the code sent to your email"}
                                 {activeView === "forgot-password" && "We'll send you a reset code"}
                                 {activeView === "reset-password" && "Enter the code and new password"}
@@ -400,20 +408,23 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                 {/* Tabs (only show for login/register) */}
                 {(activeView === "login" || activeView === "register") && (
-                    <div className="flex border-b border-border">
+                    <div className="flex border-b border-border bg-muted/30">
                         <button
                             onClick={() => {
                                 setActiveView("login");
                                 setError("");
                                 setSuccess("");
                             }}
-                            className={`flex-1 py-4 text-center font-semibold transition-all ${
+                            className={`flex-1 py-4 text-center font-semibold transition-all relative ${
                                 activeView === "login"
-                                    ? "text-primary border-b-2 border-primary bg-accent/50"
-                                    : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                                    ? "text-white bg-gradient-to-r from-primary to-primary/80"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                             }`}
                         >
                             Login
+                            {activeView === "login" && (
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+                            )}
                         </button>
                         <button
                             onClick={() => {
@@ -421,13 +432,16 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                 setError("");
                                 setSuccess("");
                             }}
-                            className={`flex-1 py-4 text-center font-semibold transition-all ${
+                            className={`flex-1 py-4 text-center font-semibold transition-all relative ${
                                 activeView === "register"
-                                    ? "text-primary border-b-2 border-primary bg-accent/50"
-                                    : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                                    ? "text-white bg-gradient-to-r from-primary to-primary/80"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                             }`}
                         >
-                            Register
+                            Signup
+                            {activeView === "register" && (
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+                            )}
                         </button>
                     </div>
                 )}
@@ -497,12 +511,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={loading}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Signing in...
                                     </div>
                                 ) : (
@@ -627,12 +641,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20"
                                 disabled={loading}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Creating Account...
                                     </div>
                                 ) : (
@@ -705,12 +719,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={loading || verifyData.code.length !== 6}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Verifying...
                                     </div>
                                 ) : (
@@ -765,12 +779,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={loading}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Sending Code...
                                     </div>
                                 ) : (
@@ -864,12 +878,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={loading || resetPasswordData.code.length !== 6}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Resetting Password...
                                     </div>
                                 ) : (
@@ -881,7 +895,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 </div>
 
                 {/* Footer Note */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-t border-border">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-t border-border">
                     <p className="text-xs text-center text-muted-foreground">
                         Need help? Contact us:{" "}
                         <a href="mailto:Contact@innodemy.com" className="text-primary hover:underline font-medium">

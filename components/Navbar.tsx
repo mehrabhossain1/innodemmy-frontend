@@ -58,6 +58,7 @@ interface Course {
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
+    const [authInitialView, setAuthInitialView] = useState<"login" | "register">("login");
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const [isMoreOpen, setIsMoreOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
@@ -353,13 +354,19 @@ export default function Navbar() {
                             <div className="flex items-center space-x-2">
                                 <Button
                                     variant="ghost"
-                                    onClick={() => setIsAuthSidebarOpen(true)}
+                                    onClick={() => {
+                                        setAuthInitialView("login");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
                                     className="text-gray-700 dark:text-foreground hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                                 >
                                     Login
                                 </Button>
                                 <Button
-                                    onClick={() => setIsAuthSidebarOpen(true)}
+                                    onClick={() => {
+                                        setAuthInitialView("register");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
                                     className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
                                 >
                                     Sign Up
@@ -502,6 +509,7 @@ export default function Navbar() {
                                     className="w-full"
                                     onClick={() => {
                                         setIsMobileMenuOpen(false);
+                                        setAuthInitialView("login");
                                         setIsAuthSidebarOpen(true);
                                     }}
                                 >
@@ -511,6 +519,7 @@ export default function Navbar() {
                                     className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
                                     onClick={() => {
                                         setIsMobileMenuOpen(false);
+                                        setAuthInitialView("register");
                                         setIsAuthSidebarOpen(true);
                                     }}
                                 >
@@ -526,6 +535,7 @@ export default function Navbar() {
             <AuthSidebar
                 isOpen={isAuthSidebarOpen}
                 onClose={() => setIsAuthSidebarOpen(false)}
+                initialView={authInitialView}
             />
         </nav>
     );
