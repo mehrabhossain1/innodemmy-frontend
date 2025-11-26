@@ -145,7 +145,7 @@ export default function Navbar() {
                             onMouseEnter={() => setIsCoursesOpen(true)}
                             onMouseLeave={() => setIsCoursesOpen(false)}
                         >
-                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                            <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
                                 All Courses
                                 <ChevronDown
                                     className={`h-4 w-4 transition-transform ${
@@ -307,7 +307,7 @@ export default function Navbar() {
 
                         <Link
                             href="/webinar"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
+                            className="px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
                         >
                             Free Webinar
                         </Link>
@@ -318,7 +318,7 @@ export default function Navbar() {
                             onMouseEnter={() => setIsMoreOpen(true)}
                             onMouseLeave={() => setIsMoreOpen(false)}
                         >
-                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                            <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
                                 More
                                 <ChevronDown
                                     className={`h-4 w-4 transition-transform ${
@@ -332,19 +332,19 @@ export default function Navbar() {
                                 <div className="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border py-1">
                                     <Link
                                         href="/blogs"
-                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
                                     >
                                         Blogs
                                     </Link>
                                     <Link
                                         href="/career"
-                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
                                     >
                                         Career
                                     </Link>
                                     <Link
                                         href="/aboutus"
-                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
                                     >
                                         About Us
                                     </Link>
@@ -425,7 +425,7 @@ export default function Navbar() {
                                         setAuthInitialView("login");
                                         setIsAuthSidebarOpen(true);
                                     }}
-                                    className="text-gray-700 dark:text-foreground hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                                    className="text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                                 >
                                     Login
                                 </Button>
@@ -434,7 +434,7 @@ export default function Navbar() {
                                         setAuthInitialView("register");
                                         setIsAuthSidebarOpen(true);
                                     }}
-                                    className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
+                                    className="text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
                                 >
                                     Sign Up
                                 </Button>
@@ -487,14 +487,14 @@ export default function Navbar() {
 
                         <Link
                             href="/courses"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-semibold transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             All Courses
                         </Link>
                         <Link
                             href="/webinar"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-semibold transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Free Webinar
@@ -507,21 +507,21 @@ export default function Navbar() {
                             </div>
                             <Link
                                 href="/blogs"
-                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-semibold transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Blogs
                             </Link>
                             <Link
                                 href="/career"
-                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-semibold transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Career
                             </Link>
                             <Link
                                 href="/aboutus"
-                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-semibold transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 About Us
@@ -573,7 +573,7 @@ export default function Navbar() {
                             <div className="border-t border-gray-200 dark:border-border pt-3 mt-3 space-y-2">
                                 <Button
                                     variant="outline"
-                                    className="w-full"
+                                    className="w-full font-semibold"
                                     onClick={() => {
                                         setIsMobileMenuOpen(false);
                                         setAuthInitialView("login");
@@ -583,7 +583,7 @@ export default function Navbar() {
                                     Login
                                 </Button>
                                 <Button
-                                    className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
+                                    className="w-full font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
                                     onClick={() => {
                                         setIsMobileMenuOpen(false);
                                         setAuthInitialView("register");
