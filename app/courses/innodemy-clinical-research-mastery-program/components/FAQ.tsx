@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import SectionTitle from "@/components/course/SectionTitle";
 
 interface FAQItem {
@@ -39,42 +39,58 @@ export default function FAQ() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="FAQ" />
 
-            <div className="max-w-4xl mx-auto space-y-4">
+            <div className="max-w-3xl mx-auto space-y-3">
                 {faqs.map((faq, index) => {
                     const isExpanded = expandedIndex === index;
                     return (
                         <div
                             key={index}
-                            className={`bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden ${
-                                isExpanded ? "ring-2 ring-primary/20" : ""
+                            className={`bg-white rounded-lg border transition-all duration-300 overflow-hidden ${
+                                isExpanded
+                                    ? "border-primary shadow-md"
+                                    : "border-gray-200 shadow-sm hover:shadow-md"
                             }`}
                         >
                             <button
                                 onClick={() => toggleFAQ(index)}
-                                className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors duration-200"
+                                className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors duration-200"
                             >
-                                <div className="flex items-start gap-3 flex-1">
-                                    <span className="font-bold text-primary text-lg flex-shrink-0">
-                                        {index + 1}.
+                                <div className="flex items-start gap-3 flex-1 pr-4">
+                                    <span
+                                        className={`font-bold text-base flex-shrink-0 ${
+                                            isExpanded
+                                                ? "text-primary"
+                                                : "text-gray-400"
+                                        }`}
+                                    >
+                                        Q{index + 1}.
                                     </span>
-                                    <h3 className="font-bold text-gray-900 text-lg leading-tight">
+                                    <h3
+                                        className={`font-semibold text-base leading-snug ${
+                                            isExpanded
+                                                ? "text-primary"
+                                                : "text-gray-900"
+                                        }`}
+                                    >
                                         {faq.question}
                                     </h3>
                                 </div>
-                                <ChevronDown
-                                    className={`w-6 h-6 text-gray-600 flex-shrink-0 ml-4 transition-transform duration-300 ${
-                                        isExpanded ? "rotate-180" : "rotate-0"
-                                    }`}
-                                />
+                                <div className="flex-shrink-0">
+                                    {isExpanded ? (
+                                        <Minus className="w-5 h-5 text-primary" />
+                                    ) : (
+                                        <Plus className="w-5 h-5 text-gray-400" />
+                                    )}
+                                </div>
                             </button>
 
                             {isExpanded && (
-                                <div className="px-5 pb-5 pt-2">
-                                    <div className="pl-8 pr-10">
-                                        <p className="text-gray-700 text-base leading-relaxed">
+                                <div className="px-4 pb-4">
+                                    <div className="pl-9 border-l-2 border-primary/20 ml-1">
+                                        <p className="text-gray-600 text-sm leading-relaxed pl-3">
                                             {faq.answer}
                                         </p>
                                     </div>
