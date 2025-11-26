@@ -7,9 +7,9 @@ import logo from "@/assets/Logo.png";
 
 export default function Footer() {
     return (
-        <footer className="relative bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-800 border-t-2 border-gray-200 overflow-hidden">
+        <footer className="relative bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 border-t-2 border-gray-200 dark:border-gray-700 overflow-hidden">
             {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 opacity-5 dark:opacity-10">
                 <div
                     className="absolute inset-0"
                     style={{
@@ -21,8 +21,8 @@ export default function Footer() {
             </div>
 
             {/* Gradient Orbs */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl"></div>
 
             <div className="relative z-10">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 lg:pt-20">
@@ -34,20 +34,18 @@ export default function Footer() {
                                     <Image
                                         src={logo}
                                         alt="Innodemy"
-                                        width={150}
-                                        height={40}
-                                        className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                                        className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
                             </Link>
-                            <p className="text-sm text-gray-600 leading-relaxed">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                                 Empowering learners with world-class technology
                                 education and career transformation.
                             </p>
 
                             {/* Social Media Links */}
                             <div>
-                                <h4 className="text-sm font-semibold text-gray-800 mb-3">
+                                <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
                                     Follow Us
                                 </h4>
                                 <div className="flex items-center gap-3">
@@ -117,14 +115,14 @@ export default function Footer() {
 
                         {/* Quick Links Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
                                 Quick Links
                             </h3>
                             <ul className="space-y-3">
                                 <li>
                                     <Link
                                         href="/courses"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Courses
@@ -133,7 +131,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/blogs"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Blog
@@ -142,7 +140,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/career"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Career
@@ -153,14 +151,14 @@ export default function Footer() {
 
                         {/* Company Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
                                 Company
                             </h3>
                             <ul className="space-y-3">
                                 <li>
                                     <Link
                                         href="/aboutus"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         About Us
@@ -169,7 +167,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/privacy-policy"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Privacy Policy
@@ -178,7 +176,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/refund-policy"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Refund Policy
@@ -187,7 +185,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/terms-and-condition"
-                                        className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
                                     >
                                         <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                                         Terms and Condition
@@ -198,35 +196,35 @@ export default function Footer() {
 
                         {/* Contact Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
                                 Contact
                             </h3>
                             <div className="space-y-4">
                                 <div className="flex items-start space-x-3 group">
-                                    <div className="p-2 bg-primary/10 rounded-lg border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                                    <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
                                         <Mail className="w-4 h-4 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-gray-500 mb-0.5">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">
                                             Email
                                         </p>
                                         <a
                                             href="mailto:Contact@innodemy.com"
-                                            className="text-sm text-gray-700 hover:text-primary transition-colors"
+                                            className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                                         >
                                             Contact@innodemy.com
                                         </a>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-3 group">
-                                    <div className="p-2 bg-primary/10 rounded-lg border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                                    <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
                                         <MapPin className="w-4 h-4 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-gray-500 mb-0.5">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">
                                             Address
                                         </p>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                                             Panthapath, Dhaka - 1205,
                                             <br />
                                             Bangladesh
@@ -234,22 +232,22 @@ export default function Footer() {
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-3 group">
-                                    <div className="p-2 bg-primary/10 rounded-lg border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                                    <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
                                         <Phone className="w-4 h-4 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-gray-500 mb-0.5">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">
                                             Phone
                                         </p>
                                         <a
                                             href="tel:+8801805208858"
-                                            className="text-sm text-gray-700 hover:text-primary transition-colors block"
+                                            className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary transition-colors block"
                                         >
                                             +880 1805 208858
                                         </a>
                                         <a
                                             href="tel:+8801805208859"
-                                            className="text-sm text-gray-700 hover:text-primary transition-colors block"
+                                            className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary transition-colors block"
                                         >
                                             +880 1805 208859
                                         </a>
@@ -260,20 +258,20 @@ export default function Footer() {
                     </div>
 
                     {/* Trust & Payment Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-12 border-t border-gray-200">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
                         {/* Trust Badge */}
                         <div className="relative group">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-300"></div>
-                            <div className="relative bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-xl p-5 border-2 border-emerald-500/30">
+                            <div className="relative bg-gradient-to-br from-emerald-500/10 to-green-500/10 dark:from-emerald-500/20 dark:to-green-500/20 rounded-xl p-5 border-2 border-emerald-500/30 dark:border-emerald-500/40">
                                 <div className="flex items-center space-x-4">
                                     <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center shadow-lg">
                                         <Shield className="w-6 h-6 text-white" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-bold text-gray-800">
+                                        <p className="text-sm font-bold text-gray-800 dark:text-white">
                                             Guaranteed Secure Payment
                                         </p>
-                                        <p className="text-xs text-emerald-600">
+                                        <p className="text-xs text-emerald-600 dark:text-emerald-400">
                                             No hidden charges required
                                         </p>
                                     </div>
@@ -283,24 +281,24 @@ export default function Footer() {
 
                         {/* Payment Methods */}
                         <div>
-                            <h4 className="text-sm font-bold text-gray-800 mb-4">
+                            <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-4">
                                 We Accept
                             </h4>
                             <div className="flex flex-wrap items-center gap-3">
                                 {/* bKash */}
-                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
                                         <span className="text-[#E2136E] font-bold text-lg">bKash</span>
                                     </div>
                                 </div>
                                 {/* Nagad */}
-                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
                                         <span className="text-[#EE4023] font-bold text-lg">Nagad</span>
                                     </div>
                                 </div>
                                 {/* Visa */}
-                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <svg className="h-6 w-auto" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M19.8 14.5L21.9 1.5H25.3L23.2 14.5H19.8Z" fill="#00579F"/>
                                         <path d="M35.6 1.8C34.9 1.6 33.8 1.3 32.5 1.3C29 1.3 26.5 3.2 26.5 5.8C26.5 7.7 28.2 8.7 29.5 9.3C30.9 9.9 31.3 10.3 31.3 10.8C31.3 11.6 30.3 12 29.4 12C28.1 12 27.4 11.8 26.3 11.3L25.9 11.1L25.4 14C26.2 14.4 27.7 14.7 29.3 14.7C33.1 14.7 35.5 12.9 35.5 10.1C35.5 8.6 34.4 7.5 32.2 6.6C31 6.1 30.3 5.7 30.3 5.2C30.3 4.7 30.9 4.2 32.1 4.2C33.1 4.2 33.9 4.4 34.5 4.6L34.8 4.7L35.6 1.8Z" fill="#00579F"/>
@@ -310,7 +308,7 @@ export default function Footer() {
                                     </svg>
                                 </div>
                                 {/* Mastercard */}
-                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <svg className="h-6 w-auto" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="18" cy="15" r="12" fill="#EB001B"/>
                                         <circle cx="30" cy="15" r="12" fill="#F79E1B"/>
@@ -323,10 +321,10 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright Section */}
-                <div className="border-t border-gray-200 mt-12">
+                <div className="border-t border-gray-200 dark:border-gray-700 mt-12">
                     <div className="container mx-auto px-4 py-6">
                         <div className="flex flex-col items-center justify-center gap-4">
-                            <p className="text-sm text-gray-600 text-center">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
                                 © 2025 All Rights Reserved to{" "}
                                 <span className="text-primary font-semibold">
                                     Innodemy
@@ -335,19 +333,19 @@ export default function Footer() {
                             <div className="flex items-center justify-center gap-6">
                                 <Link
                                     href="/privacy-policy"
-                                    className="text-xs text-gray-600 hover:text-primary transition-colors"
+                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
                                 >
                                     Privacy Policy
                                 </Link>
                                 <Link
                                     href="/terms-and-condition"
-                                    className="text-xs text-gray-600 hover:text-primary transition-colors"
+                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
                                 >
                                     Terms of Service
                                 </Link>
                                 <Link
                                     href="/refund-policy"
-                                    className="text-xs text-gray-600 hover:text-primary transition-colors"
+                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
                                 >
                                     Refund Policy
                                 </Link>
