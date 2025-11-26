@@ -21,11 +21,39 @@ interface ClinicalResearchHeroSectionProps {
     onEnrollClick?: () => void;
 }
 
+const ENROLLMENT_PHONE = "01521428597";
+
 export default function ClinicalResearchHeroSection({
     courseData,
     onVideoClick,
     onEnrollClick,
 }: ClinicalResearchHeroSectionProps) {
+    const handleWhatsAppClick = () => {
+        const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
+        const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+    };
+
+    const handleShareClick = async () => {
+        const shareData = {
+            title: courseData.title,
+            text: `Check out this course: ${courseData.title}`,
+            url: window.location.href,
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                // Fallback: Copy URL to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Course link copied to clipboard!");
+            }
+        } catch (err) {
+            console.error("Error sharing:", err);
+        }
+    };
+
     return (
         <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
             <div className="container mx-auto px-4 py-16 max-w-7xl">
@@ -133,7 +161,10 @@ export default function ClinicalResearchHeroSection({
                             {/* Action Buttons */}
                             <div className="p-5">
                                 <div className="grid grid-cols-2 gap-3">
-                                    <button className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg py-3 transition-all duration-200 hover:shadow-sm">
+                                    <button
+                                        onClick={handleShareClick}
+                                        className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg py-3 transition-all duration-200 hover:shadow-sm"
+                                    >
                                         <svg
                                             className="w-5 h-5 text-primary"
                                             fill="currentColor"
@@ -145,7 +176,10 @@ export default function ClinicalResearchHeroSection({
                                             Share
                                         </span>
                                     </button>
-                                    <button className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button
+                                        onClick={handleWhatsAppClick}
+                                        className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md"
+                                    >
                                         <svg
                                             className="w-5 h-5"
                                             fill="currentColor"
