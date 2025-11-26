@@ -47,6 +47,7 @@ const categoryColors: Record<string, string> = {
 
 interface Course {
     _id: string;
+    slug?: string;
     title: string;
     description: string;
     thumbnail?: string;
@@ -185,10 +186,13 @@ export default function Navbar() {
                                                         );
                                                     }
 
-                                                    return coursesToShow.map((course) => (
+                                                    return coursesToShow.map((course) => {
+                                                        // Use slug for URL if available, otherwise fall back to id
+                                                        const courseUrl = course.slug ? `/courses/${course.slug}` : `/courses/${course._id}`;
+                                                        return (
                                                         <Link
                                                             key={course._id}
-                                                            href={`/courses/${course._id}`}
+                                                            href={courseUrl}
                                                             className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
                                                         >
                                                             {course.thumbnail && (
@@ -211,7 +215,8 @@ export default function Navbar() {
                                                                 </div>
                                                             </div>
                                                         </Link>
-                                                    ));
+                                                        );
+                                                    });
                                                 })()}
                                             </div>
 
