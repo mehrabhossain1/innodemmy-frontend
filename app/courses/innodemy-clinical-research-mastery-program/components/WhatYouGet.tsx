@@ -1,95 +1,79 @@
 "use client";
-import {
-    Clock,
-    Video,
-    Users,
-    Award,
-    Briefcase,
-    GraduationCap,
-} from "lucide-react";
 
 export default function WhatYouGet() {
     const benefits = [
         {
-            icon: Clock,
+            image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "3 Month Intensive Learning Journey",
             description:
                 "Step-by-step structured curriculum designed for beginners but packed with advanced, real-world concepts.",
-            color: "bg-blue-500",
-            bgColor: "bg-blue-50",
         },
         {
-            icon: Video,
+            image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "24 Live Classes with Industry Experts",
             description:
                 "Learn directly from professionals and get your questions answered in real-time.",
-            color: "bg-purple-500",
-            bgColor: "bg-purple-50",
         },
         {
-            icon: Users,
+            image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
                 "Stuck while practicing? Get instant help during live support sessions.",
-            color: "bg-green-500",
-            bgColor: "bg-green-50",
         },
         {
-            icon: Award,
+            image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Exclusive Learner Community",
             description:
                 "Network, collaborate, and get continuous guidance from a supportive community of learners and experts.",
-            color: "bg-amber-500",
-            bgColor: "bg-amber-50",
         },
         {
-            icon: Briefcase,
+            image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
                 "Personalized career guidance, including advice on career pathways in clinical research and strategies to advance in healthcare, pharmaceutical sectors.",
-            color: "bg-red-500",
-            bgColor: "bg-red-50",
         },
         {
-            icon: GraduationCap,
+            image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
                 "Receive an officially verified certificate upon completion that you can proudly display on LinkedIn or your CV.",
-            color: "bg-teal-500",
-            bgColor: "bg-teal-50",
         },
     ];
 
     return (
-        <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
+        <div className="container mx-auto px-4 py-12 max-w-7xl">
+            {/* Title with underline */}
+            <div className="mb-10 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                     What You&apos;ll Get in This Course
                 </h2>
-                <hr className="my-2 border-gray-200" />
+                <div className="w-48 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 mx-auto rounded-full"></div>
             </div>
 
+            {/* Grid Layout - More Compact */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {benefits.map((benefit, index) => {
-                    const Icon = benefit.icon;
                     return (
                         <div
                             key={index}
-                            className={`${benefit.bgColor} rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300`}
+                            className="bg-white rounded-lg p-5 text-center hover:shadow-lg transition-all duration-300"
                         >
-                            <div className="flex items-start gap-4 mb-4">
-                                <div
-                                    className={`${benefit.color} text-white rounded-xl p-3 flex-shrink-0`}
-                                >
-                                    <Icon className="w-6 h-6" />
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-bold text-gray-900 text-lg leading-tight">
-                                        {benefit.title}
-                                    </h3>
-                                </div>
+                            {/* Image */}
+                            <div className="flex justify-center mb-3">
+                                <img
+                                    src={benefit.image}
+                                    alt={benefit.title}
+                                    className="w-16 h-16 object-contain"
+                                />
                             </div>
-                            <p className="text-gray-700 text-sm leading-relaxed">
+
+                            {/* Title */}
+                            <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                                {benefit.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-gray-600 text-sm leading-relaxed">
                                 {benefit.description}
                             </p>
                         </div>
