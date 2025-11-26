@@ -136,7 +136,7 @@ export default function ClinicalResearchHeroSection({
                                             </span>
                                         </div>
                                     </div>
-                                    <button className="bg-primary dark:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 dark:hover:bg-primary transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md">
                                         📋 Coupon
                                     </button>
                                 </div>

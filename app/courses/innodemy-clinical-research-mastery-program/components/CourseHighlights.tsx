@@ -25,7 +25,7 @@ export default function CourseHighlights() {
                             </div>
                         </div>
                         <div className="flex items-baseline gap-2">
-                            <div className="text-3xl font-bold bg-gradient-to-br from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 bg-clip-text text-transparent">
+                            <div className="text-3xl font-bold bg-gradient-to-br from-blue-600 to-blue-800 bg-clip-text text-transparent">
                                 6
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
@@ -45,7 +45,7 @@ export default function CourseHighlights() {
                             </div>
                         </div>
                         <div className="flex items-baseline gap-2">
-                            <div className="text-3xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 dark:from-purple-400 dark:to-purple-600 bg-clip-text text-transparent">
+                            <div className="text-3xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 bg-clip-text text-transparent">
                                 35
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
@@ -65,7 +65,7 @@ export default function CourseHighlights() {
                             </div>
                         </div>
                         <div className="flex items-baseline gap-2">
-                            <div className="text-3xl font-bold bg-gradient-to-br from-teal-600 to-teal-800 dark:from-teal-400 dark:to-teal-600 bg-clip-text text-transparent">
+                            <div className="text-3xl font-bold bg-gradient-to-br from-teal-600 to-teal-800 bg-clip-text text-transparent">
                                 10
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">

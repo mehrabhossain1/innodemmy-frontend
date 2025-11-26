@@ -70,7 +70,7 @@ export default function StickyNavigation({ items }: StickyNavigationProps) {
                             onClick={() => scrollToSection(item.id)}
                             className={`flex-shrink-0 px-4 py-2 text-base font-bold transition-colors duration-200 border-b-2 whitespace-nowrap -mb-[1px] cursor-pointer ${
                                 activeSection === item.id
-                                    ? "text-primary dark:text-primary border-primary dark:border-primary"
+                                    ? "text-primary border-primary"
                                     : "text-gray-600 dark:text-gray-400 border-transparent hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600"
                             }`}
                         >

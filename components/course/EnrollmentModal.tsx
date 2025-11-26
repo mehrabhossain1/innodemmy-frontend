@@ -91,15 +91,15 @@ export default function EnrollmentModal({
     // Success Modal
     if (showSuccess) {
         return (
-            <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white rounded-xl max-w-md w-full p-8 text-center">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle2 className="w-10 h-10 text-green-600" />
+            <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center p-4">
+                <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-8 text-center">
+                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         Enrollment Submitted Successfully!
                     </h3>
-                    <p className="text-gray-600 mb-6 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm">
                         আপনার এনরোলমেন্ট সফলভাবে জমা দেওয়া হয়েছে। আমরা শীঘ্রই আপনার পেমেন্ট যাচাই করে আপনার সাথে যোগাযোগ করব।
                     </p>
                     <Button
@@ -114,8 +114,8 @@ export default function EnrollmentModal({
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
                 {/* Header */}
                 <div className="sticky top-0 bg-primary p-3 flex items-center justify-between">
                     <div>
@@ -133,19 +133,19 @@ export default function EnrollmentModal({
                 </div>
 
                 {/* Payment Instructions */}
-                <div className="bg-primary/5 border-l-4 border-primary p-2 m-3 rounded">
+                <div className="bg-primary/5 dark:bg-primary/10 border-l-4 border-primary p-2 m-3 rounded">
                     <h3 className="font-bold text-primary mb-1 flex items-center gap-1 text-xs">
                         <CreditCard className="w-3 h-3" />
                         Payment Guide
                     </h3>
-                    <div className="space-y-1 text-xs text-gray-700">
+                    <div className="space-y-1 text-xs text-gray-700 dark:text-gray-300">
                         <p>
                             Send <strong>৳{coursePrice.toLocaleString()}</strong> to:
                         </p>
-                        <div className="bg-white rounded p-1.5 border border-primary/20">
+                        <div className="bg-white dark:bg-gray-700 rounded p-1.5 border border-primary/20 dark:border-primary/30">
                             <div className="flex items-center justify-between">
                                 <span className="font-semibold text-xs">bKash/Nagad:</span>
-                                <span className="font-mono bg-primary/10 px-2 py-0.5 rounded text-xs">
+                                <span className="font-mono bg-primary/10 dark:bg-primary/20 px-2 py-0.5 rounded text-xs">
                                     01521428597
                                 </span>
                             </div>
@@ -157,7 +157,7 @@ export default function EnrollmentModal({
                 <form onSubmit={handleSubmit} className="p-3 space-y-3">
                     {/* Name Field */}
                     <div className="space-y-1">
-                        <Label htmlFor="name" className="text-gray-700 text-xs font-medium flex items-center gap-1">
+                        <Label htmlFor="name" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <User className="w-3 h-3 text-primary" />
                             Your Name <span className="text-red-500">*</span>
                         </Label>
@@ -175,7 +175,7 @@ export default function EnrollmentModal({
 
                     {/* Email Field */}
                     <div className="space-y-1">
-                        <Label htmlFor="email" className="text-gray-700 text-xs font-medium flex items-center gap-1">
+                        <Label htmlFor="email" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <Mail className="w-3 h-3 text-primary" />
                             Email <span className="text-red-500">*</span>
                         </Label>
@@ -193,7 +193,7 @@ export default function EnrollmentModal({
 
                     {/* Phone Field */}
                     <div className="space-y-1">
-                        <Label htmlFor="phone" className="text-gray-700 text-xs font-medium flex items-center gap-1">
+                        <Label htmlFor="phone" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <Phone className="w-3 h-3 text-primary" />
                             Phone Number <span className="text-red-500">*</span>
                         </Label>
@@ -212,7 +212,7 @@ export default function EnrollmentModal({
 
                     {/* Payment Method Selection */}
                     <div className="space-y-1">
-                        <Label className="text-gray-700 text-xs font-medium flex items-center gap-1">
+                        <Label className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <CreditCard className="w-3 h-3 text-primary" />
                             Payment Method <span className="text-red-500">*</span>
                         </Label>
@@ -224,11 +224,11 @@ export default function EnrollmentModal({
                                 }
                                 className={`p-2 rounded border-2 transition text-center ${
                                     formData.paymentMethod === "bkash"
-                                        ? "border-pink-500 bg-pink-50"
-                                        : "border-gray-200 hover:border-pink-300"
+                                        ? "border-pink-500 bg-pink-50 dark:bg-pink-900/30"
+                                        : "border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-400"
                                 }`}
                             >
-                                <div className="text-base font-bold text-pink-600">bKash</div>
+                                <div className="text-base font-bold text-pink-600 dark:text-pink-400">bKash</div>
                             </button>
                             <button
                                 type="button"
@@ -237,18 +237,18 @@ export default function EnrollmentModal({
                                 }
                                 className={`p-2 rounded border-2 transition text-center ${
                                     formData.paymentMethod === "nagad"
-                                        ? "border-orange-500 bg-orange-50"
-                                        : "border-gray-200 hover:border-orange-300"
+                                        ? "border-orange-500 bg-orange-50 dark:bg-orange-900/30"
+                                        : "border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-400"
                                 }`}
                             >
-                                <div className="text-base font-bold text-orange-600">Nagad</div>
+                                <div className="text-base font-bold text-orange-600 dark:text-orange-400">Nagad</div>
                             </button>
                         </div>
                     </div>
 
                     {/* Transaction ID Field */}
                     <div className="space-y-1">
-                        <Label htmlFor="transactionId" className="text-gray-700 text-xs font-medium flex items-center gap-1">
+                        <Label htmlFor="transactionId" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <Hash className="w-3 h-3 text-primary" />
                             Transaction ID <span className="text-red-500">*</span>
                         </Label>
@@ -266,7 +266,7 @@ export default function EnrollmentModal({
 
                     {/* Error Message */}
                     {errorMessage && (
-                        <div className="bg-red-50 border border-red-200 text-red-700 px-2 py-1.5 rounded text-xs">
+                        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-2 py-1.5 rounded text-xs">
                             {errorMessage}
                         </div>
                     )}
