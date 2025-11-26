@@ -304,7 +304,7 @@ export default function AboutusSection() {
 
                             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-2 lg:pt-3">
                                 <Link
-                                    href="/about"
+                                    href="/aboutus"
                                     className="flex-1 sm:flex-initial"
                                 >
                                     <Button
