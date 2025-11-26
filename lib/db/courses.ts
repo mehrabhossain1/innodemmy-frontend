@@ -16,12 +16,25 @@ async function getCoursesCollection() {
 }
 
 /**
- * Find course by ID
+ * Find course by ID (supports both ObjectId and string slug)
  */
-export async function findCourseById(id: string) {
+export async function findCourseById(id: string | ObjectId) {
     const collection = await getCoursesCollection();
-    const course = await collection.findOne({ _id: new ObjectId(id) });
-    return course;
+    
+    // Try to find by ObjectId if it's a valid ObjectId format
+    if (typeof id === 'string' && ObjectId.isValid(id) && id.length === 24) {
+        try {
+            const course = await collection.findOne({ _id: new ObjectId(id) });
+            if (course) return course;
+        } catch (error) {
+            // If ObjectId conversion fails, continue to slug search
+            console.log("Failed to find course by ObjectId, trying slug");
+        }
+    }
+    
+    // If not found by ObjectId or not a valid ObjectId, return null
+    // (For string slugs, we don't have courses in the database yet)
+    return null;
 }
 
 /**

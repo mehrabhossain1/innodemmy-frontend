@@ -12,8 +12,10 @@ export const GET = withAdminAuth(async () => {
     // Populate user and course information
     const enrollmentsWithDetails = await Promise.all(
       enrollments.map(async (enrollment) => {
-        const user = await findUserById(enrollment.userId);
-        const course = await findCourseById(enrollment.courseId);
+        // For public enrollments, userId might not exist
+        const user = enrollment.userId ? await findUserById(enrollment.userId) : null;
+        // For public enrollments, courseId might be null or string
+        const course = enrollment.courseId ? await findCourseById(enrollment.courseId) : null;
 
         return {
           ...enrollment,

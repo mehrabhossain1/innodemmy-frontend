@@ -4,14 +4,14 @@ import { ObjectId } from "mongodb";
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, phone, transactionId, paymentMethod, courseId, courseTitle, amount } =
+        const { name, email, phone, transactionId, paymentNumberLastDigits, paymentMethod, courseId, courseTitle, amount } =
             await request.json();
 
         // Validate required fields
-        if (!name || !phone || !transactionId || !paymentMethod) {
+        if (!name || !email || !phone || !transactionId || !paymentNumberLastDigits || !paymentMethod) {
             return NextResponse.json(
                 {
-                    error: "All fields are required: name, phone, transactionId, paymentMethod",
+                    error: "All fields are required: name, email, phone, transactionId, paymentNumberLastDigits, paymentMethod",
                 },
                 { status: 400 }
             );
@@ -25,6 +25,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return NextResponse.json(
+                { error: "Invalid email format" },
+                { status: 400 }
+            );
+        }
+
         // Validate phone number format (Bangladeshi)
         const phoneRegex = /^01[0-9]{9}$/;
         if (!phoneRegex.test(phone)) {
@@ -34,32 +43,72 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Validate payment number last digits (must be 4 digits)
+        const lastDigitsRegex = /^[0-9]{4}$/;
+        if (!lastDigitsRegex.test(paymentNumberLastDigits)) {
+            return NextResponse.json(
+                { error: "Payment number last digits must be exactly 4 digits" },
+                { status: 400 }
+            );
+        }
+
         const db = await getDatabase();
         const enrollmentsCollection = db.collection("enrollments");
 
         // Check if this phone number already enrolled for this course
         if (courseId) {
-            const existingEnrollment = await enrollmentsCollection.findOne({
-                phone,
-                courseId: new ObjectId(courseId),
-                status: { $in: ["pending", "approved"] },
-            });
+            // Validate if courseId is a valid ObjectId format
+            let courseObjectId = null;
+            try {
+                if (ObjectId.isValid(courseId)) {
+                    courseObjectId = new ObjectId(courseId);
+                }
+            } catch (error) {
+                // If courseId is not valid ObjectId, we'll store it as string
+                console.log("CourseId is not a valid ObjectId, will store as string");
+            }
 
-            if (existingEnrollment) {
-                return NextResponse.json(
-                    { error: "You have already enrolled in this course with this phone number." },
-                    { status: 400 }
-                );
+            if (courseObjectId) {
+                const existingEnrollment = await enrollmentsCollection.findOne({
+                    phone,
+                    courseId: courseObjectId,
+                    status: { $in: ["pending", "approved"] },
+                });
+
+                if (existingEnrollment) {
+                    return NextResponse.json(
+                        { error: "You have already enrolled in this course with this phone number." },
+                        { status: 400 }
+                    );
+                }
             }
         }
 
         // Create the enrollment record
+        // Handle courseId - convert to ObjectId if valid, otherwise store as string or null
+        let finalCourseId = null;
+        if (courseId) {
+            try {
+                if (ObjectId.isValid(courseId)) {
+                    finalCourseId = new ObjectId(courseId);
+                } else {
+                    // Store as string if not valid ObjectId format
+                    finalCourseId = courseId;
+                }
+            } catch (error) {
+                // If conversion fails, store as string
+                finalCourseId = courseId;
+            }
+        }
+
         const enrollmentData = {
             name,
+            email,
             phone,
             transactionId,
+            paymentNumberLastDigits,
             paymentMethod,
-            courseId: courseId ? new ObjectId(courseId) : null,
+            courseId: finalCourseId,
             courseTitle: courseTitle || "Unknown Course",
             amount: amount || 0,
             status: "pending",

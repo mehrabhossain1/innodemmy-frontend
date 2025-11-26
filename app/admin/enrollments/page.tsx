@@ -17,11 +17,16 @@ import { useRouter } from "next/navigation";
 
 interface Enrollment {
     _id: string;
-    userId: string;
-    courseId: string;
+    userId?: string;
+    courseId?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+    courseTitle?: string;
     status: "pending" | "approved" | "rejected";
     paymentMethod: string;
     transactionId: string;
+    paymentNumberLastDigits?: string;
     amount: number;
     createdAt: string;
     user?: {
@@ -52,10 +57,19 @@ export default function AdminEnrollmentsPage() {
 
     const fetchEnrollments = async () => {
         try {
-            const response = await fetch("/api/admin/enrollments");
+            const token = localStorage.getItem("token");
+            const response = await fetch("/api/admin/enrollments", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            
             if (response.ok) {
                 const data = await response.json();
                 setEnrollments(data.enrollments || []);
+            } else {
+                const errorText = await response.text();
+                console.error("Failed to fetch enrollments. Status:", response.status, "Error:", errorText);
             }
         } catch (error) {
             console.error("Failed to fetch enrollments:", error);
@@ -67,10 +81,14 @@ export default function AdminEnrollmentsPage() {
     const handleApprove = async (enrollmentId: string) => {
         setActionLoading(enrollmentId);
         try {
+            const token = localStorage.getItem("token");
             const response = await fetch(
                 `/api/admin/enrollments/${enrollmentId}/approve`,
                 {
                     method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
             );
 
@@ -92,10 +110,14 @@ export default function AdminEnrollmentsPage() {
     const handleReject = async (enrollmentId: string) => {
         setActionLoading(enrollmentId);
         try {
+            const token = localStorage.getItem("token");
             const response = await fetch(
                 `/api/admin/enrollments/${enrollmentId}/reject`,
                 {
                     method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
             );
 
@@ -172,9 +194,11 @@ export default function AdminEnrollmentsPage() {
                     <TableHeader>
                         <TableRow>
                             <TableHead>Student</TableHead>
+                            <TableHead>Phone</TableHead>
                             <TableHead>Course</TableHead>
                             <TableHead>Payment Method</TableHead>
                             <TableHead>Transaction ID</TableHead>
+                            <TableHead>Last 4 Digits</TableHead>
                             <TableHead>Amount</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Date</TableHead>
@@ -185,7 +209,7 @@ export default function AdminEnrollmentsPage() {
                         {enrollments.length === 0 ? (
                             <TableRow>
                                 <TableCell
-                                    colSpan={8}
+                                    colSpan={10}
                                     className="text-center py-8 text-gray-500"
                                 >
                                     No enrollment requests found
@@ -197,21 +221,27 @@ export default function AdminEnrollmentsPage() {
                                     <TableCell>
                                         <div>
                                             <div className="font-medium">
-                                                {enrollment.user?.name}
+                                                {enrollment.user?.name || enrollment.name || "N/A"}
                                             </div>
                                             <div className="text-sm text-gray-500">
-                                                {enrollment.user?.email}
+                                                {enrollment.user?.email || enrollment.email || "N/A"}
                                             </div>
                                         </div>
                                     </TableCell>
+                                    <TableCell className="font-mono text-sm">
+                                        {enrollment.phone || "N/A"}
+                                    </TableCell>
                                     <TableCell>
-                                        {enrollment.course?.title}
+                                        {enrollment.course?.title || enrollment.courseTitle || "N/A"}
                                     </TableCell>
                                     <TableCell className="capitalize">
                                         {enrollment.paymentMethod}
                                     </TableCell>
                                     <TableCell className="font-mono text-sm">
                                         {enrollment.transactionId}
+                                    </TableCell>
+                                    <TableCell className="font-mono text-sm">
+                                        {enrollment.paymentNumberLastDigits || "N/A"}
                                     </TableCell>
                                     <TableCell>
                                         {enrollment.amount} BDT
