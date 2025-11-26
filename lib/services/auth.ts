@@ -28,6 +28,77 @@ export interface DecodedToken extends JwtPayload {
 }
 
 /**
+ * Register a new user (Direct registration without email verification)
+ */
+export async function registerDirect(data: {
+  name: string;
+  email: string;
+  password: string;
+  role?: 'student' | 'admin';
+}) {
+  // Validate input
+  if (!data.email || !data.password || !data.name) {
+    throw new Error('Email, password, and name are required');
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    throw new Error('Invalid email format');
+  }
+
+  // Check if user already exists
+  const exists = await userExists(data.email);
+  if (exists) {
+    throw new Error('User with this email already exists');
+  }
+
+  // Hash password
+  const hashedPassword = await hashPassword(data.password);
+
+  // Create verified user directly
+  const user = await createUser({
+    email: data.email,
+    password: hashedPassword,
+    name: data.name,
+    role: data.role || 'student',
+    isVerified: true, // Mark as verified immediately
+    verificationCode: undefined,
+    verificationCodeExpiry: undefined,
+    otpAttempts: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+
+  if (!user) {
+    throw new Error('Failed to create user');
+  }
+
+  // Get user without password
+  const userWithoutPassword = await findUserByIdentifier(data.email);
+  if (!userWithoutPassword) {
+    throw new Error('User not found');
+  }
+
+  // Generate token
+  const token = generateToken({
+    _id: userWithoutPassword._id?.toString(),
+    email: userWithoutPassword.email,
+    role: userWithoutPassword.role,
+  });
+
+  return {
+    user: {
+      ...userWithoutPassword,
+      _id: userWithoutPassword._id?.toString(),
+    },
+    token,
+    success: true,
+    message: 'Registration successful!',
+  };
+}
+
+/**
  * Register a new user (Step 1: Create unverified user and send OTP)
  */
 export async function register(data: {
@@ -207,7 +278,7 @@ export async function resendVerificationOTP(email: string) {
 }
 
 /**
- * Login with email and password (only for verified users)
+ * Login with email and password
  */
 export async function login(email: string, password: string) {
   // Validate input
@@ -225,11 +296,6 @@ export async function login(email: string, password: string) {
   const isValidPassword = await verifyPassword(password, user.password);
   if (!isValidPassword) {
     throw new Error('Invalid credentials');
-  }
-
-  // Check if user is verified
-  if (!user.isVerified) {
-    throw new Error('Please verify your email before logging in. Check your email for the verification code.');
   }
 
   // Get user without password

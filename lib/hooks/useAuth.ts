@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 export interface User {
@@ -6,7 +6,7 @@ export interface User {
     name: string;
     email: string;
     role: "student" | "admin";
-    isVerified: boolean;
+    isVerified?: boolean;
 }
 
 export function useAuth() {
@@ -14,11 +14,7 @@ export function useAuth() {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
 
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    const checkAuthStatus = () => {
+    const checkAuthStatus = useCallback(() => {
         try {
             const token = localStorage.getItem("token");
             const userData = localStorage.getItem("user");
@@ -34,7 +30,11 @@ export function useAuth() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        checkAuthStatus();
+    }, [checkAuthStatus]);
 
     const login = (token: string, userData: User) => {
         localStorage.setItem("token", token);

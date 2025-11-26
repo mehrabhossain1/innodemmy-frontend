@@ -15,7 +15,7 @@ async function signinHandler(request: NextRequest) {
       );
     }
 
-    // Login user (only verified users can login)
+    // Login user
     const result = await login(email, password);
 
     console.log('Login successful for:', { email });
@@ -34,17 +34,6 @@ async function signinHandler(request: NextRequest) {
         return NextResponse.json(
           { success: false, error: 'Invalid email or password' },
           { status: 401 }
-        );
-      }
-
-      if (error.message.includes('verify your email')) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: error.message,
-            needsVerification: true
-          },
-          { status: 403 }
         );
       }
     }

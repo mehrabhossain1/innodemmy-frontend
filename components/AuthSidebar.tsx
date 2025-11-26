@@ -101,14 +101,7 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                     }
                 }, 1000);
             } else {
-                // Check if user needs verification
-                if (data.needsVerification) {
-                    setPendingEmail(loginData.email);
-                    setActiveView("verify-email");
-                    setError("Please verify your email first. Check your inbox for the verification code.");
-                } else {
-                    setError(data.error || "Login failed");
-                }
+                setError(data.error || "Login failed");
             }
         } catch (err) {
             console.error("Login error:", err);
@@ -152,8 +145,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
             const data = await response.json();
 
             if (response.ok && data.success) {
-                setPendingEmail(registerData.email);
-                setSuccess("Account created! Check your email for the verification code.");
+                // Auto-login the user after successful registration
+                login(data.token, data.user);
+                setSuccess("Account created successfully! Redirecting...");
                 setRegisterData({
                     name: "",
                     email: "",
@@ -161,11 +155,14 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                     confirmPassword: "",
                 });
 
-                // Switch to verification view
                 setTimeout(() => {
-                    setActiveView("verify-email");
-                    setSuccess("");
-                }, 2000);
+                    onClose();
+                    if (data.user.role === "admin") {
+                        router.push("/admin/dashboard");
+                    } else {
+                        router.push("/dashboard");
+                    }
+                }, 1000);
             } else {
                 setError(data.error || "Registration failed");
             }
@@ -588,9 +585,6 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         required
                                     />
                                 </div>
-                                <p className="text-xs text-muted-foreground">
-                                    We'll send a verification code to this email
-                                </p>
                             </div>
 
                             <div className="space-y-2">

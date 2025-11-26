@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { register } from '@/lib/services/auth';
+import { registerDirect } from '@/lib/services/auth';
 import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
 
 async function signupHandler(request: NextRequest) {
@@ -17,20 +17,21 @@ async function signupHandler(request: NextRequest) {
       );
     }
 
-    // Register user (creates unverified user and sends OTP)
-    const result = await register({
+    // Register user directly (no email verification required)
+    const result = await registerDirect({
       email,
       password,
       name,
       role: 'student'
     });
 
-    console.log('User registered successfully, OTP sent to:', email);
+    console.log('User registered successfully:', email);
 
     return NextResponse.json({
       success: true,
       message: result.message,
-      email: result.email,
+      user: result.user,
+      token: result.token,
     });
   } catch (error) {
     console.error('Signup error details:', error);
@@ -49,13 +50,6 @@ async function signupHandler(request: NextRequest) {
         return NextResponse.json(
           { success: false, error: 'Invalid email format' },
           { status: 400 }
-        );
-      }
-
-      if (error.message.includes('Failed to send')) {
-        return NextResponse.json(
-          { success: false, error: 'Failed to send verification email. Please try again.' },
-          { status: 500 }
         );
       }
     }
