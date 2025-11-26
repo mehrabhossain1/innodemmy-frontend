@@ -59,6 +59,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+    const [isMoreOpen, setIsMoreOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
@@ -244,31 +245,44 @@ export default function Navbar() {
                         </Link>
 
                         {/* More Dropdown */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
-                                    More
-                                    <ChevronDown className="h-4 w-4" />
-                                </button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start" className="w-48">
-                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
-                                    <Link href="/blogs" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsMoreOpen(true)}
+                            onMouseLeave={() => setIsMoreOpen(false)}
+                        >
+                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                More
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isMoreOpen ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isMoreOpen && (
+                                <div className="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border py-1">
+                                    <Link
+                                        href="/blogs"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
                                         Blogs
                                     </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
-                                    <Link href="/career" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                                    <Link
+                                        href="/career"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
                                         Career
                                     </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
-                                    <Link href="/aboutus" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                                    <Link
+                                        href="/aboutus"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
                                         About Us
                                     </Link>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* Right Side Actions */}
