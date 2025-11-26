@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { ObjectId } from 'mongodb';
+import { getCourseById } from '@/lib/data/courses';
 
 export async function GET(
   request: Request,
@@ -8,18 +7,9 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const db = await getDatabase();
-    const courses = db.collection('courses');
 
-    // Check if id is a valid ObjectId
-    if (!ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid course ID' },
-        { status: 400 }
-      );
-    }
-
-    const course = await courses.findOne({ _id: new ObjectId(id) });
+    // Get course from hardcoded data
+    const course = getCourseById(id);
 
     if (!course) {
       return NextResponse.json(
@@ -31,8 +21,51 @@ export async function GET(
     return NextResponse.json({ course });
   } catch (error) {
     console.error('Get course error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: errorMessage },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    // PUT endpoint disabled for hardcoded data
+    // To update courses, edit lib/data/courses.ts directly
+    return NextResponse.json(
+      { error: 'Course updates are currently disabled. Courses are managed via hardcoded data.' },
+      { status: 501 }
+    );
+  } catch (error) {
+    console.error('Update course error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
+    return NextResponse.json(
+      { error: errorMessage },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    // DELETE endpoint disabled for hardcoded data
+    // To remove courses, edit lib/data/courses.ts directly
+    return NextResponse.json(
+      { error: 'Course deletion is currently disabled. Courses are managed via hardcoded data.' },
+      { status: 501 }
+    );
+  } catch (error) {
+    console.error('Delete course error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
+    return NextResponse.json(
+      { error: errorMessage },
       { status: 500 }
     );
   }

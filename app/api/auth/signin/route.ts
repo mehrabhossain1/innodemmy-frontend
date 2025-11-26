@@ -1,48 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
+import { login } from '@/lib/services/auth';
+import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
 
-export async function POST(request: NextRequest) {
+async function signinHandler(request: NextRequest) {
   try {
-    const { identifier, password } = await request.json();
+    const { email, password } = await request.json();
 
-    console.log('Login attempt with:', { identifier });
+    console.log('Login attempt with:', { email });
 
-    if (!identifier || !password) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email/Phone and password are required' },
+        { success: false, error: 'Email and password are required' },
         { status: 400 }
       );
     }
 
-    // Use clean architecture - Login Use Case
-    const loginUseCase = UseCaseFactory.createLoginUseCase();
-    const result = await loginUseCase.execute({ identifier, password });
+    // Login user
+    const result = await login(email, password);
 
-    console.log('Login successful for:', { identifier });
-
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(result.user);
+    console.log('Login successful for:', { email });
 
     return NextResponse.json({
-      user: userResponse,
+      success: true,
+      user: result.user,
       token: result.token,
     });
   } catch (error) {
     console.error('Signin error:', error);
 
     // Handle specific errors
-    if (error instanceof Error && error.message.includes('Invalid credentials')) {
-      return NextResponse.json(
-        { error: 'Invalid email/phone or password' },
-        { status: 401 }
-      );
+    if (error instanceof Error) {
+      if (error.message.includes('Invalid credentials')) {
+        return NextResponse.json(
+          { success: false, error: 'Invalid email or password' },
+          { status: 401 }
+        );
+      }
     }
 
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Login failed: ${errorMessage}` },
+      { success: false, error: `Login failed: ${errorMessage}` },
       { status: 500 }
     );
   }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.LOGIN, signinHandler);

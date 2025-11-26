@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,26 +11,124 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, Menu, X, LogOut, User } from "lucide-react";
+import {
+    Search,
+    Menu,
+    X,
+    LogOut,
+    ChevronDown,
+    Code,
+    Cpu,
+    FlaskConical,
+    Layers,
+    MoreHorizontal,
+} from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthSidebar from "@/components/AuthSidebar";
+import {
+    COURSE_CATEGORIES,
+    getAllCategories,
+} from "@/lib/constants/categories";
 
 import logo from "@/assets/Logo.png";
 
+// Map category names to icons
+const categoryIcons: Record<string, typeof Code> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
+    [COURSE_CATEGORIES.PROGRAMMING]: Code,
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
+    [COURSE_CATEGORIES.VLSI]: Layers,
+};
+
+// Map category names to colors
+const categoryColors: Record<string, string> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: "text-green-500",
+    [COURSE_CATEGORIES.PROGRAMMING]: "text-blue-500",
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: "text-purple-500",
+    [COURSE_CATEGORIES.VLSI]: "text-orange-500",
+};
+
+interface Course {
+    _id: string;
+    slug?: string;
+    title: string;
+    description: string;
+    thumbnail?: string;
+    category?: string;
+}
+
 export default function Navbar() {
+    const searchParams = useSearchParams();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
+    const [authInitialView, setAuthInitialView] = useState<
+        "login" | "register"
+    >("login");
+    const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+    const [isMoreOpen, setIsMoreOpen] = useState(false);
+    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+    const [courses, setCourses] = useState<Course[]>([]);
+    const [loading, setLoading] = useState(true);
     const { user, logout } = useAuth();
 
+    // Handle auth query parameter from enrollment success
+    useEffect(() => {
+        const authParam = searchParams.get("auth");
+        if (authParam === "login" || authParam === "signup") {
+            setAuthInitialView(authParam === "login" ? "login" : "register");
+            setIsAuthSidebarOpen(true);
+            // Clean up URL without reloading
+            window.history.replaceState({}, "", window.location.pathname);
+        }
+    }, [searchParams]);
+
+    // Fetch courses
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch("/api/courses");
+                if (response.ok) {
+                    const data = await response.json();
+                    setCourses(data.courses);
+                }
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    // Build dynamic categories with course counts
+    const courseCategories = getAllCategories()
+        .map((category) => {
+            const categoryCoursesCount = courses.filter(
+                (c) => c.category === category
+            ).length;
+            return {
+                id: category,
+                name: category,
+                icon: categoryIcons[category] || Code,
+                count: `${categoryCoursesCount} ${
+                    categoryCoursesCount === 1 ? "Course" : "Courses"
+                }`,
+                color: categoryColors[category] || "text-gray-500",
+                courses: courses.filter((c) => c.category === category), // Show all courses, not limited to 3
+            };
+        })
+        .filter((cat) => cat.courses.length > 0); // Only show categories with courses
+
     return (
-        <nav className="bg-background shadow-md sticky top-0 z-50 border-b border-border">
+        <nav className="bg-white dark:bg-background shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-border">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <div className="flex-shrink-0">
-                        <Link href="/">
+                        <Link href="/" className="flex items-center">
                             <Image
                                 src={logo}
                                 alt="InnoDemmy Logo"
@@ -38,129 +137,316 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Search Bar */}
-                    <div className="hidden md:flex flex-1 mx-6">
-                        <div className="relative w-full max-w-md">
+                    {/* Desktop Menu */}
+                    <div className="hidden lg:flex items-center space-x-1">
+                        {/* Courses Mega Menu */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsCoursesOpen(true)}
+                            onMouseLeave={() => setIsCoursesOpen(false)}
+                        >
+                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                All Courses
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isCoursesOpen ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Mega Menu Dropdown */}
+                            {isCoursesOpen && (
+                                <div className="absolute left-0 top-full mt-1 w-[900px] bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border p-6">
+                                    <div className="grid grid-cols-2 gap-6">
+                                        {/* Left: Categories */}
+                                        <div>
+                                            <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4 px-2">
+                                                Course Categories
+                                            </h3>
+                                            <div className="space-y-1">
+                                                {courseCategories.map(
+                                                    (category) => (
+                                                        <div
+                                                            key={category.id}
+                                                            onMouseEnter={() =>
+                                                                setHoveredCategory(
+                                                                    category.id
+                                                                )
+                                                            }
+                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group cursor-pointer"
+                                                        >
+                                                            <div className="flex-shrink-0">
+                                                                <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                                                    <category.icon
+                                                                        className={`h-5 w-5 ${category.color}`}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className="flex-1">
+                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors">
+                                                                    {
+                                                                        category.name
+                                                                    }
+                                                                </div>
+                                                                <div className="text-xs text-gray-500 dark:text-muted-foreground">
+                                                                    {
+                                                                        category.count
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Right: Courses from Hovered Category */}
+                                        <div className="border-l border-gray-200 dark:border-border pl-6 flex flex-col">
+                                            <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4">
+                                                {hoveredCategory
+                                                    ? `${hoveredCategory} Courses`
+                                                    : "Courses"}
+                                            </h3>
+                                            <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin">
+                                                {(() => {
+                                                    const category =
+                                                        courseCategories.find(
+                                                            (c) =>
+                                                                c.id ===
+                                                                hoveredCategory
+                                                        );
+                                                    const coursesToShow =
+                                                        category?.courses ||
+                                                        courseCategories[0]
+                                                            ?.courses ||
+                                                        [];
+
+                                                    if (
+                                                        coursesToShow.length ===
+                                                        0
+                                                    ) {
+                                                        return (
+                                                            <div className="text-center py-8 text-muted-foreground text-sm">
+                                                                No courses
+                                                                available
+                                                            </div>
+                                                        );
+                                                    }
+
+                                                    return coursesToShow.map(
+                                                        (course) => {
+                                                            // Use slug for URL if available, otherwise fall back to id
+                                                            const courseUrl =
+                                                                course.slug
+                                                                    ? `/courses/${course.slug}`
+                                                                    : `/courses/${course._id}`;
+                                                            return (
+                                                                <Link
+                                                                    key={
+                                                                        course._id
+                                                                    }
+                                                                    href={
+                                                                        courseUrl
+                                                                    }
+                                                                    className="flex gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group"
+                                                                >
+                                                                    {course.thumbnail && (
+                                                                        <div className="flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                            <Image
+                                                                                src={
+                                                                                    course.thumbnail
+                                                                                }
+                                                                                alt={
+                                                                                    course.title
+                                                                                }
+                                                                                width={
+                                                                                    240
+                                                                                }
+                                                                                height={
+                                                                                    160
+                                                                                }
+                                                                                className="w-full h-full object-cover"
+                                                                                quality={
+                                                                                    95
+                                                                                }
+                                                                                priority={
+                                                                                    false
+                                                                                }
+                                                                                unoptimized
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="flex-1 min-w-0 flex items-center">
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                                                                            {
+                                                                                course.title
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </Link>
+                                                            );
+                                                        }
+                                                    );
+                                                })()}
+                                            </div>
+
+                                            {/* View All Button */}
+                                            <Link
+                                                href="/courses"
+                                                className="mt-4 block w-full"
+                                            >
+                                                <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white text-sm">
+                                                    View All Courses
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <Link
+                            href="/webinar"
+                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
+                        >
+                            Free Webinar
+                        </Link>
+
+                        {/* More Dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsMoreOpen(true)}
+                            onMouseLeave={() => setIsMoreOpen(false)}
+                        >
+                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                More
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isMoreOpen ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isMoreOpen && (
+                                <div className="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border py-1">
+                                    <Link
+                                        href="/blogs"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Blogs
+                                    </Link>
+                                    <Link
+                                        href="/career"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Career
+                                    </Link>
+                                    <Link
+                                        href="/aboutus"
+                                        className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        About Us
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right Side Actions */}
+                    <div className="hidden lg:flex items-center space-x-3">
+                        {/* Search Bar */}
+                        <div className="relative w-64">
                             <Search
                                 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                                size={20}
+                                size={18}
                             />
                             <Input
                                 type="text"
                                 placeholder="Search courses..."
-                                className="pl-10 w-full"
+                                className="pl-10 h-9 bg-gray-50 dark:bg-muted border-gray-200 dark:border-border focus:border-primary"
                             />
                         </div>
-                    </div>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-4">
-                        <Link
-                            href="/"
-                            className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/courses"
-                            className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
-                        >
-                            All Courses
-                        </Link>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
-                                >
-                                    More
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuItem>
-                                    <Link href="/blogs" className="w-full">
-                                        Blogs
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/career" className="w-full">
-                                        Career
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/aboutus" className="w-full">
-                                        About Us
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/terms-and-condition" className="w-full">
-                                        Terms & Conditions
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/refund-policy" className="w-full">
-                                        Refund Policy
-                                    </Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/privacy-policy" className="w-full">
-                                        Privacy Policy
-                                    </Link>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
 
                         <ThemeToggle />
 
                         {user ? (
-                            // Show user info and actions for logged-in users
-                            <div className="flex items-center space-x-2">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button
-                                            variant="ghost"
-                                            className="flex items-center space-x-2 text-foreground hover:text-primary transition-all duration-200 ease-out hover:bg-accent rounded-lg hover:scale-105"
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        variant="ghost"
+                                        className="flex items-center space-x-2 text-gray-700 dark:text-foreground hover:text-primary"
+                                    >
+                                        <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                                            {user.name.charAt(0).toUpperCase()}
+                                        </div>
+                                        <span className="text-sm font-medium">
+                                            {user.name}
+                                        </span>
+                                        <ChevronDown className="h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent
+                                    align="end"
+                                    className="w-48"
+                                >
+                                    <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                                        Role:{" "}
+                                        <span className="font-medium text-foreground">
+                                            {user.role}
+                                        </span>
+                                    </div>
+                                    <DropdownMenuItem>
+                                        <Link
+                                            href={
+                                                user.role === "admin"
+                                                    ? "/admin/dashboard"
+                                                    : "/dashboard"
+                                            }
+                                            className="w-full"
                                         >
-                                            <User size={18} />
-                                            <span className="text-sm">
-                                                {user.name} ({user.role})
-                                            </span>
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem>
-                                            <Link
-                                                href={
-                                                    user.role === "admin"
-                                                        ? "/admin/dashboard"
-                                                        : "/dashboard"
-                                                }
-                                                className="w-full"
-                                            >
-                                                Dashboard
-                                            </Link>
-                                        </DropdownMenuItem>
-                                        <DropdownMenuItem onClick={logout}>
-                                            <LogOut
-                                                size={16}
-                                                className="mr-2"
-                                            />
-                                            Logout
-                                        </DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </div>
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        onClick={logout}
+                                        className="text-red-600"
+                                    >
+                                        <LogOut size={16} className="mr-2" />
+                                        Logout
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         ) : (
-                            // Show login button for non-logged-in users
-                            <Button onClick={() => setIsAuthSidebarOpen(true)}>
-                                Login
-                            </Button>
+                            <div className="flex items-center space-x-2">
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => {
+                                        setAuthInitialView("login");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                    className="text-gray-700 dark:text-foreground hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setAuthInitialView("register");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                    className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
+                                >
+                                    Sign Up
+                                </Button>
+                            </div>
                         )}
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <Button
+                            variant="ghost"
+                            size="icon"
                             onClick={() =>
                                 setIsMobileMenuOpen(!isMobileMenuOpen)
                             }
@@ -177,12 +463,13 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden bg-background border-t border-border">
+                <div className="lg:hidden bg-white dark:bg-background border-t border-gray-200 dark:border-border">
                     <div className="px-4 pt-2 pb-3 space-y-1">
+                        {/* Search */}
                         <div className="relative mb-3">
                             <Search
                                 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                                size={20}
+                                size={18}
                             />
                             <Input
                                 type="text"
@@ -190,72 +477,59 @@ export default function Navbar() {
                                 className="pl-10 w-full"
                             />
                         </div>
-                        <div className="flex items-center justify-between mb-3">
+
+                        <div className="flex items-center justify-between mb-3 px-3">
                             <span className="text-sm font-medium text-muted-foreground">
                                 Theme
                             </span>
                             <ThemeToggle />
                         </div>
-                        <Link
-                            href="/"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Home
-                        </Link>
+
                         <Link
                             href="/courses"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             All Courses
                         </Link>
                         <Link
-                            href="/blogs"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
+                            href="/webinar"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Blogs
-                        </Link>
-                        <Link
-                            href="/career"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Career
-                        </Link>
-                        <Link
-                            href="/aboutus"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            About Us
-                        </Link>
-                        <Link
-                            href="/terms-and-condition"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Terms & Conditions
-                        </Link>
-                        <Link
-                            href="/refund-policy"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Refund Policy
-                        </Link>
-                        <Link
-                            href="/privacy-policy"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-all duration-200 ease-out hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Privacy Policy
+                            Free Webinar
                         </Link>
 
+                        {/* More section in mobile */}
+                        <div className="border-t border-gray-200 dark:border-border pt-2 mt-2">
+                            <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase">
+                                More
+                            </div>
+                            <Link
+                                href="/blogs"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Blogs
+                            </Link>
+                            <Link
+                                href="/career"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Career
+                            </Link>
+                            <Link
+                                href="/aboutus"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                About Us
+                            </Link>
+                        </div>
+
                         {user ? (
-                            // Show user info and actions for logged-in users
-                            <div className="border-t border-border pt-3 mt-3 space-y-2">
+                            <div className="border-t border-gray-200 dark:border-border pt-3 mt-3 space-y-2">
                                 <div className="px-3 py-2 text-sm text-muted-foreground">
                                     Logged in as:{" "}
                                     <span className="font-semibold text-foreground">
@@ -285,7 +559,7 @@ export default function Navbar() {
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    className="w-full"
+                                    className="w-full text-red-600"
                                     onClick={() => {
                                         logout();
                                         setIsMobileMenuOpen(false);
@@ -296,17 +570,29 @@ export default function Navbar() {
                                 </Button>
                             </div>
                         ) : (
-                            // Show login button for non-logged-in users
-                            <Button
-                                variant="outline"
-                                className="w-full mt-2"
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false);
-                                    setIsAuthSidebarOpen(true);
-                                }}
-                            >
-                                Login
-                            </Button>
+                            <div className="border-t border-gray-200 dark:border-border pt-3 mt-3 space-y-2">
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setAuthInitialView("login");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setAuthInitialView("register");
+                                        setIsAuthSidebarOpen(true);
+                                    }}
+                                >
+                                    Sign Up
+                                </Button>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -316,6 +602,7 @@ export default function Navbar() {
             <AuthSidebar
                 isOpen={isAuthSidebarOpen}
                 onClose={() => setIsAuthSidebarOpen(false)}
+                initialView={authInitialView}
             />
         </nav>
     );

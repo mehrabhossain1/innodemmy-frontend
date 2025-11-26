@@ -5,7 +5,7 @@
 **Project**: Innodemy - Learning Management System (LMS)
 **Framework**: Next.js 15.4.4 (App Router)
 **Language**: TypeScript
-**Architecture**: Clean Architecture (Domain-Driven Design)
+**Architecture**: Simple 3-Layer Structure (lib/ organization)
 **Database**: MongoDB Atlas
 **Styling**: Tailwind CSS
 
@@ -37,31 +37,23 @@ innodemmy-frontend/
 │   ├── CourseCard.tsx           # Course display card
 │   └── ui/                      # Shadcn UI components
 │
-├── lib/                         # Utilities and hooks
+├── lib/                         # Backend logic and utilities
+│   ├── models.ts                # TypeScript interfaces (User, Course, Enrollment)
+│   ├── db/                      # Database operations
+│   │   ├── connection.ts        # MongoDB connection with pooling
+│   │   ├── users.ts             # User database operations
+│   │   ├── courses.ts           # Course database operations
+│   │   └── enrollments.ts       # Enrollment database operations
+│   ├── services/                # Business logic
+│   │   ├── auth.ts              # Authentication (login, register, JWT)
+│   │   ├── users.ts             # User management
+│   │   ├── courses.ts           # Course management
+│   │   └── enrollments.ts       # Enrollment management
+│   ├── utils/                   # Shared utilities
+│   │   ├── password.ts          # Password hashing with bcrypt
+│   │   └── auth-middleware.ts   # withAuth, withAdminAuth middleware
 │   └── hooks/
-│       └── useAuth.ts           # Authentication hook (login, logout, user state)
-│
-├── src/core/                    # Clean Architecture layers
-│   ├── domain/                  # Business entities and logic
-│   │   ├── entities/
-│   │   │   └── User.ts          # User entity (email OR phone)
-│   │   └── repositories/        # Repository interfaces
-│   ├── application/             # Use cases and DTOs
-│   │   ├── use-cases/
-│   │   │   ├── auth/            # Login, Register use cases
-│   │   │   ├── user/            # User CRUD use cases
-│   │   │   ├── course/          # Course management
-│   │   │   └── enrollment/      # Enrollment logic
-│   │   ├── dtos/                # Data Transfer Objects
-│   │   └── factories/
-│   │       └── UseCaseFactory.ts # Dependency injection
-│   └── infrastructure/          # External implementations
-│       ├── database/
-│       │   └── MongoDBConnection.ts
-│       ├── repositories/        # MongoDB implementations
-│       │   └── MongoUserRepository.ts
-│       ├── security/            # Hashing, JWT
-│       └── adapters/            # Data adapters
+│       └── useAuth.ts           # Client-side auth hook
 │
 └── public/                      # Static assets
 ```
@@ -150,33 +142,31 @@ Role: admin
 
 ---
 
-## 🔄 Data Flow (Clean Architecture)
+## 🔄 Data Flow
 
 ```
-API Route → Use Case Factory → Use Case → Repository → Database
-                    ↓
-                 Domain Entity
+API Route → Service → Database Function → MongoDB
 ```
 
 ### **Example: User Registration**
 
 1. **API Route** (`app/api/auth/signup/route.ts`)
    ```typescript
-   const registerUseCase = UseCaseFactory.createRegisterUseCase();
-   const result = await registerUseCase.execute({ email, phone, password, name, role });
+   import { register } from '@/lib/services/auth';
+   const result = await register({ email, phone, password, name, role });
    ```
 
-2. **Use Case** (`src/core/application/use-cases/auth/RegisterUseCase.ts`)
+2. **Service** (`lib/services/auth.ts`)
    - Validates input (email OR phone required)
-   - Checks if user already exists
-   - Hashes password
-   - Calls repository to create user
+   - Checks if user already exists (calls `lib/db/users.ts`)
+   - Hashes password (calls `lib/utils/password.ts`)
+   - Creates user in database
    - Generates JWT token
 
-3. **Repository** (`src/core/infrastructure/repositories/MongoUserRepository.ts`)
-   - Connects to MongoDB
+3. **Database Function** (`lib/db/users.ts`)
+   - Connects to MongoDB via connection pool
    - Creates user document
-   - Returns domain entity
+   - Returns user without password
 
 4. **Response** → Returns user + token to frontend
 
@@ -201,28 +191,25 @@ PORT=5000
 
 ### **Adding New Features**
 
-1. **Create Domain Entity** (if needed)
-   - `src/core/domain/entities/YourEntity.ts`
+1. **Add Types** (if needed)
+   - Update `lib/models.ts` with TypeScript interfaces
 
-2. **Create Repository Interface**
-   - `src/core/domain/repositories/IYourRepository.ts`
+2. **Create Database Functions**
+   - Add to existing file or create new: `lib/db/your-feature.ts`
+   - Functions like: `create`, `findById`, `update`, `delete`
 
-3. **Implement Repository**
-   - `src/core/infrastructure/repositories/MongoYourRepository.ts`
+3. **Create Service**
+   - Add to existing or create new: `lib/services/your-feature.ts`
+   - Contains business logic, validation, error handling
 
-4. **Create Use Case**
-   - `src/core/application/use-cases/your-feature/YourUseCase.ts`
-
-5. **Add to Factory**
-   - `src/core/application/factories/UseCaseFactory.ts`
-
-6. **Create API Route**
+4. **Create API Route**
    - `app/api/your-feature/route.ts`
+   - Import service functions and call them
 
-7. **Create UI Component**
+5. **Create UI Component** (if needed)
    - `components/YourComponent.tsx`
 
-8. **Add to Page**
+6. **Add to Page**
    - `app/your-page/page.tsx`
 
 ---
@@ -252,11 +239,22 @@ if (!isLoading && user && user.role !== "admin") {
 ```
 
 ### **API Protection**
-Use middleware or manual checks in API routes:
+Use middleware from `lib/utils/auth-middleware.ts`:
 
 ```typescript
-const token = request.headers.get('Authorization')?.replace('Bearer ', '');
-// Verify token and extract user info
+import { withAuth, withAdminAuth } from '@/lib/utils/auth-middleware';
+
+// For any authenticated user
+export const GET = withAuth(async (request: AuthenticatedRequest) => {
+  const user = request.user!; // User is guaranteed to exist
+  // ... your logic
+});
+
+// For admin-only routes
+export const POST = withAdminAuth(async (request: AuthenticatedRequest) => {
+  const admin = request.user!; // Admin user is guaranteed
+  // ... your logic
+});
 ```
 
 ---
@@ -320,15 +318,16 @@ await collection.createIndex({ phone: 1 }, { unique: true, sparse: true });
 
 ## 💡 Best Practices
 
-### **1. Always Use Clean Architecture**
-- Keep business logic in use cases
-- Keep infrastructure (DB, APIs) in infrastructure layer
-- Never access MongoDB directly from API routes
+### **1. Separation of Concerns**
+- Business logic goes in `lib/services/`
+- Database operations go in `lib/db/`
+- API routes should be thin - just call services
+- Keep utilities in `lib/utils/`
 
 ### **2. Type Safety**
-- Use TypeScript interfaces for all data
-- Create DTOs for API requests/responses
-- Use domain entities for business logic
+- Use TypeScript interfaces from `lib/models.ts`
+- Type all function parameters and returns
+- Use strict TypeScript settings
 
 ### **3. Error Handling**
 - Always wrap async code in try-catch
@@ -360,24 +359,27 @@ await collection.createIndex({ phone: 1 }, { unique: true, sparse: true });
 
 ### **Creating a New User Programmatically**
 ```typescript
-const registerUseCase = UseCaseFactory.createRegisterUseCase();
-await registerUseCase.execute({
+import { register } from '@/lib/services/auth';
+
+await register({
   name: "User Name",
   email: "user@example.com",  // or null
   phone: "+1234567890",        // or null
   password: "password123",
-  role: UserRole.STUDENT       // or UserRole.ADMIN
+  role: "student"              // or "admin"
 });
 ```
 
 ### **Finding User by Email or Phone**
 ```typescript
-const user = await userRepository.findByEmailOrPhone(identifier);
+import { findUserByIdentifier } from '@/lib/db/users';
+const user = await findUserByIdentifier(identifier);
 ```
 
 ### **Generating JWT Token**
 ```typescript
-const token = tokenService.generateToken(user);
+import { generateToken } from '@/lib/services/auth';
+const token = generateToken(user);
 ```
 
 ### **Checking Auth in Components**

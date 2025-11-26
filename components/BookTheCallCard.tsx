@@ -21,6 +21,7 @@ import {
     Target,
     Lightbulb,
 } from "lucide-react";
+import Container from "./Container";
 
 interface FormData {
     fullName: string;
@@ -41,21 +42,21 @@ const accordionItems = [
         title: "Gateway to Advanced Opportunities",
         content:
             "Innodemy is more than a skill development platform — it's a gateway to advanced research opportunities and career transitions for students and professionals.",
-        icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
+        icon: GraduationCap,
     },
     {
         id: "comprehensive",
         title: "Comprehensive Career Guidance",
         content:
             "Each course is strategically designed to provide learners with comprehensive guidance, from skill acquisition to career preparation, scholarships, and higher education.",
-        icon: <Target className="w-5 h-5 text-blue-600" />,
+        icon: Target,
     },
     {
         id: "beyond-teaching",
         title: "Beyond Teaching - Complete Support",
         content:
             "Innodemy goes beyond teaching — supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
-        icon: <Lightbulb className="w-5 h-5 text-blue-600" />,
+        icon: Lightbulb,
     },
 ];
 
@@ -140,263 +141,328 @@ export default function BookTheCallCard() {
 
     if (isSubmitted) {
         return (
-            <Card className="w-full max-w-4xl mx-auto bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
-                <CardContent className="p-8">
-                    <div className="text-center space-y-4">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                            <CheckCircle className="w-8 h-8 text-green-600" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-900">
-                            Thank You!
-                        </h3>
-                        <p className="text-gray-600 max-w-md mx-auto">
-                            Your consultation request has been submitted
-                            successfully. Our team will contact you within 24
-                            hours to schedule your free consultation.
-                        </p>
-                        <Button
-                            onClick={() => setIsSubmitted(false)}
-                            variant="outline"
-                            className="mt-4"
-                        >
-                            Book Another Consultation
-                        </Button>
+            <section className="relative py-8 md:py-10 lg:py-8 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+                {/* Gradient Orbs */}
+                <div className="absolute top-1/4 left-0 w-96 h-96 bg-green-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
+
+                <Container>
+                    <div className="relative group max-w-2xl mx-auto">
+                        {/* Glow Effect */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
+
+                        <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border rounded-xl lg:rounded-2xl overflow-hidden">
+                            <CardContent className="p-5 md:p-6 lg:p-7">
+                                <div className="text-center space-y-3 lg:space-y-4">
+                                    {/* Success Icon */}
+                                    <div className="relative inline-block">
+                                        <div className="w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                                            <CheckCircle className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
+                                        </div>
+                                        {/* Icon Glow */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full blur-md opacity-50"></div>
+                                    </div>
+
+                                    {/* Success Message */}
+                                    <div className="space-y-1.5 lg:space-y-2">
+                                        <h3 className="text-xl md:text-2xl lg:text-2xl font-bold text-foreground">
+                                            Thank You!
+                                        </h3>
+                                        <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
+                                            Your consultation request has been submitted successfully. Our team will contact you within 24 hours to schedule your free consultation.
+                                        </p>
+                                    </div>
+
+                                    {/* Action Button */}
+                                    <Button
+                                        onClick={() => setIsSubmitted(false)}
+                                        className="mt-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 shadow-lg shadow-green-500/20 hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-300 px-5 lg:px-6 py-3 lg:py-4 h-auto text-sm lg:text-base font-semibold rounded-lg lg:rounded-xl"
+                                    >
+                                        Book Another Consultation
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
-                </CardContent>
-            </Card>
+                </Container>
+            </section>
         );
     }
 
     return (
-        <Card className="w-full container mx-auto border shadow-lg mt-20 rounded-2xl">
-            <CardContent className="p-0">
-                <div className="grid lg:grid-cols-2 gap-0">
-                    {/* Left Side - Accordion */}
-                    <div className="space-y-4 p-6">
-                        <div className="rounded-xl p-6 border">
-                            <h3 className="text-xl font-bold text-foreground mb-4">
-                                What Sets Us Apart
-                            </h3>
+        <section className="relative py-8 md:py-10 lg:py-8 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+            {/* Gradient Orbs */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
 
-                            <Accordion
-                                type="single"
-                                collapsible
-                                className="space-y-3"
-                            >
-                                {accordionItems.map((item) => (
-                                    <AccordionItem
-                                        key={item.id}
-                                        value={item.id}
-                                        className="border rounded-xl px-4 data-[state=open]:border-primary"
-                                    >
-                                        <AccordionTrigger className="hover:no-underline py-3">
-                                            <div className="flex items-center space-x-3 text-left">
-                                                <div className="flex-shrink-0">
-                                                    {item.icon}
-                                                </div>
-                                                <span className="font-semibold text-foreground text-sm">
-                                                    {item.title}
-                                                </span>
-                                            </div>
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pb-3 pt-1">
-                                            <p className="text-muted-foreground text-sm leading-relaxed ml-8">
-                                                {item.content}
-                                            </p>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
-                            </Accordion>
-                        </div>
-
-                        {/* Call to Action */}
-                        <div className="bg-primary rounded-xl p-6 text-primary-foreground shadow">
-                            <h4 className="text-lg font-bold mb-1">
-                                Ready to Start Your Journey?
-                            </h4>
-                            <p className="text-primary-foreground/80 mb-3 text-sm">
-                                Join thousands of learners who have transformed
-                                their careers with Innodemy.
-                            </p>
-                            <Button className="bg-background text-foreground hover:bg-background/90 shadow-sm">
-                                Explore Courses
-                            </Button>
-                        </div>
+            <Container className="relative z-10">
+                {/* Section Header */}
+                <div className="text-center mb-6 md:mb-7 lg:mb-6">
+                    <div className="inline-block mb-2 lg:mb-2">
+                        <span className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20">
+                            📞 Free Consultation
+                        </span>
                     </div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold mb-2 lg:mb-2">
+                        <span className="text-foreground">
+                            Get Your Free
+                        </span>{" "}
+                        <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
+                            Consultation
+                        </span>
+                    </h2>
+                    <p className="text-sm md:text-base lg:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                        Take the first step towards your dream career. Our expert counselors are ready to guide you.
+                    </p>
+                </div>
 
-                    {/* Right Side - Form */}
-                    <div className="p-6 border-l rounded-r-2xl flex items-center justify-center">
-                        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-                            <div className="text-center mb-4">
-                                <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                                    Get Your Free Consultation Today!
-                                </h3>
-                                <p className="text-xs text-gray-600">
-                                    Fill out the form below to schedule your
-                                    free consultation
-                                </p>
-                            </div>
+                {/* Main Content */}
+                <div className="relative group">
+                    {/* Glow Effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-                            {/* Full Name */}
-                            <div className="space-y-1">
-                                <Label
-                                    htmlFor="fullName"
-                                    className="text-sm font-medium text-gray-700"
-                                >
-                                    Full Name *
-                                </Label>
-                                <Input
-                                    id="fullName"
-                                    type="text"
-                                    placeholder="Enter your full name"
-                                    value={formData.fullName}
-                                    onChange={(e) =>
-                                        handleInputChange(
-                                            "fullName",
-                                            e.target.value
-                                        )
-                                    }
-                                    className={`${
-                                        errors.fullName
-                                            ? "border-red-500 focus:border-red-500"
-                                            : ""
-                                    }`}
-                                />
-                                {errors.fullName && (
-                                    <p className="text-xs text-red-600">
-                                        {errors.fullName}
-                                    </p>
-                                )}
-                            </div>
+                    <div className="relative bg-card/50 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border">
+                        <div className="grid lg:grid-cols-2 gap-0">
+                            {/* Left Side - Accordion */}
+                            <div className="space-y-4 lg:space-y-4 p-4 md:p-5 lg:p-6">
+                                <div className="space-y-2 lg:space-y-3">
+                                    <h3 className="text-lg lg:text-xl font-bold text-foreground">
+                                        What Sets Us Apart
+                                    </h3>
 
-                            {/* Email */}
-                            <div className="space-y-1">
-                                <Label
-                                    htmlFor="email"
-                                    className="text-sm font-medium text-gray-700"
-                                >
-                                    Email Address *
-                                </Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    placeholder="Enter your email address"
-                                    value={formData.email}
-                                    onChange={(e) =>
-                                        handleInputChange(
-                                            "email",
-                                            e.target.value
-                                        )
-                                    }
-                                    className={`${
-                                        errors.email
-                                            ? "border-red-500 focus:border-red-500"
-                                            : ""
-                                    }`}
-                                />
-                                {errors.email && (
-                                    <p className="text-xs text-red-600">
-                                        {errors.email}
-                                    </p>
-                                )}
-                            </div>
+                                    <Accordion
+                                        type="single"
+                                        collapsible
+                                        className="space-y-2 lg:space-y-2"
+                                    >
+                                        {accordionItems.map((item) => {
+                                            const IconComponent = item.icon;
+                                            return (
+                                                <AccordionItem
+                                                    key={item.id}
+                                                    value={item.id}
+                                                    className="border-2 border-border rounded-lg lg:rounded-xl px-2.5 lg:px-3 data-[state=open]:border-primary/50 bg-card backdrop-blur-sm transition-all duration-300"
+                                                >
+                                                    <AccordionTrigger className="hover:no-underline py-2.5 lg:py-2.5">
+                                                        <div className="flex items-center space-x-2 lg:space-x-2.5 text-left">
+                                                            <div className="flex-shrink-0 p-1.5 lg:p-1.5 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md lg:rounded-lg">
+                                                                <IconComponent className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-primary" />
+                                                            </div>
+                                                            <span className="font-semibold text-foreground text-xs lg:text-sm">
+                                                                {item.title}
+                                                            </span>
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="pb-2.5 lg:pb-3 pt-1 lg:pt-1">
+                                                        <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed ml-7 lg:ml-8">
+                                                            {item.content}
+                                                        </p>
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                            );
+                                        })}
+                                    </Accordion>
+                                </div>
 
-                            {/* Phone Number */}
-                            <div className="space-y-1">
-                                <Label
-                                    htmlFor="phoneNumber"
-                                    className="text-sm font-medium text-gray-700"
-                                >
-                                    Phone Number *
-                                </Label>
-                                <Input
-                                    id="phoneNumber"
-                                    type="tel"
-                                    placeholder="Enter your phone number"
-                                    value={formData.phoneNumber}
-                                    onChange={(e) =>
-                                        handleInputChange(
-                                            "phoneNumber",
-                                            e.target.value
-                                        )
-                                    }
-                                    className={`${
-                                        errors.phoneNumber
-                                            ? "border-red-500 focus:border-red-500"
-                                            : ""
-                                    }`}
-                                />
-                                {errors.phoneNumber && (
-                                    <p className="text-xs text-red-600">
-                                        {errors.phoneNumber}
-                                    </p>
-                                )}
-                            </div>
+                                {/* Call to Action */}
+                                <div className="relative group/cta">
+                                    {/* CTA Glow */}
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary/70 rounded-lg lg:rounded-xl opacity-0 group-hover/cta:opacity-20 blur transition-all duration-300"></div>
 
-                            {/* Message */}
-                            <div className="space-y-1">
-                                <Label
-                                    htmlFor="message"
-                                    className="text-sm font-medium text-gray-700"
-                                >
-                                    Write your message (optional)
-                                </Label>
-                                <Textarea
-                                    id="message"
-                                    placeholder="Tell us about your career goals, interests, or any specific questions..."
-                                    value={formData.message}
-                                    onChange={(e) =>
-                                        handleInputChange(
-                                            "message",
-                                            e.target.value
-                                        )
-                                    }
-                                    rows={3}
-                                    className="resize-none"
-                                />
-                            </div>
-
-                            {/* Submit Button */}
-                            <Button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-2 h-auto text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-200 ease-out"
-                            >
-                                {isSubmitting ? (
-                                    <div className="flex items-center space-x-2">
-                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        <span>Scheduling...</span>
+                                    <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg lg:rounded-xl p-3 lg:p-4 border-2 border-primary/30 backdrop-blur-sm">
+                                        <h4 className="text-sm lg:text-base font-bold text-foreground mb-1 lg:mb-1.5">
+                                            Ready to Start Your Journey?
+                                        </h4>
+                                        <p className="text-muted-foreground mb-2.5 lg:mb-3 text-xs lg:text-sm leading-relaxed">
+                                            Join thousands of learners who have transformed their careers with Innodemy.
+                                        </p>
+                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
+                                            Explore Courses
+                                        </Button>
                                     </div>
-                                ) : (
-                                    <div className="flex items-center space-x-2">
-                                        <Calendar className="w-4 h-4" />
-                                        <span>Schedule Now</span>
-                                    </div>
-                                )}
-                            </Button>
+                                </div>
+                            </div>
 
-                            {/* Privacy Note */}
-                            <p className="text-xs text-gray-500 text-center">
-                                By submitting this form, you agree to our{" "}
-                                <a
-                                    href="#"
-                                    className="text-indigo-600 hover:underline"
+                            {/* Right Side - Form */}
+                            <div className="p-4 md:p-5 lg:p-6 border-l-0 lg:border-l-2 border-t-2 lg:border-t-0 border-border flex items-center justify-center bg-muted/30">
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="space-y-3 lg:space-y-3 w-full max-w-md"
                                 >
-                                    Privacy Policy
-                                </a>{" "}
-                                and{" "}
-                                <a
-                                    href="#"
-                                    className="text-indigo-600 hover:underline"
-                                >
-                                    Terms of Service
-                                </a>
-                                .
-                            </p>
-                        </form>
+                                    <div className="text-center mb-3 lg:mb-3">
+                                        <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground mb-1 lg:mb-1.5">
+                                            Book Your Call Now!
+                                        </h3>
+                                        <p className="text-xs lg:text-sm text-muted-foreground">
+                                            Fill out the form below to schedule your free consultation
+                                        </p>
+                                    </div>
+
+                                    {/* Full Name */}
+                                    <div className="space-y-1 lg:space-y-1.5">
+                                        <Label
+                                            htmlFor="fullName"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
+                                        >
+                                            Full Name *
+                                        </Label>
+                                        <Input
+                                            id="fullName"
+                                            type="text"
+                                            placeholder="Enter your full name"
+                                            value={formData.fullName}
+                                            onChange={(e) =>
+                                                handleInputChange(
+                                                    "fullName",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
+                                                errors.fullName
+                                                    ? "border-red-500 focus:border-red-500"
+                                                    : ""
+                                            }`}
+                                        />
+                                        {errors.fullName && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.fullName}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Email */}
+                                    <div className="space-y-1 lg:space-y-1.5">
+                                        <Label
+                                            htmlFor="email"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
+                                        >
+                                            Email Address *
+                                        </Label>
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            placeholder="Enter your email address"
+                                            value={formData.email}
+                                            onChange={(e) =>
+                                                handleInputChange(
+                                                    "email",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
+                                                errors.email
+                                                    ? "border-red-500 focus:border-red-500"
+                                                    : ""
+                                            }`}
+                                        />
+                                        {errors.email && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.email}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Phone Number */}
+                                    <div className="space-y-1 lg:space-y-1.5">
+                                        <Label
+                                            htmlFor="phoneNumber"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
+                                        >
+                                            Phone Number *
+                                        </Label>
+                                        <Input
+                                            id="phoneNumber"
+                                            type="tel"
+                                            placeholder="Enter your phone number"
+                                            value={formData.phoneNumber}
+                                            onChange={(e) =>
+                                                handleInputChange(
+                                                    "phoneNumber",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
+                                                errors.phoneNumber
+                                                    ? "border-red-500 focus:border-red-500"
+                                                    : ""
+                                            }`}
+                                        />
+                                        {errors.phoneNumber && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.phoneNumber}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Message */}
+                                    <div className="space-y-1 lg:space-y-1.5">
+                                        <Label
+                                            htmlFor="message"
+                                            className="text-xs lg:text-sm font-medium text-foreground"
+                                        >
+                                            Write your message (optional)
+                                        </Label>
+                                        <Textarea
+                                            id="message"
+                                            placeholder="Tell us about your career goals, interests, or any specific questions..."
+                                            value={formData.message}
+                                            onChange={(e) =>
+                                                handleInputChange(
+                                                    "message",
+                                                    e.target.value
+                                                )
+                                            }
+                                            rows={2}
+                                            className="resize-none bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base"
+                                        />
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <Button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white py-3 lg:py-3.5 h-auto text-sm lg:text-base font-semibold shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-0"
+                                    >
+                                        {isSubmitting ? (
+                                            <div className="flex items-center justify-center space-x-2">
+                                                <div className="w-4 h-4 lg:w-5 lg:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                                <span>Scheduling...</span>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center justify-center space-x-2">
+                                                <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
+                                                <span>Schedule Free Consultation</span>
+                                            </div>
+                                        )}
+                                    </Button>
+
+                                    {/* Privacy Note */}
+                                    <p className="text-[10px] lg:text-xs text-muted-foreground text-center leading-relaxed">
+                                        By submitting this form, you agree to our{" "}
+                                        <a
+                                            href="#"
+                                            className="text-primary hover:text-primary/80 hover:underline transition-colors"
+                                        >
+                                            Privacy Policy
+                                        </a>{" "}
+                                        and{" "}
+                                        <a
+                                            href="#"
+                                            className="text-primary hover:text-primary/80 hover:underline transition-colors"
+                                        >
+                                            Terms of Service
+                                        </a>
+                                        .
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </CardContent>
-        </Card>
+
+                {/* Bottom Glow Line */}
+                <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-secondary/50 to-transparent"></div>
+            </Container>
+        </section>
     );
 }

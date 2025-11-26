@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { withAdminAuth } from '@/src/core/infrastructure/middleware/AuthMiddleware';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
-import { UserRole } from '@/src/core/domain/entities/User';
+import { withAdminAuth } from '@/lib/utils/auth-middleware';
+import { listAllUsers, createNewUser } from '@/lib/services/users';
 
 export const GET = withAdminAuth(async () => {
   try {
-    // Use clean architecture - Get All Users Use Case
-    const getAllUsersUseCase = UseCaseFactory.createGetAllUsersUseCase();
-    const users = await getAllUsersUseCase.execute();
+    // Get all users
+    const users = await listAllUsers();
 
-    // Convert to legacy format for backward compatibility
-    const usersResponse = LegacyModelAdapter.usersToLegacy(users);
-
-    return NextResponse.json({ users: usersResponse });
+    return NextResponse.json({ users });
   } catch (error) {
     console.error('Get users error:', error);
     return NextResponse.json(
@@ -25,8 +19,9 @@ export const GET = withAdminAuth(async () => {
 
 export const POST = withAdminAuth(async (request: NextRequest) => {
   try {
-    const { email, password, name, role } = await request.json();
+    const { email, password, name, role, isVerified } = await request.json();
 
+    // Validate required fields
     if (!email || !password || !name || !role) {
       return NextResponse.json(
         { error: 'Email, password, name, and role are required' },
@@ -41,30 +36,22 @@ export const POST = withAdminAuth(async (request: NextRequest) => {
       );
     }
 
-    // Use clean architecture - Create User Use Case
-    const createUserUseCase = UseCaseFactory.createCreateUserUseCase();
-    const user = await createUserUseCase.execute({
+    // Create user (admin-created users are verified by default)
+    const user = await createNewUser({
       email,
       password,
       name,
-      role: role as UserRole
+      role,
+      isVerified: isVerified !== undefined ? isVerified : true, // Default to verified for admin-created users
     });
 
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(user);
-
-    return NextResponse.json({
-      user: userResponse,
-    });
+    return NextResponse.json({ user });
   } catch (error) {
     console.error('Create user error:', error);
-    
+
     // Handle specific errors
     if (error instanceof Error && error.message.includes('already exists')) {
-      return NextResponse.json(
-        { error: 'User already exists' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'User already exists' }, { status: 400 });
     }
 
     return NextResponse.json(

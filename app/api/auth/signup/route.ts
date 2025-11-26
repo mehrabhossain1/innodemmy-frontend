@@ -1,43 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UseCaseFactory } from '@/src/core/application/factories/UseCaseFactory';
-import { LegacyModelAdapter } from '@/src/core/infrastructure/adapters/LegacyModelAdapter';
-import { UserRole } from '@/src/core/domain/entities/User';
+import { registerDirect } from '@/lib/services/auth';
+import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
 
-export async function POST(request: NextRequest) {
+async function signupHandler(request: NextRequest) {
   try {
-    const { email, phone, password, name } = await request.json();
+    const { email, password, name } = await request.json();
 
-    console.log('Signup request received:', { email, phone, name });
+    console.log('Signup request received:', { email, name });
 
-    // Validate: at least one of email or phone is required
-    if ((!email && !phone) || !password || !name) {
-      console.error('Missing required fields:', { email: !!email, phone: !!phone, password: !!password, name: !!name });
+    // Validate required fields
+    if (!email || !password || !name) {
+      console.error('Missing required fields:', { email: !!email, password: !!password, name: !!name });
       return NextResponse.json(
-        { error: 'Email or phone, password, and name are required' },
+        { success: false, error: 'Email, password, and name are required' },
         { status: 400 }
       );
     }
 
-    // Use clean architecture - Register Use Case
-    console.log('Creating register use case...');
-    const registerUseCase = UseCaseFactory.createRegisterUseCase();
-
-    console.log('Executing register use case...');
-    const result = await registerUseCase.execute({
-      email: email || null,
-      phone: phone || null,
+    // Register user directly (no email verification required)
+    const result = await registerDirect({
+      email,
       password,
       name,
-      role: UserRole.STUDENT
+      role: 'student'
     });
 
-    console.log('User registered successfully:', { email, phone, userId: result.user.id });
-
-    // Convert to legacy format for backward compatibility
-    const userResponse = LegacyModelAdapter.userToLegacy(result.user);
+    console.log('User registered successfully:', email);
 
     return NextResponse.json({
-      user: userResponse,
+      success: true,
+      message: result.message,
+      user: result.user,
       token: result.token,
     });
   } catch (error) {
@@ -45,20 +38,31 @@ export async function POST(request: NextRequest) {
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
     // Handle specific errors
-    if (error instanceof Error && error.message.includes('already exists')) {
-      return NextResponse.json(
-        { error: 'User with this email or phone already exists' },
-        { status: 400 }
-      );
+    if (error instanceof Error) {
+      if (error.message.includes('already exists')) {
+        return NextResponse.json(
+          { success: false, error: 'User with this email already exists' },
+          { status: 400 }
+        );
+      }
+
+      if (error.message.includes('Invalid email format')) {
+        return NextResponse.json(
+          { success: false, error: 'Invalid email format' },
+          { status: 400 }
+        );
+      }
     }
 
-    // Return detailed error message for debugging
+    // Return error message
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Final error message:', errorMessage);
 
     return NextResponse.json(
-      { error: `Registration failed: ${errorMessage}` },
+      { success: false, error: `Registration failed: ${errorMessage}` },
       { status: 500 }
     );
   }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.SIGNUP, signupHandler);

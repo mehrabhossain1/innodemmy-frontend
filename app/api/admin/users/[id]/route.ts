@@ -1,94 +1,83 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { withAdminAuth } from '@/lib/middleware';
-import { User } from '@/lib/models';
+import { withAdminAuth } from '@/lib/utils/auth-middleware';
+import { getUserById, updateUserById, deleteUserById } from '@/lib/services/users';
+import { ObjectId } from 'mongodb';
 
-export const PUT = withAdminAuth(async (request: NextRequest) => {
-  try {
-    const id = request.nextUrl.pathname.split('/').pop() as string;
-    const { name, role, email } = await request.json();
+export const GET = withAdminAuth<{ params: Promise<{ id: string }> }>(
+  async (request: NextRequest, { params }) => {
+    try {
+      const { id } = await params;
 
-    if (!name || !role || !email) {
-      return NextResponse.json(
-        { error: 'Name, role, and email are required' },
-        { status: 400 }
-      );
-    }
-
-    if (!['student', 'admin'].includes(role)) {
-      return NextResponse.json(
-        { error: 'Invalid role. Must be student or admin' },
-        { status: 400 }
-      );
-    }
-
-    const db = await getDatabase();
-    const users = db.collection<User>('users');
-
-    const result = await users.updateOne(
-      { _id: id },
-      { 
-        $set: { 
-          name, 
-          role: role as 'student' | 'admin', 
-          email,
-          updatedAt: new Date() 
-        } 
+      if (!ObjectId.isValid(id)) {
+        return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
       }
-    );
 
-    if (result.matchedCount === 0) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+      const user = await getUserById(id);
 
-    const updatedUser = await users.findOne({ _id: id });
-    if (!updatedUser) {
+      if (!user) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      }
+
+      return NextResponse.json({ user });
+    } catch (error) {
+      console.error('Get user error:', error);
       return NextResponse.json(
-        { error: 'Failed to fetch updated user' },
+        { error: 'Internal server error' },
         { status: 500 }
       );
     }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _password, ...userWithoutPassword } = updatedUser;
-
-    return NextResponse.json({
-      user: userWithoutPassword,
-    });
-  } catch (error) {
-    console.error('Update user error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
   }
-});
+);
 
-export const DELETE = withAdminAuth(async (request: NextRequest) => {
-  try {
-    const id = request.nextUrl.pathname.split('/').pop() as string;
+export const PUT = withAdminAuth<{ params: Promise<{ id: string }> }>(
+  async (request: NextRequest, { params }) => {
+    try {
+      const { id } = await params;
+      const body = await request.json();
 
-    const db = await getDatabase();
-    const users = db.collection<User>('users');
+      if (!ObjectId.isValid(id)) {
+        return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
+      }
 
-    const result = await users.deleteOne({ _id: id });
+      const user = await updateUserById(id, body);
 
-    if (result.deletedCount === 0) {
+      if (!user) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      }
+
+      return NextResponse.json({ user });
+    } catch (error) {
+      console.error('Update user error:', error);
       return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
+        { error: 'Internal server error' },
+        { status: 500 }
       );
     }
-
-    return NextResponse.json({ message: 'User deleted successfully' });
-  } catch (error) {
-    console.error('Delete user error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
   }
-});
+);
+
+export const DELETE = withAdminAuth<{ params: Promise<{ id: string }> }>(
+  async (request: NextRequest, { params }) => {
+    try {
+      const { id } = await params;
+
+      if (!ObjectId.isValid(id)) {
+        return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
+      }
+
+      const deleted = await deleteUserById(id);
+
+      if (!deleted) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      }
+
+      return NextResponse.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Delete user error:', error);
+      return NextResponse.json(
+        { error: 'Internal server error' },
+        { status: 500 }
+      );
+    }
+  }
+);

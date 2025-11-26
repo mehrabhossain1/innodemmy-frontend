@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -26,7 +27,13 @@ export default function ConditionalLayout({
     // For other pages, render with Navbar and Footer
     return (
         <>
-            <Navbar />
+            <Suspense
+                fallback={
+                    <div className="h-16 bg-white dark:bg-background shadow-sm" />
+                }
+            >
+                <Navbar />
+            </Suspense>
             {children}
             <Footer />
         </>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { X, Mail, Phone, Lock, User as UserIcon, CheckCircle2 } from "lucide-react";
+import { X, Mail, Lock, User as UserIcon, CheckCircle2, ArrowLeft, KeyRound, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,26 +12,63 @@ import { useAuth } from "@/lib/hooks/useAuth";
 interface AuthSidebarProps {
     isOpen: boolean;
     onClose: () => void;
+    initialView?: "login" | "register";
 }
 
-export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
-    const [activeTab, setActiveTab] = useState<"login" | "register">("login");
+type AuthView = "login" | "register" | "verify-email" | "forgot-password" | "reset-password";
+
+export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: AuthSidebarProps) {
+    const [activeView, setActiveView] = useState<AuthView>(initialView);
+    const [pendingEmail, setPendingEmail] = useState("");
+
+    // Update active view when initialView changes
+    useEffect(() => {
+        if (isOpen) {
+            setActiveView(initialView);
+        }
+    }, [isOpen, initialView]);
+
     const [loginData, setLoginData] = useState({
-        identifier: "",
+        email: "",
         password: "",
     });
+
     const [registerData, setRegisterData] = useState({
         name: "",
         email: "",
-        phone: "",
         password: "",
         confirmPassword: "",
     });
+
+    const [verifyData, setVerifyData] = useState({
+        code: "",
+    });
+
+    const [forgotPasswordData, setForgotPasswordData] = useState({
+        email: "",
+    });
+
+    const [resetPasswordData, setResetPasswordData] = useState({
+        code: "",
+        newPassword: "",
+        confirmPassword: "",
+    });
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [resendCooldown, setResendCooldown] = useState(0);
+
     const router = useRouter();
     const { login } = useAuth();
+
+    // Cooldown timer for resend OTP
+    useEffect(() => {
+        if (resendCooldown > 0) {
+            const timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [resendCooldown]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,10 +87,10 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data.success) {
                 login(data.token, data.user);
                 setSuccess("Login successful! Redirecting...");
-                setLoginData({ identifier: "", password: "" });
+                setLoginData({ email: "", password: "" });
 
                 setTimeout(() => {
                     onClose();
@@ -80,13 +117,6 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
         setSuccess("");
         setLoading(true);
 
-        // Validate: at least one of email or phone is required
-        if (!registerData.email && !registerData.phone) {
-            setError("Please provide either an email or phone number");
-            setLoading(false);
-            return;
-        }
-
         if (registerData.password !== registerData.confirmPassword) {
             setError("Passwords do not match");
             setLoading(false);
@@ -107,28 +137,31 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 },
                 body: JSON.stringify({
                     name: registerData.name,
-                    email: registerData.email || null,
-                    phone: registerData.phone || null,
+                    email: registerData.email,
                     password: registerData.password,
                 }),
             });
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data.success) {
+                // Auto-login the user after successful registration
                 login(data.token, data.user);
                 setSuccess("Account created successfully! Redirecting...");
                 setRegisterData({
                     name: "",
                     email: "",
-                    phone: "",
                     password: "",
                     confirmPassword: "",
                 });
 
                 setTimeout(() => {
                     onClose();
-                    router.push("/dashboard");
+                    if (data.user.role === "admin") {
+                        router.push("/admin/dashboard");
+                    } else {
+                        router.push("/dashboard");
+                    }
                 }, 1000);
             } else {
                 setError(data.error || "Registration failed");
@@ -139,6 +172,183 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleVerifyEmail = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/auth/verify-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: pendingEmail,
+                    code: verifyData.code,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                login(data.token, data.user);
+                setSuccess("Email verified successfully! Redirecting...");
+                setVerifyData({ code: "" });
+
+                setTimeout(() => {
+                    onClose();
+                    router.push("/dashboard");
+                }, 1000);
+            } else {
+                if (data.expired || data.maxAttemptsReached) {
+                    setError(data.error + " Click 'Resend Code' to get a new one.");
+                } else {
+                    setError(data.error || "Verification failed");
+                }
+            }
+        } catch (err) {
+            console.error("Verification error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResendOTP = async () => {
+        if (resendCooldown > 0) return;
+
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/auth/resend-otp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: pendingEmail }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                setSuccess("Verification code resent! Check your email.");
+                setResendCooldown(60); // 60 seconds cooldown
+            } else {
+                setError(data.error || "Failed to resend code");
+            }
+        } catch (err) {
+            console.error("Resend OTP error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleForgotPassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/auth/forgot-password", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: forgotPasswordData.email }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                setPendingEmail(forgotPasswordData.email);
+                setSuccess("Password reset code sent! Check your email.");
+
+                setTimeout(() => {
+                    setActiveView("reset-password");
+                    setSuccess("");
+                }, 2000);
+            } else {
+                setError(data.error || "Failed to send reset code");
+            }
+        } catch (err) {
+            console.error("Forgot password error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResetPassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        setLoading(true);
+
+        if (resetPasswordData.newPassword !== resetPasswordData.confirmPassword) {
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
+        }
+
+        if (resetPasswordData.newPassword.length < 6) {
+            setError("Password must be at least 6 characters long");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/auth/reset-password", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: pendingEmail,
+                    code: resetPasswordData.code,
+                    newPassword: resetPasswordData.newPassword,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                setSuccess("Password reset successful! You can now login.");
+                setResetPasswordData({ code: "", newPassword: "", confirmPassword: "" });
+
+                setTimeout(() => {
+                    setActiveView("login");
+                    setSuccess("");
+                }, 2000);
+            } else {
+                if (data.expired || data.maxAttemptsReached) {
+                    setError(data.error + " Please request a new code.");
+                } else {
+                    setError(data.error || "Password reset failed");
+                }
+            }
+        } catch (err) {
+            console.error("Reset password error:", err);
+            setError("Unable to connect to the server. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const resetToLogin = () => {
+        setActiveView("login");
+        setError("");
+        setSuccess("");
+        setPendingEmail("");
+        setVerifyData({ code: "" });
+        setResetPasswordData({ code: "", newPassword: "", confirmPassword: "" });
     };
 
     if (!isOpen) return null;
@@ -158,16 +368,32 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                 }`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/5 to-primary/10">
-                    <div>
-                        <h2 className="text-2xl font-bold text-foreground">
-                            {activeTab === "login" ? "Welcome Back!" : "Join Innodemy"}
-                        </h2>
-                        <p className="text-sm text-muted-foreground mt-1">
-                            {activeTab === "login"
-                                ? "Sign in to continue your learning journey"
-                                : "Start your learning journey today"}
-                        </p>
+                <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
+                    <div className="flex items-center gap-3">
+                        {(activeView === "verify-email" || activeView === "forgot-password" || activeView === "reset-password") && (
+                            <button
+                                onClick={resetToLogin}
+                                className="p-2 hover:bg-accent rounded-full transition-colors"
+                            >
+                                <ArrowLeft className="w-5 h-5 text-foreground" />
+                            </button>
+                        )}
+                        <div>
+                            <h2 className="text-2xl font-bold text-foreground">
+                                {activeView === "login" && "Welcome Back!"}
+                                {activeView === "register" && "Join Innodemy"}
+                                {activeView === "verify-email" && "Verify Email"}
+                                {activeView === "forgot-password" && "Reset Password"}
+                                {activeView === "reset-password" && "Create New Password"}
+                            </h2>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                {activeView === "login" && "Sign in to continue your learning journey"}
+                                {activeView === "register" && "Create your account to get started"}
+                                {activeView === "verify-email" && "Enter the code sent to your email"}
+                                {activeView === "forgot-password" && "We'll send you a reset code"}
+                                {activeView === "reset-password" && "Enter the code and new password"}
+                            </p>
+                        </div>
                     </div>
                     <button
                         onClick={onClose}
@@ -177,44 +403,52 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                     </button>
                 </div>
 
-                {/* Tabs */}
-                <div className="flex border-b border-border">
-                    <button
-                        onClick={() => {
-                            setActiveTab("login");
-                            setError("");
-                            setSuccess("");
-                        }}
-                        className={`flex-1 py-4 text-center font-semibold transition-all ${
-                            activeTab === "login"
-                                ? "text-primary border-b-2 border-primary bg-accent/50"
-                                : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
-                        }`}
-                    >
-                        Login
-                    </button>
-                    <button
-                        onClick={() => {
-                            setActiveTab("register");
-                            setError("");
-                            setSuccess("");
-                        }}
-                        className={`flex-1 py-4 text-center font-semibold transition-all ${
-                            activeTab === "register"
-                                ? "text-primary border-b-2 border-primary bg-accent/50"
-                                : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
-                        }`}
-                    >
-                        Register
-                    </button>
-                </div>
+                {/* Tabs (only show for login/register) */}
+                {(activeView === "login" || activeView === "register") && (
+                    <div className="flex border-b border-border bg-muted/30">
+                        <button
+                            onClick={() => {
+                                setActiveView("login");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            className={`flex-1 py-4 text-center font-semibold transition-all relative ${
+                                activeView === "login"
+                                    ? "text-white bg-gradient-to-r from-primary to-primary/80"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
+                            }`}
+                        >
+                            Login
+                            {activeView === "login" && (
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+                            )}
+                        </button>
+                        <button
+                            onClick={() => {
+                                setActiveView("register");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            className={`flex-1 py-4 text-center font-semibold transition-all relative ${
+                                activeView === "register"
+                                    ? "text-white bg-gradient-to-r from-primary to-primary/80"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
+                            }`}
+                        >
+                            Signup
+                            {activeView === "register" && (
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+                            )}
+                        </button>
+                    </div>
+                )}
 
                 {/* Content */}
                 <div className="p-6 overflow-y-auto h-[calc(100%-220px)]">
                     {/* Success/Error Messages */}
                     {success && (
                         <div className="mb-4 p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-lg flex items-center gap-3">
-                            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
                             <p className="text-green-800 dark:text-green-200 text-sm font-medium">
                                 {success}
                             </p>
@@ -229,29 +463,27 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                         </div>
                     )}
 
-                    {activeTab === "login" ? (
+                    {/* Login Form */}
+                    {activeView === "login" && (
                         <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="login-identifier" className="text-foreground font-medium">
-                                    Email or Phone Number
+                                <Label htmlFor="login-email" className="text-foreground font-medium">
+                                    Email Address
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                                     <Input
-                                        id="login-identifier"
-                                        type="text"
-                                        placeholder="your@email.com or +1234567890"
-                                        value={loginData.identifier}
+                                        id="login-email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        value={loginData.email}
                                         onChange={(e) =>
-                                            setLoginData({ ...loginData, identifier: e.target.value })
+                                            setLoginData({ ...loginData, email: e.target.value })
                                         }
                                         className="h-12 pl-10"
                                         required
                                     />
                                 </div>
-                                <p className="text-xs text-muted-foreground">
-                                    Enter the email or phone you registered with
-                                </p>
                             </div>
 
                             <div className="space-y-2">
@@ -276,12 +508,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={loading}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Signing in...
                                     </div>
                                 ) : (
@@ -290,59 +522,30 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                             </Button>
 
                             <div className="flex items-center justify-between text-sm">
-                                <Link
-                                    href="/forgot-password"
-                                    className="text-primary hover:underline font-medium"
-                                    onClick={onClose}
-                                >
-                                    Forgot Password?
-                                </Link>
                                 <button
                                     type="button"
-                                    onClick={() => setActiveTab("register")}
+                                    onClick={() => {
+                                        setActiveView("forgot-password");
+                                        setError("");
+                                        setSuccess("");
+                                    }}
+                                    className="text-primary hover:underline font-medium"
+                                >
+                                    Forgot Password?
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setActiveView("register")}
                                     className="text-primary hover:underline font-medium"
                                 >
                                     Create Account
                                 </button>
                             </div>
-
-                            <div className="pt-4 border-t border-border">
-                                <div className="flex items-center justify-center space-x-4 mb-4">
-                                    <div className="flex-1 h-px bg-border"></div>
-                                    <span className="text-sm text-muted-foreground px-3">OR</span>
-                                    <div className="flex-1 h-px bg-border"></div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-3">
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        className="h-11"
-                                    >
-                                        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                                            <path
-                                                fill="currentColor"
-                                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                                            />
-                                        </svg>
-                                        Google
-                                    </Button>
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        className="h-11"
-                                    >
-                                        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                                            <path
-                                                fill="currentColor"
-                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                                            />
-                                        </svg>
-                                        Facebook
-                                    </Button>
-                                </div>
-                            </div>
                         </form>
-                    ) : (
+                    )}
+
+                    {/* Register Form */}
+                    {activeView === "register" && (
                         <form onSubmit={handleRegister} className="space-y-5">
                             <div className="space-y-2">
                                 <Label htmlFor="register-name" className="text-foreground font-medium">
@@ -366,7 +569,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <div className="space-y-2">
                                 <Label htmlFor="register-email" className="text-foreground font-medium">
-                                    Email Address <span className="text-muted-foreground text-xs">(Optional)</span>
+                                    Email Address <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -379,30 +582,9 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                             setRegisterData({ ...registerData, email: e.target.value })
                                         }
                                         className="h-12 pl-10"
+                                        required
                                     />
                                 </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="register-phone" className="text-foreground font-medium">
-                                    Phone Number <span className="text-muted-foreground text-xs">(Optional)</span>
-                                </Label>
-                                <div className="relative">
-                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                                    <Input
-                                        id="register-phone"
-                                        type="tel"
-                                        placeholder="+1234567890"
-                                        value={registerData.phone}
-                                        onChange={(e) =>
-                                            setRegisterData({ ...registerData, phone: e.target.value })
-                                        }
-                                        className="h-12 pl-10"
-                                    />
-                                </div>
-                                <p className="text-xs text-muted-foreground">
-                                    Provide at least one: email or phone number
-                                </p>
                             </div>
 
                             <div className="space-y-2">
@@ -453,12 +635,12 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
 
                             <Button
                                 type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-gray-900"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20"
                                 disabled={loading}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Creating Account...
                                     </div>
                                 ) : (
@@ -472,7 +654,7 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                                 </span>
                                 <button
                                     type="button"
-                                    onClick={() => setActiveTab("login")}
+                                    onClick={() => setActiveView("login")}
                                     className="text-primary hover:underline font-semibold"
                                 >
                                     Sign In
@@ -492,10 +674,222 @@ export default function AuthSidebar({ isOpen, onClose }: AuthSidebarProps) {
                             </p>
                         </form>
                     )}
+
+                    {/* Verify Email Form */}
+                    {activeView === "verify-email" && (
+                        <form onSubmit={handleVerifyEmail} className="space-y-5">
+                            <div className="bg-accent/50 p-4 rounded-lg border border-border">
+                                <p className="text-sm text-muted-foreground">
+                                    We sent a 6-digit verification code to:
+                                </p>
+                                <p className="text-sm font-semibold text-foreground mt-1">
+                                    {pendingEmail}
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="verify-code" className="text-foreground font-medium">
+                                    Verification Code
+                                </Label>
+                                <div className="relative">
+                                    <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="verify-code"
+                                        type="text"
+                                        placeholder="Enter 6-digit code"
+                                        value={verifyData.code}
+                                        onChange={(e) =>
+                                            setVerifyData({ code: e.target.value.replace(/\D/g, '').slice(0, 6) })
+                                        }
+                                        className="h-12 pl-10 text-center text-2xl tracking-widest"
+                                        maxLength={6}
+                                        required
+                                    />
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                    Code expires in 10 minutes. Max 3 attempts.
+                                </p>
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
+                                disabled={loading || verifyData.code.length !== 6}
+                            >
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        Verifying...
+                                    </div>
+                                ) : (
+                                    "Verify Email"
+                                )}
+                            </Button>
+
+                            <div className="text-center">
+                                <button
+                                    type="button"
+                                    onClick={handleResendOTP}
+                                    disabled={resendCooldown > 0 || loading}
+                                    className="text-sm text-primary hover:underline font-medium disabled:text-muted-foreground disabled:no-underline flex items-center gap-2 justify-center mx-auto"
+                                >
+                                    <RefreshCw className="w-4 h-4" />
+                                    {resendCooldown > 0
+                                        ? `Resend Code (${resendCooldown}s)`
+                                        : "Resend Code"}
+                                </button>
+                            </div>
+                        </form>
+                    )}
+
+                    {/* Forgot Password Form */}
+                    {activeView === "forgot-password" && (
+                        <form onSubmit={handleForgotPassword} className="space-y-5">
+                            <div className="bg-accent/50 p-4 rounded-lg border border-border">
+                                <p className="text-sm text-muted-foreground">
+                                    Enter your email address and we'll send you a code to reset your password.
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="forgot-email" className="text-foreground font-medium">
+                                    Email Address
+                                </Label>
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="forgot-email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        value={forgotPasswordData.email}
+                                        onChange={(e) =>
+                                            setForgotPasswordData({ email: e.target.value })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        Sending Code...
+                                    </div>
+                                ) : (
+                                    "Send Reset Code"
+                                )}
+                            </Button>
+                        </form>
+                    )}
+
+                    {/* Reset Password Form */}
+                    {activeView === "reset-password" && (
+                        <form onSubmit={handleResetPassword} className="space-y-5">
+                            <div className="bg-accent/50 p-4 rounded-lg border border-border">
+                                <p className="text-sm text-muted-foreground">
+                                    We sent a reset code to:
+                                </p>
+                                <p className="text-sm font-semibold text-foreground mt-1">
+                                    {pendingEmail}
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="reset-code" className="text-foreground font-medium">
+                                    Reset Code
+                                </Label>
+                                <div className="relative">
+                                    <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="reset-code"
+                                        type="text"
+                                        placeholder="Enter 6-digit code"
+                                        value={resetPasswordData.code}
+                                        onChange={(e) =>
+                                            setResetPasswordData({
+                                                ...resetPasswordData,
+                                                code: e.target.value.replace(/\D/g, '').slice(0, 6)
+                                            })
+                                        }
+                                        className="h-12 pl-10 text-center text-2xl tracking-widest"
+                                        maxLength={6}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="reset-new-password" className="text-foreground font-medium">
+                                    New Password
+                                </Label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="reset-new-password"
+                                        type="password"
+                                        placeholder="At least 6 characters"
+                                        value={resetPasswordData.newPassword}
+                                        onChange={(e) =>
+                                            setResetPasswordData({
+                                                ...resetPasswordData,
+                                                newPassword: e.target.value,
+                                            })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="reset-confirm-password" className="text-foreground font-medium">
+                                    Confirm New Password
+                                </Label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="reset-confirm-password"
+                                        type="password"
+                                        placeholder="Re-enter new password"
+                                        value={resetPasswordData.confirmPassword}
+                                        onChange={(e) =>
+                                            setResetPasswordData({
+                                                ...resetPasswordData,
+                                                confirmPassword: e.target.value,
+                                            })
+                                        }
+                                        className="h-12 pl-10"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
+                                disabled={loading || resetPasswordData.code.length !== 6}
+                            >
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        Resetting Password...
+                                    </div>
+                                ) : (
+                                    "Reset Password"
+                                )}
+                            </Button>
+                        </form>
+                    )}
                 </div>
 
                 {/* Footer Note */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-t border-border">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-t border-border">
                     <p className="text-xs text-center text-muted-foreground">
                         Need help? Contact us:{" "}
                         <a href="mailto:Contact@innodemy.com" className="text-primary hover:underline font-medium">
