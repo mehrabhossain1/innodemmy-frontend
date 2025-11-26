@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ClinicalResearchHeroSection from "@/app/courses/innodemy-clinical-research-mastery-program/components/ClinicalResearchHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 import WhatYouGet from "./components/WhatYouGet";
@@ -13,6 +14,16 @@ import ResourcePersons from "./components/ResourcePersons";
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "resource-persons", label: "Resource Persons" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -81,23 +92,38 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
 
             {/* What You'll Get Section */}
-            <WhatYouGet />
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
 
             {/* Resource Persons Section */}
-            <ResourcePersons />
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
 
             {/* What You'll Need Section */}
-            <WhatYouNeed />
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
 
             {/* Who This Course is For Section */}
-            <WhoThisCourseIsFor />
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
 
             {/* FAQ Section */}
-            <FAQ />
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
