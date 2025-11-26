@@ -5,6 +5,7 @@ import {
     Stethoscope,
     BookOpenCheck,
 } from "lucide-react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 export default function WhoThisCourseIsFor() {
     const audiences = [
@@ -36,12 +37,7 @@ export default function WhoThisCourseIsFor() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Who This Course is For
-                </h2>
-                <hr className="my-2 border-gray-200" />
-            </div>
+            <SectionTitle title="Who This Course is For" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {audiences.map((audience, index) => {

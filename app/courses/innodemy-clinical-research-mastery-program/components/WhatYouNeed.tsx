@@ -1,5 +1,6 @@
 "use client";
 import { Laptop, BookOpen, Target } from "lucide-react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 export default function WhatYouNeed() {
     const requirements = [
@@ -25,12 +26,7 @@ export default function WhatYouNeed() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    What You&apos;ll Need to Get Started
-                </h2>
-                <hr className="my-2 border-gray-200" />
-            </div>
+            <SectionTitle title="What You'll Need to Get Started" />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {requirements.map((requirement, index) => {

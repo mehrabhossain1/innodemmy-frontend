@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 interface FAQItem {
     question: string;
@@ -39,12 +40,7 @@ export default function FAQ() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Frequently Asked Questions (FAQ)
-                </h2>
-                <hr className="my-2 border-gray-200" />
-            </div>
+            <SectionTitle title="Frequently Asked Questions (FAQ)" />
 
             <div className="max-w-4xl mx-auto space-y-4">
                 {faqs.map((faq, index) => {
