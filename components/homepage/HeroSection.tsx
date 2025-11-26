@@ -34,34 +34,32 @@ const heroImages = [
         alt: "Hero Background 2",
         title: (
             <>
-                Transform Your Future with{" "}
-                <span className="text-secondary">World-Class</span>{" "}
-                <span className="text-accent">Education</span>
+                Become an <span className="text-secondary">Clinical<br />Research</span> Expert
             </>
         ),
-        subtitle: "Unlock your potential with expert-led courses designed to help you succeed in today's competitive world"
+        subtitle: "Master clinical research skills through our comprehensive program combining multiple in-depth courses."
     },
     {
         src: bg3,
         alt: "Hero Background 3",
         title: (
             <>
-                Empower Your Career with{" "}
-                <span className="text-secondary">Industry-Ready</span> Skills
+                Step Into The World<br />Of <span className="text-secondary">Chip Design</span>
             </>
         ),
-        subtitle: "Learn from experts and gain practical skills that employers are looking for"
+        subtitle: "Learn how to translate logic into high performance, manufacturable silicon"
     },
     {
         src: bg4,
         alt: "Hero Background 4",
         title: (
             <>
-                Start Your Learning Journey{" "}
-                <span className="text-secondary">Today</span>
+                <span className="text-secondary">"DON'T WAIT FOR</span><br />
+                OPPORTUNITY<br />
+                <span className="text-secondary">learn to create it"</span>
             </>
         ),
-        subtitle: "Join thousands of students who are already advancing their careers with our courses"
+        subtitle: ""
     },
 ];
 
@@ -99,7 +97,7 @@ export default function HeroSection() {
                                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
 
                                         <div className="absolute inset-0 flex items-center">
-                                            <div className="w-full md:w-2/3 px-8 md:px-12 lg:px-20 text-white space-y-4 md:space-y-6">
+                                            <div className="w-full md:w-3/4 lg:w-4/5 px-8 md:px-12 lg:px-20 text-white space-y-4 md:space-y-6">
                                                 <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight italic">
                                                     {image.title}
                                                 </h1>
