@@ -33,24 +33,9 @@ export default function Sidebar() {
 
     const adminNavItems = [
         { href: "/admin/dashboard", label: "Dashboard", icon: Home },
-        { href: "/admin/dashboard/users", label: "Users", icon: Users },
-        { href: "/admin/dashboard/courses", label: "Courses", icon: BookOpen },
-        {
-            href: "/admin/dashboard/enrollments",
-            label: "Enrollments",
-            icon: GraduationCap,
-        },
-        {
-            href: "/admin/dashboard/analytics",
-            label: "Analytics",
-            icon: BarChart3,
-        },
-        { href: "/admin/dashboard/reports", label: "Reports", icon: FileText },
-        {
-            href: "/admin/dashboard/settings",
-            label: "Settings",
-            icon: Settings,
-        },
+        { href: "/admin/enrollments", label: "Enrollments", icon: GraduationCap },
+        { href: "/admin/courses", label: "Courses", icon: BookOpen },
+        { href: "/admin/blogs", label: "Blogs", icon: FileText },
     ];
 
     const navItems = user?.role === "admin" ? adminNavItems : studentNavItems;
