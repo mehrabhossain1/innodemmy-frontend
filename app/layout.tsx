@@ -14,35 +14,49 @@ const hindSiliguri = Hind_Siliguri({
 
 export const metadata: Metadata = {
     title: {
-        default: "Innodemy - Online Learning Platform | Professional Courses & Certifications",
-        template: "%s | Innodemy"
+        default: "Innodemy - Transforming Talent Into Expertise",
+        template: "%s | Innodemy",
     },
-    description: "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications, hands-on projects, and industry-recognized skills development.",
-    keywords: ["online learning platform", "LMS", "learning management system", "online courses", "professional certification", "skill development", "e-learning", "career training", "distance learning", "online education"],
+    description:
+        "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications, hands-on projects, and industry-recognized skills development.",
+    keywords: [
+        "online learning platform",
+        "LMS",
+        "learning management system",
+        "online courses",
+        "professional certification",
+        "skill development",
+        "e-learning",
+        "career training",
+        "distance learning",
+        "online education",
+    ],
     authors: [{ name: "Innodemy" }],
     creator: "Innodemy",
     publisher: "Innodemy",
-    metadataBase: new URL('https://innodemy.com'),
+    metadataBase: new URL("https://innodemy.com"),
     openGraph: {
         type: "website",
         locale: "en_US",
         url: "https://innodemy.com",
         siteName: "Innodemy",
         title: "Innodemy - Online Learning Platform | Professional Courses & Certifications",
-        description: "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications and hands-on learning.",
+        description:
+            "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications and hands-on learning.",
         images: [
             {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Innodemy - Online Learning Management System"
-            }
-        ]
+                alt: "Innodemy - Online Learning Management System",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Innodemy - Online Learning Platform | Professional Courses & Certifications",
-        description: "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications.",
+        description:
+            "Innodemy is a comprehensive online learning management system offering expert-led courses across multiple disciplines. Transform your career with professional certifications.",
         images: ["/twitter-image.jpg"],
     },
     robots: {
@@ -51,15 +65,15 @@ export const metadata: Metadata = {
         googleBot: {
             index: true,
             follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
         },
     },
     verification: {
         google: "your-google-verification-code",
         // Add other verification codes as needed
-    }
+    },
 };
 
 //
