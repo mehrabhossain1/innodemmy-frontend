@@ -1,7 +1,6 @@
 "use client";
 
 import Sidebar from "@/components/Sidebar";
-import DashboardHeader from "@/components/DashboardHeader";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -39,7 +38,6 @@ const AdminDashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <Sidebar />
             <main className="flex-1 overflow-auto">
                 <div className="p-6">
-                    <DashboardHeader />
                     {children}
                 </div>
             </main>
