@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,10 +18,51 @@ import bg3 from "@/assets/HomePage/bg3.jpg";
 import bg4 from "@/assets/HomePage/bg4.jpg";
 
 const heroImages = [
-    { src: bg1, alt: "Hero Background 1" },
-    { src: bg2, alt: "Hero Background 2" },
-    { src: bg3, alt: "Hero Background 3" },
-    { src: bg4, alt: "Hero Background 4" },
+    {
+        src: bg1,
+        alt: "Hero Background 1",
+        title: (
+            <>
+                Decode <span className="text-secondary">intelligence</span><br />
+                Design tomorrow
+            </>
+        ),
+        subtitle: "Master the language of machines and shape the systems that shape the future."
+    },
+    {
+        src: bg2,
+        alt: "Hero Background 2",
+        title: (
+            <>
+                Transform Your Future with{" "}
+                <span className="text-secondary">World-Class</span>{" "}
+                <span className="text-accent">Education</span>
+            </>
+        ),
+        subtitle: "Unlock your potential with expert-led courses designed to help you succeed in today's competitive world"
+    },
+    {
+        src: bg3,
+        alt: "Hero Background 3",
+        title: (
+            <>
+                Empower Your Career with{" "}
+                <span className="text-secondary">Industry-Ready</span> Skills
+            </>
+        ),
+        subtitle: "Learn from experts and gain practical skills that employers are looking for"
+    },
+    {
+        src: bg4,
+        alt: "Hero Background 4",
+        title: (
+            <>
+                Start Your Learning Journey{" "}
+                <span className="text-secondary">Today</span>
+            </>
+        ),
+        subtitle: "Join thousands of students who are already advancing their careers with our courses"
+    },
 ];
 
 export default function HeroSection() {
@@ -58,36 +100,22 @@ export default function HeroSection() {
 
                                         <div className="absolute inset-0 flex items-center">
                                             <div className="w-full md:w-2/3 px-8 md:px-12 lg:px-20 text-white space-y-4 md:space-y-6">
-                                                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight">
-                                                    Transform Your Future with{" "}
-                                                    <span className="text-secondary">
-                                                        World-Class
-                                                    </span>{" "}
-                                                    <span className="text-accent">
-                                                        Education
-                                                    </span>
+                                                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight italic">
+                                                    {image.title}
                                                 </h1>
-                                                <p className="text-sm md:text-base lg:text-lg text-gray-200 leading-relaxed">
-                                                    Unlock your potential with
-                                                    expert-led courses designed
-                                                    to help you succeed in
-                                                    today&apos;s competitive
-                                                    world
+                                                <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-200 leading-relaxed font-semibold">
+                                                    {image.subtitle}
                                                 </p>
                                                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
-                                                    <Button
-                                                        size="lg"
-                                                        variant="secondary"
-                                                        className="font-semibold shadow-lg hover:shadow-xl"
-                                                    >
-                                                        Explore Courses →
-                                                    </Button>
-                                                    <Button
-                                                        size="lg"
-                                                        className="font-semibold shadow-lg hover:shadow-xl"
-                                                    >
-                                                        Get Started Free
-                                                    </Button>
+                                                    <Link href="/courses">
+                                                        <Button
+                                                            size="lg"
+                                                            variant="secondary"
+                                                            className="font-semibold shadow-lg hover:shadow-xl"
+                                                        >
+                                                            Explore Courses →
+                                                        </Button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
