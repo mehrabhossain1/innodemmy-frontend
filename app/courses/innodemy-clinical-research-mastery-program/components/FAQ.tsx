@@ -40,7 +40,7 @@ export default function FAQ() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <SectionTitle title="Frequently Asked Questions (FAQ)" />
+            <SectionTitle title="FAQ" />
 
             <div className="max-w-4xl mx-auto space-y-4">
                 {faqs.map((faq, index) => {
