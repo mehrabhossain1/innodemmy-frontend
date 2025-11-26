@@ -5,10 +5,10 @@ interface SectionTitleProps {
 export default function SectionTitle({ title }: SectionTitleProps) {
     return (
         <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
                 {title}
             </h2>
-            <div className="w-48 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 mx-auto rounded-full"></div>
+            <div className="w-48 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 dark:from-yellow-500 dark:via-yellow-400 dark:to-yellow-500 mx-auto rounded-full"></div>
         </div>
     );
 }

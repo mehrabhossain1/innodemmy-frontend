@@ -30,7 +30,7 @@ export default function WhoThisCourseIsFor() {
                     return (
                         <div
                             key={index}
-                            className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200"
+                            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700"
                         >
                             <div className="flex items-start gap-4">
                                 {/* Image Icon */}
@@ -44,7 +44,7 @@ export default function WhoThisCourseIsFor() {
 
                                 {/* Title */}
                                 <div className="flex-1">
-                                    <p className="text-gray-700 text-base leading-relaxed font-medium">
+                                    <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed font-medium">
                                         {audience.title}
                                     </p>
                                 </div>

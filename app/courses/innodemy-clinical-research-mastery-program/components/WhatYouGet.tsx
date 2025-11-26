@@ -49,9 +49,9 @@ export default function WhatYouGet() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {benefits.map((benefit, index) => {
                     return (
-                        <div
+                            <div
                             key={index}
-                            className="bg-white rounded-lg p-5 text-center hover:shadow-lg transition-all duration-300"
+                            className="bg-white dark:bg-gray-800 rounded-lg p-5 text-center hover:shadow-lg transition-all duration-300 border border-transparent dark:border-gray-700"
                         >
                             {/* Image */}
                             <div className="flex justify-center mb-3">
@@ -63,12 +63,12 @@ export default function WhatYouGet() {
                             </div>
 
                             {/* Title */}
-                            <h3 className="font-bold text-gray-900 text-base mb-2 leading-tight">
+                            <h3 className="font-bold text-gray-900 dark:text-white text-base mb-2 leading-tight">
                                 {benefit.title}
                             </h3>
 
                             {/* Description */}
-                            <p className="text-gray-600 text-sm leading-relaxed">
+                            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                                 {benefit.description}
                             </p>
                         </div>

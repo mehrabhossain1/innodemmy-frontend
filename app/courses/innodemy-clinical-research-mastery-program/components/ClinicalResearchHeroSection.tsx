@@ -55,24 +55,24 @@ export default function ClinicalResearchHeroSection({
     };
 
     return (
-        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
+        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white dark:from-primary/20 dark:via-secondary/20 dark:to-gray-900">
             <div className="container mx-auto px-4 py-16 max-w-7xl">
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Left: Course Info - 2 columns */}
                     <div className="lg:col-span-2">
                         {/* Live Course Badge */}
-                        <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-3">
-                            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+                        <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-3 py-1 rounded text-sm font-semibold mb-3">
+                            <div className="w-2 h-2 bg-red-600 dark:bg-red-400 rounded-full animate-pulse"></div>
                             {courseData.liveCourseLabel}
                         </div>
 
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                             {courseData.title}
                         </h1>
 
                         {/* Description */}
                         <div className="mb-6 w-full">
-                            <div className="text-gray-700 text-base leading-relaxed text-justify [&>p:not(:last-child)]:mb-[2px]">
+                            <div className="text-gray-700 dark:text-gray-300 text-base leading-relaxed text-justify [&>p:not(:last-child)]:mb-[2px]">
                                 {courseData.description.split('\n').map((para, index) => (
                                     <p key={index}>{para}</p>
                                 ))}
@@ -87,7 +87,7 @@ export default function ClinicalResearchHeroSection({
                     <div className="lg:col-span-1 lg:sticky lg:top-4 lg:self-start">
                         {/* Video Thumbnail */}
                         <div
-                            className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 group cursor-pointer border border-gray-100"
+                            className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 group cursor-pointer border border-gray-100 dark:border-gray-700"
                             onClick={onVideoClick}
                         >
                             <Image
@@ -97,12 +97,12 @@ export default function ClinicalResearchHeroSection({
                                 className="object-cover"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
                                     <Play className="w-12 h-12 text-primary fill-primary" />
                                 </div>
                             </div>
                             {/* Video Corner Label */}
-                            <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
+                            <div className="absolute top-3 left-3 bg-primary/90 dark:bg-primary backdrop-blur-sm text-white px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
                                 <Video className="w-4 h-4" />
                                 <span className="text-xs font-bold">
                                     {courseData.videoLabel}
@@ -111,20 +111,20 @@ export default function ClinicalResearchHeroSection({
                         </div>
 
                         {/* Enrollment Card */}
-                        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
                             {/* Pricing Section */}
-                            <div className="bg-gradient-to-br from-primary/8 via-primary/5 to-white p-5 border-b border-gray-100">
+                            <div className="bg-gradient-to-br from-primary/8 via-primary/5 to-white dark:from-primary/20 dark:via-primary/10 dark:to-gray-800 p-5 border-b border-gray-100 dark:border-gray-700">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
-                                            <span className="text-3xl font-bold text-gray-900">
+                                            <span className="text-3xl font-bold text-gray-900 dark:text-white">
                                                 ৳{courseData.price.toLocaleString()}
                                             </span>
-                                            <span className="text-sm text-gray-400 line-through">
+                                            <span className="text-sm text-gray-400 dark:text-gray-500 line-through">
                                                 ৳{courseData.originalPrice.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">
+                                        <div className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2.5 py-1 rounded-md text-xs font-semibold">
                                             <span>
                                                 {Math.round(
                                                     ((courseData.originalPrice -
@@ -136,7 +136,7 @@ export default function ClinicalResearchHeroSection({
                                             </span>
                                         </div>
                                     </div>
-                                    <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button className="bg-primary dark:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 dark:hover:bg-primary transition-all duration-200 shadow-sm hover:shadow-md">
                                         📋 Coupon
                                     </button>
                                 </div>
@@ -163,22 +163,22 @@ export default function ClinicalResearchHeroSection({
                                 <div className="grid grid-cols-2 gap-3">
                                     <button
                                         onClick={handleShareClick}
-                                        className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg py-3 transition-all duration-200 hover:shadow-sm"
+                                        className="flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-lg py-3 transition-all duration-200 hover:shadow-sm"
                                     >
                                         <svg
-                                            className="w-5 h-5 text-primary"
+                                            className="w-5 h-5 text-primary dark:text-primary"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
                                             <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
                                         </svg>
-                                        <span className="text-sm font-semibold text-gray-700">
+                                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                             Share
                                         </span>
                                     </button>
                                     <button
                                         onClick={handleWhatsAppClick}
-                                        className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md"
+                                        className="flex items-center justify-center gap-2 bg-green-500 dark:bg-green-600 hover:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md"
                                     >
                                         <svg
                                             className="w-5 h-5"

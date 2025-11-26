@@ -32,9 +32,9 @@ export default function WhatYouNeed() {
                             className="relative group"
                         >
                             {/* Card */}
-                            <div className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
                                 {/* Number Badge */}
-                                <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                                <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 dark:from-yellow-500 dark:to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
                                     <span className="text-white font-bold text-lg">
                                         {index + 1}
                                     </span>
@@ -52,7 +52,7 @@ export default function WhatYouNeed() {
                                 </div>
 
                                 {/* Title */}
-                                <p className="text-gray-700 text-base leading-relaxed font-medium">
+                                <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed font-medium">
                                     {requirement.title}
                                 </p>
                             </div>

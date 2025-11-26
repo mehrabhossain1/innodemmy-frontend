@@ -499,7 +499,7 @@ export default function CourseModule() {
                         key={module.id}
                         className={`${
                             module.bgColor
-                        } rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 ${
+                        } dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                             expandedModules.includes(module.id)
                                 ? "shadow-lg"
                                 : "shadow-md hover:shadow-lg"
@@ -530,13 +530,13 @@ export default function CourseModule() {
 
                                 {/* Module Info */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-900 mb-2 text-lg leading-tight">
+                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg leading-tight">
                                         {module.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 leading-relaxed">
                                         {module.essence}
                                     </p>
-                                    <div className="flex items-center gap-3 text-sm text-gray-700">
+                                    <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
                                         {module.liveClasses !== undefined &&
                                             module.liveClasses > 0 && (
                                                 <div className="flex items-center gap-1.5">
@@ -567,7 +567,7 @@ export default function CourseModule() {
                                 {/* Chevron Icon */}
                                 <div className="flex-shrink-0">
                                     <ChevronDown
-                                        className={`w-6 h-6 text-gray-600 transition-transform duration-300 ${
+                                        className={`w-6 h-6 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
                                             expandedModules.includes(module.id)
                                                 ? "rotate-180"
                                                 : "rotate-0"
@@ -624,16 +624,16 @@ export default function CourseModule() {
 
                                             const borderColor =
                                                 module.id === 1
-                                                    ? "border-blue-300 bg-blue-50/50"
+                                                    ? "border-blue-300 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/20"
                                                     : module.id === 2
-                                                    ? "border-red-300 bg-red-50/50"
+                                                    ? "border-red-300 dark:border-red-700 bg-red-50/50 dark:bg-red-900/20"
                                                     : module.id === 3
-                                                    ? "border-green-300 bg-green-50/50"
+                                                    ? "border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-900/20"
                                                     : module.id === 4
-                                                    ? "border-amber-300 bg-amber-50/50"
+                                                    ? "border-amber-300 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/20"
                                                     : module.id === 5
-                                                    ? "border-purple-300 bg-purple-50/50"
-                                                    : "border-teal-300 bg-teal-50/50";
+                                                    ? "border-purple-300 dark:border-purple-700 bg-purple-50/50 dark:bg-purple-900/20"
+                                                    : "border-teal-300 dark:border-teal-700 bg-teal-50/50 dark:bg-teal-900/20";
 
                                             return (
                                                 <div
@@ -641,11 +641,11 @@ export default function CourseModule() {
                                                     className={`border rounded-lg p-2.5 transition-all duration-300 ${
                                                         isTopicExpanded
                                                             ? `${borderColor} shadow-sm`
-                                                            : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                                                            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm"
                                                     }`}
                                                 >
                                                     <div
-                                                        className={`flex items-start gap-2 text-gray-700 hover:text-gray-900 transition-colors ${
+                                                        className={`flex items-start gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${
                                                             hasDetails
                                                                 ? "cursor-pointer"
                                                                 : ""
@@ -660,7 +660,7 @@ export default function CourseModule() {
                                                             }
                                                         }}
                                                     >
-                                                        <span className="font-bold text-gray-900 min-w-[20px] text-base">
+                                                        <span className="font-bold text-gray-900 dark:text-white min-w-[20px] text-base">
                                                             {topic.id}.
                                                         </span>
                                                         <div className="flex-1">
@@ -672,7 +672,7 @@ export default function CourseModule() {
                                                                 </span>
                                                                 {hasDetails && (
                                                                     <ChevronDown
-                                                                        className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${
+                                                                        className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
                                                                             isTopicExpanded
                                                                                 ? "rotate-180"
                                                                                 : ""
@@ -684,7 +684,7 @@ export default function CourseModule() {
                                                             {/* Expanded Topic Details */}
                                                             {isTopicExpanded &&
                                                                 hasDetails && (
-                                                                    <div className="mt-3 space-y-2.5 text-sm text-gray-600">
+                                                                    <div className="mt-3 space-y-2.5 text-sm text-gray-600 dark:text-gray-300">
                                                                         {topic.overview &&
                                                                             topic
                                                                                 .overview
@@ -714,15 +714,15 @@ export default function CourseModule() {
                                                                             )}
 
                                                                         {topic.aiPractice && (
-                                                                            <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
-                                                                                <h4 className="font-semibold text-blue-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-blue-600">
+                                                                            <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg border border-blue-100 dark:border-blue-800">
+                                                                                <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-blue-600 dark:text-blue-400">
                                                                                         🤖
                                                                                     </span>
                                                                                     AI
                                                                                     Practice:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-blue-800">
+                                                                                <p className="leading-relaxed text-blue-800 dark:text-blue-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiPractice
                                                                                     )}
@@ -731,15 +731,15 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiSupport && (
-                                                                            <div className="bg-cyan-50 p-3 rounded-lg border border-cyan-100">
-                                                                                <h4 className="font-semibold text-cyan-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-cyan-600">
+                                                                            <div className="bg-cyan-50 dark:bg-cyan-900/30 p-3 rounded-lg border border-cyan-100 dark:border-cyan-800">
+                                                                                <h4 className="font-semibold text-cyan-900 dark:text-cyan-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-cyan-600 dark:text-cyan-400">
                                                                                         🤖
                                                                                     </span>
                                                                                     AI
                                                                                     Support:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-cyan-800">
+                                                                                <p className="leading-relaxed text-cyan-800 dark:text-cyan-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiSupport
                                                                                     )}
@@ -748,15 +748,15 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiIntegration && (
-                                                                            <div className="bg-violet-50 p-3 rounded-lg border border-violet-100">
-                                                                                <h4 className="font-semibold text-violet-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-violet-600">
+                                                                            <div className="bg-violet-50 dark:bg-violet-900/30 p-3 rounded-lg border border-violet-100 dark:border-violet-800">
+                                                                                <h4 className="font-semibold text-violet-900 dark:text-violet-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-violet-600 dark:text-violet-400">
                                                                                         🤖
                                                                                     </span>
                                                                                     AI
                                                                                     Integration:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-violet-800">
+                                                                                <p className="leading-relaxed text-violet-800 dark:text-violet-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiIntegration
                                                                                     )}
@@ -765,15 +765,15 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiTask && (
-                                                                            <div className="bg-sky-50 p-3 rounded-lg border border-sky-100">
-                                                                                <h4 className="font-semibold text-sky-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-sky-600">
+                                                                            <div className="bg-sky-50 dark:bg-sky-900/30 p-3 rounded-lg border border-sky-100 dark:border-sky-800">
+                                                                                <h4 className="font-semibold text-sky-900 dark:text-sky-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-sky-600 dark:text-sky-400">
                                                                                         🤖
                                                                                     </span>
                                                                                     AI
                                                                                     Task:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-sky-800">
+                                                                                <p className="leading-relaxed text-sky-800 dark:text-sky-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.aiTask
                                                                                     )}
@@ -782,14 +782,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.handsOn && (
-                                                                            <div className="bg-green-50 p-3 rounded-lg border border-green-100">
-                                                                                <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-green-600">
+                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
+                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-green-600 dark:text-green-400">
                                                                                         ✋
                                                                                     </span>
                                                                                     Hands-On:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-green-800">
+                                                                                <p className="leading-relaxed text-green-800 dark:text-green-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.handsOn
                                                                                     )}
@@ -798,15 +798,15 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.handsOnTask && (
-                                                                            <div className="bg-green-50 p-3 rounded-lg border border-green-100">
-                                                                                <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-green-600">
+                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
+                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-green-600 dark:text-green-400">
                                                                                         ✋
                                                                                     </span>
                                                                                     Hands-On
                                                                                     Task:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-green-800">
+                                                                                <p className="leading-relaxed text-green-800 dark:text-green-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.handsOnTask
                                                                                     )}
@@ -815,14 +815,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.task && (
-                                                                            <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
-                                                                                <h4 className="font-semibold text-indigo-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-indigo-600">
+                                                                            <div className="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg border border-indigo-100 dark:border-indigo-800">
+                                                                                <h4 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-indigo-600 dark:text-indigo-400">
                                                                                         ✅
                                                                                     </span>
                                                                                     Task:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-indigo-800">
+                                                                                <p className="leading-relaxed text-indigo-800 dark:text-indigo-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.task
                                                                                     )}
@@ -831,14 +831,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.deliverable && (
-                                                                            <div className="bg-purple-50 p-3 rounded-lg border border-purple-100">
-                                                                                <h4 className="font-semibold text-purple-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-purple-600">
+                                                                            <div className="bg-purple-50 dark:bg-purple-900/30 p-3 rounded-lg border border-purple-100 dark:border-purple-800">
+                                                                                <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-purple-600 dark:text-purple-400">
                                                                                         📦
                                                                                     </span>
                                                                                     Deliverables:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-purple-800">
+                                                                                <p className="leading-relaxed text-purple-800 dark:text-purple-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.deliverable
                                                                                     )}
@@ -847,14 +847,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.exercise && (
-                                                                            <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
-                                                                                <h4 className="font-semibold text-orange-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-orange-600">
+                                                                            <div className="bg-orange-50 dark:bg-orange-900/30 p-3 rounded-lg border border-orange-100 dark:border-orange-800">
+                                                                                <h4 className="font-semibold text-orange-900 dark:text-orange-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-orange-600 dark:text-orange-400">
                                                                                         📝
                                                                                     </span>
                                                                                     Exercise:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-orange-800">
+                                                                                <p className="leading-relaxed text-orange-800 dark:text-orange-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.exercise
                                                                                     )}
@@ -863,14 +863,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.practice && (
-                                                                            <div className="bg-pink-50 p-3 rounded-lg border border-pink-100">
-                                                                                <h4 className="font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-pink-600">
+                                                                            <div className="bg-pink-50 dark:bg-pink-900/30 p-3 rounded-lg border border-pink-100 dark:border-pink-800">
+                                                                                <h4 className="font-semibold text-pink-900 dark:text-pink-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-pink-600 dark:text-pink-400">
                                                                                         🎯
                                                                                     </span>
                                                                                     Practice:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-pink-800">
+                                                                                <p className="leading-relaxed text-pink-800 dark:text-pink-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.practice
                                                                                     )}
@@ -879,14 +879,14 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.simulation && (
-                                                                            <div className="bg-rose-50 p-3 rounded-lg border border-rose-100">
-                                                                                <h4 className="font-semibold text-rose-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                                    <span className="text-rose-600">
+                                                                            <div className="bg-rose-50 dark:bg-rose-900/30 p-3 rounded-lg border border-rose-100 dark:border-rose-800">
+                                                                                <h4 className="font-semibold text-rose-900 dark:text-rose-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                                    <span className="text-rose-600 dark:text-rose-400">
                                                                                         🎮
                                                                                     </span>
                                                                                     Simulation:
                                                                                 </h4>
-                                                                                <p className="leading-relaxed text-rose-800">
+                                                                                <p className="leading-relaxed text-rose-800 dark:text-rose-200">
                                                                                     {renderTextWithBold(
                                                                                         topic.simulation
                                                                                     )}
