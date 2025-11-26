@@ -41,7 +41,7 @@ export default function FAQ() {
         <div className="container mx-auto px-4 py-16 max-w-7xl">
             <div className="mb-8">
                 <h2 className="text-3xl font-bold text-gray-900">
-                    Frequently Asked Questions (FAQ):
+                    Frequently Asked Questions (FAQ)
                 </h2>
                 <hr className="my-2 border-gray-200" />
             </div>

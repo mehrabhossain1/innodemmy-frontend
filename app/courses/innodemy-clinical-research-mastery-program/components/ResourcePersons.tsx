@@ -5,7 +5,7 @@ export default function ResourcePersons() {
         <div className="container mx-auto px-4 py-16 max-w-7xl">
             <div className="mb-8">
                 <h2 className="text-3xl font-bold text-gray-900">
-                    Resource Persons:
+                    Resource Persons
                 </h2>
                 <hr className="my-2 border-gray-200" />
             </div>

@@ -27,7 +27,7 @@ export default function WhatYouNeed() {
         <div className="container mx-auto px-4 py-16 max-w-7xl">
             <div className="mb-8">
                 <h2 className="text-3xl font-bold text-gray-900">
-                    What You'll Need to Get Started:
+                    What You&apos;ll Need to Get Started
                 </h2>
                 <hr className="my-2 border-gray-200" />
             </div>
@@ -41,7 +41,9 @@ export default function WhatYouNeed() {
                             className={`${requirement.bgColor} rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300`}
                         >
                             <div className="flex items-start gap-4">
-                                <div className={`${requirement.color} text-white rounded-xl p-3 flex-shrink-0`}>
+                                <div
+                                    className={`${requirement.color} text-white rounded-xl p-3 flex-shrink-0`}
+                                >
                                     <Icon className="w-6 h-6" />
                                 </div>
                                 <div className="flex-1">
