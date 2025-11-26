@@ -12,9 +12,14 @@ import {
     Search,
     TrendingUp,
     X,
+    Code,
+    Cpu,
+    FlaskConical,
+    Layers,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
 
 interface Course {
     _id: string;
@@ -22,14 +27,24 @@ interface Course {
     title: string;
     description: string;
     thumbnail?: string;
+    category?: string;
     createdAt: string;
     updatedAt: string;
 }
+
+// Map category names to icons
+const categoryIcons: Record<string, typeof Code> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
+    [COURSE_CATEGORIES.PROGRAMMING]: Code,
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
+    [COURSE_CATEGORIES.VLSI]: Layers,
+};
 
 export default function CoursesPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [allCourses, setAllCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
+    const [activeCategory, setActiveCategory] = useState("all");
 
     useEffect(() => {
         async function fetchCourses() {
@@ -46,6 +61,44 @@ export default function CoursesPage() {
         fetchCourses();
     }, []);
 
+    // Build dynamic categories with counts
+    const categories = useMemo(() => {
+        const allCategories = getAllCategories();
+        const categoryCounts: Record<string, number> = {};
+
+        // Count courses per category
+        allCourses.forEach(course => {
+            if (course.category) {
+                categoryCounts[course.category] = (categoryCounts[course.category] || 0) + 1;
+            }
+        });
+
+        // Build category tabs
+        const tabs = [
+            {
+                id: "all",
+                label: "All Courses",
+                icon: Code,
+                count: `${allCourses.length} Courses`
+            }
+        ];
+
+        // Add each category from constants
+        allCategories.forEach(category => {
+            const count = categoryCounts[category] || 0;
+            if (count > 0) { // Only show categories with courses
+                tabs.push({
+                    id: category,
+                    label: category,
+                    icon: categoryIcons[category] || Code,
+                    count: `${count} ${count === 1 ? 'Course' : 'Courses'}`
+                });
+            }
+        });
+
+        return tabs;
+    }, [allCourses]);
+
     const filteredCourses = useMemo(() => {
         return allCourses.filter((course) => {
             const matchesSearch =
@@ -53,9 +106,10 @@ export default function CoursesPage() {
                 course.description
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase());
-            return matchesSearch;
+            const matchesCategory = activeCategory === "all" || course.category === activeCategory;
+            return matchesSearch && matchesCategory;
         });
-    }, [allCourses, searchTerm]);
+    }, [allCourses, searchTerm, activeCategory]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
@@ -87,6 +141,37 @@ export default function CoursesPage() {
             </div>
 
             <Container className="py-10">
+                {/* Category Tabs */}
+                <div className="relative mb-8">
+                    <div className="flex justify-center items-center overflow-x-auto pb-3 scrollbar-hide">
+                        <div className="flex gap-2.5 overflow-x-auto scrollbar-hide">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => setActiveCategory(category.id)}
+                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
+                                        activeCategory === category.id
+                                            ? "bg-primary border-primary text-white shadow-md"
+                                            : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
+                                    }`}
+                                >
+                                    <category.icon className="h-4 w-4" />
+                                    <div className="text-left">
+                                        <div className="text-sm font-semibold whitespace-nowrap">
+                                            {category.label}
+                                        </div>
+                                        {category.count && (
+                                            <div className={`text-xs ${activeCategory === category.id ? 'text-white/80' : 'text-muted-foreground'}`}>
+                                                {category.count}
+                                            </div>
+                                        )}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 {loading ? (
                     <div className="text-center py-20">
                         <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mb-6"></div>
@@ -123,10 +208,13 @@ export default function CoursesPage() {
                                     <Button
                                         variant="outline"
                                         size="lg"
-                                        onClick={() => setSearchTerm("")}
+                                        onClick={() => {
+                                            setSearchTerm("");
+                                            setActiveCategory("all");
+                                        }}
                                         className="px-8 py-3"
                                     >
-                                        Clear Search
+                                        Clear Filters
                                     </Button>
                                 </div>
                             </div>
