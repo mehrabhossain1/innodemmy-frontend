@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -26,7 +27,10 @@ import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import AuthSidebar from "@/components/AuthSidebar";
-import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
+import {
+    COURSE_CATEGORIES,
+    getAllCategories,
+} from "@/lib/constants/categories";
 
 import logo from "@/assets/Logo.png";
 
@@ -56,15 +60,29 @@ interface Course {
 }
 
 export default function Navbar() {
+    const searchParams = useSearchParams();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAuthSidebarOpen, setIsAuthSidebarOpen] = useState(false);
-    const [authInitialView, setAuthInitialView] = useState<"login" | "register">("login");
+    const [authInitialView, setAuthInitialView] = useState<
+        "login" | "register"
+    >("login");
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const [isMoreOpen, setIsMoreOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
     const { user, logout } = useAuth();
+
+    // Handle auth query parameter from enrollment success
+    useEffect(() => {
+        const authParam = searchParams.get("auth");
+        if (authParam === "login" || authParam === "signup") {
+            setAuthInitialView(authParam === "login" ? "login" : "register");
+            setIsAuthSidebarOpen(true);
+            // Clean up URL without reloading
+            window.history.replaceState({}, "", window.location.pathname);
+        }
+    }, [searchParams]);
 
     // Fetch courses
     useEffect(() => {
@@ -86,17 +104,23 @@ export default function Navbar() {
     }, []);
 
     // Build dynamic categories with course counts
-    const courseCategories = getAllCategories().map(category => {
-        const categoryCoursesCount = courses.filter(c => c.category === category).length;
-        return {
-            id: category,
-            name: category,
-            icon: categoryIcons[category] || Code,
-            count: `${categoryCoursesCount} ${categoryCoursesCount === 1 ? 'Course' : 'Courses'}`,
-            color: categoryColors[category] || "text-gray-500",
-            courses: courses.filter(c => c.category === category) // Show all courses, not limited to 3
-        };
-    }).filter(cat => cat.courses.length > 0); // Only show categories with courses
+    const courseCategories = getAllCategories()
+        .map((category) => {
+            const categoryCoursesCount = courses.filter(
+                (c) => c.category === category
+            ).length;
+            return {
+                id: category,
+                name: category,
+                icon: categoryIcons[category] || Code,
+                count: `${categoryCoursesCount} ${
+                    categoryCoursesCount === 1 ? "Course" : "Courses"
+                }`,
+                color: categoryColors[category] || "text-gray-500",
+                courses: courses.filter((c) => c.category === category), // Show all courses, not limited to 3
+            };
+        })
+        .filter((cat) => cat.courses.length > 0); // Only show categories with courses
 
     return (
         <nav className="bg-white dark:bg-background shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-border">
@@ -144,7 +168,11 @@ export default function Navbar() {
                                                     (category) => (
                                                         <div
                                                             key={category.id}
-                                                            onMouseEnter={() => setHoveredCategory(category.id)}
+                                                            onMouseEnter={() =>
+                                                                setHoveredCategory(
+                                                                    category.id
+                                                                )
+                                                            }
                                                             className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group cursor-pointer"
                                                         >
                                                             <div className="flex-shrink-0">
@@ -156,10 +184,14 @@ export default function Navbar() {
                                                             </div>
                                                             <div className="flex-1">
                                                                 <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors">
-                                                                    {category.name}
+                                                                    {
+                                                                        category.name
+                                                                    }
                                                                 </div>
                                                                 <div className="text-xs text-gray-500 dark:text-muted-foreground">
-                                                                    {category.count}
+                                                                    {
+                                                                        category.count
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -173,53 +205,88 @@ export default function Navbar() {
                                             <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4">
                                                 {hoveredCategory
                                                     ? `${hoveredCategory} Courses`
-                                                    : "Courses"
-                                                }
+                                                    : "Courses"}
                                             </h3>
                                             <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin">
                                                 {(() => {
-                                                    const category = courseCategories.find(c => c.id === hoveredCategory);
-                                                    const coursesToShow = category?.courses || courseCategories[0]?.courses || [];
+                                                    const category =
+                                                        courseCategories.find(
+                                                            (c) =>
+                                                                c.id ===
+                                                                hoveredCategory
+                                                        );
+                                                    const coursesToShow =
+                                                        category?.courses ||
+                                                        courseCategories[0]
+                                                            ?.courses ||
+                                                        [];
 
-                                                    if (coursesToShow.length === 0) {
+                                                    if (
+                                                        coursesToShow.length ===
+                                                        0
+                                                    ) {
                                                         return (
                                                             <div className="text-center py-8 text-muted-foreground text-sm">
-                                                                No courses available
+                                                                No courses
+                                                                available
                                                             </div>
                                                         );
                                                     }
 
-                                                    return coursesToShow.map((course) => {
-                                                        // Use slug for URL if available, otherwise fall back to id
-                                                        const courseUrl = course.slug ? `/courses/${course.slug}` : `/courses/${course._id}`;
-                                                        return (
-                                                        <Link
-                                                            key={course._id}
-                                                            href={courseUrl}
-                                                            className="flex gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group"
-                                                        >
-                                                            {course.thumbnail && (
-                                                                <div className="flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
-                                                                    <Image
-                                                                        src={course.thumbnail}
-                                                                        alt={course.title}
-                                                                        width={240}
-                                                                        height={160}
-                                                                        className="w-full h-full object-cover"
-                                                                        quality={95}
-                                                                        priority={false}
-                                                                        unoptimized
-                                                                    />
-                                                                </div>
-                                                            )}
-                                                            <div className="flex-1 min-w-0 flex items-center">
-                                                                <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                                                                    {course.title}
-                                                                </div>
-                                                            </div>
-                                                        </Link>
-                                                        );
-                                                    });
+                                                    return coursesToShow.map(
+                                                        (course) => {
+                                                            // Use slug for URL if available, otherwise fall back to id
+                                                            const courseUrl =
+                                                                course.slug
+                                                                    ? `/courses/${course.slug}`
+                                                                    : `/courses/${course._id}`;
+                                                            return (
+                                                                <Link
+                                                                    key={
+                                                                        course._id
+                                                                    }
+                                                                    href={
+                                                                        courseUrl
+                                                                    }
+                                                                    className="flex gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group"
+                                                                >
+                                                                    {course.thumbnail && (
+                                                                        <div className="flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                            <Image
+                                                                                src={
+                                                                                    course.thumbnail
+                                                                                }
+                                                                                alt={
+                                                                                    course.title
+                                                                                }
+                                                                                width={
+                                                                                    240
+                                                                                }
+                                                                                height={
+                                                                                    160
+                                                                                }
+                                                                                className="w-full h-full object-cover"
+                                                                                quality={
+                                                                                    95
+                                                                                }
+                                                                                priority={
+                                                                                    false
+                                                                                }
+                                                                                unoptimized
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="flex-1 min-w-0 flex items-center">
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                                                                            {
+                                                                                course.title
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </Link>
+                                                            );
+                                                        }
+                                                    );
                                                 })()}
                                             </div>
 

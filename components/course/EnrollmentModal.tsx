@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +13,8 @@ import {
     Hash,
     CheckCircle2,
     Mail,
+    LogIn,
+    UserPlus,
 } from "lucide-react";
 
 interface EnrollmentModalProps {
@@ -29,6 +32,7 @@ export default function EnrollmentModal({
     coursePrice,
     courseId,
 }: EnrollmentModalProps) {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -109,13 +113,48 @@ export default function EnrollmentModal({
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         Enrollment Submitted Successfully!
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                         আপনার এনরোলমেন্ট সফলভাবে জমা দেওয়া হয়েছে। আমরা শীঘ্রই
                         আপনার পেমেন্ট যাচাই করে আপনার সাথে যোগাযোগ করব।
                     </p>
+
+                    {/* Login/Signup Prompt */}
+                    <div className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 rounded-lg p-4 mb-6">
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                            <strong>Next Step:</strong> Create an account or
+                            login to access your enrolled courses and track your
+                            progress.
+                        </p>
+                        <div className="flex gap-2">
+                            <Button
+                                onClick={() => {
+                                    handleSuccessClose();
+                                    // Redirect to home page with login intent
+                                    router.push("/?auth=login");
+                                }}
+                                className="flex-1 bg-primary hover:bg-primary/90 text-white text-sm"
+                            >
+                                <LogIn className="w-4 h-4 mr-1" />
+                                Login
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                    handleSuccessClose();
+                                    // Redirect to home page with signup intent
+                                    router.push("/?auth=signup");
+                                }}
+                                className="flex-1 bg-secondary hover:bg-secondary/90 text-white text-sm"
+                            >
+                                <UserPlus className="w-4 h-4 mr-1" />
+                                Sign Up
+                            </Button>
+                        </div>
+                    </div>
+
                     <Button
                         onClick={handleSuccessClose}
-                        className="bg-green-600 hover:bg-green-700 text-white w-full"
+                        variant="outline"
+                        className="w-full hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                         Close
                     </Button>
