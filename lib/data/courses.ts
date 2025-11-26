@@ -1172,9 +1172,231 @@ export const coursesData: Course[] = [
         ],
     },
 
-    // VLSI Physical Design Training
+    // Scientific Writing, Publication & Communication Mastery
     {
         _id: "7",
+        title: "Scientific Writing, Publication & Communication Mastery",
+        slug: "scientific-writing-publication-&-communication-mastery",
+        description: `Master the art of scientific writing from abstract to publication. Learn to craft compelling research papers, manage references effectively, respond to peer reviewers, and present your findings at conferences. Complete training in every aspect of academic communication with AI-powered tools and hands-on practice.`,
+        thumbnail: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-02-25"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 10000,
+        totalLiveClasses: 10,
+        totalWeeks: 5,
+        totalModules: 10,
+        totalProjects: 3,
+        totalExercises: 15,
+
+        //
+        idealFor: [
+            "Researchers preparing manuscripts for publication",
+            "Graduate students writing thesis and research papers",
+            "Healthcare professionals looking to publish their work",
+            "Faculty members guiding student publications",
+            "Anyone aspiring to excel in scientific communication",
+        ],
+
+        //
+        faq: [
+            {
+                question: "Who should take this course?",
+                answer: "This course is perfect for researchers, graduate students, healthcare professionals, and faculty members who want to master scientific writing and publication skills. No prior publication experience required.",
+            },
+            {
+                question: "What makes this course different?",
+                answer: "We integrate cutting-edge AI tools (ChatGPT, Grammarly, Scite, Zotero) throughout the course to enhance your writing efficiency and quality. You'll get hands-on practice with real paper writing, not just theory.",
+            },
+            {
+                question: "Will I learn to write a complete research paper?",
+                answer: "Absolutely! You'll learn to write every section of a research paper (Abstract, Introduction, Methods, Results, Discussion) with AI assistance and instructor guidance.",
+            },
+            {
+                question: "What about reference management?",
+                answer: "Yes! We cover citation styles (Vancouver, Harvard) and teach you to use Zotero with ChatGPT plugins for efficient reference management.",
+            },
+            {
+                question: "Will I learn how to respond to reviewers?",
+                answer: "Yes! Module 9 covers handling peer review feedback professionally, including simulations where you'll use ChatGPT to draft reviewer responses.",
+            },
+            {
+                question: "Do you cover conference presentations?",
+                answer: "Absolutely! Module 10 teaches poster design, oral presentations, and Q&A techniques. You'll design a poster in Canva and generate presentation scripts with AI.",
+            },
+            {
+                question: "What deliverables will I have by the end?",
+                answer: "You'll complete a full IMRaD manuscript, a conference poster, and reviewer reply pack - all publication-ready materials.",
+            },
+            {
+                question: "How long is the course?",
+                answer: "The course spans 5 weeks with 10 live classes covering all aspects of scientific writing and communication.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Structure of a Scientific Paper (IMRaD)",
+                topics: [
+                    "Understanding the IMRaD format (Introduction, Methods, Results, and Discussion)",
+                    "Organization and flow of scientific papers",
+                    "Common structural mistakes to avoid",
+                    "Reading and analyzing well-structured papers",
+                ],
+                exercises: [
+                    "Rearrange a disordered paper with ChatGPT guidance",
+                    "Identify structural elements in published papers",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Abstract Writing",
+                topics: [
+                    "Structured vs unstructured abstract formats",
+                    "Key components: Background, Methods, Results, Conclusion",
+                    "Word count optimization",
+                    "Common abstract writing pitfalls",
+                ],
+                exercises: [
+                    "Generate abstracts with AI assistance",
+                    "Refine language with Grammarly AI",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Introduction Writing",
+                topics: [
+                    "Building the Global → Local → Gap → Aim story",
+                    "Literature contextualization",
+                    "Identifying and articulating research gaps",
+                    "Crafting clear research objectives",
+                ],
+                exercises: [
+                    "Use Scite to fetch citations",
+                    "Summarize context via ChatGPT",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Methods Writing",
+                topics: [
+                    "Translating protocol to publishable Methods section",
+                    "Study design description",
+                    "Participant selection and sampling",
+                    "Data collection and analysis procedures",
+                    "Ethical considerations statement",
+                ],
+                exercises: [
+                    "Create Methods draft using ChatGPT templates",
+                    "Adapt protocol to manuscript format",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Results Writing",
+                topics: [
+                    "Presenting quantitative findings logically",
+                    "Table and figure design principles",
+                    "Narrative presentation of statistical results",
+                    "Avoiding interpretation in Results section",
+                ],
+                exercises: [
+                    "Convert SPSS outputs into narrative sentences",
+                    "Design publication-quality tables",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Discussion Writing",
+                topics: [
+                    "Interpretation of findings",
+                    "Comparison with existing literature",
+                    "Addressing study limitations",
+                    "Clinical/practical implications",
+                    "Future research directions",
+                    "Strong conclusion writing",
+                ],
+                exercises: [
+                    "Generate discussion drafts with AI",
+                    "Validate interpretations with Scite citations",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: References & Citation Management",
+                topics: [
+                    "Reference styles (Vancouver, Harvard, APA)",
+                    "In-text citation best practices",
+                    "Using Zotero for reference management",
+                    "ChatGPT plugins for citations",
+                    "Avoiding citation errors",
+                ],
+                exercises: [
+                    "Manage citations with Zotero",
+                    "Format references using ChatGPT plugins",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Journal Selection & Submission Strategy",
+                topics: [
+                    "Identifying appropriate journals",
+                    "Impact factor and journal metrics",
+                    "Predatory journals identification",
+                    "Cover letter drafting",
+                    "Manuscript submission process",
+                ],
+                exercises: [
+                    "Use Journal Finder AI for 5 best fit journals",
+                    "Draft cover letter with AI assistance",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle: "Module 9: Responding to Reviewers & Revision",
+                topics: [
+                    "Understanding peer review process",
+                    "Categorizing reviewer comments",
+                    "Professional response strategies",
+                    "Revision letter writing",
+                    "Tracking changes effectively",
+                ],
+                exercises: [
+                    "Upload reviewer comments to ChatGPT",
+                    "Draft point-by-point responses",
+                ],
+            },
+            {
+                classNumber: 10,
+                moduleTitle: "Module 10: Conference Presentation Skills",
+                topics: [
+                    "Abstract submission for conferences",
+                    "Poster design principles and layout",
+                    "Oral presentation structure",
+                    "Effective visual communication",
+                    "Q&A handling techniques",
+                ],
+                exercises: [
+                    "Design poster in Canva",
+                    "Generate speech script via ChatGPT",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete IMRaD manuscript from abstract to references",
+            "Conference poster design and presentation",
+            "Reviewer response and revision package",
+        ],
+    },
+
+    // VLSI Physical Design Training
+    {
+        _id: "8",
         title: "VLSI Physical Design Training",
         slug: "vlsi-physical-design-training",
         description: `Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.`,
