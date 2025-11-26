@@ -20,6 +20,7 @@ import {
     Cpu,
     FlaskConical,
     Layers,
+    MoreHorizontal,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
@@ -118,7 +119,7 @@ export default function Navbar() {
                             onMouseEnter={() => setIsCoursesOpen(true)}
                             onMouseLeave={() => setIsCoursesOpen(false)}
                         >
-                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-accent">
+                            <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
                                 All Courses
                                 <ChevronDown
                                     className={`h-4 w-4 transition-transform ${
@@ -142,10 +143,10 @@ export default function Navbar() {
                                                         <div
                                                             key={category.id}
                                                             onMouseEnter={() => setHoveredCategory(category.id)}
-                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group cursor-pointer"
+                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group cursor-pointer"
                                                         >
                                                             <div className="flex-shrink-0">
-                                                                <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                                                <div className="w-10 h-10 bg-gray-100 dark:bg-muted rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                                                     <category.icon
                                                                         className={`h-5 w-5 ${category.color}`}
                                                                     />
@@ -193,7 +194,7 @@ export default function Navbar() {
                                                         <Link
                                                             key={course._id}
                                                             href={courseUrl}
-                                                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-accent transition-colors group"
+                                                            className="flex gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors group"
                                                         >
                                                             {course.thumbnail && (
                                                                 <div className="flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gray-100 dark:bg-muted">
@@ -237,22 +238,37 @@ export default function Navbar() {
 
                         <Link
                             href="/webinar"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-accent"
+                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
                         >
                             Free Webinar
                         </Link>
-                        <Link
-                            href="/blogs"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-accent"
-                        >
-                            Blogs
-                        </Link>
-                        <Link
-                            href="/aboutus"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-accent"
-                        >
-                            About Us
-                        </Link>
+
+                        {/* More Dropdown */}
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                    More
+                                    <ChevronDown className="h-4 w-4" />
+                                </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="start" className="w-48">
+                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
+                                    <Link href="/blogs" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                                        Blogs
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
+                                    <Link href="/career" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                                        Career
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild className="focus:bg-primary/10 dark:focus:bg-primary/20">
+                                    <Link href="/aboutus" className="w-full cursor-pointer focus:text-primary hover:text-primary">
+                                        About Us
+                                    </Link>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
 
                     {/* Right Side Actions */}
@@ -324,7 +340,7 @@ export default function Navbar() {
                                 <Button
                                     variant="ghost"
                                     onClick={() => setIsAuthSidebarOpen(true)}
-                                    className="text-gray-700 dark:text-foreground hover:text-primary"
+                                    className="text-gray-700 dark:text-foreground hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                                 >
                                     Login
                                 </Button>
@@ -383,32 +399,46 @@ export default function Navbar() {
 
                         <Link
                             href="/courses"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-gray-50 dark:hover:bg-accent rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             All Courses
                         </Link>
                         <Link
                             href="/webinar"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-gray-50 dark:hover:bg-accent rounded-lg"
+                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Free Webinar
                         </Link>
-                        <Link
-                            href="/blogs"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-gray-50 dark:hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Blogs
-                        </Link>
-                        <Link
-                            href="/aboutus"
-                            className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-gray-50 dark:hover:bg-accent rounded-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            About Us
-                        </Link>
+
+                        {/* More section in mobile */}
+                        <div className="border-t border-gray-200 dark:border-border pt-2 mt-2">
+                            <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase">
+                                More
+                            </div>
+                            <Link
+                                href="/blogs"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Blogs
+                            </Link>
+                            <Link
+                                href="/career"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Career
+                            </Link>
+                            <Link
+                                href="/aboutus"
+                                className="block text-foreground hover:text-primary px-3 py-2 text-base font-medium transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                About Us
+                            </Link>
+                        </div>
 
                         {user ? (
                             <div className="border-t border-gray-200 dark:border-border pt-3 mt-3 space-y-2">
