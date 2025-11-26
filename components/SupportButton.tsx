@@ -7,12 +7,13 @@ import Image from "next/image";
 export default function SupportButton() {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Contact information
-    const phoneNumber = "+8801704258972";
-    const whatsappNumber = "+8801704258972";
+    // Contact information - using enrollment phone number
+    const phoneNumber = "+8801521428597";
+    const whatsappNumber = "8801521428597";
 
     const handleWhatsApp = () => {
-        window.open(`https://wa.me/${whatsappNumber}`, "_blank");
+        const message = "Hi, I need help with course enrollment. Can you assist me?";
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
     };
 
     const handleCall = () => {
@@ -25,19 +26,19 @@ export default function SupportButton() {
             <div className="fixed bottom-[calc(1.5rem+60px)] right-6 z-[9999]">
                 {/* Expanded Card */}
                 {isOpen && (
-                    <div className="absolute bottom-20 right-0 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-64 border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out">
+                    <div className="absolute bottom-16 right-0 bg-white dark:bg-gray-900 rounded-xl shadow-2xl p-4 w-56 border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out">
                         {/* Header */}
-                        <div className="text-center mb-4">
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        <div className="text-center mb-3">
+                            <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-2">
                                 Talk to Career Counselor
                             </h3>
                             {/* Avatar */}
-                            <div className="relative w-24 h-24 mx-auto mb-4">
+                            <div className="relative w-16 h-16 mx-auto mb-3">
                                 <Image
                                     src="https://img.freepik.com/premium-vector/customer-support-flat-design-illustration_1149263-14708.jpg"
                                     alt="Customer Support"
-                                    width={96}
-                                    height={96}
+                                    width={64}
+                                    height={64}
                                     className="rounded-full object-cover"
                                     unoptimized
                                 />
@@ -49,18 +50,18 @@ export default function SupportButton() {
                             {/* WhatsApp Button */}
                             <button
                                 onClick={handleWhatsApp}
-                                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold py-2 rounded-lg transition-colors duration-200 cursor-pointer text-sm"
                             >
-                                <MessageCircle className="w-5 h-5" />
+                                <MessageCircle className="w-4 h-4" />
                                 <span>WHATSAPP</span>
                             </button>
 
                             {/* Call Button */}
                             <button
                                 onClick={handleCall}
-                                className="w-full flex items-center justify-center gap-2 bg-[#FFC107] hover:bg-[#FFB300] text-gray-900 font-semibold py-3 rounded-lg transition-colors duration-200"
+                                className="w-full flex items-center justify-center gap-2 bg-[#FFC107] hover:bg-[#FFB300] text-gray-900 font-semibold py-2 rounded-lg transition-colors duration-200 cursor-pointer text-sm"
                             >
-                                <Phone className="w-5 h-5" />
+                                <Phone className="w-4 h-4" />
                                 <span>CALL</span>
                             </button>
                         </div>
@@ -73,18 +74,18 @@ export default function SupportButton() {
                         console.log("Button clicked, isOpen:", isOpen);
                         setIsOpen(!isOpen);
                     }}
-                    className="relative bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 z-10"
+                    className="relative bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 z-10 cursor-pointer"
                     type="button"
                 >
                     {isOpen ? (
                         <>
-                            <X className="w-6 h-6" />
-                            <span className="text-sm">বন্ধ করুন</span>
+                            <X className="w-5 h-5" />
+                            <span className="text-xs">বন্ধ করুন</span>
                         </>
                     ) : (
                         <>
-                            <MessageCircle className="w-6 h-6" />
-                            <span className="text-sm">সাপোর্ট নিন</span>
+                            <MessageCircle className="w-5 h-5" />
+                            <span className="text-xs">সাপোর্ট নিন</span>
                         </>
                     )}
 
