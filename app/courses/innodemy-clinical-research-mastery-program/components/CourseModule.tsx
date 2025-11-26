@@ -493,7 +493,7 @@ export default function CourseModule() {
         <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="Course Module" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {modules.map((module) => (
                     <div
                         key={module.id}
@@ -501,8 +501,8 @@ export default function CourseModule() {
                             module.bgColor
                         } dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                             expandedModules.includes(module.id)
-                                ? "shadow-lg"
-                                : "shadow-md hover:shadow-lg"
+                                ? "shadow-lg h-auto"
+                                : "shadow-md hover:shadow-lg h-[200px]"
                         }`}
                     >
                         {/* Module Header */}
