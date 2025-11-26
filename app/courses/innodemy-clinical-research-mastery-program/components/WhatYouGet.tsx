@@ -1,4 +1,5 @@
 "use client";
+import SectionTitle from "@/components/course/SectionTitle";
 
 export default function WhatYouGet() {
     const benefits = [
@@ -42,13 +43,7 @@ export default function WhatYouGet() {
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            {/* Title with underline */}
-            <div className="mb-10 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                    What You&apos;ll Get in This Course
-                </h2>
-                <div className="w-48 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 mx-auto rounded-full"></div>
-            </div>
+            <SectionTitle title="What You'll Get in This Course" />
 
             {/* Grid Layout - More Compact */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
