@@ -1,58 +1,48 @@
 "use client";
-import {
-    GraduationCap,
-    FlaskConical,
-    Stethoscope,
-    BookOpenCheck,
-} from "lucide-react";
 import SectionTitle from "@/components/course/SectionTitle";
 
 export default function WhoThisCourseIsFor() {
     const audiences = [
         {
-            icon: GraduationCap,
+            image: "https://img.icons8.com/color/96/student-center.png",
             title: "Professionals in the medical and healthcare sectors who plan to pursue higher studies abroad, including PhD opportunities.",
-            color: "bg-blue-500",
-            bgColor: "bg-blue-50",
         },
         {
-            icon: FlaskConical,
+            image: "https://img.icons8.com/color/96/biotech.png",
             title: "Researchers working in pharmaceutical, biotechnology, or life science fields seeking to strengthen their research foundation.",
-            color: "bg-purple-500",
-            bgColor: "bg-purple-50",
         },
         {
-            icon: Stethoscope,
+            image: "https://img.icons8.com/color/96/stethoscope.png",
             title: "MBBS/BDS students or graduates interested in developing strong research skills for academic or clinical careers.",
-            color: "bg-green-500",
-            bgColor: "bg-green-50",
         },
         {
-            icon: BookOpenCheck,
+            image: "https://img.icons8.com/color/96/literature.png",
             title: "Anyone who wants to build solid expertise in research methodology, scientific literacy, and academic writing.",
-            color: "bg-amber-500",
-            bgColor: "bg-amber-50",
         },
     ];
 
     return (
-        <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="Who This Course is For" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {audiences.map((audience, index) => {
-                    const Icon = audience.icon;
                     return (
                         <div
                             key={index}
-                            className={`${audience.bgColor} rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300`}
+                            className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200"
                         >
                             <div className="flex items-start gap-4">
-                                <div
-                                    className={`${audience.color} text-white rounded-xl p-3 flex-shrink-0`}
-                                >
-                                    <Icon className="w-6 h-6" />
+                                {/* Image Icon */}
+                                <div className="flex-shrink-0">
+                                    <img
+                                        src={audience.image}
+                                        alt={audience.title}
+                                        className="w-16 h-16 object-contain"
+                                    />
                                 </div>
+
+                                {/* Title */}
                                 <div className="flex-1">
                                     <p className="text-gray-700 text-base leading-relaxed font-medium">
                                         {audience.title}
