@@ -91,7 +91,7 @@ export default function Navbar() {
             icon: categoryIcons[category] || Code,
             count: `${categoryCoursesCount} ${categoryCoursesCount === 1 ? 'Course' : 'Courses'}`,
             color: categoryColors[category] || "text-gray-500",
-            courses: courses.filter(c => c.category === category).slice(0, 3)
+            courses: courses.filter(c => c.category === category) // Show all courses, not limited to 3
         };
     }).filter(cat => cat.courses.length > 0); // Only show categories with courses
 
@@ -166,14 +166,14 @@ export default function Navbar() {
                                         </div>
 
                                         {/* Right: Courses from Hovered Category */}
-                                        <div className="border-l border-gray-200 dark:border-border pl-6">
+                                        <div className="border-l border-gray-200 dark:border-border pl-6 flex flex-col">
                                             <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4">
                                                 {hoveredCategory
                                                     ? `${hoveredCategory} Courses`
                                                     : "Courses"
                                                 }
                                             </h3>
-                                            <div className="space-y-3">
+                                            <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin">
                                                 {(() => {
                                                     const category = courseCategories.find(c => c.id === hoveredCategory);
                                                     const coursesToShow = category?.courses || courseCategories[0]?.courses || [];
