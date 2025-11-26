@@ -4,7 +4,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { X, CreditCard, Phone, User, Hash, CheckCircle2, Mail } from "lucide-react";
+import {
+    X,
+    CreditCard,
+    Phone,
+    User,
+    Hash,
+    CheckCircle2,
+    Mail,
+} from "lucide-react";
 
 interface EnrollmentModalProps {
     isOpen: boolean;
@@ -26,6 +34,7 @@ export default function EnrollmentModal({
         email: "",
         phone: "",
         transactionId: "",
+        paymentNumberLastDigits: "",
         paymentMethod: "bkash" as "bkash" | "nagad",
     });
 
@@ -81,6 +90,7 @@ export default function EnrollmentModal({
             email: "",
             phone: "",
             transactionId: "",
+            paymentNumberLastDigits: "",
             paymentMethod: "bkash",
         });
         onClose();
@@ -91,7 +101,7 @@ export default function EnrollmentModal({
     // Success Modal
     if (showSuccess) {
         return (
-            <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-[9999] flex items-center justify-center p-4">
                 <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-8 text-center">
                     <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
@@ -100,7 +110,8 @@ export default function EnrollmentModal({
                         Enrollment Submitted Successfully!
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm">
-                        আপনার এনরোলমেন্ট সফলভাবে জমা দেওয়া হয়েছে। আমরা শীঘ্রই আপনার পেমেন্ট যাচাই করে আপনার সাথে যোগাযোগ করব।
+                        আপনার এনরোলমেন্ট সফলভাবে জমা দেওয়া হয়েছে। আমরা শীঘ্রই
+                        আপনার পেমেন্ট যাচাই করে আপনার সাথে যোগাযোগ করব।
                     </p>
                     <Button
                         onClick={handleSuccessClose}
@@ -114,7 +125,7 @@ export default function EnrollmentModal({
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-[9999] flex items-center justify-center p-4">
             <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
                 {/* Header */}
                 <div className="sticky top-0 bg-primary p-3 flex items-center justify-between">
@@ -133,31 +144,44 @@ export default function EnrollmentModal({
                 </div>
 
                 {/* Payment Instructions */}
-                <div className="bg-primary/5 dark:bg-primary/10 border-l-4 border-primary p-2 m-3 rounded">
+                <div className="bg-primary/5 dark:bg-primary/10 border-l-4 border-primary p-2 m-2.5 rounded">
                     <h3 className="font-bold text-primary mb-1 flex items-center gap-1 text-xs">
                         <CreditCard className="w-3 h-3" />
                         Payment Guide
                     </h3>
                     <div className="space-y-1 text-xs text-gray-700 dark:text-gray-300">
                         <p>
-                            Send <strong>৳{coursePrice.toLocaleString()}</strong> to:
+                            Send{" "}
+                            <strong>৳{coursePrice.toLocaleString()}</strong> to:
                         </p>
                         <div className="bg-white dark:bg-gray-700 rounded p-1.5 border border-primary/20 dark:border-primary/30">
                             <div className="flex items-center justify-between">
-                                <span className="font-semibold text-xs">bKash/Nagad:</span>
+                                <span className="font-semibold text-xs">
+                                    bKash/Nagad:
+                                </span>
                                 <span className="font-mono bg-primary/10 dark:bg-primary/20 px-2 py-0.5 rounded text-xs">
                                     01521428597
                                 </span>
                             </div>
                         </div>
+                        <p className="mt-1.5 pt-1 border-t border-primary/20 dark:border-primary/30">
+                            After payment, knock us on WhatsApp:{" "}
+                            <strong className="font-mono">01521428597</strong>
+                        </p>
                     </div>
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="p-3 space-y-3">
-                    {/* Name Field */}
+                <form
+                    onSubmit={handleSubmit}
+                    className="px-2.5 pb-2.5 pt-0 space-y-2.5"
+                >
+                    {/* Name Field - Full Width */}
                     <div className="space-y-1">
-                        <Label htmlFor="name" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
+                        <Label
+                            htmlFor="name"
+                            className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
+                        >
                             <User className="w-3 h-3 text-primary" />
                             Your Name <span className="text-red-500">*</span>
                         </Label>
@@ -169,100 +193,155 @@ export default function EnrollmentModal({
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="h-9 text-sm"
+                            className="h-8 text-sm"
                         />
                     </div>
 
-                    {/* Email Field */}
-                    <div className="space-y-1">
-                        <Label htmlFor="email" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
-                            <Mail className="w-3 h-3 text-primary" />
-                            Email <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="your@email.com"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="h-9 text-sm"
-                        />
-                    </div>
+                    {/* Email and Phone - 2 Column Grid */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {/* Email Field */}
+                        <div className="space-y-1">
+                            <Label
+                                htmlFor="email"
+                                className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
+                            >
+                                <Mail className="w-3 h-3 text-primary" />
+                                Email <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="your@email.com"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                className="h-8 text-sm"
+                            />
+                        </div>
 
-                    {/* Phone Field */}
-                    <div className="space-y-1">
-                        <Label htmlFor="phone" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
-                            <Phone className="w-3 h-3 text-primary" />
-                            Phone Number <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                            id="phone"
-                            name="phone"
-                            type="tel"
-                            placeholder="01XXXXXXXXX"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            pattern="^01[0-9]{9}$"
-                            className="h-9 text-sm"
-                        />
+                        {/* Phone Field */}
+                        <div className="space-y-1">
+                            <Label
+                                htmlFor="phone"
+                                className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
+                            >
+                                <Phone className="w-3 h-3 text-primary" />
+                                Phone <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                placeholder="01XXXXXXXXX"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                required
+                                pattern="^01[0-9]{9}$"
+                                className="h-8 text-sm"
+                            />
+                        </div>
                     </div>
 
                     {/* Payment Method Selection */}
                     <div className="space-y-1">
                         <Label className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
                             <CreditCard className="w-3 h-3 text-primary" />
-                            Payment Method <span className="text-red-500">*</span>
+                            Payment Method{" "}
+                            <span className="text-red-500">*</span>
                         </Label>
                         <div className="grid grid-cols-2 gap-2">
                             <button
                                 type="button"
                                 onClick={() =>
-                                    setFormData((prev) => ({ ...prev, paymentMethod: "bkash" }))
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        paymentMethod: "bkash",
+                                    }))
                                 }
-                                className={`p-2 rounded border-2 transition text-center ${
+                                className={`p-1.5 rounded border-2 transition text-center ${
                                     formData.paymentMethod === "bkash"
                                         ? "border-pink-500 bg-pink-50 dark:bg-pink-900/30"
                                         : "border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-400"
                                 }`}
                             >
-                                <div className="text-base font-bold text-pink-600 dark:text-pink-400">bKash</div>
+                                <div className="text-sm font-bold text-pink-600 dark:text-pink-400">
+                                    bKash
+                                </div>
                             </button>
                             <button
                                 type="button"
                                 onClick={() =>
-                                    setFormData((prev) => ({ ...prev, paymentMethod: "nagad" }))
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        paymentMethod: "nagad",
+                                    }))
                                 }
-                                className={`p-2 rounded border-2 transition text-center ${
+                                className={`p-1.5 rounded border-2 transition text-center ${
                                     formData.paymentMethod === "nagad"
                                         ? "border-orange-500 bg-orange-50 dark:bg-orange-900/30"
                                         : "border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-400"
                                 }`}
                             >
-                                <div className="text-base font-bold text-orange-600 dark:text-orange-400">Nagad</div>
+                                <div className="text-sm font-bold text-orange-600 dark:text-orange-400">
+                                    Nagad
+                                </div>
                             </button>
                         </div>
                     </div>
 
-                    {/* Transaction ID Field */}
-                    <div className="space-y-1">
-                        <Label htmlFor="transactionId" className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1">
-                            <Hash className="w-3 h-3 text-primary" />
-                            Transaction ID <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                            id="transactionId"
-                            name="transactionId"
-                            type="text"
-                            placeholder="e.g. 9A1B2C3D4E"
-                            value={formData.transactionId}
-                            onChange={handleChange}
-                            required
-                            className="h-9 text-sm font-mono"
-                        />
+                    {/* Transaction ID and Last 4 Digits - 2 Column Grid */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {/* Transaction ID Field */}
+                        <div className="space-y-1">
+                            <Label
+                                htmlFor="transactionId"
+                                className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
+                            >
+                                <Hash className="w-3 h-3 text-primary" />
+                                Transaction ID{" "}
+                                <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                                id="transactionId"
+                                name="transactionId"
+                                type="text"
+                                placeholder="e.g. 9A1B2C3D4E"
+                                value={formData.transactionId}
+                                onChange={handleChange}
+                                required
+                                className="h-8 text-sm font-mono"
+                            />
+                        </div>
+
+                        {/* Payment Number Last 4 Digits Field */}
+                        <div className="space-y-1">
+                            <Label
+                                htmlFor="paymentNumberLastDigits"
+                                className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
+                            >
+                                <Phone className="w-3 h-3 text-primary" />
+                                Last 4 Digits{" "}
+                                <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                                id="paymentNumberLastDigits"
+                                name="paymentNumberLastDigits"
+                                type="text"
+                                placeholder="1234"
+                                value={formData.paymentNumberLastDigits}
+                                onChange={handleChange}
+                                required
+                                pattern="^[0-9]{4}$"
+                                maxLength={4}
+                                className="h-8 text-sm font-mono"
+                            />
+                        </div>
                     </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
+                        Enter the last 4 digits of the number you used for
+                        payment
+                    </p>
 
                     {/* Error Message */}
                     {errorMessage && (
@@ -272,19 +351,19 @@ export default function EnrollmentModal({
                     )}
 
                     {/* Submit Button */}
-                    <div className="flex gap-2 pt-1">
+                    <div className="flex gap-2 pt-0.5">
                         <Button
                             type="button"
                             variant="outline"
                             onClick={onClose}
-                            className="flex-1 h-9 text-xs hover:bg-secondary hover:text-white hover:border-secondary"
+                            className="flex-1 h-8 text-xs hover:bg-secondary hover:text-white hover:border-secondary"
                             disabled={isSubmitting}
                         >
                             Cancel
                         </Button>
                         <Button
                             type="submit"
-                            className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold h-9 text-xs"
+                            className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold h-8 text-xs"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? (
