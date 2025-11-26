@@ -242,16 +242,16 @@ export default function Footer() {
                                             Phone
                                         </p>
                                         <a
-                                            href="tel:+8801704258972"
+                                            href="tel:+8801805208858"
                                             className="text-sm text-gray-700 hover:text-primary transition-colors block"
                                         >
-                                            +880 1704 258972
+                                            +880 1805 208858
                                         </a>
                                         <a
-                                            href="tel:+880175260272"
+                                            href="tel:+8801805208859"
                                             className="text-sm text-gray-700 hover:text-primary transition-colors block"
                                         >
-                                            +880 1752 60272
+                                            +880 1805 208859
                                         </a>
                                     </div>
                                 </div>
@@ -284,20 +284,38 @@ export default function Footer() {
                         {/* Payment Methods */}
                         <div>
                             <h4 className="text-sm font-bold text-gray-800 mb-4">
-                                Payment Methods
+                                We Accept
                             </h4>
-                            <div className="flex flex-wrap gap-3">
-                                <div className="bg-gradient-to-r from-pink-600 to-pink-500 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg">
-                                    bKash
+                            <div className="flex flex-wrap items-center gap-3">
+                                {/* bKash */}
+                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                    <div className="flex items-center gap-1">
+                                        <span className="text-[#E2136E] font-bold text-lg">bKash</span>
+                                    </div>
                                 </div>
-                                <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg">
-                                    Visa
+                                {/* Nagad */}
+                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                    <div className="flex items-center gap-1">
+                                        <span className="text-[#EE4023] font-bold text-lg">Nagad</span>
+                                    </div>
                                 </div>
-                                <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg">
-                                    Mastercard
+                                {/* Visa */}
+                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                    <svg className="h-6 w-auto" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.8 14.5L21.9 1.5H25.3L23.2 14.5H19.8Z" fill="#00579F"/>
+                                        <path d="M35.6 1.8C34.9 1.6 33.8 1.3 32.5 1.3C29 1.3 26.5 3.2 26.5 5.8C26.5 7.7 28.2 8.7 29.5 9.3C30.9 9.9 31.3 10.3 31.3 10.8C31.3 11.6 30.3 12 29.4 12C28.1 12 27.4 11.8 26.3 11.3L25.9 11.1L25.4 14C26.2 14.4 27.7 14.7 29.3 14.7C33.1 14.7 35.5 12.9 35.5 10.1C35.5 8.6 34.4 7.5 32.2 6.6C31 6.1 30.3 5.7 30.3 5.2C30.3 4.7 30.9 4.2 32.1 4.2C33.1 4.2 33.9 4.4 34.5 4.6L34.8 4.7L35.6 1.8Z" fill="#00579F"/>
+                                        <path d="M40.8 9.8C41.1 9 42.1 6.4 42.1 6.4C42.1 6.4 42.3 5.8 42.4 5.5L42.6 6.5C42.6 6.5 43.2 9.3 43.3 9.8H40.8ZM44.7 1.5H42C41.3 1.5 40.7 1.7 40.4 2.4L35.5 14.5H39.3L40.1 12.5H44.7C44.8 13 45.2 14.5 45.2 14.5H48.5L45.6 1.5H44.7Z" fill="#00579F"/>
+                                        <path d="M16.8 1.5L13.2 10.5L12.8 8.5C12.1 6.3 10.1 3.9 7.9 2.7L10.9 14.5H14.8L20.7 1.5H16.8Z" fill="#00579F"/>
+                                        <path d="M9.4 1.5H3.5L3.4 1.8C7.7 2.8 10.7 5.5 12 8.5L10.7 2.4C10.5 1.7 9.9 1.5 9.4 1.5Z" fill="#FAA61A"/>
+                                    </svg>
                                 </div>
-                                <div className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg">
-                                    Nagad
+                                {/* Mastercard */}
+                                <div className="bg-white rounded-lg px-4 py-2.5 shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                                    <svg className="h-6 w-auto" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="18" cy="15" r="12" fill="#EB001B"/>
+                                        <circle cx="30" cy="15" r="12" fill="#F79E1B"/>
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M24 22.5C26.4853 20.5357 28 17.4853 28 14C28 10.5147 26.4853 7.46429 24 5.5C21.5147 7.46429 20 10.5147 20 14C20 17.4853 21.5147 20.5357 24 22.5Z" fill="#FF5F00"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
