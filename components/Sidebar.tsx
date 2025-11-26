@@ -63,7 +63,7 @@ export default function Sidebar() {
                     {!isCollapsed && (
                         <Link href="/">
                             <span className="text-xl font-bold text-primary">
-                                LMS Dashboard
+                                Innodemy Dashboard
                             </span>
                         </Link>
                     )}
