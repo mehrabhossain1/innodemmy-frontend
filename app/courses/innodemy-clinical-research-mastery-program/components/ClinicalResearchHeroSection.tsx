@@ -44,8 +44,10 @@ export default function ClinicalResearchHeroSection({
 
                         {/* Description */}
                         <div className="mb-6 w-full">
-                            <div className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify">
-                                {courseData.description}
+                            <div className="text-gray-700 text-base leading-relaxed text-justify [&>p:not(:last-child)]:mb-[2px]">
+                                {courseData.description.split('\n').map((para, index) => (
+                                    <p key={index}>{para}</p>
+                                ))}
                             </div>
                         </div>
 
