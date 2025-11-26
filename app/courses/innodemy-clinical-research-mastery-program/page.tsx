@@ -4,6 +4,11 @@ import ClinicalResearchHeroSection from "@/app/courses/innodemy-clinical-researc
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
+import WhatYouGet from "./components/WhatYouGet";
+import WhatYouNeed from "./components/WhatYouNeed";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
+import ResourcePersons from "./components/ResourcePersons";
 
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -78,6 +83,21 @@ const InnodemyClinicalResearchMasteryProgram = () => {
 
             {/* Course Module */}
             <CourseModule />
+
+            {/* What You'll Get Section */}
+            <WhatYouGet />
+
+            {/* Resource Persons Section */}
+            <ResourcePersons />
+
+            {/* What You'll Need Section */}
+            <WhatYouNeed />
+
+            {/* Who This Course is For Section */}
+            <WhoThisCourseIsFor />
+
+            {/* FAQ Section */}
+            <FAQ />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
