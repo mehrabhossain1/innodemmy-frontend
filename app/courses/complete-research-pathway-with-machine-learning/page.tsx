@@ -7,6 +7,7 @@ import EnrollmentModal from "@/components/course/EnrollmentModal";
 import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import WhatYouNeed from "./components/WhatYouNeed";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -112,14 +113,14 @@ export default function CompleteResearchPathwayWithMachineLearning() {
                 {/* TODO: Add ResourcePersons component */}
             </div>
 
-            {/* What You Need */}
-            <div id="what-you-need">
-                {/* TODO: Add WhatYouNeed component */}
-            </div>
-
             {/* Who This Course is For */}
             <div id="who-this-for">
                 <WhoThisCourseIsFor />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
             </div>
 
             {/* FAQ */}
