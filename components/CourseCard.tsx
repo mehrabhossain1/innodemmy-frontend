@@ -37,9 +37,9 @@ export default function CourseCard({
             {/* Glow effect on hover */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-            <div className="relative bg-card backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 ease-out shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full">
+            <div className="relative bg-card backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 ease-out shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full flex flex-col">
                 {/* Image Section */}
-                <div className="relative overflow-hidden h-44">
+                <div className="relative overflow-hidden h-44 flex-shrink-0">
                     <Image
                         src={
                             thumbnail ||
@@ -54,7 +54,7 @@ export default function CourseCard({
                 </div>
 
                 {/* Content Section */}
-                <div className="p-4 space-y-3">
+                <div className="p-4 space-y-3 flex-1 flex flex-col">
                     {/* Batch Badge and Rating */}
                     <div className="flex items-center justify-between">
                         <div className="bg-primary text-white px-3 py-1 rounded text-xs font-bold">
@@ -84,7 +84,7 @@ export default function CourseCard({
 
                     {/* Title */}
                     <Link href={courseUrl}>
-                        <h3 className="text-base font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-snug">
+                        <h3 className="text-base font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors cursor-pointer leading-snug min-h-[2.5rem]">
                             {title}
                         </h3>
                     </Link>
@@ -118,11 +118,13 @@ export default function CourseCard({
                     </div>
 
                     {/* Button */}
-                    <Link href={courseUrl}>
-                        <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
-                            View Details
-                        </Button>
-                    </Link>
+                    <div className="mt-auto pt-2">
+                        <Link href={courseUrl}>
+                            <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+                                View Details
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
