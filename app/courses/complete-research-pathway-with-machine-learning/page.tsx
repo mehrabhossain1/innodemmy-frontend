@@ -8,6 +8,7 @@ import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import WhatYouNeed from "./components/WhatYouNeed";
+import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import FAQ from "./components/FAQ";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
@@ -122,6 +123,11 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             {/* What You Need */}
             <div id="what-you-need">
                 <WhatYouNeed />
+            </div>
+
+            {/* Instructors and Mentors */}
+            <div id="resource-persons">
+                <InstructorsAndMentors />
             </div>
 
             {/* FAQ */}
