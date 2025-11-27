@@ -445,8 +445,7 @@ export const coursesData: Course[] = [
         title: "Innodemy Clinical Research Mastery Program",
         slug: "innodemy-clinical-research-mastery-program",
         description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ClinicalResearchMastery.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-15"),

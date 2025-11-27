@@ -35,8 +35,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/ClinicalResearchMastery.jpg",
         checkoutLink: "/checkout?course=clinical-research",
         videoLabel: "Click to watch the demo class",
         enrollButtonText: "Enroll in Batch →",
