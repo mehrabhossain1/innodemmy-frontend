@@ -12,8 +12,6 @@ import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import CourseModule from "./components/CourseModule";
 import FAQ from "./components/FAQ";
 
-import ClinicalPathWayImage from "@/assets/courses/Research based ML.jpg";
-
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);

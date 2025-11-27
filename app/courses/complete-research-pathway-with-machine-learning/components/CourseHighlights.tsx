@@ -25,7 +25,7 @@ export default function CourseHighlights() {
                         </div>
                         <div className="flex items-baseline gap-2">
                             <div className="text-3xl font-bold bg-gradient-to-br from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                                6
+                                19
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
                                 Modules
@@ -45,7 +45,7 @@ export default function CourseHighlights() {
                         </div>
                         <div className="flex items-baseline gap-2">
                             <div className="text-3xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 bg-clip-text text-transparent">
-                                20+
+                                36
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
                                 Live Classes
@@ -107,7 +107,7 @@ export default function CourseHighlights() {
                                 Start Date
                             </div>
                             <div className="text-sm font-bold text-gray-900 dark:text-white">
-                                TBA
+                                January 15
                             </div>
                         </div>
                     </div>
