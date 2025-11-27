@@ -120,6 +120,100 @@ const modules: Module[] = [
             },
         ],
     },
+    {
+        id: 3,
+        number: 3,
+        title: "File Handling, Error Management, and Object-Oriented Programming",
+        color: "bg-purple-500",
+        bgColor: "bg-purple-50",
+        lightBgColor: "bg-purple-100",
+        topics: [
+            {
+                id: 1,
+                session: 5,
+                instructor: "A",
+                title: "File Handling, CSV & JSON",
+                keyConcepts: [
+                    "Working with text files",
+                    "CSV files using csv module",
+                    "JSON: parsing, serialization",
+                    "With statement, open(), read(), write()",
+                    "File loops and data cleaning",
+                    "File system navigation: os, pathlib",
+                ],
+                projectMilestones: [
+                    "CSV data cleaner & summarizer",
+                    "JSON user profile builder",
+                ],
+            },
+            {
+                id: 2,
+                session: 6,
+                instructor: "A",
+                title: "Error Handling & Debugging",
+                keyConcepts: [
+                    "Error types: syntax, runtime, logic",
+                    "Try-Except blocks, else, finally",
+                    "Custom exceptions with raise",
+                    "Basic debugger: pdb",
+                    "Logging intro",
+                ],
+                projectMilestones: ["File reader with missing file handler"],
+            },
+            {
+                id: 3,
+                session: 7,
+                instructor: "A",
+                title: "Object-Oriented Programming (OOP)",
+                keyConcepts: [
+                    "Classes, objects, __init__, attributes",
+                    "Class methods and self",
+                    "Inheritance and method overriding",
+                    "Encapsulation and __str__",
+                    "Composition",
+                ],
+                projectMilestones: [
+                    "Bank account system",
+                    "Tic-Tac-Toe with OOP",
+                ],
+            },
+        ],
+    },
+    {
+        id: 4,
+        number: 4,
+        title: "Advanced Python Applications & Projects",
+        color: "bg-amber-500",
+        bgColor: "bg-amber-50",
+        lightBgColor: "bg-amber-100",
+        topics: [
+            {
+                id: 1,
+                session: 8,
+                instructor: "A",
+                title: "Advanced Python (Generators, Decorators, Virtualenv)",
+                keyConcepts: [
+                    "Generators: yield, lazy evaluation",
+                    "Decorators: writing and applying",
+                    "Closures and first-class functions",
+                    "Introduction to virtualenv & pip",
+                    "Installing external libraries",
+                ],
+                projectMilestones: ["Generator for large file line processing"],
+            },
+            {
+                id: 2,
+                session: 9,
+                instructor: "A/M",
+                title: "Python Project Support",
+                keyConcepts: [
+                    "Guidance on structuring Python projects and organizing code modules",
+                    "Assistance with debugging, optimization, and improving code quality",
+                    "Review of project workflows, and best practices for reproducible experiments",
+                ],
+            },
+        ],
+    },
 ];
 
 export default function CourseModule() {
@@ -156,7 +250,7 @@ export default function CourseModule() {
         <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="Course Module" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {modules.map((module) => (
                     <div
                         key={module.id}
@@ -165,7 +259,7 @@ export default function CourseModule() {
                         } dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                             expandedModules.includes(module.id)
                                 ? "shadow-lg h-auto"
-                                : "shadow-md hover:shadow-lg h-[180px]"
+                                : "shadow-md hover:shadow-lg h-[110px]"
                         }`}
                     >
                         {/* Module Header */}
