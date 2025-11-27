@@ -20,11 +20,11 @@ const ResearchFoundationScientificLiteracy = () => {
         thumbnailUrl:
             "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         checkoutLink: "/checkout?course=research-foundation",
-        videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
-        enrollButtonText: "ব্যাচে ভর্তি হোন →",
+        videoLabel: "Click to watch the demo class",
+        enrollButtonText: "Enroll in Batch →",
         enrollButtonTextShort: "Enroll Now",
-        promoLabel: "প্রোমো অ্যাপ্লাইড",
-        liveCourseLabel: "লাইভ কোর্স",
+        promoLabel: "Promo Applied",
+        liveCourseLabel: "Live Course",
     };
 
     return (
