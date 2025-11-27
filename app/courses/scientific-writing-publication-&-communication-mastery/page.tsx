@@ -37,11 +37,11 @@ const ScientificWritingPublicationCommunicationMastery = () => {
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
         thumbnailUrl: "/courses/scintificwriting.jpg",
         checkoutLink: "/checkout?course=scientific-writing",
-        videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
-        enrollButtonText: "ব্যাচে ভর্তি হোন →",
+        videoLabel: "Click to watch the demo class",
+        enrollButtonText: "Enroll in Batch →",
         enrollButtonTextShort: "Enroll Now",
-        promoLabel: "প্রোমো অ্যাপ্লাইড",
-        liveCourseLabel: "লাইভ কোর্স",
+        promoLabel: "Promo Applied",
+        liveCourseLabel: "Live Course",
     };
 
     return (
