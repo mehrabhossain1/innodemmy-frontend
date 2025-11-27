@@ -7,14 +7,65 @@ import { COURSE_CATEGORIES } from "../constants/categories";
  */
 
 export const coursesData: Course[] = [
+    // Complete Research Pathway with Machine Learning
+    {
+        _id: "1",
+        title: "Complete Research Pathway with Machine Learning",
+        slug: "complete-research-pathway-with-machine-learning",
+        description: `Master machine learning research from Python fundamentals to publishing papers. This comprehensive course covers ML, Deep Learning, NLP, Computer Vision, and complete research methodology - from formulating questions to writing and publishing research papers.`,
+        thumbnail:
+            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-12-01"),
+        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
+        batchName: "Batch 1",
+        price: 20000,
+        totalLiveClasses: 36,
+        totalWeeks: 18,
+        totalModules: 19,
+        totalProjects: 5,
+        totalExercises: 50,
+
+        idealFor: [
+            "Aspiring ML researchers and data scientists",
+            "Graduate students pursuing research in AI/ML",
+            "Professionals looking to transition into ML research",
+            "Software engineers wanting to master ML fundamentals and research",
+            "Anyone interested in publishing ML research papers",
+        ],
+
+        faq: [
+            {
+                question: "Do I need prior programming experience?",
+                answer: "Basic programming knowledge is helpful but not mandatory. We start with Python fundamentals and progressively build to advanced ML concepts.",
+            },
+            {
+                question: "What makes this course different?",
+                answer: "This is a complete research-focused course covering both ML technical skills (Python, ML/DL, NLP, Computer Vision) and research methodology (literature review, paper writing, LaTeX).",
+            },
+            {
+                question: "Will I be able to publish a research paper?",
+                answer: "Yes! The course guides you through the entire research process, from formulating questions to writing and formatting papers for publication.",
+            },
+            {
+                question: "What topics are covered?",
+                answer: "Python programming, Mathematics for ML, Classical ML, Deep Learning, Computer Vision with CNNs, NLP with Transformers, Time Series, Research Methodology, and LaTeX for paper writing.",
+            },
+        ],
+
+        modules: [],
+    },
     // Advanced Evidence Generation & AI-Enabled Research Practice
     {
         _id: "2",
         title: "Advanced Evidence Generation & AI-Enabled Research Practice",
         slug: "advanced-evidence-generation-&-ai-enabled-research-practice",
         description: `Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation. Move Beyond Research – Automate and Innovate with cutting-edge AI tools and methodologies.`,
-        thumbnail: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-15"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -53,7 +104,8 @@ export const coursesData: Course[] = [
                 answer: "Yes! Medical writing is a key component of this course. You'll learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
             },
             {
-                question: "How is this course different from basic research courses?",
+                question:
+                    "How is this course different from basic research courses?",
                 answer: "This course goes beyond traditional research methods by incorporating AI-enabled automation, advanced biostatistics, meta-analysis techniques, and grant proposal development.",
             },
             {
@@ -74,7 +126,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Evidence-Based Research",
+                moduleTitle:
+                    "Module 1: Introduction to Evidence-Based Research",
                 topics: [
                     "Understanding evidence-based practice",
                     "Research question formulation (PICO framework)",
@@ -88,7 +141,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 2,
-                moduleTitle: "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
+                moduleTitle:
+                    "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
                 topics: [
                     "Systematic review methodology",
                     "PRISMA guidelines",
@@ -202,8 +256,10 @@ export const coursesData: Course[] = [
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
         slug: "biostatistics-data-analysis-&-evidence-interpretation",
         description: `Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.`,
-        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-01"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -234,15 +290,18 @@ export const coursesData: Course[] = [
                 answer: "You'll gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
             },
             {
-                question: "Will I be able to analyze my own research data after this course?",
+                question:
+                    "Will I be able to analyze my own research data after this course?",
                 answer: "Absolutely! The course is designed to make you independent in conducting statistical analyses, interpreting results, and creating publication-ready tables and figures.",
             },
             {
-                question: "Is this course suitable for qualitative researchers?",
+                question:
+                    "Is this course suitable for qualitative researchers?",
                 answer: "This course focuses on quantitative data analysis. However, if you work with mixed-methods research or need to understand statistical sections in papers, this course will be valuable.",
             },
             {
-                question: "How is this different from online statistics courses?",
+                question:
+                    "How is this different from online statistics courses?",
                 answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You'll learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
             },
             {
@@ -263,7 +322,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Biostatistics & Data Types",
+                moduleTitle:
+                    "Module 1: Introduction to Biostatistics & Data Types",
                 topics: [
                     "Role of statistics in healthcare research",
                     "Types of data: categorical, continuous, ordinal",
@@ -278,7 +338,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 2,
-                moduleTitle: "Module 2: Descriptive Statistics & Data Summarization",
+                moduleTitle:
+                    "Module 2: Descriptive Statistics & Data Summarization",
                 topics: [
                     "Measures of central tendency (mean, median, mode)",
                     "Measures of dispersion (SD, variance, range, IQR)",
@@ -293,7 +354,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 3,
-                moduleTitle: "Module 3: Probability & Hypothesis Testing Fundamentals",
+                moduleTitle:
+                    "Module 3: Probability & Hypothesis Testing Fundamentals",
                 topics: [
                     "Probability distributions (normal, binomial, Poisson)",
                     "Understanding p-values and confidence intervals",
@@ -323,7 +385,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Non-Parametric Tests & Categorical Data Analysis",
+                moduleTitle:
+                    "Module 5: Non-Parametric Tests & Categorical Data Analysis",
                 topics: [
                     "Mann-Whitney U test",
                     "Wilcoxon signed-rank test",
@@ -383,8 +446,10 @@ export const coursesData: Course[] = [
         title: "Innodemy Clinical Research Mastery Program",
         slug: "innodemy-clinical-research-mastery-program",
         description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
-        thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-15"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -572,14 +637,12 @@ export const coursesData: Course[] = [
                     "Regulatory inspections",
                     "CAPA (Corrective and Preventive Actions)",
                 ],
-                exercises: [
-                    "Develop SOP for a process",
-                    "Conduct mock audit",
-                ],
+                exercises: ["Develop SOP for a process", "Conduct mock audit"],
             },
             {
                 classNumber: 10,
-                moduleTitle: "Module 10: Career Development & Industry Insights",
+                moduleTitle:
+                    "Module 10: Career Development & Industry Insights",
                 topics: [
                     "Resume building for clinical research",
                     "Interview preparation",
@@ -587,10 +650,7 @@ export const coursesData: Course[] = [
                     "Continuing education and certifications",
                     "Future trends in clinical research",
                 ],
-                exercises: [
-                    "Create professional CV",
-                    "Mock interviews",
-                ],
+                exercises: ["Create professional CV", "Mock interviews"],
             },
         ],
 
@@ -611,8 +671,10 @@ export const coursesData: Course[] = [
         title: "Protocol Development, Study Design & Data Frameworking",
         slug: "protocol-development-study-design-&-data-frameworking",
         description: `Transform your research ideas into structured, ethical, and statistically sound BMRC-compliant research protocols. Master study design selection, data management, and ethical frameworks essential for conducting high-quality research.`,
-        thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-04-01"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -672,7 +734,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Research Protocol Development",
+                moduleTitle:
+                    "Module 1: Introduction to Research Protocol Development",
                 topics: [
                     "Purpose and importance of research protocols",
                     "Components of a research protocol",
@@ -736,7 +799,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Ethical Considerations & Regulatory Requirements",
+                moduleTitle:
+                    "Module 5: Ethical Considerations & Regulatory Requirements",
                 topics: [
                     "Ethical principles in research (Belmont Report)",
                     "Informed consent process and documentation",
@@ -752,7 +816,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 6,
-                moduleTitle: "Module 6: Statistical Planning & Protocol Finalization",
+                moduleTitle:
+                    "Module 6: Statistical Planning & Protocol Finalization",
                 topics: [
                     "Statistical analysis plan development",
                     "Outcome measures (primary and secondary)",
@@ -782,8 +847,10 @@ export const coursesData: Course[] = [
         title: "Research Foundation & Scientific Literacy",
         slug: "research-foundation-&-scientific-literacy",
         description: `Master the fundamentals of research thinking, scientific reading, and critical analysis. Learn to evaluate literature, identify gaps, and develop research questions using cutting-edge AI tools. Perfect for aspiring researchers and healthcare professionals.`,
-        thumbnail: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-20"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -822,7 +889,8 @@ export const coursesData: Course[] = [
                 answer: "This course focuses on developing research literacy and thinking skills rather than conducting research. It prepares you to understand and critically evaluate research before you design your own studies.",
             },
             {
-                question: "Will I be able to read research papers after this course?",
+                question:
+                    "Will I be able to read research papers after this course?",
                 answer: "Yes! You'll gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
             },
             {
@@ -843,7 +911,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Research & Scientific Thinking",
+                moduleTitle:
+                    "Module 1: Introduction to Research & Scientific Thinking",
                 topics: [
                     "What is research and why it matters",
                     "Types of research (basic, applied, clinical)",
@@ -907,7 +976,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Research Question Development & Gap Identification",
+                moduleTitle:
+                    "Module 5: Research Question Development & Gap Identification",
                 topics: [
                     "Identifying research gaps in literature",
                     "PICO/FINER frameworks for research questions",
@@ -936,8 +1006,10 @@ export const coursesData: Course[] = [
         title: "Scientific Writing, Publication & Communication Mastery",
         slug: "scientific-writing-publication-&-communication-mastery",
         description: `Master the art of scientific writing from abstract to publication. Learn to craft compelling research papers, manage references effectively, respond to peer reviewers, and present your findings at conferences. Complete training in every aspect of academic communication with AI-powered tools and hands-on practice.`,
-        thumbnail: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-25"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -997,7 +1069,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Structure of a Scientific Paper (IMRaD)",
+                moduleTitle:
+                    "Module 1: Structure of a Scientific Paper (IMRaD)",
                 topics: [
                     "Understanding the IMRaD format (Introduction, Methods, Results, and Discussion)",
                     "Organization and flow of scientific papers",
@@ -1099,7 +1172,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 8,
-                moduleTitle: "Module 8: Journal Selection & Submission Strategy",
+                moduleTitle:
+                    "Module 8: Journal Selection & Submission Strategy",
                 topics: [
                     "Identifying appropriate journals",
                     "Impact factor and journal metrics",
@@ -1158,8 +1232,10 @@ export const coursesData: Course[] = [
         title: "VLSI Physical Design Training",
         slug: "vlsi-physical-design-training",
         description: `Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.`,
-        thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
+        thumbnail:
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-10"),
         category: COURSE_CATEGORIES.VLSI,
         batchName: "Batch 1",
@@ -1202,7 +1278,8 @@ export const coursesData: Course[] = [
                 answer: "This comprehensive program spans 15 weeks with 30 live classes, covering everything from basics to advanced physical design concepts.",
             },
             {
-                question: "Will this help me get a job in semiconductor industry?",
+                question:
+                    "Will this help me get a job in semiconductor industry?",
                 answer: "Yes! The course is designed to make you industry-ready with practical skills, real projects, and comprehensive coverage of physical design flow. Many of our graduates work in leading semiconductor companies.",
             },
             {
