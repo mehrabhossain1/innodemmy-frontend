@@ -42,9 +42,12 @@ export default function ScientificWritingHeroSection({
 
                         {/* Description */}
                         <div className="mb-6 w-full">
-                            <div className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify">
-                                {courseData.description}
-                            </div>
+                            <div
+                                className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify"
+                                dangerouslySetInnerHTML={{
+                                    __html: courseData.description,
+                                }}
+                            />
                         </div>
 
                         {/* Course Highlights */}
@@ -86,10 +89,12 @@ export default function ScientificWritingHeroSection({
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
                                             <span className="text-3xl font-bold text-gray-900">
-                                                ৳{courseData.price.toLocaleString()}
+                                                ৳
+                                                {courseData.price.toLocaleString()}
                                             </span>
                                             <span className="text-sm text-gray-400 line-through">
-                                                ৳{courseData.originalPrice.toLocaleString()}
+                                                ৳
+                                                {courseData.originalPrice.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">
