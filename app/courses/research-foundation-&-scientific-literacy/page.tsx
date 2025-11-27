@@ -5,6 +5,7 @@ import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import ResourcePersons from "./components/ResourcePersons";
+import WhatYouNeed from "./components/WhatYouNeed";
 
 const ResearchFoundationScientificLiteracy = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -74,6 +75,9 @@ const ResearchFoundationScientificLiteracy = () => {
 
             {/* Resource Persons */}
             <ResourcePersons />
+
+            {/* What You Need */}
+            <WhatYouNeed />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
