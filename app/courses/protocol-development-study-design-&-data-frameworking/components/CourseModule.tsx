@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 // Helper function to render text with bold markdown
 const renderTextWithBold = (text: string) => {
@@ -79,8 +80,7 @@ const modules: Module[] = [
             "CRF structure, question types, and scoring.",
             "Pilot testing and reliability testing (Cronbach's alpha).",
         ],
-        handsOn:
-            "Design Google Form and run mini pilot with peer feedback.",
+        handsOn: "Design Google Form and run mini pilot with peer feedback.",
         color: "bg-yellow-500",
         bgColor: "bg-yellow-50",
     },
@@ -117,8 +117,7 @@ const modules: Module[] = [
             "Section-wise writing (Background, Objectives, Methods, Timeline, Budget).",
             "Referencing and final review for submission.",
         ],
-        aiSupport:
-            "Use structured ChatGPT prompts for each protocol section.",
+        aiSupport: "Use structured ChatGPT prompts for each protocol section.",
         deliverable:
             "Full BMRC-ready protocol + conceptual diagram + CRF toolset.",
         color: "bg-teal-500",
@@ -141,14 +140,11 @@ export default function CourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Modules
-                </h2>
-                <p className="text-gray-600 mt-2">
+            <SectionTitle title="Course Module" />
+            <div className="text-center mb-8">
+                <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
                     From Research Question to Ethical and Operational Blueprint
                 </p>
-                <hr className="my-2 border-gray-200" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
