@@ -6,6 +6,7 @@ import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import ResourcePersons from "./components/ResourcePersons";
+import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
@@ -19,6 +20,7 @@ const ScientificWritingPublicationCommunicationMastery = () => {
         { id: "course-module", label: "Course Module" },
         { id: "what-you-get", label: "What You'll Get in This Course" },
         { id: "resource-persons", label: "Resource Persons" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "faq", label: "FAQ" },
     ];
@@ -106,6 +108,11 @@ const ScientificWritingPublicationCommunicationMastery = () => {
             {/* Resource Persons */}
             <div id="resource-persons">
                 <ResourcePersons />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
             </div>
 
             {/* Who This Course is For */}
