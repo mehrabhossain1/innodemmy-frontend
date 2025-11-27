@@ -6,6 +6,7 @@ import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import ResourcePersons from "./components/ResourcePersons";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
 
 const ScientificWritingPublicationCommunicationMastery = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -78,6 +79,9 @@ const ScientificWritingPublicationCommunicationMastery = () => {
 
             {/* Who This Course is For */}
             <WhoThisCourseIsFor />
+
+            {/* FAQ */}
+            <FAQ />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
