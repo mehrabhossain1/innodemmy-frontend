@@ -4,6 +4,7 @@ import ScientificWritingHeroSection from "./components/ScientificWritingHeroSect
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
+import ResourcePersons from "./components/ResourcePersons";
 
 const ScientificWritingPublicationCommunicationMastery = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -70,6 +71,9 @@ const ScientificWritingPublicationCommunicationMastery = () => {
 
             {/* What You Get */}
             <WhatYouGet />
+
+            {/* Resource Persons */}
+            <ResourcePersons />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
