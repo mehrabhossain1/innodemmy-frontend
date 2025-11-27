@@ -39,7 +39,7 @@ const instructors: Instructor[] = [
     {
         id: 4,
         name: "M Azizul Hakim Shuvo",
-        title: "PhD (Running)",
+        title: "PhD in Computer Science",
         institution: "University of Nevada, Reno",
         image: MAzizulHakimShuvo,
     },
