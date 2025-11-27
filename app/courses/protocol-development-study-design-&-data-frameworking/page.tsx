@@ -7,6 +7,7 @@ import WhatYouGet from "./components/WhatYouGet";
 import ResourcePersons from "./components/ResourcePersons";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
 
 const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -81,6 +82,9 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
 
             {/* Who This Course is For */}
             <WhoThisCourseIsFor />
+
+            {/* FAQ */}
+            <FAQ />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
