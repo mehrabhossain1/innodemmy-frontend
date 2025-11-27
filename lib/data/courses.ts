@@ -13,8 +13,7 @@ export const coursesData: Course[] = [
         title: "Complete Research Pathway with Machine Learning",
         slug: "complete-research-pathway-with-machine-learning",
         description: `Master machine learning research from Python fundamentals to publishing papers. This comprehensive course covers ML, Deep Learning, NLP, Computer Vision, and complete research methodology - from formulating questions to writing and publishing research papers.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ResearchbasedML.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-12-01"),
