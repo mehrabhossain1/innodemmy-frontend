@@ -10,38 +10,38 @@ interface Instructor {
     id: number;
     name: string;
     title: string;
+    institution: string;
     image: StaticImageData;
-    expertise: string;
 }
 
 const instructors: Instructor[] = [
     {
         id: 1,
         name: "Arif Mahmud Sisir",
-        title: "Machine Learning Researcher",
+        title: "BSc. in Computer Science and Engineering",
+        institution: "Southeast University",
         image: ArifMahmudSisir,
-        expertise: "Deep Learning & Computer Vision",
     },
     {
         id: 2,
         name: "M Azizul Hakim Shuvo",
-        title: "Data Science Lead",
+        title: "PhD (Running)",
+        institution: "University of Nevada, Reno",
         image: MAzizulHakimShuvo,
-        expertise: "NLP & Research Methodology",
     },
     {
         id: 3,
         name: "Mamunur Rashid Alex",
-        title: "AI Research Scientist",
+        title: "MSc. in Computer Science and Engineering",
+        institution: "North South University",
         image: MamunurRashidAlex,
-        expertise: "Neural Networks & Model Optimization",
     },
     {
         id: 4,
-        name: "Md Nafee Al Islam",
-        title: "Senior ML Engineer",
+        name: "Md Nafee Al Islam, PhD",
+        title: "Assistant Professor of Computer Science",
+        institution: "University of San Diego, California",
         image: MdNafeeAlIslam,
-        expertise: "Applied ML & Research Publication",
     },
 ];
 
@@ -58,7 +58,7 @@ export default function InstructorsAndMentors() {
                             className="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
                         >
                             <div className="flex flex-col items-center text-center">
-                                <div className="relative w-32 h-32 mb-4 overflow-hidden rounded-full ring-4 ring-blue-500/20 group-hover:ring-blue-500/40 transition-all duration-300">
+                                <div className="relative w-32 h-32 mb-4 overflow-hidden rounded-full ring-4 ring-yellow-500/20 group-hover:ring-yellow-500/40 transition-all duration-300">
                                     <Image
                                         src={instructor.image}
                                         alt={instructor.name}
@@ -67,9 +67,15 @@ export default function InstructorsAndMentors() {
                                         className="object-cover group-hover:scale-110 transition-transform duration-300"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                                     {instructor.name}
                                 </h3>
+                                <p className="text-sm font-semibold text-yellow-600 dark:text-yellow-400 mb-1">
+                                    {instructor.title}
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-500">
+                                    {instructor.institution}
+                                </p>
                             </div>
                         </div>
                     ))}
