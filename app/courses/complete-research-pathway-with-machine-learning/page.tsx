@@ -12,6 +12,8 @@ import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import CourseModule from "./components/CourseModule";
 import FAQ from "./components/FAQ";
 
+import ClinicalPathWayImage from "@/assets/courses/Research based ML.jpg";
+
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
@@ -37,8 +39,7 @@ export default function CompleteResearchPathwayWithMachineLearning() {
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+
         checkoutLink: "/checkout?course=complete-research-pathway-ml",
         videoLabel: "Click to watch the demo class",
         enrollButtonText: "Enroll in Batch →",

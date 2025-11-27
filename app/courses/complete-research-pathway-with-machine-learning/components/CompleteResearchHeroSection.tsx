@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
+import CourseThumbnail from "@/assets/courses/Research based ML.jpg";
 
 interface CompleteResearchHeroSectionProps {
     courseData: {
@@ -11,7 +12,7 @@ interface CompleteResearchHeroSectionProps {
         description: string;
         price: number;
         originalPrice: number;
-        thumbnailUrl: string;
+        thumbnailUrl?: string;
         checkoutLink?: string;
         videoLabel: string;
         enrollButtonTextShort: string;
@@ -90,7 +91,7 @@ export default function CompleteResearchHeroSection({
                             onClick={onVideoClick}
                         >
                             <Image
-                                src={courseData.thumbnailUrl}
+                                src={courseData.thumbnailUrl || CourseThumbnail}
                                 alt={courseData.title}
                                 fill
                                 className="object-cover"
