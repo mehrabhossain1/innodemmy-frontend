@@ -11,7 +11,7 @@ const ResearchFoundationScientificLiteracy = () => {
     const courseData = {
         title: "Research Foundation & Scientific Literacy",
         description:
-            "Master the fundamentals of research thinking, scientific reading, and critical analysis. Learn to evaluate literature, identify gaps, and develop research questions using cutting-edge AI tools. Perfect for aspiring researchers and healthcare professionals.",
+            "কোর্সটি বৈজ্ঞানিক গবেষণার মূল ভিত্তি এবং Critical thinking দক্ষতা অর্জনে ডিজাইন করা হয়েছে। এই কোর্সটি শিক্ষার্থী, নবীন গবেষক এবং পেশাজীবীদের জন্য আদর্শ, যারা বৈজ্ঞানিক গবেষণায় শক্তিশালী ভিত্তি তৈরি করতে এবং তাদের গবেষণা দক্ষতা উন্নত করতে চান।\n\nকোর্সটিতে শেখানো হবে:\n• বৈজ্ঞানিক অনুসন্ধান ও গবেষণা নকশার মৌলিক নীতি\n• গবেষণা প্রবন্ধ ও প্রকাশিত সাহিত্য সমালোচনামূলকভাবে মূল্যায়ন করার কৌশল\n• তথ্য বিশ্লেষণ ও ফলাফল ব্যাখ্যা করার দক্ষতা\n• বৈজ্ঞানিক ফলাফল স্পষ্টভাবে লিখিত এবং মৌখিকভাবে উপস্থাপন করার কৌশল\n• সমস্যা সমাধান এবং সমালোচনামূলক চিন্তাভাবনা বিকাশের জন্য প্রয়োজনীয় দক্ষতা",
         price: 5000,
         originalPrice: 8000,
         currency: "৳",
