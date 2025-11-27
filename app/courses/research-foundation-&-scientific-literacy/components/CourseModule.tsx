@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 // Helper function to render text with bold markdown
 const renderTextWithBold = (text: string) => {
@@ -58,8 +59,7 @@ const modules: Module[] = [
         ],
         aiPractice:
             "Use **Elicit** or **ResearchRabbit** to discover current research trends.",
-        deliverable:
-            "Topic shortlist with rationale and feasibility matrix.",
+        deliverable: "Topic shortlist with rationale and feasibility matrix.",
         color: "bg-purple-500",
         bgColor: "bg-purple-50",
     },
@@ -135,14 +135,11 @@ export default function CourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Modules
-                </h2>
-                <p className="text-gray-600 mt-2">
+            <SectionTitle title="Course Module" />
+            <div className="text-center mb-8">
+                <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
                     How to Think, Read, and Question Like a Researcher
                 </p>
-                <hr className="my-2 border-gray-200" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
