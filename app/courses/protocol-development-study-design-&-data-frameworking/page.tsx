@@ -11,7 +11,7 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
     const courseData = {
         title: "Protocol Development, Study Design & Data Frameworking",
         description:
-            "এই কোর্সটি সেই সকল শিক্ষার্থী, নবীন গবেষক এবং পেশাজীবীদের জন্য তৈরি, যারা Protocol Writing, Study Design, Variable Frameworking এবং Data Architecture-কে পেশাদার লেভেলে আয়ত্ত করতে আগ্রহী। বাস্তব clinical research projects, healthcare studies এবং academic research-এর জন্য প্রয়োজনীয় স্কিল শেখানোর মাধ্যমে এই কোর্স অংশগ্রহণকারীদের publication, thesis improvement এবং industry-grade trial setup এ প্রস্তুত করবে।",
+            "এই কোর্সটি সেই সকল শিক্ষার্থী, নবীন গবেষক এবং পেশাজীবীদের জন্য তৈরি, যারা <strong>Protocol Writing</strong>, <strong>Study Design</strong>, <strong>Variable Frameworking</strong> এবং <strong>Data Architecture</strong>-কে পেশাদার লেভেলে আয়ত্ত করতে আগ্রহী। বাস্তব <strong>clinical research projects</strong>, <strong>healthcare studies</strong> এবং <strong>academic research</strong>-এর জন্য প্রয়োজনীয় স্কিল শেখানোর মাধ্যমে এই কোর্স অংশগ্রহণকারীদের <strong>publication</strong>, <strong>thesis improvement</strong> এবং <strong>industry-grade trial setup</strong> এ প্রস্তুত করবে।",
         price: 7000,
         originalPrice: 11000,
         currency: "৳",
