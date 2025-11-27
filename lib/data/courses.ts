@@ -1003,8 +1003,7 @@ export const coursesData: Course[] = [
         title: "Scientific Writing, Publication & Communication Mastery",
         slug: "scientific-writing-publication-&-communication-mastery",
         description: `Master the art of scientific writing from abstract to publication. Learn to craft compelling research papers, manage references effectively, respond to peer reviewers, and present your findings at conferences. Complete training in every aspect of academic communication with AI-powered tools and hands-on practice.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/scintificwriting.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-25"),

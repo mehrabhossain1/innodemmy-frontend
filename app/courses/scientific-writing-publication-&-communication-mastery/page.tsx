@@ -35,8 +35,7 @@ const ScientificWritingPublicationCommunicationMastery = () => {
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/scintificwriting.jpg",
         checkoutLink: "/checkout?course=scientific-writing",
         videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
         enrollButtonText: "ব্যাচে ভর্তি হোন →",
