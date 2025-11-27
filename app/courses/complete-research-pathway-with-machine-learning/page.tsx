@@ -9,6 +9,7 @@ import Projects from "./components/Projects";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import WhatYouNeed from "./components/WhatYouNeed";
 import InstructorsAndMentors from "./components/InstructorsAndMentors";
+import CourseModule from "./components/CourseModule";
 import FAQ from "./components/FAQ";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
@@ -97,7 +98,7 @@ export default function CompleteResearchPathwayWithMachineLearning() {
 
             {/* Course Module */}
             <div id="course-module">
-                {/* TODO: Add CourseModule component */}
+                <CourseModule />
             </div>
 
             {/* What You Get */}
