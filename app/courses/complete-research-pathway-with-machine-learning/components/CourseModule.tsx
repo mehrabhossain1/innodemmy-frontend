@@ -433,6 +433,111 @@ const modules: Module[] = [
             },
         ],
     },
+    {
+        id: 11,
+        number: 11,
+        title: "Advanced CNN Techniques",
+        color: "bg-lime-500",
+        bgColor: "bg-lime-50",
+        lightBgColor: "bg-lime-100",
+        topics: [
+            {
+                id: 1,
+                session: 23,
+                instructor: "M",
+                title: "Advanced CNN Architectures",
+                keyConcepts: [
+                    "Exploring influential architectures: LeNet-5, AlexNet, VGGNet, ResNet",
+                    "Understanding layer design, depth, and performance trade-offs",
+                    "Analyzing architecture diagrams and reviewing code implementations",
+                ],
+            },
+            {
+                id: 2,
+                session: 24,
+                instructor: "A",
+                title: "Transfer Learning",
+                keyConcepts: [
+                    "Leveraging pre-trained CNNs for feature extraction and fine-tuning",
+                    "Applying transfer learning for efficient model training on small datasets",
+                    "Implementing transfer learning using popular architectures in Keras",
+                ],
+            },
+        ],
+    },
+    {
+        id: 12,
+        number: 12,
+        title: "Time Series Forecasting Models",
+        color: "bg-emerald-500",
+        bgColor: "bg-emerald-50",
+        lightBgColor: "bg-emerald-100",
+        topics: [
+            {
+                id: 1,
+                session: 25,
+                instructor: "A",
+                title: "Time Series Analysis & Forecasting",
+                keyConcepts: [
+                    "Understand key time series components such as trend, seasonality, noise, and stationarity",
+                    "Analyze temporal patterns using ACF, PACF, and decomposition techniques",
+                    "Learn classical forecasting models like ARIMA and build/evaluate ARIMA predictions",
+                    "Explore RNNs and LSTMs for sequence modeling and time series prediction",
+                    "Build an LSTM model for a time series classification or forecasting task",
+                ],
+                projectMilestones: ["Project 4: Time Series Classification"],
+            },
+        ],
+    },
+    {
+        id: 13,
+        number: 13,
+        title: "Natural Language Processing",
+        color: "bg-violet-500",
+        bgColor: "bg-violet-50",
+        lightBgColor: "bg-violet-100",
+        topics: [
+            {
+                id: 1,
+                session: 26,
+                instructor: "A",
+                title: "Introduction to NLP & Text Preprocessing",
+                keyConcepts: [
+                    "Learn the NLP pipeline and apply text preprocessing techniques like tokenization, stemming, and lemmatization",
+                    "Represent text using Bag-of-Words (BoW) and TF-IDF methods",
+                    "Use NLTK or spaCy to clean and structure raw text data",
+                    "Understand distributed word embeddings such as Word2Vec and GloVe",
+                    "Build text classification models using LSTMs/GRUs, including an LSTM-based sentiment analysis model",
+                ],
+                projectMilestones: [
+                    "Project 5: Question Answering with Small Language Model",
+                ],
+            },
+            {
+                id: 2,
+                session: 27,
+                instructor: "A",
+                title: "The Attention Mechanism & Transformers",
+                keyConcepts: [
+                    "The intuition behind attention in neural networks",
+                    "Core components of the Transformer architecture: Encoder-Decoder, Self-Attention",
+                    'Step-by-step exploration of the "Attention Is All You Need" paper',
+                ],
+            },
+            {
+                id: 3,
+                session: 28,
+                instructor: "A",
+                title: "Advanced NLP: BERT and GPT models",
+                keyConcepts: [
+                    "Understand BERT and its role in modern NLP",
+                    "Learn the basics of Large Language Models (LLMs) and their capabilities",
+                    "Explore transformer-based text understanding and contextual embeddings",
+                    "Use the Hugging Face ecosystem to load, modify, and fine-tune pretrained models",
+                ],
+            },
+        ],
+    },
 ];
 
 export default function CourseModule() {
