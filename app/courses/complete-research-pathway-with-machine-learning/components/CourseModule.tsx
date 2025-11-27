@@ -214,6 +214,225 @@ const modules: Module[] = [
             },
         ],
     },
+    {
+        id: 5,
+        number: 5,
+        title: "Mathematics for Machine Learning",
+        color: "bg-red-500",
+        bgColor: "bg-red-50",
+        lightBgColor: "bg-red-100",
+        topics: [
+            {
+                id: 1,
+                session: 10,
+                instructor: "M",
+                title: "Linear Algebra",
+                keyConcepts: [
+                    "Vectors and matrices: operations, dot product, matrix multiplication",
+                    "Eigenvalues and eigenvectors: critical for dimensionality reduction (PCA, SVD)",
+                    "Matrix decomposition: SVD, QR, LU",
+                    "Norms and distances: Euclidean, L1, cosine similarity",
+                    "Projections and orthogonality: important for optimization and understanding subspaces",
+                ],
+            },
+        ],
+    },
+    {
+        id: 6,
+        number: 6,
+        title: "Intro to Research with Machine Learning",
+        color: "bg-teal-500",
+        bgColor: "bg-teal-50",
+        lightBgColor: "bg-teal-100",
+        topics: [
+            {
+                id: 1,
+                session: 11,
+                instructor: "N",
+                title: "ML principles behind modern research",
+                keyConcepts: [
+                    "Understand how core ML concepts form the foundation of modern research",
+                    "Learn the structure of ML research papers and how to read them critically",
+                    "Explore the role of evaluation metrics, experimentation, and reproducibility in ML research",
+                    "Use platforms like Google Scholar and arXiv to find and analyze ML research papers",
+                ],
+            },
+        ],
+    },
+    {
+        id: 7,
+        number: 7,
+        title: "Foundation of Machine Learning",
+        color: "bg-indigo-500",
+        bgColor: "bg-indigo-50",
+        lightBgColor: "bg-indigo-100",
+        topics: [
+            {
+                id: 1,
+                session: 12,
+                instructor: "M",
+                title: "Supervised Learning: Regression Analysis",
+                keyConcepts: [
+                    "Linear Regression and cost functions",
+                    "Gradient Descent and optimization principles",
+                    "Model training, testing, and evaluation on real-world datasets",
+                ],
+                projectMilestones: [
+                    "Projects 1: Predicting Housing Prices using Regression Model",
+                ],
+            },
+            {
+                id: 2,
+                session: 13,
+                instructor: "N",
+                title: "Supervised Learning: Classification",
+                keyConcepts: [
+                    "Learn key classification algorithms: Logistic Regression, KNN, SVMs, and Naive Bayes",
+                    "Understand decision boundaries and how different classifiers separate data",
+                    "Build and visualize classification models to compare behaviors",
+                    "Apply multiple classifiers to diverse datasets for practical understanding",
+                ],
+                projectMilestones: [
+                    "Projects 2: Handwritten Digits Classification using KNN",
+                ],
+            },
+            {
+                id: 3,
+                session: 14,
+                instructor: "A",
+                title: "Data Manipulation & Visualization for EDA",
+                keyConcepts: [
+                    "Use Pandas for data cleaning, wrangling, and transformation",
+                    "Visualize data with Matplotlib and Seaborn to uncover insights through EDA",
+                    "Handle missing values, scale numerical features, and encode categorical variables",
+                    "Build a complete preprocessing pipeline using scikit-learn for model-ready data",
+                ],
+            },
+            {
+                id: 4,
+                session: 15,
+                instructor: "A",
+                title: "Unsupervised Learning: Clustering & PCA",
+                keyConcepts: [
+                    "K-Means clustering for pattern discovery",
+                    "Principal Component Analysis (PCA) for dimensionality reduction",
+                    "Customer segmentation and visualization of cluster results",
+                ],
+            },
+        ],
+    },
+    {
+        id: 8,
+        number: 8,
+        title: "Model Optimization & Applied Project",
+        color: "bg-pink-500",
+        bgColor: "bg-pink-50",
+        lightBgColor: "bg-pink-100",
+        topics: [
+            {
+                id: 1,
+                session: 16,
+                instructor: "A",
+                title: "Ensemble Methods",
+                keyConcepts: [
+                    "Bagging and Random Forest algorithms",
+                    "Boosting techniques: AdaBoost, Gradient Boosting, XGBoost",
+                    "Evaluating and comparing ensemble performance",
+                ],
+            },
+            {
+                id: 2,
+                session: 17,
+                instructor: "A",
+                title: "Model Evaluation & Validation",
+                keyConcepts: [
+                    "Key evaluation metrics: Accuracy, Precision, Recall, F1, ROC/AUC",
+                    "Train/Validation/Test splits and Cross-Validation",
+                    "Avoiding overfitting and ensuring generalization",
+                ],
+            },
+        ],
+    },
+    {
+        id: 9,
+        number: 9,
+        title: "Neural Network Foundations",
+        color: "bg-cyan-500",
+        bgColor: "bg-cyan-50",
+        lightBgColor: "bg-cyan-100",
+        topics: [
+            {
+                id: 1,
+                session: 18,
+                instructor: "A",
+                title: "Introduction to Neural Networks (NNs)",
+                keyConcepts: [
+                    "Understanding the Perceptron and Multi-Layer Perceptrons (MLPs)",
+                    "Activation functions and their roles in learning",
+                    "Implementing a simple Perceptron from scratch",
+                ],
+            },
+            {
+                id: 2,
+                session: 19,
+                instructor: "A",
+                title: "Deep Learning Fundamentals with TensorFlow",
+                keyConcepts: [
+                    "Forward and backward propagation",
+                    "Introduction to TensorFlow and Keras",
+                    "Building and training a basic neural network for classification",
+                ],
+            },
+            {
+                id: 3,
+                session: 20,
+                instructor: "M",
+                title: "Training Deep Neural Networks with Pytorch",
+                keyConcepts: [
+                    "Optimization algorithms: SGD, Adam, RMSprop",
+                    "Hyperparameters: learning rate, batch size, epochs",
+                    "Overfitting and regularization techniques: Dropout, L1/L2",
+                    "Improving model performance through tuning and experimentation",
+                ],
+            },
+        ],
+    },
+    {
+        id: 10,
+        number: 10,
+        title: "Computer Vision with CNNs",
+        color: "bg-orange-500",
+        bgColor: "bg-orange-50",
+        lightBgColor: "bg-orange-100",
+        topics: [
+            {
+                id: 1,
+                session: 21,
+                instructor: "M",
+                title: "Introduction to Computer Vision & CNNs",
+                keyConcepts: [
+                    "Learn how computers interpret images using convolutions, filters, and pooling layers",
+                    "Visualize how CNNs extract and detect meaningful features from images",
+                    "Understand data augmentation techniques to expand and diversify image datasets",
+                    "Use Keras's ImageDataGenerator for real-time augmentation to improve model generalization",
+                ],
+                projectMilestones: [
+                    "Project 3: Image Classification on MNIST using CNN",
+                ],
+            },
+            {
+                id: 2,
+                session: 22,
+                instructor: "M",
+                title: "Building a Convolutional Neural Network (CNN)",
+                keyConcepts: [
+                    "Designing and stacking layers to create CNN architectures",
+                    "Implementing a LeNet-style CNN using Keras",
+                    "Training and testing on simple datasets (e.g., MNIST)",
+                ],
+            },
+        ],
+    },
 ];
 
 export default function CourseModule() {
