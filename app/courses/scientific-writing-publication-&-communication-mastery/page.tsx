@@ -3,6 +3,7 @@ import { useState } from "react";
 import ScientificWritingHeroSection from "./components/ScientificWritingHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
+import WhatYouGet from "./components/WhatYouGet";
 
 const ScientificWritingPublicationCommunicationMastery = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -66,6 +67,9 @@ const ScientificWritingPublicationCommunicationMastery = () => {
 
             {/* Course Module */}
             <CourseModule />
+
+            {/* What You Get */}
+            <WhatYouGet />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
