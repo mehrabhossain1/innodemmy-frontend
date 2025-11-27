@@ -8,6 +8,7 @@ import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import WhatYouNeed from "./components/WhatYouNeed";
+import FAQ from "./components/FAQ";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -124,7 +125,9 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             </div>
 
             {/* FAQ */}
-            <div id="faq">{/* TODO: Add FAQ component */}</div>
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
