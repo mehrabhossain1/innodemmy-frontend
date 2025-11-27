@@ -4,6 +4,7 @@ import BiostatisticsHeroSection from "./components/BiostatisticsHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
+import ResourcePersons from "./components/ResourcePersons";
 
 const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -70,6 +71,9 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
 
             {/* What You Get */}
             <WhatYouGet />
+
+            {/* Resource Persons */}
+            <ResourcePersons />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
