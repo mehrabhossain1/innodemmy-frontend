@@ -5,6 +5,7 @@ import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 import WhatYouGet from "./components/WhatYouGet";
+import Projects from "./components/Projects";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -98,6 +99,11 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
+            </div>
+
+            {/* Projects */}
+            <div id="projects">
+                <Projects />
             </div>
 
             {/* Resource Persons */}
