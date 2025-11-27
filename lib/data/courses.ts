@@ -1225,8 +1225,7 @@ export const coursesData: Course[] = [
         title: "VLSI Physical Design Training",
         slug: "vlsi-physical-design-training",
         description: `Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/VLSIPD.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-10"),

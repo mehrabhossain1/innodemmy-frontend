@@ -17,8 +17,7 @@ const VlsiPhysicalDesignTraining = () => {
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/VLSIPD.jpg",
         checkoutLink: "/checkout?course=vlsi-physical-design",
         videoLabel: "Watch Course Demo",
         enrollButtonText: "Enroll in VLSI Course →",
