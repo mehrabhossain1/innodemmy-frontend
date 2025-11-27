@@ -61,8 +61,7 @@ export const coursesData: Course[] = [
         title: "Advanced Evidence Generation & AI-Enabled Research Practice",
         slug: "advanced-evidence-generation-&-ai-enabled-research-practice",
         description: `Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation. Move Beyond Research – Automate and Innovate with cutting-edge AI tools and methodologies.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ClinicalAdvanced.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-15"),
@@ -668,8 +667,7 @@ export const coursesData: Course[] = [
         title: "Protocol Development, Study Design & Data Frameworking",
         slug: "protocol-development-study-design-&-data-frameworking",
         description: `Transform your research ideas into structured, ethical, and statistically sound BMRC-compliant research protocols. Master study design selection, data management, and ethical frameworks essential for conducting high-quality research.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ClinicalProtocol.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-04-01"),
