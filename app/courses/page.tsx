@@ -119,7 +119,7 @@ export default function CoursesPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
-            <div className="bg-gradient-to-r from-white to-primary/5 border-b border-primary/20 shadow-sm">
+            <div className="bg-gradient-to-r from-white dark:from-background to-primary/5 dark:to-primary/10 border-b border-primary/20 dark:border-primary/30 shadow-sm">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-6">
@@ -130,7 +130,7 @@ export default function CoursesPage() {
                                 <ArrowLeft className="w-4 h-4 mr-2" />
                                 Back to Home
                             </Link>
-                            <div className="h-8 w-px bg-gray-300" />
+                            <div className="h-8 w-px bg-gray-300 dark:bg-gray-700" />
                             <div className="flex items-center space-x-3">
                                 <BookOpen className="h-8 w-8 text-primary" />
                                 <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
