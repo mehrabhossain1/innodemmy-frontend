@@ -11,7 +11,7 @@ interface BiostatisticsHeroSectionProps {
         description: string;
         price: number;
         originalPrice: number;
-        thumbnailUrl: string;
+        thumbnailUrl?: string;
         checkoutLink?: string;
         videoLabel: string;
         enrollButtonTextShort: string;
@@ -90,7 +90,10 @@ export default function BiostatisticsHeroSection({
                             onClick={onVideoClick}
                         >
                             <Image
-                                src={courseData.thumbnailUrl}
+                                src={
+                                    courseData.thumbnailUrl ||
+                                    "/courses/ClinicalDataAnalysis.jpg"
+                                }
                                 alt={courseData.title}
                                 fill
                                 className="object-cover"

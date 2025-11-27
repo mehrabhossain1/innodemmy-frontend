@@ -255,8 +255,7 @@ export const coursesData: Course[] = [
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
         slug: "biostatistics-data-analysis-&-evidence-interpretation",
         description: `Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ClinicalDataAnalysis.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-01"),

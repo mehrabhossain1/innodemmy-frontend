@@ -35,8 +35,7 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/ClinicalDataAnalysis.jpg",
         checkoutLink: "/checkout?course=biostatistics",
         videoLabel: "Click to watch the demo class",
         enrollButtonText: "Enroll in Batch →",
