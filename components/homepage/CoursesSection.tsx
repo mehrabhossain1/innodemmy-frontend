@@ -168,7 +168,7 @@ export default function CoursesSection() {
                     </p>
                 </div>
 
-                {/* Category Tabs - Light Design */}
+                {/* Category Tabs - Dark Mode Supported */}
                 <div className="relative mb-8 md:mb-10 lg:mb-8">
                     <div className="flex justify-center items-center overflow-x-auto pb-3 lg:pb-3 scrollbar-hide">
                         <div className="flex gap-2 lg:gap-2.5 overflow-x-auto scrollbar-hide">
@@ -178,10 +178,10 @@ export default function CoursesSection() {
                                     onClick={() =>
                                         setActiveCategory(category.id)
                                     }
-                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-3.5 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border transition-all duration-300 ${
+                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
                                             ? "bg-primary border-primary text-white shadow-md"
-                                            : "bg-white border-gray-200 hover:border-primary text-foreground hover:bg-gray-50"
+                                            : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
                                     }`}
                                 >
                                     <category.icon className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
