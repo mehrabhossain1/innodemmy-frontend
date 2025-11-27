@@ -9,9 +9,11 @@ import ResourcePersons from "./components/ResourcePersons";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 
 const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
 
     // Navigation items
     const navigationItems = [
@@ -45,19 +47,28 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="biostatistics-data-analysis-evidence-interpretation"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
                     <div className="relative w-full max-w-4xl">
                         {/* Close Button */}
                         <button
                             onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         >
                             ✕
                         </button>
                         {/* Video Container */}
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -78,6 +89,7 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
             <BiostatisticsHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
             {/* Sticky Navigation */}
@@ -120,7 +132,7 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>
