@@ -2,6 +2,7 @@
 import { useState } from "react";
 import BiostatisticsHeroSection from "./components/BiostatisticsHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import ResourcePersons from "./components/ResourcePersons";
@@ -11,6 +12,16 @@ import FAQ from "./components/FAQ";
 
 const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "resource-persons", label: "Resource Persons" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -69,23 +80,38 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
                 onVideoClick={() => setIsVideoPlaying(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
 
             {/* What You Get */}
-            <WhatYouGet />
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
 
             {/* Resource Persons */}
-            <ResourcePersons />
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
 
             {/* What You Need */}
-            <WhatYouNeed />
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
 
             {/* Who This Course is For */}
-            <WhoThisCourseIsFor />
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
 
             {/* FAQ */}
-            <FAQ />
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
