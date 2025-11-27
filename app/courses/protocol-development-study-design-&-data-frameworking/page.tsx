@@ -11,7 +11,7 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
     const courseData = {
         title: "Protocol Development, Study Design & Data Frameworking",
         description:
-            "Transform your research ideas into structured, ethical, and statistically sound BMRC-compliant research protocols. Master study design selection, data management, and ethical frameworks essential for conducting high-quality research.",
+            "এই কোর্সটি সেই সকল শিক্ষার্থী, নবীন গবেষক এবং পেশাজীবীদের জন্য তৈরি, যারা Protocol Writing, Study Design, Variable Frameworking এবং Data Architecture-কে পেশাদার লেভেলে আয়ত্ত করতে আগ্রহী। বাস্তব clinical research projects, healthcare studies এবং academic research-এর জন্য প্রয়োজনীয় স্কিল শেখানোর মাধ্যমে এই কোর্স অংশগ্রহণকারীদের publication, thesis improvement এবং industry-grade trial setup এ প্রস্তুত করবে।",
         price: 7000,
         originalPrice: 11000,
         currency: "৳",
