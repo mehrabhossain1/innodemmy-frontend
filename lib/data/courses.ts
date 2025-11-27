@@ -844,8 +844,7 @@ export const coursesData: Course[] = [
         title: "Research Foundation & Scientific Literacy",
         slug: "research-foundation-&-scientific-literacy",
         description: `Master the fundamentals of research thinking, scientific reading, and critical analysis. Learn to evaluate literature, identify gaps, and develop research questions using cutting-edge AI tools. Perfect for aspiring researchers and healthcare professionals.`,
-        thumbnail:
-            "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnail: "/courses/ClinicalRFoundation.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-20"),
