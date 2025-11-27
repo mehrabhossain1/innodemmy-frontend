@@ -2,10 +2,22 @@
 import { useState } from "react";
 import AdvancedEvidenceHeroSection from "./components/AdvancedEvidenceHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
+import WhatYouGet from "./components/WhatYouGet";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
+import ResourcePersons from "./components/ResourcePersons";
 
 const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "resource-persons", label: "Resource Persons" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -28,19 +40,28 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="advanced-evidence-generation-ai-enabled-research-practice"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
                     <div className="relative w-full max-w-4xl">
                         {/* Close Button */}
                         <button
                             onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         >
                             ✕
                         </button>
                         {/* Video Container */}
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -61,10 +82,26 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
             <AdvancedEvidenceHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
+
+            {/* What You Get */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
+
+            {/* Resource Persons */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
@@ -73,7 +110,7 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>

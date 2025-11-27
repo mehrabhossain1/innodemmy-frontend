@@ -1,6 +1,5 @@
 "use client";
 import { Video, Play } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
@@ -18,11 +17,13 @@ interface AdvancedEvidenceHeroSectionProps {
         liveCourseLabel: string;
     };
     onVideoClick: () => void;
+    onEnrollClick: () => void;
 }
 
 export default function AdvancedEvidenceHeroSection({
     courseData,
     onVideoClick,
+    onEnrollClick,
 }: AdvancedEvidenceHeroSectionProps) {
     return (
         <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
@@ -86,10 +87,12 @@ export default function AdvancedEvidenceHeroSection({
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
                                             <span className="text-3xl font-bold text-gray-900">
-                                                ৳{courseData.price.toLocaleString()}
+                                                ৳
+                                                {courseData.price.toLocaleString()}
                                             </span>
                                             <span className="text-sm text-gray-400 line-through">
-                                                ৳{courseData.originalPrice.toLocaleString()}
+                                                ৳
+                                                {courseData.originalPrice.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">
@@ -110,11 +113,12 @@ export default function AdvancedEvidenceHeroSection({
                                 </div>
 
                                 {/* Enrollment Button */}
-                                <Link href={courseData.checkoutLink}>
-                                    <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
-                                        {courseData.enrollButtonTextShort}
-                                    </Button>
-                                </Link>
+                                <Button
+                                    onClick={onEnrollClick}
+                                    className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                                >
+                                    {courseData.enrollButtonTextShort}
+                                </Button>
                             </div>
 
                             {/* Action Buttons */}
