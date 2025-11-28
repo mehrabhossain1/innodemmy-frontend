@@ -2,6 +2,10 @@
 import { useState } from "react";
 import PythonHeroSection from "./components/PythonHeroSection";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
+import WhatYouGet from "./components/WhatYouGet";
+import Projects from "./components/Projects";
+import WhatYouNeed from "./components/WhatYouNeed";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 
 export default function PythonEssentialsForMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -72,6 +76,26 @@ export default function PythonEssentialsForMachineLearning() {
                 onVideoClick={() => setIsVideoPlaying(true)}
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
+
+            {/* What You'll Get Section */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
+
+            {/* Projects Section */}
+            <div id="projects">
+                <Projects />
+            </div>
+
+            {/* What You'll Need Section */}
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
+
+            {/* Who This Course is For Section */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
         </div>
     );
 }
