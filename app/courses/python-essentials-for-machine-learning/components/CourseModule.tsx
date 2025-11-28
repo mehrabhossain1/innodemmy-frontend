@@ -267,6 +267,54 @@ const modules: Module[] = [
             },
         ],
     },
+    {
+        id: 10,
+        number: 10,
+        title: "Project Support 1",
+        color: "bg-orange-500",
+        bgColor: "bg-orange-50",
+        lightBgColor: "bg-orange-100",
+        topics: [
+            {
+                id: 1,
+                session: 10,
+                title: "Project Support 1",
+                topics: [],
+            },
+        ],
+    },
+    {
+        id: 11,
+        number: 11,
+        title: "Project Support 2",
+        color: "bg-lime-500",
+        bgColor: "bg-lime-50",
+        lightBgColor: "bg-lime-100",
+        topics: [
+            {
+                id: 1,
+                session: 11,
+                title: "Project Support 2",
+                topics: [],
+            },
+        ],
+    },
+    {
+        id: 12,
+        number: 12,
+        title: "Project Support 3",
+        color: "bg-emerald-500",
+        bgColor: "bg-emerald-50",
+        lightBgColor: "bg-emerald-100",
+        topics: [
+            {
+                id: 1,
+                session: 12,
+                title: "Project Support 3",
+                topics: [],
+            },
+        ],
+    },
 ];
 
 export default function CourseModule() {
