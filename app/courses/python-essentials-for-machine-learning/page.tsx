@@ -6,6 +6,8 @@ import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import InstructorsAndMentors from "./components/InstructorsAndMentors";
+import FAQ from "./components/FAQ";
 
 export default function PythonEssentialsForMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -95,6 +97,16 @@ export default function PythonEssentialsForMachineLearning() {
             {/* Who This Course is For Section */}
             <div id="who-this-for">
                 <WhoThisCourseIsFor />
+            </div>
+
+            {/* Instructors and Mentors */}
+            <div id="resource-persons">
+                <InstructorsAndMentors />
+            </div>
+
+            {/* FAQ Section */}
+            <div id="faq">
+                <FAQ />
             </div>
         </div>
     );
