@@ -10,6 +10,7 @@ import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import FAQ from "./components/FAQ";
 import StickyNavigation from "@/components/course/StickyNavigation";
+import CourseModule from "./components/CourseModule";
 
 export default function PythonEssentialsForMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -94,6 +95,11 @@ export default function PythonEssentialsForMachineLearning() {
 
             {/* Sticky Navigation */}
             <StickyNavigation items={navigationItems} />
+
+            {/* Course Module */}
+            <div id="course-module">
+                <CourseModule />
+            </div>
 
             {/* What You'll Get Section */}
             <div id="what-you-get">
