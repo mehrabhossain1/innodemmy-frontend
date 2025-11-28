@@ -2,16 +2,29 @@
 import { useState } from "react";
 import PythonHeroSection from "./components/PythonHeroSection";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
+import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import FAQ from "./components/FAQ";
+import StickyNavigation from "@/components/course/StickyNavigation";
 
 export default function PythonEssentialsForMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "projects", label: "Projects" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -79,6 +92,9 @@ export default function PythonEssentialsForMachineLearning() {
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* What You'll Get Section */}
             <div id="what-you-get">
                 <WhatYouGet />
@@ -108,6 +124,16 @@ export default function PythonEssentialsForMachineLearning() {
             <div id="faq">
                 <FAQ />
             </div>
+
+            {/* Sticky Enrollment Bar */}
+            <StickyEnrollmentBar
+                price={courseData.price}
+                originalPrice={courseData.originalPrice}
+                currency={courseData.currency}
+                promoLabel={courseData.promoLabel}
+                enrollButtonText={courseData.enrollButtonText}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+            />
         </div>
     );
 }
