@@ -139,11 +139,11 @@ export default function CoursesSection() {
     // Filter courses based on active category
     const filteredCourses = useMemo(() => {
         if (activeCategory === "all") {
-            return courses.slice(0, 8); // Show max 8 courses
+            return courses.slice(0, 12); // Show max 8 courses
         }
         return courses
             .filter((course) => course.category === activeCategory)
-            .slice(0, 8);
+            .slice(0, 12);
     }, [courses, activeCategory]);
 
     return (
