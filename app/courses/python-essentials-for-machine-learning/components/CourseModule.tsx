@@ -115,6 +115,158 @@ const modules: Module[] = [
             },
         ],
     },
+    {
+        id: 4,
+        number: 4,
+        title: "Functions, Recursion & Modules",
+        color: "bg-amber-500",
+        bgColor: "bg-amber-50",
+        lightBgColor: "bg-amber-100",
+        topics: [
+            {
+                id: 1,
+                session: 4,
+                title: "Functions, Recursion & Modules",
+                topics: [
+                    "Defining and calling functions",
+                    "Parameters, return values, scope",
+                    "Default, keyword, variable-length arguments",
+                    "Recursion: factorial, Fibonacci, directory scan",
+                    "Anonymous functions: lambda",
+                    "map(), filter(), reduce()",
+                    "Built-in functions: map(), filter(), reduce()",
+                    "Writing your own modules and imports",
+                ],
+                exercises: [
+                    "Recursive file search",
+                    "Word filter with lambda and filter()",
+                ],
+            },
+        ],
+    },
+    {
+        id: 5,
+        number: 5,
+        title: "File Handling, CSV & JSON",
+        color: "bg-red-500",
+        bgColor: "bg-red-50",
+        lightBgColor: "bg-red-100",
+        topics: [
+            {
+                id: 1,
+                session: 5,
+                title: "File Handling, CSV & JSON",
+                topics: [
+                    "Working with text files",
+                    "CSV files using csv module",
+                    "JSON: parsing, serialization",
+                    "with statement, open(), read(), write()",
+                    "File loops and data cleaning",
+                    "File system navigation: os, pathlib",
+                ],
+                exercises: [
+                    "CSV data cleaner & summarizer",
+                    "JSON user profile builder",
+                ],
+            },
+        ],
+    },
+    {
+        id: 6,
+        number: 6,
+        title: "Error Handling & Debugging",
+        color: "bg-teal-500",
+        bgColor: "bg-teal-50",
+        lightBgColor: "bg-teal-100",
+        topics: [
+            {
+                id: 1,
+                session: 6,
+                title: "Error Handling & Debugging",
+                topics: [
+                    "Error types: syntax, runtime, logic",
+                    "Try-Except blocks, else, finally",
+                    "Custom exceptions with raise",
+                    "Basic debugger: pdb",
+                    "Logging intro (optional)",
+                ],
+                exercises: ["File reader with missing file handler"],
+            },
+        ],
+    },
+    {
+        id: 7,
+        number: 7,
+        title: "Object-Oriented Programming (OOP)",
+        color: "bg-indigo-500",
+        bgColor: "bg-indigo-50",
+        lightBgColor: "bg-indigo-100",
+        topics: [
+            {
+                id: 1,
+                session: 7,
+                title: "Object-Oriented Programming (OOP)",
+                topics: [
+                    "Classes, objects, __init__, attributes",
+                    "Class methods and self",
+                    "Inheritance and method overriding",
+                    "Encapsulation and __str__",
+                    "Composition (optional)",
+                ],
+                exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
+            },
+        ],
+    },
+    {
+        id: 8,
+        number: 8,
+        title: "Advanced Python (Generators, Decorators, Virtualenv)",
+        color: "bg-pink-500",
+        bgColor: "bg-pink-50",
+        lightBgColor: "bg-pink-100",
+        topics: [
+            {
+                id: 1,
+                session: 8,
+                title: "Advanced Python (Generators, Decorators, Virtualenv)",
+                topics: [
+                    "Generators: yield, lazy evaluation",
+                    "Decorators: writing and applying",
+                    "Closures and first-class functions",
+                    "Introduction to virtualenv & pip",
+                    "Installing external libraries",
+                ],
+                exercises: ["Generator for large file line processing"],
+            },
+        ],
+    },
+    {
+        id: 9,
+        number: 9,
+        title: "Web Scraping & APIs",
+        color: "bg-cyan-500",
+        bgColor: "bg-cyan-50",
+        lightBgColor: "bg-cyan-100",
+        topics: [
+            {
+                id: 1,
+                session: 9,
+                title: "Web Scraping & APIs",
+                topics: [
+                    "Web scraping with requests, BeautifulSoup",
+                    "Parsing HTML: tags, classes, attributes",
+                    "Error handling for HTTP requests",
+                    "Working with APIs (e.g., OpenWeatherMap)",
+                    "Exporting data to CSV/JSON",
+                ],
+                exercises: [
+                    "News headline scraper",
+                    "Weather report fetcher",
+                    "Job listings to CSV from web",
+                ],
+            },
+        ],
+    },
 ];
 
 export default function CourseModule() {
