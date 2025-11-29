@@ -3,6 +3,7 @@ import { useState } from "react";
 import VLSIHeroSection from "@/app/courses/vlsi-physical-design-training/components/VLSIHeroSection";
 import VLSICourseModule from "@/app/courses/vlsi-physical-design-training/components/VLSICourseModule";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import WhatYouGet from "@/app/courses/vlsi-physical-design-training/components/WhatYouGet";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -65,6 +66,9 @@ const VlsiPhysicalDesignTraining = () => {
 
             {/* Course Module */}
             <VLSICourseModule />
+
+            {/* What You Get */}
+            <WhatYouGet />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
