@@ -1492,6 +1492,200 @@ export const coursesData: Course[] = [
             "End-to-end physical design flow (RTL to GDSII)",
         ],
     },
+    // Python Essentials for Machine Learning
+    {
+        _id: "11",
+        title: "Python Essentials for Machine Learning",
+        slug: "python-essentials-for-machine-learning",
+        description: `এই কোর্সটি তৈরি করা হয়েছে মেশিন লার্নিং ও ডেটা সায়েন্স শেখার পূর্বশর্ত হিসেবে একটি মজবুত পাইথন প্রোগ্রামিং ভিত্তি গড়ে তোলার জন্য। এখানে মূল লক্ষ্য হলো মেশিন লার্নিং অ্যালগরিদম বা থিওরি নয়, বরং প্রোগ্রামিংয়ের মূল ধারণাগুলো দক্ষতার সাথে আয়ত্ত করা।`,
+        thumbnail: "/courses/Python.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/YOUR_VIDEO_ID?si=YOUR_VIDEO_SI",
+        courseStartDate: new Date("2025-12-15"),
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        batchName: "Batch 1",
+        price: 8000,
+        totalLiveClasses: 20,
+        totalWeeks: 12,
+        totalModules: 8,
+        totalProjects: 10,
+        totalExercises: 30,
+
+        idealFor: [
+            "Individuals interested in machine learning who want to build a strong foundation in programming",
+            "Students and professionals aspiring to pursue a career in software development or data science",
+            "Anyone looking to enhance their Python programming skills",
+            "Beginners with little to no prior Python experience",
+        ],
+
+        faq: [
+            {
+                question: "Who is this course designed for?",
+                answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
+            },
+            {
+                question: "Do I need any prior programming knowledge to join?",
+                answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
+            },
+            {
+                question: "What will I learn in this course?",
+                answer: "You'll learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
+            },
+            {
+                question: "How long is the course?",
+                answer: "The course runs for 12 weeks with 20 live classes, covering 8 comprehensive modules with hands-on projects.",
+            },
+        ],
+
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Python & Basics",
+                topics: [
+                    "Python installation and setup",
+                    "Variables, data types, and operators",
+                    "Basic input/output operations",
+                    "Comments and documentation",
+                    "Understanding Python syntax",
+                ],
+                exercises: [
+                    "Simple calculator program",
+                    "Temperature converter",
+                    "Basic user input programs",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Control Flow & Loops",
+                topics: [
+                    "Conditional statements (if, elif, else)",
+                    "Comparison and logical operators",
+                    "For loops and while loops",
+                    "Break, continue, and pass statements",
+                    "Nested loops and control structures",
+                ],
+                exercises: [
+                    "Number guessing game",
+                    "Pattern printing programs",
+                    "Loop-based calculations",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Data Structures",
+                topics: [
+                    "Lists: creation, indexing, slicing",
+                    "Tuples and their immutability",
+                    "Dictionaries: key-value pairs",
+                    "Sets and set operations",
+                    "List comprehensions",
+                ],
+                exercises: [
+                    "Shopping list manager",
+                    "Student grade tracker",
+                    "Dictionary-based contact book",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Functions, Recursion & Modules",
+                topics: [
+                    "Defining and calling functions",
+                    "Parameters, return values, scope",
+                    "Default, keyword, variable-length arguments",
+                    "Recursion: factorial, Fibonacci, directory scan",
+                    "Anonymous functions: lambda",
+                    "Built-in functions: map(), filter(), reduce()",
+                    "Writing your own modules and imports",
+                ],
+                exercises: [
+                    "Recursive file search",
+                    "Password generator",
+                    "Word filter with lambda and filter()",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: File Handling, CSV & JSON",
+                topics: [
+                    "Working with text files",
+                    "CSV files using csv module",
+                    "JSON: parsing, serialization",
+                    "with statement, open(), read(), write()",
+                    "File loops and data cleaning",
+                    "File system navigation: os, pathlib",
+                ],
+                exercises: [
+                    "CSV data cleaner & summarizer",
+                    "JSON user profile builder",
+                    "Log file analyzer",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Exception Handling",
+                topics: [
+                    "Understanding exceptions and errors",
+                    "Try, except, else, finally blocks",
+                    "Raising exceptions",
+                    "Custom exception classes",
+                    "Debugging techniques",
+                ],
+                exercises: [
+                    "File reader with missing file handler",
+                    "Robust calculator with error handling",
+                    "Input validation program",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Object-Oriented Programming (OOP)",
+                topics: [
+                    "Classes and objects",
+                    "Attributes and methods",
+                    "Constructors (__init__)",
+                    "Inheritance and polymorphism",
+                    "Encapsulation and abstraction",
+                    "Magic methods and operator overloading",
+                ],
+                exercises: [
+                    "Bank account system (OOP)",
+                    "Tic-Tac-Toe with OOP",
+                    "Library management system",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Advanced Topics & Final Projects",
+                topics: [
+                    "Generators and iterators",
+                    "Decorators and closures",
+                    "Regular expressions for pattern matching",
+                    "Working with APIs",
+                    "Web scraping basics",
+                    "Best practices and code optimization",
+                ],
+                exercises: [
+                    "Generator for large file line processing",
+                    "News headline scraper",
+                    "API data fetcher and analyzer",
+                ],
+            },
+        ],
+
+        projects: [
+            "Password generator",
+            "Number guessing game",
+            "Recursive file search",
+            "CSV data cleaner & summarizer",
+            "JSON user profile builder",
+            "File reader with missing file handler",
+            "Bank account system (OOP)",
+            "Tic-Tac-Toe with OOP",
+            "Generator for large file line processing",
+            "News headline scraper",
+        ],
+    },
 ];
 
 /**
