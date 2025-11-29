@@ -11,7 +11,7 @@ const VlsiPhysicalDesignTraining = () => {
     const courseData = {
         title: "VLSI Physical Design Training",
         description:
-            "Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.",
+            "VLSI Physical Design হলো সেমিকন্ডাক্টর চিপ ডেভেলপমেন্টের একটি অত্যন্ত গুরুত্বপূর্ণ ধাপ, যেখানে লজিক্যাল সার্কিটকে রূপান্তর করা হয় কার্যকর সিলিকন Layout এ। এই ধাপ সম্পন্ন হওয়ার পর ডিজাইনটি হয়ে ওঠে chip manufacturing এর জন্য প্রস্তুত।\n\nএই কোর্সে আপনি PD (Physical Design)-এর প্রয়োজনীয় প্রাথমিক জ্ঞান থেকে শুরু করে প্রতিটি ধাপ — Floorplanning, Placement, Routing, Clock Tree Synthesis (CTS), Power Planning, Physical Verification, এবং Timing Closure — বিস্তারিত ও নিখুঁতভাবে শিখবেন।\n\nশেখার পুরো প্রক্রিয়াটি হবে বাস্তব উদাহরণ, industry-grade open-source tools (primarily OpenROAD) এবং হাতে-কলমে প্র্যাকটিস-এর মাধ্যমে, যাতে আপনি সহজেই অর্জন করতে পারেন ইন্ডাস্ট্রি-রেডি স্কিলস এবং আত্মবিশ্বাসের সাথে Chip Design এ ক্যারিয়ার গড়ে তুলতে পারেন।",
         price: 18000,
         originalPrice: 30000,
         currency: "৳",
