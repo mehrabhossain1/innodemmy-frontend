@@ -9,6 +9,7 @@ import Projects from "@/app/courses/vlsi-physical-design-training/components/Pro
 import WhatYouNeed from "@/app/courses/vlsi-physical-design-training/components/WhatYouNeed";
 import WhoThisCourseIsFor from "@/app/courses/vlsi-physical-design-training/components/WhoThisCourseIsFor";
 import InstructorsAndMentors from "@/app/courses/vlsi-physical-design-training/components/InstructorsAndMentors";
+import FAQ from "@/app/courses/vlsi-physical-design-training/components/FAQ";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -89,6 +90,9 @@ const VlsiPhysicalDesignTraining = () => {
 
             {/* Instructors and Mentors */}
             <InstructorsAndMentors />
+
+            {/* FAQ */}
+            <FAQ />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
