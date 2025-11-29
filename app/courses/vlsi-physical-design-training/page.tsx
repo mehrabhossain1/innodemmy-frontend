@@ -3,6 +3,8 @@ import { useState } from "react";
 import VLSIHeroSection from "@/app/courses/vlsi-physical-design-training/components/VLSIHeroSection";
 import VLSICourseModule from "@/app/courses/vlsi-physical-design-training/components/VLSICourseModule";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 import WhatYouGet from "@/app/courses/vlsi-physical-design-training/components/WhatYouGet";
 import ToolsAndTechnologies from "@/app/courses/vlsi-physical-design-training/components/ToolsAndTechnologies";
 import Projects from "@/app/courses/vlsi-physical-design-training/components/Projects";
@@ -13,6 +15,19 @@ import FAQ from "@/app/courses/vlsi-physical-design-training/components/FAQ";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "tools-technologies", label: "Tools & Technologies" },
+        { id: "projects", label: "Projects" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You'll Need" },
+        { id: "instructors", label: "Instructors and Mentors" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -35,25 +50,34 @@ const VlsiPhysicalDesignTraining = () => {
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="vlsi-physical-design-training"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
                     <div className="relative w-full max-w-4xl">
                         {/* Close Button */}
                         <button
                             onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         >
                             ✕
                         </button>
                         {/* Video Container */}
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
                             <iframe
                                 width="100%"
                                 height="100%"
                                 src={courseData.videoUrl}
                                 title={courseData.title}
-                                style={{ border: 0 }}
+                                frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 allowFullScreen
@@ -68,31 +92,51 @@ const VlsiPhysicalDesignTraining = () => {
             <VLSIHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <VLSICourseModule />
+            <div id="course-module">
+                <VLSICourseModule />
+            </div>
 
             {/* What You Get */}
-            <WhatYouGet />
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
 
             {/* Tools & Technologies */}
-            <ToolsAndTechnologies />
+            <div id="tools-technologies">
+                <ToolsAndTechnologies />
+            </div>
 
             {/* Projects */}
-            <Projects />
-
-            {/* What You Need */}
-            <WhatYouNeed />
+            <div id="projects">
+                <Projects />
+            </div>
 
             {/* Who This Course is For */}
-            <WhoThisCourseIsFor />
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
 
             {/* Instructors and Mentors */}
-            <InstructorsAndMentors />
+            <div id="instructors">
+                <InstructorsAndMentors />
+            </div>
 
             {/* FAQ */}
-            <FAQ />
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
@@ -101,7 +145,7 @@ const VlsiPhysicalDesignTraining = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>
