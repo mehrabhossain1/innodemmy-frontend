@@ -1,4 +1,5 @@
 "use client";
+import SectionTitle from "@/components/course/SectionTitle";
 import { ChevronDown, Video, FileText } from "lucide-react";
 import { useState } from "react";
 
@@ -280,12 +281,7 @@ export default function VLSICourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Module
-                </h2>
-                <hr className="my-2 border-gray-200" />
-            </div>
+            <SectionTitle title="Course Module" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
                 {modules.map((module) => (
