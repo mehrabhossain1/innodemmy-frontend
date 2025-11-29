@@ -4,6 +4,7 @@ import VLSIHeroSection from "@/app/courses/vlsi-physical-design-training/compone
 import VLSICourseModule from "@/app/courses/vlsi-physical-design-training/components/VLSICourseModule";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import WhatYouGet from "@/app/courses/vlsi-physical-design-training/components/WhatYouGet";
+import ToolsAndTechnologies from "@/app/courses/vlsi-physical-design-training/components/ToolsAndTechnologies";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -69,6 +70,9 @@ const VlsiPhysicalDesignTraining = () => {
 
             {/* What You Get */}
             <WhatYouGet />
+
+            {/* Tools & Technologies */}
+            <ToolsAndTechnologies />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
