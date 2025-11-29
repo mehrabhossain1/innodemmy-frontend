@@ -6,6 +6,7 @@ import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import WhatYouGet from "@/app/courses/vlsi-physical-design-training/components/WhatYouGet";
 import ToolsAndTechnologies from "@/app/courses/vlsi-physical-design-training/components/ToolsAndTechnologies";
 import Projects from "@/app/courses/vlsi-physical-design-training/components/Projects";
+import WhatYouNeed from "@/app/courses/vlsi-physical-design-training/components/WhatYouNeed";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -77,6 +78,9 @@ const VlsiPhysicalDesignTraining = () => {
 
             {/* Projects */}
             <Projects />
+
+            {/* What You Need */}
+            <WhatYouNeed />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
