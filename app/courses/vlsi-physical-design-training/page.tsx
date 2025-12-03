@@ -6,7 +6,7 @@ import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 import WhatYouGet from "@/app/courses/vlsi-physical-design-training/components/WhatYouGet";
-import ToolsAndTechnologies from "@/app/courses/vlsi-physical-design-training/components/ToolsAndTechnologies";
+// import ToolsAndTechnologies from "@/app/courses/vlsi-physical-design-training/components/ToolsAndTechnologies";
 import Projects from "@/app/courses/vlsi-physical-design-training/components/Projects";
 import WhatYouNeed from "@/app/courses/vlsi-physical-design-training/components/WhatYouNeed";
 import WhoThisCourseIsFor from "@/app/courses/vlsi-physical-design-training/components/WhoThisCourseIsFor";
@@ -21,7 +21,7 @@ const VlsiPhysicalDesignTraining = () => {
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
         { id: "what-you-get", label: "What You'll Get in This Course" },
-        { id: "tools-technologies", label: "Tools & Technologies" },
+        // { id: "tools-technologies", label: "Tools & Technologies" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "what-you-need", label: "What You'll Need" },
@@ -109,9 +109,9 @@ const VlsiPhysicalDesignTraining = () => {
             </div>
 
             {/* Tools & Technologies */}
-            <div id="tools-technologies">
+            {/* <div id="tools-technologies">
                 <ToolsAndTechnologies />
-            </div>
+            </div> */}
 
             {/* Projects */}
             <div id="projects">
