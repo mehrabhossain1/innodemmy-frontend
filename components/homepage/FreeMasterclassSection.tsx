@@ -44,7 +44,7 @@ export default function FreeMasterclassSection() {
                         </span>{" "}
                         <span className="text-foreground">Sessions</span>
                     </h2>
-                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Get a taste of our world-class teaching methodology.
                         Learn from industry experts at absolutely no cost.
                     </p>
