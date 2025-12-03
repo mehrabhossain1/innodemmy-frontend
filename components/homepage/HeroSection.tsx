@@ -65,8 +65,8 @@ const heroImages = [
         ),
         subtitle:
             "Learn how to translate logic into high performance, manufacturable silicon",
-        buttonText: "Explore Courses",
-        buttonLink: "/courses",
+        buttonText: "Explore VLSI Physical Design",
+        buttonLink: "/courses/vlsi-physical-design-training",
     },
     {
         src: bg4,
