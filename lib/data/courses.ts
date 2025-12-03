@@ -55,6 +55,231 @@ export const coursesData: Course[] = [
 
         modules: [],
     },
+
+    // Innodemy Clinical Research Mastery Program
+    {
+        _id: "4",
+        title: "Innodemy Clinical Research Mastery Program",
+        slug: "innodemy-clinical-research-mastery-program",
+        description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
+        thumbnail: "/courses/ClinicalResearchMastery.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-03-15"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 15000,
+        totalLiveClasses: 20,
+        totalWeeks: 10,
+        totalModules: 10,
+        totalProjects: 6,
+        totalExercises: 25,
+
+        //
+        idealFor: [
+            "Medical graduates aspiring to enter clinical research industry",
+            "Healthcare professionals seeking career transition to clinical research",
+            "Pharmacy and life sciences graduates interested in clinical trials",
+            "Research coordinators wanting to advance their skills",
+            "Anyone passionate about contributing to medical advancement through research",
+        ],
+
+        //
+        faq: [
+            {
+                question: "এই কোর্স কাদের জন্য?",
+                answer: "এই কোর্স মেডিকেল, ফার্মেসি, লাইফ সায়েন্স গ্র্যাজুয়েট এবং হেলথকেয়ার প্রফেশনালদের জন্য যারা ক্লিনিক্যাল রিসার্চে ক্যারিয়ার গড়তে চান।",
+            },
+            {
+                question: "কোর্সটি কতদিনের?",
+                answer: "এই সম্পূর্ণ প্রোগ্রামটি ১০ সপ্তাহের, যেখানে ২০টি লাইভ ক্লাস রয়েছে। প্রতিটি ক্লাস ইন্টারেক্টিভ এবং হ্যান্ডস-অন প্র্যাকটিসের সাথে।",
+            },
+            {
+                question: "কোর্স শেষে আমি কী কী শিখতে পারব?",
+                answer: "ক্লিনিক্যাল ট্রায়াল ডিজাইন, প্রোটোকল ডেভেলপমেন্ট, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট, GCP কমপ্লায়েন্স এবং আরও অনেক কিছু শিখবেন যা আপনাকে ইন্ডাস্ট্রি-রেডি করবে।",
+            },
+            {
+                question: "কি কোন পূর্ব অভিজ্ঞতা প্রয়োজন?",
+                answer: "মেডিকেল বা লাইফ সায়েন্স ব্যাকগ্রাউন্ড থাকলেই যথেষ্ট। ক্লিনিক্যাল রিসার্চের পূর্ব অভিজ্ঞতার প্রয়োজন নেই।",
+            },
+            {
+                question: "কোর্স শেষে চাকরির সুযোগ কেমন?",
+                answer: "ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে বর্তমানে প্রচুর চাকরির সুযোগ রয়েছে। কোর্স শেষে আপনি CRC, CRA, Data Manager সহ বিভিন্ন পজিশনের জন্য যোগ্য হবেন।",
+            },
+            {
+                question: "কোর্সে কি সার্টিফিকেট পাব?",
+                answer: "হ্যাঁ, কোর্স সফলভাবে সম্পন্ন করলে আপনি Innodemy থেকে সার্টিফিকেট পাবেন।",
+            },
+            {
+                question: "লাইভ ক্লাস মিস করলে কী হবে?",
+                answer: "সব লাইভ ক্লাসের রেকর্ডিং পাবেন যা আপনি যেকোনো সময় দেখতে পারবেন।",
+            },
+            {
+                question: "প্রজেক্ট সাপোর্ট পাব কি?",
+                answer: "হ্যাঁ, কোর্সে প্র্যাকটিক্যাল প্রজেক্ট এবং কেস স্টাডি রয়েছে যেখানে আপনি সম্পূর্ণ মেন্টরশিপ পাবেন।",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Clinical Research",
+                topics: [
+                    "Overview of clinical research industry",
+                    "Drug development process",
+                    "Phases of clinical trials",
+                    "Key stakeholders in clinical research",
+                    "Career opportunities in clinical research",
+                ],
+                exercises: [
+                    "Identify phases of given clinical trials",
+                    "Map stakeholder roles in a trial",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Clinical Trial Design",
+                topics: [
+                    "Study design types (RCT, cohort, case-control)",
+                    "Randomization and blinding",
+                    "Inclusion and exclusion criteria",
+                    "Primary and secondary endpoints",
+                    "Sample size determination",
+                ],
+                exercises: [
+                    "Design a basic clinical trial",
+                    "Calculate sample size for a study",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Protocol Development",
+                topics: [
+                    "Elements of clinical trial protocol",
+                    "Writing clear objectives and endpoints",
+                    "Study procedures and assessments",
+                    "Safety monitoring plans",
+                    "Protocol amendments",
+                ],
+                exercises: [
+                    "Draft protocol synopsis",
+                    "Review and critique sample protocols",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Good Clinical Practice (GCP)",
+                topics: [
+                    "ICH-GCP guidelines",
+                    "Ethical principles in research",
+                    "Informed consent process",
+                    "Subject rights and safety",
+                    "Documentation requirements",
+                ],
+                exercises: [
+                    "Practice informed consent process",
+                    "Identify GCP violations in case studies",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Regulatory Affairs",
+                topics: [
+                    "Regulatory authorities (FDA, EMA, DGHS)",
+                    "IND/NDA submission process",
+                    "Ethics committee approval",
+                    "Regulatory documentation",
+                    "Inspection preparedness",
+                ],
+                exercises: [
+                    "Prepare ethics committee submission",
+                    "Review regulatory documents",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Clinical Data Management",
+                topics: [
+                    "CRF design and eCRF systems",
+                    "Data collection and entry",
+                    "Data validation and cleaning",
+                    "Database lock procedures",
+                    "CDISC standards",
+                ],
+                exercises: [
+                    "Design a CRF for a study",
+                    "Perform data validation checks",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Pharmacovigilance & Safety",
+                topics: [
+                    "Adverse event reporting",
+                    "SAE vs SUSAR",
+                    "Safety databases",
+                    "Risk management plans",
+                    "Signal detection",
+                ],
+                exercises: [
+                    "Report adverse events correctly",
+                    "Analyze safety data from trials",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Clinical Trial Monitoring",
+                topics: [
+                    "Role of Clinical Research Associate (CRA)",
+                    "Site selection and initiation",
+                    "Monitoring visits (IMV, SMV, COV)",
+                    "Source data verification",
+                    "Monitoring reports",
+                ],
+                exercises: [
+                    "Conduct mock monitoring visit",
+                    "Write monitoring visit report",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle: "Module 9: Quality Assurance & Auditing",
+                topics: [
+                    "Quality management systems",
+                    "Standard Operating Procedures (SOPs)",
+                    "Internal audits",
+                    "Regulatory inspections",
+                    "CAPA (Corrective and Preventive Actions)",
+                ],
+                exercises: ["Develop SOP for a process", "Conduct mock audit"],
+            },
+            {
+                classNumber: 10,
+                moduleTitle:
+                    "Module 10: Career Development & Industry Insights",
+                topics: [
+                    "Resume building for clinical research",
+                    "Interview preparation",
+                    "Networking in the industry",
+                    "Continuing education and certifications",
+                    "Future trends in clinical research",
+                ],
+                exercises: ["Create professional CV", "Mock interviews"],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete protocol development project",
+            "Clinical trial design case study",
+            "Data management system implementation",
+            "Pharmacovigilance case analysis",
+            "Monitoring visit simulation",
+            "Quality audit project",
+        ],
+    },
+
     // Advanced Evidence Generation & AI-Enabled Research Practice
     {
         _id: "2",
@@ -434,230 +659,6 @@ export const coursesData: Course[] = [
             "Comparative analysis using parametric tests",
             "Categorical data analysis project",
             "Regression modeling and interpretation report",
-        ],
-    },
-
-    // Innodemy Clinical Research Mastery Program
-    {
-        _id: "4",
-        title: "Innodemy Clinical Research Mastery Program",
-        slug: "innodemy-clinical-research-mastery-program",
-        description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
-        thumbnail: "/courses/ClinicalResearchMastery.jpg",
-        courseVideoUrl:
-            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
-        courseStartDate: new Date("2025-03-15"),
-        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
-        batchName: "Batch 1",
-        price: 15000,
-        totalLiveClasses: 20,
-        totalWeeks: 10,
-        totalModules: 10,
-        totalProjects: 6,
-        totalExercises: 25,
-
-        //
-        idealFor: [
-            "Medical graduates aspiring to enter clinical research industry",
-            "Healthcare professionals seeking career transition to clinical research",
-            "Pharmacy and life sciences graduates interested in clinical trials",
-            "Research coordinators wanting to advance their skills",
-            "Anyone passionate about contributing to medical advancement through research",
-        ],
-
-        //
-        faq: [
-            {
-                question: "এই কোর্স কাদের জন্য?",
-                answer: "এই কোর্স মেডিকেল, ফার্মেসি, লাইফ সায়েন্স গ্র্যাজুয়েট এবং হেলথকেয়ার প্রফেশনালদের জন্য যারা ক্লিনিক্যাল রিসার্চে ক্যারিয়ার গড়তে চান।",
-            },
-            {
-                question: "কোর্সটি কতদিনের?",
-                answer: "এই সম্পূর্ণ প্রোগ্রামটি ১০ সপ্তাহের, যেখানে ২০টি লাইভ ক্লাস রয়েছে। প্রতিটি ক্লাস ইন্টারেক্টিভ এবং হ্যান্ডস-অন প্র্যাকটিসের সাথে।",
-            },
-            {
-                question: "কোর্স শেষে আমি কী কী শিখতে পারব?",
-                answer: "ক্লিনিক্যাল ট্রায়াল ডিজাইন, প্রোটোকল ডেভেলপমেন্ট, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট, GCP কমপ্লায়েন্স এবং আরও অনেক কিছু শিখবেন যা আপনাকে ইন্ডাস্ট্রি-রেডি করবে।",
-            },
-            {
-                question: "কি কোন পূর্ব অভিজ্ঞতা প্রয়োজন?",
-                answer: "মেডিকেল বা লাইফ সায়েন্স ব্যাকগ্রাউন্ড থাকলেই যথেষ্ট। ক্লিনিক্যাল রিসার্চের পূর্ব অভিজ্ঞতার প্রয়োজন নেই।",
-            },
-            {
-                question: "কোর্স শেষে চাকরির সুযোগ কেমন?",
-                answer: "ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে বর্তমানে প্রচুর চাকরির সুযোগ রয়েছে। কোর্স শেষে আপনি CRC, CRA, Data Manager সহ বিভিন্ন পজিশনের জন্য যোগ্য হবেন।",
-            },
-            {
-                question: "কোর্সে কি সার্টিফিকেট পাব?",
-                answer: "হ্যাঁ, কোর্স সফলভাবে সম্পন্ন করলে আপনি Innodemy থেকে সার্টিফিকেট পাবেন।",
-            },
-            {
-                question: "লাইভ ক্লাস মিস করলে কী হবে?",
-                answer: "সব লাইভ ক্লাসের রেকর্ডিং পাবেন যা আপনি যেকোনো সময় দেখতে পারবেন।",
-            },
-            {
-                question: "প্রজেক্ট সাপোর্ট পাব কি?",
-                answer: "হ্যাঁ, কোর্সে প্র্যাকটিক্যাল প্রজেক্ট এবং কেস স্টাডি রয়েছে যেখানে আপনি সম্পূর্ণ মেন্টরশিপ পাবেন।",
-            },
-        ],
-
-        //
-        modules: [
-            {
-                classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Clinical Research",
-                topics: [
-                    "Overview of clinical research industry",
-                    "Drug development process",
-                    "Phases of clinical trials",
-                    "Key stakeholders in clinical research",
-                    "Career opportunities in clinical research",
-                ],
-                exercises: [
-                    "Identify phases of given clinical trials",
-                    "Map stakeholder roles in a trial",
-                ],
-            },
-            {
-                classNumber: 2,
-                moduleTitle: "Module 2: Clinical Trial Design",
-                topics: [
-                    "Study design types (RCT, cohort, case-control)",
-                    "Randomization and blinding",
-                    "Inclusion and exclusion criteria",
-                    "Primary and secondary endpoints",
-                    "Sample size determination",
-                ],
-                exercises: [
-                    "Design a basic clinical trial",
-                    "Calculate sample size for a study",
-                ],
-            },
-            {
-                classNumber: 3,
-                moduleTitle: "Module 3: Protocol Development",
-                topics: [
-                    "Elements of clinical trial protocol",
-                    "Writing clear objectives and endpoints",
-                    "Study procedures and assessments",
-                    "Safety monitoring plans",
-                    "Protocol amendments",
-                ],
-                exercises: [
-                    "Draft protocol synopsis",
-                    "Review and critique sample protocols",
-                ],
-            },
-            {
-                classNumber: 4,
-                moduleTitle: "Module 4: Good Clinical Practice (GCP)",
-                topics: [
-                    "ICH-GCP guidelines",
-                    "Ethical principles in research",
-                    "Informed consent process",
-                    "Subject rights and safety",
-                    "Documentation requirements",
-                ],
-                exercises: [
-                    "Practice informed consent process",
-                    "Identify GCP violations in case studies",
-                ],
-            },
-            {
-                classNumber: 5,
-                moduleTitle: "Module 5: Regulatory Affairs",
-                topics: [
-                    "Regulatory authorities (FDA, EMA, DGHS)",
-                    "IND/NDA submission process",
-                    "Ethics committee approval",
-                    "Regulatory documentation",
-                    "Inspection preparedness",
-                ],
-                exercises: [
-                    "Prepare ethics committee submission",
-                    "Review regulatory documents",
-                ],
-            },
-            {
-                classNumber: 6,
-                moduleTitle: "Module 6: Clinical Data Management",
-                topics: [
-                    "CRF design and eCRF systems",
-                    "Data collection and entry",
-                    "Data validation and cleaning",
-                    "Database lock procedures",
-                    "CDISC standards",
-                ],
-                exercises: [
-                    "Design a CRF for a study",
-                    "Perform data validation checks",
-                ],
-            },
-            {
-                classNumber: 7,
-                moduleTitle: "Module 7: Pharmacovigilance & Safety",
-                topics: [
-                    "Adverse event reporting",
-                    "SAE vs SUSAR",
-                    "Safety databases",
-                    "Risk management plans",
-                    "Signal detection",
-                ],
-                exercises: [
-                    "Report adverse events correctly",
-                    "Analyze safety data from trials",
-                ],
-            },
-            {
-                classNumber: 8,
-                moduleTitle: "Module 8: Clinical Trial Monitoring",
-                topics: [
-                    "Role of Clinical Research Associate (CRA)",
-                    "Site selection and initiation",
-                    "Monitoring visits (IMV, SMV, COV)",
-                    "Source data verification",
-                    "Monitoring reports",
-                ],
-                exercises: [
-                    "Conduct mock monitoring visit",
-                    "Write monitoring visit report",
-                ],
-            },
-            {
-                classNumber: 9,
-                moduleTitle: "Module 9: Quality Assurance & Auditing",
-                topics: [
-                    "Quality management systems",
-                    "Standard Operating Procedures (SOPs)",
-                    "Internal audits",
-                    "Regulatory inspections",
-                    "CAPA (Corrective and Preventive Actions)",
-                ],
-                exercises: ["Develop SOP for a process", "Conduct mock audit"],
-            },
-            {
-                classNumber: 10,
-                moduleTitle:
-                    "Module 10: Career Development & Industry Insights",
-                topics: [
-                    "Resume building for clinical research",
-                    "Interview preparation",
-                    "Networking in the industry",
-                    "Continuing education and certifications",
-                    "Future trends in clinical research",
-                ],
-                exercises: ["Create professional CV", "Mock interviews"],
-            },
-        ],
-
-        //
-        projects: [
-            "Complete protocol development project",
-            "Clinical trial design case study",
-            "Data management system implementation",
-            "Pharmacovigilance case analysis",
-            "Monitoring visit simulation",
-            "Quality audit project",
         ],
     },
 
