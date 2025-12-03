@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
     COURSE_CATEGORIES,
     getAllCategories,
@@ -44,10 +45,15 @@ const categoryIcons: Record<string, typeof Code> = {
 };
 
 export default function CoursesPage() {
+    const searchParams = useSearchParams();
+    const categoryFromUrl = searchParams.get("category");
+
     const [searchTerm, setSearchTerm] = useState("");
     const [allCourses, setAllCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeCategory, setActiveCategory] = useState("all");
+    const [activeCategory, setActiveCategory] = useState(
+        categoryFromUrl || "all"
+    );
 
     useEffect(() => {
         async function fetchCourses() {
@@ -63,6 +69,13 @@ export default function CoursesPage() {
         }
         fetchCourses();
     }, []);
+
+    // Update active category when URL changes
+    useEffect(() => {
+        if (categoryFromUrl) {
+            setActiveCategory(categoryFromUrl);
+        }
+    }, [categoryFromUrl]);
 
     // Build dynamic categories with counts
     const categories = useMemo(() => {

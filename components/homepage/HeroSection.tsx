@@ -50,8 +50,8 @@ const heroImages = [
         ),
         subtitle:
             "Master clinical research skills through our comprehensive program combining multiple in-depth courses.",
-        buttonText: "Explore Courses",
-        buttonLink: "/courses",
+        buttonText: "Explore Clinical Research",
+        buttonLink: "/courses?category=CLINICAL RESEARCH",
     },
     {
         src: bg3,
