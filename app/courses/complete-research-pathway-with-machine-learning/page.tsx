@@ -19,10 +19,10 @@ export default function CompleteResearchPathwayWithMachineLearning() {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need to Get Started" },
         { id: "resource-persons", label: "Instructors and Mentors" },
         { id: "faq", label: "FAQ" },
     ];

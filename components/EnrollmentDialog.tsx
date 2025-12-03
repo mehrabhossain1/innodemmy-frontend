@@ -118,8 +118,8 @@ export default function EnrollmentDialog({
                             </p>
                             <p className="text-sm text-blue-700 mt-2">
                                 Our admin team will verify your payment and
-                                approve your enrollment within 24 hours. You'll
-                                receive a notification once approved.
+                                approve your enrollment within 24 hours. You
+                                will receive a notification once approved.
                             </p>
                         </div>
                         <Button onClick={handleClose} className="w-full">

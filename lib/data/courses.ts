@@ -320,11 +320,11 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What tools will I learn to use?",
-                answer: "You'll learn to use cutting-edge AI tools for systematic reviews, meta-analysis software, statistical packages, and automation tools for medical writing and grant proposals.",
+                answer: "You will learn to use cutting-edge AI tools for systematic reviews, meta-analysis software, statistical packages, and automation tools for medical writing and grant proposals.",
             },
             {
                 question: "Will I learn to write research papers?",
-                answer: "Yes! Medical writing is a key component of this course. You'll learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
+                answer: "Yes! Medical writing is a key component of this course. You will learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
             },
             {
                 question:
@@ -333,7 +333,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "Will I receive a certificate?",
-                answer: "Yes, upon successful completion of the course and all assignments, you'll receive a certificate of completion.",
+                answer: "Yes, upon successful completion of the course and all assignments, You will receive a certificate of completion.",
             },
             {
                 question: "What is the course duration?",
@@ -509,7 +509,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What software will I learn?",
-                answer: "You'll gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
+                answer: "You will gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
             },
             {
                 question:
@@ -524,11 +524,11 @@ export const coursesData: Course[] = [
             {
                 question:
                     "How is this different from online statistics courses?",
-                answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You'll learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
+                answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You will learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
             },
             {
                 question: "Will I learn how to present data visually?",
-                answer: "Yes! Data visualization is a key component. You'll learn to create professional graphs, charts, and tables suitable for research papers and presentations.",
+                answer: "Yes! Data visualization is a key component. You will learn to create professional graphs, charts, and tables suitable for research papers and presentations.",
             },
             {
                 question: "Can I get help with my specific research project?",
@@ -536,7 +536,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What are the system requirements?",
-                answer: "You'll need a Windows PC (SPSS and STATA work best on Windows). We'll provide guidance on software installation and setup during the course.",
+                answer: "You will need a Windows PC (SPSS and STATA work best on Windows). We'll provide guidance on software installation and setup during the course.",
             },
         ],
 
@@ -710,7 +710,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "Will I learn about data management?",
-                answer: "Yes! Data frameworking and management are core components. You'll learn to create data collection forms, design databases, and plan data analysis strategies.",
+                answer: "Yes! Data frameworking and management are core components. You will learn to create data collection forms, design databases, and plan data analysis strategies.",
             },
             {
                 question: "Is ethical approval covered?",
@@ -722,7 +722,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I receive upon completion?",
-                answer: "You'll receive a course completion certificate and a complete, submission-ready research protocol developed during the course.",
+                answer: "You will receive a course completion certificate and a complete, submission-ready research protocol developed during the course.",
             },
         ],
 
@@ -873,7 +873,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I learn about scientific reading?",
-                answer: "You'll learn how to efficiently read research papers, understand study designs, critically evaluate methodology, interpret results, and assess the quality and reliability of published research.",
+                answer: "You will learn how to efficiently read research papers, understand study designs, critically evaluate methodology, interpret results, and assess the quality and reliability of published research.",
             },
             {
                 question: "Will AI tools be covered?",
@@ -886,7 +886,7 @@ export const coursesData: Course[] = [
             {
                 question:
                     "Will I be able to read research papers after this course?",
-                answer: "Yes! You'll gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
+                answer: "Yes! You will gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
             },
             {
                 question: "Is this a prerequisite for other courses?",
@@ -1031,11 +1031,11 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What makes this course different?",
-                answer: "We integrate cutting-edge AI tools (ChatGPT, Grammarly, Scite, Zotero) throughout the course to enhance your writing efficiency and quality. You'll get hands-on practice with real paper writing, not just theory.",
+                answer: "We integrate cutting-edge AI tools (ChatGPT, Grammarly, Scite, Zotero) throughout the course to enhance your writing efficiency and quality. You will get hands-on practice with real paper writing, not just theory.",
             },
             {
                 question: "Will I learn to write a complete research paper?",
-                answer: "Absolutely! You'll learn to write every section of a research paper (Abstract, Introduction, Methods, Results, Discussion) with AI assistance and instructor guidance.",
+                answer: "Absolutely! You will learn to write every section of a research paper (Abstract, Introduction, Methods, Results, Discussion) with AI assistance and instructor guidance.",
             },
             {
                 question: "What about reference management?",
@@ -1043,15 +1043,15 @@ export const coursesData: Course[] = [
             },
             {
                 question: "Will I learn how to respond to reviewers?",
-                answer: "Yes! Module 9 covers handling peer review feedback professionally, including simulations where you'll use ChatGPT to draft reviewer responses.",
+                answer: "Yes! Module 9 covers handling peer review feedback professionally, including simulations where You will use ChatGPT to draft reviewer responses.",
             },
             {
                 question: "Do you cover conference presentations?",
-                answer: "Absolutely! Module 10 teaches poster design, oral presentations, and Q&A techniques. You'll design a poster in Canva and generate presentation scripts with AI.",
+                answer: "Absolutely! Module 10 teaches poster design, oral presentations, and Q&A techniques. You will design a poster in Canva and generate presentation scripts with AI.",
             },
             {
                 question: "What deliverables will I have by the end?",
-                answer: "You'll complete a full IMRaD manuscript, a conference poster, and reviewer reply pack - all publication-ready materials.",
+                answer: "You will complete a full IMRaD manuscript, a conference poster, and reviewer reply pack - all publication-ready materials.",
             },
             {
                 question: "How long is the course?",
@@ -1260,7 +1260,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What tools will I learn?",
-                answer: "You'll gain hands-on experience with industry-standard EDA tools used for synthesis, place & route, timing analysis, and signoff. We focus on practical tool usage throughout the course.",
+                answer: "You will gain hands-on experience with industry-standard EDA tools used for synthesis, place & route, timing analysis, and signoff. We focus on practical tool usage throughout the course.",
             },
             {
                 question: "Will I work on real projects?",
@@ -1530,7 +1530,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I learn in this course?",
-                answer: "You'll learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
+                answer: "You will learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
             },
             {
                 question: "How long is the course?",

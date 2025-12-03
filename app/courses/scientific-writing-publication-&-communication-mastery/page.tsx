@@ -18,9 +18,9 @@ const ScientificWritingPublicationCommunicationMastery = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
         { id: "resource-persons", label: "Resource Persons" },
-        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need to Get Started" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "faq", label: "FAQ" },
     ];

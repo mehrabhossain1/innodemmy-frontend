@@ -20,11 +20,11 @@ const VlsiPhysicalDesignTraining = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
         // { id: "tools-technologies", label: "Tools & Technologies" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You'll Need" },
+        { id: "what-you-need", label: "What You will Need" },
         { id: "instructors", label: "Instructors and Mentors" },
         { id: "faq", label: "FAQ" },
     ];

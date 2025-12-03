@@ -43,13 +43,13 @@ export default function WhatYouGet() {
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="What You'll Get in This Course" />
+            <SectionTitle title="What You will Get in This Course" />
 
             {/* Grid Layout - More Compact */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {benefits.map((benefit, index) => {
                     return (
-                            <div
+                        <div
                             key={index}
                             className="bg-white dark:bg-gray-800 rounded-lg p-5 text-center hover:shadow-lg transition-all duration-300 border border-transparent dark:border-gray-700"
                         >

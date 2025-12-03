@@ -188,9 +188,15 @@ export async function sendVerificationEmail(
             // Handle domain verification error
             if (error.message && error.message.includes("verify a domain")) {
                 console.error("\n⚠️  SOLUTION: You have two options:");
-                console.error("   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console");
-                console.error("   2. Verify a custom domain at https://resend.com/domains\n");
-                throw new Error("Email service requires domain verification. Please contact support.");
+                console.error(
+                    "   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console"
+                );
+                console.error(
+                    "   2. Verify a custom domain at https://resend.com/domains\n"
+                );
+                throw new Error(
+                    "Email service requires domain verification. Please contact support."
+                );
             }
 
             throw new Error(`Email service error: ${error.message}`);
@@ -369,7 +375,7 @@ export async function sendPasswordResetEmail(
               </div>
 
               <div class="content">
-                <p>After entering this code, you'll be able to create a new password for your account.</p>
+                <p>After entering this code, You will be able to create a new password for your account.</p>
               </div>
 
               <div class="security-note">
@@ -393,9 +399,15 @@ export async function sendPasswordResetEmail(
             // Handle domain verification error
             if (error.message && error.message.includes("verify a domain")) {
                 console.error("\n⚠️  SOLUTION: You have two options:");
-                console.error("   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console");
-                console.error("   2. Verify a custom domain at https://resend.com/domains\n");
-                throw new Error("Email service requires domain verification. Please contact support.");
+                console.error(
+                    "   1. Set EMAIL_DEV_MODE=true in .env to log OTPs to console"
+                );
+                console.error(
+                    "   2. Verify a custom domain at https://resend.com/domains\n"
+                );
+                throw new Error(
+                    "Email service requires domain verification. Please contact support."
+                );
             }
 
             throw new Error(`Email service error: ${error.message}`);
