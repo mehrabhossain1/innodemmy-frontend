@@ -124,19 +124,16 @@ const technologies: Technology[] = [
 const firstRow = technologies.slice(0, technologies.length / 2);
 const secondRow = technologies.slice(technologies.length / 2);
 
-const TechnologyCard = ({
-    name,
-    icon,
-    category,
-    color,
-}: Technology) => {
+const TechnologyCard = ({ name, icon, category, color }: Technology) => {
     return (
         <div className="relative w-64 group">
             {/* Glow Effect */}
-            <div className={cn(
-                "absolute -inset-0.5 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500",
-                color
-            )}></div>
+            <div
+                className={cn(
+                    "absolute -inset-0.5 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500",
+                    color
+                )}
+            ></div>
 
             <div
                 className={cn(
@@ -162,10 +159,12 @@ const TechnologyCard = ({
                             <div className="w-6 h-6">{icon}</div>
                         </div>
                         {/* Icon Glow */}
-                        <div className={cn(
-                            "absolute inset-0 bg-gradient-to-br rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300",
-                            color
-                        )}></div>
+                        <div
+                            className={cn(
+                                "absolute inset-0 bg-gradient-to-br rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300",
+                                color
+                            )}
+                        ></div>
                     </div>
 
                     {/* Text Content */}
@@ -180,8 +179,18 @@ const TechnologyCard = ({
 
                     {/* Arrow Indicator */}
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                        <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                            className="w-4 h-4 text-secondary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                            />
                         </svg>
                     </div>
                 </div>
@@ -195,10 +204,14 @@ export function TechnologyStackSection() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-12 md:py-16 lg:py-14 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                    backgroundSize: '50px 50px'
-                }}></div>
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage:
+                            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                        backgroundSize: "50px 50px",
+                    }}
+                ></div>
             </div>
 
             {/* Gradient Orbs */}
@@ -222,21 +235,28 @@ export function TechnologyStackSection() {
                             Tech Stack
                         </span>
                     </h2>
-                    <p className="text-base md:text-lg lg:text-base text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                        Learn the most in-demand technologies used by industry leaders.
-                        Build real-world expertise that employers value.
+                    <p className="text-base md:text-lg lg:text-base text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                        Learn the most in-demand technologies used by industry
+                        leaders. Build real-world expertise that employers
+                        value.
                     </p>
                 </div>
 
                 {/* Marquee Rows */}
                 <Marquee pauseOnHover className="[--duration:40s] mb-4">
                     {firstRow.map((tech, index) => (
-                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                        <TechnologyCard
+                            key={`${tech.name}-${index}`}
+                            {...tech}
+                        />
                     ))}
                 </Marquee>
                 <Marquee reverse pauseOnHover className="[--duration:40s]">
                     {secondRow.map((tech, index) => (
-                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                        <TechnologyCard
+                            key={`${tech.name}-${index}`}
+                            {...tech}
+                        />
                     ))}
                 </Marquee>
             </div>
