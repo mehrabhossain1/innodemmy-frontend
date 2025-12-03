@@ -22,7 +22,7 @@ export default function FAQ() {
         },
         {
             question: "Do I need to be good at English?",
-            answer: "Basic English sufficient—writing structure ও logic আমরা teach-through-practice করাবো।",
+            answer: "Basic English sufficient, writing structure ও logic আমরা teach-through-practice করাবো।",
         },
         {
             question: "How long is the course?",

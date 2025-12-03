@@ -18,7 +18,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
-                "Your manuscript drafts, abstracts, literature reviews—live review ও correction",
+                "Your manuscript drafts, abstracts, literature reviews, live review ও correction",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
@@ -30,7 +30,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Academic research track, publishing consultant roles, clinical communication careers—সব কিছুর roadmap",
+                "Academic research track, publishing consultant roles, clinical communication careers, সব কিছুর roadmap",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",

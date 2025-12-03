@@ -25,7 +25,7 @@ export default function FAQ() {
         },
         {
             question: "Can I join using a mobile device?",
-            answer: "Yes, you can join the course from any device — mobile, laptop, or desktop.",
+            answer: "Yes, you can join the course from any device ,  mobile, laptop, or desktop.",
             icon: Smartphone,
         },
         {

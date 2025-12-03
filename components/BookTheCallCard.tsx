@@ -42,7 +42,7 @@ const accordionItems = [
         id: "gateway",
         title: "Gateway to Advanced Opportunities",
         content:
-            "Innodemy is more than a skill development platform — it's a gateway to advanced research opportunities and career transitions for students and professionals.",
+            "Innodemy is more than a skill development platform ,  it's a gateway to advanced research opportunities and career transitions for students and professionals.",
         icon: GraduationCap,
     },
     {
@@ -56,7 +56,7 @@ const accordionItems = [
         id: "beyond-teaching",
         title: "Beyond Teaching - Complete Support",
         content:
-            "Innodemy goes beyond teaching — supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
+            "Innodemy goes beyond teaching ,  supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
         icon: Lightbulb,
     },
 ];

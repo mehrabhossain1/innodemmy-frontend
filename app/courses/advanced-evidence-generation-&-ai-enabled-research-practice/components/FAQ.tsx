@@ -14,7 +14,7 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "সম্পূর্ণ অনলাইন—high-flexibility format",
+            answer: "সম্পূর্ণ অনলাইন, high-flexibility format",
         },
         {
             question: "Will I receive a certificate after completion?",

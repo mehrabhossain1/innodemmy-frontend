@@ -19,7 +19,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
-                "Your SR/MA drafts, AI workflows, search strategies—live optimization ও expert guidance",
+                "Your SR/MA drafts, AI workflows, search strategies, live optimization ও expert guidance",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
@@ -31,13 +31,13 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "CRO evidence teams, RWE analysts, HEOR pathways, pharmacoepidemiology—সব কিছুর tailored roadmap",
+                "CRO evidence teams, RWE analysts, HEOR pathways, pharmacoepidemiology, সব কিছুর tailored roadmap",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Industry-recognized certificate—AI-enabled evidence skills showcase করার জন্য perfect",
+                "Industry-recognized certificate, AI-enabled evidence skills showcase করার জন্য perfect",
         },
     ];
 

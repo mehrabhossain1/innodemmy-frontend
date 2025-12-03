@@ -7,7 +7,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Deep-Dive, Industry-Grade Learning Journey",
             description:
-                "Foundational থেকে advanced পর্যন্ত step-by-step structured syllabus—exactly how CROs build protocols.",
+                "Foundational থেকে advanced পর্যন্ত step-by-step structured syllabus, exactly how CROs build protocols.",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
@@ -25,19 +25,19 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Community Access",
             description:
-                "A research-driven ecosystem—collaboration, peer-review, networking, and knowledge exchange.",
+                "A research-driven ecosystem, collaboration, peer-review, networking, and knowledge exchange.",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Clinical research, pharma trials, data management, academic pathways—সব কিছুর strategic roadmap।",
+                "Clinical research, pharma trials, data management, academic pathways, সব কিছুর strategic roadmap।",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "ইন্টারন্যাশনালি accepted certificate—LinkedIn বা CV-তে showcase করার জন্য perfect।",
+                "ইন্টারন্যাশনালি accepted certificate, LinkedIn বা CV-তে showcase করার জন্য perfect।",
         },
     ];
 

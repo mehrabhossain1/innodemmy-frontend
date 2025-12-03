@@ -43,7 +43,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/infinity.png",
             title: "Lifetime Access",
             description:
-                "Revisit pre-recorded videos, resources, and class recordings anytime—forever.",
+                "Revisit pre-recorded videos, resources, and class recordings anytime, forever.",
         },
         {
             image: "https://img.icons8.com/color/96/career.png",

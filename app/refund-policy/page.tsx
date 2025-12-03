@@ -154,7 +154,7 @@ export default function RefundPolicyPage() {
                                                         considered if you face
                                                         genuine difficulties in
                                                         the course due to
-                                                        Innodemy's service — for
+                                                        Innodemy's service , for
                                                         example, if the services
                                                         provided are not as
                                                         promised at the time of
