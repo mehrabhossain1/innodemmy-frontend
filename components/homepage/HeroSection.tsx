@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,63 +24,90 @@ const heroImages = [
         alt: "Hero Background 1",
         title: (
             <>
-                Decode <span className="text-secondary">intelligence</span><br />
+                Decode <span className="text-secondary">intelligence</span>
+                <br />
                 Design tomorrow
             </>
         ),
-        subtitle: "Master the language of machines and shape the systems that shape the future."
+        subtitle:
+            "Master the language of machines and shape the systems that shape the future.",
     },
     {
         src: bg2,
         alt: "Hero Background 2",
         title: (
             <>
-                Become an <span className="text-secondary">Clinical<br />Research</span> Expert
+                Become an{" "}
+                <span className="text-secondary">
+                    Clinical
+                    <br />
+                    Research
+                </span>{" "}
+                Expert
             </>
         ),
-        subtitle: "Master clinical research skills through our comprehensive program combining multiple in-depth courses."
+        subtitle:
+            "Master clinical research skills through our comprehensive program combining multiple in-depth courses.",
     },
     {
         src: bg3,
         alt: "Hero Background 3",
         title: (
             <>
-                Step Into The World<br />Of <span className="text-secondary">Chip Design</span>
+                Step Into The World
+                <br />
+                Of <span className="text-secondary">Chip Design</span>
             </>
         ),
-        subtitle: "Learn how to translate logic into high performance, manufacturable silicon"
+        subtitle:
+            "Learn how to translate logic into high performance, manufacturable silicon",
     },
     {
         src: bg4,
         alt: "Hero Background 4",
         title: (
             <>
-                <span className="text-secondary">"DON'T WAIT FOR</span><br />
-                OPPORTUNITY<br />
+                <span className="text-secondary">"DON'T WAIT FOR</span>
+                <br />
+                OPPORTUNITY
+                <br />
                 <span className="text-secondary">learn to create it"</span>
             </>
         ),
-        subtitle: ""
+        subtitle: "",
     },
 ];
 
 export default function HeroSection() {
+    const autoplayPlugin = useRef(
+        Autoplay({
+            delay: 3000,
+            stopOnInteraction: true,
+        })
+    );
+
+    const handleMouseEnter = () => {
+        autoplayPlugin.current.stop();
+    };
+
+    const handleMouseLeave = () => {
+        autoplayPlugin.current.play();
+    };
+
     return (
         <section className="relative w-full">
             <Container className="">
-                <div className="relative overflow-hidden rounded-2xl my-4">
+                <div
+                    className="relative overflow-hidden rounded-2xl my-4"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <Carousel
                         opts={{
                             loop: true,
                             align: "start",
                         }}
-                        plugins={[
-                            Autoplay({
-                                delay: 3000,
-                                stopOnInteraction: false,
-                                stopOnMouseEnter: true,
-                            }),
-                        ]}
+                        plugins={[autoplayPlugin.current]}
                         className="w-full"
                     >
                         <CarouselContent>
