@@ -31,6 +31,8 @@ const heroImages = [
         ),
         subtitle:
             "Master the language of machines and shape the systems that shape the future.",
+        buttonText: "Become an ML expert",
+        buttonLink: "/courses/complete-research-pathway-with-machine-learning",
     },
     {
         src: bg2,
@@ -48,6 +50,8 @@ const heroImages = [
         ),
         subtitle:
             "Master clinical research skills through our comprehensive program combining multiple in-depth courses.",
+        buttonText: "Explore Courses",
+        buttonLink: "/courses",
     },
     {
         src: bg3,
@@ -61,6 +65,8 @@ const heroImages = [
         ),
         subtitle:
             "Learn how to translate logic into high performance, manufacturable silicon",
+        buttonText: "Explore Courses",
+        buttonLink: "/courses",
     },
     {
         src: bg4,
@@ -75,6 +81,8 @@ const heroImages = [
             </>
         ),
         subtitle: "",
+        buttonText: "Explore Courses",
+        buttonLink: "/courses",
     },
 ];
 
@@ -133,13 +141,15 @@ export default function HeroSection() {
                                                     {image.subtitle}
                                                 </p>
                                                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
-                                                    <Link href="/courses">
+                                                    <Link
+                                                        href={image.buttonLink}
+                                                    >
                                                         <Button
                                                             size="lg"
                                                             variant="secondary"
                                                             className="font-semibold shadow-lg hover:shadow-xl"
                                                         >
-                                                            Explore Courses →
+                                                            {image.buttonText} →
                                                         </Button>
                                                     </Link>
                                                 </div>
