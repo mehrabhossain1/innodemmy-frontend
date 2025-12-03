@@ -2,11 +2,21 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, TrendingUp, Cpu, FlaskConical, Layers } from "lucide-react";
+import {
+    ArrowRight,
+    Code,
+    TrendingUp,
+    Cpu,
+    FlaskConical,
+    Layers,
+} from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";
 import Container from "../Container";
-import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
+import {
+    COURSE_CATEGORIES,
+    getAllCategories,
+} from "@/lib/constants/categories";
 
 interface Course {
     id: string;
@@ -67,7 +77,9 @@ export default function CoursesSection() {
                             category: course.category,
                             modules: Math.floor(Math.random() * 20) + 10,
                             students: Math.floor(Math.random() * 50) + 10,
-                            duration: `${Math.floor(Math.random() * 10) + 8} দিন বাকি`,
+                            duration: `${
+                                Math.floor(Math.random() * 10) + 8
+                            } দিন বাকি`,
                         })
                     );
                     setCourses(mappedCourses);
@@ -90,9 +102,10 @@ export default function CoursesSection() {
         const categoryCounts: Record<string, number> = {};
 
         // Count courses per category
-        courses.forEach(course => {
+        courses.forEach((course) => {
             if (course.category) {
-                categoryCounts[course.category] = (categoryCounts[course.category] || 0) + 1;
+                categoryCounts[course.category] =
+                    (categoryCounts[course.category] || 0) + 1;
             }
         });
 
@@ -102,19 +115,20 @@ export default function CoursesSection() {
                 id: "all",
                 label: "All Courses",
                 icon: Code,
-                count: `${courses.length} Courses`
-            }
+                count: `${courses.length} Courses`,
+            },
         ];
 
         // Add each category from constants
-        allCategories.forEach(category => {
+        allCategories.forEach((category) => {
             const count = categoryCounts[category] || 0;
-            if (count > 0) { // Only show categories with courses
+            if (count > 0) {
+                // Only show categories with courses
                 tabs.push({
                     id: category,
                     label: category,
                     icon: categoryIcons[category] || Code,
-                    count: `${count} ${count === 1 ? 'Course' : 'Courses'}`
+                    count: `${count} ${count === 1 ? "Course" : "Courses"}`,
                 });
             }
         });
@@ -125,11 +139,11 @@ export default function CoursesSection() {
     // Filter courses based on active category
     const filteredCourses = useMemo(() => {
         if (activeCategory === "all") {
-            return courses.slice(0, 8); // Show max 8 courses
+            return courses.slice(0, 12); // Show max 8 courses
         }
         return courses
-            .filter(course => course.category === activeCategory)
-            .slice(0, 8);
+            .filter((course) => course.category === activeCategory)
+            .slice(0, 12);
     }, [courses, activeCategory]);
 
     return (
@@ -143,30 +157,31 @@ export default function CoursesSection() {
                         </span>
                     </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
-                        <span className="text-foreground">
-                            Featured
-                        </span>{" "}
+                        <span className="text-foreground">Featured</span>{" "}
                         <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                             Courses
                         </span>
                     </h2>
                     <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-2xl mx-auto">
-                        Explore our hand-picked courses designed to help you master in-demand skills
+                        Explore our hand-picked courses designed to help you
+                        master in-demand skills
                     </p>
                 </div>
 
-                {/* Category Tabs - Light Design */}
+                {/* Category Tabs - Dark Mode Supported */}
                 <div className="relative mb-8 md:mb-10 lg:mb-8">
                     <div className="flex justify-center items-center overflow-x-auto pb-3 lg:pb-3 scrollbar-hide">
                         <div className="flex gap-2 lg:gap-2.5 overflow-x-auto scrollbar-hide">
                             {categories.map((category) => (
                                 <button
                                     key={category.id}
-                                    onClick={() => setActiveCategory(category.id)}
-                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-3.5 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border transition-all duration-300 ${
+                                    onClick={() =>
+                                        setActiveCategory(category.id)
+                                    }
+                                    className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
                                             ? "bg-primary border-primary text-white shadow-md"
-                                            : "bg-white border-gray-200 hover:border-primary text-foreground hover:bg-gray-50"
+                                            : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
                                     }`}
                                 >
                                     <category.icon className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
@@ -175,7 +190,14 @@ export default function CoursesSection() {
                                             {category.label}
                                         </div>
                                         {category.count && (
-                                            <div className={`text-[10px] lg:text-xs ${activeCategory === category.id ? 'text-white/80' : 'text-muted-foreground'}`}>
+                                            <div
+                                                className={`text-[10px] lg:text-xs ${
+                                                    activeCategory ===
+                                                    category.id
+                                                        ? "text-white/80"
+                                                        : "text-muted-foreground"
+                                                }`}
+                                            >
                                                 {category.count}
                                             </div>
                                         )}
@@ -200,7 +222,9 @@ export default function CoursesSection() {
                             <div
                                 key={course.id}
                                 style={{
-                                    animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
+                                    animation: `fadeInUp 0.5s ease-out ${
+                                        index * 0.1
+                                    }s both`,
                                 }}
                             >
                                 <CourseCard
@@ -224,8 +248,7 @@ export default function CoursesSection() {
                         <p className="text-muted-foreground text-base lg:text-base">
                             {activeCategory === "all"
                                 ? "No courses available at the moment."
-                                : `No courses available in ${activeCategory} category.`
-                            }
+                                : `No courses available in ${activeCategory} category.`}
                         </p>
                     </div>
                 )}

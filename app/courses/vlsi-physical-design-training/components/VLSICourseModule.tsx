@@ -1,4 +1,5 @@
 "use client";
+import SectionTitle from "@/components/course/SectionTitle";
 import { ChevronDown, Video, FileText } from "lucide-react";
 import { useState } from "react";
 
@@ -280,12 +281,7 @@ export default function VLSICourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Module
-                </h2>
-                <hr className="my-2 border-gray-200" />
-            </div>
+            <SectionTitle title="Course Module" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
                 {modules.map((module) => (
@@ -293,7 +289,7 @@ export default function VLSICourseModule() {
                         key={module.id}
                         className={`${
                             module.bgColor
-                        } rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 ${
+                        } dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                             expandedModules.includes(module.id)
                                 ? "shadow-lg"
                                 : "shadow-md hover:shadow-lg"
@@ -322,15 +318,15 @@ export default function VLSICourseModule() {
 
                                 {/* Module Info */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-900 mb-2 text-lg leading-tight">
+                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg leading-tight">
                                         {module.title}
                                     </h3>
                                     {module.essence && (
-                                        <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 leading-relaxed">
                                             {module.essence}
                                         </p>
                                     )}
-                                    <div className="flex items-center gap-3 text-sm text-gray-700">
+                                    <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
                                         {module.liveClasses > 0 && (
                                             <div className="flex items-center gap-1.5">
                                                 <Video className="w-4 h-4" />
@@ -349,7 +345,7 @@ export default function VLSICourseModule() {
                                 {/* Chevron Icon */}
                                 <div className="flex-shrink-0">
                                     <ChevronDown
-                                        className={`w-6 h-6 text-gray-600 transition-transform duration-300 ${
+                                        className={`w-6 h-6 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
                                             expandedModules.includes(module.id)
                                                 ? "rotate-180"
                                                 : "rotate-0"
@@ -397,11 +393,11 @@ export default function VLSICourseModule() {
                                                 className={`border rounded-lg p-2.5 transition-all duration-300 ${
                                                     isSessionExpanded
                                                         ? `${borderColor} shadow-sm`
-                                                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                                                        : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm"
                                                 }`}
                                             >
                                                 <div
-                                                    className="flex items-start gap-2 text-gray-700 hover:text-gray-900 transition-colors cursor-pointer"
+                                                    className="flex items-start gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer"
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         toggleSession(
@@ -410,7 +406,7 @@ export default function VLSICourseModule() {
                                                         );
                                                     }}
                                                 >
-                                                    <span className="font-bold text-gray-900 min-w-[20px] text-base">
+                                                    <span className="font-bold text-gray-900 dark:text-white min-w-[20px] text-base">
                                                         {session.id}.
                                                     </span>
                                                     <div className="flex-1">
@@ -421,7 +417,7 @@ export default function VLSICourseModule() {
                                                                         session.topic
                                                                     }
                                                                 </span>
-                                                                <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                                                                <span className="ml-2 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
                                                                     Week{" "}
                                                                     {
                                                                         session.week
@@ -429,7 +425,7 @@ export default function VLSICourseModule() {
                                                                 </span>
                                                             </div>
                                                             <ChevronDown
-                                                                className={`w-5 h-5 text-gray-500 transition-transform duration-300 ml-2 flex-shrink-0 ${
+                                                                className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 ml-2 flex-shrink-0 ${
                                                                     isSessionExpanded
                                                                         ? "rotate-180"
                                                                         : ""
@@ -439,9 +435,9 @@ export default function VLSICourseModule() {
 
                                                         {/* Expanded Session Details */}
                                                         {isSessionExpanded && (
-                                                            <div className="mt-3 space-y-2.5 text-sm text-gray-600">
-                                                                <div className="bg-white p-3 rounded-lg border border-gray-200">
-                                                                    <div className="leading-relaxed text-gray-700 whitespace-pre-line">
+                                                            <div className="mt-3 space-y-2.5 text-sm text-gray-600 dark:text-gray-300">
+                                                                <div className="bg-white dark:bg-gray-900 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+                                                                    <div className="leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line">
                                                                         {
                                                                             session.keyConcepts
                                                                         }
@@ -449,14 +445,14 @@ export default function VLSICourseModule() {
                                                                 </div>
 
                                                                 {session.projects && (
-                                                                    <div className="bg-green-50 p-3 rounded-lg border border-green-100">
-                                                                        <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                                            <span className="text-green-600">
+                                                                    <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
+                                                                        <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <span className="text-green-600 dark:text-green-400">
                                                                                 🎯
                                                                             </span>
                                                                             Projects:
                                                                         </h4>
-                                                                        <p className="leading-relaxed text-green-800">
+                                                                        <p className="leading-relaxed text-green-800 dark:text-green-200">
                                                                             {
                                                                                 session.projects
                                                                             }

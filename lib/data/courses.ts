@@ -7,14 +7,63 @@ import { COURSE_CATEGORIES } from "../constants/categories";
  */
 
 export const coursesData: Course[] = [
+    // Complete Research Pathway with Machine Learning
+    {
+        _id: "1",
+        title: "Complete Research Pathway with Machine Learning",
+        slug: "complete-research-pathway-with-machine-learning",
+        description: `Master machine learning research from Python fundamentals to publishing papers. This comprehensive course covers ML, Deep Learning, NLP, Computer Vision, and complete research methodology - from formulating questions to writing and publishing research papers.`,
+        thumbnail: "/courses/ResearchbasedML.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-12-01"),
+        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
+        batchName: "Batch 1",
+        price: 20000,
+        totalLiveClasses: 36,
+        totalWeeks: 18,
+        totalModules: 19,
+        totalProjects: 5,
+        totalExercises: 50,
+
+        idealFor: [
+            "Aspiring ML researchers and data scientists",
+            "Graduate students pursuing research in AI/ML",
+            "Professionals looking to transition into ML research",
+            "Software engineers wanting to master ML fundamentals and research",
+            "Anyone interested in publishing ML research papers",
+        ],
+
+        faq: [
+            {
+                question: "Do I need prior programming experience?",
+                answer: "Basic programming knowledge is helpful but not mandatory. We start with Python fundamentals and progressively build to advanced ML concepts.",
+            },
+            {
+                question: "What makes this course different?",
+                answer: "This is a complete research-focused course covering both ML technical skills (Python, ML/DL, NLP, Computer Vision) and research methodology (literature review, paper writing, LaTeX).",
+            },
+            {
+                question: "Will I be able to publish a research paper?",
+                answer: "Yes! The course guides you through the entire research process, from formulating questions to writing and formatting papers for publication.",
+            },
+            {
+                question: "What topics are covered?",
+                answer: "Python programming, Mathematics for ML, Classical ML, Deep Learning, Computer Vision with CNNs, NLP with Transformers, Time Series, Research Methodology, and LaTeX for paper writing.",
+            },
+        ],
+
+        modules: [],
+    },
     // Advanced Evidence Generation & AI-Enabled Research Practice
     {
         _id: "2",
         title: "Advanced Evidence Generation & AI-Enabled Research Practice",
         slug: "advanced-evidence-generation-&-ai-enabled-research-practice",
         description: `Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation. Move Beyond Research – Automate and Innovate with cutting-edge AI tools and methodologies.`,
-        thumbnail: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/ClinicalAdvanced.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-15"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -53,7 +102,8 @@ export const coursesData: Course[] = [
                 answer: "Yes! Medical writing is a key component of this course. You'll learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
             },
             {
-                question: "How is this course different from basic research courses?",
+                question:
+                    "How is this course different from basic research courses?",
                 answer: "This course goes beyond traditional research methods by incorporating AI-enabled automation, advanced biostatistics, meta-analysis techniques, and grant proposal development.",
             },
             {
@@ -74,7 +124,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Evidence-Based Research",
+                moduleTitle:
+                    "Module 1: Introduction to Evidence-Based Research",
                 topics: [
                     "Understanding evidence-based practice",
                     "Research question formulation (PICO framework)",
@@ -88,7 +139,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 2,
-                moduleTitle: "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
+                moduleTitle:
+                    "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
                 topics: [
                     "Systematic review methodology",
                     "PRISMA guidelines",
@@ -202,8 +254,9 @@ export const coursesData: Course[] = [
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
         slug: "biostatistics-data-analysis-&-evidence-interpretation",
         description: `Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.`,
-        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/ClinicalDataAnalysis.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-01"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -234,15 +287,18 @@ export const coursesData: Course[] = [
                 answer: "You'll gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
             },
             {
-                question: "Will I be able to analyze my own research data after this course?",
+                question:
+                    "Will I be able to analyze my own research data after this course?",
                 answer: "Absolutely! The course is designed to make you independent in conducting statistical analyses, interpreting results, and creating publication-ready tables and figures.",
             },
             {
-                question: "Is this course suitable for qualitative researchers?",
+                question:
+                    "Is this course suitable for qualitative researchers?",
                 answer: "This course focuses on quantitative data analysis. However, if you work with mixed-methods research or need to understand statistical sections in papers, this course will be valuable.",
             },
             {
-                question: "How is this different from online statistics courses?",
+                question:
+                    "How is this different from online statistics courses?",
                 answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You'll learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
             },
             {
@@ -263,7 +319,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Biostatistics & Data Types",
+                moduleTitle:
+                    "Module 1: Introduction to Biostatistics & Data Types",
                 topics: [
                     "Role of statistics in healthcare research",
                     "Types of data: categorical, continuous, ordinal",
@@ -278,7 +335,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 2,
-                moduleTitle: "Module 2: Descriptive Statistics & Data Summarization",
+                moduleTitle:
+                    "Module 2: Descriptive Statistics & Data Summarization",
                 topics: [
                     "Measures of central tendency (mean, median, mode)",
                     "Measures of dispersion (SD, variance, range, IQR)",
@@ -293,7 +351,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 3,
-                moduleTitle: "Module 3: Probability & Hypothesis Testing Fundamentals",
+                moduleTitle:
+                    "Module 3: Probability & Hypothesis Testing Fundamentals",
                 topics: [
                     "Probability distributions (normal, binomial, Poisson)",
                     "Understanding p-values and confidence intervals",
@@ -323,7 +382,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Non-Parametric Tests & Categorical Data Analysis",
+                moduleTitle:
+                    "Module 5: Non-Parametric Tests & Categorical Data Analysis",
                 topics: [
                     "Mann-Whitney U test",
                     "Wilcoxon signed-rank test",
@@ -383,8 +443,9 @@ export const coursesData: Course[] = [
         title: "Innodemy Clinical Research Mastery Program",
         slug: "innodemy-clinical-research-mastery-program",
         description: `ক্লিনিক্যাল রিসার্চ ইন্ডাস্ট্রিতে আপনার ক্যারিয়ার গড়তে চান? এই কোর্সে শিখবেন ক্লিনিক্যাল ট্রায়াল ডিজাইন, রেগুলেটরি অ্যাফেয়ার্স, ডেটা ম্যানেজমেন্ট এবং আরও অনেক কিছু। এই সম্পূর্ণ প্রোগ্রামটি আপনাকে একজন দক্ষ ক্লিনিক্যাল রিসার্চ প্রফেশনাল হিসেবে গড়ে তুলবে।`,
-        thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/ClinicalResearchMastery.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-15"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -572,14 +633,12 @@ export const coursesData: Course[] = [
                     "Regulatory inspections",
                     "CAPA (Corrective and Preventive Actions)",
                 ],
-                exercises: [
-                    "Develop SOP for a process",
-                    "Conduct mock audit",
-                ],
+                exercises: ["Develop SOP for a process", "Conduct mock audit"],
             },
             {
                 classNumber: 10,
-                moduleTitle: "Module 10: Career Development & Industry Insights",
+                moduleTitle:
+                    "Module 10: Career Development & Industry Insights",
                 topics: [
                     "Resume building for clinical research",
                     "Interview preparation",
@@ -587,10 +646,7 @@ export const coursesData: Course[] = [
                     "Continuing education and certifications",
                     "Future trends in clinical research",
                 ],
-                exercises: [
-                    "Create professional CV",
-                    "Mock interviews",
-                ],
+                exercises: ["Create professional CV", "Mock interviews"],
             },
         ],
 
@@ -611,8 +667,9 @@ export const coursesData: Course[] = [
         title: "Protocol Development, Study Design & Data Frameworking",
         slug: "protocol-development-study-design-&-data-frameworking",
         description: `Transform your research ideas into structured, ethical, and statistically sound BMRC-compliant research protocols. Master study design selection, data management, and ethical frameworks essential for conducting high-quality research.`,
-        thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/ClinicalProtocol.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-04-01"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -672,7 +729,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Research Protocol Development",
+                moduleTitle:
+                    "Module 1: Introduction to Research Protocol Development",
                 topics: [
                     "Purpose and importance of research protocols",
                     "Components of a research protocol",
@@ -736,7 +794,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Ethical Considerations & Regulatory Requirements",
+                moduleTitle:
+                    "Module 5: Ethical Considerations & Regulatory Requirements",
                 topics: [
                     "Ethical principles in research (Belmont Report)",
                     "Informed consent process and documentation",
@@ -752,7 +811,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 6,
-                moduleTitle: "Module 6: Statistical Planning & Protocol Finalization",
+                moduleTitle:
+                    "Module 6: Statistical Planning & Protocol Finalization",
                 topics: [
                     "Statistical analysis plan development",
                     "Outcome measures (primary and secondary)",
@@ -782,8 +842,9 @@ export const coursesData: Course[] = [
         title: "Research Foundation & Scientific Literacy",
         slug: "research-foundation-&-scientific-literacy",
         description: `Master the fundamentals of research thinking, scientific reading, and critical analysis. Learn to evaluate literature, identify gaps, and develop research questions using cutting-edge AI tools. Perfect for aspiring researchers and healthcare professionals.`,
-        thumbnail: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/ClinicalRFoundation.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-20"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -822,7 +883,8 @@ export const coursesData: Course[] = [
                 answer: "This course focuses on developing research literacy and thinking skills rather than conducting research. It prepares you to understand and critically evaluate research before you design your own studies.",
             },
             {
-                question: "Will I be able to read research papers after this course?",
+                question:
+                    "Will I be able to read research papers after this course?",
                 answer: "Yes! You'll gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
             },
             {
@@ -843,7 +905,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Introduction to Research & Scientific Thinking",
+                moduleTitle:
+                    "Module 1: Introduction to Research & Scientific Thinking",
                 topics: [
                     "What is research and why it matters",
                     "Types of research (basic, applied, clinical)",
@@ -907,7 +970,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 5,
-                moduleTitle: "Module 5: Research Question Development & Gap Identification",
+                moduleTitle:
+                    "Module 5: Research Question Development & Gap Identification",
                 topics: [
                     "Identifying research gaps in literature",
                     "PICO/FINER frameworks for research questions",
@@ -936,8 +1000,9 @@ export const coursesData: Course[] = [
         title: "Scientific Writing, Publication & Communication Mastery",
         slug: "scientific-writing-publication-&-communication-mastery",
         description: `Master the art of scientific writing from abstract to publication. Learn to craft compelling research papers, manage references effectively, respond to peer reviewers, and present your findings at conferences. Complete training in every aspect of academic communication with AI-powered tools and hands-on practice.`,
-        thumbnail: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/scintificwriting.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-25"),
         category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
         batchName: "Batch 1",
@@ -997,7 +1062,8 @@ export const coursesData: Course[] = [
         modules: [
             {
                 classNumber: 1,
-                moduleTitle: "Module 1: Structure of a Scientific Paper (IMRaD)",
+                moduleTitle:
+                    "Module 1: Structure of a Scientific Paper (IMRaD)",
                 topics: [
                     "Understanding the IMRaD format (Introduction, Methods, Results, and Discussion)",
                     "Organization and flow of scientific papers",
@@ -1099,7 +1165,8 @@ export const coursesData: Course[] = [
             },
             {
                 classNumber: 8,
-                moduleTitle: "Module 8: Journal Selection & Submission Strategy",
+                moduleTitle:
+                    "Module 8: Journal Selection & Submission Strategy",
                 topics: [
                     "Identifying appropriate journals",
                     "Impact factor and journal metrics",
@@ -1158,8 +1225,9 @@ export const coursesData: Course[] = [
         title: "VLSI Physical Design Training",
         slug: "vlsi-physical-design-training",
         description: `Master the art of VLSI Physical Design with our comprehensive training program. Learn RTL fundamentals, synthesis, physical design flow, and industry-standard tools. This hands-on course covers Unix/Linux, scripting (Bash & TCL), Verilog, and takes you through the complete physical design journey from RTL to signoff. Perfect for aspiring physical design engineers looking to excel in the semiconductor industry.`,
-        thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        courseVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
+        thumbnail: "/courses/VLSIPD.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/dQw4w9WgXcQ?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-03-10"),
         category: COURSE_CATEGORIES.VLSI,
         batchName: "Batch 1",
@@ -1202,7 +1270,8 @@ export const coursesData: Course[] = [
                 answer: "This comprehensive program spans 15 weeks with 30 live classes, covering everything from basics to advanced physical design concepts.",
             },
             {
-                question: "Will this help me get a job in semiconductor industry?",
+                question:
+                    "Will this help me get a job in semiconductor industry?",
                 answer: "Yes! The course is designed to make you industry-ready with practical skills, real projects, and comprehensive coverage of physical design flow. Many of our graduates work in leading semiconductor companies.",
             },
             {
@@ -1423,247 +1492,200 @@ export const coursesData: Course[] = [
             "End-to-end physical design flow (RTL to GDSII)",
         ],
     },
+    // Python Essentials for Machine Learning
+    {
+        _id: "11",
+        title: "Python Essentials for Machine Learning",
+        slug: "python-essentials-for-machine-learning",
+        description: `এই কোর্সটি তৈরি করা হয়েছে মেশিন লার্নিং ও ডেটা সায়েন্স শেখার পূর্বশর্ত হিসেবে একটি মজবুত পাইথন প্রোগ্রামিং ভিত্তি গড়ে তোলার জন্য। এখানে মূল লক্ষ্য হলো মেশিন লার্নিং অ্যালগরিদম বা থিওরি নয়, বরং প্রোগ্রামিংয়ের মূল ধারণাগুলো দক্ষতার সাথে আয়ত্ত করা।`,
+        thumbnail: "/courses/Python.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/YOUR_VIDEO_ID?si=YOUR_VIDEO_SI",
+        courseStartDate: new Date("2025-12-15"),
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        batchName: "Batch 1",
+        price: 8000,
+        totalLiveClasses: 20,
+        totalWeeks: 12,
+        totalModules: 8,
+        totalProjects: 10,
+        totalExercises: 30,
 
-    // ML
-    // {
-    //     _id: "2",
-    //     title: "ML",
-    //     slug: "ml",
-    //     description: ``,
-    //     thumbnail:
-    //         "https://cdn.shopaccino.com/igmguru/products/machine-learning-training-igmguru_1499895199_l.jpg?v=532",
-    //     courseVideoUrl: "https://www.youtube.com/watch?v=example",
-    //     courseStartDate: new Date("2025-02-01"),
-    //     category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
-    //     batchName: "Batch 1",
-    //     price: 10000,
-    //     totalLiveClasses: 36,
-    //     totalWeeks: 0,
-    //     totalModules: 13,
-    //     totalProjects: 5,
-    //     totalExercises: 0,
+        idealFor: [
+            "Individuals interested in machine learning who want to build a strong foundation in programming",
+            "Students and professionals aspiring to pursue a career in software development or data science",
+            "Anyone looking to enhance their Python programming skills",
+            "Beginners with little to no prior Python experience",
+        ],
 
-    //     //
-    //     idealFor: [
-    //         "Individuals interested in machine learning who want to build a strong foundation in programming",
-    //         "Students and professionals aspiring to pursue a career in software development or data science",
-    //         "Anyone looking to enhance their Python programming skills",
-    //     ],
+        faq: [
+            {
+                question: "Who is this course designed for?",
+                answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
+            },
+            {
+                question: "Do I need any prior programming knowledge to join?",
+                answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
+            },
+            {
+                question: "What will I learn in this course?",
+                answer: "You'll learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
+            },
+            {
+                question: "How long is the course?",
+                answer: "The course runs for 12 weeks with 20 live classes, covering 8 comprehensive modules with hands-on projects.",
+            },
+        ],
 
-    //     //
-    //     faq: [
-    //         {
-    //             question: "Who is this course designed for?",
-    //             answer: "This course is ideal for beginners with little to no prior Python experience who want to build a strong foundation in Python programming and apply it to machine learning projects.",
-    //         },
-    //         {
-    //             question: "Do I need any prior programming knowledge to join?",
-    //             answer: "No prior programming experience is required. The course starts from the basics of Python and gradually progresses to more advanced topics.",
-    //         },
-    //         {
-    //             question: "How is the course structured?",
-    //             answer: "The course consists of 9 live classes spread over 3 weeks covering core Python concepts and practical exercises. The final 3 classes are dedicated to project support and mentorship.",
-    //         },
-    //         {
-    //             question: "What programming environment/tools will be used?",
-    //             answer: "We will use popular tools like Anaconda, VS Code, and Jupyter notebooks to write and run Python code, ensuring an easy setup for beginners.",
-    //         },
-    //         {
-    //             question: "Are there any assignments or projects?",
-    //             answer: "Yes! There are 10 real-life projects including a password generator, recursive file search, bank account system, news scraper, and more to reinforce your learning.",
-    //         },
-    //         {
-    //             question:
-    //                 "Will I learn machine learning algorithms in this course?",
-    //             answer: "This course focuses on Python programming fundamentals required for machine learning, such as data handling, functions, OOP, and file operations. Machine learning-specific algorithms will be covered in follow-up courses.",
-    //         },
-    //         {
-    //             question: "What if I miss a live class?",
-    //             answer: "Recordings of all live classes will be provided so you can watch and learn at your convenience.",
-    //         },
-    //         {
-    //             question: "Will there be support outside of live classes?",
-    //             answer: "Yes, students can get project support during the final three classes and may also reach out through our designated communication channels for doubts and guidance.",
-    //         },
-    //         {
-    //             question:
-    //                 "How will this course help me in a machine learning career?",
-    //             answer: "A solid grasp of Python programming and data manipulation is crucial in machine learning. This course equips you with those skills, providing a strong foundation to build machine learning models confidently.",
-    //         },
-    //         {
-    //             question: "What are the prerequisites for this course?",
-    //             answer: "A computer with internet access and basic familiarity with installing software is sufficient. No advanced prerequisites.",
-    //         },
-    //     ],
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Introduction to Python & Basics",
+                topics: [
+                    "Python installation and setup",
+                    "Variables, data types, and operators",
+                    "Basic input/output operations",
+                    "Comments and documentation",
+                    "Understanding Python syntax",
+                ],
+                exercises: [
+                    "Simple calculator program",
+                    "Temperature converter",
+                    "Basic user input programs",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Control Flow & Loops",
+                topics: [
+                    "Conditional statements (if, elif, else)",
+                    "Comparison and logical operators",
+                    "For loops and while loops",
+                    "Break, continue, and pass statements",
+                    "Nested loops and control structures",
+                ],
+                exercises: [
+                    "Number guessing game",
+                    "Pattern printing programs",
+                    "Loop-based calculations",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Data Structures",
+                topics: [
+                    "Lists: creation, indexing, slicing",
+                    "Tuples and their immutability",
+                    "Dictionaries: key-value pairs",
+                    "Sets and set operations",
+                    "List comprehensions",
+                ],
+                exercises: [
+                    "Shopping list manager",
+                    "Student grade tracker",
+                    "Dictionary-based contact book",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Functions, Recursion & Modules",
+                topics: [
+                    "Defining and calling functions",
+                    "Parameters, return values, scope",
+                    "Default, keyword, variable-length arguments",
+                    "Recursion: factorial, Fibonacci, directory scan",
+                    "Anonymous functions: lambda",
+                    "Built-in functions: map(), filter(), reduce()",
+                    "Writing your own modules and imports",
+                ],
+                exercises: [
+                    "Recursive file search",
+                    "Password generator",
+                    "Word filter with lambda and filter()",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: File Handling, CSV & JSON",
+                topics: [
+                    "Working with text files",
+                    "CSV files using csv module",
+                    "JSON: parsing, serialization",
+                    "with statement, open(), read(), write()",
+                    "File loops and data cleaning",
+                    "File system navigation: os, pathlib",
+                ],
+                exercises: [
+                    "CSV data cleaner & summarizer",
+                    "JSON user profile builder",
+                    "Log file analyzer",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Exception Handling",
+                topics: [
+                    "Understanding exceptions and errors",
+                    "Try, except, else, finally blocks",
+                    "Raising exceptions",
+                    "Custom exception classes",
+                    "Debugging techniques",
+                ],
+                exercises: [
+                    "File reader with missing file handler",
+                    "Robust calculator with error handling",
+                    "Input validation program",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Object-Oriented Programming (OOP)",
+                topics: [
+                    "Classes and objects",
+                    "Attributes and methods",
+                    "Constructors (__init__)",
+                    "Inheritance and polymorphism",
+                    "Encapsulation and abstraction",
+                    "Magic methods and operator overloading",
+                ],
+                exercises: [
+                    "Bank account system (OOP)",
+                    "Tic-Tac-Toe with OOP",
+                    "Library management system",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Advanced Topics & Final Projects",
+                topics: [
+                    "Generators and iterators",
+                    "Decorators and closures",
+                    "Regular expressions for pattern matching",
+                    "Working with APIs",
+                    "Web scraping basics",
+                    "Best practices and code optimization",
+                ],
+                exercises: [
+                    "Generator for large file line processing",
+                    "News headline scraper",
+                    "API data fetcher and analyzer",
+                ],
+            },
+        ],
 
-    //     //
-    //     modules: [
-    //         {
-    //             classNumber: 1,
-    //             moduleTitle: "Mathmatics for ML & DS",
-    //             topics: [
-    //                 "What is Python and why use it?",
-    //                 "Installing Python (Anaconda, VS Code, Jupyter)",
-    //                 "Python syntax, indentation, comments",
-    //                 "Variables and naming rules",
-    //                 "Built-in data types: int, float, str, bool",
-    //                 "Type casting and type()",
-    //                 "Operators: arithmetic, comparison, logical",
-    //             ],
-    //             exercises: [
-    //                 "Personal info script",
-    //                 "Simple calculator",
-    //                 "Even/Odd number checker",
-    //             ],
-    //         },
-    //         {
-    //             classNumber: 2,
-    //             moduleTitle: "Module 2: Strings, Input/Output & Control Flow",
-    //             topics: [
-    //                 "String indexing, slicing, methods (split(), join(), replace(), strip())",
-    //                 "f-strings and .format()",
-    //                 "input() and console interactions",
-    //                 "if, elif, else statements",
-    //                 "for, while loops",
-    //                 "break, continue, pass",
-    //                 "Nested loops and logic patterns",
-    //             ],
-    //             exercises: ["Password generator", "Word/character counter"],
-    //         },
-    //         {
-    //             classNumber: 3,
-    //             moduleTitle: "Module 3: Data Structures & List Comprehensions",
-    //             topics: [
-    //                 "Lists, Tuples, Sets, Dictionaries",
-    //                 "CRUD operations on collections",
-    //                 "get(), .update(), .items()",
-    //                 "Nested structures",
-    //                 "zip(), enumerate(), sorted()",
-    //                 "List comprehensions and dictionary/set comprehensions",
-    //             ],
-    //             exercises: ["Student record manager", "Word frequency counter"],
-    //         },
-    //         {
-    //             classNumber: 4,
-    //             moduleTitle: "Module 4: Functions, Recursion & Modules",
-    //             topics: [
-    //                 "Defining and calling functions",
-    //                 "Parameters, return values, scope",
-    //                 "Default, keyword, variable-length arguments",
-    //                 "Recursion: factorial, Fibonacci, directory scan",
-    //                 "Anonymous functions: lambda",
-    //                 "map(), filter(), reduce()",
-    //                 "Built-in functions: map(), filter(), reduce()",
-    //                 "Writing your own modules and imports",
-    //             ],
-    //             exercises: [
-    //                 "Recursive file search",
-    //                 "Word filter with lambda and filter()",
-    //             ],
-    //         },
-    //         {
-    //             classNumber: 5,
-    //             moduleTitle: "Module 5: File Handling, CSV & JSON",
-    //             topics: [
-    //                 "Working with text files",
-    //                 "CSV files using csv module",
-    //                 "JSON: parsing, serialization",
-    //                 "with statement, open(), read(), write()",
-    //                 "File loops and data cleaning",
-    //                 "File system navigation: os, pathlib",
-    //             ],
-    //             exercises: [
-    //                 "CSV data cleaner & summarizer",
-    //                 "JSON user profile builder",
-    //             ],
-    //         },
-    //         {
-    //             classNumber: 6,
-    //             moduleTitle: "Module 6: Error Handling & Debugging",
-    //             topics: [
-    //                 "Error types: syntax, runtime, logic",
-    //                 "Try-Except blocks, else, finally",
-    //                 "Custom exceptions with raise",
-    //                 "Basic debugger: pdb",
-    //                 "Logging intro (optional)",
-    //             ],
-    //             exercises: ["File reader with missing file handler"],
-    //         },
-    //         {
-    //             classNumber: 7,
-    //             moduleTitle: "Module 7: Object-Oriented Programming (OOP)",
-    //             topics: [
-    //                 "Classes, objects, __init__, attributes",
-    //                 "Class methods and self",
-    //                 "Inheritance and method overriding",
-    //                 "Encapsulation and __str__",
-    //                 "Composition (optional)",
-    //             ],
-    //             exercises: ["Bank account system", "Tic-Tac-Toe with OOP"],
-    //         },
-    //         {
-    //             classNumber: 8,
-    //             moduleTitle:
-    //                 "Module 8: Advanced Python (Generators, Decorators, Virtualenv)",
-    //             topics: [
-    //                 "Generators: yield, lazy evaluation",
-    //                 "Decorators: writing and applying",
-    //                 "Closures and first-class functions",
-    //                 "Introduction to virtualenv & pip",
-    //                 "Installing external libraries",
-    //             ],
-    //             exercises: ["Generator for large file line processing"],
-    //         },
-    //         {
-    //             classNumber: 9,
-    //             moduleTitle: "Module 9: Web Scraping & APIs",
-    //             topics: [
-    //                 "Web scraping with requests, BeautifulSoup",
-    //                 "Parsing HTML: tags, classes, attributes",
-    //                 "Error handling for HTTP requests",
-    //                 "Working with APIs (e.g., OpenWeatherMap)",
-    //                 "Exporting data to CSV/JSON",
-    //             ],
-    //             exercises: [
-    //                 "News headline scraper",
-    //                 "Weather report fetcher",
-    //                 "Job listings to CSV from web",
-    //             ],
-    //         },
-    //         {
-    //             classNumber: 10,
-    //             moduleTitle: "Module 10: Project Support 1",
-    //             topics: [],
-    //             exercises: [],
-    //         },
-    //         {
-    //             classNumber: 11,
-    //             moduleTitle: "Module 11: Project Support 2",
-    //             topics: [],
-    //             exercises: [],
-    //         },
-    //         {
-    //             classNumber: 12,
-    //             moduleTitle: "Module 12: Project Support 3",
-    //             topics: [],
-    //             exercises: [],
-    //         },
-    //     ],
-
-    //     //
-    //     projects: [
-    //         "Password generator",
-    //         "Number guessing game",
-    //         "Recursive file search",
-    //         "CSV data cleaner & summarizer",
-    //         "JSON user profile builder",
-    //         "File reader with missing file handler",
-    //         "Bank account system (OOP)",
-    //         "Tic-Tac-Toe with OOP",
-    //         "Generator for large file line processing",
-    //         "News headline scraper",
-    //     ],
-    // },
+        projects: [
+            "Password generator",
+            "Number guessing game",
+            "Recursive file search",
+            "CSV data cleaner & summarizer",
+            "JSON user profile builder",
+            "File reader with missing file handler",
+            "Bank account system (OOP)",
+            "Tic-Tac-Toe with OOP",
+            "Generator for large file line processing",
+            "News headline scraper",
+        ],
+    },
 ];
 
 /**

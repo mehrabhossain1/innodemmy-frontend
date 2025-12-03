@@ -19,7 +19,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { COURSE_CATEGORIES, getAllCategories } from "@/lib/constants/categories";
+import {
+    COURSE_CATEGORIES,
+    getAllCategories,
+} from "@/lib/constants/categories";
 
 interface Course {
     _id: string;
@@ -67,9 +70,10 @@ export default function CoursesPage() {
         const categoryCounts: Record<string, number> = {};
 
         // Count courses per category
-        allCourses.forEach(course => {
+        allCourses.forEach((course) => {
             if (course.category) {
-                categoryCounts[course.category] = (categoryCounts[course.category] || 0) + 1;
+                categoryCounts[course.category] =
+                    (categoryCounts[course.category] || 0) + 1;
             }
         });
 
@@ -79,19 +83,20 @@ export default function CoursesPage() {
                 id: "all",
                 label: "All Courses",
                 icon: Code,
-                count: `${allCourses.length} Courses`
-            }
+                count: `${allCourses.length} Courses`,
+            },
         ];
 
         // Add each category from constants
-        allCategories.forEach(category => {
+        allCategories.forEach((category) => {
             const count = categoryCounts[category] || 0;
-            if (count > 0) { // Only show categories with courses
+            if (count > 0) {
+                // Only show categories with courses
                 tabs.push({
                     id: category,
                     label: category,
                     icon: categoryIcons[category] || Code,
-                    count: `${count} ${count === 1 ? 'Course' : 'Courses'}`
+                    count: `${count} ${count === 1 ? "Course" : "Courses"}`,
                 });
             }
         });
@@ -106,14 +111,15 @@ export default function CoursesPage() {
                 course.description
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase());
-            const matchesCategory = activeCategory === "all" || course.category === activeCategory;
+            const matchesCategory =
+                activeCategory === "all" || course.category === activeCategory;
             return matchesSearch && matchesCategory;
         });
     }, [allCourses, searchTerm, activeCategory]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
-            <div className="bg-gradient-to-r from-white to-primary/5 border-b border-primary/20 shadow-sm">
+            <div className="bg-gradient-to-r from-white dark:from-background to-primary/5 dark:to-primary/10 border-b border-primary/20 dark:border-primary/30 shadow-sm">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-6">
@@ -124,7 +130,7 @@ export default function CoursesPage() {
                                 <ArrowLeft className="w-4 h-4 mr-2" />
                                 Back to Home
                             </Link>
-                            <div className="h-8 w-px bg-gray-300" />
+                            <div className="h-8 w-px bg-gray-300 dark:bg-gray-700" />
                             <div className="flex items-center space-x-3">
                                 <BookOpen className="h-8 w-8 text-primary" />
                                 <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -148,7 +154,9 @@ export default function CoursesPage() {
                             {categories.map((category) => (
                                 <button
                                     key={category.id}
-                                    onClick={() => setActiveCategory(category.id)}
+                                    onClick={() =>
+                                        setActiveCategory(category.id)
+                                    }
                                     className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
                                             ? "bg-primary border-primary text-white shadow-md"
@@ -161,7 +169,14 @@ export default function CoursesPage() {
                                             {category.label}
                                         </div>
                                         {category.count && (
-                                            <div className={`text-xs ${activeCategory === category.id ? 'text-white/80' : 'text-muted-foreground'}`}>
+                                            <div
+                                                className={`text-xs ${
+                                                    activeCategory ===
+                                                    category.id
+                                                        ? "text-white/80"
+                                                        : "text-muted-foreground"
+                                                }`}
+                                            >
                                                 {category.count}
                                             </div>
                                         )}

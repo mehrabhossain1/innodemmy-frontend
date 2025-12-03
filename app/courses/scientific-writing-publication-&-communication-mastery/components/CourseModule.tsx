@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 // Helper function to render text with bold markdown
 const renderTextWithBold = (text: string) => {
@@ -47,8 +48,7 @@ const modules: Module[] = [
         number: 2,
         title: "Abstract Writing",
         overview: ["Structured vs unstructured formats."],
-        aiPractice:
-            "Generate abstracts and refine language with Grammarly AI.",
+        aiPractice: "Generate abstracts and refine language with Grammarly AI.",
         color: "bg-orange-500",
         bgColor: "bg-orange-50",
     },
@@ -76,8 +76,7 @@ const modules: Module[] = [
         number: 5,
         title: "Results Writing",
         overview: ["Presenting quantitative findings logically."],
-        aiSupport:
-            "Convert SPSS outputs into narrative sentences and tables.",
+        aiSupport: "Convert SPSS outputs into narrative sentences and tables.",
         color: "bg-emerald-500",
         bgColor: "bg-emerald-50",
     },
@@ -85,9 +84,7 @@ const modules: Module[] = [
         id: 6,
         number: 6,
         title: "Discussion Writing",
-        overview: [
-            "Interpretation, comparison, limitations, and conclusion.",
-        ],
+        overview: ["Interpretation, comparison, limitations, and conclusion."],
         practice:
             "Generate discussion drafts and validate with Scite citations.",
         color: "bg-teal-500",
@@ -127,8 +124,7 @@ const modules: Module[] = [
         overview: ["Poster, oral presentation, and Q&A techniques."],
         handsOn:
             "Design poster in Canva and generate speech script via ChatGPT.",
-        deliverable:
-            "Full IMRaD manuscript + poster + reviewer reply pack.",
+        deliverable: "Full IMRaD manuscript + poster + reviewer reply pack.",
         color: "bg-indigo-500",
         bgColor: "bg-indigo-50",
     },
@@ -149,14 +145,11 @@ export default function CourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Modules
-                </h2>
-                <p className="text-gray-600 mt-2">
+            <SectionTitle title="Course Module" />
+            <div className="text-center mb-8">
+                <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
                     Crafting and Communicating Scientific Evidence
                 </p>
-                <hr className="my-2 border-gray-200" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

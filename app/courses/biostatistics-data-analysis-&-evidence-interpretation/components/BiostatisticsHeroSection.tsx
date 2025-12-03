@@ -11,21 +11,52 @@ interface BiostatisticsHeroSectionProps {
         description: string;
         price: number;
         originalPrice: number;
-        thumbnailUrl: string;
-        checkoutLink: string;
+        thumbnailUrl?: string;
+        checkoutLink?: string;
         videoLabel: string;
         enrollButtonTextShort: string;
         liveCourseLabel: string;
     };
     onVideoClick: () => void;
+    onEnrollClick?: () => void;
 }
+
+const ENROLLMENT_PHONE = "01521428597";
 
 export default function BiostatisticsHeroSection({
     courseData,
     onVideoClick,
+    onEnrollClick,
 }: BiostatisticsHeroSectionProps) {
+    const handleWhatsAppClick = () => {
+        const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
+        const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(
+            message
+        )}`;
+        window.open(whatsappUrl, "_blank");
+    };
+
+    const handleShareClick = async () => {
+        const shareData = {
+            title: courseData.title,
+            text: `Check out this course: ${courseData.title}`,
+            url: window.location.href,
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                // Fallback: Copy URL to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Course link copied to clipboard!");
+            }
+        } catch (err) {
+            console.error("Error sharing:", err);
+        }
+    };
     return (
-        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white ">
+        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-white dark:from-primary/20 dark:via-secondary/20 dark:to-gray-900">
             <div className="container mx-auto px-4 py-16 max-w-7xl">
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Left: Course Info - 2 columns */}
@@ -59,7 +90,10 @@ export default function BiostatisticsHeroSection({
                             onClick={onVideoClick}
                         >
                             <Image
-                                src={courseData.thumbnailUrl}
+                                src={
+                                    courseData.thumbnailUrl ||
+                                    "/courses/ClinicalDataAnalysis.jpg"
+                                }
                                 alt={courseData.title}
                                 fill
                                 className="object-cover"
@@ -86,10 +120,12 @@ export default function BiostatisticsHeroSection({
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
                                             <span className="text-3xl font-bold text-gray-900">
-                                                ৳{courseData.price.toLocaleString()}
+                                                ৳
+                                                {courseData.price.toLocaleString()}
                                             </span>
                                             <span className="text-sm text-gray-400 line-through">
-                                                ৳{courseData.originalPrice.toLocaleString()}
+                                                ৳
+                                                {courseData.originalPrice.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">
@@ -110,29 +146,44 @@ export default function BiostatisticsHeroSection({
                                 </div>
 
                                 {/* Enrollment Button */}
-                                <Link href={courseData.checkoutLink}>
-                                    <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                                {onEnrollClick ? (
+                                    <Button
+                                        onClick={onEnrollClick}
+                                        className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                                    >
                                         {courseData.enrollButtonTextShort}
                                     </Button>
-                                </Link>
+                                ) : courseData.checkoutLink ? (
+                                    <Link href={courseData.checkoutLink}>
+                                        <Button className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary/90 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold py-4 text-base rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                                            {courseData.enrollButtonTextShort}
+                                        </Button>
+                                    </Link>
+                                ) : null}
                             </div>
 
                             {/* Action Buttons */}
                             <div className="p-5">
                                 <div className="grid grid-cols-2 gap-3">
-                                    <button className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg py-3 transition-all duration-200 hover:shadow-sm">
+                                    <button
+                                        onClick={handleShareClick}
+                                        className="flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-lg py-3 transition-all duration-200 hover:shadow-sm"
+                                    >
                                         <svg
-                                            className="w-5 h-5 text-primary"
+                                            className="w-5 h-5 text-primary dark:text-primary"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
                                             <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
                                         </svg>
-                                        <span className="text-sm font-semibold text-gray-700">
+                                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                                             Share
                                         </span>
                                     </button>
-                                    <button className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button
+                                        onClick={handleWhatsAppClick}
+                                        className="flex items-center justify-center gap-2 bg-green-500 dark:bg-green-600 hover:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg py-3 transition-all duration-200 shadow-sm hover:shadow-md"
+                                    >
                                         <svg
                                             className="w-5 h-5"
                                             fill="currentColor"

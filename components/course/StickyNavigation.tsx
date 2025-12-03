@@ -11,7 +11,9 @@ interface StickyNavigationProps {
 }
 
 export default function StickyNavigation({ items }: StickyNavigationProps) {
-    const [activeSection, setActiveSection] = useState<string>(items[0]?.id || "");
+    const [activeSection, setActiveSection] = useState<string>(
+        items[0]?.id || ""
+    );
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -21,23 +23,28 @@ export default function StickyNavigation({ items }: StickyNavigationProps) {
             setIsSticky(scrollPosition > 100);
 
             // Find active section
-            const sections = items.map((item) => {
-                const element = document.getElementById(item.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    return {
-                        id: item.id,
-                        offsetTop: rect.top + window.scrollY,
-                        offsetBottom: rect.bottom + window.scrollY,
-                    };
-                }
-                return null;
-            }).filter(Boolean);
+            const sections = items
+                .map((item) => {
+                    const element = document.getElementById(item.id);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        return {
+                            id: item.id,
+                            offsetTop: rect.top + window.scrollY,
+                            offsetBottom: rect.bottom + window.scrollY,
+                        };
+                    }
+                    return null;
+                })
+                .filter(Boolean);
 
             const current = sections.find((section) => {
                 if (!section) return false;
                 const scrollPos = window.scrollY + 150;
-                return scrollPos >= section.offsetTop && scrollPos < section.offsetBottom;
+                return (
+                    scrollPos >= section.offsetTop &&
+                    scrollPos < section.offsetBottom
+                );
             });
 
             if (current) {
@@ -55,23 +62,27 @@ export default function StickyNavigation({ items }: StickyNavigationProps) {
         const element = document.getElementById(id);
         if (element) {
             const yOffset = -100; // Offset for sticky header
-            const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+            const y =
+                element.getBoundingClientRect().top + window.scrollY + yOffset;
             window.scrollTo({ top: y, behavior: "smooth" });
         }
     };
 
     return (
-        <div className="sticky top-16 z-40 bg-white dark:bg-gray-900 transition-all duration-300 mt-8">
-            <div className="container mx-auto px-4 max-w-7xl">
-                <nav className="flex justify-center overflow-x-auto scrollbar-hide border-b border-gray-200 dark:border-gray-700">
+        <div className="sticky top-16 z-40 bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-600 transition-all duration-300 py-2">
+            <div className="w-full px-4">
+                <nav
+                    className="flex justify-center gap-2 overflow-x-auto scrollbar-hide pb-1 max-w-full"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
                     {items.map((item) => (
                         <button
                             key={item.id}
                             onClick={() => scrollToSection(item.id)}
-                            className={`flex-shrink-0 px-4 py-2 text-base font-bold transition-colors duration-200 border-b-2 whitespace-nowrap -mb-[1px] cursor-pointer ${
+                            className={`relative flex-shrink-0 px-4 py-2.5 text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer rounded-lg ${
                                 activeSection === item.id
-                                    ? "text-primary border-primary"
-                                    : "text-gray-600 dark:text-gray-400 border-transparent hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600"
+                                    ? "text-white bg-gradient-to-r from-primary to-primary/90 shadow-md"
+                                    : "text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-primary hover:text-primary dark:hover:border-primary dark:hover:text-primary hover:shadow-sm"
                             }`}
                         >
                             {item.label}

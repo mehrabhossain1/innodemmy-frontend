@@ -2,46 +2,72 @@
 import { useState } from "react";
 import BiostatisticsHeroSection from "./components/BiostatisticsHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
+import WhatYouGet from "./components/WhatYouGet";
+import ResourcePersons from "./components/ResourcePersons";
+import WhatYouNeed from "./components/WhatYouNeed";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 
 const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "resource-persons", label: "Resource Persons" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
         description:
-            "Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.",
+            "এই কোর্সটি শিক্ষার্থী, নবীন গবেষক এবং পেশাজীবীদের জন্য প্রস্তুত করা হয়েছে, যারা hands-on statistical analysis, evidence-based interpretation এবং data visualization-এ industry-standard দক্ষতা অর্জন করতে আগ্রহী। পুরো কোর্স জুড়ে SPSS, STATA, Excel এবং AI-assisted analytics ব্যবহার করে বাস্তব গবেষণা ডেটার বিশ্লেষণ, ক্লিনিক্যাল প্রাসঙ্গিক ব্যাখ্যা এবং প্রকাশযোগ্য (publication-ready) আউটপুট তৈরির দক্ষতা উন্নয়নের ওপর বিশেষ গুরুত্ব দেওয়া হয়েছে।\n\nকোর্সটিতে শেখানো হবে:\n• Biostatistics এর মৌলিক ধারণা: descriptive statistics, probability basics, hypothesis testing (t-test, chi-square, ANOVA, correlation, regression)\n• Hands-on data analysis workflow: SPSS, STATA ও Excel ব্যবহার করে Data Management, cleaning, coding, recoding ও missing data handling\n• Study design essentials: sample size determination ও power analysis সহ গবেষণার জন্য প্রয়োজনীয় স্ট্যাটিস্টিক্যাল প্রস্তুতি\n• Research-grade data visualization: forest plot, ROC curve, Kaplan-Meier, bar-line-scatter charts সহ প্রকাশযোগ্য গ্রাফ তৈরি\n• Evidence interpretation ও AI-assisted analytics: clinical logic দ্বারা ফলাফল ব্যাখ্যা, AI-এর মাধ্যমে model suggestion, test selection, predictive insights ও visualization enhancement",
         price: 7000,
         originalPrice: 11000,
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/ClinicalDataAnalysis.jpg",
         checkoutLink: "/checkout?course=biostatistics",
-        videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
-        enrollButtonText: "ব্যাচে ভর্তি হোন →",
+        videoLabel: "Click to watch the demo class",
+        enrollButtonText: "Enroll in Batch →",
         enrollButtonTextShort: "Enroll Now",
-        promoLabel: "প্রোমো অ্যাপ্লাইড",
-        liveCourseLabel: "লাইভ কোর্স",
+        promoLabel: "Promo Applied",
+        liveCourseLabel: "Live Course",
     };
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="biostatistics-data-analysis-evidence-interpretation"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
                     <div className="relative w-full max-w-4xl">
                         {/* Close Button */}
                         <button
                             onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         >
                             ✕
                         </button>
                         {/* Video Container */}
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -62,10 +88,41 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
             <BiostatisticsHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
+
+            {/* What You Get */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
+
+            {/* Resource Persons */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
+
+            {/* Who This Course is For */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
+
+            {/* FAQ */}
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
@@ -74,7 +131,7 @@ const BiostatisticsDataAnalysisEvidenceInterpretation = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>

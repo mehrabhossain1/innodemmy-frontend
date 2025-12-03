@@ -490,38 +490,38 @@ export default function CourseModule() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="Course Module" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {modules.map((module) => (
                     <div
                         key={module.id}
                         className={`${
                             module.bgColor
-                        } dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
+                        } dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                             expandedModules.includes(module.id)
-                                ? "shadow-lg"
-                                : "shadow-md hover:shadow-lg"
+                                ? "shadow-lg h-auto"
+                                : "shadow-md hover:shadow-lg h-[200px]"
                         }`}
                     >
                         {/* Module Header */}
                         <div
-                            className={`p-5 cursor-pointer`}
+                            className={`p-4 cursor-pointer`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 toggleModule(module.id);
                             }}
                         >
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start gap-3">
                                 {/* Module Number Badge */}
                                 <div
-                                    className={`${module.color} text-white rounded-xl px-4 py-3 flex-shrink-0 shadow-md`}
+                                    className={`${module.color} text-white rounded-lg px-3 py-2 flex-shrink-0 shadow-md`}
                                 >
-                                    <div className="text-sm font-semibold">
+                                    <div className="text-xs font-semibold">
                                         {module.tierLabel}
                                     </div>
-                                    <div className="text-3xl font-bold">
+                                    <div className="text-2xl font-bold">
                                         {module.tierLabel === "CAPSTONE"
                                             ? ""
                                             : module.number}
@@ -530,17 +530,17 @@ export default function CourseModule() {
 
                                 {/* Module Info */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg leading-tight">
+                                    <h3 className="font-bold text-gray-900 dark:text-white mb-1.5 text-base leading-tight">
                                         {module.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 leading-relaxed">
+                                    <p className="text-xs text-gray-600 dark:text-gray-300 mb-1.5 leading-relaxed">
                                         {module.essence}
                                     </p>
-                                    <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                                    <div className="flex items-center gap-2 text-xs text-gray-700 dark:text-gray-300">
                                         {module.liveClasses !== undefined &&
                                             module.liveClasses > 0 && (
-                                                <div className="flex items-center gap-1.5">
-                                                    <Video className="w-4 h-4" />
+                                                <div className="flex items-center gap-1">
+                                                    <Video className="w-3.5 h-3.5" />
                                                     <span className="font-medium">
                                                         {module.liveClasses}{" "}
                                                         Live Class
@@ -551,8 +551,8 @@ export default function CourseModule() {
                                                 </div>
                                             )}
                                         {module.projects && (
-                                            <div className="flex items-center gap-1.5">
-                                                <FileText className="w-4 h-4" />
+                                            <div className="flex items-center gap-1">
+                                                <FileText className="w-3.5 h-3.5" />
                                                 <span className="font-medium">
                                                     {module.projects} Project
                                                     {module.projects > 1
@@ -567,7 +567,7 @@ export default function CourseModule() {
                                 {/* Chevron Icon */}
                                 <div className="flex-shrink-0">
                                     <ChevronDown
-                                        className={`w-6 h-6 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
+                                        className={`w-5 h-5 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
                                             expandedModules.includes(module.id)
                                                 ? "rotate-180"
                                                 : "rotate-0"
@@ -580,12 +580,12 @@ export default function CourseModule() {
                         {/* Module Content - Topics */}
                         {expandedModules.includes(module.id) &&
                             module.topics.length > 0 && (
-                                <div className="px-5 pb-5">
+                                <div className="px-4 pb-4">
                                     {/* Subtitle */}
                                     {module.subtitle && (
-                                        <div className="mb-4 text-center px-4">
+                                        <div className="mb-3 text-center px-3">
                                             <p
-                                                className={`text-[10px] italic font-semibold bg-clip-text text-transparent leading-snug ${
+                                                className={`text-[9px] italic font-semibold bg-clip-text text-transparent leading-snug ${
                                                     module.id === 1
                                                         ? "bg-gradient-to-r from-blue-600 to-purple-600"
                                                         : module.id === 2
@@ -638,14 +638,14 @@ export default function CourseModule() {
                                             return (
                                                 <div
                                                     key={topic.id}
-                                                    className={`border rounded-lg p-2.5 transition-all duration-300 ${
+                                                    className={`border rounded-md p-2 transition-all duration-300 ${
                                                         isTopicExpanded
                                                             ? `${borderColor} shadow-sm`
                                                             : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm"
                                                     }`}
                                                 >
                                                     <div
-                                                        className={`flex items-start gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${
+                                                        className={`flex items-start gap-1.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${
                                                             hasDetails
                                                                 ? "cursor-pointer"
                                                                 : ""
@@ -660,19 +660,19 @@ export default function CourseModule() {
                                                             }
                                                         }}
                                                     >
-                                                        <span className="font-bold text-gray-900 dark:text-white min-w-[20px] text-base">
+                                                        <span className="font-bold text-gray-900 dark:text-white min-w-[18px] text-sm">
                                                             {topic.id}.
                                                         </span>
                                                         <div className="flex-1">
                                                             <div className="flex items-center justify-between">
-                                                                <span className="leading-tight font-semibold text-base">
+                                                                <span className="leading-tight font-semibold text-sm">
                                                                     {
                                                                         topic.title
                                                                     }
                                                                 </span>
                                                                 {hasDetails && (
                                                                     <ChevronDown
-                                                                        className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
+                                                                        className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
                                                                             isTopicExpanded
                                                                                 ? "rotate-180"
                                                                                 : ""
@@ -684,14 +684,14 @@ export default function CourseModule() {
                                                             {/* Expanded Topic Details */}
                                                             {isTopicExpanded &&
                                                                 hasDetails && (
-                                                                    <div className="mt-3 space-y-2.5 text-sm text-gray-600 dark:text-gray-300">
+                                                                    <div className="mt-2 space-y-2 text-xs text-gray-600 dark:text-gray-300">
                                                                         {topic.overview &&
                                                                             topic
                                                                                 .overview
                                                                                 .length >
                                                                                 0 && (
                                                                                 <div>
-                                                                                    <ul className="space-y-1.5 list-disc list-inside">
+                                                                                    <ul className="space-y-1 list-disc list-inside">
                                                                                         {topic.overview.map(
                                                                                             (
                                                                                                 point,
@@ -714,8 +714,8 @@ export default function CourseModule() {
                                                                             )}
 
                                                                         {topic.aiPractice && (
-                                                                            <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg border border-blue-100 dark:border-blue-800">
-                                                                                <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-blue-50 dark:bg-blue-900/30 p-2 rounded-md border border-blue-100 dark:border-blue-800">
+                                                                                <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-blue-600 dark:text-blue-400">
                                                                                         🤖
                                                                                     </span>
@@ -731,8 +731,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiSupport && (
-                                                                            <div className="bg-cyan-50 dark:bg-cyan-900/30 p-3 rounded-lg border border-cyan-100 dark:border-cyan-800">
-                                                                                <h4 className="font-semibold text-cyan-900 dark:text-cyan-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-cyan-50 dark:bg-cyan-900/30 p-2 rounded-md border border-cyan-100 dark:border-cyan-800">
+                                                                                <h4 className="font-semibold text-cyan-900 dark:text-cyan-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-cyan-600 dark:text-cyan-400">
                                                                                         🤖
                                                                                     </span>
@@ -748,8 +748,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiIntegration && (
-                                                                            <div className="bg-violet-50 dark:bg-violet-900/30 p-3 rounded-lg border border-violet-100 dark:border-violet-800">
-                                                                                <h4 className="font-semibold text-violet-900 dark:text-violet-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-violet-50 dark:bg-violet-900/30 p-2 rounded-md border border-violet-100 dark:border-violet-800">
+                                                                                <h4 className="font-semibold text-violet-900 dark:text-violet-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-violet-600 dark:text-violet-400">
                                                                                         🤖
                                                                                     </span>
@@ -765,8 +765,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.aiTask && (
-                                                                            <div className="bg-sky-50 dark:bg-sky-900/30 p-3 rounded-lg border border-sky-100 dark:border-sky-800">
-                                                                                <h4 className="font-semibold text-sky-900 dark:text-sky-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-sky-50 dark:bg-sky-900/30 p-2 rounded-md border border-sky-100 dark:border-sky-800">
+                                                                                <h4 className="font-semibold text-sky-900 dark:text-sky-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-sky-600 dark:text-sky-400">
                                                                                         🤖
                                                                                     </span>
@@ -782,8 +782,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.handsOn && (
-                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
-                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-2 rounded-md border border-green-100 dark:border-green-800">
+                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-green-600 dark:text-green-400">
                                                                                         ✋
                                                                                     </span>
@@ -798,8 +798,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.handsOnTask && (
-                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
-                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-green-50 dark:bg-green-900/30 p-2 rounded-md border border-green-100 dark:border-green-800">
+                                                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-green-600 dark:text-green-400">
                                                                                         ✋
                                                                                     </span>
@@ -815,8 +815,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.task && (
-                                                                            <div className="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                                                                                <h4 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-indigo-50 dark:bg-indigo-900/30 p-2 rounded-md border border-indigo-100 dark:border-indigo-800">
+                                                                                <h4 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-indigo-600 dark:text-indigo-400">
                                                                                         ✅
                                                                                     </span>
@@ -831,8 +831,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.deliverable && (
-                                                                            <div className="bg-purple-50 dark:bg-purple-900/30 p-3 rounded-lg border border-purple-100 dark:border-purple-800">
-                                                                                <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-purple-50 dark:bg-purple-900/30 p-2 rounded-md border border-purple-100 dark:border-purple-800">
+                                                                                <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-purple-600 dark:text-purple-400">
                                                                                         📦
                                                                                     </span>
@@ -847,8 +847,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.exercise && (
-                                                                            <div className="bg-orange-50 dark:bg-orange-900/30 p-3 rounded-lg border border-orange-100 dark:border-orange-800">
-                                                                                <h4 className="font-semibold text-orange-900 dark:text-orange-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-orange-50 dark:bg-orange-900/30 p-2 rounded-md border border-orange-100 dark:border-orange-800">
+                                                                                <h4 className="font-semibold text-orange-900 dark:text-orange-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-orange-600 dark:text-orange-400">
                                                                                         📝
                                                                                     </span>
@@ -863,8 +863,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.practice && (
-                                                                            <div className="bg-pink-50 dark:bg-pink-900/30 p-3 rounded-lg border border-pink-100 dark:border-pink-800">
-                                                                                <h4 className="font-semibold text-pink-900 dark:text-pink-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-pink-50 dark:bg-pink-900/30 p-2 rounded-md border border-pink-100 dark:border-pink-800">
+                                                                                <h4 className="font-semibold text-pink-900 dark:text-pink-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-pink-600 dark:text-pink-400">
                                                                                         🎯
                                                                                     </span>
@@ -879,8 +879,8 @@ export default function CourseModule() {
                                                                         )}
 
                                                                         {topic.simulation && (
-                                                                            <div className="bg-rose-50 dark:bg-rose-900/30 p-3 rounded-lg border border-rose-100 dark:border-rose-800">
-                                                                                <h4 className="font-semibold text-rose-900 dark:text-rose-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                                            <div className="bg-rose-50 dark:bg-rose-900/30 p-2 rounded-md border border-rose-100 dark:border-rose-800">
+                                                                                <h4 className="font-semibold text-rose-900 dark:text-rose-300 mb-1 flex items-center gap-1 text-xs">
                                                                                     <span className="text-rose-600 dark:text-rose-400">
                                                                                         🎮
                                                                                     </span>

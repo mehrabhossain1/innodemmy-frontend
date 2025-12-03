@@ -29,7 +29,7 @@ export default function StickyEnrollmentBar({
     onEnrollClick,
 }: StickyEnrollmentBarProps) {
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-700 shadow-lg z-50">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-50 dark:bg-gray-800 border-t-2 border-gray-200 dark:border-gray-700 shadow-lg z-50">
             <div className="max-w-7xl mx-auto px-4 py-3">
                 <div className="flex items-center justify-between gap-4">
                     {/* Price Section */}

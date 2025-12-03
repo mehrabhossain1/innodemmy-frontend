@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import SectionTitle from "@/components/course/SectionTitle";
 
 // Helper function to render text with bold markdown
 const renderTextWithBold = (text: string) => {
@@ -56,11 +57,8 @@ const modules: Module[] = [
         id: 3,
         number: 3,
         title: "Inferential Statistics",
-        overview: [
-            "Applying Chi-square, t-test, ANOVA, correlation analysis.",
-        ],
-        aiTask:
-            "Paste SPSS outputs into ChatGPT for automated result interpretation.",
+        overview: ["Applying Chi-square, t-test, ANOVA, correlation analysis."],
+        aiTask: "Paste SPSS outputs into ChatGPT for automated result interpretation.",
         color: "bg-teal-500",
         bgColor: "bg-teal-50",
     },
@@ -69,8 +67,7 @@ const modules: Module[] = [
         number: 4,
         title: "Regression & Predictive Models",
         overview: ["Logistic, linear, and Cox regression concepts."],
-        practice:
-            "Run models and interpret AUC values with ChatGPT guidance.",
+        practice: "Run models and interpret AUC values with ChatGPT guidance.",
         color: "bg-cyan-500",
         bgColor: "bg-cyan-50",
     },
@@ -79,8 +76,7 @@ const modules: Module[] = [
         number: 5,
         title: "Statistical Interpretation & Narrative Writing",
         overview: ["Turning numbers into meaningful sentences."],
-        aiPractice:
-            "Convert SPSS outputs into publication-ready paragraphs.",
+        aiPractice: "Convert SPSS outputs into publication-ready paragraphs.",
         color: "bg-sky-500",
         bgColor: "bg-sky-50",
     },
@@ -100,8 +96,7 @@ const modules: Module[] = [
         overview: ["Common fallacies and diagnostic checks."],
         simulation:
             "Analyze faulty datasets and correct them using AI feedback.",
-        deliverable:
-            "Cleaned dataset + analysis report + publication figures.",
+        deliverable: "Cleaned dataset + analysis report + publication figures.",
         color: "bg-indigo-500",
         bgColor: "bg-indigo-50",
     },
@@ -122,14 +117,11 @@ export default function CourseModule() {
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-7xl">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">
-                    Course Modules
-                </h2>
-                <p className="text-gray-600 mt-2">
+            <SectionTitle title="Course Module" />
+            <div className="text-center mb-8">
+                <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
                     From Dataset to Decision-Ready Insight
                 </p>
-                <hr className="my-2 border-gray-200" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">

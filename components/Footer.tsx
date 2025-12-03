@@ -25,39 +25,38 @@ export default function Footer() {
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl"></div>
 
             <div className="relative z-10">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 lg:pt-20">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                         {/* Logo & About Section */}
-                        <div className="lg:col-span-1 space-y-6">
+                        <div className="lg:col-span-1 space-y-4">
                             <Link href="/" className="inline-block group">
                                 <div className="relative">
                                     <Image
                                         src={logo}
                                         alt="Innodemy"
-                                        className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
+                                        className="h-7 w-auto transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
                             </Link>
                             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Empowering learners with world-class technology
-                                education and career transformation.
+                                Transforming Talent Into Expertise
                             </p>
 
                             {/* Social Media Links */}
                             <div>
-                                <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3">
+                                <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-2">
                                     Follow Us
                                 </h4>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2">
                                     <a
                                         href="https://www.youtube.com/channel/UC2sX_PtHHB4VJSauxtC8xbg"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-9 h-9 bg-[#FF0000]/10 hover:bg-[#FF0000] border border-[#FF0000]/30 hover:border-[#FF0000] rounded-lg flex items-center justify-center transition-all duration-300 group"
+                                        className="w-8 h-8 bg-[#FF0000]/10 hover:bg-[#FF0000] border border-[#FF0000]/30 hover:border-[#FF0000] rounded-lg flex items-center justify-center transition-all duration-300 group"
                                         aria-label="YouTube"
                                     >
                                         <svg
-                                            className="w-4 h-4 text-[#FF0000] group-hover:text-white transition-colors"
+                                            className="w-3.5 h-3.5 text-[#FF0000] group-hover:text-white transition-colors"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
@@ -68,11 +67,11 @@ export default function Footer() {
                                         href="https://www.facebook.com/innodemy360/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-9 h-9 bg-[#1877F2]/10 hover:bg-[#1877F2] border border-[#1877F2]/30 hover:border-[#1877F2] rounded-lg flex items-center justify-center transition-all duration-300 group"
+                                        className="w-8 h-8 bg-[#1877F2]/10 hover:bg-[#1877F2] border border-[#1877F2]/30 hover:border-[#1877F2] rounded-lg flex items-center justify-center transition-all duration-300 group"
                                         aria-label="Facebook"
                                     >
                                         <svg
-                                            className="w-4 h-4 text-[#1877F2] group-hover:text-white transition-colors"
+                                            className="w-3.5 h-3.5 text-[#1877F2] group-hover:text-white transition-colors"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
@@ -83,11 +82,11 @@ export default function Footer() {
                                         href="https://www.instagram.com/inno_demy360/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-9 h-9 bg-gradient-to-br from-[#833AB4]/10 via-[#E1306C]/10 to-[#F77737]/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] border border-[#E1306C]/30 hover:border-[#E1306C] rounded-lg flex items-center justify-center transition-all duration-300 group"
+                                        className="w-8 h-8 bg-gradient-to-br from-[#833AB4]/10 via-[#E1306C]/10 to-[#F77737]/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] border border-[#E1306C]/30 hover:border-[#E1306C] rounded-lg flex items-center justify-center transition-all duration-300 group"
                                         aria-label="Instagram"
                                     >
                                         <svg
-                                            className="w-4 h-4 text-[#E1306C] group-hover:text-white transition-colors"
+                                            className="w-3.5 h-3.5 text-[#E1306C] group-hover:text-white transition-colors"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
@@ -98,11 +97,11 @@ export default function Footer() {
                                         href="https://www.linkedin.com/company/innodemy360/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-9 h-9 bg-[#0A66C2]/10 hover:bg-[#0A66C2] border border-[#0A66C2]/30 hover:border-[#0A66C2] rounded-lg flex items-center justify-center transition-all duration-300 group"
+                                        className="w-8 h-8 bg-[#0A66C2]/10 hover:bg-[#0A66C2] border border-[#0A66C2]/30 hover:border-[#0A66C2] rounded-lg flex items-center justify-center transition-all duration-300 group"
                                         aria-label="LinkedIn"
                                     >
                                         <svg
-                                            className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors"
+                                            className="w-3.5 h-3.5 text-[#0A66C2] group-hover:text-white transition-colors"
                                             fill="currentColor"
                                             viewBox="0 0 24 24"
                                         >
@@ -115,10 +114,10 @@ export default function Footer() {
 
                         {/* Quick Links Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-4">
                                 Quick Links
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2">
                                 <li>
                                     <Link
                                         href="/courses"
@@ -151,10 +150,10 @@ export default function Footer() {
 
                         {/* Company Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-4">
                                 Company
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2">
                                 <li>
                                     <Link
                                         href="/aboutus"
@@ -196,10 +195,10 @@ export default function Footer() {
 
                         {/* Contact Section */}
                         <div>
-                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-6">
+                            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 dark:text-white mb-4">
                                 Contact
                             </h3>
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 <div className="flex items-start space-x-3 group">
                                     <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
                                         <Mail className="w-4 h-4 text-primary" />
@@ -258,14 +257,14 @@ export default function Footer() {
                     </div>
 
                     {/* Trust & Payment Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                         {/* Trust Badge */}
                         <div className="relative group">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-300"></div>
-                            <div className="relative bg-gradient-to-br from-emerald-500/10 to-green-500/10 dark:from-emerald-500/20 dark:to-green-500/20 rounded-xl p-5 border-2 border-emerald-500/30 dark:border-emerald-500/40">
-                                <div className="flex items-center space-x-4">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center shadow-lg">
-                                        <Shield className="w-6 h-6 text-white" />
+                            <div className="relative bg-gradient-to-br from-emerald-500/10 to-green-500/10 dark:from-emerald-500/20 dark:to-green-500/20 rounded-xl p-4 border-2 border-emerald-500/30 dark:border-emerald-500/40">
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center shadow-lg">
+                                        <Shield className="w-5 h-5 text-white" />
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-gray-800 dark:text-white">
@@ -281,38 +280,82 @@ export default function Footer() {
 
                         {/* Payment Methods */}
                         <div>
-                            <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-4">
+                            <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-3">
                                 We Accept
                             </h4>
-                            <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex flex-wrap items-center gap-2">
                                 {/* bKash */}
-                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
-                                        <span className="text-[#E2136E] font-bold text-lg">bKash</span>
+                                        <span className="text-[#E2136E] font-bold text-base">
+                                            bKash
+                                        </span>
                                     </div>
                                 </div>
                                 {/* Nagad */}
-                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
-                                        <span className="text-[#EE4023] font-bold text-lg">Nagad</span>
+                                        <span className="text-[#EE4023] font-bold text-base">
+                                            Nagad
+                                        </span>
                                     </div>
                                 </div>
                                 {/* Visa */}
-                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
-                                    <svg className="h-6 w-auto" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M19.8 14.5L21.9 1.5H25.3L23.2 14.5H19.8Z" fill="#00579F"/>
-                                        <path d="M35.6 1.8C34.9 1.6 33.8 1.3 32.5 1.3C29 1.3 26.5 3.2 26.5 5.8C26.5 7.7 28.2 8.7 29.5 9.3C30.9 9.9 31.3 10.3 31.3 10.8C31.3 11.6 30.3 12 29.4 12C28.1 12 27.4 11.8 26.3 11.3L25.9 11.1L25.4 14C26.2 14.4 27.7 14.7 29.3 14.7C33.1 14.7 35.5 12.9 35.5 10.1C35.5 8.6 34.4 7.5 32.2 6.6C31 6.1 30.3 5.7 30.3 5.2C30.3 4.7 30.9 4.2 32.1 4.2C33.1 4.2 33.9 4.4 34.5 4.6L34.8 4.7L35.6 1.8Z" fill="#00579F"/>
-                                        <path d="M40.8 9.8C41.1 9 42.1 6.4 42.1 6.4C42.1 6.4 42.3 5.8 42.4 5.5L42.6 6.5C42.6 6.5 43.2 9.3 43.3 9.8H40.8ZM44.7 1.5H42C41.3 1.5 40.7 1.7 40.4 2.4L35.5 14.5H39.3L40.1 12.5H44.7C44.8 13 45.2 14.5 45.2 14.5H48.5L45.6 1.5H44.7Z" fill="#00579F"/>
-                                        <path d="M16.8 1.5L13.2 10.5L12.8 8.5C12.1 6.3 10.1 3.9 7.9 2.7L10.9 14.5H14.8L20.7 1.5H16.8Z" fill="#00579F"/>
-                                        <path d="M9.4 1.5H3.5L3.4 1.8C7.7 2.8 10.7 5.5 12 8.5L10.7 2.4C10.5 1.7 9.9 1.5 9.4 1.5Z" fill="#FAA61A"/>
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
+                                    <svg
+                                        className="h-5 w-auto"
+                                        viewBox="0 0 48 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M19.8 14.5L21.9 1.5H25.3L23.2 14.5H19.8Z"
+                                            fill="#00579F"
+                                        />
+                                        <path
+                                            d="M35.6 1.8C34.9 1.6 33.8 1.3 32.5 1.3C29 1.3 26.5 3.2 26.5 5.8C26.5 7.7 28.2 8.7 29.5 9.3C30.9 9.9 31.3 10.3 31.3 10.8C31.3 11.6 30.3 12 29.4 12C28.1 12 27.4 11.8 26.3 11.3L25.9 11.1L25.4 14C26.2 14.4 27.7 14.7 29.3 14.7C33.1 14.7 35.5 12.9 35.5 10.1C35.5 8.6 34.4 7.5 32.2 6.6C31 6.1 30.3 5.7 30.3 5.2C30.3 4.7 30.9 4.2 32.1 4.2C33.1 4.2 33.9 4.4 34.5 4.6L34.8 4.7L35.6 1.8Z"
+                                            fill="#00579F"
+                                        />
+                                        <path
+                                            d="M40.8 9.8C41.1 9 42.1 6.4 42.1 6.4C42.1 6.4 42.3 5.8 42.4 5.5L42.6 6.5C42.6 6.5 43.2 9.3 43.3 9.8H40.8ZM44.7 1.5H42C41.3 1.5 40.7 1.7 40.4 2.4L35.5 14.5H39.3L40.1 12.5H44.7C44.8 13 45.2 14.5 45.2 14.5H48.5L45.6 1.5H44.7Z"
+                                            fill="#00579F"
+                                        />
+                                        <path
+                                            d="M16.8 1.5L13.2 10.5L12.8 8.5C12.1 6.3 10.1 3.9 7.9 2.7L10.9 14.5H14.8L20.7 1.5H16.8Z"
+                                            fill="#00579F"
+                                        />
+                                        <path
+                                            d="M9.4 1.5H3.5L3.4 1.8C7.7 2.8 10.7 5.5 12 8.5L10.7 2.4C10.5 1.7 9.9 1.5 9.4 1.5Z"
+                                            fill="#FAA61A"
+                                        />
                                     </svg>
                                 </div>
                                 {/* Mastercard */}
-                                <div className="bg-white dark:bg-gray-700 rounded-lg px-4 py-2.5 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
-                                    <svg className="h-6 w-auto" viewBox="0 0 48 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="18" cy="15" r="12" fill="#EB001B"/>
-                                        <circle cx="30" cy="15" r="12" fill="#F79E1B"/>
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M24 22.5C26.4853 20.5357 28 17.4853 28 14C28 10.5147 26.4853 7.46429 24 5.5C21.5147 7.46429 20 10.5147 20 14C20 17.4853 21.5147 20.5357 24 22.5Z" fill="#FF5F00"/>
+                                <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
+                                    <svg
+                                        className="h-5 w-auto"
+                                        viewBox="0 0 48 30"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <circle
+                                            cx="18"
+                                            cy="15"
+                                            r="12"
+                                            fill="#EB001B"
+                                        />
+                                        <circle
+                                            cx="30"
+                                            cy="15"
+                                            r="12"
+                                            fill="#F79E1B"
+                                        />
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M24 22.5C26.4853 20.5357 28 17.4853 28 14C28 10.5147 26.4853 7.46429 24 5.5C21.5147 7.46429 20 10.5147 20 14C20 17.4853 21.5147 20.5357 24 22.5Z"
+                                            fill="#FF5F00"
+                                        />
                                     </svg>
                                 </div>
                             </div>
@@ -321,16 +364,16 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright Section */}
-                <div className="border-t border-gray-200 dark:border-gray-700 mt-12">
-                    <div className="container mx-auto px-4 py-6">
-                        <div className="flex flex-col items-center justify-center gap-4">
+                <div className="border-t border-gray-200 dark:border-gray-700 mt-8">
+                    <div className="container mx-auto px-4 py-4">
+                        <div className="flex flex-col items-center justify-center gap-3">
                             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
                                 © 2025 All Rights Reserved to{" "}
                                 <span className="text-primary font-semibold">
                                     Innodemy
                                 </span>
                             </p>
-                            <div className="flex items-center justify-center gap-6">
+                            <div className="flex items-center justify-center gap-4">
                                 <Link
                                     href="/privacy-policy"
                                     className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"

@@ -2,46 +2,72 @@
 import { useState } from "react";
 import ScientificWritingHeroSection from "./components/ScientificWritingHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
+import WhatYouGet from "./components/WhatYouGet";
+import ResourcePersons from "./components/ResourcePersons";
+import WhatYouNeed from "./components/WhatYouNeed";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 
 const ScientificWritingPublicationCommunicationMastery = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "resource-persons", label: "Resource Persons" },
+        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
         title: "Scientific Writing, Publication & Communication Mastery",
         description:
-            "Master the art of scientific writing from abstract to publication. Learn to craft compelling research papers, manage references effectively, respond to peer reviewers, and present your findings at conferences. Complete training in every aspect of academic communication.",
+            "এই কোর্সটি ডিজাইন করা হয়েছে শিক্ষার্থী, গবেষক এবং পেশাজীবীদের জন্য, যারা <strong>scientific writing</strong>, <strong>manuscript preparation</strong>, <strong>journal submission</strong>, <strong>peer-review communication</strong> এবং <strong>high-impact scientific communication</strong>-এ professional authority অর্জন করতে চান। কোর্সটি <strong>academic</strong>, <strong>clinical</strong> এবং <strong>industry research</strong>—এই তিন ক্ষেত্রেই globally competitive লেখালেখির দক্ষতা গড়ে তুলতে সহায়তা করবে।\n\nকোর্সটিতে শেখানো হবে:\n• <strong>Core principles of scientific writing:</strong> clarity, precision, logic, structure, and coherence\n• <strong>Manuscript structure (IMRAD):</strong> journal formatting standards, authorship rules & publication ethics\n• <strong>Literature synthesis:</strong> argument building, citation mastery, referencing strategies, critical interpretation\n• <strong>High-impact section writing:</strong> Introduction, Methods, Results & Discussion—top-tier journal standardে\n• <strong>Turnitin-safe writing:</strong> paraphrasing techniques, maintaining originality & AI-assisted refinement\n• <strong>Abstract development:</strong> structured/unstructured abstracts, graphical abstract design\n• <strong>Journal selection & submission:</strong> avoiding predatory journals, impact assessment, submission portal navigation\n• <strong>Peer-review response mastery:</strong> rebuttal drafting, revision strategy, acceptance optimization\n• <strong>Scientific communication skills:</strong> conference poster design, oral presentation techniques & slide development",
         price: 10000,
         originalPrice: 15000,
         currency: "৳",
         videoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
-        thumbnailUrl:
-            "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        thumbnailUrl: "/courses/scintificwriting.jpg",
         checkoutLink: "/checkout?course=scientific-writing",
-        videoLabel: "ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস",
-        enrollButtonText: "ব্যাচে ভর্তি হোন →",
+        videoLabel: "Click to watch the demo class",
+        enrollButtonText: "Enroll in Batch →",
         enrollButtonTextShort: "Enroll Now",
-        promoLabel: "প্রোমো অ্যাপ্লাইড",
-        liveCourseLabel: "লাইভ কোর্স",
+        promoLabel: "Promo Applied",
+        liveCourseLabel: "Live Course",
     };
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="scientific-writing-publication-communication-mastery"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
                     <div className="relative w-full max-w-4xl">
                         {/* Close Button */}
                         <button
                             onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         >
                             ✕
                         </button>
                         {/* Video Container */}
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -62,10 +88,41 @@ const ScientificWritingPublicationCommunicationMastery = () => {
             <ScientificWritingHeroSection
                 courseData={courseData}
                 onVideoClick={() => setIsVideoPlaying(true)}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
+
+            {/* What You Get */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
+
+            {/* Resource Persons */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
+
+            {/* Who This Course is For */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
+
+            {/* FAQ */}
+            <div id="faq">
+                <FAQ />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
@@ -74,7 +131,7 @@ const ScientificWritingPublicationCommunicationMastery = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                checkoutLink={courseData.checkoutLink}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
                 showPromo={true}
             />
         </div>
