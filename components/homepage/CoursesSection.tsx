@@ -210,11 +210,24 @@ export default function CoursesSection() {
 
                 {/* Course Cards Grid */}
                 {loading ? (
-                    <div className="text-center py-12 lg:py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 lg:h-14 lg:w-14 border-b-2 border-primary mx-auto mb-3"></div>
-                        <p className="text-muted-foreground text-base lg:text-base">
-                            Loading featured courses...
-                        </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-8 md:mb-10 lg:mb-8">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm animate-pulse"
+                            >
+                                <div className="relative h-48 bg-muted"></div>
+                                <div className="p-4 space-y-3">
+                                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                                    <div className="h-3 bg-muted rounded w-full"></div>
+                                    <div className="h-3 bg-muted rounded w-5/6"></div>
+                                    <div className="flex gap-2 pt-2">
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ) : filteredCourses.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-8 md:mb-10 lg:mb-8">

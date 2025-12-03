@@ -201,11 +201,24 @@ export default function CoursesPage() {
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-20">
-                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mb-6"></div>
-                        <p className="text-gray-600 text-lg">
-                            Loading courses...
-                        </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm animate-pulse"
+                            >
+                                <div className="relative h-48 bg-muted"></div>
+                                <div className="p-4 space-y-3">
+                                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                                    <div className="h-3 bg-muted rounded w-full"></div>
+                                    <div className="h-3 bg-muted rounded w-5/6"></div>
+                                    <div className="flex gap-2 pt-2">
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ) : (
                     <>
