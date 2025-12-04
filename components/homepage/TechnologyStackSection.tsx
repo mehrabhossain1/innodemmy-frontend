@@ -11,18 +11,53 @@ interface Technology {
 const technologies: Technology[] = [
     {
         name: "ChatGPT",
-        image: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fchatgpt-icon.png%3Falt%3Dmedia%26token%3D36e1940c-e136-48a4-86ae-1aa0e1746f83&w=640&q=75",
         color: "from-emerald-500 to-teal-600",
     },
     {
         name: "Power BI",
-        image: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fpower-bi-icon.png%3Falt%3Dmedia%26token%3Dc9edb838-f9bc-46b8-b32b-e46f80a1097c&w=640&q=75",
         color: "from-yellow-500 to-orange-500",
     },
     {
         name: "Python",
-        image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fpython.png%3Falt%3Dmedia%26token%3Db0418f38-b528-4f80-9543-934beee7ffe3&w=640&q=75",
         color: "from-blue-500 to-yellow-400",
+    },
+    {
+        name: "R",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fr.png%3Falt%3Dmedia%26token%3Da13f9c4d-05b3-4ffc-9f54-12e66523394e&w=640&q=75",
+        color: "from-blue-600 to-blue-400",
+    },
+    {
+        name: "Excel",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fmicrosoft-excel-icon.png%3Falt%3Dmedia%26token%3Dc0ca4fd3-fc85-46c0-9915-c326fec3fea4&w=640&q=75",
+        color: "from-green-600 to-green-400",
+    },
+    {
+        name: "Data Science",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fdata-science.png%3Falt%3Dmedia%26token%3D37035ed1-ca70-45ff-a858-98f458e2aaa6&w=640&q=75",
+        color: "from-orange-500 to-orange-600",
+    },
+    {
+        name: "SQL",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fsql-database-generic.png%3Falt%3Dmedia%26token%3D01e07414-b2f8-4709-b46c-3dcbd6204941&w=640&q=75",
+        color: "from-cyan-500 to-blue-500",
+    },
+    {
+        name: "Stata",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252FStata.png%3Falt%3Dmedia%26token%3D128ab042-a4ec-4611-9962-f0c7a5340ceb&w=640&q=75",
+        color: "from-blue-700 to-indigo-600",
+    },
+    {
+        name: "Statistics",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fstatistics.png%3Falt%3Dmedia%26token%3D879e59e3-ab63-4299-8e0c-2ca9475b2120&w=640&q=75",
+        color: "from-purple-500 to-pink-500",
+    },
+    {
+        name: "Tableau",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Ftableau-software.jpg%3Falt%3Dmedia%26token%3D6f8d67fe-c3f2-4444-8069-be4f85175a14&w=640&q=75",
+        color: "from-blue-500 to-cyan-400",
     },
 ];
 
@@ -64,13 +99,6 @@ const TechnologyCard = ({ name, image, color }: Technology) => {
                                 className="object-contain"
                             />
                         </div>
-                        {/* Icon Glow */}
-                        <div
-                            className={cn(
-                                "absolute inset-0 bg-gradient-to-br rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300",
-                                color
-                            )}
-                        ></div>
                     </div>
 
                     {/* Text Content */}
