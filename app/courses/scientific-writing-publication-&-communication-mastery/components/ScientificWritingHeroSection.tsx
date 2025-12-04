@@ -1,5 +1,5 @@
 "use client";
-import { Video, Play } from "lucide-react";
+import { Video, Play, Star } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
@@ -14,6 +14,8 @@ interface ScientificWritingHeroSectionProps {
         videoLabel: string;
         enrollButtonTextShort: string;
         liveCourseLabel: string;
+        rating?: number;
+        totalRatings?: number;
     };
     onVideoClick: () => void;
     onEnrollClick: () => void;
@@ -26,6 +28,10 @@ export default function ScientificWritingHeroSection({
     onVideoClick,
     onEnrollClick,
 }: ScientificWritingHeroSectionProps) {
+    // Generate consistent rating values
+    const displayRating = courseData.rating || 4.8;
+    const displayTotalRatings = courseData.totalRatings || 156;
+
     const handleWhatsAppClick = () => {
         const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
         const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(
@@ -69,6 +75,28 @@ export default function ScientificWritingHeroSection({
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                             {courseData.title}
                         </h1>
+
+                        {/* Rating Section */}
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className={`w-5 h-5 ${
+                                            i < Math.floor(displayRating)
+                                                ? "fill-yellow-400 text-yellow-400"
+                                                : "fill-gray-300 text-gray-300"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-lg font-bold text-foreground">
+                                {displayRating.toFixed(1)}
+                            </span>
+                            <span className="text-sm text-muted-foreground">
+                                ({displayTotalRatings} ratings)
+                            </span>
+                        </div>
 
                         {/* Description */}
                         <div className="mb-6 w-full">
