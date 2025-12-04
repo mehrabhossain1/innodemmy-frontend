@@ -1,130 +1,32 @@
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
-import {
-    Code2,
-    Database,
-    Cloud,
-    Cpu,
-    Globe,
-    Smartphone,
-    GitBranch,
-    Shield,
-    Zap,
-    Box,
-    Server,
-    Layers,
-} from "lucide-react";
+import Image from "next/image";
 
 interface Technology {
     name: string;
-    icon: React.ReactNode;
-    category: string;
+    image: string;
     color: string;
 }
 
 const technologies: Technology[] = [
     {
-        name: "React",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Frontend",
-        color: "from-cyan-500 to-blue-500",
+        name: "ChatGPT",
+        image: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        color: "from-emerald-500 to-teal-600",
     },
     {
-        name: "Next.js",
-        icon: <Layers className="w-6 h-6" />,
-        category: "Framework",
-        color: "from-gray-800 to-gray-600",
-    },
-    {
-        name: "TypeScript",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Language",
-        color: "from-blue-600 to-blue-400",
-    },
-    {
-        name: "Node.js",
-        icon: <Server className="w-6 h-6" />,
-        category: "Backend",
-        color: "from-green-600 to-green-400",
-    },
-    {
-        name: "Python",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Language",
-        color: "from-yellow-500 to-blue-500",
-    },
-    {
-        name: "MongoDB",
-        icon: <Database className="w-6 h-6" />,
-        category: "Database",
-        color: "from-green-500 to-green-700",
-    },
-    {
-        name: "AWS",
-        icon: <Cloud className="w-6 h-6" />,
-        category: "Cloud",
-        color: "from-orange-500 to-orange-600",
-    },
-    {
-        name: "Docker",
-        icon: <Box className="w-6 h-6" />,
-        category: "DevOps",
-        color: "from-blue-500 to-blue-600",
-    },
-    {
-        name: "Git",
-        icon: <GitBranch className="w-6 h-6" />,
-        category: "Version Control",
-        color: "from-red-500 to-orange-500",
-    },
-    {
-        name: "GraphQL",
-        icon: <Globe className="w-6 h-6" />,
-        category: "API",
-        color: "from-pink-500 to-purple-500",
-    },
-    {
-        name: "TensorFlow",
-        icon: <Cpu className="w-6 h-6" />,
-        category: "AI/ML",
-        color: "from-orange-600 to-yellow-500",
-    },
-    {
-        name: "React Native",
-        icon: <Smartphone className="w-6 h-6" />,
-        category: "Mobile",
-        color: "from-cyan-400 to-blue-500",
-    },
-    {
-        name: "Kubernetes",
-        icon: <Box className="w-6 h-6" />,
-        category: "DevOps",
-        color: "from-blue-600 to-indigo-600",
-    },
-    {
-        name: "Firebase",
-        icon: <Zap className="w-6 h-6" />,
-        category: "Backend",
+        name: "Power BI",
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg",
         color: "from-yellow-500 to-orange-500",
     },
     {
-        name: "PostgreSQL",
-        icon: <Database className="w-6 h-6" />,
-        category: "Database",
-        color: "from-blue-700 to-blue-500",
-    },
-    {
-        name: "JWT",
-        icon: <Shield className="w-6 h-6" />,
-        category: "Security",
-        color: "from-purple-600 to-pink-600",
+        name: "Python",
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+        color: "from-blue-500 to-yellow-400",
     },
 ];
 
-const firstRow = technologies.slice(0, technologies.length / 2);
-const secondRow = technologies.slice(technologies.length / 2);
-
-const TechnologyCard = ({ name, icon, category, color }: Technology) => {
+const TechnologyCard = ({ name, image, color }: Technology) => {
     return (
         <div className="relative w-64 group">
             {/* Glow Effect */}
@@ -145,18 +47,22 @@ const TechnologyCard = ({ name, icon, category, color }: Technology) => {
                 )}
             >
                 <div className="flex items-center gap-4">
-                    {/* Icon Container */}
+                    {/* Image Container */}
                     <div className="relative">
                         <div
                             className={cn(
-                                "flex items-center justify-center w-11 h-11 rounded-lg",
-                                "bg-gradient-to-br shadow-lg transition-all duration-300",
-                                "group-hover:scale-110 group-hover:rotate-3",
-                                color,
-                                "text-white"
+                                "flex items-center justify-center w-12 h-12 rounded-lg",
+                                "bg-white p-2 shadow-lg transition-all duration-300",
+                                "group-hover:scale-110 group-hover:rotate-3"
                             )}
                         >
-                            <div className="w-6 h-6">{icon}</div>
+                            <Image
+                                src={image}
+                                alt={name}
+                                width={40}
+                                height={40}
+                                className="object-contain"
+                            />
                         </div>
                         {/* Icon Glow */}
                         <div
@@ -168,13 +74,10 @@ const TechnologyCard = ({ name, icon, category, color }: Technology) => {
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex-1 space-y-0.5">
-                        <h3 className="text-base font-bold text-white group-hover:text-secondary transition-colors duration-300">
+                    <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-secondary transition-colors duration-300">
                             {name}
                         </h3>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">
-                            {category}
-                        </p>
                     </div>
 
                     {/* Arrow Indicator */}
@@ -243,18 +146,18 @@ export function TechnologyStackSection() {
                 </div>
 
                 {/* Marquee Rows */}
-                <Marquee pauseOnHover className="[--duration:40s] mb-4">
-                    {firstRow.map((tech, index) => (
+                <Marquee pauseOnHover className="[--duration:30s] mb-4">
+                    {technologies.map((tech, index) => (
                         <TechnologyCard
                             key={`${tech.name}-${index}`}
                             {...tech}
                         />
                     ))}
                 </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:40s]">
-                    {secondRow.map((tech, index) => (
+                <Marquee reverse pauseOnHover className="[--duration:30s]">
+                    {technologies.map((tech, index) => (
                         <TechnologyCard
-                            key={`${tech.name}-${index}`}
+                            key={`${tech.name}-${index}-reverse`}
                             {...tech}
                         />
                     ))}
