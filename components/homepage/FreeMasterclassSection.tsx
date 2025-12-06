@@ -80,7 +80,7 @@ export default function FreeMasterclassSection() {
                                                     alt={masterclass.title}
                                                     width={400}
                                                     height={208}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    // className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
                                                 {/* Gradient Overlay */}
 
@@ -193,12 +193,12 @@ export default function FreeMasterclassSection() {
 
                 {/* View All Button - Enhanced */}
                 <div className="text-center">
-                    <Link href="/courses">
+                    <Link href="/webinar">
                         <Button
                             size="default"
                             className="px-6 lg:px-7 py-5 lg:py-5 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-primary/20 hover:border-primary/40 group"
                         >
-                            Explore All Courses
+                            Explore All Masterclasses
                             <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                     </Link>
