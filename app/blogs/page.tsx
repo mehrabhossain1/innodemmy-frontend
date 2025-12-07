@@ -1,91 +1,34 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Blog } from "@/lib/models";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import {
-    Search,
     ArrowLeft,
     BookOpen,
-    Target,
-    Lightbulb,
-    Award,
-    Shield,
-    Zap,
     TrendingUp,
     Filter,
+    FileText,
+    Newspaper,
+    BookMarked,
 } from "lucide-react";
-
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
+import Container from "@/components/Container";
 
-// Animation variants
-const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
+// Map category names to icons
+const categoryIcons: Record<string, typeof FileText> = {
+    Technology: FileText,
+    Research: BookMarked,
+    News: Newspaper,
 };
-
-const staggerContainer = {
-    animate: {
-        transition: {
-            staggerChildren: 0.1,
-        },
-    },
-};
-
-const cardHover = {
-    hover: {
-        y: -8,
-        transition: { duration: 0.3 },
-    },
-};
-
-// Core Values data
-const coreValues = [
-    {
-        icon: Lightbulb,
-        title: "Innovation",
-        description:
-            "Cutting-edge insights and fresh perspectives on technology trends.",
-    },
-    {
-        icon: Award,
-        title: "Excellence",
-        description:
-            "High-quality content that delivers real value to our readers.",
-    },
-    {
-        icon: Shield,
-        title: "Trust",
-        description:
-            "Reliable information from industry experts and practitioners.",
-    },
-    {
-        icon: Zap,
-        title: "Impact",
-        description:
-            "Actionable knowledge that drives career and business success.",
-    },
-];
 
 export default function BlogsPage() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [sortBy, setSortBy] = useState("newest");
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
-    const [categories, setCategories] = useState<string[]>(["All"]);
+    const [activeCategory, setActiveCategory] = useState("all");
 
     // Fetch blogs from API
     useEffect(() => {
@@ -96,15 +39,6 @@ export default function BlogsPage() {
 
                 if (data.success) {
                     setBlogs(data.blogs);
-
-                    // Extract unique categories
-                    const uniqueCategories = new Set<string>(["All"]);
-                    data.blogs.forEach((blog: Blog) => {
-                        if (blog.category) {
-                            uniqueCategories.add(blog.category);
-                        }
-                    });
-                    setCategories(Array.from(uniqueCategories));
                 }
             } catch (error) {
                 console.error("Error fetching blogs:", error);
@@ -116,8 +50,44 @@ export default function BlogsPage() {
         fetchBlogs();
     }, []);
 
-    const filteredAndSortedBlogs = useMemo(() => {
-        const filtered = blogs.filter((blog) => {
+    // Build dynamic categories with counts
+    const categories = useMemo(() => {
+        const categoryCounts: Record<string, number> = {};
+
+        // Count blogs per category
+        blogs.forEach((blog) => {
+            if (blog.category) {
+                categoryCounts[blog.category] =
+                    (categoryCounts[blog.category] || 0) + 1;
+            }
+        });
+
+        // Build category tabs
+        const tabs = [
+            {
+                id: "all",
+                label: "All Articles",
+                icon: BookOpen,
+                count: `${blogs.length} Articles`,
+            },
+        ];
+
+        // Add each unique category
+        Object.keys(categoryCounts).forEach((category) => {
+            const count = categoryCounts[category];
+            tabs.push({
+                id: category,
+                label: category,
+                icon: categoryIcons[category] || FileText,
+                count: `${count} ${count === 1 ? "Article" : "Articles"}`,
+            });
+        });
+
+        return tabs;
+    }, [blogs]);
+
+    const filteredBlogs = useMemo(() => {
+        return blogs.filter((blog) => {
             const matchesSearch =
                 blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -126,59 +96,109 @@ export default function BlogsPage() {
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase()));
             const matchesCategory =
-                selectedCategory === "All" ||
-                blog.category === selectedCategory;
+                activeCategory === "all" || blog.category === activeCategory;
 
             return matchesSearch && matchesCategory;
         });
-
-        // Sort blogs
-        filtered.sort((a, b) => {
-            switch (sortBy) {
-                case "oldest":
-                    return (
-                        new Date(a.date).getTime() - new Date(b.date).getTime()
-                    );
-                case "title":
-                    return a.title.localeCompare(b.title);
-                default: // newest
-                    return (
-                        new Date(b.date).getTime() - new Date(a.date).getTime()
-                    );
-            }
-        });
-
-        return filtered;
-    }, [blogs, searchTerm, selectedCategory, sortBy]);
+    }, [blogs, searchTerm, activeCategory]);
 
     return (
-        <div className="min-h-screen">
-            {/* Blog Grid Section */}
-            <motion.section
-                className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-300 dark:bg-slate-700"
-                {...fadeInUp}
-                viewport={{ once: true }}
-            >
-                <div className="max-w-7xl mx-auto">
-                    {loading ? (
-                        <div className="flex justify-center items-center py-16">
-                            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600"></div>
+        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
+            <div className="bg-gradient-to-r from-white to-primary/5 dark:from-gray-900 dark:to-gray-800 border-b border-primary/20 dark:border-gray-700 shadow-sm">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-6">
+                            <Link
+                                href="/"
+                                className="inline-flex items-center text-primary dark:text-primary-foreground hover:text-primary/80 dark:hover:text-primary/70 transition-colors duration-200"
+                            >
+                                <ArrowLeft className="w-4 h-4 mr-2" />
+                                Back to Home
+                            </Link>
+                            <div className="h-8 w-px bg-gray-300 dark:bg-gray-600" />
+                            <div className="flex items-center space-x-3">
+                                <BookOpen className="h-8 w-8 text-primary dark:text-primary-foreground" />
+                                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                                    All Articles
+                                </h1>
+                            </div>
                         </div>
-                    ) : filteredAndSortedBlogs.length > 0 ? (
-                        <motion.div
-                            variants={staggerContainer}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        >
-                            {filteredAndSortedBlogs.map((blog) => (
-                                <motion.div
-                                    key={blog._id}
-                                    variants={cardHover}
-                                    className="group"
+                        <Badge className="bg-gradient-to-r from-primary to-secondary text-white border-0 text-sm px-4 py-2">
+                            <TrendingUp className="w-4 h-4 mr-2" />
+                            {filteredBlogs.length} articles found
+                        </Badge>
+                    </div>
+                </div>
+            </div>
+
+            <Container className="py-10">
+                {/* Category Tabs */}
+                <div className="relative mb-8">
+                    <div className="flex justify-center items-center overflow-x-auto pb-3 scrollbar-hide">
+                        <div className="flex gap-2.5 overflow-x-auto scrollbar-hide">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() =>
+                                        setActiveCategory(category.id)
+                                    }
+                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
+                                        activeCategory === category.id
+                                            ? "bg-primary border-primary text-white shadow-md"
+                                            : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
+                                    }`}
                                 >
+                                    <category.icon className="h-4 w-4" />
+                                    <div className="text-left">
+                                        <div className="text-sm font-semibold whitespace-nowrap">
+                                            {category.label}
+                                        </div>
+                                        {category.count && (
+                                            <div
+                                                className={`text-xs ${
+                                                    activeCategory ===
+                                                    category.id
+                                                        ? "text-white/80"
+                                                        : "text-muted-foreground"
+                                                }`}
+                                            >
+                                                {category.count}
+                                            </div>
+                                        )}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[...Array(6)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm animate-pulse"
+                            >
+                                <div className="relative h-48 bg-muted"></div>
+                                <div className="p-4 space-y-3">
+                                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                                    <div className="h-3 bg-muted rounded w-full"></div>
+                                    <div className="h-3 bg-muted rounded w-5/6"></div>
+                                    <div className="flex gap-2 pt-2">
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <>
+                        {filteredBlogs.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {filteredBlogs.map((blog) => (
                                     <BlogCard
+                                        key={blog._id}
                                         id={blog._id!}
                                         title={blog.title}
                                         description={
@@ -201,41 +221,37 @@ export default function BlogsPage() {
                                         author={blog.author || "Innodemy Team"}
                                         readTime={`${blog.minRead} min`}
                                     />
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="text-center py-16"
-                        >
-                            <div className="max-w-md mx-auto">
-                                <Search className="h-16 w-16 text-gray-400 mx-auto mb-6" />
-                                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                                    No articles found
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                                    Try adjusting your search criteria to find
-                                    more articles that match your interests.
-                                </p>
-                                <Button
-                                    variant="outline"
-                                    size="lg"
-                                    onClick={() => {
-                                        setSearchTerm("");
-                                        setSelectedCategory("All");
-                                    }}
-                                >
-                                    Clear All Filters
-                                </Button>
+                                ))}
                             </div>
-                        </motion.div>
-                    )}
-                </div>
-            </motion.section>
+                        ) : (
+                            <div className="text-center py-16">
+                                <div className="max-w-md mx-auto">
+                                    <Filter className="h-16 w-16 text-gray-400 mx-auto mb-6" />
+                                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                                        No articles found
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                                        Try adjusting your search criteria to
+                                        find more articles that match your
+                                        interests.
+                                    </p>
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        onClick={() => {
+                                            setSearchTerm("");
+                                            setActiveCategory("all");
+                                        }}
+                                        className="px-8 py-3"
+                                    >
+                                        Clear Filters
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
+                    </>
+                )}
+            </Container>
         </div>
     );
 }
