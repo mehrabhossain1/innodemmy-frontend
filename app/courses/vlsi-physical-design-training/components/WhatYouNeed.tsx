@@ -15,12 +15,12 @@ export default function WhatYouNeed() {
         },
         {
             image: "https://img.icons8.com/color/96/electrical.png",
-            title: "Background Knowledge: Basics of Digital Logic Design & Verilog",
+            title: "Background Knowledge: Basics of Digital Logic Design and Electronics",
             gradient: "from-green-500 to-green-600",
         },
         {
             image: "https://img.icons8.com/color/96/brain.png",
-            title: "Mindset: Patience + Practice (Physical design requires iterative debugging & tool mastery)",
+            title: "Mindset: Patience + Practice (Physical design requires iterative debugging",
             gradient: "from-orange-500 to-orange-600",
         },
     ];

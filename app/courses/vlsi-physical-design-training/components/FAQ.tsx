@@ -49,10 +49,7 @@ export default function FAQ() {
             question: "Is this course suitable for students and professionals?",
             answer: "Yes! Both undergraduate/graduate students and working professionals looking to upskill in Physical Design will benefit from this course.",
         },
-        {
-            question: "Will I get lifetime access to course materials?",
-            answer: "Yes, all course videos, resources, and project templates are available for lifetime access.",
-        },
+
         {
             question: "Can I interact with instructors for doubts?",
             answer: "Yes, you can get daily support sessions, live Q&A, and community assistance to resolve any questions while practicing.",
