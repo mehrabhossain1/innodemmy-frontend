@@ -19,11 +19,12 @@ export default function CompleteResearchPathwayWithMachineLearning() {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
         { id: "what-you-get", label: "What You will Get in This Course" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "what-you-need", label: "What You will Need to Get Started" },
-        { id: "resource-persons", label: "Instructors and Mentors" },
+
         { id: "faq", label: "FAQ" },
     ];
 
@@ -101,6 +102,11 @@ export default function CompleteResearchPathwayWithMachineLearning() {
                 <CourseModule />
             </div>
 
+            {/* Instructors and Mentors */}
+            <div id="resource-persons">
+                <InstructorsAndMentors />
+            </div>
+
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
@@ -119,11 +125,6 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             {/* What You Need */}
             <div id="what-you-need">
                 <WhatYouNeed />
-            </div>
-
-            {/* Instructors and Mentors */}
-            <div id="resource-persons">
-                <InstructorsAndMentors />
             </div>
 
             {/* FAQ */}

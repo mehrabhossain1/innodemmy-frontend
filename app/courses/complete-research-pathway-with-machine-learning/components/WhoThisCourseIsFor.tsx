@@ -17,7 +17,7 @@ export default function WhoThisCourseIsFor() {
         },
         {
             image: "https://img.icons8.com/color/96/literature.png",
-            title: "Individuals from any background who are eager to advance themselves in modern machine learning research methodologies.",
+            title: "Individuals who are eager to build a strong research profile for fully funded MSc or PhD opportunities.",
         },
     ];
 
