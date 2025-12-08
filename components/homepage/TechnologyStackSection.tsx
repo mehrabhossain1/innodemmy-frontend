@@ -59,6 +59,36 @@ const technologies: Technology[] = [
         image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Ftableau-software.jpg%3Falt%3Dmedia%26token%3D6f8d67fe-c3f2-4444-8069-be4f85175a14&w=640&q=75",
         color: "from-blue-500 to-cyan-400",
     },
+    {
+        name: "LaTeX",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LaTeX_logo.svg/1200px-LaTeX_logo.svg.png",
+        color: "from-teal-500 to-cyan-500",
+    },
+    {
+        name: "SPSS",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/SPSS_logo.svg/1200px-SPSS_logo.svg.png",
+        color: "from-red-500 to-pink-500",
+    },
+    {
+        name: "MATLAB",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/667px-Matlab_Logo.png",
+        color: "from-orange-600 to-red-500",
+    },
+    {
+        name: "Machine Learning",
+        image: "https://cdn-icons-png.flaticon.com/512/8637/8637099.png",
+        color: "from-indigo-500 to-purple-600",
+    },
+    {
+        name: "VLSI",
+        image: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
+        color: "from-slate-500 to-gray-600",
+    },
+    {
+        name: "GitHub",
+        image: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+        color: "from-gray-700 to-slate-800",
+    },
 ];
 
 const TechnologyCard = ({ name, image, color }: Technology) => {
