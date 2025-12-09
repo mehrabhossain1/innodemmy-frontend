@@ -31,7 +31,7 @@ const heroImages = [
         ),
         subtitle:
             "Master the language of machines and shape the systems that shape the future.",
-        buttonText: "Become an ML expert",
+        buttonText: "Become an ML Researcher",
         buttonLink: "/courses/complete-research-pathway-with-machine-learning",
     },
     {
@@ -50,7 +50,7 @@ const heroImages = [
         ),
         subtitle:
             "Master clinical research skills through our comprehensive program combining multiple in-depth courses.",
-        buttonText: "Explore Clinical Research",
+        buttonText: "Explore Clinical Research Courses",
         buttonLink: "/courses?category=CLINICAL RESEARCH",
     },
     {
@@ -81,7 +81,7 @@ const heroImages = [
             </>
         ),
         subtitle: "",
-        buttonText: "Explore Courses",
+        buttonText: "Explre All courses",
         buttonLink: "/courses",
     },
 ];

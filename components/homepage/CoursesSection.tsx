@@ -151,11 +151,6 @@ export default function CoursesSection() {
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-8">
-                    <div className="inline-block mb-3 lg:mb-3">
-                        <span className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20">
-                            ⭐ Popular Picks
-                        </span>
-                    </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
                         <span className="text-foreground">Featured</span>{" "}
                         <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
