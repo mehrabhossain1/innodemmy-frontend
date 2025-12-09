@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
-import { getWebinarById } from "@/lib/data/webinars";
+import { getWebinarById, getAllWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,10 +14,12 @@ import {
     User,
     Lock,
     LogIn,
+    Play,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import AuthSidebar from "@/components/AuthSidebar";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function WebinarDetailsPage() {
     const router = useRouter();
@@ -53,6 +55,12 @@ export default function WebinarDetailsPage() {
             }, 2000);
         }
     }, [user, showAuthSidebar, router]);
+
+    // Get related webinars (exclude current webinar)
+    const relatedWebinars = useMemo(() => {
+        const allWebinars = getAllWebinars();
+        return allWebinars.filter((w) => w.id !== webinar?.id).slice(0, 3);
+    }, [webinar]);
 
     // Show loading state while fetching webinar
     if (!webinar) {
@@ -201,7 +209,9 @@ export default function WebinarDetailsPage() {
                                                         Login Required
                                                     </h3>
                                                     <p className="text-white/70 text-xs leading-relaxed">
-                                                        Please log in or create a free account to watch this webinar
+                                                        Please log in or create
+                                                        a free account to watch
+                                                        this webinar
                                                     </p>
                                                 </div>
 
@@ -263,7 +273,33 @@ export default function WebinarDetailsPage() {
 
             {/* Additional Content Section */}
             <div className="container mx-auto px-4 max-w-7xl py-12">
-                <div className="max-w-5xl mx-auto space-y-8">
+                <div className="max-w-7xl mx-auto space-y-8">
+                    {/* Related Webinars */}
+                    {relatedWebinars.length > 0 && (
+                        <div className="space-y-6">
+                            <div className="text-center">
+                                <h2 className="text-3xl font-bold mb-2">
+                                    Related Masterclass
+                                </h2>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {relatedWebinars.map((relatedWebinar) => (
+                                    <WebinarCard
+                                        key={relatedWebinar.id}
+                                        webinar={relatedWebinar}
+                                    />
+                                ))}
+                            </div>
+                            <div className="text-center pt-4">
+                                <Link href="/webinar">
+                                    <Button variant="outline" size="lg">
+                                        View All Masterclass
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Call to Action */}
                     <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 border border-border">
                         <h3 className="font-bold text-2xl mb-3">
@@ -291,5 +327,101 @@ export default function WebinarDetailsPage() {
                 onClose={() => setShowAuthSidebar(false)}
             />
         </div>
+    );
+}
+
+// WebinarCard Component
+function WebinarCard({ webinar }: { webinar: Webinar }) {
+    return (
+        <Link href={`/webinar/${webinar.id}`}>
+            <Card className="group relative bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
+                <div className="relative">
+                    {/* Thumbnail */}
+                    <div className="relative aspect-video overflow-hidden rounded-t-lg">
+                        <Image
+                            src={webinar.image}
+                            alt={webinar.title}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                                <Play className="w-8 h-8 text-primary fill-primary ml-1" />
+                            </div>
+                        </div>
+
+                        {/* Badges */}
+                        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold">
+                            FREE
+                        </div>
+                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {webinar.duration}
+                        </div>
+                    </div>
+                </div>
+
+                <CardContent className="p-5">
+                    {/* Title */}
+                    <h3 className="font-bold text-lg text-foreground line-clamp-2 mb-3 group-hover:text-primary transition-colors">
+                        {webinar.title}
+                    </h3>
+
+                    {/* Instructor */}
+                    <div className="flex items-center gap-2 mb-3">
+                        {webinar.instructorImage && (
+                            <Image
+                                src={webinar.instructorImage}
+                                alt={webinar.instructor}
+                                width={32}
+                                height={32}
+                                className="rounded-full object-cover"
+                            />
+                        )}
+                        <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium text-foreground truncate">
+                                {webinar.instructor}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                                Instructor
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+                        <div className="flex items-center gap-1">
+                            <Calendar className="h-3.5 w-3.5" />
+                            <span>{webinar.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <Eye className="h-3.5 w-3.5" />
+                            <span>{webinar.views.toLocaleString()} views</span>
+                        </div>
+                    </div>
+
+                    {/* Topics */}
+                    <div className="flex flex-wrap gap-2">
+                        {webinar.topics.slice(0, 3).map((topic, idx) => (
+                            <span
+                                key={idx}
+                                className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium"
+                            >
+                                {topic}
+                            </span>
+                        ))}
+                        {webinar.topics.length > 3 && (
+                            <span className="text-xs bg-gray-100 dark:bg-muted text-muted-foreground px-2 py-1 rounded-md font-medium">
+                                +{webinar.topics.length - 3} more
+                            </span>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+        </Link>
     );
 }

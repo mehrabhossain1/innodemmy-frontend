@@ -235,7 +235,7 @@ export default function WebinarPage() {
     );
 }
 
-function WebinarCard({ webinar }: { webinar: Webinar }) {
+export function WebinarCard({ webinar }: { webinar: Webinar }) {
     return (
         <Link href={`/webinar/${webinar.id}`}>
             <Card className="group relative bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
