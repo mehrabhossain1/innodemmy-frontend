@@ -76,7 +76,7 @@
     --muted-foreground: oklch(0.556 0 0);
     --accent: #e9ae30;
     --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
+    --destructive: #e9ae30;
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
     --ring: oklch(0.708 0 0);
@@ -99,7 +99,6 @@
     --card: oklch(1 0 0);
     --muted: oklch(0.96 0 0);
     --text: oklch(0.145 0 0);
-    --accent: oklch(0.646 0.222 41.116);
     --accent-contrast: oklch(0.985 0 0);
     --warning: oklch(0.828 0.189 84.429);
     --success: oklch(0.6 0.118 184.704);
