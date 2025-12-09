@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -49,6 +49,7 @@ const categoryIcons: Record<string, typeof Code> = {
 const ITEMS_PER_PAGE = 9;
 
 export default function WebinarPage() {
+    const topRef = useRef<HTMLDivElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("all");
     const [currentPage, setCurrentPage] = useState(1);
@@ -123,8 +124,18 @@ export default function WebinarPage() {
         setCurrentPage(1);
     }, [searchTerm, activeCategory]);
 
+    // Scroll to top when page changes
+    useEffect(() => {
+        if (topRef.current) {
+            topRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [currentPage]);
+
     return (
-        <div className="min-h-screen bg-background">
+        <div ref={topRef} className="min-h-screen bg-background">
             {/* Header */}
             <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-background border-b border-border">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Blog } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +36,7 @@ const categoryIcons: Record<string, typeof FileText> = {
 const ITEMS_PER_PAGE = 9;
 
 export default function BlogsPage() {
+    const topRef = useRef<HTMLDivElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
@@ -125,8 +126,21 @@ export default function BlogsPage() {
         setCurrentPage(1);
     }, [searchTerm, activeCategory]);
 
+    // Scroll to top when page changes
+    useEffect(() => {
+        if (topRef.current) {
+            topRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [currentPage]);
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
+        <div
+            ref={topRef}
+            className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background"
+        >
             <div className="bg-gradient-to-r from-white to-primary/5 dark:from-gray-900 dark:to-gray-800 border-b border-primary/20 dark:border-gray-700 shadow-sm">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">

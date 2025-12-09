@@ -18,7 +18,7 @@ import {
     Layers,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import {
     COURSE_CATEGORIES,
@@ -58,6 +58,7 @@ const ITEMS_PER_PAGE = 8;
 export default function CoursesPage() {
     const searchParams = useSearchParams();
     const categoryFromUrl = searchParams.get("category");
+    const topRef = useRef<HTMLDivElement>(null);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [allCourses, setAllCourses] = useState<Course[]>([]);
@@ -153,8 +154,21 @@ export default function CoursesPage() {
         setCurrentPage(1);
     }, [searchTerm, activeCategory]);
 
+    // Scroll to top when page changes
+    useEffect(() => {
+        if (topRef.current) {
+            topRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [currentPage]);
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
+        <div
+            ref={topRef}
+            className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background"
+        >
             <div className="bg-gradient-to-r from-white dark:from-background to-primary/5 dark:to-primary/10 border-b border-primary/20 dark:border-primary/30 shadow-sm">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
