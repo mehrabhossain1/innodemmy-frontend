@@ -24,6 +24,15 @@ import {
     COURSE_CATEGORIES,
     getAllCategories,
 } from "@/lib/constants/categories";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 interface Course {
     _id: string;
@@ -44,6 +53,8 @@ const categoryIcons: Record<string, typeof Code> = {
     [COURSE_CATEGORIES.VLSI]: Layers,
 };
 
+const ITEMS_PER_PAGE = 8;
+
 export default function CoursesPage() {
     const searchParams = useSearchParams();
     const categoryFromUrl = searchParams.get("category");
@@ -54,6 +65,7 @@ export default function CoursesPage() {
     const [activeCategory, setActiveCategory] = useState(
         categoryFromUrl || "all"
     );
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         async function fetchCourses() {
@@ -129,6 +141,17 @@ export default function CoursesPage() {
             return matchesSearch && matchesCategory;
         });
     }, [allCourses, searchTerm, activeCategory]);
+
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredCourses.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedCourses = filteredCourses.slice(startIndex, endIndex);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, activeCategory]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
@@ -223,18 +246,81 @@ export default function CoursesPage() {
                 ) : (
                     <>
                         {filteredCourses.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                {filteredCourses.map((course) => (
-                                    <CourseCard
-                                        key={course._id}
-                                        id={course._id}
-                                        slug={course.slug}
-                                        title={course.title}
-                                        description={course.description}
-                                        thumbnail={course.thumbnail}
-                                    />
-                                ))}
-                            </div>
+                            <>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                    {paginatedCourses.map((course) => (
+                                        <CourseCard
+                                            key={course._id}
+                                            id={course._id}
+                                            slug={course.slug}
+                                            title={course.title}
+                                            description={course.description}
+                                            thumbnail={course.thumbnail}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="mt-8">
+                                    <Pagination>
+                                        <PaginationContent>
+                                            <PaginationItem>
+                                                <PaginationPrevious
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.max(
+                                                                1,
+                                                                prev - 1
+                                                            )
+                                                        )
+                                                    }
+                                                    className={
+                                                        currentPage === 1
+                                                            ? "pointer-events-none opacity-50"
+                                                            : "cursor-pointer"
+                                                    }
+                                                />
+                                            </PaginationItem>
+                                            {[...Array(totalPages)].map(
+                                                (_, i) => (
+                                                    <PaginationItem key={i + 1}>
+                                                        <PaginationLink
+                                                            onClick={() =>
+                                                                setCurrentPage(
+                                                                    i + 1
+                                                                )
+                                                            }
+                                                            isActive={
+                                                                currentPage ===
+                                                                i + 1
+                                                            }
+                                                            className="cursor-pointer"
+                                                        >
+                                                            {i + 1}
+                                                        </PaginationLink>
+                                                    </PaginationItem>
+                                                )
+                                            )}
+                                            <PaginationItem>
+                                                <PaginationNext
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.min(
+                                                                totalPages,
+                                                                prev + 1
+                                                            )
+                                                        )
+                                                    }
+                                                    className={
+                                                        currentPage ===
+                                                        totalPages
+                                                            ? "pointer-events-none opacity-50"
+                                                            : "cursor-pointer"
+                                                    }
+                                                />
+                                            </PaginationItem>
+                                        </PaginationContent>
+                                    </Pagination>
+                                </div>
+                            </>
                         ) : (
                             <div className="text-center py-16">
                                 <div className="max-w-md mx-auto">

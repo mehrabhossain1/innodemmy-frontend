@@ -16,6 +16,15 @@ import {
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
 import Container from "@/components/Container";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 // Map category names to icons
 const categoryIcons: Record<string, typeof FileText> = {
@@ -24,11 +33,14 @@ const categoryIcons: Record<string, typeof FileText> = {
     News: Newspaper,
 };
 
+const ITEMS_PER_PAGE = 9;
+
 export default function BlogsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("all");
+    const [currentPage, setCurrentPage] = useState(1);
 
     // Fetch blogs from API
     useEffect(() => {
@@ -101,6 +113,17 @@ export default function BlogsPage() {
             return matchesSearch && matchesCategory;
         });
     }, [blogs, searchTerm, activeCategory]);
+
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedBlogs = filteredBlogs.slice(startIndex, endIndex);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, activeCategory]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
@@ -195,34 +218,100 @@ export default function BlogsPage() {
                 ) : (
                     <>
                         {filteredBlogs.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {filteredBlogs.map((blog) => (
-                                    <BlogCard
-                                        key={blog._id}
-                                        id={blog._id!}
-                                        title={blog.title}
-                                        description={
-                                            blog.content
-                                                .substring(0, 200)
-                                                .replace(/<[^>]*>/g, "") + "..."
-                                        }
-                                        publishedDate={
-                                            new Date(blog.date)
-                                                .toISOString()
-                                                .split("T")[0]
-                                        }
-                                        image={
-                                            blog.thumbnail ||
-                                            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                        }
-                                        category={
-                                            blog.category || "Uncategorized"
-                                        }
-                                        author={blog.author || "Innodemy Team"}
-                                        readTime={`${blog.minRead} min`}
-                                    />
-                                ))}
-                            </div>
+                            <>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {paginatedBlogs.map((blog) => (
+                                        <BlogCard
+                                            key={blog._id}
+                                            id={blog._id!}
+                                            title={blog.title}
+                                            description={
+                                                blog.content
+                                                    .substring(0, 200)
+                                                    .replace(/<[^>]*>/g, "") +
+                                                "..."
+                                            }
+                                            publishedDate={
+                                                new Date(blog.date)
+                                                    .toISOString()
+                                                    .split("T")[0]
+                                            }
+                                            image={
+                                                blog.thumbnail ||
+                                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                            }
+                                            category={
+                                                blog.category || "Uncategorized"
+                                            }
+                                            author={
+                                                blog.author || "Innodemy Team"
+                                            }
+                                            readTime={`${blog.minRead} min`}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="mt-8">
+                                    <Pagination>
+                                        <PaginationContent>
+                                            <PaginationItem>
+                                                <PaginationPrevious
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.max(
+                                                                1,
+                                                                prev - 1
+                                                            )
+                                                        )
+                                                    }
+                                                    className={
+                                                        currentPage === 1
+                                                            ? "pointer-events-none opacity-50"
+                                                            : "cursor-pointer"
+                                                    }
+                                                />
+                                            </PaginationItem>
+                                            {[...Array(totalPages)].map(
+                                                (_, i) => (
+                                                    <PaginationItem key={i + 1}>
+                                                        <PaginationLink
+                                                            onClick={() =>
+                                                                setCurrentPage(
+                                                                    i + 1
+                                                                )
+                                                            }
+                                                            isActive={
+                                                                currentPage ===
+                                                                i + 1
+                                                            }
+                                                            className="cursor-pointer"
+                                                        >
+                                                            {i + 1}
+                                                        </PaginationLink>
+                                                    </PaginationItem>
+                                                )
+                                            )}
+                                            <PaginationItem>
+                                                <PaginationNext
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.min(
+                                                                totalPages,
+                                                                prev + 1
+                                                            )
+                                                        )
+                                                    }
+                                                    className={
+                                                        currentPage ===
+                                                        totalPages
+                                                            ? "pointer-events-none opacity-50"
+                                                            : "cursor-pointer"
+                                                    }
+                                                />
+                                            </PaginationItem>
+                                        </PaginationContent>
+                                    </Pagination>
+                                </div>
+                            </>
                         ) : (
                             <div className="text-center py-16">
                                 <div className="max-w-md mx-auto">

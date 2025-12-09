@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,15 @@ import {
     COURSE_CATEGORIES,
     getAllCategories,
 } from "@/lib/constants/categories";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 // Map category names to icons
 const categoryIcons: Record<string, typeof Code> = {
@@ -37,9 +46,12 @@ const categoryIcons: Record<string, typeof Code> = {
     [COURSE_CATEGORIES.VLSI]: Layers,
 };
 
+const ITEMS_PER_PAGE = 9;
+
 export default function WebinarPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("all");
+    const [currentPage, setCurrentPage] = useState(1);
     const allWebinars = getAllWebinars();
 
     // Build dynamic categories with counts
@@ -99,6 +111,17 @@ export default function WebinarPage() {
             return matchesSearch && matchesCategory;
         });
     }, [allWebinars, searchTerm, activeCategory]);
+
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredWebinars.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedWebinars = filteredWebinars.slice(startIndex, endIndex);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, activeCategory]);
 
     return (
         <div className="min-h-screen bg-background">
@@ -177,11 +200,66 @@ export default function WebinarPage() {
 
                 {/* Webinars Grid */}
                 {filteredWebinars.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredWebinars.map((webinar) => (
-                            <WebinarCard key={webinar.id} webinar={webinar} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedWebinars.map((webinar) => (
+                                <WebinarCard
+                                    key={webinar.id}
+                                    webinar={webinar}
+                                />
+                            ))}
+                        </div>
+                        <div className="mt-8">
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <PaginationPrevious
+                                            onClick={() =>
+                                                setCurrentPage((prev) =>
+                                                    Math.max(1, prev - 1)
+                                                )
+                                            }
+                                            className={
+                                                currentPage === 1
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                        />
+                                    </PaginationItem>
+                                    {[...Array(totalPages)].map((_, i) => (
+                                        <PaginationItem key={i + 1}>
+                                            <PaginationLink
+                                                onClick={() =>
+                                                    setCurrentPage(i + 1)
+                                                }
+                                                isActive={currentPage === i + 1}
+                                                className="cursor-pointer"
+                                            >
+                                                {i + 1}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    ))}
+                                    <PaginationItem>
+                                        <PaginationNext
+                                            onClick={() =>
+                                                setCurrentPage((prev) =>
+                                                    Math.min(
+                                                        totalPages,
+                                                        prev + 1
+                                                    )
+                                                )
+                                            }
+                                            className={
+                                                currentPage === totalPages
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                        />
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        </div>
+                    </>
                 ) : (
                     <div className="text-center py-16">
                         <div className="max-w-md mx-auto">
@@ -235,7 +313,7 @@ export default function WebinarPage() {
     );
 }
 
-export function WebinarCard({ webinar }: { webinar: Webinar }) {
+function WebinarCard({ webinar }: { webinar: Webinar }) {
     return (
         <Link href={`/webinar/${webinar.id}`}>
             <Card className="group relative bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
