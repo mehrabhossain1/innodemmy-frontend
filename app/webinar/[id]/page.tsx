@@ -301,22 +301,27 @@ export default function WebinarDetailsPage() {
                     )}
 
                     {/* Call to Action */}
-                    <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 border border-border">
-                        <h3 className="font-bold text-2xl mb-3">
-                            আরও শিখতে চান?
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                            আমাদের পূর্ণ কোর্সে এনরোল করুন এবং এক্সপার্ট হয়ে
-                            উঠুন!
-                        </p>
-                        <Link href="/courses">
-                            <Button
-                                size="lg"
-                                className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white font-semibold"
-                            >
-                                Browse All Courses
-                            </Button>
-                        </Link>
+                    <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border-t border-border mt-16">
+                        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                            <div className="text-center max-w-3xl mx-auto">
+                                <h2 className="text-3xl font-bold mb-4">
+                                    Want to Learn More?
+                                </h2>
+                                <p className="text-muted-foreground mb-6 text-lg">
+                                    Explore our full courses and take your
+                                    skills to the next level with comprehensive
+                                    learning programs.
+                                </p>
+                                <Link href="/courses">
+                                    <Button
+                                        size="lg"
+                                        className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white"
+                                    >
+                                        Browse All Courses
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
