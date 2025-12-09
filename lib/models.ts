@@ -120,6 +120,7 @@ export interface Webinar {
     topics: string[]; // Topics covered in the webinar
     date: string; // Webinar date
     language?: string; // Language of the webinar
+    category?: string; // Webinar category
     published?: boolean; // Whether the webinar is published
     createdAt?: Date;
     updatedAt?: Date;
