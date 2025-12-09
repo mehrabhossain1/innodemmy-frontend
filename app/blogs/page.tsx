@@ -126,16 +126,6 @@ export default function BlogsPage() {
         setCurrentPage(1);
     }, [searchTerm, activeCategory]);
 
-    // Scroll to top when page changes
-    useEffect(() => {
-        if (topRef.current) {
-            topRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        }
-    }, [currentPage]);
-
     return (
         <div
             ref={topRef}
