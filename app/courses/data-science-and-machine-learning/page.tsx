@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import DataScienceHeroSection from "./components/DataScienceHeroSection";
+import WhatYouGet from "./components/WhatYouGet";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -61,6 +62,11 @@ export default function DataScienceAndMachineLearning() {
                 onVideoClick={() => setIsVideoPlaying(true)}
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
+
+            {/* What You Get */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
         </div>
     );
 }
