@@ -2,6 +2,8 @@
 import { useState } from "react";
 import DataScienceHeroSection from "./components/DataScienceHeroSection";
 import WhatYouGet from "./components/WhatYouGet";
+import Projects from "./components/Projects";
+import WhatYouNeed from "./components/WhatYouNeed";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -66,6 +68,16 @@ export default function DataScienceAndMachineLearning() {
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
+            </div>
+
+            {/* Projects */}
+            <div id="projects">
+                <Projects />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
             </div>
         </div>
     );
