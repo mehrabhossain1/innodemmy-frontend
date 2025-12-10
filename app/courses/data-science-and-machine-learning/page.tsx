@@ -4,6 +4,8 @@ import DataScienceHeroSection from "./components/DataScienceHeroSection";
 import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
 import WhatYouNeed from "./components/WhatYouNeed";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import FAQ from "./components/FAQ";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -78,6 +80,16 @@ export default function DataScienceAndMachineLearning() {
             {/* What You Need */}
             <div id="what-you-need">
                 <WhatYouNeed />
+            </div>
+
+            {/* Who This Course is For */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
+
+            {/* FAQ */}
+            <div id="faq">
+                <FAQ />
             </div>
         </div>
     );
