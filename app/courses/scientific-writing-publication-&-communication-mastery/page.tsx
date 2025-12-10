@@ -18,9 +18,9 @@ const ScientificWritingPublicationCommunicationMastery = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
         { id: "resource-persons", label: "Resource Persons" },
-        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need to Get Started" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "faq", label: "FAQ" },
     ];
@@ -29,7 +29,7 @@ const ScientificWritingPublicationCommunicationMastery = () => {
     const courseData = {
         title: "Scientific Writing, Publication & Communication Mastery",
         description:
-            "এই কোর্সটি ডিজাইন করা হয়েছে শিক্ষার্থী, গবেষক এবং পেশাজীবীদের জন্য, যারা <strong>scientific writing</strong>, <strong>manuscript preparation</strong>, <strong>journal submission</strong>, <strong>peer-review communication</strong> এবং <strong>high-impact scientific communication</strong>-এ professional authority অর্জন করতে চান। কোর্সটি <strong>academic</strong>, <strong>clinical</strong> এবং <strong>industry research</strong>—এই তিন ক্ষেত্রেই globally competitive লেখালেখির দক্ষতা গড়ে তুলতে সহায়তা করবে।\n\nকোর্সটিতে শেখানো হবে:\n• <strong>Core principles of scientific writing:</strong> clarity, precision, logic, structure, and coherence\n• <strong>Manuscript structure (IMRAD):</strong> journal formatting standards, authorship rules & publication ethics\n• <strong>Literature synthesis:</strong> argument building, citation mastery, referencing strategies, critical interpretation\n• <strong>High-impact section writing:</strong> Introduction, Methods, Results & Discussion—top-tier journal standardে\n• <strong>Turnitin-safe writing:</strong> paraphrasing techniques, maintaining originality & AI-assisted refinement\n• <strong>Abstract development:</strong> structured/unstructured abstracts, graphical abstract design\n• <strong>Journal selection & submission:</strong> avoiding predatory journals, impact assessment, submission portal navigation\n• <strong>Peer-review response mastery:</strong> rebuttal drafting, revision strategy, acceptance optimization\n• <strong>Scientific communication skills:</strong> conference poster design, oral presentation techniques & slide development",
+            "এই কোর্সটি ডিজাইন করা হয়েছে শিক্ষার্থী, গবেষক এবং পেশাজীবীদের জন্য, যারা <strong>scientific writing</strong>, <strong>manuscript preparation</strong>, <strong>journal submission</strong>, <strong>peer-review communication</strong> এবং <strong>high-impact scientific communication</strong>-এ professional authority অর্জন করতে চান। কোর্সটি <strong>academic</strong>, <strong>clinical</strong> এবং <strong>industry research</strong>, এই তিন ক্ষেত্রেই globally competitive লেখালেখির দক্ষতা গড়ে তুলতে সহায়তা করবে।\n\nকোর্সটিতে শেখানো হবে:\n• <strong>Core principles of scientific writing:</strong> clarity, precision, logic, structure, and coherence\n• <strong>Manuscript structure (IMRAD):</strong> journal formatting standards, authorship rules & publication ethics\n• <strong>Literature synthesis:</strong> argument building, citation mastery, referencing strategies, critical interpretation\n• <strong>High-impact section writing:</strong> Introduction, Methods, Results & Discussion, top-tier journal standardে\n• <strong>Turnitin-safe writing:</strong> paraphrasing techniques, maintaining originality & AI-assisted refinement\n• <strong>Abstract development:</strong> structured/unstructured abstracts, graphical abstract design\n• <strong>Journal selection & submission:</strong> avoiding predatory journals, impact assessment, submission portal navigation\n• <strong>Peer-review response mastery:</strong> rebuttal drafting, revision strategy, acceptance optimization\n• <strong>Scientific communication skills:</strong> conference poster design, oral presentation techniques & slide development",
         price: 10000,
         originalPrice: 15000,
         currency: "৳",

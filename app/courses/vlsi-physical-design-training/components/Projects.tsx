@@ -19,7 +19,7 @@ export default function Projects() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900 py-12">
             <div className="container mx-auto px-4 max-w-7xl">
-                <SectionTitle title="Projects You'll Build" />
+                <SectionTitle title="Projects You Will Build" />
 
                 {/* Grid Layout - 2 columns on desktop, 1 on mobile */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

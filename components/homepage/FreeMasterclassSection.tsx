@@ -33,18 +33,13 @@ export default function FreeMasterclassSection() {
             <Container className="relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-8">
-                    <div className="inline-block mb-3 lg:mb-3">
-                        <span className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20">
-                            🎓 100% Free
-                        </span>
-                    </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
                         <span className="bg-gradient-to-r from-secondary via-secondary/80 to-secondary/70 bg-clip-text text-transparent">
                             Free Masterclass
                         </span>{" "}
                         <span className="text-foreground">Sessions</span>
                     </h2>
-                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base md:text-lg lg:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Get a taste of our world-class teaching methodology.
                         Learn from industry experts at absolutely no cost.
                     </p>
@@ -80,7 +75,7 @@ export default function FreeMasterclassSection() {
                                                     alt={masterclass.title}
                                                     width={400}
                                                     height={208}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    // className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
                                                 {/* Gradient Overlay */}
 
@@ -193,12 +188,12 @@ export default function FreeMasterclassSection() {
 
                 {/* View All Button - Enhanced */}
                 <div className="text-center">
-                    <Link href="/courses">
+                    <Link href="/webinar">
                         <Button
                             size="default"
                             className="px-6 lg:px-7 py-5 lg:py-5 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-primary/20 hover:border-primary/40 group"
                         >
-                            Explore All Courses
+                            Explore All Masterclasses
                             <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                     </Link>

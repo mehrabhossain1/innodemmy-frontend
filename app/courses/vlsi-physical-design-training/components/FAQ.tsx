@@ -26,7 +26,7 @@ export default function FAQ() {
         },
         {
             question: "Will I get real projects to showcase?",
-            answer: "Absolutely. You'll work on end-to-end design projects, taking designs from RTL to GDSII, which can be included in your portfolio or GitHub to impress employers.",
+            answer: "Absolutely. You will work on end-to-end design projects, taking designs from RTL to GDSII, which can be included in your portfolio or GitHub to impress employers.",
         },
         {
             question: "Do I need chip fabrication knowledge?",
@@ -49,17 +49,14 @@ export default function FAQ() {
             question: "Is this course suitable for students and professionals?",
             answer: "Yes! Both undergraduate/graduate students and working professionals looking to upskill in Physical Design will benefit from this course.",
         },
-        {
-            question: "Will I get lifetime access to course materials?",
-            answer: "Yes, all course videos, resources, and project templates are available for lifetime access.",
-        },
+
         {
             question: "Can I interact with instructors for doubts?",
             answer: "Yes, you can get daily support sessions, live Q&A, and community assistance to resolve any questions while practicing.",
         },
         {
             question: "Will I get support on installing the tools on my PC?",
-            answer: "Yes! You'll receive step-by-step guidance to install and configure all required tools (like OpenROAD, PDKs, etc.) on your computer.",
+            answer: "Yes! You will receive step-by-step guidance to install and configure all required tools (like OpenROAD, PDKs, etc.) on your computer.",
         },
     ];
 

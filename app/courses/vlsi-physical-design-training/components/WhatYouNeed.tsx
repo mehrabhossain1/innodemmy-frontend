@@ -15,19 +15,19 @@ export default function WhatYouNeed() {
         },
         {
             image: "https://img.icons8.com/color/96/electrical.png",
-            title: "Background Knowledge: Basics of Digital Logic Design & Verilog",
+            title: "Background Knowledge: Basics of Digital Logic Design and Electronics",
             gradient: "from-green-500 to-green-600",
         },
         {
             image: "https://img.icons8.com/color/96/brain.png",
-            title: "Mindset: Patience + Practice (Physical design requires iterative debugging & tool mastery)",
+            title: "Mindset: Patience + Practice (Physical design requires iterative debugging",
             gradient: "from-orange-500 to-orange-600",
         },
     ];
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="What You'll Need to Get Started" />
+            <SectionTitle title="What You will Need to Get Started" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {requirements.map((requirement, index) => {

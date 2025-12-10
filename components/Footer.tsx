@@ -39,7 +39,7 @@ export default function Footer() {
                                 </div>
                             </Link>
                             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Transforming Talent Into Expertise
+                                A leading skills training platform
                             </p>
 
                             {/* Social Media Links */}

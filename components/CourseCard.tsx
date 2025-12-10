@@ -27,9 +27,29 @@ export default function CourseCard({
     students = 5,
     duration,
     batchName = "Batch-2",
-    rating = 4.6,
-    totalRatings = 8,
+    rating,
+    totalRatings,
 }: CourseCardProps) {
+    // Generate consistent random values based on id for rating and totalRatings
+    const generateRating = () => {
+        if (rating !== undefined) return rating;
+        const hash = id
+            .split("")
+            .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        return 4.0 + (hash % 10) / 10; // Rating between 4.0 and 4.9
+    };
+
+    const generateTotalRatings = () => {
+        if (totalRatings !== undefined) return totalRatings;
+        const hash = id
+            .split("")
+            .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        return 5 + (hash % 96); // Total ratings between 5 and 100
+    };
+
+    const displayRating = generateRating();
+    const displayTotalRatings = generateTotalRatings();
+
     // Use slug for URL if available, otherwise fall back to id
     const courseUrl = slug ? `/courses/${slug}` : `/courses/${id}`;
     return (
@@ -66,7 +86,7 @@ export default function CourseCard({
                                     <Star
                                         key={i}
                                         className={`w-3.5 h-3.5 ${
-                                            i < Math.floor(rating)
+                                            i < Math.floor(displayRating)
                                                 ? "fill-yellow-400 text-yellow-400"
                                                 : "fill-gray-300 text-gray-300"
                                         }`}
@@ -74,10 +94,10 @@ export default function CourseCard({
                                 ))}
                             </div>
                             <span className="text-sm font-bold text-foreground ml-1">
-                                {rating}
+                                {displayRating.toFixed(1)}
                             </span>
                             <span className="text-xs text-muted-foreground">
-                                ({totalRatings})
+                                ({displayTotalRatings})
                             </span>
                         </div>
                     </div>

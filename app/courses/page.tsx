@@ -18,7 +18,8 @@ import {
     Layers,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import {
     COURSE_CATEGORIES,
     getAllCategories,
@@ -44,10 +45,15 @@ const categoryIcons: Record<string, typeof Code> = {
 };
 
 export default function CoursesPage() {
+    const searchParams = useSearchParams();
+    const categoryFromUrl = searchParams.get("category");
+
     const [searchTerm, setSearchTerm] = useState("");
     const [allCourses, setAllCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeCategory, setActiveCategory] = useState("all");
+    const [activeCategory, setActiveCategory] = useState(
+        categoryFromUrl || "all"
+    );
 
     useEffect(() => {
         async function fetchCourses() {
@@ -63,6 +69,13 @@ export default function CoursesPage() {
         }
         fetchCourses();
     }, []);
+
+    // Update active category when URL changes
+    useEffect(() => {
+        if (categoryFromUrl) {
+            setActiveCategory(categoryFromUrl);
+        }
+    }, [categoryFromUrl]);
 
     // Build dynamic categories with counts
     const categories = useMemo(() => {
@@ -188,11 +201,24 @@ export default function CoursesPage() {
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-20">
-                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mb-6"></div>
-                        <p className="text-gray-600 text-lg">
-                            Loading courses...
-                        </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm animate-pulse"
+                            >
+                                <div className="relative h-48 bg-muted"></div>
+                                <div className="p-4 space-y-3">
+                                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                                    <div className="h-3 bg-muted rounded w-full"></div>
+                                    <div className="h-3 bg-muted rounded w-5/6"></div>
+                                    <div className="flex gap-2 pt-2">
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ) : (
                     <>

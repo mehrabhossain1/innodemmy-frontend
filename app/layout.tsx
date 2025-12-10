@@ -14,7 +14,7 @@ const hindSiliguri = Hind_Siliguri({
 
 export const metadata: Metadata = {
     title: {
-        default: "Innodemy - Transforming Talent Into Expertise",
+        default: "Innodemy - Learn Beyond Limits",
         template: "%s | Innodemy",
     },
     description:

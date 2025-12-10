@@ -1,5 +1,5 @@
 "use client";
-import { Video, Play } from "lucide-react";
+import { Video, Play, Star } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
@@ -15,6 +15,8 @@ interface AdvancedEvidenceHeroSectionProps {
         videoLabel: string;
         enrollButtonTextShort: string;
         liveCourseLabel: string;
+        rating?: number;
+        totalRatings?: number;
     };
     onVideoClick: () => void;
     onEnrollClick: () => void;
@@ -27,6 +29,10 @@ export default function AdvancedEvidenceHeroSection({
     onVideoClick,
     onEnrollClick,
 }: AdvancedEvidenceHeroSectionProps) {
+    // Generate consistent rating values
+    const displayRating = courseData.rating || 4.8;
+    const displayTotalRatings = courseData.totalRatings || 178;
+
     const handleWhatsAppClick = () => {
         const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
         const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(
@@ -62,18 +68,40 @@ export default function AdvancedEvidenceHeroSection({
                     {/* Left: Course Info - 2 columns */}
                     <div className="lg:col-span-2">
                         {/* Live Course Badge */}
-                        <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded text-sm font-semibold mb-3">
-                            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+                        <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-3 py-1 rounded text-sm font-semibold mb-3">
+                            <div className="w-2 h-2 bg-red-600 dark:bg-red-400 rounded-full animate-pulse"></div>
                             {courseData.liveCourseLabel}
                         </div>
 
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                             {courseData.title}
                         </h1>
 
+                        {/* Rating Section */}
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className={`w-5 h-5 ${
+                                            i < Math.floor(displayRating)
+                                                ? "fill-yellow-400 text-yellow-400"
+                                                : "fill-gray-300 text-gray-300"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-lg font-bold text-foreground">
+                                {displayRating.toFixed(1)}
+                            </span>
+                            <span className="text-sm text-muted-foreground">
+                                ({displayTotalRatings} ratings)
+                            </span>
+                        </div>
+
                         {/* Description */}
                         <div className="mb-6 w-full">
-                            <div className="text-gray-700 text-base leading-relaxed whitespace-pre-line text-justify">
+                            <div className="text-gray-700 dark:text-gray-300 text-base leading-relaxed whitespace-pre-line text-justify">
                                 {courseData.description}
                             </div>
                         </div>
@@ -86,7 +114,7 @@ export default function AdvancedEvidenceHeroSection({
                     <div className="lg:col-span-1 lg:sticky lg:top-4 lg:self-start">
                         {/* Video Thumbnail */}
                         <div
-                            className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 group cursor-pointer border border-gray-100"
+                            className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 group cursor-pointer border border-gray-100 dark:border-gray-700"
                             onClick={onVideoClick}
                         >
                             <Image
@@ -96,7 +124,7 @@ export default function AdvancedEvidenceHeroSection({
                                 className="object-cover"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
                                     <Play className="w-12 h-12 text-primary fill-primary" />
                                 </div>
                             </div>
@@ -110,22 +138,22 @@ export default function AdvancedEvidenceHeroSection({
                         </div>
 
                         {/* Enrollment Card */}
-                        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
                             {/* Pricing Section */}
-                            <div className="bg-gradient-to-br from-primary/8 via-primary/5 to-white p-5 border-b border-gray-100">
+                            <div className="bg-gradient-to-br from-primary/8 via-primary/5 to-white dark:from-primary/10 dark:via-primary/5 dark:to-gray-800 p-5 border-b border-gray-100 dark:border-gray-700">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
                                         <div className="flex items-baseline gap-2 mb-1">
-                                            <span className="text-3xl font-bold text-gray-900">
+                                            <span className="text-3xl font-bold text-gray-900 dark:text-white">
                                                 ৳
                                                 {courseData.price.toLocaleString()}
                                             </span>
-                                            <span className="text-sm text-gray-400 line-through">
+                                            <span className="text-sm text-gray-400 dark:text-gray-500 line-through">
                                                 ৳
                                                 {courseData.originalPrice.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">
+                                        <div className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2.5 py-1 rounded-md text-xs font-semibold">
                                             <span>
                                                 {Math.round(
                                                     ((courseData.originalPrice -
@@ -137,7 +165,7 @@ export default function AdvancedEvidenceHeroSection({
                                             </span>
                                         </div>
                                     </div>
-                                    <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <button className="bg-primary dark:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 dark:hover:bg-primary transition-all duration-200 shadow-sm hover:shadow-md">
                                         📋 Coupon
                                     </button>
                                 </div>

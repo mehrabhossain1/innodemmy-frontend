@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -16,14 +16,84 @@ import {
     ArrowLeft,
     Play,
     X,
+    Code,
+    Cpu,
+    FlaskConical,
+    Layers,
 } from "lucide-react";
 import { getAllWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";
+import {
+    COURSE_CATEGORIES,
+    getAllCategories,
+} from "@/lib/constants/categories";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    PaginationEllipsis,
+} from "@/components/ui/pagination";
+
+// Map category names to icons
+const categoryIcons: Record<string, typeof Code> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
+    [COURSE_CATEGORIES.PROGRAMMING]: Code,
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
+    [COURSE_CATEGORIES.VLSI]: Layers,
+};
+
+const ITEMS_PER_PAGE = 9;
 
 export default function WebinarPage() {
+    const topRef = useRef<HTMLDivElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [activeCategory, setActiveCategory] = useState("all");
+    const [currentPage, setCurrentPage] = useState(1);
     const allWebinars = getAllWebinars();
+
+    // Build dynamic categories with counts
+    const categories = useMemo(() => {
+        const allCategories = getAllCategories();
+        const categoryCounts: Record<string, number> = {};
+
+        // Count webinars per category
+        allWebinars.forEach((webinar) => {
+            if (webinar.category) {
+                categoryCounts[webinar.category] =
+                    (categoryCounts[webinar.category] || 0) + 1;
+            }
+        });
+
+        // Build category tabs
+        const tabs = [
+            {
+                id: "all",
+                label: "All Webinars",
+                icon: Code,
+                count: `${allWebinars.length} Webinars`,
+            },
+        ];
+
+        // Add each category from constants
+        allCategories.forEach((category) => {
+            const count = categoryCounts[category] || 0;
+            if (count > 0) {
+                // Only show categories with webinars
+                tabs.push({
+                    id: category,
+                    label: category,
+                    icon: categoryIcons[category] || Code,
+                    count: `${count} ${count === 1 ? "Webinar" : "Webinars"}`,
+                });
+            }
+        });
+
+        return tabs;
+    }, [allWebinars]);
 
     const filteredWebinars = useMemo(() => {
         return allWebinars.filter((webinar) => {
@@ -37,12 +107,25 @@ export default function WebinarPage() {
                 webinar.topics.some((topic) =>
                     topic.toLowerCase().includes(searchTerm.toLowerCase())
                 );
-            return matchesSearch;
+            const matchesCategory =
+                activeCategory === "all" || webinar.category === activeCategory;
+            return matchesSearch && matchesCategory;
         });
-    }, [allWebinars, searchTerm]);
+    }, [allWebinars, searchTerm, activeCategory]);
+
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredWebinars.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedWebinars = filteredWebinars.slice(startIndex, endIndex);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, activeCategory]);
 
     return (
-        <div className="min-h-screen bg-background">
+        <div ref={topRef} className="min-h-screen bg-background">
             {/* Header */}
             <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-background border-b border-border">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -75,14 +158,109 @@ export default function WebinarPage() {
                 </div>
             </div>
 
-            {/* Webinars Grid */}
+            {/* Category Tabs */}
             <Container className="py-12">
-                {filteredWebinars.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredWebinars.map((webinar) => (
-                            <WebinarCard key={webinar.id} webinar={webinar} />
-                        ))}
+                <div className="relative mb-8">
+                    <div className="flex justify-center items-center overflow-x-auto pb-3 scrollbar-hide">
+                        <div className="flex gap-2.5 overflow-x-auto scrollbar-hide">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() =>
+                                        setActiveCategory(category.id)
+                                    }
+                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
+                                        activeCategory === category.id
+                                            ? "bg-primary border-primary text-white shadow-md"
+                                            : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
+                                    }`}
+                                >
+                                    <category.icon className="h-4 w-4" />
+                                    <div className="text-left">
+                                        <div className="text-sm font-semibold whitespace-nowrap">
+                                            {category.label}
+                                        </div>
+                                        {category.count && (
+                                            <div
+                                                className={`text-xs ${
+                                                    activeCategory ===
+                                                    category.id
+                                                        ? "text-white/80"
+                                                        : "text-muted-foreground"
+                                                }`}
+                                            >
+                                                {category.count}
+                                            </div>
+                                        )}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
                     </div>
+                </div>
+
+                {/* Webinars Grid */}
+                {filteredWebinars.length > 0 ? (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedWebinars.map((webinar) => (
+                                <WebinarCard
+                                    key={webinar.id}
+                                    webinar={webinar}
+                                />
+                            ))}
+                        </div>
+                        <div className="mt-8">
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <PaginationPrevious
+                                            onClick={() =>
+                                                setCurrentPage((prev) =>
+                                                    Math.max(1, prev - 1)
+                                                )
+                                            }
+                                            className={
+                                                currentPage === 1
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                        />
+                                    </PaginationItem>
+                                    {[...Array(totalPages)].map((_, i) => (
+                                        <PaginationItem key={i + 1}>
+                                            <PaginationLink
+                                                onClick={() =>
+                                                    setCurrentPage(i + 1)
+                                                }
+                                                isActive={currentPage === i + 1}
+                                                className="cursor-pointer"
+                                            >
+                                                {i + 1}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    ))}
+                                    <PaginationItem>
+                                        <PaginationNext
+                                            onClick={() =>
+                                                setCurrentPage((prev) =>
+                                                    Math.min(
+                                                        totalPages,
+                                                        prev + 1
+                                                    )
+                                                )
+                                            }
+                                            className={
+                                                currentPage === totalPages
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                        />
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        </div>
+                    </>
                 ) : (
                     <div className="text-center py-16">
                         <div className="max-w-md mx-auto">
@@ -97,10 +275,13 @@ export default function WebinarPage() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                onClick={() => setSearchTerm("")}
+                                onClick={() => {
+                                    setSearchTerm("");
+                                    setActiveCategory("all");
+                                }}
                                 className="px-8 py-3"
                             >
-                                Clear Search
+                                Clear Filters
                             </Button>
                         </div>
                     </div>

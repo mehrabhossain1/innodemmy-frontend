@@ -12,8 +12,14 @@ export default function SupportButton() {
     const whatsappNumber = "8801521428597";
 
     const handleWhatsApp = () => {
-        const message = "Hi, I need help with course enrollment. Can you assist me?";
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        const message =
+            "Hi, I need help with course enrollment. Can you assist me?";
+        window.open(
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                message
+            )}`,
+            "_blank"
+        );
     };
 
     const handleCall = () => {
@@ -80,12 +86,12 @@ export default function SupportButton() {
                     {isOpen ? (
                         <>
                             <X className="w-5 h-5" />
-                            <span className="text-xs">বন্ধ করুন</span>
+                            <span className="text-xs">CLOSE</span>
                         </>
                     ) : (
                         <>
                             <MessageCircle className="w-5 h-5" />
-                            <span className="text-xs">সাপোর্ট নিন</span>
+                            <span className="text-xs">SUPPORT</span>
                         </>
                     )}
 

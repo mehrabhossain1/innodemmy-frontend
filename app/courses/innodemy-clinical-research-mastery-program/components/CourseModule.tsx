@@ -443,7 +443,7 @@ const modules: Module[] = [
         title: "Integrated Research Project & Publication Defense",
         subtitle: "Prove It. Present It. Publish It.",
         essence:
-            "Apply all learning to a real project—complete protocol, dataset, manuscript, and defend findings before expert panel.",
+            "Apply all learning to a real project, complete protocol, dataset, manuscript, and defend findings before expert panel.",
         liveClasses: 0,
         projects: 1,
         color: "bg-teal-500",

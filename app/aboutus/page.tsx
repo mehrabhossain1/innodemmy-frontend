@@ -82,7 +82,7 @@ export default function AboutUsPage() {
                         </h2>
                         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                             Innodemy was founded by passionate technologists and
-                            industry experts with a shared vision — to make
+                            industry experts with a shared vision , to make
                             world-class, technology-driven education accessible
                             to every learner in Bangladesh.
                         </p>
@@ -287,7 +287,7 @@ export default function AboutUsPage() {
 
                     <div className="text-center mt-10">
                         <p className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                            We don't just teach skills — we shape careers.
+                            We don't just teach skills , we shape careers.
                         </p>
                     </div>
                 </div>

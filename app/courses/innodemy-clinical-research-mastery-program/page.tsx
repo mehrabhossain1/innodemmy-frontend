@@ -18,9 +18,9 @@ const InnodemyClinicalResearchMasteryProgram = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You'll Get in This Course" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
         { id: "resource-persons", label: "Resource Persons" },
-        { id: "what-you-need", label: "What You'll Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need to Get Started" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "faq", label: "FAQ" },
     ];
@@ -99,7 +99,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 <CourseModule />
             </div>
 
-            {/* What You'll Get Section */}
+            {/* What You will Get Section */}
             <div id="what-you-get">
                 <WhatYouGet />
             </div>
@@ -109,7 +109,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 <ResourcePersons />
             </div>
 
-            {/* What You'll Need Section */}
+            {/* What You will Need Section */}
             <div id="what-you-need">
                 <WhatYouNeed />
             </div>

@@ -22,6 +22,7 @@ import {
     Lightbulb,
 } from "lucide-react";
 import Container from "./Container";
+import Link from "next/link";
 
 interface FormData {
     fullName: string;
@@ -41,7 +42,7 @@ const accordionItems = [
         id: "gateway",
         title: "Gateway to Advanced Opportunities",
         content:
-            "Innodemy is more than a skill development platform — it's a gateway to advanced research opportunities and career transitions for students and professionals.",
+            "Innodemy is more than a skill development platform ,  it's a gateway to advanced research opportunities and career transitions for students and professionals.",
         icon: GraduationCap,
     },
     {
@@ -55,7 +56,7 @@ const accordionItems = [
         id: "beyond-teaching",
         title: "Beyond Teaching - Complete Support",
         content:
-            "Innodemy goes beyond teaching — supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
+            "Innodemy goes beyond teaching ,  supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
         icon: Lightbulb,
     },
 ];
@@ -169,7 +170,10 @@ export default function BookTheCallCard() {
                                             Thank You!
                                         </h3>
                                         <p className="text-sm lg:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
-                                            Your consultation request has been submitted successfully. Our team will contact you within 24 hours to schedule your free consultation.
+                                            Your consultation request has been
+                                            submitted successfully. Our team
+                                            will contact you within 24 hours to
+                                            schedule your free consultation.
                                         </p>
                                     </div>
 
@@ -204,15 +208,14 @@ export default function BookTheCallCard() {
                         </span>
                     </div>
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold mb-2 lg:mb-2">
-                        <span className="text-foreground">
-                            Get Your Free
-                        </span>{" "}
+                        <span className="text-foreground">Get Your Free</span>{" "}
                         <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
                             Consultation
                         </span>
                     </h2>
                     <p className="text-sm md:text-base lg:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Take the first step towards your dream career. Our expert counselors are ready to guide you.
+                        Take the first step towards your dream career. Our
+                        expert counselors are ready to guide you.
                     </p>
                 </div>
 
@@ -274,11 +277,15 @@ export default function BookTheCallCard() {
                                             Ready to Start Your Journey?
                                         </h4>
                                         <p className="text-muted-foreground mb-2.5 lg:mb-3 text-xs lg:text-sm leading-relaxed">
-                                            Join thousands of learners who have transformed their careers with Innodemy.
+                                            Join thousands of learners who have
+                                            transformed their careers with
+                                            Innodemy.
                                         </p>
-                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
-                                            Explore Courses
-                                        </Button>
+                                        <Link href="/courses">
+                                            <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
+                                                Explore Courses
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +301,8 @@ export default function BookTheCallCard() {
                                             Book Your Call Now!
                                         </h3>
                                         <p className="text-xs lg:text-sm text-muted-foreground">
-                                            Fill out the form below to schedule your free consultation
+                                            Fill out the form below to schedule
+                                            your free consultation
                                         </p>
                                     </div>
 
@@ -431,14 +439,17 @@ export default function BookTheCallCard() {
                                         ) : (
                                             <div className="flex items-center justify-center space-x-2">
                                                 <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
-                                                <span>Schedule Free Consultation</span>
+                                                <span>
+                                                    Schedule Free Consultation
+                                                </span>
                                             </div>
                                         )}
                                     </Button>
 
                                     {/* Privacy Note */}
                                     <p className="text-[10px] lg:text-xs text-muted-foreground text-center leading-relaxed">
-                                        By submitting this form, you agree to our{" "}
+                                        By submitting this form, you agree to
+                                        our{" "}
                                         <a
                                             href="#"
                                             className="text-primary hover:text-primary/80 hover:underline transition-colors"

@@ -18,7 +18,7 @@ export default function FAQ() {
         },
         {
             question: "Can I join the course via mobile?",
-            answer: "Yes! You can join the course from any device—mobile, laptop, or desktop.",
+            answer: "Yes! You can join the course from any device, mobile, laptop, or desktop.",
         },
         {
             question: "Will I have lifetime access to the videos?",

@@ -164,7 +164,7 @@ export default function CourseModule() {
                             key={module.id}
                             className={`${
                                 module.bgColor
-                            } rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 ${
+                            } dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
                                 isExpanded
                                     ? "shadow-lg"
                                     : "shadow-md hover:shadow-lg"
@@ -190,7 +190,7 @@ export default function CourseModule() {
 
                                     {/* Module Info */}
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="font-bold text-gray-900 mb-2 text-base leading-tight">
+                                        <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-base leading-tight">
                                             {module.title}
                                         </h3>
                                     </div>
@@ -199,7 +199,7 @@ export default function CourseModule() {
                                     {hasDetails && (
                                         <div className="flex-shrink-0">
                                             <ChevronDown
-                                                className={`w-6 h-6 text-gray-600 transition-transform duration-300 ${
+                                                className={`w-6 h-6 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
                                                     isExpanded
                                                         ? "rotate-180"
                                                         : "rotate-0"
@@ -213,11 +213,11 @@ export default function CourseModule() {
                             {/* Module Content */}
                             {isExpanded && hasDetails && (
                                 <div className="px-5 pb-5">
-                                    <div className="space-y-2.5 text-sm text-gray-600">
+                                    <div className="space-y-2.5 text-sm text-gray-600 dark:text-gray-300">
                                         {module.overview &&
                                             module.overview.length > 0 && (
                                                 <div>
-                                                    <h4 className="font-semibold text-gray-900 mb-2 text-base">
+                                                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">
                                                         Overview:
                                                     </h4>
                                                     <ul className="space-y-1.5 list-disc list-inside">
@@ -238,14 +238,14 @@ export default function CourseModule() {
                                             )}
 
                                         {module.practice && (
-                                            <div className="bg-pink-50 p-3 rounded-lg border border-pink-100">
-                                                <h4 className="font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-pink-600">
+                                            <div className="bg-pink-50 dark:bg-pink-900/30 p-3 rounded-lg border border-pink-100 dark:border-pink-800">
+                                                <h4 className="font-semibold text-pink-900 dark:text-pink-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-pink-600 dark:text-pink-400">
                                                         🎯
                                                     </span>
                                                     Practice:
                                                 </h4>
-                                                <p className="leading-relaxed text-pink-800">
+                                                <p className="leading-relaxed text-pink-800 dark:text-pink-200">
                                                     {renderTextWithBold(
                                                         module.practice
                                                     )}
@@ -254,14 +254,14 @@ export default function CourseModule() {
                                         )}
 
                                         {module.aiSupport && (
-                                            <div className="bg-cyan-50 p-3 rounded-lg border border-cyan-100">
-                                                <h4 className="font-semibold text-cyan-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-cyan-600">
+                                            <div className="bg-cyan-50 dark:bg-cyan-900/30 p-3 rounded-lg border border-cyan-100 dark:border-cyan-800">
+                                                <h4 className="font-semibold text-cyan-900 dark:text-cyan-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-cyan-600 dark:text-cyan-400">
                                                         🤖
                                                     </span>
                                                     AI Support:
                                                 </h4>
-                                                <p className="leading-relaxed text-cyan-800">
+                                                <p className="leading-relaxed text-cyan-800 dark:text-cyan-200">
                                                     {renderTextWithBold(
                                                         module.aiSupport
                                                     )}
@@ -270,14 +270,14 @@ export default function CourseModule() {
                                         )}
 
                                         {module.handsOn && (
-                                            <div className="bg-green-50 p-3 rounded-lg border border-green-100">
-                                                <h4 className="font-semibold text-green-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-green-600">
+                                            <div className="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg border border-green-100 dark:border-green-800">
+                                                <h4 className="font-semibold text-green-900 dark:text-green-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-green-600 dark:text-green-400">
                                                         ✋
                                                     </span>
                                                     Hands-On:
                                                 </h4>
-                                                <p className="leading-relaxed text-green-800">
+                                                <p className="leading-relaxed text-green-800 dark:text-green-200">
                                                     {renderTextWithBold(
                                                         module.handsOn
                                                     )}
@@ -286,14 +286,14 @@ export default function CourseModule() {
                                         )}
 
                                         {module.aiIntegration && (
-                                            <div className="bg-violet-50 p-3 rounded-lg border border-violet-100">
-                                                <h4 className="font-semibold text-violet-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-violet-600">
+                                            <div className="bg-violet-50 dark:bg-violet-900/30 p-3 rounded-lg border border-violet-100 dark:border-violet-800">
+                                                <h4 className="font-semibold text-violet-900 dark:text-violet-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-violet-600 dark:text-violet-400">
                                                         🤖
                                                     </span>
                                                     AI Integration:
                                                 </h4>
-                                                <p className="leading-relaxed text-violet-800">
+                                                <p className="leading-relaxed text-violet-800 dark:text-violet-200">
                                                     {renderTextWithBold(
                                                         module.aiIntegration
                                                     )}
@@ -302,14 +302,14 @@ export default function CourseModule() {
                                         )}
 
                                         {module.aiPractice && (
-                                            <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
-                                                <h4 className="font-semibold text-blue-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-blue-600">
+                                            <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg border border-blue-100 dark:border-blue-800">
+                                                <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-blue-600 dark:text-blue-400">
                                                         🤖
                                                     </span>
                                                     AI Practice:
                                                 </h4>
-                                                <p className="leading-relaxed text-blue-800">
+                                                <p className="leading-relaxed text-blue-800 dark:text-blue-200">
                                                     {renderTextWithBold(
                                                         module.aiPractice
                                                     )}
@@ -318,14 +318,14 @@ export default function CourseModule() {
                                         )}
 
                                         {module.deliverable && (
-                                            <div className="bg-purple-50 p-3 rounded-lg border border-purple-100">
-                                                <h4 className="font-semibold text-purple-900 mb-1.5 flex items-center gap-1.5 text-base">
-                                                    <span className="text-purple-600">
+                                            <div className="bg-purple-50 dark:bg-purple-900/30 p-3 rounded-lg border border-purple-100 dark:border-purple-800">
+                                                <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1.5 flex items-center gap-1.5 text-base">
+                                                    <span className="text-purple-600 dark:text-purple-400">
                                                         📦
                                                     </span>
                                                     Deliverables:
                                                 </h4>
-                                                <p className="leading-relaxed text-purple-800">
+                                                <p className="leading-relaxed text-purple-800 dark:text-purple-200">
                                                     {renderTextWithBold(
                                                         module.deliverable
                                                     )}

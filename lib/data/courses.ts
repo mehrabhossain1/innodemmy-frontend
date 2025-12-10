@@ -55,387 +55,6 @@ export const coursesData: Course[] = [
 
         modules: [],
     },
-    // Advanced Evidence Generation & AI-Enabled Research Practice
-    {
-        _id: "2",
-        title: "Advanced Evidence Generation & AI-Enabled Research Practice",
-        slug: "advanced-evidence-generation-&-ai-enabled-research-practice",
-        description: `Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation. Move Beyond Research – Automate and Innovate with cutting-edge AI tools and methodologies.`,
-        thumbnail: "/courses/ClinicalAdvanced.jpg",
-        courseVideoUrl:
-            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
-        courseStartDate: new Date("2025-02-15"),
-        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
-        batchName: "Batch 1",
-        price: 8000,
-        totalLiveClasses: 16,
-        totalWeeks: 8,
-        totalModules: 8,
-        totalProjects: 5,
-        totalExercises: 20,
-
-        //
-        idealFor: [
-            "Clinical researchers looking to enhance their research methodology skills",
-            "Medical professionals interested in evidence-based practice and research",
-            "Graduate students in health sciences seeking advanced research capabilities",
-            "Healthcare professionals aiming to publish in high-impact journals",
-            "Anyone interested in leveraging AI for research automation and innovation",
-        ],
-
-        //
-        faq: [
-            {
-                question: "Who should take this course?",
-                answer: "This course is designed for clinical researchers, medical professionals, graduate students, and healthcare workers who want to advance their research skills with AI-enabled tools and methodologies.",
-            },
-            {
-                question: "Do I need prior research experience?",
-                answer: "Basic understanding of research methodology is recommended. However, the course starts with foundational concepts and progressively builds to advanced topics.",
-            },
-            {
-                question: "What tools will I learn to use?",
-                answer: "You'll learn to use cutting-edge AI tools for systematic reviews, meta-analysis software, statistical packages, and automation tools for medical writing and grant proposals.",
-            },
-            {
-                question: "Will I learn to write research papers?",
-                answer: "Yes! Medical writing is a key component of this course. You'll learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
-            },
-            {
-                question:
-                    "How is this course different from basic research courses?",
-                answer: "This course goes beyond traditional research methods by incorporating AI-enabled automation, advanced biostatistics, meta-analysis techniques, and grant proposal development.",
-            },
-            {
-                question: "Will I receive a certificate?",
-                answer: "Yes, upon successful completion of the course and all assignments, you'll receive a certificate of completion.",
-            },
-            {
-                question: "What is the course duration?",
-                answer: "The course spans 8 weeks with 16 live classes, covering comprehensive topics from evidence generation to publication.",
-            },
-            {
-                question: "Can I access recorded sessions?",
-                answer: "Absolutely! All live sessions are recorded and made available for review at your convenience.",
-            },
-        ],
-
-        //
-        modules: [
-            {
-                classNumber: 1,
-                moduleTitle:
-                    "Module 1: Introduction to Evidence-Based Research",
-                topics: [
-                    "Understanding evidence-based practice",
-                    "Research question formulation (PICO framework)",
-                    "Study design overview",
-                    "Introduction to systematic reviews",
-                ],
-                exercises: [
-                    "Formulate a research question using PICO",
-                    "Identify appropriate study designs",
-                ],
-            },
-            {
-                classNumber: 2,
-                moduleTitle:
-                    "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
-                topics: [
-                    "Systematic review methodology",
-                    "PRISMA guidelines",
-                    "Search strategies and databases",
-                    "Study selection and quality assessment",
-                ],
-                exercises: [
-                    "Develop a search strategy",
-                    "Practice quality assessment using tools",
-                ],
-            },
-            {
-                classNumber: 3,
-                moduleTitle: "Module 3: Advanced Meta-Analysis Techniques",
-                topics: [
-                    "Fixed vs random effects models",
-                    "Heterogeneity assessment",
-                    "Publication bias and funnel plots",
-                    "Sensitivity analysis",
-                ],
-                exercises: [
-                    "Conduct meta-analysis using software",
-                    "Interpret forest plots",
-                ],
-            },
-            {
-                classNumber: 4,
-                moduleTitle: "Module 4: Advanced Biostatistics",
-                topics: [
-                    "Regression analysis (linear, logistic)",
-                    "Survival analysis",
-                    "Multivariate analysis techniques",
-                    "Sample size calculation",
-                ],
-                exercises: [
-                    "Perform regression analysis",
-                    "Calculate sample sizes for studies",
-                ],
-            },
-            {
-                classNumber: 5,
-                moduleTitle: "Module 5: AI Tools for Research Automation",
-                topics: [
-                    "AI-powered literature search tools",
-                    "Automated data extraction",
-                    "Text mining and NLP for research",
-                    "AI-assisted systematic reviews",
-                ],
-                exercises: [
-                    "Use AI tools for literature screening",
-                    "Automate data extraction processes",
-                ],
-            },
-            {
-                classNumber: 6,
-                moduleTitle: "Module 6: Medical Writing Essentials",
-                topics: [
-                    "Structure of research papers (IMRaD)",
-                    "Writing effective abstracts",
-                    "Results presentation and visualization",
-                    "Citation management",
-                ],
-                exercises: [
-                    "Draft an abstract for your research",
-                    "Create publication-quality figures",
-                ],
-            },
-            {
-                classNumber: 7,
-                moduleTitle: "Module 7: Grant Proposal Development",
-                topics: [
-                    "Understanding funding mechanisms",
-                    "Grant proposal structure",
-                    "Budget preparation",
-                    "Review criteria and success strategies",
-                ],
-                exercises: [
-                    "Outline a grant proposal",
-                    "Prepare a realistic budget",
-                ],
-            },
-            {
-                classNumber: 8,
-                moduleTitle: "Module 8: Publication & Dissemination",
-                topics: [
-                    "Journal selection strategies",
-                    "Submission process and peer review",
-                    "Responding to reviewer comments",
-                    "Research dissemination and impact",
-                ],
-                exercises: [
-                    "Practice responding to mock reviews",
-                    "Create a dissemination plan",
-                ],
-            },
-        ],
-
-        //
-        projects: [
-            "Complete systematic review with meta-analysis",
-            "Advanced statistical analysis project",
-            "AI-automated literature review",
-            "Medical manuscript preparation",
-            "Grant proposal development",
-        ],
-    },
-
-    // Biostatistics, Data Analysis & Evidence Interpretation
-    {
-        _id: "3",
-        title: "Biostatistics, Data Analysis & Evidence Interpretation",
-        slug: "biostatistics-data-analysis-&-evidence-interpretation",
-        description: `Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.`,
-        thumbnail: "/courses/ClinicalDataAnalysis.jpg",
-        courseVideoUrl:
-            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
-        courseStartDate: new Date("2025-03-01"),
-        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
-        batchName: "Batch 1",
-        price: 7000,
-        totalLiveClasses: 14,
-        totalWeeks: 7,
-        totalModules: 7,
-        totalProjects: 4,
-        totalExercises: 15,
-
-        //
-        idealFor: [
-            "Healthcare professionals seeking to interpret research data effectively",
-            "Clinical researchers wanting to perform their own statistical analyses",
-            "Graduate students in health sciences requiring biostatistics skills",
-            "Medical professionals preparing manuscripts for publication",
-            "Anyone looking to master statistical software (SPSS, STATA, Excel) for research",
-        ],
-
-        //
-        faq: [
-            {
-                question: "Do I need prior statistics knowledge?",
-                answer: "Basic understanding of mathematics is helpful, but the course starts from fundamentals and progressively builds to advanced topics. We cover everything from descriptive statistics to complex regression models.",
-            },
-            {
-                question: "What software will I learn?",
-                answer: "You'll gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
-            },
-            {
-                question:
-                    "Will I be able to analyze my own research data after this course?",
-                answer: "Absolutely! The course is designed to make you independent in conducting statistical analyses, interpreting results, and creating publication-ready tables and figures.",
-            },
-            {
-                question:
-                    "Is this course suitable for qualitative researchers?",
-                answer: "This course focuses on quantitative data analysis. However, if you work with mixed-methods research or need to understand statistical sections in papers, this course will be valuable.",
-            },
-            {
-                question:
-                    "How is this different from online statistics courses?",
-                answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You'll learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
-            },
-            {
-                question: "Will I learn how to present data visually?",
-                answer: "Yes! Data visualization is a key component. You'll learn to create professional graphs, charts, and tables suitable for research papers and presentations.",
-            },
-            {
-                question: "Can I get help with my specific research project?",
-                answer: "The course includes project support sessions where you can get guidance on applying the techniques to your own research data.",
-            },
-            {
-                question: "What are the system requirements?",
-                answer: "You'll need a Windows PC (SPSS and STATA work best on Windows). We'll provide guidance on software installation and setup during the course.",
-            },
-        ],
-
-        //
-        modules: [
-            {
-                classNumber: 1,
-                moduleTitle:
-                    "Module 1: Introduction to Biostatistics & Data Types",
-                topics: [
-                    "Role of statistics in healthcare research",
-                    "Types of data: categorical, continuous, ordinal",
-                    "Understanding variables and scales of measurement",
-                    "Introduction to statistical software (SPSS, STATA, Excel)",
-                    "Data entry and data management basics",
-                ],
-                exercises: [
-                    "Install and set up statistical software",
-                    "Enter sample dataset and identify variable types",
-                ],
-            },
-            {
-                classNumber: 2,
-                moduleTitle:
-                    "Module 2: Descriptive Statistics & Data Summarization",
-                topics: [
-                    "Measures of central tendency (mean, median, mode)",
-                    "Measures of dispersion (SD, variance, range, IQR)",
-                    "Data distribution and normality testing",
-                    "Creating frequency tables and cross-tabulations",
-                    "Basic data visualization (histograms, box plots, bar charts)",
-                ],
-                exercises: [
-                    "Calculate descriptive statistics for a dataset",
-                    "Create summary tables for publication",
-                ],
-            },
-            {
-                classNumber: 3,
-                moduleTitle:
-                    "Module 3: Probability & Hypothesis Testing Fundamentals",
-                topics: [
-                    "Probability distributions (normal, binomial, Poisson)",
-                    "Understanding p-values and confidence intervals",
-                    "Type I and Type II errors",
-                    "Null and alternative hypotheses",
-                    "Statistical significance vs clinical significance",
-                ],
-                exercises: [
-                    "Interpret p-values and confidence intervals",
-                    "Formulate hypotheses for research questions",
-                ],
-            },
-            {
-                classNumber: 4,
-                moduleTitle: "Module 4: Parametric Tests (t-tests & ANOVA)",
-                topics: [
-                    "Independent samples t-test",
-                    "Paired samples t-test",
-                    "One-way ANOVA",
-                    "Post-hoc tests (Bonferroni, Tukey)",
-                    "Assumptions and when to use each test",
-                ],
-                exercises: [
-                    "Perform t-tests on clinical data",
-                    "Conduct ANOVA with multiple comparisons",
-                ],
-            },
-            {
-                classNumber: 5,
-                moduleTitle:
-                    "Module 5: Non-Parametric Tests & Categorical Data Analysis",
-                topics: [
-                    "Mann-Whitney U test",
-                    "Wilcoxon signed-rank test",
-                    "Kruskal-Wallis test",
-                    "Chi-square test for independence",
-                    "Fisher's exact test",
-                ],
-                exercises: [
-                    "Choose appropriate tests for non-normal data",
-                    "Analyze categorical associations",
-                ],
-            },
-            {
-                classNumber: 6,
-                moduleTitle: "Module 6: Correlation & Regression Analysis",
-                topics: [
-                    "Pearson and Spearman correlation",
-                    "Simple linear regression",
-                    "Multiple linear regression",
-                    "Logistic regression basics",
-                    "Model interpretation and assumptions",
-                ],
-                exercises: [
-                    "Perform correlation analyses",
-                    "Build and interpret regression models",
-                ],
-            },
-            {
-                classNumber: 7,
-                moduleTitle: "Module 7: Data Visualization & Reporting",
-                topics: [
-                    "Creating publication-quality tables",
-                    "Professional graphs and charts",
-                    "Reporting statistical results (APA format)",
-                    "AI-assisted interpretation and visualization",
-                    "Common mistakes and how to avoid them",
-                ],
-                exercises: [
-                    "Create complete statistical report",
-                    "Design publication-ready figures",
-                ],
-            },
-        ],
-
-        //
-        projects: [
-            "Complete descriptive analysis of clinical dataset",
-            "Comparative analysis using parametric tests",
-            "Categorical data analysis project",
-            "Regression modeling and interpretation report",
-        ],
-    },
 
     // Innodemy Clinical Research Mastery Program
     {
@@ -661,6 +280,388 @@ export const coursesData: Course[] = [
         ],
     },
 
+    // Advanced Evidence Generation & AI-Enabled Research Practice
+    {
+        _id: "2",
+        title: "Advanced Evidence Generation & AI-Enabled Research Practice",
+        slug: "advanced-evidence-generation-&-ai-enabled-research-practice",
+        description: `Deep-dive into meta-analysis, advanced biostatistics, medical writing, and grant proposal development with automation. Move Beyond Research – Automate and Innovate with cutting-edge AI tools and methodologies.`,
+        thumbnail: "/courses/ClinicalAdvanced.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-02-15"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 8000,
+        totalLiveClasses: 16,
+        totalWeeks: 8,
+        totalModules: 8,
+        totalProjects: 5,
+        totalExercises: 20,
+
+        //
+        idealFor: [
+            "Clinical researchers looking to enhance their research methodology skills",
+            "Medical professionals interested in evidence-based practice and research",
+            "Graduate students in health sciences seeking advanced research capabilities",
+            "Healthcare professionals aiming to publish in high-impact journals",
+            "Anyone interested in leveraging AI for research automation and innovation",
+        ],
+
+        //
+        faq: [
+            {
+                question: "Who should take this course?",
+                answer: "This course is designed for clinical researchers, medical professionals, graduate students, and healthcare workers who want to advance their research skills with AI-enabled tools and methodologies.",
+            },
+            {
+                question: "Do I need prior research experience?",
+                answer: "Basic understanding of research methodology is recommended. However, the course starts with foundational concepts and progressively builds to advanced topics.",
+            },
+            {
+                question: "What tools will I learn to use?",
+                answer: "You will learn to use cutting-edge AI tools for systematic reviews, meta-analysis software, statistical packages, and automation tools for medical writing and grant proposals.",
+            },
+            {
+                question: "Will I learn to write research papers?",
+                answer: "Yes! Medical writing is a key component of this course. You will learn how to structure, write, and submit high-quality research papers to peer-reviewed journals.",
+            },
+            {
+                question:
+                    "How is this course different from basic research courses?",
+                answer: "This course goes beyond traditional research methods by incorporating AI-enabled automation, advanced biostatistics, meta-analysis techniques, and grant proposal development.",
+            },
+            {
+                question: "Will I receive a certificate?",
+                answer: "Yes, upon successful completion of the course and all assignments, You will receive a certificate of completion.",
+            },
+            {
+                question: "What is the course duration?",
+                answer: "The course spans 8 weeks with 16 live classes, covering comprehensive topics from evidence generation to publication.",
+            },
+            {
+                question: "Can I access recorded sessions?",
+                answer: "Absolutely! All live sessions are recorded and made available for review at your convenience.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle:
+                    "Module 1: Introduction to Evidence-Based Research",
+                topics: [
+                    "Understanding evidence-based practice",
+                    "Research question formulation (PICO framework)",
+                    "Study design overview",
+                    "Introduction to systematic reviews",
+                ],
+                exercises: [
+                    "Formulate a research question using PICO",
+                    "Identify appropriate study designs",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle:
+                    "Module 2: Systematic Reviews & Meta-Analysis Fundamentals",
+                topics: [
+                    "Systematic review methodology",
+                    "PRISMA guidelines",
+                    "Search strategies and databases",
+                    "Study selection and quality assessment",
+                ],
+                exercises: [
+                    "Develop a search strategy",
+                    "Practice quality assessment using tools",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Advanced Meta-Analysis Techniques",
+                topics: [
+                    "Fixed vs random effects models",
+                    "Heterogeneity assessment",
+                    "Publication bias and funnel plots",
+                    "Sensitivity analysis",
+                ],
+                exercises: [
+                    "Conduct meta-analysis using software",
+                    "Interpret forest plots",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Advanced Biostatistics",
+                topics: [
+                    "Regression analysis (linear, logistic)",
+                    "Survival analysis",
+                    "Multivariate analysis techniques",
+                    "Sample size calculation",
+                ],
+                exercises: [
+                    "Perform regression analysis",
+                    "Calculate sample sizes for studies",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: AI Tools for Research Automation",
+                topics: [
+                    "AI-powered literature search tools",
+                    "Automated data extraction",
+                    "Text mining and NLP for research",
+                    "AI-assisted systematic reviews",
+                ],
+                exercises: [
+                    "Use AI tools for literature screening",
+                    "Automate data extraction processes",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Medical Writing Essentials",
+                topics: [
+                    "Structure of research papers (IMRaD)",
+                    "Writing effective abstracts",
+                    "Results presentation and visualization",
+                    "Citation management",
+                ],
+                exercises: [
+                    "Draft an abstract for your research",
+                    "Create publication-quality figures",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Grant Proposal Development",
+                topics: [
+                    "Understanding funding mechanisms",
+                    "Grant proposal structure",
+                    "Budget preparation",
+                    "Review criteria and success strategies",
+                ],
+                exercises: [
+                    "Outline a grant proposal",
+                    "Prepare a realistic budget",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Publication & Dissemination",
+                topics: [
+                    "Journal selection strategies",
+                    "Submission process and peer review",
+                    "Responding to reviewer comments",
+                    "Research dissemination and impact",
+                ],
+                exercises: [
+                    "Practice responding to mock reviews",
+                    "Create a dissemination plan",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete systematic review with meta-analysis",
+            "Advanced statistical analysis project",
+            "AI-automated literature review",
+            "Medical manuscript preparation",
+            "Grant proposal development",
+        ],
+    },
+
+    // Biostatistics, Data Analysis & Evidence Interpretation
+    {
+        _id: "3",
+        title: "Biostatistics, Data Analysis & Evidence Interpretation",
+        slug: "biostatistics-data-analysis-&-evidence-interpretation",
+        description: `Master hands-on statistical analysis, interpretation, and visualization using SPSS, STATA, Excel, and AI assistance. Transform datasets into decision-ready insights with comprehensive training in descriptive and inferential statistics, regression modeling, and publication-quality visualizations.`,
+        thumbnail: "/courses/ClinicalDataAnalysis.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-03-01"),
+        category: COURSE_CATEGORIES.CLINICAL_RESEARCH,
+        batchName: "Batch 1",
+        price: 7000,
+        totalLiveClasses: 14,
+        totalWeeks: 7,
+        totalModules: 7,
+        totalProjects: 4,
+        totalExercises: 15,
+
+        //
+        idealFor: [
+            "Healthcare professionals seeking to interpret research data effectively",
+            "Clinical researchers wanting to perform their own statistical analyses",
+            "Graduate students in health sciences requiring biostatistics skills",
+            "Medical professionals preparing manuscripts for publication",
+            "Anyone looking to master statistical software (SPSS, STATA, Excel) for research",
+        ],
+
+        //
+        faq: [
+            {
+                question: "Do I need prior statistics knowledge?",
+                answer: "Basic understanding of mathematics is helpful, but the course starts from fundamentals and progressively builds to advanced topics. We cover everything from descriptive statistics to complex regression models.",
+            },
+            {
+                question: "What software will I learn?",
+                answer: "You will gain hands-on experience with SPSS, STATA, and Excel for statistical analysis. We'll also introduce AI-assisted tools for data interpretation and visualization.",
+            },
+            {
+                question:
+                    "Will I be able to analyze my own research data after this course?",
+                answer: "Absolutely! The course is designed to make you independent in conducting statistical analyses, interpreting results, and creating publication-ready tables and figures.",
+            },
+            {
+                question:
+                    "Is this course suitable for qualitative researchers?",
+                answer: "This course focuses on quantitative data analysis. However, if you work with mixed-methods research or need to understand statistical sections in papers, this course will be valuable.",
+            },
+            {
+                question:
+                    "How is this different from online statistics courses?",
+                answer: "This course emphasizes practical, hands-on application with real healthcare datasets. You will learn not just the theory, but how to actually perform analyses and interpret results in clinical context.",
+            },
+            {
+                question: "Will I learn how to present data visually?",
+                answer: "Yes! Data visualization is a key component. You will learn to create professional graphs, charts, and tables suitable for research papers and presentations.",
+            },
+            {
+                question: "Can I get help with my specific research project?",
+                answer: "The course includes project support sessions where you can get guidance on applying the techniques to your own research data.",
+            },
+            {
+                question: "What are the system requirements?",
+                answer: "You will need a Windows PC (SPSS and STATA work best on Windows). We'll provide guidance on software installation and setup during the course.",
+            },
+        ],
+
+        //
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle:
+                    "Module 1: Introduction to Biostatistics & Data Types",
+                topics: [
+                    "Role of statistics in healthcare research",
+                    "Types of data: categorical, continuous, ordinal",
+                    "Understanding variables and scales of measurement",
+                    "Introduction to statistical software (SPSS, STATA, Excel)",
+                    "Data entry and data management basics",
+                ],
+                exercises: [
+                    "Install and set up statistical software",
+                    "Enter sample dataset and identify variable types",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle:
+                    "Module 2: Descriptive Statistics & Data Summarization",
+                topics: [
+                    "Measures of central tendency (mean, median, mode)",
+                    "Measures of dispersion (SD, variance, range, IQR)",
+                    "Data distribution and normality testing",
+                    "Creating frequency tables and cross-tabulations",
+                    "Basic data visualization (histograms, box plots, bar charts)",
+                ],
+                exercises: [
+                    "Calculate descriptive statistics for a dataset",
+                    "Create summary tables for publication",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle:
+                    "Module 3: Probability & Hypothesis Testing Fundamentals",
+                topics: [
+                    "Probability distributions (normal, binomial, Poisson)",
+                    "Understanding p-values and confidence intervals",
+                    "Type I and Type II errors",
+                    "Null and alternative hypotheses",
+                    "Statistical significance vs clinical significance",
+                ],
+                exercises: [
+                    "Interpret p-values and confidence intervals",
+                    "Formulate hypotheses for research questions",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Parametric Tests (t-tests & ANOVA)",
+                topics: [
+                    "Independent samples t-test",
+                    "Paired samples t-test",
+                    "One-way ANOVA",
+                    "Post-hoc tests (Bonferroni, Tukey)",
+                    "Assumptions and when to use each test",
+                ],
+                exercises: [
+                    "Perform t-tests on clinical data",
+                    "Conduct ANOVA with multiple comparisons",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle:
+                    "Module 5: Non-Parametric Tests & Categorical Data Analysis",
+                topics: [
+                    "Mann-Whitney U test",
+                    "Wilcoxon signed-rank test",
+                    "Kruskal-Wallis test",
+                    "Chi-square test for independence",
+                    "Fisher's exact test",
+                ],
+                exercises: [
+                    "Choose appropriate tests for non-normal data",
+                    "Analyze categorical associations",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Correlation & Regression Analysis",
+                topics: [
+                    "Pearson and Spearman correlation",
+                    "Simple linear regression",
+                    "Multiple linear regression",
+                    "Logistic regression basics",
+                    "Model interpretation and assumptions",
+                ],
+                exercises: [
+                    "Perform correlation analyses",
+                    "Build and interpret regression models",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Data Visualization & Reporting",
+                topics: [
+                    "Creating publication-quality tables",
+                    "Professional graphs and charts",
+                    "Reporting statistical results (APA format)",
+                    "AI-assisted interpretation and visualization",
+                    "Common mistakes and how to avoid them",
+                ],
+                exercises: [
+                    "Create complete statistical report",
+                    "Design publication-ready figures",
+                ],
+            },
+        ],
+
+        //
+        projects: [
+            "Complete descriptive analysis of clinical dataset",
+            "Comparative analysis using parametric tests",
+            "Categorical data analysis project",
+            "Regression modeling and interpretation report",
+        ],
+    },
+
     // Protocol Development, Study Design & Data Frameworking
     {
         _id: "5",
@@ -709,7 +710,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "Will I learn about data management?",
-                answer: "Yes! Data frameworking and management are core components. You'll learn to create data collection forms, design databases, and plan data analysis strategies.",
+                answer: "Yes! Data frameworking and management are core components. You will learn to create data collection forms, design databases, and plan data analysis strategies.",
             },
             {
                 question: "Is ethical approval covered?",
@@ -721,7 +722,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I receive upon completion?",
-                answer: "You'll receive a course completion certificate and a complete, submission-ready research protocol developed during the course.",
+                answer: "You will receive a course completion certificate and a complete, submission-ready research protocol developed during the course.",
             },
         ],
 
@@ -872,7 +873,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I learn about scientific reading?",
-                answer: "You'll learn how to efficiently read research papers, understand study designs, critically evaluate methodology, interpret results, and assess the quality and reliability of published research.",
+                answer: "You will learn how to efficiently read research papers, understand study designs, critically evaluate methodology, interpret results, and assess the quality and reliability of published research.",
             },
             {
                 question: "Will AI tools be covered?",
@@ -885,7 +886,7 @@ export const coursesData: Course[] = [
             {
                 question:
                     "Will I be able to read research papers after this course?",
-                answer: "Yes! You'll gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
+                answer: "Yes! You will gain the skills to confidently read, understand, and critically evaluate research papers across different study designs and methodologies.",
             },
             {
                 question: "Is this a prerequisite for other courses?",
@@ -1030,11 +1031,11 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What makes this course different?",
-                answer: "We integrate cutting-edge AI tools (ChatGPT, Grammarly, Scite, Zotero) throughout the course to enhance your writing efficiency and quality. You'll get hands-on practice with real paper writing, not just theory.",
+                answer: "We integrate cutting-edge AI tools (ChatGPT, Grammarly, Scite, Zotero) throughout the course to enhance your writing efficiency and quality. You will get hands-on practice with real paper writing, not just theory.",
             },
             {
                 question: "Will I learn to write a complete research paper?",
-                answer: "Absolutely! You'll learn to write every section of a research paper (Abstract, Introduction, Methods, Results, Discussion) with AI assistance and instructor guidance.",
+                answer: "Absolutely! You will learn to write every section of a research paper (Abstract, Introduction, Methods, Results, Discussion) with AI assistance and instructor guidance.",
             },
             {
                 question: "What about reference management?",
@@ -1042,15 +1043,15 @@ export const coursesData: Course[] = [
             },
             {
                 question: "Will I learn how to respond to reviewers?",
-                answer: "Yes! Module 9 covers handling peer review feedback professionally, including simulations where you'll use ChatGPT to draft reviewer responses.",
+                answer: "Yes! Module 9 covers handling peer review feedback professionally, including simulations where You will use ChatGPT to draft reviewer responses.",
             },
             {
                 question: "Do you cover conference presentations?",
-                answer: "Absolutely! Module 10 teaches poster design, oral presentations, and Q&A techniques. You'll design a poster in Canva and generate presentation scripts with AI.",
+                answer: "Absolutely! Module 10 teaches poster design, oral presentations, and Q&A techniques. You will design a poster in Canva and generate presentation scripts with AI.",
             },
             {
                 question: "What deliverables will I have by the end?",
-                answer: "You'll complete a full IMRaD manuscript, a conference poster, and reviewer reply pack - all publication-ready materials.",
+                answer: "You will complete a full IMRaD manuscript, a conference poster, and reviewer reply pack - all publication-ready materials.",
             },
             {
                 question: "How long is the course?",
@@ -1259,7 +1260,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What tools will I learn?",
-                answer: "You'll gain hands-on experience with industry-standard EDA tools used for synthesis, place & route, timing analysis, and signoff. We focus on practical tool usage throughout the course.",
+                answer: "You will gain hands-on experience with industry-standard EDA tools used for synthesis, place & route, timing analysis, and signoff. We focus on practical tool usage throughout the course.",
             },
             {
                 question: "Will I work on real projects?",
@@ -1529,7 +1530,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What will I learn in this course?",
-                answer: "You'll learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
+                answer: "You will learn Python fundamentals, data structures, functional programming, object-oriented programming, exception handling, file handling, and complete 10 practical projects.",
             },
             {
                 question: "How long is the course?",

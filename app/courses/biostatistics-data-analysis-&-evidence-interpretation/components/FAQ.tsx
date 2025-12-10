@@ -14,7 +14,7 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "সম্পূর্ণ অনলাইন—আপনি যেকোনো জায়গা থেকে যুক্ত হতে পারবেন",
+            answer: "সম্পূর্ণ অনলাইন, আপনি যেকোনো জায়গা থেকে যুক্ত হতে পারবেন",
         },
         {
             question: "Will I receive a certificate after completion?",
@@ -22,7 +22,7 @@ export default function FAQ() {
         },
         {
             question: "Do I need prior experience in statistics?",
-            answer: "Basic understanding ভালো, তবে expert হওয়ার দরকার নেই, Beginner থেকে advanced—সবাই শিখতে পারবে।",
+            answer: "Basic understanding ভালো, তবে expert হওয়ার দরকার নেই, Beginner থেকে advanced, সবাই শিখতে পারবে।",
         },
         {
             question: "How long is the course?",

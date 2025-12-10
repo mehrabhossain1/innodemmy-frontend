@@ -1,142 +1,106 @@
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
-import {
-    Code2,
-    Database,
-    Cloud,
-    Cpu,
-    Globe,
-    Smartphone,
-    GitBranch,
-    Shield,
-    Zap,
-    Box,
-    Server,
-    Layers,
-} from "lucide-react";
+import Image from "next/image";
 
 interface Technology {
     name: string;
-    icon: React.ReactNode;
-    category: string;
+    image: string;
     color: string;
 }
 
 const technologies: Technology[] = [
     {
-        name: "React",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Frontend",
-        color: "from-cyan-500 to-blue-500",
+        name: "ChatGPT",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fchatgpt-icon.png%3Falt%3Dmedia%26token%3D36e1940c-e136-48a4-86ae-1aa0e1746f83&w=640&q=75",
+        color: "from-emerald-500 to-teal-600",
     },
     {
-        name: "Next.js",
-        icon: <Layers className="w-6 h-6" />,
-        category: "Framework",
-        color: "from-gray-800 to-gray-600",
-    },
-    {
-        name: "TypeScript",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Language",
-        color: "from-blue-600 to-blue-400",
-    },
-    {
-        name: "Node.js",
-        icon: <Server className="w-6 h-6" />,
-        category: "Backend",
-        color: "from-green-600 to-green-400",
-    },
-    {
-        name: "Python",
-        icon: <Code2 className="w-6 h-6" />,
-        category: "Language",
-        color: "from-yellow-500 to-blue-500",
-    },
-    {
-        name: "MongoDB",
-        icon: <Database className="w-6 h-6" />,
-        category: "Database",
-        color: "from-green-500 to-green-700",
-    },
-    {
-        name: "AWS",
-        icon: <Cloud className="w-6 h-6" />,
-        category: "Cloud",
-        color: "from-orange-500 to-orange-600",
-    },
-    {
-        name: "Docker",
-        icon: <Box className="w-6 h-6" />,
-        category: "DevOps",
-        color: "from-blue-500 to-blue-600",
-    },
-    {
-        name: "Git",
-        icon: <GitBranch className="w-6 h-6" />,
-        category: "Version Control",
-        color: "from-red-500 to-orange-500",
-    },
-    {
-        name: "GraphQL",
-        icon: <Globe className="w-6 h-6" />,
-        category: "API",
-        color: "from-pink-500 to-purple-500",
-    },
-    {
-        name: "TensorFlow",
-        icon: <Cpu className="w-6 h-6" />,
-        category: "AI/ML",
-        color: "from-orange-600 to-yellow-500",
-    },
-    {
-        name: "React Native",
-        icon: <Smartphone className="w-6 h-6" />,
-        category: "Mobile",
-        color: "from-cyan-400 to-blue-500",
-    },
-    {
-        name: "Kubernetes",
-        icon: <Box className="w-6 h-6" />,
-        category: "DevOps",
-        color: "from-blue-600 to-indigo-600",
-    },
-    {
-        name: "Firebase",
-        icon: <Zap className="w-6 h-6" />,
-        category: "Backend",
+        name: "Power BI",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fpower-bi-icon.png%3Falt%3Dmedia%26token%3Dc9edb838-f9bc-46b8-b32b-e46f80a1097c&w=640&q=75",
         color: "from-yellow-500 to-orange-500",
     },
     {
-        name: "PostgreSQL",
-        icon: <Database className="w-6 h-6" />,
-        category: "Database",
-        color: "from-blue-700 to-blue-500",
+        name: "Python",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fpython.png%3Falt%3Dmedia%26token%3Db0418f38-b528-4f80-9543-934beee7ffe3&w=640&q=75",
+        color: "from-blue-500 to-yellow-400",
     },
     {
-        name: "JWT",
-        icon: <Shield className="w-6 h-6" />,
-        category: "Security",
-        color: "from-purple-600 to-pink-600",
+        name: "R",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fr.png%3Falt%3Dmedia%26token%3Da13f9c4d-05b3-4ffc-9f54-12e66523394e&w=640&q=75",
+        color: "from-blue-600 to-blue-400",
+    },
+    {
+        name: "Excel",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fmicrosoft-excel-icon.png%3Falt%3Dmedia%26token%3Dc0ca4fd3-fc85-46c0-9915-c326fec3fea4&w=640&q=75",
+        color: "from-green-600 to-green-400",
+    },
+    {
+        name: "Data Science",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fdata-science.png%3Falt%3Dmedia%26token%3D37035ed1-ca70-45ff-a858-98f458e2aaa6&w=640&q=75",
+        color: "from-orange-500 to-orange-600",
+    },
+    {
+        name: "SQL",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fsql-database-generic.png%3Falt%3Dmedia%26token%3D01e07414-b2f8-4709-b46c-3dcbd6204941&w=640&q=75",
+        color: "from-cyan-500 to-blue-500",
+    },
+    {
+        name: "Stata",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252FStata.png%3Falt%3Dmedia%26token%3D128ab042-a4ec-4611-9962-f0c7a5340ceb&w=640&q=75",
+        color: "from-blue-700 to-indigo-600",
+    },
+    {
+        name: "Statistics",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Fstatistics.png%3Falt%3Dmedia%26token%3D879e59e3-ab63-4299-8e0c-2ca9475b2120&w=640&q=75",
+        color: "from-purple-500 to-pink-500",
+    },
+    {
+        name: "Tableau",
+        image: "https://www.datasolution360.com/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fdata-solution-360.appspot.com%2Fo%2FtechnologyIcon%252Fsocialmedia46308%2540gmail.com%252Ftableau-software.jpg%3Falt%3Dmedia%26token%3D6f8d67fe-c3f2-4444-8069-be4f85175a14&w=640&q=75",
+        color: "from-blue-500 to-cyan-400",
+    },
+    {
+        name: "LaTeX",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LaTeX_logo.svg/1200px-LaTeX_logo.svg.png",
+        color: "from-teal-500 to-cyan-500",
+    },
+    {
+        name: "SPSS",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/SPSS_logo.svg/1200px-SPSS_logo.svg.png",
+        color: "from-red-500 to-pink-500",
+    },
+    {
+        name: "MATLAB",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/667px-Matlab_Logo.png",
+        color: "from-orange-600 to-red-500",
+    },
+    {
+        name: "Machine Learning",
+        image: "https://cdn-icons-png.flaticon.com/512/8637/8637099.png",
+        color: "from-indigo-500 to-purple-600",
+    },
+    {
+        name: "VLSI",
+        image: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
+        color: "from-slate-500 to-gray-600",
+    },
+    {
+        name: "GitHub",
+        image: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+        color: "from-gray-700 to-slate-800",
     },
 ];
 
-const firstRow = technologies.slice(0, technologies.length / 2);
-const secondRow = technologies.slice(technologies.length / 2);
-
-const TechnologyCard = ({
-    name,
-    icon,
-    category,
-    color,
-}: Technology) => {
+const TechnologyCard = ({ name, image, color }: Technology) => {
     return (
         <div className="relative w-64 group">
             {/* Glow Effect */}
-            <div className={cn(
-                "absolute -inset-0.5 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500",
-                color
-            )}></div>
+            <div
+                className={cn(
+                    "absolute -inset-0.5 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500",
+                    color
+                )}
+            ></div>
 
             <div
                 className={cn(
@@ -148,40 +112,46 @@ const TechnologyCard = ({
                 )}
             >
                 <div className="flex items-center gap-4">
-                    {/* Icon Container */}
+                    {/* Image Container */}
                     <div className="relative">
                         <div
                             className={cn(
-                                "flex items-center justify-center w-11 h-11 rounded-lg",
-                                "bg-gradient-to-br shadow-lg transition-all duration-300",
-                                "group-hover:scale-110 group-hover:rotate-3",
-                                color,
-                                "text-white"
+                                "flex items-center justify-center w-12 h-12 rounded-lg",
+                                "bg-white p-2 shadow-lg transition-all duration-300",
+                                "group-hover:scale-110 group-hover:rotate-3"
                             )}
                         >
-                            <div className="w-6 h-6">{icon}</div>
+                            <Image
+                                src={image}
+                                alt={name}
+                                width={40}
+                                height={40}
+                                className="object-contain"
+                            />
                         </div>
-                        {/* Icon Glow */}
-                        <div className={cn(
-                            "absolute inset-0 bg-gradient-to-br rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300",
-                            color
-                        )}></div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex-1 space-y-0.5">
-                        <h3 className="text-base font-bold text-white group-hover:text-secondary transition-colors duration-300">
+                    <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-secondary transition-colors duration-300">
                             {name}
                         </h3>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">
-                            {category}
-                        </p>
                     </div>
 
                     {/* Arrow Indicator */}
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                        <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                            className="w-4 h-4 text-secondary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                            />
                         </svg>
                     </div>
                 </div>
@@ -195,10 +165,14 @@ export function TechnologyStackSection() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-12 md:py-16 lg:py-14 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                    backgroundSize: '50px 50px'
-                }}></div>
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage:
+                            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                        backgroundSize: "50px 50px",
+                    }}
+                ></div>
             </div>
 
             {/* Gradient Orbs */}
@@ -222,21 +196,28 @@ export function TechnologyStackSection() {
                             Tech Stack
                         </span>
                     </h2>
-                    <p className="text-base md:text-lg lg:text-base text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                        Learn the most in-demand technologies used by industry leaders.
-                        Build real-world expertise that employers value.
+                    <p className="text-base md:text-lg lg:text-base text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                        Learn the most in-demand technologies used by industry
+                        leaders. Build real-world expertise that employers
+                        value.
                     </p>
                 </div>
 
                 {/* Marquee Rows */}
-                <Marquee pauseOnHover className="[--duration:40s] mb-4">
-                    {firstRow.map((tech, index) => (
-                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                <Marquee pauseOnHover className="[--duration:30s] mb-4">
+                    {technologies.map((tech, index) => (
+                        <TechnologyCard
+                            key={`${tech.name}-${index}`}
+                            {...tech}
+                        />
                     ))}
                 </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:40s]">
-                    {secondRow.map((tech, index) => (
-                        <TechnologyCard key={`${tech.name}-${index}`} {...tech} />
+                <Marquee reverse pauseOnHover className="[--duration:30s]">
+                    {technologies.map((tech, index) => (
+                        <TechnologyCard
+                            key={`${tech.name}-${index}-reverse`}
+                            {...tech}
+                        />
                     ))}
                 </Marquee>
             </div>

@@ -139,11 +139,11 @@ export default function CoursesSection() {
     // Filter courses based on active category
     const filteredCourses = useMemo(() => {
         if (activeCategory === "all") {
-            return courses.slice(0, 12); // Show max 8 courses
+            return courses.slice(0, 8); // Show max 8 courses
         }
         return courses
             .filter((course) => course.category === activeCategory)
-            .slice(0, 12);
+            .slice(0, 8);
     }, [courses, activeCategory]);
 
     return (
@@ -151,11 +151,6 @@ export default function CoursesSection() {
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-8">
-                    <div className="inline-block mb-3 lg:mb-3">
-                        <span className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20">
-                            ⭐ Popular Picks
-                        </span>
-                    </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold mb-3 lg:mb-3">
                         <span className="text-foreground">Featured</span>{" "}
                         <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
@@ -210,11 +205,24 @@ export default function CoursesSection() {
 
                 {/* Course Cards Grid */}
                 {loading ? (
-                    <div className="text-center py-12 lg:py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 lg:h-14 lg:w-14 border-b-2 border-primary mx-auto mb-3"></div>
-                        <p className="text-muted-foreground text-base lg:text-base">
-                            Loading featured courses...
-                        </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-8 md:mb-10 lg:mb-8">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm animate-pulse"
+                            >
+                                <div className="relative h-48 bg-muted"></div>
+                                <div className="p-4 space-y-3">
+                                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                                    <div className="h-3 bg-muted rounded w-full"></div>
+                                    <div className="h-3 bg-muted rounded w-5/6"></div>
+                                    <div className="flex gap-2 pt-2">
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                        <div className="h-6 bg-muted rounded w-20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ) : filteredCourses.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-8 md:mb-10 lg:mb-8">

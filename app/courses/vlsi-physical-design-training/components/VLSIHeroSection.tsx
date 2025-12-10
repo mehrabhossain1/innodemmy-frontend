@@ -1,10 +1,9 @@
 "use client";
-import { Video, Play } from "lucide-react";
+import { Video, Play, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
-import VLSIPDThumbnail from "@/public/courses/VLSIPD.jpg";
 
 interface VLSIHeroSectionProps {
     courseData: {
@@ -17,6 +16,8 @@ interface VLSIHeroSectionProps {
         videoLabel: string;
         enrollButtonTextShort: string;
         liveCourseLabel: string;
+        rating?: number;
+        totalRatings?: number;
     };
     onVideoClick: () => void;
     onEnrollClick?: () => void;
@@ -29,6 +30,10 @@ export default function VLSIHeroSection({
     onVideoClick,
     onEnrollClick,
 }: VLSIHeroSectionProps) {
+    // Generate consistent rating values
+    const displayRating = courseData.rating || 4.6;
+    const displayTotalRatings = courseData.totalRatings || 95;
+
     const handleWhatsAppClick = () => {
         const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
         const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(
@@ -73,6 +78,28 @@ export default function VLSIHeroSection({
                             {courseData.title}
                         </h1>
 
+                        {/* Rating Section */}
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className={`w-5 h-5 ${
+                                            i < Math.floor(displayRating)
+                                                ? "fill-yellow-400 text-yellow-400"
+                                                : "fill-gray-300 text-gray-300"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-lg font-bold text-foreground">
+                                {displayRating.toFixed(1)}
+                            </span>
+                            <span className="text-sm text-muted-foreground">
+                                ({displayTotalRatings} ratings)
+                            </span>
+                        </div>
+
                         {/* Description */}
                         <div className="mb-6 w-full">
                             <div className="text-gray-700 dark:text-gray-300 text-base leading-relaxed whitespace-pre-line text-justify">
@@ -92,7 +119,10 @@ export default function VLSIHeroSection({
                             onClick={onVideoClick}
                         >
                             <Image
-                                src={courseData.thumbnailUrl || VLSIPDThumbnail}
+                                src={
+                                    courseData.thumbnailUrl ||
+                                    "/placeholder-course.jpg"
+                                }
                                 alt={courseData.title}
                                 fill
                                 className="object-cover"

@@ -37,7 +37,7 @@ const getBlogDataOld = (id: string) => {
         <p>The web development landscape is constantly evolving, and 2024 promises to bring exciting new trends and technologies that will reshape how we build and interact with web applications. As we move forward, developers need to stay ahead of these trends to remain competitive and deliver exceptional user experiences.</p>
 
         <h2>AI Integration in Web Development</h2>
-        <p>Artificial Intelligence is no longer a futuristic concept—it's becoming an integral part of modern web development. From AI-powered chatbots to intelligent content generation, developers are finding innovative ways to incorporate AI into their applications.</p>
+        <p>Artificial Intelligence is no longer a futuristic concept, it's becoming an integral part of modern web development. From AI-powered chatbots to intelligent content generation, developers are finding innovative ways to incorporate AI into their applications.</p>
 
         <p>Key areas where AI is making an impact include:</p>
         <ul>
@@ -192,13 +192,13 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                     {/* Article Header */}
                     <header className="mb-8">
                         <div className="flex items-center space-x-3 mb-4">
-                            <Badge variant="secondary">{blog.category || "Uncategorized"}</Badge>
+                            <Badge variant="secondary">
+                                {blog.category || "Uncategorized"}
+                            </Badge>
                             <div className="flex items-center space-x-4 text-sm text-gray-500">
                                 <div className="flex items-center space-x-1">
                                     <Calendar className="w-4 h-4" />
-                                    <span>
-                                        {formatDate(blog.date)}
-                                    </span>
+                                    <span>{formatDate(blog.date)}</span>
                                 </div>
                                 <div className="flex items-center space-x-1">
                                     <Clock className="w-4 h-4" />
@@ -222,8 +222,7 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                                         {blog.author || "Innodemy Team"}
                                     </p>
                                     <p className="text-sm text-gray-600">
-                                        Published{" "}
-                                        {formatDate(blog.date)}
+                                        Published {formatDate(blog.date)}
                                     </p>
                                 </div>
                             </div>
@@ -291,7 +290,9 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                                     {blog.author || "Innodemy Team"}
                                 </h3>
                                 <p className="text-gray-600 mb-3">
-                                    Dedicated to providing quality educational content and helping students achieve their learning goals.
+                                    Dedicated to providing quality educational
+                                    content and helping students achieve their
+                                    learning goals.
                                 </p>
                             </div>
                         </div>

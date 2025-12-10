@@ -7,7 +7,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Intensive Applied Learning Journey",
             description:
-                "Real datasets, real clinical scenarios, real interpretation — no theoretical fluff.",
+                "Real datasets, real clinical scenarios, real interpretation ,  no theoretical fluff.",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
@@ -30,19 +30,19 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Clinical research analyst, data manager, biostatistics career track, pharma RWE roles—সব কিছুর জন্য strategic direction",
+                "Clinical research analyst, data manager, biostatistics career track, pharma RWE roles, সব কিছুর জন্য strategic direction",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Globally accepted certification—LinkedIn/CV credibility booster।",
+                "Globally accepted certification, LinkedIn/CV credibility booster।",
         },
     ];
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="What You'll Get in This Course" />
+            <SectionTitle title="What You will Get in This Course" />
 
             {/* Grid Layout - More Compact */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
