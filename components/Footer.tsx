@@ -37,10 +37,10 @@ export default function Footer() {
                                         className="h-7 w-auto transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
+                                <p className="text-sm mt-1 text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    A leading skills training platform
+                                </p>
                             </Link>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                A leading skills training platform
-                            </p>
 
                             {/* Social Media Links */}
                             <div>
