@@ -204,7 +204,7 @@ export function TechnologyStackSection() {
                 </div>
 
                 {/* Marquee Rows */}
-                <Marquee pauseOnHover className="[--duration:30s] mb-4">
+                <Marquee pauseOnHover className="[--duration:50s] mb-4">
                     {technologies.map((tech, index) => (
                         <TechnologyCard
                             key={`${tech.name}-${index}`}
@@ -212,7 +212,7 @@ export function TechnologyStackSection() {
                         />
                     ))}
                 </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:30s]">
+                <Marquee reverse pauseOnHover className="[--duration:50s]">
                     {technologies.map((tech, index) => (
                         <TechnologyCard
                             key={`${tech.name}-${index}-reverse`}

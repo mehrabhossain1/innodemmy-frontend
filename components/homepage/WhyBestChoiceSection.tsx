@@ -14,9 +14,9 @@ import Container from "../Container";
 const featureCards = [
     {
         id: "affordable",
-        title: "Affordable Excellence",
+        title: "Best learning at affordable prices",
         description:
-            "Premium education at prices that won't break the bank. Quality learning for everyone.",
+            "Best quality education accessible to everyone with affordable pricing",
         icon: DollarSign,
         gradient: "from-emerald-500 to-teal-500",
         iconColor: "text-emerald-500",
@@ -26,7 +26,7 @@ const featureCards = [
         id: "project-based",
         title: "Real-World Projects",
         description:
-            "Build your portfolio with hands-on projects that mirror industry challenges.",
+            "Build your portfolio with hands-on projects that mirror industry challenges",
         icon: FolderOpen,
         gradient: "from-violet-500 to-purple-500",
         iconColor: "text-violet-500",
@@ -36,7 +36,7 @@ const featureCards = [
         id: "mentors",
         title: "Expert Mentors",
         description:
-            "Learn from industry leaders who have shaped successful tech products and companies.",
+            "Learn from industry leaders who have shaped successful tech products and companies",
         icon: Users,
         gradient: "from-blue-500 to-cyan-500",
         iconColor: "text-blue-500",
@@ -46,7 +46,7 @@ const featureCards = [
         id: "support",
         title: "24/7 Support",
         description:
-            "Get help whenever you need it with dedicated one-on-one support sessions.",
+            "Get help whenever you need it with dedicated one-on-one support sessions",
         icon: HeadphonesIcon,
         gradient: "from-orange-500 to-amber-500",
         iconColor: "text-orange-500",
@@ -56,7 +56,7 @@ const featureCards = [
         id: "certificate",
         title: "Certification",
         description:
-            "Earn recognized certificates that boost your career and validate your expertise.",
+            "Earn recognized certificates that boost your career and validate your expertise",
         icon: Award,
         gradient: "from-yellow-500 to-orange-500",
         iconColor: "text-yellow-500",
@@ -66,7 +66,7 @@ const featureCards = [
         id: "continued-support",
         title: "Lifetime Access",
         description:
-            "Continue learning with exclusive resources and community support long after graduation.",
+            "Continue learning with exclusive resources and community support long after graduation",
         icon: LifeBuoy,
         gradient: "from-rose-500 to-pink-500",
         iconColor: "text-rose-500",

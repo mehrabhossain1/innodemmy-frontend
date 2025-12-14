@@ -143,7 +143,7 @@ function AnimatedCounter({
 export default function AboutusSection() {
     const stats = [
         {
-            target: 50000,
+            target: 5000,
             suffix: "+",
             label: "Students Enrolled",
             icon: Users,
@@ -151,9 +151,9 @@ export default function AboutusSection() {
             isBengali: false,
         },
         {
-            target: 500,
+            target: 11,
             suffix: "+",
-            label: "Expert Courses",
+            label: "Specialized Courses",
             icon: BookOpen,
             color: "from-secondary to-secondary/70",
             isBengali: false,
