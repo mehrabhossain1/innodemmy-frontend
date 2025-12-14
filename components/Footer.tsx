@@ -287,17 +287,25 @@ export default function Footer() {
                                 {/* bKash */}
                                 <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
-                                        <span className="text-[#E2136E] font-bold text-base">
-                                            bKash
-                                        </span>
+                                        <Image
+                                            src="/logo/bkash.jpg"
+                                            alt="bKash"
+                                            width={60}
+                                            height={24}
+                                            className="h-6 w-auto"
+                                        />
                                     </div>
                                 </div>
                                 {/* Nagad */}
                                 <div className="bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-shadow">
                                     <div className="flex items-center gap-1">
-                                        <span className="text-[#EE4023] font-bold text-base">
-                                            Nagad
-                                        </span>
+                                        <Image
+                                            src="/logo/nagad.png"
+                                            alt="Nagad"
+                                            width={60}
+                                            height={24}
+                                            className="h-6 w-auto"
+                                        />
                                     </div>
                                 </div>
                                 {/* Visa */}
