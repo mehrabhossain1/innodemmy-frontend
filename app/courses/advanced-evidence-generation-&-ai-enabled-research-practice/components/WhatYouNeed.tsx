@@ -5,7 +5,7 @@ export default function WhatYouNeed() {
     const requirements = [
         {
             image: "/icons/image21.png",
-            title: "Research foundations (Tier 1 বা equivalent)",
+            title: "Research foundations (Tier 1 or equivalent)",
             gradient: "from-blue-500 to-blue-600",
         },
         {
@@ -15,7 +15,7 @@ export default function WhatYouNeed() {
         },
         {
             image: "/icons/image6.png",
-            title: "AI tools ব্যবহার করার curiosity এবং adaptability",
+            title: "Curiosity and adaptability to use AI tools",
             gradient: "from-green-500 to-green-600",
         },
     ];
