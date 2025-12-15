@@ -16,8 +16,8 @@ export default function WhoThisCourseIsFor() {
             title: "Pharma, CRO, biotech, data management professionals",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
-            title: "যারা thesis, dissertation, or publication-level data analysis করতে চান",
+            image: "/icons/image35.jpg",
+            title: "Those who want to create a thesis, dissertation, or publication standard protocol",
         },
     ];
 
