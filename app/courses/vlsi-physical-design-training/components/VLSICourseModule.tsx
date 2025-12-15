@@ -417,12 +417,6 @@ export default function VLSICourseModule() {
                                                                         session.topic
                                                                     }
                                                                 </span>
-                                                                <span className="ml-2 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
-                                                                    Week{" "}
-                                                                    {
-                                                                        session.week
-                                                                    }
-                                                                </span>
                                                             </div>
                                                             <ChevronDown
                                                                 className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 ml-2 flex-shrink-0 ${
