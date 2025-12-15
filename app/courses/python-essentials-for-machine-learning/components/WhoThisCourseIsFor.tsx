@@ -20,7 +20,7 @@ export default function WhoThisCourseIsFor() {
             title: "Hands-on Learners – People who prefer learning by doing through practical exercises and real-world examples.",
         },
         {
-            image: "https://img.icons8.com/color/96/brain.png",
+            image: "/icons/image9.png",
             title: "Skill Builders – Learners who want to strengthen problem-solving, programming, and analytical skills.",
         },
         {

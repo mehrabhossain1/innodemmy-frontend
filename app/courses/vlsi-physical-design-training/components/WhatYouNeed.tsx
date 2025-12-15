@@ -14,12 +14,12 @@ export default function WhatYouNeed() {
             gradient: "from-purple-500 to-purple-600",
         },
         {
-            image: "https://img.icons8.com/color/96/electrical.png",
+            image: "/icons/image27.jpg",
             title: "Background Knowledge: Basics of Digital Logic Design and Electronics",
             gradient: "from-green-500 to-green-600",
         },
         {
-            image: "https://img.icons8.com/color/96/brain.png",
+            image: "/icons/image19.png",
             title: "Mindset: Patience + Practice (Physical design requires iterative debugging",
             gradient: "from-orange-500 to-orange-600",
         },

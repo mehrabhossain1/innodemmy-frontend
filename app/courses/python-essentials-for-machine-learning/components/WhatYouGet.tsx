@@ -46,7 +46,7 @@ export default function WhatYouGet() {
                 "Revisit pre-recorded videos, resources, and class recordings anytime, forever.",
         },
         {
-            image: "https://img.icons8.com/color/96/career.png",
+            image: "/icons/image30.png",
             title: "Mock Interview & Career Guidance",
             description:
                 "Prepare for interviews with real-world tips, resume & LinkedIn optimization, and guidance for internships/jobs.",
