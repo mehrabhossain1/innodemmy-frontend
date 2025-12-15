@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
+import CourseModule from "./components/CourseModule";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -67,6 +68,10 @@ export default function DataScienceAndMachineLearning() {
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Course Module */}
+            <div id="course-module">
+                <CourseModule />
+            </div>
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
