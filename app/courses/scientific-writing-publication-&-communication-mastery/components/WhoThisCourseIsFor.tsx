@@ -12,11 +12,11 @@ export default function WhoThisCourseIsFor() {
             title: "Early-career researchers in clinical, biomedical, public health, or engineering domains",
         },
         {
-            image: "https://img.icons8.com/color/96/businessman.png",
+            image: "/icons/image11.png",
             title: "Physicians, healthcare workers, and pharma/CRO professionals",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image41.png",
             title: "Anyone aiming for journal publications, conference presentations, or academic writing mastery",
         },
     ];

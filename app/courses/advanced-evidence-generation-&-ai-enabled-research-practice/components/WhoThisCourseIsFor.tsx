@@ -8,15 +8,15 @@ export default function WhoThisCourseIsFor() {
             title: "Advanced learners targeting publication, evidence consulting, or CRO-level analytics",
         },
         {
-            image: "https://img.icons8.com/color/96/biotech.png",
+            image: "/icons/image5.png",
             title: "Clinical researchers aiming for global-standard evidence generation",
         },
         {
-            image: "https://img.icons8.com/color/96/businessman.png",
+            image: "/icons/image11.png",
             title: "Public health, pharma, biotech professionals",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image44.png",
             title: "Anyone wanting to adopt AI in systematic review, meta-analysis, and RWE workflows",
         },
     ];

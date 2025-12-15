@@ -8,7 +8,8 @@ export default function WhoThisCourseIsFor() {
             title: "Students যারা protocol writing-এ mastery চাই",
         },
         {
-            image: "https://img.icons8.com/color/96/biotech.png",
+            image: "/icons/image1.png",
+
             title: "Early-career clinical researchers",
         },
         {
@@ -16,7 +17,7 @@ export default function WhoThisCourseIsFor() {
             title: "Physicians, public health professionals, nurses, and pharma/biotech professionals",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image35.jpg",
             title: "যারা thesis, dissertation, বা publication standard protocol বানাতে চান",
         },
     ];
