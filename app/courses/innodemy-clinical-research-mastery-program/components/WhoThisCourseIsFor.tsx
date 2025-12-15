@@ -16,7 +16,7 @@ export default function WhoThisCourseIsFor() {
             title: "MBBS/BDS students or graduates interested in developing strong research skills for academic or clinical careers.",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image29.png",
             title: "Anyone who wants to build solid expertise in research methodology, scientific literacy, and academic writing.",
         },
     ];

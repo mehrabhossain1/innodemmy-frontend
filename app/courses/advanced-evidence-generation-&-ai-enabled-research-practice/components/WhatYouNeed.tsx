@@ -4,17 +4,17 @@ import SectionTitle from "@/components/course/SectionTitle";
 export default function WhatYouNeed() {
     const requirements = [
         {
-            image: "https://img.icons8.com/color/96/book.png",
+            image: "/icons/image21.png",
             title: "Research foundations (Tier 1 বা equivalent)",
             gradient: "from-blue-500 to-blue-600",
         },
         {
-            image: "https://img.icons8.com/color/96/laptop.png",
+            image: "/icons/image28.png",
             title: "Basic data analysis skill",
             gradient: "from-purple-500 to-purple-600",
         },
         {
-            image: "https://img.icons8.com/color/96/goal.png",
+            image: "/icons/image6.png",
             title: "AI tools ব্যবহার করার curiosity এবং adaptability",
             gradient: "from-green-500 to-green-600",
         },
