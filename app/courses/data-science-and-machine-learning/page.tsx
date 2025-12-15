@@ -7,10 +7,24 @@ import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import CourseModule from "./components/CourseModule";
+import StickyNavigation from "@/components/course/StickyNavigation";
+import ResourcePersons from "../advanced-evidence-generation-&-ai-enabled-research-practice/components/ResourcePersons";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get in This Course" },
+        { id: "projects", label: "Projects" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You will Need to Get Started" },
+
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -68,10 +82,19 @@ export default function DataScienceAndMachineLearning() {
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
             <div id="course-module">
                 <CourseModule />
             </div>
+
+            {/* Resource Persons Section */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
+
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
@@ -82,14 +105,14 @@ export default function DataScienceAndMachineLearning() {
                 <Projects />
             </div>
 
-            {/* What You Need */}
-            <div id="what-you-need">
-                <WhatYouNeed />
-            </div>
-
             {/* Who This Course is For */}
             <div id="who-this-for">
                 <WhoThisCourseIsFor />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
             </div>
 
             {/* FAQ */}
