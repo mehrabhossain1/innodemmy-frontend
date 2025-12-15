@@ -14,19 +14,19 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "কোর্সটি সম্পূর্ণ অনলাইন।",
+            answer: "The course is completely online",
         },
         {
             question: "Will I receive a certificate after completion?",
-            answer: "হ্যাঁ, একটি globally accepted certificate প্রদান করা হবে।",
+            answer: "Yes, a globally accepted certificate will be provided",
         },
         {
             question: "Do I need to be good at English?",
-            answer: "Basic English sufficient, writing structure ও logic আমরা teach-through-practice করাবো।",
+            answer: "Basic English is sufficient, writing structure and logic will be taught through practice",
         },
         {
             question: "How long is the course?",
-            answer: "৩–৪ সপ্তাহ।",
+            answer: "3–4 weeks",
         },
         {
             question: "How can I register for the course?",

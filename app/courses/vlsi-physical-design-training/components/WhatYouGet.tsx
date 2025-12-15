@@ -10,19 +10,19 @@ export default function WhatYouGet() {
                 "Learn the entire process from RTL to GDSII with practical insights.",
         },
         {
-            image: "https://img.icons8.com/color/96/blueprint.png",
+            image: "/icons/image32.jpg",
             title: "Solid Foundation in Physical Design (PD)",
             description:
                 "Master every PD stage: Floorplanning, Placement, CTS, Routing, and Sign-off.",
         },
         {
-            image: "https://img.icons8.com/color/96/software.png",
+            image: "/icons/image4.png",
             title: "Hands-on Practice with EDA Tools",
             description:
                 "Get real-world experience using OpenROAD and other open-source design tools.",
         },
         {
-            image: "https://img.icons8.com/color/96/speed.png",
+            image: "/icons/image34.png",
             title: "Expertise in Timing, Power, and Area Optimization",
             description:
                 "Learn how to achieve efficient chip performance through key optimization techniques.",
@@ -46,7 +46,7 @@ export default function WhatYouGet() {
                 "Earn a verified certificate to enhance your resume and LinkedIn profile.",
         },
         {
-            image: "https://img.icons8.com/color/96/interview.png",
+            image: "/icons/image30.png",
             title: "Guidance for Interviews & Career Growth",
             description:
                 "Receive expert tips and mock interview support for semiconductor job preparation.",

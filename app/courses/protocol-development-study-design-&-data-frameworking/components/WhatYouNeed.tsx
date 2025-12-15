@@ -9,13 +9,13 @@ export default function WhatYouNeed() {
             gradient: "from-blue-500 to-blue-600",
         },
         {
-            image: "https://img.icons8.com/color/96/medical-doctor.png",
-            title: "মেডিকেল/হেলথ/বায়োসায়েন্স ভিত্তিক ধারণা",
+            image: "/icons/image2.png",
+            title: "Medical/Health/Bioscience based concepts",
             gradient: "from-purple-500 to-purple-600",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "নিজের protocol draft ও study idea নিয়ে work করার commitment",
+            title: "Commitment to work on your own protocol draft and study idea",
             gradient: "from-green-500 to-green-600",
         },
     ];

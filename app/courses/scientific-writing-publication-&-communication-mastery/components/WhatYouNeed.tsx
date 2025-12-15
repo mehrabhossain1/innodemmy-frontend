@@ -4,7 +4,7 @@ import SectionTitle from "@/components/course/SectionTitle";
 export default function WhatYouNeed() {
     const requirements = [
         {
-            image: "https://img.icons8.com/color/96/book.png",
+            image: "/icons/image5.png",
             title: "Basic research knowledge",
             gradient: "from-blue-500 to-blue-600",
         },

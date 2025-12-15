@@ -14,7 +14,7 @@ export default function WhatYouNeed() {
             gradient: "from-purple-500 to-purple-600",
         },
         {
-            image: "https://img.icons8.com/color/96/goal.png",
+            image: "/icons/image15.png",
             title: "Curiosity & Commitment – A growth mindset, consistent practice, and the determination to solve challenges.",
             gradient: "from-pink-500 to-pink-600",
         },

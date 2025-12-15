@@ -12,11 +12,11 @@ export default function WhoThisCourseIsFor() {
             title: "Professionals aiming to build a career in data science, artificial intelligence (AI), and research fields.",
         },
         {
-            image: "https://img.icons8.com/color/96/biotech.png",
+            image: "/icons/image13.png",
             title: "Members of technology and research organizations seeking to enhance their skills and Effectiveness.",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image8.png",
             title: "Individuals who are eager to build a strong research profile for fully funded MSc or PhD opportunities.",
         },
     ];

@@ -14,19 +14,19 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "কোর্সটি সম্পূর্ণ অনলাইন",
+            answer: "The course is completely online",
         },
         {
             question: "Will I receive a certificate after completion?",
-            answer: "হ্যাঁ, সফলভাবে কোর্স সম্পন্ন করলে আপনি একটি আন্তর্জাতিকভাবে গ্রহণযোগ্য certificate পাবেন",
+            answer: "Yes, upon successful completion of the course you will receive an internationally recognized certificate",
         },
         {
             question: "Do I need prior experience in research?",
-            answer: "মৌলিক scientific/medical ধারণা থাকা দরকার। Prior protocol writing experience দরকার নেই",
+            answer: "Basic scientific/medical concepts are required. Prior protocol writing experience is not required",
         },
         {
             question: "How long is the course?",
-            answer: "পুরো প্রোগ্রাম ৩–৪ সপ্তাহের",
+            answer: "The entire program is 3–4 weeks",
         },
         {
             question: "How can I register for the course?",

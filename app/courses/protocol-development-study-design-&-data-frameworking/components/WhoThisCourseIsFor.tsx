@@ -5,10 +5,10 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Students যারা protocol writing-এ mastery চাই",
+            title: "Students who want mastery in protocol writing",
         },
         {
-            image: "https://img.icons8.com/color/96/biotech.png",
+            image: "/icons/image1.png",
             title: "Early-career clinical researchers",
         },
         {
@@ -16,8 +16,8 @@ export default function WhoThisCourseIsFor() {
             title: "Physicians, public health professionals, nurses, and pharma/biotech professionals",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
-            title: "যারা thesis, dissertation, বা publication standard protocol বানাতে চান",
+            image: "/icons/image35.jpg",
+            title: "Those who want to create a thesis, dissertation, or publication standard protocol",
         },
     ];
 

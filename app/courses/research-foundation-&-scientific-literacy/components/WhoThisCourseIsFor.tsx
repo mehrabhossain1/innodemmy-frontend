@@ -8,11 +8,11 @@ export default function WhoThisCourseIsFor() {
             title: "Students aiming to strengthen their research skills.",
         },
         {
-            image: "https://img.icons8.com/color/96/biotech.png",
+            image: "/icons/image1.png",
             title: "Early-career researchers and professionals in science, healthcare, or technology.",
         },
         {
-            image: "https://img.icons8.com/color/96/literature.png",
+            image: "/icons/image14.png",
             title: "Anyone looking to improve scientific literacy and critical thinking abilities.",
         },
     ];

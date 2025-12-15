@@ -9,7 +9,7 @@ export default function WhatYouNeed() {
             gradient: "from-blue-500 to-blue-600",
         },
         {
-            image: "https://img.icons8.com/color/96/book.png",
+            image: "/icons/image2.png",
             title: "Foundational knowledge of health, medical, subjects.",
             gradient: "from-purple-500 to-purple-600",
         },

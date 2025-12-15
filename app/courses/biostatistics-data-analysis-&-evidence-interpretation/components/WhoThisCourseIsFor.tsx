@@ -17,7 +17,7 @@ export default function WhoThisCourseIsFor() {
         },
         {
             image: "https://img.icons8.com/color/96/literature.png",
-            title: "Those who want to do thesis, dissertation, or publication-level data analysis",
+            title: "যারা thesis, dissertation, or publication-level data analysis করতে চান",
         },
     ];
 

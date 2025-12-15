@@ -7,13 +7,13 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Deep-Dive, Industry-Grade Learning Journey",
             description:
-                "Foundational থেকে advanced পর্যন্ত step-by-step structured syllabus, exactly how CROs build protocols.",
+                "Step-by-step structured syllabus from foundational to advanced, exactly how CROs build protocols",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "7 Live Classes with Clinical Research Experts",
             description:
-                "Trial design specialists ও academic researchers থেকে real-time learning.",
+                "Real-time learning from trial design specialists and academic researchers",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
@@ -31,13 +31,13 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Clinical research, pharma trials, data management, academic pathways, সব কিছুর strategic roadmap।",
+                "Clinical research, pharma trials, data management, academic pathways, strategic roadmap of everything",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "ইন্টারন্যাশনালি accepted certificate, LinkedIn বা CV-তে showcase করার জন্য perfect।",
+                "Internationally accepted certificate, perfect for showcasing on LinkedIn or CV",
         },
     ];
 
