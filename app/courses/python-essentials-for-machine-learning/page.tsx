@@ -101,6 +101,11 @@ export default function PythonEssentialsForMachineLearning() {
                 <CourseModule />
             </div>
 
+            {/* Instructors and Mentors */}
+            <div id="resource-persons">
+                <InstructorsAndMentors />
+            </div>
+
             {/* What You will Get Section */}
             <div id="what-you-get">
                 <WhatYouGet />
@@ -110,21 +115,18 @@ export default function PythonEssentialsForMachineLearning() {
             <div id="projects">
                 <Projects />
             </div>
+            {/* Who This Course is For Section */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
 
             {/* What You will Need Section */}
             <div id="what-you-need">
                 <WhatYouNeed />
             </div>
 
-            {/* Who This Course is For Section */}
-            <div id="who-this-for">
-                <WhoThisCourseIsFor />
-            </div>
 
-            {/* Instructors and Mentors */}
-            <div id="resource-persons">
-                <InstructorsAndMentors />
-            </div>
+
 
             {/* FAQ Section */}
             <div id="faq">

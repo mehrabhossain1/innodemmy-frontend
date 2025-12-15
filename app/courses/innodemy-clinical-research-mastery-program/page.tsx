@@ -99,14 +99,19 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 <CourseModule />
             </div>
 
+            {/* Resource Persons Section */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
+
             {/* What You will Get Section */}
             <div id="what-you-get">
                 <WhatYouGet />
             </div>
 
-            {/* Resource Persons Section */}
-            <div id="resource-persons">
-                <ResourcePersons />
+            {/* Who This Course is For Section */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
             </div>
 
             {/* What You will Need Section */}
@@ -114,10 +119,7 @@ const InnodemyClinicalResearchMasteryProgram = () => {
                 <WhatYouNeed />
             </div>
 
-            {/* Who This Course is For Section */}
-            <div id="who-this-for">
-                <WhoThisCourseIsFor />
-            </div>
+
 
             {/* FAQ Section */}
             <div id="faq">

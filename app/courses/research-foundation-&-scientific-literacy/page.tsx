@@ -99,24 +99,26 @@ const ResearchFoundationScientificLiteracy = () => {
                 <CourseModule />
             </div>
 
-            {/* What You Get */}
-            <div id="what-you-get">
-                <WhatYouGet />
-            </div>
-
             {/* Resource Persons */}
             <div id="resource-persons">
                 <ResourcePersons />
             </div>
 
-            {/* What You Need */}
-            <div id="what-you-need">
-                <WhatYouNeed />
+            {/* What You Get */}
+            <div id="what-you-get">
+                <WhatYouGet />
             </div>
+
+
 
             {/* Who This Course is For */}
             <div id="who-this-for">
                 <WhoThisCourseIsFor />
+            </div>
+
+            {/* What You Need */}
+            <div id="what-you-need">
+                <WhatYouNeed />
             </div>
 
             {/* FAQ */}

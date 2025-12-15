@@ -83,17 +83,19 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
             {/* Course Module */}
             <CourseModule />
 
-            {/* What You Get */}
-            <WhatYouGet />
-
             {/* Resource Persons */}
             <ResourcePersons />
 
-            {/* What You Need */}
-            <WhatYouNeed />
+            {/* What You Get */}
+            <WhatYouGet />
+
 
             {/* Who This Course is For */}
             <WhoThisCourseIsFor />
+
+
+            {/* What You Need */}
+            <WhatYouNeed />
 
             {/* FAQ */}
             <FAQ />
