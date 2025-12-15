@@ -1694,7 +1694,7 @@ export const coursesData: Course[] = [
         title: "Research Paper Writing from Idea to Publication",
         slug: "research-pager-writing-from-idea-to-publication",
         description: `Master the complete journey of research paper writing - from conceptualizing research ideas to getting published in prestigious journals. Learn academic writing, literature review, methodology, data presentation, and the publication process with hands-on guidance.`,
-        thumbnail: "/courses/ResearchWriting.jpg",
+        thumbnail: "/courses/research-paper-writing.jpeg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-01-20"),
@@ -1893,7 +1893,7 @@ export const coursesData: Course[] = [
         title: "Data Science and Machine Learning",
         slug: "data-science-and-machine-learning",
         description: `Transform into a data science professional with comprehensive training in Python, statistics, machine learning, and deep learning. Master data analysis, visualization, predictive modeling, and deploy real-world ML solutions.`,
-        thumbnail: "/courses/DataScience.jpg",
+        thumbnail: "/courses/DS&ML.jpg",
         courseVideoUrl:
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-02-01"),

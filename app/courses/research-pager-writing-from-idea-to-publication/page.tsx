@@ -31,6 +31,8 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
         videoUrl:
             "https://www.youtube.com/embed/dQw4w9WgXcQ?si=example&autoplay=1",
 
+        thumbnailUrl: "/courses/research-paper-writing.jpeg",
+
         checkoutLink: "/checkout?course=research-paper-writing",
         videoLabel: "Click to watch the demo class",
         enrollButtonText: "Enroll in Batch →",
