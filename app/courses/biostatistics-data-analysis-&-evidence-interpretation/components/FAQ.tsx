@@ -14,19 +14,19 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "সম্পূর্ণ অনলাইন, আপনি যেকোনো জায়গা থেকে যুক্ত হতে পারবেন",
+            answer: "Completely online, you can join from anywhere",
         },
         {
             question: "Will I receive a certificate after completion?",
-            answer: "হ্যাঁ, সম্পূর্ণ কোর্স শেষ হলে একটি internationally recognized certificate প্রদান করা হবে",
+            answer: "Yes, an internationally recognized certificate will be awarded upon completion of the entire course",
         },
         {
             question: "Do I need prior experience in statistics?",
-            answer: "Basic understanding ভালো, তবে expert হওয়ার দরকার নেই, Beginner থেকে advanced, সবাই শিখতে পারবে।",
+            answer: "Basic understanding is good, but there is no need to be an expert, everyone from beginner to advanced can learn",
         },
         {
             question: "How long is the course?",
-            answer: "পুরো প্রোগ্রামের সময়কাল ৩–৪ সপ্তাহ",
+            answer: "The entire program lasts 3–4 weeks",
         },
         {
             question: "How can I register for the course?",
@@ -48,11 +48,10 @@ export default function FAQ() {
                     return (
                         <div
                             key={index}
-                            className={`bg-white dark:bg-gray-800 rounded-lg border transition-all duration-300 overflow-hidden ${
-                                isExpanded
-                                    ? "border-primary dark:border-primary shadow-md"
-                                    : "border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md"
-                            }`}
+                            className={`bg-white dark:bg-gray-800 rounded-lg border transition-all duration-300 overflow-hidden ${isExpanded
+                                ? "border-primary dark:border-primary shadow-md"
+                                : "border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md"
+                                }`}
                         >
                             <button
                                 onClick={() => toggleFAQ(index)}
@@ -60,20 +59,18 @@ export default function FAQ() {
                             >
                                 <div className="flex items-start gap-3 flex-1 pr-4">
                                     <span
-                                        className={`font-bold text-base flex-shrink-0 ${
-                                            isExpanded
-                                                ? "text-primary"
-                                                : "text-gray-400 dark:text-gray-500"
-                                        }`}
+                                        className={`font-bold text-base flex-shrink-0 ${isExpanded
+                                            ? "text-primary"
+                                            : "text-gray-400 dark:text-gray-500"
+                                            }`}
                                     >
                                         Q{index + 1}.
                                     </span>
                                     <h3
-                                        className={`font-semibold text-base leading-snug ${
-                                            isExpanded
-                                                ? "text-primary"
-                                                : "text-gray-900 dark:text-white"
-                                        }`}
+                                        className={`font-semibold text-base leading-snug ${isExpanded
+                                            ? "text-primary"
+                                            : "text-gray-900 dark:text-white"
+                                            }`}
                                     >
                                         {faq.question}
                                     </h3>

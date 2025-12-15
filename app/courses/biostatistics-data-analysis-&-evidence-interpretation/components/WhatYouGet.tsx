@@ -30,7 +30,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Clinical research analyst, data manager, biostatistics career track, pharma RWE roles, সব কিছুর জন্য strategic direction",
+                "Clinical research analyst, data manager, biostatistics career track, pharma RWE roles, strategic direction for everything",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
