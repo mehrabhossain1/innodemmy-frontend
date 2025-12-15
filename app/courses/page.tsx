@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {
     COURSE_CATEGORIES,
     getAllCategories,
@@ -46,6 +46,8 @@ const categoryIcons: Record<string, typeof Code> = {
 
 export default function CoursesPage() {
     const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
     const categoryFromUrl = searchParams.get("category");
 
     const [searchTerm, setSearchTerm] = useState("");
@@ -54,6 +56,24 @@ export default function CoursesPage() {
     const [activeCategory, setActiveCategory] = useState(
         categoryFromUrl || "all"
     );
+
+    // Function to update URL with category filter
+    const updateCategoryInUrl = (category: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (category === "all") {
+            params.delete("category");
+        } else {
+            params.set("category", category);
+        }
+
+        const newUrl = params.toString()
+            ? `${pathname}?${params.toString()}`
+            : pathname;
+
+        router.push(newUrl, { scroll: false });
+        setActiveCategory(category);
+    };
 
     useEffect(() => {
         async function fetchCourses() {
@@ -168,7 +188,7 @@ export default function CoursesPage() {
                                 <button
                                     key={category.id}
                                     onClick={() =>
-                                        setActiveCategory(category.id)
+                                        updateCategoryInUrl(category.id)
                                     }
                                     className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
@@ -251,7 +271,7 @@ export default function CoursesPage() {
                                         size="lg"
                                         onClick={() => {
                                             setSearchTerm("");
-                                            setActiveCategory("all");
+                                            updateCategoryInUrl("all");
                                         }}
                                         className="px-8 py-3"
                                     >
