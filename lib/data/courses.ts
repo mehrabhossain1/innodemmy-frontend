@@ -1687,6 +1687,523 @@ export const coursesData: Course[] = [
             "News headline scraper",
         ],
     },
+
+    // Research Paper Writing from Idea to Publication
+    {
+        _id: "9",
+        title: "Research Paper Writing from Idea to Publication",
+        slug: "research-pager-writing-from-idea-to-publication",
+        description: `Master the complete journey of research paper writing - from conceptualizing research ideas to getting published in prestigious journals. Learn academic writing, literature review, methodology, data presentation, and the publication process with hands-on guidance.`,
+        thumbnail: "/courses/ResearchWriting.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-01-20"),
+        category: COURSE_CATEGORIES.RESEARCH_WRITING,
+        batchName: "Batch 1",
+        price: 12000,
+        totalLiveClasses: 18,
+        totalWeeks: 9,
+        totalModules: 9,
+        totalProjects: 4,
+        totalExercises: 30,
+
+        idealFor: [
+            "Graduate students preparing for thesis or dissertation",
+            "Early-career researchers looking to publish their first paper",
+            "Academics seeking to improve their writing skills",
+            "Healthcare professionals wanting to contribute to medical literature",
+            "Anyone interested in scholarly writing and publication",
+        ],
+
+        faq: [
+            {
+                question: "Do I need prior research experience?",
+                answer: "Basic understanding of research concepts is helpful, but we guide you through the entire process from ideation to publication. Perfect for beginners and intermediate researchers.",
+            },
+            {
+                question: "Will this help me get published?",
+                answer: "Yes! The course covers journal selection, submission guidelines, responding to reviewers, and dealing with rejections - everything you need to successfully publish your work.",
+            },
+            {
+                question: "What writing tools will we use?",
+                answer: "We'll cover Microsoft Word, LaTeX, reference managers (Mendeley, Zotero, EndNote), and various online tools for plagiarism checking and grammar improvement.",
+            },
+            {
+                question: "Is this course only for medical research?",
+                answer: "While examples may focus on healthcare, the principles apply to all research domains - social sciences, engineering, sciences, and humanities.",
+            },
+        ],
+
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle:
+                    "Module 1: Research Fundamentals & Idea Generation",
+                topics: [
+                    "Understanding research types and paradigms",
+                    "Identifying research gaps",
+                    "Formulating research questions",
+                    "Developing research hypotheses",
+                    "Ethics in research and publication",
+                ],
+                exercises: [
+                    "Identify research gaps from recent literature",
+                    "Develop 3 research questions in your field",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Literature Review & Citation",
+                topics: [
+                    "Searching academic databases (PubMed, Scopus, Web of Science)",
+                    "Critical appraisal of literature",
+                    "Organizing references with citation managers",
+                    "Synthesis and narrative building",
+                    "Avoiding plagiarism and proper citation",
+                ],
+                exercises: [
+                    "Conduct systematic literature search",
+                    "Create annotated bibliography",
+                    "Practice using Mendeley/Zotero",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Research Methodology & Design",
+                topics: [
+                    "Quantitative vs qualitative research",
+                    "Study design selection",
+                    "Sampling methods",
+                    "Data collection instruments",
+                    "Writing methodology section",
+                ],
+                exercises: [
+                    "Design research methodology for a study",
+                    "Create data collection forms",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Academic Writing Fundamentals",
+                topics: [
+                    "Academic writing style and tone",
+                    "Structure of research papers (IMRaD format)",
+                    "Writing clear and concise sentences",
+                    "Paragraph development",
+                    "Common writing mistakes to avoid",
+                ],
+                exercises: [
+                    "Rewrite paragraphs for clarity",
+                    "Practice academic tone transformation",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Writing Introduction & Background",
+                topics: [
+                    "Crafting compelling introductions",
+                    "Establishing context and significance",
+                    "Stating research objectives",
+                    "Literature synthesis in introduction",
+                    "Hook, background, and rationale structure",
+                ],
+                exercises: [
+                    "Write introduction for your research",
+                    "Peer review introductions",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle:
+                    "Module 6: Presenting Results & Data Visualization",
+                topics: [
+                    "Organizing and presenting results",
+                    "Creating effective tables and figures",
+                    "Statistical presentation guidelines",
+                    "Data visualization best practices",
+                    "Writing results section objectively",
+                ],
+                exercises: [
+                    "Create publication-quality figures",
+                    "Write results for sample data",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Discussion & Conclusion",
+                topics: [
+                    "Interpreting results in context",
+                    "Relating findings to existing literature",
+                    "Addressing study limitations",
+                    "Implications and recommendations",
+                    "Writing strong conclusions",
+                ],
+                exercises: [
+                    "Write discussion section",
+                    "Identify and articulate study limitations",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Abstract, Title & Keywords",
+                topics: [
+                    "Writing concise and informative abstracts",
+                    "Structured vs unstructured abstracts",
+                    "Creating impactful titles",
+                    "Selecting appropriate keywords",
+                    "Optimizing for searchability",
+                ],
+                exercises: [
+                    "Write abstract for your paper",
+                    "Create multiple title variations",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle:
+                    "Module 9: Publication Process & Journal Selection",
+                topics: [
+                    "Understanding peer review process",
+                    "Selecting target journals (impact factor, scope)",
+                    "Preparing submission materials",
+                    "Responding to reviewer comments",
+                    "Dealing with rejections and resubmissions",
+                    "Open access vs traditional publishing",
+                    "Predatory journals and how to avoid them",
+                ],
+                exercises: [
+                    "Select appropriate journals for your work",
+                    "Write cover letter for submission",
+                    "Practice responding to reviewer comments",
+                ],
+            },
+        ],
+
+        projects: [
+            "Complete literature review on chosen topic",
+            "Full research paper draft (all sections)",
+            "Data visualization portfolio",
+            "Journal submission package preparation",
+        ],
+    },
+
+    // Data Science and Machine Learning
+    {
+        _id: "10",
+        title: "Data Science and Machine Learning",
+        slug: "data-science-and-machine-learning",
+        description: `Transform into a data science professional with comprehensive training in Python, statistics, machine learning, and deep learning. Master data analysis, visualization, predictive modeling, and deploy real-world ML solutions.`,
+        thumbnail: "/courses/DataScience.jpg",
+        courseVideoUrl:
+            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
+        courseStartDate: new Date("2025-02-01"),
+        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
+        batchName: "Batch 1",
+        price: 18000,
+        totalLiveClasses: 32,
+        totalWeeks: 16,
+        totalModules: 16,
+        totalProjects: 8,
+        totalExercises: 60,
+
+        idealFor: [
+            "Aspiring data scientists and ML engineers",
+            "Software developers transitioning to data science",
+            "Analysts looking to upskill in ML and AI",
+            "Students pursuing careers in data-driven fields",
+            "Professionals seeking to leverage data for business insights",
+        ],
+
+        faq: [
+            {
+                question: "What programming background do I need?",
+                answer: "Basic programming knowledge is recommended. We start with Python fundamentals, but prior experience with any programming language will be beneficial.",
+            },
+            {
+                question: "What makes this course comprehensive?",
+                answer: "This course covers the complete data science pipeline - from Python programming and statistics to advanced ML algorithms, deep learning, and deployment. You'll work on real-world projects throughout.",
+            },
+            {
+                question:
+                    "Will I learn both theory and practical implementation?",
+                answer: "Absolutely! Each concept is taught with theoretical foundations followed by hands-on coding exercises and projects using industry-standard libraries like Pandas, Scikit-learn, and TensorFlow.",
+            },
+            {
+                question: "What tools and libraries will be covered?",
+                answer: "Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, TensorFlow/Keras, Git, Jupyter Notebooks, and cloud deployment platforms.",
+            },
+        ],
+
+        modules: [
+            {
+                classNumber: 1,
+                moduleTitle: "Module 1: Python for Data Science",
+                topics: [
+                    "Python basics and data structures",
+                    "NumPy for numerical computing",
+                    "Pandas for data manipulation",
+                    "Working with DataFrames",
+                    "Data cleaning and preprocessing",
+                ],
+                exercises: [
+                    "Manipulate datasets with Pandas",
+                    "Clean messy real-world data",
+                    "Perform NumPy array operations",
+                ],
+            },
+            {
+                classNumber: 2,
+                moduleTitle: "Module 2: Data Visualization",
+                topics: [
+                    "Matplotlib fundamentals",
+                    "Seaborn for statistical visualizations",
+                    "Creating interactive plots with Plotly",
+                    "Dashboard creation basics",
+                    "Best practices in data visualization",
+                ],
+                exercises: [
+                    "Create publication-quality plots",
+                    "Build interactive visualizations",
+                    "Design data story dashboards",
+                ],
+            },
+            {
+                classNumber: 3,
+                moduleTitle: "Module 3: Statistics for Data Science",
+                topics: [
+                    "Descriptive and inferential statistics",
+                    "Probability distributions",
+                    "Hypothesis testing",
+                    "Correlation and causation",
+                    "Statistical significance",
+                ],
+                exercises: [
+                    "Perform hypothesis tests on datasets",
+                    "Analyze correlation matrices",
+                    "Statistical data analysis project",
+                ],
+            },
+            {
+                classNumber: 4,
+                moduleTitle: "Module 4: Exploratory Data Analysis (EDA)",
+                topics: [
+                    "Understanding data patterns",
+                    "Detecting outliers and anomalies",
+                    "Feature distributions",
+                    "Data profiling techniques",
+                    "Automated EDA tools",
+                ],
+                exercises: [
+                    "Complete EDA on real datasets",
+                    "Create EDA reports",
+                    "Outlier detection and handling",
+                ],
+            },
+            {
+                classNumber: 5,
+                moduleTitle: "Module 5: Feature Engineering",
+                topics: [
+                    "Feature creation and extraction",
+                    "Encoding categorical variables",
+                    "Feature scaling and normalization",
+                    "Dimensionality reduction (PCA)",
+                    "Feature selection techniques",
+                ],
+                exercises: [
+                    "Engineer features from raw data",
+                    "Apply PCA for dimensionality reduction",
+                    "Feature importance analysis",
+                ],
+            },
+            {
+                classNumber: 6,
+                moduleTitle: "Module 6: Machine Learning Fundamentals",
+                topics: [
+                    "Introduction to ML concepts",
+                    "Supervised vs unsupervised learning",
+                    "Train-test split and validation",
+                    "Cross-validation techniques",
+                    "Model evaluation metrics",
+                ],
+                exercises: [
+                    "Implement train-test split",
+                    "Perform k-fold cross-validation",
+                    "Calculate evaluation metrics",
+                ],
+            },
+            {
+                classNumber: 7,
+                moduleTitle: "Module 7: Regression Algorithms",
+                topics: [
+                    "Linear regression",
+                    "Polynomial regression",
+                    "Ridge and Lasso regression",
+                    "Elastic Net",
+                    "Regression evaluation metrics",
+                ],
+                exercises: [
+                    "Build house price prediction model",
+                    "Compare regression algorithms",
+                    "Hyperparameter tuning",
+                ],
+            },
+            {
+                classNumber: 8,
+                moduleTitle: "Module 8: Classification Algorithms",
+                topics: [
+                    "Logistic regression",
+                    "Decision trees",
+                    "Random forests",
+                    "Support Vector Machines (SVM)",
+                    "k-Nearest Neighbors (KNN)",
+                ],
+                exercises: [
+                    "Customer churn prediction",
+                    "Disease classification project",
+                    "Model comparison analysis",
+                ],
+            },
+            {
+                classNumber: 9,
+                moduleTitle: "Module 9: Ensemble Methods",
+                topics: [
+                    "Bagging and boosting",
+                    "Gradient Boosting Machines",
+                    "XGBoost and LightGBM",
+                    "Stacking and blending",
+                    "Ensemble optimization",
+                ],
+                exercises: [
+                    "Implement ensemble models",
+                    "Compare boosting algorithms",
+                    "Build stacked ensemble",
+                ],
+            },
+            {
+                classNumber: 10,
+                moduleTitle: "Module 10: Unsupervised Learning",
+                topics: [
+                    "K-means clustering",
+                    "Hierarchical clustering",
+                    "DBSCAN",
+                    "Anomaly detection",
+                    "Association rules mining",
+                ],
+                exercises: [
+                    "Customer segmentation project",
+                    "Anomaly detection in transactions",
+                    "Market basket analysis",
+                ],
+            },
+            {
+                classNumber: 11,
+                moduleTitle: "Module 11: Introduction to Deep Learning",
+                topics: [
+                    "Neural networks fundamentals",
+                    "Activation functions",
+                    "Backpropagation",
+                    "Loss functions and optimizers",
+                    "TensorFlow and Keras basics",
+                ],
+                exercises: [
+                    "Build simple neural network",
+                    "MNIST digit classification",
+                    "Tune neural network architectures",
+                ],
+            },
+            {
+                classNumber: 12,
+                moduleTitle: "Module 12: Convolutional Neural Networks (CNN)",
+                topics: [
+                    "CNN architecture and components",
+                    "Convolutional and pooling layers",
+                    "Transfer learning",
+                    "Image classification",
+                    "Object detection basics",
+                ],
+                exercises: [
+                    "Image classification with CNN",
+                    "Transfer learning with pre-trained models",
+                    "Custom image classifier project",
+                ],
+            },
+            {
+                classNumber: 13,
+                moduleTitle: "Module 13: Natural Language Processing (NLP)",
+                topics: [
+                    "Text preprocessing",
+                    "TF-IDF and word embeddings",
+                    "Sentiment analysis",
+                    "Text classification",
+                    "Introduction to transformers",
+                ],
+                exercises: [
+                    "Sentiment analysis project",
+                    "Text classification model",
+                    "Build chatbot prototype",
+                ],
+            },
+            {
+                classNumber: 14,
+                moduleTitle: "Module 14: Time Series Analysis",
+                topics: [
+                    "Time series components",
+                    "ARIMA models",
+                    "Seasonal decomposition",
+                    "Prophet for forecasting",
+                    "LSTM for time series",
+                ],
+                exercises: [
+                    "Stock price prediction",
+                    "Sales forecasting project",
+                    "Weather data analysis",
+                ],
+            },
+            {
+                classNumber: 15,
+                moduleTitle: "Module 15: Model Deployment",
+                topics: [
+                    "Model serialization (pickle, joblib)",
+                    "Flask API for ML models",
+                    "Docker containerization",
+                    "Cloud deployment (AWS/GCP)",
+                    "ML model monitoring",
+                ],
+                exercises: [
+                    "Create Flask API for model",
+                    "Containerize ML application",
+                    "Deploy model to cloud",
+                ],
+            },
+            {
+                classNumber: 16,
+                moduleTitle: "Module 16: Capstone Project & Career Guidance",
+                topics: [
+                    "End-to-end ML project workflow",
+                    "Best practices and MLOps",
+                    "Portfolio building",
+                    "Interview preparation",
+                    "Industry trends and career paths",
+                ],
+                exercises: [
+                    "Complete capstone project",
+                    "Create project portfolio",
+                    "Mock technical interviews",
+                ],
+            },
+        ],
+
+        projects: [
+            "House price prediction system",
+            "Customer churn prediction model",
+            "Customer segmentation analysis",
+            "Image classification with CNN",
+            "Sentiment analysis application",
+            "Stock price forecasting",
+            "End-to-end ML deployment project",
+            "Comprehensive data science portfolio",
+        ],
+    },
 ];
 
 /**
