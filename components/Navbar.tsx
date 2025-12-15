@@ -71,6 +71,10 @@ export default function Navbar() {
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
+    const [coursesCloseTimeout, setCoursesCloseTimeout] =
+        useState<NodeJS.Timeout | null>(null);
+    const [moreCloseTimeout, setMoreCloseTimeout] =
+        useState<NodeJS.Timeout | null>(null);
     const { user, logout } = useAuth();
 
     // Handle auth query parameter from enrollment success
@@ -142,8 +146,19 @@ export default function Navbar() {
                         {/* Courses Mega Menu */}
                         <div
                             className="relative"
-                            onMouseEnter={() => setIsCoursesOpen(true)}
-                            onMouseLeave={() => setIsCoursesOpen(false)}
+                            onMouseEnter={() => {
+                                if (coursesCloseTimeout) {
+                                    clearTimeout(coursesCloseTimeout);
+                                    setCoursesCloseTimeout(null);
+                                }
+                                setIsCoursesOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                const timeout = setTimeout(() => {
+                                    setIsCoursesOpen(false);
+                                }, 300);
+                                setCoursesCloseTimeout(timeout);
+                            }}
                         >
                             <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
                                 All Courses
@@ -315,8 +330,19 @@ export default function Navbar() {
                         {/* More Dropdown */}
                         <div
                             className="relative"
-                            onMouseEnter={() => setIsMoreOpen(true)}
-                            onMouseLeave={() => setIsMoreOpen(false)}
+                            onMouseEnter={() => {
+                                if (moreCloseTimeout) {
+                                    clearTimeout(moreCloseTimeout);
+                                    setMoreCloseTimeout(null);
+                                }
+                                setIsMoreOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                const timeout = setTimeout(() => {
+                                    setIsMoreOpen(false);
+                                }, 300);
+                                setMoreCloseTimeout(timeout);
+                            }}
                         >
                             <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
                                 More
