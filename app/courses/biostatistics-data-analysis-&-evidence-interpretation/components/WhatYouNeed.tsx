@@ -10,12 +10,12 @@ export default function WhatYouNeed() {
         },
         {
             image: "https://img.icons8.com/color/96/book.png",
-            title: "Medical, biological, or quantitative conceptsের foundational understanding",
+            title: "Foundational understanding of medical, biological, or quantitative concepts",
             gradient: "from-purple-500 to-purple-600",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "শেখার commitment এবং real datasets নিয়ে কাজ করার মানসিক প্রস্তুতি",
+            title: "Commitment to learning and mental preparation to work with real datasets",
             gradient: "from-green-500 to-green-600",
         },
     ];

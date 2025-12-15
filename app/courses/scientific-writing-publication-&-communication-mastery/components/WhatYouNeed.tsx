@@ -15,7 +15,7 @@ export default function WhatYouNeed() {
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "নিজের manuscript/abstract/project নিয়ে কাজ করার commitment",
+            title: "Commitment to work on your manuscript/abstract/project",
             gradient: "from-green-500 to-green-600",
         },
     ];

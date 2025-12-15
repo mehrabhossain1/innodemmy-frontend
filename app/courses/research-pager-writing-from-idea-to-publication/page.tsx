@@ -2,6 +2,8 @@
 import { useState } from "react";
 import ResearchPaperHeroSection from "./components/ResearchPaperHeroSection";
 import WhatYouGet from "./components/WhatYouGet";
+import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
+import WhatYouNeed from "./components/WhatYouNeed";
 import FAQ from "./components/FAQ";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
@@ -96,6 +98,14 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
             {/* Course sections */}
             <section id="what-you-get">
                 <WhatYouGet />
+            </section>
+
+            <section id="who-this-for">
+                <WhoThisCourseIsFor />
+            </section>
+
+            <section id="what-you-need">
+                <WhatYouNeed />
             </section>
 
             <section id="faq">

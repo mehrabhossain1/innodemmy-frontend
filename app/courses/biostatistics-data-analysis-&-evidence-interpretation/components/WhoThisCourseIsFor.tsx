@@ -5,7 +5,7 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Students যারা biostatistics এবং data analysis শিখতে চান",
+            title: "Students who want to learn biostatistics and data analysis",
         },
         {
             image: "https://img.icons8.com/color/96/biotech.png",
@@ -17,7 +17,7 @@ export default function WhoThisCourseIsFor() {
         },
         {
             image: "/icons/image22.png",
-            title: "যারা thesis, dissertation, or publication-level data analysis করতে চান",
+            title: "Those who want to do thesis, dissertation, or publication-level data analysis",
         },
     ];
 
