@@ -12,13 +12,13 @@ export default function WhatYouGet() {
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "8 Live Classes with Published Authors & Journal Experts",
-            description: "Q1/Q2 journal contributors থেকে direct mentorship",
+            description: "Direct mentorship from Q1/Q2 journal contributors",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
-                "Your manuscript drafts, abstracts, literature reviews, live review ও correction",
+                "Your manuscript drafts, abstracts, literature reviews, live review and correction",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
@@ -30,13 +30,13 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Academic research track, publishing consultant roles, clinical communication careers, সব কিছুর roadmap",
+                " Academic research track, publishing consultant roles, clinical communication careers, everything roadmap",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Internationally recognized certificate LinkedIn profile ও CV enhancement guaranteed",
+                "Internationally recognized certificate LinkedIn profile and CV enhancement guaranteed",
         },
     ];
 
