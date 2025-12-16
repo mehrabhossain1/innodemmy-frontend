@@ -17,6 +17,7 @@ import {
     COURSE_CATEGORIES,
     getAllCategories,
 } from "@/lib/constants/categories";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 interface Course {
     id: string;
@@ -53,9 +54,34 @@ const categoryIcons: Record<string, typeof Code> = {
 };
 
 export default function CoursesSection() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
+    const categoryFromUrl = searchParams.get("category");
+
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeCategory, setActiveCategory] = useState("all");
+    const [activeCategory, setActiveCategory] = useState(
+        categoryFromUrl || "all"
+    );
+
+    // Function to update URL with category filter
+    const updateCategoryInUrl = (category: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (category === "all") {
+            params.delete("category");
+        } else {
+            params.set("category", category);
+        }
+
+        const newUrl = params.toString()
+            ? `${pathname}?${params.toString()}`
+            : pathname;
+
+        router.push(newUrl, { scroll: false });
+        setActiveCategory(category);
+    };
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -95,6 +121,13 @@ export default function CoursesSection() {
 
         fetchCourses();
     }, []);
+
+    // Update active category when URL changes
+    useEffect(() => {
+        if (categoryFromUrl) {
+            setActiveCategory(categoryFromUrl);
+        }
+    }, [categoryFromUrl]);
 
     // Build dynamic categories with counts
     const categories = useMemo(() => {
@@ -171,7 +204,7 @@ export default function CoursesSection() {
                                 <button
                                     key={category.id}
                                     onClick={() =>
-                                        setActiveCategory(category.id)
+                                        updateCategoryInUrl(category.id)
                                     }
                                     className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
