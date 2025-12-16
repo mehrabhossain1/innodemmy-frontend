@@ -19,7 +19,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
-                "Your protocol drafts, study designs, and CRFs will be reviewed in live sessions.",
+                "Your protocol drafts, study designs, and CRFs will be reviewed in live sessions",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",

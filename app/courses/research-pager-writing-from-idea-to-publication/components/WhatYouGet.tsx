@@ -7,7 +7,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/book.png",
             title: "Step-by-Step Guidance",
             description:
-                "Learn every stage of writing a research paper, from topic selection to submission.",
+                "Learn every stage of writing a research paper, from topic selection to submission",
         },
         {
             image: "https://img.icons8.com/color/96/template.png",
@@ -18,25 +18,25 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/edit.png",
             title: "Hands-On Writing Exercises",
             description:
-                "Develop each section of a paper through guided practice.",
+                "Develop each section of a paper through guided practice",
         },
         {
             image: "https://img.icons8.com/color/96/strategy.png",
             title: "Publication Strategy",
             description:
-                "Discover how to select journals, understand impact factors, and submit successfully.",
+                "Discover how to select journals, understand impact factors, and submit successfully",
         },
         {
             image: "https://img.icons8.com/color/96/feedback.png",
             title: "Peer Review & Feedback",
             description:
-                "Receive constructive feedback to improve clarity and quality.",
+                "Receive constructive feedback to improve clarity and quality",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Professional Certificate",
             description:
-                "Get a verified certificate to showcase your achievement.",
+                "Get a verified certificate to showcase your achievement",
         },
     ];
 

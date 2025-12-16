@@ -7,37 +7,37 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Intensive Learning Journey",
             description:
-                "Step-by-step structured curriculum designed for beginners but packed with advanced concepts.",
+                "Step-by-step structured curriculum designed for beginners but packed with advanced concepts",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "8 Live Classes with Industry Experts",
             description:
-                "Learn directly from professionals and get your questions answered in real-time.",
+                "Learn directly from professionals and get your questions answered in real-time",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Support Sessions",
             description:
-                "Get guidance from experts and clarify doubts in real-time sessions.",
+                "Get guidance from experts and clarify doubts in real-time sessions",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Community Access",
             description:
-                "Network, collaborate, and get continuous guidance from a supportive community of learners and experts.",
+                "Network, collaborate, and get continuous guidance from a supportive community of learners and experts",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Career Guidance",
             description:
-                "Personalized career guidance, including advice on career pathways in clinical research and strategies to advance in healthcare, pharmaceutical sectors.",
+                "Personalized career guidance, including advice on career pathways in clinical research and strategies to advance in healthcare, pharmaceutical sectors",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Receive a verified certificate upon completion that you can proudly display on LinkedIn or your CV.",
+                "Receive a verified certificate upon completion that you can proudly display on LinkedIn or your CV",
         },
     ];
 

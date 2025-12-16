@@ -7,55 +7,55 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/processor.png",
             title: "Complete Understanding of ASIC Design Flow",
             description:
-                "Learn the entire process from RTL to GDSII with practical insights.",
+                "Learn the entire process from RTL to GDSII with practical insights",
         },
         {
             image: "/icons/image32.jpg",
             title: "Solid Foundation in Physical Design (PD)",
             description:
-                "Master every PD stage: Floorplanning, Placement, CTS, Routing, and Sign-off.",
+                "Master every PD stage: Floorplanning, Placement, CTS, Routing, and Sign-off",
         },
         {
             image: "/icons/image4.png",
             title: "Hands-on Practice with EDA Tools",
             description:
-                "Get real-world experience using OpenROAD and other open-source design tools.",
+                "Get real-world experience using OpenROAD and other open-source design tools",
         },
         {
             image: "/icons/image34.png",
             title: "Expertise in Timing, Power, and Area Optimization",
             description:
-                "Learn how to achieve efficient chip performance through key optimization techniques.",
+                "Learn how to achieve efficient chip performance through key optimization techniques",
         },
         {
             image: "https://img.icons8.com/color/96/module.png",
             title: "Experience with Open-Source PDKs",
             description:
-                "Work with SkyWater 130nm and similar open-source fabrication technologies.",
+                "Work with SkyWater 130nm and similar open-source fabrication technologies",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Unlimited Live Support",
             description:
-                "Get instant help and guidance whenever you need it throughout the course.",
+                "Get instant help and guidance whenever you need it throughout the course",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Completion Certificate",
             description:
-                "Earn a verified certificate to enhance your resume and LinkedIn profile.",
+                "Earn a verified certificate to enhance your resume and LinkedIn profile",
         },
         {
             image: "/icons/image30.png",
             title: "Guidance for Interviews & Career Growth",
             description:
-                "Receive expert tips and mock interview support for semiconductor job preparation.",
+                "Receive expert tips and mock interview support for semiconductor job preparation",
         },
         {
             image: "https://img.icons8.com/color/96/briefcase.png",
             title: "Confidence to Work on Real ASIC Design Teams",
             description:
-                "Be fully equipped to contribute to industry or research-level chip design projects.",
+                "Be fully equipped to contribute to industry or research-level chip design projects",
         },
     ];
 

@@ -7,7 +7,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month High-Tech, High-Depth Learning Journey",
             description:
-                "Traditional + AI-powered research workflow in a unified applied curriculum",
+                "Traditional + AI-powered research workflow in a unified applied curriculum"
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
