@@ -37,7 +37,7 @@ export default function WhatYouNeed() {
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="What You'll Need to Get Started" />
+            <SectionTitle title="What You will Need to Get Started" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {requirements.map((requirement, index) => {
@@ -75,4 +75,3 @@ export default function WhatYouNeed() {
         </div>
     );
 }
-

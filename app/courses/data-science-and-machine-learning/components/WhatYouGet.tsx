@@ -12,8 +12,7 @@ export default function WhatYouGet() {
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "40+ Live Classes",
-            description:
-                "Learn hands-on from industry experts in real time",
+            description: "Learn hands-on from industry experts in real time",
         },
         {
             image: "https://img.icons8.com/color/96/project.png",
@@ -48,8 +47,7 @@ export default function WhatYouGet() {
         {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Job Market Preparation",
-            description:
-                "Get career guidance directly from professionals",
+            description: "Get career guidance directly from professionals",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
@@ -61,7 +59,7 @@ export default function WhatYouGet() {
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="What You'll Get in This Course" />
+            <SectionTitle title="What You will Get in This Course" />
 
             {/* Grid Layout - More Compact */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -96,4 +94,3 @@ export default function WhatYouGet() {
         </div>
     );
 }
-
