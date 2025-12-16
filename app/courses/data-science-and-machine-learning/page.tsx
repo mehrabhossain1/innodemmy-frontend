@@ -8,6 +8,8 @@ import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import CourseModule from "./components/CourseModule";
 import StickyNavigation from "@/components/course/StickyNavigation";
+import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
+import EnrollmentModal from "@/components/course/EnrollmentModal";
 import ResourcePersons from "../advanced-evidence-generation-&-ai-enabled-research-practice/components/ResourcePersons";
 import BookTheCallCard from "@/components/BookTheCallCard";
 
@@ -19,10 +21,10 @@ export default function DataScienceAndMachineLearning() {
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
         { id: "resource-persons", label: "Instructors and Mentors" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
+        { id: "what-you-get", label: "What You will Get" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You will Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need" },
 
         { id: "faq", label: "FAQ" },
     ];
@@ -47,6 +49,15 @@ export default function DataScienceAndMachineLearning() {
 
     return (
         <div className="pb-24">
+            {/* Enrollment Modal */}
+            <EnrollmentModal
+                isOpen={isEnrollmentModalOpen}
+                onClose={() => setIsEnrollmentModalOpen(false)}
+                courseTitle={courseData.title}
+                coursePrice={courseData.price}
+                courseId="data-science-and-machine-learning"
+            />
+
             {/* Video Modal */}
             {isVideoPlaying && (
                 <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
@@ -122,6 +133,17 @@ export default function DataScienceAndMachineLearning() {
             </div>
 
             <BookTheCallCard />
+
+            {/* Sticky Bottom Bar */}
+            <StickyEnrollmentBar
+                price={courseData.price}
+                originalPrice={courseData.originalPrice}
+                currency={courseData.currency}
+                promoLabel={courseData.promoLabel}
+                enrollButtonText={courseData.enrollButtonText}
+                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                showPromo={true}
+            />
         </div>
     );
 }

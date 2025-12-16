@@ -66,7 +66,7 @@ const technologies: Technology[] = [
     },
     {
         name: "SPSS",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/SPSS_logo.svg/1200px-SPSS_logo.svg.png",
+        image: "/icons/SPSS.jpeg",
         color: "from-red-500 to-pink-500",
     },
     {
@@ -81,7 +81,7 @@ const technologies: Technology[] = [
     },
     {
         name: "VLSI",
-        image: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
+        image: "/icons/VLSI.jpeg",
         color: "from-slate-500 to-gray-600",
     },
     {
