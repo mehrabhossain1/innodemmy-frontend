@@ -6,25 +6,26 @@ export default function WhatYouNeed() {
         {
             image: "https://img.icons8.com/color/96/laptop.png",
             title: "Laptop / Desktop",
-            description: "Minimum 4GB RAM.",
+            description: "Minimum 4GB RAM",
             gradient: "from-blue-500 to-blue-600",
         },
         {
             image: "https://img.icons8.com/color/96/wifi.png",
             title: "Stable Internet Connection",
-            description: "For live classes, research, and templates.",
+            description: "For live classes, research, and templates",
             gradient: "from-purple-500 to-purple-600",
         },
         {
             image: "https://img.icons8.com/color/96/computer-support.png",
             title: "Basic Computer Skills",
-            description: "Familiarity with Word, Google Docs, and web browsing.",
+            description: "Familiarity with Word, Google Docs, and web browsing",
             gradient: "from-green-500 to-green-600",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
             title: "Growth Mindset & Commitment",
-            description: "Dedication to practice and complete a full research paper.",
+            description:
+                "Dedication to practice and complete a full research paper",
             gradient: "from-orange-500 to-orange-600",
         },
     ];

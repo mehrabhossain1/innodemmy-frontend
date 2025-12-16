@@ -5,27 +5,27 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Students & Academics – Those aiming to write and publish research papers.",
+            title: "Students & Academics – Those aiming to write and publish research papers",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",
-            title: "Career-Oriented Professionals – Strengthen your academic or research profile.",
+            title: "Career-Oriented Professionals – Strengthen your academic or research profile",
         },
         {
             image: "https://img.icons8.com/color/96/book.png",
-            title: "Beginners in Research Writing – No prior experience needed.",
+            title: "Beginners in Research Writing – No prior experience needed",
         },
         {
             image: "https://img.icons8.com/color/96/dumbbell.png",
-            title: "Hands-On Learners – Prefer practical exercises over theory-only learning.",
+            title: "Hands-On Learners – Prefer practical exercises over theory-only learning",
         },
         {
             image: "https://img.icons8.com/color/96/graph.png",
-            title: "Skill Builders – Develop analytical, research, and writing skills.",
+            title: "Skill Builders – Develop analytical, research, and writing skills",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "Self-Motivated Individuals – Committed to consistent learning and completing a paper from scratch.",
+            title: "Self-Motivated Individuals – Committed to consistent learning and completing a paper from scratch",
         },
     ];
 
@@ -64,4 +64,3 @@ export default function WhoThisCourseIsFor() {
         </div>
     );
 }
-

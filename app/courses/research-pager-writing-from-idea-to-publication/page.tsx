@@ -9,6 +9,8 @@ import BookTheCallCard from "@/components/BookTheCallCard";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
+import FAQ from "./components/FAQ";
+import ResourcePersons from "../advanced-evidence-generation-&-ai-enabled-research-practice/components/ResourcePersons";
 
 export default function ResearchPaperWritingFromIdeaToPublication() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -18,10 +20,9 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
         { id: "resource-persons", label: "Instructors and Mentors" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
-        { id: "projects", label: "Projects" },
+        { id: "what-you-get", label: "What You will Get" },
         { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You will Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need" },
         { id: "faq", label: "FAQ" },
     ];
 
@@ -102,7 +103,7 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
             </section>
 
             <section id="resource-persons">
-                {/* Instructor component will be added here */}
+                <ResourcePersons />
             </section>
 
             <section id="what-you-get">
@@ -119,6 +120,10 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
 
             <section id="what-you-need">
                 <WhatYouNeed />
+            </section>
+
+            <section id="faq">
+                <FAQ />
             </section>
 
             <BookTheCallCard />
