@@ -5,17 +5,17 @@ export default function WhatYouNeed() {
     const requirements = [
         {
             image: "https://img.icons8.com/color/96/laptop.png",
-            title: "Laptop or Desktop – At least 8GB RAM to code smoothly and run projects.",
+            title: "Laptop or Desktop – At least 8GB RAM to code smoothly and run projects",
             gradient: "from-blue-500 to-blue-600",
         },
         {
             image: "https://img.icons8.com/color/96/wifi.png",
-            title: "Stable Internet Connection – For live classes, accessing resources, and online practice.",
+            title: "Stable Internet Connection – For live classes, accessing resources, and online practice",
             gradient: "from-purple-500 to-purple-600",
         },
         {
             image: "/icons/image15.png",
-            title: "Curiosity & Commitment – A growth mindset, consistent practice, and the determination to solve challenges.",
+            title: "Curiosity & Commitment – A growth mindset, consistent practice, and the determination to solve challenges",
             gradient: "from-pink-500 to-pink-600",
         },
     ];
