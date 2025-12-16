@@ -37,7 +37,8 @@ export default function FAQ() {
             answer: "Yes, all live classes are recorded and you will have lifetime access to these recordings.",
         },
         {
-            question: "Where can I get support if I face difficulties during practice?",
+            question:
+                "Where can I get support if I face difficulties during practice?",
             answer: "You can get help during our weekly live support sessions and also through our active community forums and direct instructor support channels.",
         },
     ];
@@ -48,7 +49,7 @@ export default function FAQ() {
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
-            <SectionTitle title="Frequently Asked Questions (FAQ)" />
+            <SectionTitle title="FAQ" />
 
             <div className="max-w-3xl mx-auto space-y-3">
                 {faqs.map((faq, index) => {
@@ -111,4 +112,3 @@ export default function FAQ() {
         </div>
     );
 }
-

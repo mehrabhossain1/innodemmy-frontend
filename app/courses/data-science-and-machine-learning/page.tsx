@@ -19,10 +19,10 @@ export default function DataScienceAndMachineLearning() {
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
         { id: "resource-persons", label: "Instructors and Mentors" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
+        { id: "what-you-get", label: "What You will Get" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You will Need to Get Started" },
+        { id: "what-you-need", label: "What You will Need" },
 
         { id: "faq", label: "FAQ" },
     ];
