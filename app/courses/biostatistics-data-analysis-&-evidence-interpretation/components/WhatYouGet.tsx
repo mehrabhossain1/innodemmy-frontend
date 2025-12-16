@@ -7,12 +7,12 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Intensive Applied Learning Journey",
             description:
-                "Real datasets, real clinical scenarios, real interpretation ,  no theoretical fluff.",
+                "Real datasets, real clinical scenarios, real interpretation ,  no theoretical fluff",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "8 Live Classes with Data & Biostatistics Experts",
-            description: "Hands-on walkthroughs with step-by-step execution.",
+            description: "Hands-on walkthroughs with step-by-step execution",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
@@ -24,7 +24,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Community Access",
             description:
-                "Join a data-driven learning circle loaded with collaboration and peer-learning.",
+                "Join a data-driven learning circle loaded with collaboration and peer-learning",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",

@@ -7,54 +7,54 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "3-Month Guided Study Plan",
             description:
-                "A structured, beginner-friendly learning path with no prior experience required.",
+                "A structured, beginner-friendly learning path with no prior experience required",
         },
         {
             image: "https://img.icons8.com/color/96/document.png",
             title: "Research Paper Writing Guidance",
             description:
-                "Learn to write a research paper from topic selection to submission.",
+                "Learn to write a research paper from topic selection to submission",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "36+ Live Classes",
             description:
-                "Hands-on learning in real-time from experienced professionals.",
+                "Hands-on learning in real-time from experienced professionals",
         },
         {
             image: "https://img.icons8.com/color/96/project.png",
             title: "5 Real-World Projects",
             description:
-                "Build practical projects to showcase your skills and portfolio.",
+                "Build practical projects to showcase your skills and portfolio",
         },
         {
             image: "https://img.icons8.com/color/96/graduation-cap.png",
             title: "Higher Study Guidelines",
             description:
-                "Expert guidance on studying abroad, from program selection and applications to exams, and scholarships.",
+                "Expert guidance on studying abroad, from program selection and applications to exams, and scholarships",
         },
         {
             image: "https://img.icons8.com/color/96/approve-and-update.png",
             title: "Publication Strategy & Peer Review",
             description:
-                "Master journal selection, submission process, and get constructive feedback.",
+                "Master journal selection, submission process, and get constructive feedback",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Active Research Community",
             description:
-                "Collaborate, discuss, and grow alongside fellow learners.",
+                "Collaborate, discuss, and grow alongside fellow learners",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Unlimited Live Support",
-            description: "Get instant help and guidance whenever you need it.",
+            description: "Get instant help and guidance whenever you need it",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Completion Certificate",
             description:
-                "Earn a verified certificate to enhance your resume and LinkedIn profile.",
+                "Earn a verified certificate to enhance your resume and LinkedIn profile",
         },
     ];
 

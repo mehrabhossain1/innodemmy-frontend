@@ -7,7 +7,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Industry-Caliber Writing & Publication Journey",
             description:
-                "High-performance writing drills, real manuscript examples, and guided practice.",
+                "High-performance writing drills, real manuscript examples, and guided practice",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",

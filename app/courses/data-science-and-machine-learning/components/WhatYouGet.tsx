@@ -7,25 +7,25 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "3-Month Guided Study Plan",
             description:
-                "Structured, beginner-friendly learning journey — no prior experience needed.",
+                "Structured, beginner-friendly learning journey — no prior experience needed",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "40+ Live Classes",
             description:
-                "Learn hands-on from industry experts in real time.",
+                "Learn hands-on from industry experts in real time",
         },
         {
             image: "https://img.icons8.com/color/96/project.png",
             title: "4 Real-World Projects",
             description:
-                "Build industry-grade projects to showcase on your CV and portfolio.",
+                "Build industry-grade projects to showcase on your CV and portfolio",
         },
         {
             image: "https://img.icons8.com/color/96/leaderboard.png",
             title: "Progress Tracking + Leaderboard",
             description:
-                "Monitor your growth and see where you stand among peers.",
+                "Monitor your growth and see where you stand among peers",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
@@ -43,19 +43,19 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/infinity.png",
             title: "Lifetime Access",
             description:
-                "Revisit recorded classes, materials, and resources anytime.",
+                "Revisit recorded classes, materials, and resources anytime",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",
             title: "Job Market Preparation",
             description:
-                "Get career guidance directly from professionals.",
+                "Get career guidance directly from professionals",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Completion Certificate",
             description:
-                "Earn a verifiable certificate to boost your resume and LinkedIn profile.",
+                "Earn a verifiable certificate to boost your resume and LinkedIn profile",
         },
     ];
 

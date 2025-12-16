@@ -7,55 +7,55 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/calendar--v1.png",
             title: "1 Month Intensive Learning Journey",
             description:
-                "Step-by-step structured curriculum designed for beginners but packed with advanced, real-world concepts.",
+                "Step-by-step structured curriculum designed for beginners but packed with advanced, real-world concepts",
         },
         {
             image: "https://img.icons8.com/color/96/youtube-live.png",
             title: "12 Live Classes with Industry Experts",
             description:
-                "Learn directly from professionals and get your questions answered in real-time.",
+                "Learn directly from professionals and get your questions answered in real-time",
         },
         {
             image: "https://img.icons8.com/color/96/project.png",
             title: "10 Hands-on Projects",
             description:
-                "Apply what you learn on practical problems, strengthen your programming skills, and build confidence.",
+                "Apply what you learn on practical problems, strengthen your programming skills, and build confidence",
         },
         {
             image: "https://img.icons8.com/color/96/leaderboard.png",
             title: "Progress Tracking & Leaderboard",
             description:
-                "Keep track of your learning journey and see where you stand compared to peers.",
+                "Keep track of your learning journey and see where you stand compared to peers",
         },
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Unlimited Support Sessions",
             description:
-                "Stuck while practicing? Get instant help during live support sessions.",
+                "Stuck while practicing? Get instant help during live support sessions",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Exclusive Learner Community",
             description:
-                "Network, collaborate, and get continuous guidance from a supportive community of learners and experts.",
+                "Network, collaborate, and get continuous guidance from a supportive community of learners and experts",
         },
         {
             image: "https://img.icons8.com/color/96/infinity.png",
             title: "Lifetime Access",
             description:
-                "Revisit pre-recorded videos, resources, and class recordings anytime, forever.",
+                "Revisit pre-recorded videos, resources, and class recordings anytime, forever",
         },
         {
             image: "/icons/image30.png",
             title: "Mock Interview & Career Guidance",
             description:
-                "Prepare for interviews with real-world tips, resume & LinkedIn optimization, and guidance for internships/jobs.",
+                "Prepare for interviews with real-world tips, resume & LinkedIn optimization, and guidance for internships/jobs",
         },
         {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Receive an officially verified certificate upon completion that you can proudly display on LinkedIn or your CV.",
+                "Receive an officially verified certificate upon completion that you can proudly display on LinkedIn or your CV",
         },
     ];
 
