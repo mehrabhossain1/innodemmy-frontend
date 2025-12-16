@@ -30,8 +30,7 @@ export default function WhatYouGet() {
         {
             image: "https://img.icons8.com/color/96/video-conference.png",
             title: "Unlimited Support Sessions",
-            description:
-                "Stuck while practicing? Get instant help during live support sessions",
+            description: "Get instant help during live support sessions",
         },
         {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
