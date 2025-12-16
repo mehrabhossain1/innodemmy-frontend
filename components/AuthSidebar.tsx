@@ -2,7 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { X, Mail, Lock, User as UserIcon, CheckCircle2, ArrowLeft, KeyRound, RefreshCw } from "lucide-react";
+import {
+    X,
+    Mail,
+    Lock,
+    User as UserIcon,
+    CheckCircle2,
+    ArrowLeft,
+    KeyRound,
+    RefreshCw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,9 +24,18 @@ interface AuthSidebarProps {
     initialView?: "login" | "register";
 }
 
-type AuthView = "login" | "register" | "verify-email" | "forgot-password" | "reset-password";
+type AuthView =
+    | "login"
+    | "register"
+    | "verify-email"
+    | "forgot-password"
+    | "reset-password";
 
-export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: AuthSidebarProps) {
+export default function AuthSidebar({
+    isOpen,
+    onClose,
+    initialView = "login",
+}: AuthSidebarProps) {
     const [activeView, setActiveView] = useState<AuthView>(initialView);
     const [pendingEmail, setPendingEmail] = useState("");
 
@@ -65,7 +83,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
     // Cooldown timer for resend OTP
     useEffect(() => {
         if (resendCooldown > 0) {
-            const timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+            const timer = setTimeout(
+                () => setResendCooldown(resendCooldown - 1),
+                1000
+            );
             return () => clearTimeout(timer);
         }
     }, [resendCooldown]);
@@ -205,7 +226,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                 }, 1000);
             } else {
                 if (data.expired || data.maxAttemptsReached) {
-                    setError(data.error + " Click 'Resend Code' to get a new one.");
+                    setError(
+                        data.error + " Click 'Resend Code' to get a new one."
+                    );
                 } else {
                     setError(data.error || "Verification failed");
                 }
@@ -292,7 +315,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
         setSuccess("");
         setLoading(true);
 
-        if (resetPasswordData.newPassword !== resetPasswordData.confirmPassword) {
+        if (
+            resetPasswordData.newPassword !== resetPasswordData.confirmPassword
+        ) {
             setError("Passwords do not match");
             setLoading(false);
             return;
@@ -321,7 +346,11 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
 
             if (response.ok && data.success) {
                 setSuccess("Password reset successful! You can now login.");
-                setResetPasswordData({ code: "", newPassword: "", confirmPassword: "" });
+                setResetPasswordData({
+                    code: "",
+                    newPassword: "",
+                    confirmPassword: "",
+                });
 
                 setTimeout(() => {
                     setActiveView("login");
@@ -348,7 +377,11 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
         setSuccess("");
         setPendingEmail("");
         setVerifyData({ code: "" });
-        setResetPasswordData({ code: "", newPassword: "", confirmPassword: "" });
+        setResetPasswordData({
+            code: "",
+            newPassword: "",
+            confirmPassword: "",
+        });
     };
 
     if (!isOpen) return null;
@@ -370,7 +403,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
-                        {(activeView === "verify-email" || activeView === "forgot-password" || activeView === "reset-password") && (
+                        {(activeView === "verify-email" ||
+                            activeView === "forgot-password" ||
+                            activeView === "reset-password") && (
                             <button
                                 onClick={resetToLogin}
                                 className="p-2 hover:bg-accent rounded-full transition-colors"
@@ -382,16 +417,24 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             <h2 className="text-2xl font-bold text-foreground">
                                 {activeView === "login" && "Welcome Back!"}
                                 {activeView === "register" && "Join Innodemy"}
-                                {activeView === "verify-email" && "Verify Email"}
-                                {activeView === "forgot-password" && "Reset Password"}
-                                {activeView === "reset-password" && "Create New Password"}
+                                {activeView === "verify-email" &&
+                                    "Verify Email"}
+                                {activeView === "forgot-password" &&
+                                    "Reset Password"}
+                                {activeView === "reset-password" &&
+                                    "Create New Password"}
                             </h2>
                             <p className="text-sm text-muted-foreground mt-1">
-                                {activeView === "login" && "Sign in to continue your learning journey"}
-                                {activeView === "register" && "Create your account to get started"}
-                                {activeView === "verify-email" && "Enter the code sent to your email"}
-                                {activeView === "forgot-password" && "We'll send you a reset code"}
-                                {activeView === "reset-password" && "Enter the code and new password"}
+                                {activeView === "login" &&
+                                    "Sign in to continue your learning journey"}
+                                {activeView === "register" &&
+                                    "Create your account to get started"}
+                                {activeView === "verify-email" &&
+                                    "Enter the code sent to your email"}
+                                {activeView === "forgot-password" &&
+                                    "We'll send you a reset code"}
+                                {activeView === "reset-password" &&
+                                    "Enter the code and new password"}
                             </p>
                         </div>
                     </div>
@@ -467,7 +510,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                     {activeView === "login" && (
                         <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="login-email" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="login-email"
+                                    className="text-foreground font-medium"
+                                >
                                     Email Address
                                 </Label>
                                 <div className="relative">
@@ -478,7 +524,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="your@email.com"
                                         value={loginData.email}
                                         onChange={(e) =>
-                                            setLoginData({ ...loginData, email: e.target.value })
+                                            setLoginData({
+                                                ...loginData,
+                                                email: e.target.value,
+                                            })
                                         }
                                         className="h-12 pl-10"
                                         required
@@ -487,7 +536,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="login-password" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="login-password"
+                                    className="text-foreground font-medium"
+                                >
                                     Password
                                 </Label>
                                 <div className="relative">
@@ -498,7 +550,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="Enter your password"
                                         value={loginData.password}
                                         onChange={(e) =>
-                                            setLoginData({ ...loginData, password: e.target.value })
+                                            setLoginData({
+                                                ...loginData,
+                                                password: e.target.value,
+                                            })
                                         }
                                         className="h-12 pl-10"
                                         required
@@ -548,8 +603,12 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                     {activeView === "register" && (
                         <form onSubmit={handleRegister} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="register-name" className="text-foreground font-medium">
-                                    Full Name <span className="text-red-500">*</span>
+                                <Label
+                                    htmlFor="register-name"
+                                    className="text-foreground font-medium"
+                                >
+                                    Full Name{" "}
+                                    <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -559,7 +618,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="John Doe"
                                         value={registerData.name}
                                         onChange={(e) =>
-                                            setRegisterData({ ...registerData, name: e.target.value })
+                                            setRegisterData({
+                                                ...registerData,
+                                                name: e.target.value,
+                                            })
                                         }
                                         className="h-12 pl-10"
                                         required
@@ -568,8 +630,12 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-email" className="text-foreground font-medium">
-                                    Email Address <span className="text-red-500">*</span>
+                                <Label
+                                    htmlFor="register-email"
+                                    className="text-foreground font-medium"
+                                >
+                                    Email Address{" "}
+                                    <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -579,7 +645,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="your@email.com"
                                         value={registerData.email}
                                         onChange={(e) =>
-                                            setRegisterData({ ...registerData, email: e.target.value })
+                                            setRegisterData({
+                                                ...registerData,
+                                                email: e.target.value,
+                                            })
                                         }
                                         className="h-12 pl-10"
                                         required
@@ -588,8 +657,12 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-password" className="text-foreground font-medium">
-                                    Password <span className="text-red-500">*</span>
+                                <Label
+                                    htmlFor="register-password"
+                                    className="text-foreground font-medium"
+                                >
+                                    Password{" "}
+                                    <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -611,8 +684,12 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="register-confirm-password" className="text-foreground font-medium">
-                                    Confirm Password <span className="text-red-500">*</span>
+                                <Label
+                                    htmlFor="register-confirm-password"
+                                    className="text-foreground font-medium"
+                                >
+                                    Confirm Password{" "}
+                                    <span className="text-red-500">*</span>
                                 </Label>
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -663,11 +740,17 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
 
                             <p className="text-xs text-muted-foreground text-center">
                                 By creating an account, you agree to our{" "}
-                                <Link href="/terms" className="text-primary hover:underline">
+                                <Link
+                                    href="/terms"
+                                    className="text-primary hover:underline"
+                                >
                                     Terms of Service
                                 </Link>{" "}
                                 and{" "}
-                                <Link href="/privacy" className="text-primary hover:underline">
+                                <Link
+                                    href="/privacy"
+                                    className="text-primary hover:underline"
+                                >
                                     Privacy Policy
                                 </Link>
                                 .
@@ -677,7 +760,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
 
                     {/* Verify Email Form */}
                     {activeView === "verify-email" && (
-                        <form onSubmit={handleVerifyEmail} className="space-y-5">
+                        <form
+                            onSubmit={handleVerifyEmail}
+                            className="space-y-5"
+                        >
                             <div className="bg-accent/50 p-4 rounded-lg border border-border">
                                 <p className="text-sm text-muted-foreground">
                                     We sent a 6-digit verification code to:
@@ -688,7 +774,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="verify-code" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="verify-code"
+                                    className="text-foreground font-medium"
+                                >
                                     Verification Code
                                 </Label>
                                 <div className="relative">
@@ -699,7 +788,11 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="Enter 6-digit code"
                                         value={verifyData.code}
                                         onChange={(e) =>
-                                            setVerifyData({ code: e.target.value.replace(/\D/g, '').slice(0, 6) })
+                                            setVerifyData({
+                                                code: e.target.value
+                                                    .replace(/\D/g, "")
+                                                    .slice(0, 6),
+                                            })
                                         }
                                         className="h-12 pl-10 text-center text-2xl tracking-widest"
                                         maxLength={6}
@@ -714,7 +807,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
-                                disabled={loading || verifyData.code.length !== 6}
+                                disabled={
+                                    loading || verifyData.code.length !== 6
+                                }
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
@@ -744,15 +839,22 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
 
                     {/* Forgot Password Form */}
                     {activeView === "forgot-password" && (
-                        <form onSubmit={handleForgotPassword} className="space-y-5">
+                        <form
+                            onSubmit={handleForgotPassword}
+                            className="space-y-5"
+                        >
                             <div className="bg-accent/50 p-4 rounded-lg border border-border">
                                 <p className="text-sm text-muted-foreground">
-                                    Enter your email address and we'll send you a code to reset your password.
+                                    Enter your email address and we'll send you
+                                    a code to reset your password.
                                 </p>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="forgot-email" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="forgot-email"
+                                    className="text-foreground font-medium"
+                                >
                                     Email Address
                                 </Label>
                                 <div className="relative">
@@ -763,7 +865,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         placeholder="your@email.com"
                                         value={forgotPasswordData.email}
                                         onChange={(e) =>
-                                            setForgotPasswordData({ email: e.target.value })
+                                            setForgotPasswordData({
+                                                email: e.target.value,
+                                            })
                                         }
                                         className="h-12 pl-10"
                                         required
@@ -790,7 +894,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
 
                     {/* Reset Password Form */}
                     {activeView === "reset-password" && (
-                        <form onSubmit={handleResetPassword} className="space-y-5">
+                        <form
+                            onSubmit={handleResetPassword}
+                            className="space-y-5"
+                        >
                             <div className="bg-accent/50 p-4 rounded-lg border border-border">
                                 <p className="text-sm text-muted-foreground">
                                     We sent a reset code to:
@@ -801,7 +908,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="reset-code" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="reset-code"
+                                    className="text-foreground font-medium"
+                                >
                                     Reset Code
                                 </Label>
                                 <div className="relative">
@@ -814,7 +924,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         onChange={(e) =>
                                             setResetPasswordData({
                                                 ...resetPasswordData,
-                                                code: e.target.value.replace(/\D/g, '').slice(0, 6)
+                                                code: e.target.value
+                                                    .replace(/\D/g, "")
+                                                    .slice(0, 6),
                                             })
                                         }
                                         className="h-12 pl-10 text-center text-2xl tracking-widest"
@@ -825,7 +937,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="reset-new-password" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="reset-new-password"
+                                    className="text-foreground font-medium"
+                                >
                                     New Password
                                 </Label>
                                 <div className="relative">
@@ -848,7 +963,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="reset-confirm-password" className="text-foreground font-medium">
+                                <Label
+                                    htmlFor="reset-confirm-password"
+                                    className="text-foreground font-medium"
+                                >
                                     Confirm New Password
                                 </Label>
                                 <div className="relative">
@@ -857,7 +975,9 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                                         id="reset-confirm-password"
                                         type="password"
                                         placeholder="Re-enter new password"
-                                        value={resetPasswordData.confirmPassword}
+                                        value={
+                                            resetPasswordData.confirmPassword
+                                        }
                                         onChange={(e) =>
                                             setResetPasswordData({
                                                 ...resetPasswordData,
@@ -873,7 +993,10 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
-                                disabled={loading || resetPasswordData.code.length !== 6}
+                                disabled={
+                                    loading ||
+                                    resetPasswordData.code.length !== 6
+                                }
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
@@ -892,12 +1015,18 @@ export default function AuthSidebar({ isOpen, onClose, initialView = "login" }: 
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-t border-border">
                     <p className="text-xs text-center text-muted-foreground">
                         Need help? Contact us:{" "}
-                        <a href="mailto:Contact@innodemy.com" className="text-primary hover:underline font-medium">
+                        <a
+                            href="mailto:Contact@innodemy.com"
+                            className="text-primary hover:underline font-medium"
+                        >
                             Contact@innodemy.com
                         </a>
                         {" or "}
-                        <a href="tel:+8801704258972" className="text-primary hover:underline font-medium">
-                            +880 1704 258972
+                        <a
+                            href="tel:+8801521428597"
+                            className="text-primary hover:underline font-medium"
+                        >
+                            +8801521428597
                         </a>
                     </p>
                 </div>
