@@ -250,11 +250,13 @@ export default function CourseModule() {
                 {modules.map((module) => (
                     <div
                         key={module.id}
-                        className={`${module.bgColor
-                            } dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${expandedModules.includes(module.id)
+                        className={`${
+                            module.bgColor
+                        } dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${
+                            expandedModules.includes(module.id)
                                 ? "shadow-lg h-auto"
                                 : "shadow-md hover:shadow-lg h-[110px]"
-                            }`}
+                        }`}
                     >
                         {/* Module Header */}
                         <div
@@ -279,10 +281,10 @@ export default function CourseModule() {
 
                                 {/* Module Info */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-base leading-tight">
+                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg leading-tight">
                                         {module.title}
                                     </h3>
-                                    <div className="flex items-center gap-2 text-xs text-gray-700 dark:text-gray-300">
+                                    <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                                         <div className="flex items-center gap-1">
                                             <Video className="w-3.5 h-3.5" />
                                             <span className="font-medium">
@@ -320,10 +322,11 @@ export default function CourseModule() {
                                 {/* Chevron Icon */}
                                 <div className="flex-shrink-0">
                                     <ChevronDown
-                                        className={`w-5 h-5 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${expandedModules.includes(module.id)
+                                        className={`w-5 h-5 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
+                                            expandedModules.includes(module.id)
                                                 ? "rotate-180"
                                                 : "rotate-0"
-                                            }`}
+                                        }`}
                                     />
                                 </div>
                             </div>
@@ -346,22 +349,24 @@ export default function CourseModule() {
                                                 module.id === 1
                                                     ? "border-blue-300 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/20"
                                                     : module.id === 2
-                                                        ? "border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-900/20"
-                                                        : "border-gray-300 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/20";
+                                                    ? "border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-900/20"
+                                                    : "border-gray-300 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/20";
 
                                             return (
                                                 <div
                                                     key={topic.id}
-                                                    className={`border rounded-md p-2 transition-all duration-300 ${isTopicExpanded
+                                                    className={`border rounded-md p-2 transition-all duration-300 ${
+                                                        isTopicExpanded
                                                             ? `${borderColor} shadow-sm`
                                                             : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm"
-                                                        }`}
+                                                    }`}
                                                 >
                                                     <div
-                                                        className={`flex items-start gap-1.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${hasDetails
+                                                        className={`flex items-start gap-1.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${
+                                                            hasDetails
                                                                 ? "cursor-pointer"
                                                                 : ""
-                                                            }`}
+                                                        }`}
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             if (hasDetails) {
@@ -372,13 +377,13 @@ export default function CourseModule() {
                                                             }
                                                         }}
                                                     >
-                                                        <span className="font-bold text-gray-900 dark:text-white min-w-[18px] text-sm">
+                                                        <span className="font-bold text-gray-900 dark:text-white min-w-[20px] text-base">
                                                             {topic.session}.
                                                         </span>
                                                         <div className="flex-1">
                                                             <div className="flex items-center justify-between">
                                                                 <div>
-                                                                    <span className="leading-tight font-semibold text-sm block">
+                                                                    <span className="leading-tight font-semibold text-base block">
                                                                         {
                                                                             topic.title
                                                                         }
@@ -386,10 +391,11 @@ export default function CourseModule() {
                                                                 </div>
                                                                 {hasDetails && (
                                                                     <ChevronDown
-                                                                        className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${isTopicExpanded
+                                                                        className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${
+                                                                            isTopicExpanded
                                                                                 ? "rotate-180"
                                                                                 : ""
-                                                                            }`}
+                                                                        }`}
                                                                     />
                                                                 )}
                                                             </div>
@@ -397,14 +403,14 @@ export default function CourseModule() {
                                                             {/* Expanded Topic Details */}
                                                             {isTopicExpanded &&
                                                                 hasDetails && (
-                                                                    <div className="mt-2 space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                                                                    <div className="mt-2 space-y-2 text-sm text-gray-600 dark:text-gray-300">
                                                                         {topic.keyConcepts &&
                                                                             topic
                                                                                 .keyConcepts
                                                                                 .length >
-                                                                            0 && (
+                                                                                0 && (
                                                                                 <div className="bg-indigo-50 dark:bg-indigo-900/30 p-2 rounded-md border border-indigo-100 dark:border-indigo-800">
-                                                                                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-1 flex items-center gap-1 text-xs">
+                                                                                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-1 flex items-center gap-1 text-sm">
                                                                                         <span className="text-indigo-600 dark:text-indigo-400">
                                                                                             📚
                                                                                         </span>
@@ -439,9 +445,9 @@ export default function CourseModule() {
                                                                             topic
                                                                                 .projectMilestones
                                                                                 .length >
-                                                                            0 && (
+                                                                                0 && (
                                                                                 <div className="bg-purple-50 dark:bg-purple-900/30 p-2 rounded-md border border-purple-100 dark:border-purple-800">
-                                                                                    <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1 flex items-center gap-1 text-xs">
+                                                                                    <h4 className="font-semibold text-purple-900 dark:text-purple-300 mb-1 flex items-center gap-1 text-sm">
                                                                                         <span className="text-purple-600 dark:text-purple-400">
                                                                                             🎯
                                                                                         </span>

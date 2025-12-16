@@ -5,19 +5,19 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Graduate students and researchers interested in conducting high-quality research using machine learning.",
+            title: "Graduate students and researchers interested in conducting high-quality research using machine learning",
         },
         {
             image: "https://img.icons8.com/color/96/businessman.png",
-            title: "Professionals aiming to build a career in data science, artificial intelligence (AI), and research fields.",
+            title: "Professionals aiming to build a career in data science, artificial intelligence (AI), and research fields",
         },
         {
             image: "/icons/image13.png",
-            title: "Members of technology and research organizations seeking to enhance their skills and Effectiveness.",
+            title: "Members of technology and research organizations seeking to enhance their skills and Effectiveness",
         },
         {
             image: "/icons/image8.png",
-            title: "Individuals who are eager to build a strong research profile for fully funded MSc or PhD opportunities.",
+            title: "Individuals who are eager to build a strong research profile for fully funded MSc or PhD opportunities",
         },
     ];
 

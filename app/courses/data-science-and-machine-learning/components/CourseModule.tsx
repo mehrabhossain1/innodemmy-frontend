@@ -620,10 +620,10 @@ export default function CourseModule() {
 
                                 {/* Module Info */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-base leading-tight">
+                                    <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg leading-tight">
                                         {module.title}
                                     </h3>
-                                    <div className="flex items-center gap-2 text-xs text-gray-700 dark:text-gray-300">
+                                    <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                                         <BookOpen className="w-3.5 h-3.5" />
                                         <span className="font-medium">
                                             {module.topics.length}{" "}
@@ -685,14 +685,14 @@ export default function CourseModule() {
                                                         <div className="flex items-start gap-2">
                                                             <div className="flex-1 min-w-0">
                                                                 <div className="flex items-center gap-2 mb-1">
-                                                                    <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                                                    <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">
                                                                         Session{" "}
                                                                         {
                                                                             topic.session
                                                                         }
                                                                     </span>
                                                                 </div>
-                                                                <h4 className="font-semibold text-sm text-gray-900 dark:text-white leading-snug">
+                                                                <h4 className="font-semibold text-base text-gray-900 dark:text-white leading-snug">
                                                                     {
                                                                         topic.title
                                                                     }
@@ -721,14 +721,14 @@ export default function CourseModule() {
                                                                         .length >
                                                                         0 && (
                                                                         <div>
-                                                                            <h5 className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1">
+                                                                            <h5 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1">
                                                                                 <BookOpen className="w-3 h-3" />
                                                                                 Key
                                                                                 Concepts
                                                                                 &
                                                                                 Activities
                                                                             </h5>
-                                                                            <ul className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+                                                                            <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                                                                                 {topic.keyConcepts.map(
                                                                                     (
                                                                                         concept,
@@ -762,12 +762,12 @@ export default function CourseModule() {
                                                                         .length >
                                                                         0 && (
                                                                         <div>
-                                                                            <h5 className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1">
+                                                                            <h5 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1">
                                                                                 <Code className="w-3 h-3" />
                                                                                 Project
                                                                                 Milestones
                                                                             </h5>
-                                                                            <ul className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+                                                                            <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                                                                                 {topic.projectMilestones.map(
                                                                                     (
                                                                                         milestone,

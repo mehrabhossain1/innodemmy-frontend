@@ -1921,7 +1921,7 @@ export const coursesData: Course[] = [
             },
             {
                 question: "What makes this course comprehensive?",
-                answer: "This course covers the complete data science pipeline - from Python programming and statistics to advanced ML algorithms, deep learning, and deployment. You'll work on real-world projects throughout.",
+                answer: "This course covers the complete data science pipeline - from Python programming and statistics to advanced ML algorithms, deep learning, and deployment. You will work on real-world projects throughout.",
             },
             {
                 question:

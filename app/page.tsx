@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BookTheCallCard from "@/components/BookTheCallCard";
 import BlogsSection from "@/components/homepage/BlogsSection";
 import CoursesSection from "@/components/homepage/CoursesSection";
@@ -12,7 +13,13 @@ export default function Home() {
         <main className="">
             <HeroSection />
             <AboutusSection />
-            <CoursesSection />
+            <Suspense
+                fallback={
+                    <div className="py-20 text-center">Loading courses...</div>
+                }
+            >
+                <CoursesSection />
+            </Suspense>
             <FreeMasterclassSection />
             <WhyBestChoiceSection />
             <TechnologyStackSection />
