@@ -186,7 +186,7 @@ export default function CourseModule() {
                                         className={`${module.color} text-white rounded-xl px-4 py-3 flex-shrink-0 shadow-md`}
                                     >
                                         <div className="text-sm font-semibold">
-                                            Class
+                                            Module
                                         </div>
                                         <div className="text-3xl font-bold">
                                             {module.number}
