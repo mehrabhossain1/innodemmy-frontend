@@ -10,6 +10,7 @@ import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 import ResourcePersons from "./components/ResourcePersons";
+import BookTheCallCard from "@/components/BookTheCallCard";
 
 const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -123,6 +124,8 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
