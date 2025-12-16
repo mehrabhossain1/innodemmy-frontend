@@ -5,27 +5,27 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Absolute Beginners – Students or professionals from a non-technical background with no prior coding experience.",
+            title: "Absolute Beginners – Students or professionals from a non-technical background with no prior coding experience",
         },
         {
             image: "https://img.icons8.com/color/96/businessman.png",
-            title: "Career-Oriented Learners – Those aiming for a career in freelancing, data science, or web development.",
+            title: "Career-Oriented Learners – Those aiming for a career in freelancing, data science, or web development",
         },
         {
             image: "https://img.icons8.com/color/96/python.png",
-            title: "Python Newbies – Anyone who feels intimidated or hesitant to start programming.",
+            title: "Python Newbies – Anyone who feels intimidated or hesitant to start programming",
         },
         {
             image: "https://img.icons8.com/color/96/code.png",
-            title: "Hands-on Learners – People who prefer learning by doing through practical exercises and real-world examples.",
+            title: "Hands-on Learners – People who prefer learning by doing through practical exercises and real-world examples",
         },
         {
             image: "/icons/image9.png",
-            title: "Skill Builders – Learners who want to strengthen problem-solving, programming, and analytical skills.",
+            title: "Skill Builders – Learners who want to strengthen problem-solving, programming, and analytical skills",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "Self-Motivated Individuals – Those ready to commit, practice consistently, and grow their coding confidence.",
+            title: "Self-Motivated Individuals – Those ready to commit, practice consistently, and grow their coding confidence",
         },
     ];
 
