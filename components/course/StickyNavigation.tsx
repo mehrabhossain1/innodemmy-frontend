@@ -72,7 +72,7 @@ export default function StickyNavigation({ items }: StickyNavigationProps) {
         <div className="sticky top-16 z-40 bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-600 transition-all duration-300 py-2">
             <div className="w-full px-4">
                 <nav
-                    className="flex justify-center gap-2 overflow-x-auto scrollbar-hide pb-1 max-w-full"
+                    className="flex justify-center gap-2 overflow-x-auto scrollbar-hide max-w-full"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {items.map((item) => (
