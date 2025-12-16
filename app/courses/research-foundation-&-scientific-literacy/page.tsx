@@ -19,10 +19,10 @@ const ResearchFoundationScientificLiteracy = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
-        { id: "resource-persons", label: "Resource Persons" },
-        { id: "what-you-need", label: "What You will Need to Get Started" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get" },
         { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You will Need" },
         { id: "faq", label: "FAQ" },
     ];
 
@@ -109,8 +109,6 @@ const ResearchFoundationScientificLiteracy = () => {
             <div id="what-you-get">
                 <WhatYouGet />
             </div>
-
-
 
             {/* Who This Course is For */}
             <div id="who-this-for">
