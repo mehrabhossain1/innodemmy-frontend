@@ -10,10 +10,21 @@ import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import BookTheCallCard from "@/components/BookTheCallCard";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
+import StickyNavigation from "@/components/course/StickyNavigation";
 
 const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You will Need" },
+        { id: "faq", label: "FAQ" },
+    ];
 
     // Centralized Course Data
     const courseData = {
@@ -81,25 +92,38 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 
+            {/* Sticky Navigation */}
+            <StickyNavigation items={navigationItems} />
+
             {/* Course Module */}
-            <CourseModule />
+            <div id="course-module">
+                <CourseModule />
+            </div>
 
-            {/* Resource Persons */}
-            <ResourcePersons />
+            {/* Resource Persons Section */}
+            <div id="resource-persons">
+                <ResourcePersons />
+            </div>
 
-            {/* What You Get */}
-            <WhatYouGet />
+            {/* What You will Get Section */}
+            <div id="what-you-get">
+                <WhatYouGet />
+            </div>
 
+            {/* Who This Course is For Section */}
+            <div id="who-this-for">
+                <WhoThisCourseIsFor />
+            </div>
 
-            {/* Who This Course is For */}
-            <WhoThisCourseIsFor />
+            {/* What You will Need Section */}
+            <div id="what-you-need">
+                <WhatYouNeed />
+            </div>
 
-
-            {/* What You Need */}
-            <WhatYouNeed />
-
-            {/* FAQ */}
-            <FAQ />
+            {/* FAQ Section */}
+            <div id="faq">
+                <FAQ />
+            </div>
 
             <BookTheCallCard />
 
