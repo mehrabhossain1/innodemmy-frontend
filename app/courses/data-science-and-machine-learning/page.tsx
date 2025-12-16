@@ -9,6 +9,7 @@ import FAQ from "./components/FAQ";
 import CourseModule from "./components/CourseModule";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import ResourcePersons from "../advanced-evidence-generation-&-ai-enabled-research-practice/components/ResourcePersons";
+import BookTheCallCard from "@/components/BookTheCallCard";
 
 export default function DataScienceAndMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -119,6 +120,8 @@ export default function DataScienceAndMachineLearning() {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
         </div>
     );
 }

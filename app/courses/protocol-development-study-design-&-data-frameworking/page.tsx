@@ -8,6 +8,7 @@ import ResourcePersons from "./components/ResourcePersons";
 import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
+import BookTheCallCard from "@/components/BookTheCallCard";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 
 const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
@@ -99,6 +100,8 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
 
             {/* FAQ */}
             <FAQ />
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar

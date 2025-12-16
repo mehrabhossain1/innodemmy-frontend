@@ -12,6 +12,7 @@ import WhatYouNeed from "@/app/courses/vlsi-physical-design-training/components/
 import WhoThisCourseIsFor from "@/app/courses/vlsi-physical-design-training/components/WhoThisCourseIsFor";
 import InstructorsAndMentors from "@/app/courses/vlsi-physical-design-training/components/InstructorsAndMentors";
 import FAQ from "@/app/courses/vlsi-physical-design-training/components/FAQ";
+import BookTheCallCard from "@/components/BookTheCallCard";
 
 const VlsiPhysicalDesignTraining = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -137,6 +138,8 @@ const VlsiPhysicalDesignTraining = () => {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar

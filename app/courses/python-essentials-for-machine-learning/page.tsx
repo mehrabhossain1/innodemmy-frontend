@@ -9,6 +9,7 @@ import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import FAQ from "./components/FAQ";
+import BookTheCallCard from "@/components/BookTheCallCard";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import CourseModule from "./components/CourseModule";
 
@@ -132,6 +133,8 @@ export default function PythonEssentialsForMachineLearning() {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
 
             {/* Sticky Enrollment Bar */}
             <StickyEnrollmentBar
