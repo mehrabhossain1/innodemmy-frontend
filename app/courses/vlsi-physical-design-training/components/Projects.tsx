@@ -6,12 +6,12 @@ export default function Projects() {
     const projects = [
         {
             number: 1,
-            title: "RTL to GDSII SoC Project – Take a Verilog RTL, synthesize, floorplan, place, route, and generate GDSII.",
+            title: "RTL to GDSII SoC Project – Take a Verilog RTL, synthesize, floorplan, place, route, and generate GDSII",
             image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
         },
         {
             number: 2,
-            title: "Open-Source Tapeout Simulation – Use OpenLANE & SkyWater PDK to generate a complete tapeout-ready GDSII.",
+            title: "Open-Source Tapeout Simulation – Use OpenLANE & SkyWater PDK to generate a complete tapeout-ready GDSII",
             image: "https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?w=800&q=80",
         },
     ];

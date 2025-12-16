@@ -5,19 +5,19 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Undergraduate/Graduate Students – Interested in VLSI & semiconductor design.",
+            title: "Undergraduate/Graduate Students – Interested in VLSI & semiconductor design",
         },
         {
             image: "https://img.icons8.com/color/96/engineer.png",
-            title: "Fresh Engineers – Preparing for jobs in ASIC/SoC companies.",
+            title: "Fresh Engineers – Preparing for jobs in ASIC/SoC companies",
         },
         {
             image: "https://img.icons8.com/color/96/biotech.png",
-            title: "Researchers & Enthusiasts – Exploring EDA, CAD, and chip layout methodologies.",
+            title: "Researchers & Enthusiasts – Exploring EDA, CAD, and chip layout methodologies",
         },
         {
             image: "https://img.icons8.com/color/96/businessman.png",
-            title: "Professionals – Who want to skill up in physical design for better career opportunities.",
+            title: "Professionals – Who want to skill up in physical design for better career opportunities",
         },
     ];
 

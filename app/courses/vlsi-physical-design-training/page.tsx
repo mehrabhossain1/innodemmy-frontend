@@ -21,12 +21,12 @@ const VlsiPhysicalDesignTraining = () => {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
+        { id: "instructors", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get" },
         // { id: "tools-technologies", label: "Tools & Technologies" },
         { id: "projects", label: "Projects" },
         { id: "who-this-for", label: "Who This Course is For" },
         { id: "what-you-need", label: "What You will Need" },
-        { id: "instructors", label: "Instructors and Mentors" },
         { id: "faq", label: "FAQ" },
     ];
 
@@ -104,6 +104,11 @@ const VlsiPhysicalDesignTraining = () => {
                 <VLSICourseModule />
             </div>
 
+            {/* Instructors and Mentors */}
+            <div id="instructors">
+                <InstructorsAndMentors />
+            </div>
+
             {/* What You Get */}
             <div id="what-you-get">
                 <WhatYouGet />
@@ -127,11 +132,6 @@ const VlsiPhysicalDesignTraining = () => {
             {/* What You Need */}
             <div id="what-you-need">
                 <WhatYouNeed />
-            </div>
-
-            {/* Instructors and Mentors */}
-            <div id="instructors">
-                <InstructorsAndMentors />
             </div>
 
             {/* FAQ */}
