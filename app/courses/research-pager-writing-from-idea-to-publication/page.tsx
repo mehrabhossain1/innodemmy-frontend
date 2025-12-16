@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import ResearchPaperHeroSection from "./components/ResearchPaperHeroSection";
+import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import WhatYouNeed from "./components/WhatYouNeed";
-import FAQ from "./components/FAQ";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
@@ -96,8 +96,20 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
             <StickyNavigation items={navigationItems} />
 
             {/* Course sections */}
+            <section id="course-module">
+                <CourseModule />
+            </section>
+
+            <section id="resource-persons">
+                {/* Instructor component will be added here */}
+            </section>
+
             <section id="what-you-get">
                 <WhatYouGet />
+            </section>
+
+            <section id="projects">
+                {/* Projects component will be added here */}
             </section>
 
             <section id="who-this-for">
@@ -106,10 +118,6 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
 
             <section id="what-you-need">
                 <WhatYouNeed />
-            </section>
-
-            <section id="faq">
-                <FAQ />
             </section>
 
             {/* Sticky Bottom Bar */}
