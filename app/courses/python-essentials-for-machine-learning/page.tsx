@@ -20,11 +20,11 @@ export default function PythonEssentialsForMachineLearning() {
     // Navigation items
     const navigationItems = [
         { id: "course-module", label: "Course Module" },
-        { id: "what-you-get", label: "What You will Get in This Course" },
-        { id: "projects", label: "Projects" },
-        { id: "what-you-need", label: "What You will Need to Get Started" },
-        { id: "who-this-for", label: "Who This Course is For" },
         { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get" },
+        { id: "projects", label: "Projects" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You will Need" },
         { id: "faq", label: "FAQ" },
     ];
 
@@ -125,9 +125,6 @@ export default function PythonEssentialsForMachineLearning() {
             <div id="what-you-need">
                 <WhatYouNeed />
             </div>
-
-
-
 
             {/* FAQ Section */}
             <div id="faq">
