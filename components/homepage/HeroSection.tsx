@@ -160,8 +160,8 @@ export default function HeroSection() {
                             ))}
                         </CarouselContent>
 
-                        <CarouselPrevious className="left-4 md:left-6 size-9 md:size-11 bg-background/95 hover:bg-background border-border shadow-lg" />
-                        <CarouselNext className="right-4 md:right-6 size-9 md:size-11 bg-background/95 hover:bg-background border-border shadow-lg" />
+                        <CarouselPrevious className="left-4 md:left-6 size-9 md:size-11 bg-background/95  border-border shadow-lg" />
+                        <CarouselNext className="right-4 md:right-6 size-9 md:size-11 bg-background/95 border-border shadow-lg" />
                     </Carousel>
                 </div>
             </Container>
