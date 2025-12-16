@@ -54,7 +54,7 @@ const modules: Module[] = [
     {
         id: 1,
         number: 1,
-        tierLabel: "Tier",
+        tierLabel: "Module",
         title: "Research Foundation & Scientific Literacy",
         subtitle: "How to Think, Read, and Question Like a Researcher",
         essence:
@@ -138,7 +138,7 @@ const modules: Module[] = [
     {
         id: 2,
         number: 2,
-        tierLabel: "Tier",
+        tierLabel: "Module",
         title: "Protocol Development, Study Design & Data Frameworking",
         subtitle: "From Research Question to Ethical and Operational Blueprint",
         essence:
@@ -227,7 +227,7 @@ const modules: Module[] = [
     {
         id: 3,
         number: 3,
-        tierLabel: "Tier",
+        tierLabel: "Module",
         title: "Biostatistics, Data Analysis & Evidence Interpretation",
         subtitle: "From Dataset to Decision-Ready Insight",
         essence:
@@ -297,7 +297,7 @@ const modules: Module[] = [
     {
         id: 4,
         number: 4,
-        tierLabel: "Tier",
+        tierLabel: "Module",
         title: "Scientific Writing, Publication & Communication Mastery",
         subtitle: "Crafting and Communicating Scientific Evidence",
         essence:
@@ -383,7 +383,7 @@ const modules: Module[] = [
     {
         id: 5,
         number: 5,
-        tierLabel: "Tier",
+        tierLabel: "Module",
         title: "Advanced Evidence Generation & AI-Enabled Research Practice (Optional Track)",
         subtitle: "Move Beyond Research – Automate and Innovate",
         essence:
