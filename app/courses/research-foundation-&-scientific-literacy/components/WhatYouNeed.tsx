@@ -5,17 +5,17 @@ export default function WhatYouNeed() {
     const requirements = [
         {
             image: "https://img.icons8.com/color/96/laptop.png",
-            title: "Basic computer skills and reliable internet access.",
+            title: "Basic computer skills and reliable internet access",
             gradient: "from-blue-500 to-blue-600",
         },
         {
             image: "/icons/image2.png",
-            title: "Foundational knowledge of health, medical, subjects.",
+            title: "Foundational knowledge of health, medical, subjects",
             gradient: "from-purple-500 to-purple-600",
         },
         {
             image: "https://img.icons8.com/color/96/goal.png",
-            title: "Commitment to learning and applying the concepts through projects.",
+            title: "Commitment to learning and applying the concepts through projects",
             gradient: "from-green-500 to-green-600",
         },
     ];

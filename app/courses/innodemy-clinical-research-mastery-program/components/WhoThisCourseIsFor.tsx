@@ -5,19 +5,19 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Professionals in the medical and healthcare sectors who plan to pursue higher studies abroad, including PhD opportunities.",
+            title: "Professionals in the medical and healthcare sectors who plan to pursue higher studies abroad, including PhD opportunities",
         },
         {
             image: "https://img.icons8.com/color/96/biotech.png",
-            title: "Researchers working in pharmaceutical, biotechnology, or life science fields seeking to strengthen their research foundation.",
+            title: "Researchers working in pharmaceutical, biotechnology, or life science fields seeking to strengthen their research foundation",
         },
         {
             image: "https://img.icons8.com/color/96/stethoscope.png",
-            title: "MBBS/BDS students or graduates interested in developing strong research skills for academic or clinical careers.",
+            title: "MBBS/BDS students or graduates interested in developing strong research skills for academic or clinical careers",
         },
         {
             image: "/icons/image29.png",
-            title: "Anyone who wants to build solid expertise in research methodology, scientific literacy, and academic writing.",
+            title: "Anyone who wants to build solid expertise in research methodology, scientific literacy, and academic writing",
         },
     ];
 

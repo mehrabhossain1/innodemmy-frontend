@@ -5,15 +5,15 @@ export default function WhoThisCourseIsFor() {
     const audiences = [
         {
             image: "https://img.icons8.com/color/96/student-center.png",
-            title: "Students aiming to strengthen their research skills.",
+            title: "Students aiming to strengthen their research skills",
         },
         {
             image: "/icons/image1.png",
-            title: "Early-career researchers and professionals in science, healthcare, or technology.",
+            title: "Early-career researchers and professionals in science, healthcare, or technology",
         },
         {
             image: "/icons/image14.png",
-            title: "Anyone looking to improve scientific literacy and critical thinking abilities.",
+            title: "Anyone looking to improve scientific literacy and critical thinking abilities",
         },
     ];
 
