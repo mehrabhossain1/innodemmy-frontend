@@ -11,6 +11,7 @@ import WhatYouNeed from "./components/WhatYouNeed";
 import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import CourseModule from "./components/CourseModule";
 import FAQ from "./components/FAQ";
+import BookTheCallCard from "@/components/BookTheCallCard";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -131,6 +132,8 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar

@@ -10,6 +10,7 @@ import WhatYouNeed from "./components/WhatYouNeed";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import FAQ from "./components/FAQ";
 import ResourcePersons from "./components/ResourcePersons";
+import BookTheCallCard from "@/components/BookTheCallCard";
 
 const InnodemyClinicalResearchMasteryProgram = () => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -125,6 +126,8 @@ const InnodemyClinicalResearchMasteryProgram = () => {
             <div id="faq">
                 <FAQ />
             </div>
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar

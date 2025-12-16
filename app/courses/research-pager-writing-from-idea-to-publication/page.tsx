@@ -5,6 +5,7 @@ import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
 import WhoThisCourseIsFor from "./components/WhoThisCourseIsFor";
 import WhatYouNeed from "./components/WhatYouNeed";
+import BookTheCallCard from "@/components/BookTheCallCard";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
@@ -119,6 +120,8 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
             <section id="what-you-need">
                 <WhatYouNeed />
             </section>
+
+            <BookTheCallCard />
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
