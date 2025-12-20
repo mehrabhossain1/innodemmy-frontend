@@ -36,7 +36,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/certificate.png",
             title: "Shareable Certificate",
             description:
-                "Globally accepted certification, LinkedIn/CV credibility booster।",
+                "Globally accepted certification, LinkedIn/CV credibility booster",
         },
     ];
 

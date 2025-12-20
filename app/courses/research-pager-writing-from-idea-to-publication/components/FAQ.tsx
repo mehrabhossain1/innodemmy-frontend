@@ -14,27 +14,27 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Can I download the course materials?",
-            answer: "No, the course is online-only, but you have lifetime access to all videos and resources.",
+            answer: "No, the course is online-only, but you have lifetime access to all videos and resources",
         },
         {
             question: "Can I join via mobile?",
-            answer: "Yes! The course is accessible from mobile, laptop, or desktop.",
+            answer: "Yes! The course is accessible from mobile, laptop, or desktop",
         },
         {
             question: "Will I have lifetime access?",
-            answer: "Yes, all videos, templates, and recordings are available indefinitely.",
+            answer: "Yes, all videos, templates, and recordings are available indefinitely",
         },
         {
             question: "Will live sessions be recorded?",
-            answer: "Yes, all live sessions are recorded for later viewing.",
+            answer: "Yes, all live sessions are recorded for later viewing",
         },
         {
             question: "Where can I get support while writing?",
-            answer: "Yes, Via live support sessions and our exclusive learner community.",
+            answer: "Yes, Via live support sessions and our exclusive learner community",
         },
         {
             question: "Is there any support after the course ends?",
-            answer: "Yes, we provide exclusive post-course support for research paper writing.",
+            answer: "Yes, we provide exclusive post-course support for research paper writing",
         },
     ];
 
