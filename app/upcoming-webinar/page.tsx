@@ -72,9 +72,9 @@ export default function UpcomingWebinarPage() {
         const tabs = [
             {
                 id: "all",
-                label: "All Webinars",
+                label: "All Masterclasses",
                 icon: Code,
-                count: `${allWebinars.length} Webinars`,
+                count: `${allWebinars.length} Masterclasses`,
             },
         ];
 
@@ -87,7 +87,9 @@ export default function UpcomingWebinarPage() {
                     id: category,
                     label: category,
                     icon: categoryIcons[category] || Code,
-                    count: `${count} ${count === 1 ? "Webinar" : "Webinars"}`,
+                    count: `${count} ${
+                        count === 1 ? "Masterclass" : "Masterclasses"
+                    }`,
                 });
             }
         });
@@ -143,7 +145,7 @@ export default function UpcomingWebinarPage() {
                             <div className="h-8 w-px bg-border" />
                             <div>
                                 <h1 className="text-3xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                                    Upcoming Webinars
+                                    Upcoming Masterclasses
                                 </h1>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     Register now for upcoming live sessions

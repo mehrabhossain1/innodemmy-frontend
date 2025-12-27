@@ -75,11 +75,14 @@ export default function Navbar() {
     >("login");
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const [isMoreOpen, setIsMoreOpen] = useState(false);
+    const [isMasterclassOpen, setIsMasterclassOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
     const [coursesCloseTimeout, setCoursesCloseTimeout] =
         useState<NodeJS.Timeout | null>(null);
     const [moreCloseTimeout, setMoreCloseTimeout] =
+        useState<NodeJS.Timeout | null>(null);
+    const [masterclassCloseTimeout, setMasterclassCloseTimeout] =
         useState<NodeJS.Timeout | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState<{
@@ -398,12 +401,50 @@ export default function Navbar() {
                             )}
                         </div>
 
-                        <Link
-                            href="/webinar"
-                            className="px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
+                        {/* Masterclass Dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => {
+                                if (masterclassCloseTimeout) {
+                                    clearTimeout(masterclassCloseTimeout);
+                                    setMasterclassCloseTimeout(null);
+                                }
+                                setIsMasterclassOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                const timeout = setTimeout(() => {
+                                    setIsMasterclassOpen(false);
+                                }, 300);
+                                setMasterclassCloseTimeout(timeout);
+                            }}
                         >
-                            Free Masterclass
-                        </Link>
+                            <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                Free Masterclass
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isMasterclassOpen ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isMasterclassOpen && (
+                                <div className="absolute left-0 top-full mt-1 w-56 bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border py-1">
+                                    <Link
+                                        href="/upcoming-webinar"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Upcoming Masterclass
+                                    </Link>
+                                    <Link
+                                        href="/webinar"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Previous Masterclass
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
 
                         {/* More Dropdown */}
                         <div
