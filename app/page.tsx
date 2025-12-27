@@ -7,6 +7,7 @@ import HeroSection from "@/components/homepage/HeroSection";
 import { TechnologyStackSection } from "@/components/homepage/TechnologyStackSection";
 import WhyBestChoiceSection from "@/components/homepage/WhyBestChoiceSection";
 import AboutusSection from "@/components/homepage/AboutusSection";
+import UpcomingWebinarSection from "@/components/homepage/UpcomingWebinarSection";
 
 export default function Home() {
     return (
@@ -20,6 +21,7 @@ export default function Home() {
             >
                 <CoursesSection />
             </Suspense>
+            <UpcomingWebinarSection />
             <FreeMasterclassSection />
             <WhyBestChoiceSection />
             <TechnologyStackSection />
