@@ -63,7 +63,7 @@ export default function UpcomingWebinarSection() {
                                 key={index}
                                 className="pl-2 md:pl-3 lg:pl-3 md:basis-1/2 lg:basis-1/3"
                             >
-                                <Link href={`/webinar/${webinar.id}`}>
+                                <Link href={`/upcoming-webinar/${webinar.id}`}>
                                     <div className="relative group h-full">
                                         {/* Glow Effect */}
                                         <div className="absolute -inset-0.5 bg-gradient-to-r from-accent to-primary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
@@ -171,7 +171,7 @@ export default function UpcomingWebinarSection() {
 
                 {/* View All Button */}
                 <div className="text-center">
-                    <Link href="/webinar">
+                    <Link href="/upcoming-webinar">
                         <Button
                             size="default"
                             className="px-6 lg:px-7 py-5 lg:py-5 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-white shadow-lg shadow-accent/20 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-accent/20 hover:border-accent/40 group"
