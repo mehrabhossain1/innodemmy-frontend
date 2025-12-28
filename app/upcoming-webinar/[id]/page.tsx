@@ -434,35 +434,47 @@ export default function UpcomingWebinarDetailsPage() {
                             </div>
 
                             {/* Instructor Card */}
-                            <div className="bg-gradient-to-br from-accent/5 via-primary/5 to-background rounded-lg border-2 border-accent/30 p-6 space-y-4 shadow-lg">
-                                <div className="text-sm font-semibold text-accent border-b-2 border-accent/30 pb-2 flex items-center gap-2">
-                                    <User className="h-4 w-4" />
-                                    Instructor
+                            <div className="bg-card rounded-xl border-2 border-accent p-6 shadow-lg">
+                                {/* Header */}
+                                <div className="flex items-center gap-2 pb-3 mb-4 border-b-2 border-accent">
+                                    <div className="p-2 rounded-lg bg-accent">
+                                        <User className="h-4 w-4 text-white" />
+                                    </div>
+                                    <span className="text-sm font-bold text-accent uppercase tracking-wide">
+                                        Instructor
+                                    </span>
                                 </div>
 
                                 <div className="flex items-start gap-4">
                                     {webinar.instructorImage && (
-                                        <div className="relative">
+                                        <div className="relative flex-shrink-0">
                                             <Image
                                                 src={webinar.instructorImage}
                                                 alt={webinar.instructor}
                                                 width={80}
                                                 height={80}
-                                                className="rounded-full object-cover ring-2 ring-accent/50"
+                                                className="rounded-full object-cover border-3 border-accent shadow-md"
                                             />
-                                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                                            {/* Verified badge */}
+                                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center shadow-md border-2 border-background">
                                                 <svg
                                                     className="w-3 h-3 text-white"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
                                                 >
-                                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={3}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
                                                 </svg>
                                             </div>
                                         </div>
                                     )}
-                                    <div className="space-y-2 flex-1">
-                                        <h3 className="font-bold text-xl text-accent">
+                                    <div className="space-y-2 flex-1 min-w-0">
+                                        <h3 className="font-bold text-lg text-foreground leading-tight">
                                             {webinar.instructor}
                                         </h3>
                                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -473,54 +485,77 @@ export default function UpcomingWebinarDetailsPage() {
                             </div>
 
                             {/* Countdown Timer */}
-                            <div className="bg-card rounded-lg border border-border p-4">
-                                <h3 className="text-center font-bold text-lg mb-3">
-                                    Register for Free
-                                </h3>
-                                <div className="grid grid-cols-4 gap-2">
-                                    {[
-                                        {
-                                            value: countdown.days
-                                                .toString()
-                                                .padStart(2, "0"),
-                                            label: "Days",
-                                        },
-                                        {
-                                            value: countdown.hours
-                                                .toString()
-                                                .padStart(2, "0"),
-                                            label: "Hrs",
-                                        },
-                                        {
-                                            value: countdown.minutes
-                                                .toString()
-                                                .padStart(2, "0"),
-                                            label: "Min",
-                                        },
-                                        {
-                                            value: countdown.seconds
-                                                .toString()
-                                                .padStart(2, "0"),
-                                            label: "Sec",
-                                        },
-                                    ].map((item, idx) => (
-                                        <div
-                                            key={idx}
-                                            className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg p-2 text-center border border-accent/20"
-                                        >
-                                            <div className="text-2xl font-bold text-accent">
-                                                {item.value}
-                                            </div>
-                                            <div className="text-xs text-muted-foreground">
-                                                {item.label}
-                                            </div>
+                            <div className="relative bg-gradient-to-br from-accent via-primary to-accent rounded-xl p-[3px] shadow-2xl animate-pulse">
+                                <div className="bg-background rounded-[10px] p-6">
+                                    <div className="text-center mb-5">
+                                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-2">
+                                            <svg
+                                                className="w-4 h-4 animate-bounce"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                            Limited Seats Available
                                         </div>
-                                    ))}
+                                        <h3 className="font-bold text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                                            Register for Free
+                                        </h3>
+                                    </div>
+                                    <div className="grid grid-cols-4 gap-2.5">
+                                        {[
+                                            {
+                                                value: countdown.days
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Days",
+                                            },
+                                            {
+                                                value: countdown.hours
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Hrs",
+                                            },
+                                            {
+                                                value: countdown.minutes
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Min",
+                                            },
+                                            {
+                                                value: countdown.seconds
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Sec",
+                                            },
+                                        ].map((item, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="relative bg-gradient-to-br from-accent/20 to-primary/20 backdrop-blur rounded-lg p-3 text-center shadow-lg hover:scale-105 transition-transform border border-accent/30"
+                                            >
+                                                <div className="text-3xl font-black bg-gradient-to-br from-accent via-primary to-accent bg-clip-text text-transparent drop-shadow-sm">
+                                                    {item.value}
+                                                </div>
+                                                <div className="text-xs font-bold text-accent uppercase mt-1 tracking-wider">
+                                                    {item.label}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-5 pt-4 border-t border-accent/20">
+                                        <p className="text-xs text-center font-semibold flex items-center justify-center gap-1.5">
+                                            <Users className="h-4 w-4 text-accent animate-pulse" />
+                                            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                                                726+ students have successfully
+                                                enrolled!
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <p className="text-xs text-center text-muted-foreground mt-3">
-                                    <Users className="h-3 w-3 inline mr-1" />
-                                    726+ students have successfully enrolled!
-                                </p>
                             </div>
 
                             {/* Registration Form */}
