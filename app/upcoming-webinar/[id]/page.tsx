@@ -153,7 +153,7 @@ export default function UpcomingWebinarDetailsPage() {
                             <div className="flex flex-wrap gap-4 text-sm">
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-accent" />
-                                    <span>11th January, 2025</span>
+                                    <span>11th January, 2026</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="h-5 w-5 text-accent" />
@@ -395,26 +395,38 @@ export default function UpcomingWebinarDetailsPage() {
                             </div>
 
                             {/* Instructor Card */}
-                            <div className="bg-card rounded-lg border border-border p-6 space-y-4">
-                                <div className="text-sm text-muted-foreground border-b border-border pb-2">
+                            <div className="bg-gradient-to-br from-accent/5 via-primary/5 to-background rounded-lg border-2 border-accent/30 p-6 space-y-4 shadow-lg">
+                                <div className="text-sm font-semibold text-accent border-b-2 border-accent/30 pb-2 flex items-center gap-2">
+                                    <User className="h-4 w-4" />
                                     Instructor
                                 </div>
 
                                 <div className="flex items-start gap-4">
                                     {webinar.instructorImage && (
-                                        <Image
-                                            src={webinar.instructorImage}
-                                            alt={webinar.instructor}
-                                            width={80}
-                                            height={80}
-                                            className="rounded-full object-cover"
-                                        />
+                                        <div className="relative">
+                                            <Image
+                                                src={webinar.instructorImage}
+                                                alt={webinar.instructor}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-full object-cover ring-2 ring-accent/50"
+                                            />
+                                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                                                <svg
+                                                    className="w-3 h-3 text-white"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                                                </svg>
+                                            </div>
+                                        </div>
                                     )}
                                     <div className="space-y-2 flex-1">
-                                        <h3 className="font-bold text-xl">
+                                        <h3 className="font-bold text-xl text-accent">
                                             {webinar.instructor}
                                         </h3>
-                                        <p className="text-sm text-muted-foreground">
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
                                             {webinar.instructorBio}
                                         </p>
                                     </div>
