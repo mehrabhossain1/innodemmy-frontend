@@ -14,13 +14,13 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
 import Container from "../Container";
-import { getAllWebinars } from "@/lib/data/webinars";
+import { getUpcomingWebinars } from "@/lib/data/webinars";
 
 export default function UpcomingWebinarSection() {
     const plugin = React.useRef(
         Autoplay({ delay: 4000, stopOnInteraction: true })
     );
-    const webinars = getAllWebinars();
+    const webinars = getUpcomingWebinars();
 
     return (
         <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-accent/5 to-background overflow-hidden">

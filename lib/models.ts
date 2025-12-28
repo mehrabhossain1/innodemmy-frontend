@@ -122,6 +122,7 @@ export interface Webinar {
     language?: string; // Language of the webinar
     category?: string; // Webinar category
     published?: boolean; // Whether the webinar is published
+    isUpcoming?: boolean; // Whether this is an upcoming webinar (shows only in upcoming section)
     createdAt?: Date;
     updatedAt?: Date;
 }

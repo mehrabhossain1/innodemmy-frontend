@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth } from "@/lib/hooks/useAuth";
-import { getWebinarById, getAllWebinars } from "@/lib/data/webinars";
+import { getWebinarById, getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,7 +58,7 @@ export default function WebinarDetailsPage() {
 
     // Get related webinars (exclude current webinar)
     const relatedWebinars = useMemo(() => {
-        const allWebinars = getAllWebinars();
+        const allWebinars = getRegularWebinars();
         return allWebinars.filter((w) => w.id !== webinar?.id).slice(0, 3);
     }, [webinar]);
 

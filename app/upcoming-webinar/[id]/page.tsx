@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { getWebinarById, getAllWebinars } from "@/lib/data/webinars";
+import { getWebinarById, getUpcomingWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,7 +40,7 @@ export default function UpcomingWebinarDetailsPage() {
 
     // Get related webinars (exclude current webinar)
     const relatedWebinars = useMemo(() => {
-        const allWebinars = getAllWebinars();
+        const allWebinars = getUpcomingWebinars();
         return allWebinars.filter((w) => w.id !== webinar?.id).slice(0, 3);
     }, [webinar]);
 

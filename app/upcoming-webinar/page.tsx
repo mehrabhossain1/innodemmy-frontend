@@ -21,7 +21,7 @@ import {
     FlaskConical,
     Layers,
 } from "lucide-react";
-import { getAllWebinars } from "@/lib/data/webinars";
+import { getUpcomingWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";
 import {
@@ -53,7 +53,7 @@ export default function UpcomingWebinarPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("all");
     const [currentPage, setCurrentPage] = useState(1);
-    const allWebinars = getAllWebinars();
+    const allWebinars = getUpcomingWebinars();
 
     // Build dynamic categories with counts
     const categories = useMemo(() => {

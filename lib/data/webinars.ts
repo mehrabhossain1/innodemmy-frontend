@@ -27,6 +27,7 @@ export const webinars: Webinar[] = [
         language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
         published: true,
+        isUpcoming: true,
     },
     {
         id: "web-development-fundamentals",
@@ -119,4 +120,16 @@ export function getWebinarById(id: string): Webinar | undefined {
 
 export function getAllWebinars(): Webinar[] {
     return webinars.filter((webinar) => webinar.published);
+}
+
+export function getRegularWebinars(): Webinar[] {
+    return webinars.filter(
+        (webinar) => webinar.published && !webinar.isUpcoming
+    );
+}
+
+export function getUpcomingWebinars(): Webinar[] {
+    return webinars.filter(
+        (webinar) => webinar.published && webinar.isUpcoming
+    );
 }
