@@ -18,6 +18,12 @@ export default function UpcomingWebinarDetailsPage() {
     const [webinar, setWebinar] = useState<Webinar | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [countdown, setCountdown] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -37,6 +43,39 @@ export default function UpcomingWebinarDetailsPage() {
             }
         }
     }, [params.id, router]);
+
+    // Countdown timer for January 11, 2025, 9 PM Bangladesh Time
+    useEffect(() => {
+        // January 11, 2026, 9 PM Bangladesh Time (UTC+6)
+        // Converting to UTC: 9 PM in UTC+6 = 3 PM (15:00) UTC
+        const targetDate = new Date("2026-01-11T15:00:00Z").getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            setCountdown({ days, hours, minutes, seconds });
+        };
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     // Get related webinars (exclude current webinar)
     const relatedWebinars = useMemo(() => {
@@ -440,10 +479,30 @@ export default function UpcomingWebinarDetailsPage() {
                                 </h3>
                                 <div className="grid grid-cols-4 gap-2">
                                     {[
-                                        { value: "00", label: "Days" },
-                                        { value: "00", label: "Hrs" },
-                                        { value: "00", label: "Min" },
-                                        { value: "00", label: "Sec" },
+                                        {
+                                            value: countdown.days
+                                                .toString()
+                                                .padStart(2, "0"),
+                                            label: "Days",
+                                        },
+                                        {
+                                            value: countdown.hours
+                                                .toString()
+                                                .padStart(2, "0"),
+                                            label: "Hrs",
+                                        },
+                                        {
+                                            value: countdown.minutes
+                                                .toString()
+                                                .padStart(2, "0"),
+                                            label: "Min",
+                                        },
+                                        {
+                                            value: countdown.seconds
+                                                .toString()
+                                                .padStart(2, "0"),
+                                            label: "Sec",
+                                        },
                                     ].map((item, idx) => (
                                         <div
                                             key={idx}
