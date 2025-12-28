@@ -22,6 +22,8 @@ export default function UpcomingWebinarDetailsPage() {
         fullName: "",
         email: "",
         phone: "",
+        qualification: "",
+        institution: "",
     });
 
     useEffect(() => {
@@ -58,7 +60,13 @@ export default function UpcomingWebinarDetailsPage() {
         setTimeout(() => {
             setIsSubmitting(false);
             setShowSuccess(true);
-            setFormData({ fullName: "", email: "", phone: "" });
+            setFormData({
+                fullName: "",
+                email: "",
+                phone: "",
+                qualification: "",
+                institution: "",
+            });
 
             // Hide success message after 5 seconds
             setTimeout(() => {
@@ -145,11 +153,23 @@ export default function UpcomingWebinarDetailsPage() {
                             <div className="flex flex-wrap gap-4 text-sm">
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-accent" />
-                                    <span>Coming Soon</span>
+                                    <span>11th January, 2025</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="h-5 w-5 text-accent" />
-                                    <span>{webinar.duration}</span>
+                                    <span>
+                                        9:00 PM - 11:00 PM (Bangladesh Time)
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg
+                                        className="h-5 w-5 text-accent"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM9 7h6v2H9V7zm0 4h6v2H9v-2zm0 4h6v2H9v-2z" />
+                                    </svg>
+                                    <span>Platform: Zoom</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Users className="h-5 w-5 text-accent" />
@@ -161,24 +181,197 @@ export default function UpcomingWebinarDetailsPage() {
                             </div>
 
                             {/* Topics */}
-                            <div className="space-y-3">
-                                <h3 className="font-semibold text-lg">
-                                    What you'll learn in this free webinar:
-                                </h3>
-                                <div className="space-y-2">
-                                    {webinar.topics.map((topic, idx) => (
-                                        <div
-                                            key={idx}
-                                            className="flex items-start gap-2"
-                                        >
-                                            <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
-                                            <span className="text-muted-foreground">
-                                                {topic}
-                                            </span>
-                                        </div>
-                                    ))}
+                            {webinar.id !==
+                                "higher-studies-abroad-scholarship" && (
+                                <div className="space-y-3">
+                                    <h3 className="font-semibold text-lg">
+                                        What you'll learn in this free webinar:
+                                    </h3>
+                                    <div className="space-y-2">
+                                        {webinar.topics.map((topic, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="flex items-start gap-2"
+                                            >
+                                                <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
+                                                <span className="text-muted-foreground">
+                                                    {topic}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
+
+                            {/* What You'll Learn Section */}
+                            {webinar.id ===
+                                "higher-studies-abroad-scholarship" && (
+                                <div className="bg-card rounded-lg border border-border p-6 space-y-4">
+                                    <h3 className="font-bold text-xl mb-4">
+                                        কী কী শিখতে পারবেন এই ওয়েবিনারে?
+                                    </h3>
+                                    <p className="text-muted-foreground mb-4">
+                                        একটি সফল ক্যারিয়ার গড়তে বিদেশে
+                                        উচ্চশিক্ষার গুরুত্ব অপরিসীম। এই সেশনে
+                                        আমরা ছাত্রছাত্রীদের জন্য উচ্চশিক্ষার
+                                        আবেদনপ্রক্রিয়া থেকে শুরু করে বিভিন্ন
+                                        ধরনের স্কলারশিপের সুবিধা, যাতে আপনারা
+                                        সহজেই বিদেশে খরচাপাতি দিয়ে সহজভাবে
+                                        আবেদনপ্রক্রিয়া সম্পন্ন করে শিক্ষা অর্জন
+                                        করতে পারেন তার বিস্তারিত আলোচনা করব,
+                                        যাতে আপনার মনে থাকা সকল দ্বিধা দূর হয়।
+                                        আমাদের আলোচনার মূল বিষয়গুলো হলো:
+                                    </p>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                আপনার জন্য কোন দেশ সেরা হবে?
+                                                যুক্তরাষ্ট্র (USA), কানাডা,
+                                                যুক্তরাজ্য (UK), অস্ট্রেলিয়া,
+                                                জাপান ও কোরিয়ার মতো জনপ্রিয়
+                                                দেশগুলোর সুযোগ-সুবিধা সম্পর্কে
+                                                আলোচনা।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                একাডেমিক রেজাল্ট কেমন হতে হবে
+                                                এবং IELTS, TOEFL কিংবা GRE-র মতো
+                                                পরীক্ষাগুলোর প্রস্তুতি কীভাবে
+                                                নেবেন।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                বিভিন্ন ধরনের স্কলারশিপ
+                                                (Full-fund/Partial) পাওয়ার
+                                                উপায়।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                কীভাবে একটি শক্তিশালী SOP, LOR
+                                                এবং প্রফেশনাল CV তৈরি করবেন। সেই
+                                                সাথে সহ-শিক্ষা কার্যক্রম
+                                                (Extracurricular) ও রিসার্চ
+                                                পেপারের গুরুত্ব।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                সঠিক সময়ে সঠিক প্রফেসরের সাথে
+                                                যোগাযোগের কৌশল এবং আবেদনের
+                                                উপযুক্ত সময় নির্ধারণ।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                বিদেশের বিশ্ববিদ্যালয়ে বর্তমান
+                                                ছাত্র বা অ্যালুমনাইদের সাথে
+                                                কীভাবে যোগাযোগ স্থাপন করবেন এবং
+                                                কেনো প্রয়োজন?
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* Why Study Abroad Section */}
+                            {webinar.id ===
+                                "higher-studies-abroad-scholarship" && (
+                                <div className="bg-card rounded-lg border border-border p-6 space-y-4">
+                                    <h3 className="font-bold text-xl mb-4">
+                                        কেন Abroad থেকে উচ্চশিক্ষা গ্রহণ করবেন?
+                                    </h3>
+                                    <p className="text-muted-foreground mb-4">
+                                        উচ্চশিক্ষা শুধুমাত্র একটি ডিগ্রির জন্য
+                                        নয়, বরং এটি আপনার জীবন আমূল বদলে
+                                        দেওয়ার একটি প্রক্রিয়া:
+                                    </p>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                বিদেশের ডিগ্রি আপনাকে বিশ্বের
+                                                নামী-দামী কোম্পানিগুলোতে কাজ
+                                                করার সুযোগ করে দেয়। আন্তর্জাতিক
+                                                কর্মপরিবেশে নিজেকে খাপ খাইয়ে
+                                                নিতে এটি সহায়ক।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                বিদেশের বিশ্ববিদ্যালয়গুলো
+                                                আধুনিক ল্যাবরেটরি, লাইব্রেরি এবং
+                                                উন্নত প্রযুক্তি ব্যবহারের সুযোগ
+                                                দেয়, যা উচ্চমানের গবেষণার জন্য
+                                                অপরিহার্য।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                সম্পূর্ণ ভিন্ন একটি পরিবেশে
+                                                বসবাসের মাধ্যমে আপনার মধ্যে
+                                                স্বনির্ভরতা গড়ে ওঠে। ভিন্ন
+                                                ভিন্ন সংস্কৃতির মানুষের সাথে
+                                                মেলামেশার ফলে আপনার দৃষ্টিভঙ্গি
+                                                প্রসারিত হয়।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                বিশ্বের বিভিন্ন প্রান্তের মেধাবী
+                                                শিক্ষার্থীদের সাথে কাজ করার ফলে
+                                                একটি শক্তিশালী প্রফেশনাল
+                                                নেটওয়ার্ক তৈরি হয়, যা সারাজীবন
+                                                কাজে লাগে।
+                                            </span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <span className="text-accent font-bold mt-1">
+                                                •
+                                            </span>
+                                            <span className="text-muted-foreground">
+                                                প্রায় সকল দেশেই পড়াশোনা শেষে
+                                                কাজের অনুমতির (Work Permit)
+                                                পাশাপাশি স্থায়ীভাবে বসবাসের
+                                                সুযোগ থাকে, যা আপনার ভবিষ্যৎ
+                                                জীবনকে আর্থিকভাবে সচ্ছল ও নিরাপদ
+                                                করে।
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
 
                         {/* Right: Registration Form & Instructor - 1 column */}
@@ -198,6 +391,33 @@ export default function UpcomingWebinarDetailsPage() {
                                 </div>
                                 <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
                                     {webinar.duration}
+                                </div>
+                            </div>
+
+                            {/* Instructor Card */}
+                            <div className="bg-card rounded-lg border border-border p-6 space-y-4">
+                                <div className="text-sm text-muted-foreground border-b border-border pb-2">
+                                    Instructor
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    {webinar.instructorImage && (
+                                        <Image
+                                            src={webinar.instructorImage}
+                                            alt={webinar.instructor}
+                                            width={80}
+                                            height={80}
+                                            className="rounded-full object-cover"
+                                        />
+                                    )}
+                                    <div className="space-y-2 flex-1">
+                                        <h3 className="font-bold text-xl">
+                                            {webinar.instructor}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground">
+                                            {webinar.instructorBio}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -243,7 +463,7 @@ export default function UpcomingWebinarDetailsPage() {
                                             htmlFor="fullName"
                                             className="text-sm font-medium mb-1.5 block"
                                         >
-                                            Your Name
+                                            আপনার নাম
                                         </Label>
                                         <Input
                                             id="fullName"
@@ -262,7 +482,7 @@ export default function UpcomingWebinarDetailsPage() {
                                             htmlFor="email"
                                             className="text-sm font-medium mb-1.5 block"
                                         >
-                                            Your Email
+                                            আপনার ইমেইল
                                         </Label>
                                         <Input
                                             id="email"
@@ -281,7 +501,7 @@ export default function UpcomingWebinarDetailsPage() {
                                             htmlFor="phone"
                                             className="text-sm font-medium mb-1.5 block"
                                         >
-                                            Your Phone Number
+                                            আপনার ফোন নম্বর
                                         </Label>
                                         <Input
                                             id="phone"
@@ -289,6 +509,44 @@ export default function UpcomingWebinarDetailsPage() {
                                             type="tel"
                                             placeholder="01234567890"
                                             value={formData.phone}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="qualification"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            বর্তমান শিক্ষাগত যোগ্যতা
+                                        </Label>
+                                        <Input
+                                            id="qualification"
+                                            name="qualification"
+                                            type="text"
+                                            placeholder="HSC / BSc in EEE Final Year / Master's in Social Science"
+                                            value={formData.qualification}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="institution"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            শিক্ষা প্রতিষ্ঠান অথবা অফিসের নাম
+                                        </Label>
+                                        <Input
+                                            id="institution"
+                                            name="institution"
+                                            type="text"
+                                            placeholder="Your Institution or Office Name"
+                                            value={formData.institution}
                                             onChange={handleInputChange}
                                             required
                                             className="h-11"
@@ -305,42 +563,6 @@ export default function UpcomingWebinarDetailsPage() {
                                             : "Register Now"}
                                     </Button>
                                 </form>
-                            </div>
-
-                            {/* Instructor Card */}
-                            <div className="bg-card rounded-lg border border-border p-6 space-y-4">
-                                <div className="text-sm text-muted-foreground border-b border-border pb-2">
-                                    Instructor
-                                </div>
-
-                                <div className="flex items-start gap-4">
-                                    {webinar.instructorImage && (
-                                        <Image
-                                            src={webinar.instructorImage}
-                                            alt={webinar.instructor}
-                                            width={80}
-                                            height={80}
-                                            className="rounded-full object-cover"
-                                        />
-                                    )}
-                                    <div className="space-y-2 flex-1">
-                                        <h3 className="font-bold text-xl">
-                                            {webinar.instructor}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground">
-                                            {webinar.instructorBio}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="pt-4 border-t border-border">
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                        <User className="h-4 w-4" />
-                                        <span>
-                                            Executive - Product Experience
-                                        </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

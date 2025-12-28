@@ -3,6 +3,32 @@ import { COURSE_CATEGORIES } from "@/lib/constants/categories";
 
 export const webinars: Webinar[] = [
     {
+        id: "higher-studies-abroad-scholarship",
+        title: "Webinar on Higher Studies Abroad with Scholarship",
+        description:
+            "বিদেশে পড়ার ইচ্ছা সবার থাকলেও সঠিক তথ্যের অভাবে অনেকেই পিছিয়ে পড়েন। তাই আমরা সাজিয়েছি এই বিশেষ সেশন, যেখানে বিশ্বের নামী-দামী বিশ্ববিদ্যালয়ে স্কলারশিপ পাওয়ার সিক্রেট এবং স্কলারশিপ পাওয়ার জন্য একটি শক্তিশালী প্রোফাইল তৈরির আদ্যোপান্ত শেয়ার করা হবে যাতে কোনো দ্বিধা ছাড়াই আপনি আপনার গ্লোবাল ক্যারিয়ারের পথে পা বাড়াতে পারেন",
+        image: "https://img.freepik.com/premium-photo/graduate-student-cap-gown-holds-globe-his-hand-signifying-global-opportunities_1352884-52997.jpg",
+        videoUrl: "https://zoom.us/j/placeholder",
+        duration: "2h",
+        instructor: "Kazi Mejbaul Islam",
+        instructorBio:
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
+        topics: [
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
+        ],
+        date: "01/11",
+        language: "Bengali",
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        published: true,
+    },
+    {
         id: "web-development-fundamentals",
         title: "Web Development Fundamentals: From Zero to Hero",
         description:
