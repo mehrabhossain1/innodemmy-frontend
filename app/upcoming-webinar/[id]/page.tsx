@@ -7,7 +7,7 @@ import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Calendar, Clock, Eye, User, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,6 +18,7 @@ export default function UpcomingWebinarDetailsPage() {
     const [webinar, setWebinar] = useState<Webinar | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [countdown, setCountdown] = useState({
         days: 0,
         hours: 0,
@@ -94,10 +95,49 @@ export default function UpcomingWebinarDetailsPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMessage("");
 
-        // Simulate API call
-        setTimeout(() => {
+        if (!webinar) {
+            setErrorMessage("Webinar information not available");
             setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            // Validate phone number
+            if (!/^[0-9]{11}$/.test(formData.phone)) {
+                setErrorMessage("Phone number must be exactly 11 digits");
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Validate email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                setErrorMessage("Please enter a valid email address");
+                setIsSubmitting(false);
+                return;
+            }
+
+            const response = await fetch("/api/webinar-registrations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    webinarId: webinar.id,
+                    ...formData,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setErrorMessage(data.error || "Registration failed");
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Success
             setShowSuccess(true);
             setFormData({
                 fullName: "",
@@ -111,7 +151,12 @@ export default function UpcomingWebinarDetailsPage() {
             setTimeout(() => {
                 setShowSuccess(false);
             }, 5000);
-        }, 1500);
+        } catch (error) {
+            console.error("Registration error:", error);
+            setErrorMessage("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Show loading state while fetching webinar
@@ -176,7 +221,7 @@ export default function UpcomingWebinarDetailsPage() {
                     <div className="grid lg:grid-cols-3 gap-6">
                         {/* Left: Content - 2 columns */}
                         <div className="lg:col-span-2 space-y-6">
-                            <div className="inline-block bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 w-fit">
+                            <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 w-fit">
                                 <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
                                 UPCOMING WEBINAR
                             </div>
@@ -553,6 +598,13 @@ export default function UpcomingWebinarDetailsPage() {
                                     onSubmit={handleSubmit}
                                     className="space-y-4"
                                 >
+                                    {/* Error Message */}
+                                    {errorMessage && (
+                                        <div className="bg-red-500/10 border border-red-500/50 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
+                                            {errorMessage}
+                                        </div>
+                                    )}
+
                                     <div>
                                         <Label
                                             htmlFor="fullName"
