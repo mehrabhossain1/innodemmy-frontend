@@ -46,6 +46,7 @@ export default function Sidebar() {
             label: "Webinar Registrations",
             icon: Video,
         },
+        { href: "/admin/users", label: "Users", icon: Users },
     ];
 
     const navItems = user?.role === "admin" ? adminNavItems : studentNavItems;
