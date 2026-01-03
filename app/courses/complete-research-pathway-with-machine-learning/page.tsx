@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CompleteResearchHeroSection from "./components/CompleteResearchHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import StickyNavigation from "@/components/course/StickyNavigation";
@@ -16,17 +16,6 @@ import BookTheCallCard from "@/components/BookTheCallCard";
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
-
-    // Navigation items
-    const navigationItems = [
-        { id: "course-module", label: "Course Module" },
-        { id: "resource-persons", label: "Instructors and Mentors" },
-        { id: "what-you-get", label: "What You will Get" },
-        { id: "projects", label: "Projects" },
-        { id: "who-this-for", label: "Who This Course is For" },
-        { id: "what-you-need", label: "What You will Need" },
-        { id: "faq", label: "FAQ" },
-    ];
 
     // Centralized Course Data
     const courseData = {
@@ -46,6 +35,90 @@ export default function CompleteResearchPathwayWithMachineLearning() {
         promoLabel: "Promo Applied",
         liveCourseLabel: "Live Course",
     };
+
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "complete-research-pathway-with-machine-learning",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "Machine Learning & Research",
+                courseType: "Live Course",
+            });
+        }
+    }, []);
+
+    // GTM - Track video play
+    const handleVideoPlay = () => {
+        setIsVideoPlaying(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "video_play",
+                courseId: "complete-research-pathway-with-machine-learning",
+                courseName: courseData.title,
+                videoType: "demo_class",
+            });
+        }
+    };
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id:
+                                "complete-research-pathway-with-machine-learning",
+                            item_name: courseData.title,
+                            item_category: "Machine Learning & Research",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
+    // Navigation items
+    const navigationItems = [
+        { id: "course-module", label: "Course Module" },
+        { id: "resource-persons", label: "Instructors and Mentors" },
+        { id: "what-you-get", label: "What You will Get" },
+        { id: "projects", label: "Projects" },
+        { id: "who-this-for", label: "Who This Course is For" },
+        { id: "what-you-need", label: "What You will Need" },
+        { id: "faq", label: "FAQ" },
+    ];
+
+    // Centralized Course Data
+    // const courseData = {
+    //     title: "Complete Research Pathway with Machine Learning",
+    //     description:
+    //         "এই কোর্সটি মেশিন লার্নিং ভিত্তিক গবেষণার জন্য একটি পূর্ণাঙ্গ ও কাঠামোবদ্ধ রোডম্যাপ প্রদান করে। কোর্সটি এমনভাবে ডিজাইন করা হয়েছে যাতে শিক্ষার্থীরা আধুনিক গবেষণার জটিলতা সহজে বোঝার পাশাপাশি ধারাবাহিকভাবে একাডেমিক ও প্র্যাকটিক্যাল দক্ষতা অর্জন করতে পারে।\n\nকোর্সে মেশিন লার্নিংয়ের মৌলিক ধারণা থেকে শুরু করে Computer Vision ও NLP এর মত  Advanced Deep learning topics এবং গবেষণার প্রতিটি ধাপ বিস্তারিতভাবে আলোচনা করা হবে, গবেষণার প্রশ্ন নির্ধারণ, ডেটা সংগ্রহ ও বিশ্লেষণ, মডেল উন্নয়ন, ফলাফল মূল্যায়ন, এবং গবেষণাপত্র রচনা ও উপস্থাপনা।\n\nসাথে, বাস্তবমুখী প্রশিক্ষণ ও গবেষণা কৌশল শেখানো হবে, যা গবেষক ও পেশাজীবীদের মেশিন লার্নিং গবেষণায় সফল হতে প্রয়োজনীয় দক্ষতা অর্জনে সহায়তা করবে। কোর্সের মূল উদ্দেশ্য হলো অংশগ্রহণকারীদের মেশিন লার্নিং গবেষণায় প্রয়োজনীয় দক্ষতা অর্জনে সক্ষম করে তোলা, যাতে তারা গবেষণার প্রতিটি ধাপ সম্পন্ন করে গুণগতমানসম্পন্ন গবেষণাপত্র রচনা করতে পারে।",
+    //     price: 20000,
+    //     originalPrice: 35000,
+    //     currency: "৳",
+    //     videoUrl:
+    //         "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
+
+    //     checkoutLink: "/checkout?course=complete-research-pathway-ml",
+    //     videoLabel: "Click to watch the demo class",
+    //     enrollButtonText: "Enroll in Batch →",
+    //     enrollButtonTextShort: "Enroll Now",
+    //     promoLabel: "Promo Applied",
+    //     liveCourseLabel: "Live Course",
+    // };
 
     return (
         <div className="pb-24">
@@ -90,8 +163,8 @@ export default function CompleteResearchPathwayWithMachineLearning() {
             {/* Hero Section */}
             <CompleteResearchHeroSection
                 courseData={courseData}
-                onVideoClick={() => setIsVideoPlaying(true)}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onVideoClick={handleVideoPlay}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -141,7 +214,7 @@ export default function CompleteResearchPathwayWithMachineLearning() {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
                 showPromo={true}
             />
         </div>
