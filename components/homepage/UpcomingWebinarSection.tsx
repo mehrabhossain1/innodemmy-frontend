@@ -118,8 +118,9 @@ export default function UpcomingWebinarSection() {
                                                             alt={
                                                                 webinar.instructor
                                                             }
-                                                            width={32}
-                                                            height={32}
+                                                            width={80}
+                                                            height={80}
+                                                            quality={95}
                                                             className="w-7 h-7 lg:w-8 lg:h-8 rounded-full object-cover"
                                                         />
                                                     ) : (
@@ -131,9 +132,14 @@ export default function UpcomingWebinarSection() {
                                                             </span>
                                                         </div>
                                                     )}
-                                                    <span className="font-medium">
-                                                        {webinar.instructor}
-                                                    </span>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="text-sm font-medium text-foreground truncate">
+                                                            {webinar.instructor}
+                                                        </div>
+                                                        <div className="text-xs text-muted-foreground">
+                                                            Instructor
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 {/* Topics */}
