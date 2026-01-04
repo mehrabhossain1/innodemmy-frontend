@@ -52,6 +52,56 @@ export const webinars: Webinar[] = [
         },
     },
     {
+        id: "from-code-to-intelligence-ai-engineering-career",
+        title: "Webinar on From Code to Intelligence: Building a Career in AI Engineering",
+        description:
+            "Artificial Intelligence এখন শুধু একটি buzzword নয়, এটি software engineering, data science ও product development-এর ভবিষ্যৎ নির্ধারণ করছে। কিন্তু অনেকেই জানেন না, AI Engineering আসলে কী, কোথা থেকে শুরু করতে হবে, এবং কীভাবে একটি structured roadmap অনুসরণ করে expert AI engineer হওয়া যায়",
+        image: "/upcoming-webinar/higher-studies.jpeg",
+        videoUrl: "https://zoom.us/j/placeholder",
+        duration: "2h",
+        time: "8:00 PM - 10:00 PM",
+        instructor: "Arif Mahmud Sisir",
+        instructorBio:
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
+        topics: [
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
+        ],
+        date: "18th January, 2026",
+        language: "Bengali",
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        published: true,
+        isUpcoming: true,
+        learningPoints: {
+            title: "এই ওয়েবিনারে যা যা শিখবেন",
+            points: [
+                "AI Engineering কী এবং এটি Data Science, Machine Learning ও Software Engineering থেকে কীভাবে আলাদা",
+                "AI Engineer হতে প্রয়োজনীয় core skills যেমন Python, Data Structures, Algorithms,  ও Mathmatics",
+                "Machine Learning ও Deep Learning fundamentals—Supervised/Unsupervised Learning, Neural Networks ও Model Evaluation",
+                "Industry-relevant tools ও frameworks—TensorFlow, PyTorch, Scikit-learn, SQL, Git ও Cloud platforms",
+                "Real-world AI systems design—data pipeline, model training, deployment ও monitoring (MLOps overview)",
+                "AI project portfolio কীভাবে তৈরি করবেন—GitHub, Kaggle, real-world use cases ও capstone projects",
+                "Career roadmap, entry-level থেকে mid/senior AI Engineer পর্যন্ত growth path, job roles ও salary insight",
+            ],
+        },
+        whyStudyAbroad: {
+            title: "Why Build a Career in AI Engineering?",
+            points: [
+                "AI Engineers বিশ্বের সবচেয়ে high-demand ও high-paying tech professionals-দের মধ্যে অন্যতম",
+                "Global tech companies, startups, research labs ও product-based organizations-এ কাজের সুযোগ",
+                "Real-world problem solving ও intelligent system building-এর মাধ্যমে high-impact work করার সুযোগ",
+                "Remote job, international collaboration ও long-term career growth-এর বিশাল সম্ভাবনা",
+                "Continuous innovation ও learning-driven career path, যা future-proof",
+            ],
+        },
+    },
+    {
         id: "web-development-fundamentals",
         title: "Web Development Fundamentals: From Zero to Hero",
         description:

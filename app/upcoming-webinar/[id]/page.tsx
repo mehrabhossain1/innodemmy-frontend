@@ -227,7 +227,7 @@ export default function UpcomingWebinarDetailsPage() {
                                 UPCOMING WEBINAR
                             </div>
 
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                            <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold leading-tight">
                                 {webinar.title}
                             </h1>
 
@@ -270,29 +270,6 @@ export default function UpcomingWebinarDetailsPage() {
                                     </span>
                                 </div>
                             </div>
-
-                            {/* Topics */}
-                            {webinar.id !==
-                                "higher-studies-abroad-scholarship" && (
-                                <div className="space-y-3">
-                                    <h3 className="font-semibold text-lg">
-                                        What you'll learn in this free webinar:
-                                    </h3>
-                                    <div className="space-y-2">
-                                        {webinar.topics.map((topic, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="flex items-start gap-2"
-                                            >
-                                                <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
-                                                <span className="text-muted-foreground">
-                                                    {topic}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
 
                             {/* What You'll Learn Section */}
                             {webinar.learningPoints && (
