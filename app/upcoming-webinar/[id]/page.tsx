@@ -11,6 +11,7 @@ import { ArrowLeft, Calendar, Clock, User, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import WebinarLearningPoints from "@/components/WebinarLearningPoints";
 
 export default function UpcomingWebinarDetailsPage() {
     const router = useRouter();
@@ -288,162 +289,19 @@ export default function UpcomingWebinarDetailsPage() {
                             )}
 
                             {/* What You'll Learn Section */}
-                            {webinar.id ===
-                                "higher-studies-abroad-scholarship" && (
-                                <div className="bg-card rounded-lg border border-border p-6 space-y-4">
-                                    <h3 className="font-bold text-xl mb-4">
-                                        কী কী শিখতে পারবেন এই ওয়েবিনারে?
-                                    </h3>
-
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                আপনার জন্য কোন দেশ সেরা হবে?
-                                                যুক্তরাষ্ট্র (USA), কানাডা,
-                                                যুক্তরাজ্য (UK), অস্ট্রেলিয়া,
-                                                জাপান ও কোরিয়ার মতো জনপ্রিয়
-                                                দেশগুলোর সুযোগ-সুবিধা সম্পর্কে
-                                                আলোচনা।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                একাডেমিক রেজাল্ট কেমন হতে হবে
-                                                এবং IELTS, TOEFL কিংবা GRE-র মতো
-                                                পরীক্ষাগুলোর প্রস্তুতি কীভাবে
-                                                নেবেন।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                বিভিন্ন ধরনের স্কলারশিপ
-                                                (Full-fund/Partial) পাওয়ার
-                                                উপায়।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                কীভাবে একটি শক্তিশালী SOP, LOR
-                                                এবং প্রফেশনাল CV তৈরি করবেন। সেই
-                                                সাথে সহ-শিক্ষা কার্যক্রম
-                                                (Extracurricular) ও রিসার্চ
-                                                পেপারের গুরুত্ব।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                সঠিক সময়ে সঠিক প্রফেসরের সাথে
-                                                যোগাযোগের কৌশল এবং আবেদনের
-                                                উপযুক্ত সময় নির্ধারণ।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                বিদেশের বিশ্ববিদ্যালয়ে বর্তমান
-                                                ছাত্র বা অ্যালুমনাইদের সাথে
-                                                কীভাবে যোগাযোগ স্থাপন করবেন এবং
-                                                কেনো প্রয়োজন?
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
+                            {webinar.learningPoints && (
+                                <WebinarLearningPoints
+                                    title={webinar.learningPoints.title}
+                                    points={webinar.learningPoints.points}
+                                />
                             )}
 
                             {/* Why Study Abroad Section */}
-                            {webinar.id ===
-                                "higher-studies-abroad-scholarship" && (
-                                <div className="bg-card rounded-lg border border-border p-6 space-y-4">
-                                    <h3 className="font-bold text-xl mb-4">
-                                        কেন Abroad থেকে উচ্চশিক্ষা গ্রহণ করবেন?
-                                    </h3>
-                                    <p className="text-muted-foreground mb-4">
-                                        উচ্চশিক্ষা শুধুমাত্র একটি ডিগ্রির জন্য
-                                        নয়, বরং এটি আপনার জীবন আমূল বদলে
-                                        দেওয়ার একটি প্রক্রিয়া:
-                                    </p>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                বিদেশের ডিগ্রি আপনাকে বিশ্বের
-                                                নামী-দামী কোম্পানিগুলোতে কাজ
-                                                করার সুযোগ করে দেয়। আন্তর্জাতিক
-                                                কর্মপরিবেশে নিজেকে খাপ খাইয়ে
-                                                নিতে এটি সহায়ক।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                বিদেশের বিশ্ববিদ্যালয়গুলো
-                                                আধুনিক ল্যাবরেটরি, লাইব্রেরি এবং
-                                                উন্নত প্রযুক্তি ব্যবহারের সুযোগ
-                                                দেয়, যা উচ্চমানের গবেষণার জন্য
-                                                অপরিহার্য।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                সম্পূর্ণ ভিন্ন একটি পরিবেশে
-                                                বসবাসের মাধ্যমে আপনার মধ্যে
-                                                স্বনির্ভরতা গড়ে ওঠে। ভিন্ন
-                                                ভিন্ন সংস্কৃতির মানুষের সাথে
-                                                মেলামেশার ফলে আপনার দৃষ্টিভঙ্গি
-                                                প্রসারিত হয়।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                বিশ্বের বিভিন্ন প্রান্তের মেধাবী
-                                                শিক্ষার্থীদের সাথে কাজ করার ফলে
-                                                একটি শক্তিশালী প্রফেশনাল
-                                                নেটওয়ার্ক তৈরি হয়, যা সারাজীবন
-                                                কাজে লাগে।
-                                            </span>
-                                        </li>
-                                        <li className="flex items-start gap-3">
-                                            <span className="text-accent font-bold mt-1">
-                                                •
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                প্রায় সকল দেশেই পড়াশোনা শেষে
-                                                কাজের অনুমতির (Work Permit)
-                                                পাশাপাশি স্থায়ীভাবে বসবাসের
-                                                সুযোগ থাকে, যা আপনার ভবিষ্যৎ
-                                                জীবনকে আর্থিকভাবে সচ্ছল ও নিরাপদ
-                                                করে।
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
+                            {webinar.whyStudyAbroad && (
+                                <WebinarLearningPoints
+                                    title={webinar.whyStudyAbroad.title}
+                                    points={webinar.whyStudyAbroad.points}
+                                />
                             )}
                         </div>
 

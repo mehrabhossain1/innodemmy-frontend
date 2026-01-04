@@ -123,6 +123,14 @@ export interface Webinar {
     category?: string; // Webinar category
     published?: boolean; // Whether the webinar is published
     isUpcoming?: boolean; // Whether this is an upcoming webinar (shows only in upcoming section)
+    learningPoints?: {
+        title: string;
+        points: string[];
+    }; // Optional learning points section
+    whyStudyAbroad?: {
+        title: string;
+        points: string[];
+    }; // Optional why study abroad section
     createdAt?: Date;
     updatedAt?: Date;
 }
