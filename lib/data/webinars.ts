@@ -10,6 +10,7 @@ export const webinars: Webinar[] = [
         image: "/upcoming-webinar/higher-studies.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
         duration: "2h",
+        time: "9:00 PM - 11:00 PM",
         instructor: "Kazi Mejbaul Islam",
         instructorBio:
             "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",

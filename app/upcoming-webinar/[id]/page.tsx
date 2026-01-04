@@ -238,21 +238,27 @@ export default function UpcomingWebinarDetailsPage() {
                             <div className="flex flex-wrap gap-4 text-sm">
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-accent" />
-                                    <span>11th January, 2026</span>
+                                    <span>{webinar.date}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="h-5 w-5 text-accent" />
                                     <span>
-                                        9:00 PM - 11:00 PM (Bangladesh Time)
+                                        {webinar.time} (Bangladesh Time)
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg
                                         className="h-5 w-5 text-accent"
-                                        fill="currentColor"
+                                        fill="none"
+                                        stroke="currentColor"
                                         viewBox="0 0 24 24"
                                     >
-                                        <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM9 7h6v2H9V7zm0 4h6v2H9v-2zm0 4h6v2H9v-2z" />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                        />
                                     </svg>
                                     <span>Platform: Zoom</span>
                                 </div>

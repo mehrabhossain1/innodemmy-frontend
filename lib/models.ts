@@ -119,6 +119,7 @@ export interface Webinar {
     views: number; // Number of views
     topics: string[]; // Topics covered in the webinar
     date: string; // Webinar date
+    time?: string; // Webinar time
     language?: string; // Language of the webinar
     category?: string; // Webinar category
     published?: boolean; // Whether the webinar is published
