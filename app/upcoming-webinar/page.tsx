@@ -318,7 +318,7 @@ export default function UpcomingWebinarPage() {
 function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
     return (
         <Link href={`/upcoming-webinar/${webinar.id}`}>
-            <Card className="group relative bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
+            <Card className="group relative py-0 bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
                 <div className="relative">
                     {/* Thumbnail */}
                     <div className="relative aspect-video overflow-hidden rounded-t-lg">
@@ -381,7 +381,7 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                         <div className="flex items-center gap-1">
                             <Calendar className="h-3.5 w-3.5" />
-                            <span>Coming Soon</span>
+                            <span>{webinar.date}</span>
                         </div>
                     </div>
 

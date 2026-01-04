@@ -23,7 +23,7 @@ export const webinars: Webinar[] = [
             "Profile Building",
             "Study Abroad",
         ],
-        date: "01/11",
+        date: "11th January, 2026",
         language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
         published: true,

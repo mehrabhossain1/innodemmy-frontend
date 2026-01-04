@@ -110,13 +110,27 @@ export default function UpcomingWebinarSection() {
 
                                                 {/* Instructor */}
                                                 <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-muted-foreground">
-                                                    <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                                                        <span className="text-[10px] lg:text-xs font-bold text-primary">
-                                                            {webinar.instructor.charAt(
-                                                                0
-                                                            )}
-                                                        </span>
-                                                    </div>
+                                                    {webinar.instructorImage ? (
+                                                        <Image
+                                                            src={
+                                                                webinar.instructorImage
+                                                            }
+                                                            alt={
+                                                                webinar.instructor
+                                                            }
+                                                            width={32}
+                                                            height={32}
+                                                            className="w-7 h-7 lg:w-8 lg:h-8 rounded-full object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                                                            <span className="text-[10px] lg:text-xs font-bold text-primary">
+                                                                {webinar.instructor.charAt(
+                                                                    0
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    )}
                                                     <span className="font-medium">
                                                         {webinar.instructor}
                                                     </span>
@@ -148,7 +162,7 @@ export default function UpcomingWebinarSection() {
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
                                                     <span className="text-[10px] lg:text-xs text-muted-foreground flex items-center gap-1">
                                                         <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
-                                                        Coming Soon
+                                                        {webinar.date}
                                                     </span>
 
                                                     <div className="flex items-center gap-1 text-accent font-semibold text-xs lg:text-sm group-hover:gap-2 transition-all">
