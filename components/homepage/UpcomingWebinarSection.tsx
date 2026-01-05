@@ -104,7 +104,7 @@ export default function UpcomingWebinarSection() {
                                             {/* Content */}
                                             <div className="p-4 lg:p-5 space-y-2.5 lg:space-y-3">
                                                 {/* Title */}
-                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-2 group-hover:text-accent transition-colors leading-tight min-h-[2.8rem] lg:min-h-[3.2rem]">
+                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-3 group-hover:text-accent transition-colors leading-tight h-[4.2rem] lg:h-[4.8rem]">
                                                     {webinar.title}
                                                 </h3>
 
@@ -166,7 +166,7 @@ export default function UpcomingWebinarSection() {
 
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
-                                                    <span className="text-[10px] lg:text-xs text-muted-foreground flex items-center gap-1">
+                                                    <span className="text-[10px] lg:text-xs text-accent font-semibold flex items-center gap-1">
                                                         <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
                                                         {webinar.date}
                                                     </span>

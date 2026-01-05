@@ -352,7 +352,7 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
 
                 <CardContent className="p-5">
                     {/* Title */}
-                    <h3 className="font-bold text-lg text-foreground line-clamp-2 mb-3 group-hover:text-accent transition-colors">
+                    <h3 className="font-bold text-lg text-foreground line-clamp-3 mb-3 group-hover:text-accent transition-colors h-[4.2rem]">
                         {webinar.title}
                     </h3>
 
@@ -378,8 +378,8 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                     </div>
 
                     {/* Stats */}
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                        <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-4 text-xs mb-3">
+                        <div className="flex items-center gap-1 text-accent font-semibold">
                             <Calendar className="h-3.5 w-3.5" />
                             <span>{webinar.date}</span>
                         </div>
