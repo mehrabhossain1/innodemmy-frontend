@@ -352,7 +352,7 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
 
                 <CardContent className="p-5">
                     {/* Title */}
-                    <h3 className="font-bold text-lg text-foreground line-clamp-3 mb-3 group-hover:text-accent transition-colors h-[4.2rem]">
+                    <h3 className="font-bold text-lg text-foreground line-clamp-3 mb-3 group-hover:text-accent transition-colors h-[5.25rem] leading-snug">
                         {webinar.title}
                     </h3>
 
