@@ -166,7 +166,7 @@ export default function UpcomingWebinarSection() {
 
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
-                                                    <span className="text-[10px] lg:text-xs text-accent font-semibold flex items-center gap-1">
+                                                    <span className="text-[10px] lg:text-xs text-primary font-semibold flex items-center gap-1">
                                                         <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
                                                         {webinar.date}
                                                     </span>
