@@ -190,10 +190,47 @@ export default function UpcomingWebinarDetailsPage() {
             if (!response.ok) {
                 setErrorMessage(data.error || "Registration failed");
                 setIsSubmitting(false);
+
+                // Track failed registration
+                if (
+                    typeof window !== "undefined" &&
+                    (window as Window & { dataLayer?: unknown[] }).dataLayer
+                ) {
+                    (
+                        window as Window & { dataLayer: unknown[] }
+                    ).dataLayer.push({
+                        event: "webinar_registration_failed",
+                        webinar_id: webinar.id,
+                        webinar_title: webinar.title,
+                        webinar_date: webinar.date,
+                        webinar_time: webinar.time,
+                        error_message: data.error || "Registration failed",
+                    });
+                }
                 return;
             }
 
-            // Success
+            // Success - Track successful registration
+            if (
+                typeof window !== "undefined" &&
+                (window as Window & { dataLayer?: unknown[] }).dataLayer
+            ) {
+                (window as Window & { dataLayer: unknown[] }).dataLayer.push({
+                    event: "webinar_registration_complete",
+                    webinar_id: webinar.id,
+                    webinar_title: webinar.title,
+                    webinar_date: webinar.date,
+                    webinar_time: webinar.time,
+                    webinar_category: webinar.category,
+                    webinar_duration: webinar.duration,
+                    webinar_instructor: webinar.instructor,
+                    user_name: formData.fullName,
+                    user_email: formData.email,
+                    user_qualification: formData.qualification,
+                    user_institution: formData.institution,
+                });
+            }
+
             setShowSuccess(true);
             setFormData({
                 fullName: "",
