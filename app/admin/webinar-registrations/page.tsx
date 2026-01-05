@@ -170,7 +170,7 @@ export default function AdminWebinarRegistrationsPage() {
                     .map((cell) => `"${cell.toString().replace(/"/g, '""')}"`)
                     .join(",")
             ),
-        ].join("\\n");
+        ].join("\n");
 
         // Create blob and download
         const blob = new Blob([csvContent], {
