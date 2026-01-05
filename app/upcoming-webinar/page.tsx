@@ -317,7 +317,28 @@ export default function UpcomingWebinarPage() {
 
 function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
     return (
-        <Link href={`/upcoming-webinar/${webinar.id}`}>
+        <Link
+            href={`/upcoming-webinar/${webinar.id}`}
+            onClick={() => {
+                if (
+                    typeof window !== "undefined" &&
+                    (window as Window & { dataLayer?: unknown[] }).dataLayer
+                ) {
+                    (
+                        window as Window & { dataLayer: unknown[] }
+                    ).dataLayer.push({
+                        event: "webinar_click",
+                        webinar_id: webinar.id,
+                        webinar_title: webinar.title,
+                        webinar_instructor: webinar.instructor,
+                        webinar_date: webinar.date,
+                        webinar_category: webinar.category,
+                        webinar_duration: webinar.duration,
+                        click_location: "webinar_listing_page",
+                    });
+                }
+            }}
+        >
             <Card className="gap-0 group relative py-0 bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
                 <div className="relative">
                     {/* Thumbnail */}

@@ -63,7 +63,38 @@ export default function UpcomingWebinarSection() {
                                 key={index}
                                 className="pl-2 md:pl-3 lg:pl-3 md:basis-1/2 lg:basis-1/3"
                             >
-                                <Link href={`/upcoming-webinar/${webinar.id}`}>
+                                <Link
+                                    href={`/upcoming-webinar/${webinar.id}`}
+                                    onClick={() => {
+                                        if (
+                                            typeof window !== "undefined" &&
+                                            (
+                                                window as Window & {
+                                                    dataLayer?: unknown[];
+                                                }
+                                            ).dataLayer
+                                        ) {
+                                            (
+                                                window as Window & {
+                                                    dataLayer: unknown[];
+                                                }
+                                            ).dataLayer.push({
+                                                event: "webinar_click",
+                                                webinar_id: webinar.id,
+                                                webinar_title: webinar.title,
+                                                webinar_instructor:
+                                                    webinar.instructor,
+                                                webinar_date: webinar.date,
+                                                webinar_category:
+                                                    webinar.category,
+                                                webinar_duration:
+                                                    webinar.duration,
+                                                click_location:
+                                                    "homepage_carousel",
+                                            });
+                                        }
+                                    }}
+                                >
                                     <div className="relative group h-full">
                                         {/* Glow Effect */}
                                         <div className="absolute -inset-0.5 bg-gradient-to-r from-accent to-primary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
