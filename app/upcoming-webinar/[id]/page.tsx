@@ -46,11 +46,63 @@ export default function UpcomingWebinarDetailsPage() {
         }
     }, [params.id, router]);
 
-    // Countdown timer for January 11, 2025, 9 PM Bangladesh Time
+    // Dynamic countdown timer based on webinar date and time
     useEffect(() => {
-        // January 11, 2026, 9 PM Bangladesh Time (UTC+6)
-        // Converting to UTC: 9 PM in UTC+6 = 3 PM (15:00) UTC
-        const targetDate = new Date("2026-01-11T15:00:00Z").getTime();
+        if (!webinar?.date || !webinar?.time) return;
+
+        // Parse date string like "11th January, 2026"
+        const parseDateString = (dateStr: string) => {
+            const months: { [key: string]: number } = {
+                January: 0,
+                February: 1,
+                March: 2,
+                April: 3,
+                May: 4,
+                June: 5,
+                July: 6,
+                August: 7,
+                September: 8,
+                October: 9,
+                November: 10,
+                December: 11,
+            };
+
+            const parts = dateStr.replace(/,/g, "").split(" ");
+            const day = parseInt(parts[0]);
+            const month = months[parts[1]];
+            const year = parseInt(parts[2]);
+
+            return { day, month, year };
+        };
+
+        // Parse time string like "9:00 PM - 11:00 PM" to get start time
+        const parseTimeString = (timeStr: string) => {
+            const startTime = timeStr.split("-")[0].trim();
+            const timeParts = startTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
+
+            if (!timeParts) return { hour: 21, minute: 0 }; // default to 9 PM
+
+            let hour = parseInt(timeParts[1]);
+            const minute = parseInt(timeParts[2]);
+            const period = timeParts[3].toUpperCase();
+
+            if (period === "PM" && hour !== 12) {
+                hour += 12;
+            } else if (period === "AM" && hour === 12) {
+                hour = 0;
+            }
+
+            return { hour, minute };
+        };
+
+        const { day, month, year } = parseDateString(webinar.date);
+        const { hour, minute } = parseTimeString(webinar.time);
+
+        // Create date in Bangladesh Time (UTC+6)
+        // We need to subtract 6 hours when creating UTC date
+        const targetDate = new Date(
+            Date.UTC(year, month, day, hour - 6, minute, 0)
+        ).getTime();
 
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -77,7 +129,7 @@ export default function UpcomingWebinarDetailsPage() {
         const interval = setInterval(updateCountdown, 1000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [webinar]);
 
     // Get related webinars (exclude current webinar)
     const relatedWebinars = useMemo(() => {
@@ -126,6 +178,9 @@ export default function UpcomingWebinarDetailsPage() {
                 },
                 body: JSON.stringify({
                     webinarId: webinar.id,
+                    webinarTitle: webinar.title,
+                    webinarDate: webinar.date,
+                    webinarTime: webinar.time,
                     ...formData,
                 }),
             });
@@ -672,10 +727,10 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                     </div>
 
                     {/* Stats */}
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                        <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-4 text-xs mb-3">
+                        <div className="flex items-center gap-1 text-primary font-semibold">
                             <Calendar className="h-3.5 w-3.5" />
-                            <span>Coming Soon</span>
+                            <span>{webinar.date}</span>
                         </div>
                     </div>
 
