@@ -3,11 +3,27 @@ import { getDatabase } from "@/lib/mongodb";
 
 export async function POST(request: NextRequest) {
     try {
-        const { webinarId, fullName, email, phone, qualification, institution } =
-            await request.json();
+        const {
+            webinarId,
+            webinarTitle,
+            webinarDate,
+            webinarTime,
+            fullName,
+            email,
+            phone,
+            qualification,
+            institution,
+        } = await request.json();
 
         // Validate required fields
-        if (!webinarId || !fullName || !email || !phone || !qualification || !institution) {
+        if (
+            !webinarId ||
+            !fullName ||
+            !email ||
+            !phone ||
+            !qualification ||
+            !institution
+        ) {
             return NextResponse.json(
                 { error: "All fields are required" },
                 { status: 400 }
@@ -43,7 +59,9 @@ export async function POST(request: NextRequest) {
 
         if (existingRegistration) {
             return NextResponse.json(
-                { error: "This phone number is already registered for this webinar" },
+                {
+                    error: "This phone number is already registered for this webinar",
+                },
                 { status: 409 }
             );
         }
@@ -51,6 +69,9 @@ export async function POST(request: NextRequest) {
         // Create new registration
         const registration = {
             webinarId,
+            webinarTitle: webinarTitle || "",
+            webinarDate: webinarDate || "",
+            webinarTime: webinarTime || "",
             fullName,
             email,
             phone,
@@ -61,6 +82,12 @@ export async function POST(request: NextRequest) {
         };
 
         const result = await registrationsCollection.insertOne(registration);
+
+        console.log("Registration saved successfully:", {
+            id: result.insertedId,
+            webinarId,
+            fullName,
+        });
 
         return NextResponse.json(
             {

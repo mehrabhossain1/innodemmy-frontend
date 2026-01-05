@@ -104,13 +104,18 @@ export function withAdminAuth<T = unknown>(handler: ApiHandler<T>) {
  */
 export async function verifyAuth(request: NextRequest) {
     const authHeader = request.headers.get("authorization");
+    console.log("Auth header:", authHeader ? "Present" : "Missing");
+
     const token = extractTokenFromHeader(authHeader);
+    console.log("Extracted token:", token ? "Token extracted" : "No token");
 
     if (!token) {
         return { user: null, error: "No token provided" };
     }
 
     const decoded = verifyToken(token);
+    console.log("Decoded token:", decoded);
+
     if (!decoded) {
         return { user: null, error: "Invalid token" };
     }

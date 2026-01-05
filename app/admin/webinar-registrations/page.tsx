@@ -27,6 +27,9 @@ import { Input } from "@/components/ui/input";
 interface WebinarRegistration {
     _id: string;
     webinarId: string;
+    webinarTitle?: string;
+    webinarDate?: string;
+    webinarTime?: string;
     fullName: string;
     email: string;
     phone: string;
@@ -91,16 +94,35 @@ export default function AdminWebinarRegistrationsPage() {
             setLoading(true);
             const token = localStorage.getItem("token");
 
+            console.log(
+                "Fetching registrations with token:",
+                token ? "Token exists" : "No token"
+            );
+
             const response = await fetch("/api/admin/webinar-registrations", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
+            console.log("Response status:", response.status);
+
             const data = await response.json();
+
+            console.log("Response data:", data);
 
             if (response.ok) {
                 setRegistrations(data.registrations || []);
                 setFilteredRegistrations(data.registrations || []);
+            } else if (response.status === 403 || response.status === 401) {
+                console.error("Authentication failed - redirecting to login");
+                // Clear invalid token
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                // Redirect to login
+                router.push("/");
+            } else {
+                console.error("Failed to fetch registrations:", data);
             }
         } catch (error) {
             console.error("Error fetching registrations:", error);
@@ -120,6 +142,9 @@ export default function AdminWebinarRegistrationsPage() {
             "Qualification",
             "Institution",
             "Webinar ID",
+            "Webinar Title",
+            "Webinar Date",
+            "Webinar Time",
             "Registration Date",
         ];
 
@@ -131,6 +156,9 @@ export default function AdminWebinarRegistrationsPage() {
             reg.qualification,
             reg.institution,
             reg.webinarId,
+            reg.webinarTitle || "",
+            reg.webinarDate || "",
+            reg.webinarTime || "",
             new Date(reg.createdAt).toLocaleString(),
         ]);
 
