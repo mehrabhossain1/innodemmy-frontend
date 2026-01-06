@@ -186,6 +186,27 @@ export default function ResearchPaperHeroSection({
                                         </Button>
                                     </Link>
                                 ) : null}
+
+                                {/* Free Consultation Badge */}
+                                <div className="flex justify-center mt-3">
+                                    <Button
+                                        onClick={() => {
+                                            const element =
+                                                document.getElementById(
+                                                    "book-call"
+                                                );
+                                            if (element) {
+                                                element.scrollIntoView({
+                                                    behavior: "smooth",
+                                                    block: "center",
+                                                });
+                                            }
+                                        }}
+                                        className="text-xs lg:text-sm font-semibold text-secondary bg-secondary/10 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full border border-secondary/20 hover:bg-secondary/20 hover:scale-105 transition-all duration-200 cursor-pointer"
+                                    >
+                                        📞 Free Consultation
+                                    </Button>
+                                </div>
                             </div>
 
                             {/* Action Buttons */}

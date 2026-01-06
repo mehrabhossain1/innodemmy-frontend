@@ -205,7 +205,9 @@ export default function CompleteResearchPathwayWithMachineLearning() {
                 <FAQ />
             </div>
 
-            <BookTheCallCard />
+            <div id="book-call">
+                <BookTheCallCard />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar
