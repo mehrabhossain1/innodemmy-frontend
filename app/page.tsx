@@ -11,7 +11,7 @@ import UpcomingWebinarSection from "@/components/homepage/UpcomingWebinarSection
 
 export default function Home() {
     return (
-        <main className="">
+        <main className="space-y-20">
             <HeroSection />
             <AboutusSection />
             <Suspense

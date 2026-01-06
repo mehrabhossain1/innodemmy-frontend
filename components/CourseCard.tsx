@@ -57,7 +57,7 @@ export default function CourseCard({
             {/* Glow effect on hover */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
 
-            <div className="relative bg-card backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 ease-out shadow-md hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full flex flex-col">
+            <div className="relative bg-card backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 ease-out  hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 h-full flex flex-col">
                 {/* Image Section */}
                 <div className="relative overflow-hidden h-44 flex-shrink-0">
                     <Image
