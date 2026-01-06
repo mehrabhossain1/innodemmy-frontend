@@ -23,7 +23,7 @@ export default function FreeMasterclassSection() {
     const webinars = getRegularWebinars();
 
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-primary/5 to-background overflow-hidden">
+        <section className="relative  bg-gradient-to-b from-background via-primary/5 to-background overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/30 rounded-full blur-3xl"></div>
@@ -67,7 +67,7 @@ export default function FreeMasterclassSection() {
                                         {/* Glow Effect */}
                                         <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary to-primary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
 
-                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-secondary/50 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl shadow-lg h-full">
+                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-secondary/50 transition-all duration-300 ease-out  h-full">
                                             {/* Thumbnail with Play Button Overlay */}
                                             <div className="relative overflow-hidden h-44 lg:h-48">
                                                 <Image
@@ -75,7 +75,7 @@ export default function FreeMasterclassSection() {
                                                     alt={masterclass.title}
                                                     width={400}
                                                     height={208}
-                                                    // className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
                                                 {/* Gradient Overlay */}
 

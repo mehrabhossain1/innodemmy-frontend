@@ -44,7 +44,7 @@ export default function BlogsSection() {
     }, []);
 
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-secondary/5 to-background overflow-hidden">
+        <section className="relative py-2 bg-gradient-to-b from-background via-secondary/5 to-background overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>

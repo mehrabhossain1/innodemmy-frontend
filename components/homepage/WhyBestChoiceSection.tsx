@@ -76,7 +76,7 @@ const featureCards = [
 
 export default function WhyBestChoiceSection() {
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+        <section className="relative py-2 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
@@ -126,7 +126,7 @@ export default function WhyBestChoiceSection() {
                                     className={`absolute -inset-0.5 bg-gradient-to-r ${card.gradient} rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500`}
                                 ></div>
 
-                                <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer rounded-xl lg:rounded-2xl h-full overflow-hidden">
+                                <Card className="relative bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary/30  transition-all duration-300 cursor-pointer rounded-xl lg:rounded-2xl h-full overflow-hidden">
                                     {/* Subtle Background Gradient */}
                                     <div
                                         className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -136,7 +136,7 @@ export default function WhyBestChoiceSection() {
                                         <div className="flex flex-col items-start text-left space-y-2 lg:space-y-2.5">
                                             {/* Icon with Gradient Background */}
                                             <div
-                                                className={`relative p-2 lg:p-2.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                                                className={`relative p-2 lg:p-2.5 bg-gradient-to-br ${card.gradient} rounded-lg lg:rounded-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
                                             >
                                                 <IconComponent className="w-5 h-5 lg:w-5 lg:h-5 text-white" />
 
