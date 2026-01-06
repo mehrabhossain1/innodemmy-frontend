@@ -99,7 +99,7 @@ export default function UpcomingWebinarSection() {
                                         {/* Glow Effect */}
                                         <div className="absolute -inset-0.5 bg-gradient-to-r from-accent to-primary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
 
-                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-accent/50 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl shadow-lg h-full">
+                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-accent/50 transition-all duration-300 ease-out  h-full">
                                             {/* Thumbnail with Play Button Overlay */}
                                             <div className="relative overflow-hidden h-44 lg:h-48">
                                                 <Image
