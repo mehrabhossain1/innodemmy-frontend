@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Calendar, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -77,7 +77,6 @@ export default function FreeMasterclassSection() {
                                                     height={208}
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
-                                                {/* Gradient Overlay */}
 
                                                 {/* Play Button */}
                                                 <div className="absolute inset-0 flex items-center justify-center">
@@ -103,22 +102,44 @@ export default function FreeMasterclassSection() {
                                             {/* Content */}
                                             <div className="p-4 lg:p-5 space-y-2.5 lg:space-y-3">
                                                 {/* Title */}
-                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-2 group-hover:text-secondary transition-colors leading-tight min-h-[2.8rem] lg:min-h-[3.2rem]">
+                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-3 group-hover:text-secondary transition-colors leading-tight h-[4.2rem] lg:h-[4.8rem]">
                                                     {masterclass.title}
                                                 </h3>
 
                                                 {/* Instructor */}
                                                 <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-muted-foreground">
-                                                    <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                                        <span className="text-[10px] lg:text-xs font-bold text-primary">
-                                                            {masterclass.instructor.charAt(
-                                                                0
-                                                            )}
-                                                        </span>
+                                                    {masterclass.instructorImage ? (
+                                                        <Image
+                                                            src={
+                                                                masterclass.instructorImage
+                                                            }
+                                                            alt={
+                                                                masterclass.instructor
+                                                            }
+                                                            width={80}
+                                                            height={80}
+                                                            quality={95}
+                                                            className="w-7 h-7 lg:w-8 lg:h-8 rounded-full object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                                            <span className="text-[10px] lg:text-xs font-bold text-primary">
+                                                                {masterclass.instructor.charAt(
+                                                                    0
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="text-sm font-medium text-foreground truncate">
+                                                            {
+                                                                masterclass.instructor
+                                                            }
+                                                        </div>
+                                                        <div className="text-xs text-muted-foreground">
+                                                            Instructor
+                                                        </div>
                                                     </div>
-                                                    <span className="font-medium">
-                                                        {masterclass.instructor}
-                                                    </span>
                                                 </div>
 
                                                 {/* Topics */}
@@ -128,7 +149,7 @@ export default function FreeMasterclassSection() {
                                                         .map((topic, idx) => (
                                                             <span
                                                                 key={idx}
-                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border border-primary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
+                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-secondary/10 to-primary/10 text-secondary border border-secondary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
                                                             >
                                                                 {topic}
                                                             </span>
@@ -145,27 +166,9 @@ export default function FreeMasterclassSection() {
 
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
-                                                    <span className="text-[10px] lg:text-xs text-muted-foreground flex items-center gap-1">
-                                                        <svg
-                                                            className="w-3 h-3 lg:w-4 lg:h-4"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                            />
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                                            />
-                                                        </svg>
-                                                        {masterclass.views.toLocaleString()}
+                                                    <span className="text-[10px] lg:text-xs text-primary font-semibold flex items-center gap-1">
+                                                        <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
+                                                        {masterclass.date}
                                                     </span>
 
                                                     <div className="flex items-center gap-1 text-secondary font-semibold text-xs lg:text-sm group-hover:gap-2 transition-all">
