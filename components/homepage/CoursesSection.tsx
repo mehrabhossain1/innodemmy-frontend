@@ -31,6 +31,7 @@ interface Course {
     modules?: number;
     students?: number;
     duration?: string;
+    rating?: number;
 }
 
 interface ApiCourse {
@@ -106,6 +107,9 @@ export default function CoursesSection() {
                             duration: `${
                                 Math.floor(Math.random() * 10) + 8
                             } দিন বাকি`,
+                            rating: parseFloat(
+                                (4.4 + Math.random() * 0.6).toFixed(1)
+                            ),
                         })
                     );
                     setCourses(mappedCourses);
@@ -277,6 +281,7 @@ export default function CoursesSection() {
                                     modules={course.modules}
                                     students={course.students}
                                     duration={course.duration}
+                                    rating={course.rating}
                                 />
                             </div>
                         ))}
