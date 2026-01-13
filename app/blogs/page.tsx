@@ -159,6 +159,28 @@ export default function BlogsPage() {
             </div>
 
             <Container className="py-10">
+                {/* Search Bar */}
+                <div className="mb-6 max-w-xl mx-auto">
+                    <div className="relative">
+                        <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <input
+                            type="text"
+                            placeholder="Search articles by title, content, or author..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-10 pr-10 h-12 rounded-xl border-2 border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 bg-background text-foreground transition-all"
+                        />
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm("")}
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <span className="text-xl font-semibold">×</span>
+                            </button>
+                        )}
+                    </div>
+                </div>
+
                 {/* Category Tabs */}
                 <div className="relative mb-8">
                     <div className="flex justify-center items-center overflow-x-auto pb-3 scrollbar-hide">
