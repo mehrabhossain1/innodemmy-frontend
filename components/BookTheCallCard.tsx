@@ -210,7 +210,7 @@ export default function BookTheCallCard() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold mb-2 lg:mb-2">
                         <span className="text-foreground">Get Your Free</span>{" "}
                         <span className="bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">
-                            Consultation
+                            Consultation Today
                         </span>
                     </h2>
                     <p className="text-sm md:text-base lg:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
