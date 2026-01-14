@@ -149,6 +149,26 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
         });
     };
 
+    const handleShareClick = async () => {
+        const shareData = {
+            title: blog?.title || "Blog Post",
+            text: "Check out this blog post",
+            url: window.location.href,
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                // Fallback: Copy URL to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Blog link copied to clipboard!");
+            }
+        } catch (err) {
+            console.error("Error sharing:", err);
+        }
+    };
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -232,7 +252,11 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                                     <BookmarkPlus className="w-4 h-4 mr-2" />
                                     Save
                                 </Button>
-                                <Button variant="outline" size="sm">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={handleShareClick}
+                                >
                                     <Share2 className="w-4 h-4 mr-2" />
                                     Share
                                 </Button>
