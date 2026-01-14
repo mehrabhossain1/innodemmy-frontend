@@ -28,6 +28,7 @@ export default function WebinarDetailsPage() {
     const [webinar, setWebinar] = useState<Webinar | null>(null);
     const [showAuthSidebar, setShowAuthSidebar] = useState(false);
     const [justLoggedIn, setJustLoggedIn] = useState(false);
+    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
     useEffect(() => {
         // Load webinar data
@@ -170,13 +171,38 @@ export default function WebinarDetailsPage() {
                             {/* Video Player */}
                             <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl bg-black">
                                 {user ? (
-                                    <iframe
-                                        src={webinar.videoUrl}
-                                        title={webinar.title}
-                                        className="w-full h-full absolute inset-0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
+                                    <div
+                                        className="relative w-full h-full cursor-pointer group"
+                                        onClick={() => setIsVideoPlaying(true)}
+                                    >
+                                        <Image
+                                            src={webinar.image}
+                                            alt={webinar.title}
+                                            fill
+                                            className="object-cover absolute inset-0"
+                                        />
+                                        {/* Badges */}
+                                        <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
+                                            FREE
+                                        </div>
+                                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold z-10">
+                                            {webinar.duration}
+                                        </div>
+                                        {/* Play Button Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-black/50 flex items-center justify-center z-[5]">
+                                            <div className="text-center space-y-4">
+                                                <div className="relative inline-block">
+                                                    <div className="absolute inset-0 bg-primary/30 blur-xl rounded-full animate-pulse"></div>
+                                                    <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-white group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                                                        <Play className="w-10 h-10 text-primary fill-primary ml-1" />
+                                                    </div>
+                                                </div>
+                                                <p className="text-white font-semibold text-sm drop-shadow-lg">
+                                                    Click to Watch
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 ) : (
                                     <>
                                         <Image
@@ -325,6 +351,35 @@ export default function WebinarDetailsPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Video Modal */}
+            {isVideoPlaying && (
+                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
+                    <div className="relative w-full max-w-4xl">
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setIsVideoPlaying(false)}
+                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                        >
+                            ✕
+                        </button>
+                        {/* Video Container */}
+                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src={webinar.videoUrl}
+                                title={webinar.title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                                className="absolute inset-0"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Auth Sidebar */}
             <AuthSidebar

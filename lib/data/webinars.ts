@@ -8,7 +8,8 @@ export const webinars: Webinar[] = [
         description:
             "বিদেশে পড়ার ইচ্ছা সবার থাকলেও সঠিক তথ্যের অভাবে অনেকেই পিছিয়ে পড়েন। তাই আমরা সাজিয়েছি এই বিশেষ সেশন, যেখানে বিশ্বের নামী-দামী বিশ্ববিদ্যালয়ে স্কলারশিপ পাওয়ার সিক্রেট এবং স্কলারশিপ পাওয়ার জন্য একটি শক্তিশালী প্রোফাইল তৈরির আদ্যোপান্ত শেয়ার করা হবে যাতে কোনো দ্বিধা ছাড়াই আপনি আপনার গ্লোবাল ক্যারিয়ারের পথে পা বাড়াতে পারেন",
         image: "/upcoming-webinar/higher-studies.jpeg",
-        videoUrl: "https://zoom.us/j/placeholder",
+        videoUrl:
+            "https://drive.google.com/file/d/1z1CQDw9ex77RYazgCmS0YSO-YJURYonn/preview",
         duration: "2h",
         time: "9:00 PM - 11:00 PM",
         instructor: "Kazi Mejbaul Islam",
