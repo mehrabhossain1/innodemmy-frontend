@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Calendar, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,16 +14,16 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
 import Container from "../Container";
-import { getAllWebinars } from "@/lib/data/webinars";
+import { getRegularWebinars } from "@/lib/data/webinars";
 
 export default function FreeMasterclassSection() {
     const plugin = React.useRef(
         Autoplay({ delay: 4000, stopOnInteraction: true })
     );
-    const webinars = getAllWebinars();
+    const webinars = getRegularWebinars();
 
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-gradient-to-b from-background via-primary/5 to-background overflow-hidden">
+        <section className="relative  bg-gradient-to-b from-background via-primary/5 to-background overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/30 rounded-full blur-3xl"></div>
@@ -67,7 +67,7 @@ export default function FreeMasterclassSection() {
                                         {/* Glow Effect */}
                                         <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary to-primary rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500"></div>
 
-                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-secondary/50 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl shadow-lg h-full">
+                                        <div className="relative bg-card/80 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border group-hover:border-secondary/50 transition-all duration-300 ease-out  h-full">
                                             {/* Thumbnail with Play Button Overlay */}
                                             <div className="relative overflow-hidden h-44 lg:h-48">
                                                 <Image
@@ -75,9 +75,8 @@ export default function FreeMasterclassSection() {
                                                     alt={masterclass.title}
                                                     width={400}
                                                     height={208}
-                                                    // className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
-                                                {/* Gradient Overlay */}
 
                                                 {/* Play Button */}
                                                 <div className="absolute inset-0 flex items-center justify-center">
@@ -103,22 +102,44 @@ export default function FreeMasterclassSection() {
                                             {/* Content */}
                                             <div className="p-4 lg:p-5 space-y-2.5 lg:space-y-3">
                                                 {/* Title */}
-                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-2 group-hover:text-secondary transition-colors leading-tight min-h-[2.8rem] lg:min-h-[3.2rem]">
+                                                <h3 className="text-base lg:text-lg font-bold text-foreground line-clamp-3 group-hover:text-secondary transition-colors leading-tight h-[4.2rem] lg:h-[4.8rem]">
                                                     {masterclass.title}
                                                 </h3>
 
                                                 {/* Instructor */}
                                                 <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-muted-foreground">
-                                                    <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                                        <span className="text-[10px] lg:text-xs font-bold text-primary">
-                                                            {masterclass.instructor.charAt(
-                                                                0
-                                                            )}
-                                                        </span>
+                                                    {masterclass.instructorImage ? (
+                                                        <Image
+                                                            src={
+                                                                masterclass.instructorImage
+                                                            }
+                                                            alt={
+                                                                masterclass.instructor
+                                                            }
+                                                            width={80}
+                                                            height={80}
+                                                            quality={95}
+                                                            className="w-7 h-7 lg:w-8 lg:h-8 rounded-full object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                                            <span className="text-[10px] lg:text-xs font-bold text-primary">
+                                                                {masterclass.instructor.charAt(
+                                                                    0
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="text-sm font-medium text-foreground truncate">
+                                                            {
+                                                                masterclass.instructor
+                                                            }
+                                                        </div>
+                                                        <div className="text-xs text-muted-foreground">
+                                                            Instructor
+                                                        </div>
                                                     </div>
-                                                    <span className="font-medium">
-                                                        {masterclass.instructor}
-                                                    </span>
                                                 </div>
 
                                                 {/* Topics */}
@@ -128,7 +149,7 @@ export default function FreeMasterclassSection() {
                                                         .map((topic, idx) => (
                                                             <span
                                                                 key={idx}
-                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border border-primary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
+                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-secondary/10 to-primary/10 text-secondary border border-secondary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
                                                             >
                                                                 {topic}
                                                             </span>
@@ -145,27 +166,9 @@ export default function FreeMasterclassSection() {
 
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
-                                                    <span className="text-[10px] lg:text-xs text-muted-foreground flex items-center gap-1">
-                                                        <svg
-                                                            className="w-3 h-3 lg:w-4 lg:h-4"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                            />
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                                            />
-                                                        </svg>
-                                                        {masterclass.views.toLocaleString()}
+                                                    <span className="text-[10px] lg:text-xs text-primary font-semibold flex items-center gap-1">
+                                                        <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
+                                                        {masterclass.date}
                                                     </span>
 
                                                     <div className="flex items-center gap-1 text-secondary font-semibold text-xs lg:text-sm group-hover:gap-2 transition-all">
@@ -191,7 +194,7 @@ export default function FreeMasterclassSection() {
                     <Link href="/webinar">
                         <Button
                             size="default"
-                            className="px-6 lg:px-7 py-5 lg:py-5 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-primary/20 hover:border-primary/40 group"
+                            className="px-6 lg:px-7 py-3 lg:py-3 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-primary/20 hover:border-primary/40 group"
                         >
                             Explore All Masterclasses
                             <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform duration-300" />

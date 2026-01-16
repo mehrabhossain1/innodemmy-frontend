@@ -126,7 +126,9 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
                 <FAQ />
             </section>
 
-            <BookTheCallCard />
+            <div id="book-call">
+                <BookTheCallCard />
+            </div>
 
             {/* Sticky Bottom Bar */}
             <StickyEnrollmentBar

@@ -3,89 +3,225 @@ import { COURSE_CATEGORIES } from "@/lib/constants/categories";
 
 export const webinars: Webinar[] = [
     {
-        id: "web-development-fundamentals",
-        title: "Web Development Fundamentals: From Zero to Hero",
+        id: "higher-studies-abroad-scholarship",
+        title: "Webinar on Higher Studies Abroad with Scholarship",
         description:
-            "আপনি যদি শিখতে চান, ই-কমার্স, এবং প্রভৃতি সেক্টরে কাজ করেন তাহলে প্রথমেই আপনাকে ওয়েব ডেভেলপমেন্ট শেখার নৌশিল শুরু করতে হবে। এই বিনামূল্যের মাস্টারক্লাসে আপনি শিখবেন HTML, CSS, এবং JavaScript এর মৌলিক ধারণা এবং কিভাবে আপনি একটি রেসপন্সিভ ওয়েবসাইট তৈরি করবেন।",
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        duration: "2h 30m",
-        instructor: "Rubayet Alam",
+            "বিদেশে পড়ার ইচ্ছা সবার থাকলেও সঠিক তথ্যের অভাবে অনেকেই পিছিয়ে পড়েন। তাই আমরা সাজিয়েছি এই বিশেষ সেশন, যেখানে বিশ্বের নামী-দামী বিশ্ববিদ্যালয়ে স্কলারশিপ পাওয়ার সিক্রেট এবং স্কলারশিপ পাওয়ার জন্য একটি শক্তিশালী প্রোফাইল তৈরির আদ্যোপান্ত শেয়ার করা হবে যাতে কোনো দ্বিধা ছাড়াই আপনি আপনার গ্লোবাল ক্যারিয়ারের পথে পা বাড়াতে পারেন",
+        image: "/upcoming-webinar/higher-studies.jpeg",
+        videoUrl:
+            "https://drive.google.com/file/d/1z1CQDw9ex77RYazgCmS0YSO-YJURYonn/preview",
+        duration: "2h",
+        time: "9:00 PM - 11:00 PM",
+        instructor: "Kazi Mejbaul Islam",
         instructorBio:
-            "Executive - Product Experience with 8+ years in web development",
-        instructorImage:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-        views: 15420,
-        topics: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-        date: "11/11",
-        language: "Bengali",
-        category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
-    },
-    {
-        id: "python-data-analysis",
-        title: "Python for Data Analysis: Getting Started with Pandas",
-        description:
-            "ডেটা সায়েন্স এবং মেশিন লার্নিং এর জগতে প্রবেশ করতে চান? এই মাস্টারক্লাসে আমরা Python এবং Pandas ব্যবহার করে ডেটা এনালাইসিস শেখাবো। শিখবেন কিভাবে বড় ডেটাসেট থেকে মূল্যবান তথ্য বের করা যায়।",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        duration: "1h 45m",
-        instructor: "Dr. Michael Chen",
-        instructorBio: "Data Science Expert with PhD in Computer Science",
-        instructorImage:
-            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-        views: 12350,
-        topics: ["Python", "Pandas", "Data Analysis", "NumPy"],
-        date: "11/15",
-        language: "English",
-        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
-        published: true,
-    },
-    {
-        id: "ui-ux-principles",
-        title: "UI/UX Design Principles: Creating User-Centric Interfaces",
-        description:
-            "ব্যবহারকারী-কেন্দ্রিক ডিজাইন শিখুন এই ফ্রি মাস্টারক্লাসে। জানুন কিভাবে Design Thinking প্রয়োগ করে সুন্দর এবং কার্যকর ইন্টারফেস তৈরি করা যায়। Figma ব্যবহার করে প্রোটোটাইপ তৈরির টিপস এবং ট্রিকস শিখুন।",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        duration: "2h 15m",
-        instructor: "Emma Rodriguez",
-        instructorBio: "Senior UX Designer at a Fortune 500 company",
-        instructorImage:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-        views: 18920,
-        topics: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-        date: "11/20",
-        language: "Bengali",
-        category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
-    },
-    {
-        id: "payment-automation-machine-learning",
-        title: "Free Webinar On Payment Automation with Machine Learning",
-        description:
-            "আপনি যদি শিখতে চান, ই-কমার্স, এবং প্রভৃতি সেক্টরে কাজ করেন তাহলা প্রথমেই আপনাকে আর্টিফিশিয়াল ইন্টেলিজেন্স এবং মেশিন লার্নিং এর সাথে পেমেন্ট অটোমেশন কিভাবে কাজ করে সেটা জানতে হবে। এই বিনামূল্যের সেশনে আপনি শিখবেন কিভাবে ML ব্যবহার করে পেমেন্ট সিস্টেম আরও নিরাপদ এবং দ্রুত করা যায়।",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        duration: "60 mins",
-        instructor: "Rubayet Alam",
-        instructorBio:
-            "Executive - Product Experience specializing in fintech and ML applications",
-        instructorImage:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-        views: 8540,
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
         topics: [
-            "Time Series Analysis",
-            "Transaction Fraud Detection",
-            "Real-time AI integration",
-            "NLP in Large Language Models",
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
         ],
-        date: "11/11",
+        date: "11th January, 2026",
         language: "Bengali",
-        category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
+        category: COURSE_CATEGORIES.PROGRAMMING,
         published: true,
+        isUpcoming: true,
+        learningPoints: {
+            title: "কী কী শিখতে পারবেন এই ওয়েবিনারে?",
+            points: [
+                "আপনার জন্য কোন দেশ সেরা হবে? যুক্তরাষ্ট্র (USA), কানাডা, যুক্তরাজ্য (UK), অস্ট্রেলিয়া, জাপান ও কোরিয়ার মতো জনপ্রিয় দেশগুলোর সুযোগ-সুবিধা সম্পর্কে আলোচনা।",
+                "একাডেমিক রেজাল্ট কেমন হতে হবে এবং IELTS, TOEFL কিংবা GRE-র মতো পরীক্ষাগুলোর প্রস্তুতি কীভাবে নেবেন।",
+                "বিভিন্ন ধরনের স্কলারশিপ (Full-fund/Partial) পাওয়ার উপায়।",
+                "কীভাবে একটি শক্তিশালী SOP, LOR এবং প্রফেশনাল CV তৈরি করবেন। সেই সাথে সহ-শিক্ষা কার্যক্রম (Extracurricular) ও রিসার্চ পেপারের গুরুত্ব।",
+                "সঠিক সময়ে সঠিক প্রফেসরের সাথে যোগাযোগের কৌশল এবং আবেদনের উপযুক্ত সময় নির্ধারণ।",
+                "বিদেশের বিশ্ববিদ্যালয়ে বর্তমান ছাত্র বা অ্যালুমনাইদের সাথে কীভাবে যোগাযোগ স্থাপন করবেন এবং কেনো প্রয়োজন?",
+            ],
+        },
+        whyStudyAbroad: {
+            title: "কেন Abroad থেকে উচ্চশিক্ষা গ্রহণ করবেন?",
+            points: [
+                "বিদেশের ডিগ্রি আপনাকে বিশ্বের নামী-দামী কোম্পানিগুলোতে কাজ করার সুযোগ করে দেয়। আন্তর্জাতিক কর্মপরিবেশে নিজেকে খাপ খাইয়ে নিতে এটি সহায়ক।",
+                "বিদেশের বিশ্ববিদ্যালয়গুলো আধুনিক ল্যাবরেটরি, লাইব্রেরি এবং উন্নত প্রযুক্তি ব্যবহারের সুযোগ দেয়, যা উচ্চমানের গবেষণার জন্য অপরিহার্য।",
+                "সম্পূর্ণ ভিন্ন একটি পরিবেশে বসবাসের মাধ্যমে আপনার মধ্যে স্বনির্ভরতা গড়ে ওঠে। ভিন্ন ভিন্ন সংস্কৃতির মানুষের সাথে মেলামেশার ফলে আপনার দৃষ্টিভঙ্গি প্রসারিত হয়।",
+                "বিশ্বের বিভিন্ন প্রান্তের মেধাবী শিক্ষার্থীদের সাথে কাজ করার ফলে একটি শক্তিশালী প্রফেশনাল নেটওয়ার্ক তৈরি হয়, যা সারাজীবন কাজে লাগে।",
+                "প্রায় সকল দেশেই পড়াশোনা শেষে কাজের অনুমতির (Work Permit) পাশাপাশি স্থায়ীভাবে বসবাসের সুযোগ থাকে, যা আপনার ভবিষ্যৎ জীবনকে আর্থিকভাবে সচ্ছল ও নিরাপদ করে।",
+            ],
+        },
+    },
+    {
+        id: "research-paper-writing-and-publication-techniques",
+        title: "Webinar on Research Paper Writing & Publication Techniques",
+        description:
+            "Research paper লেখা ও publish করা higher studies, scholarship এবং academic বা research career-এর জন্য একটি অত্যন্ত গুরুত্বপূর্ণ যোগ্যতা। এই ওয়েবিনারে আপনি শিখবেন - research paper কীভাবে শুরু থেকে লিখবেন, কোন Journal বা Conference আপনার research-এর জন্য উপযুক্ত, এবং কীভাবে rejection এড়িয়ে publication-এর সম্ভাবনা বাড়ানো যায়",
+        image: "/upcoming-webinar/research-pager.jpeg",
+        videoUrl: "https://zoom.us/j/placeholder",
+        duration: "2h",
+        time: "9:00 PM - 11:00 PM",
+        instructor: "Mamunur Rashid Alex",
+        instructorBio:
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
+        topics: [
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
+        ],
+        date: "14th January, 2026",
+        language: "Bengali",
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        published: true,
+        isUpcoming: true,
+        learningPoints: {
+            title: "এই ওয়েবিনারে যা যা শিখবেন",
+            points: [
+                "Research idea ও topic selection - কীভাবে একটি publishable research question তৈরি করবেন",
+                "Research paper-এর structure - Title, Abstract, Introduction, Methodology, Results, Discussion ও Conclusion কীভাবে লিখবেন",
+                "Proper literature review ও reference management (Google Scholar, PubMed, Scopus, Zotero, Mendeley)",
+                "Journal selection strategy - indexed journal (Scopus, Web of Science), impact factor, Q1–Q4 journal বোঝা",
+                "Manuscript submission process - cover letter লেখা, reviewer comments handle করা এবং revision strategy",
+            ],
+        },
+        whyStudyAbroad: {
+            title: "কেন Research Paper Writing & Publication গুরুত্বপূর্ণ?",
+            points: [
+                "Higher studies (Master’s/PhD) ও scholarship application-এ research publication আপনার profile শক্তিশালী করে",
+                "Academic ও research career-এ promotion, funding এবং collaboration-এর সুযোগ বাড়ায়",
+                "International research community-তে আপনার visibility ও credibility তৈরি হয়",
+                "Critical thinking, scientific writing ও data analysis skill উন্নত হয়",
+                "Future supervisor ও professor-দের কাছে আপনার research potential প্রমাণ করা সহজ হয়",
+            ],
+        },
+    },
+    {
+        id: "higher-studies-abroad-with-scholarship-for-clinical-and-translational-health-science-background",
+        title: "Webinar on Higher Studies Abroad with Scholarship for Clinical & Translational Health Science Background",
+        description:
+            "Clinical & Translational Health Science background থেকে বিদেশে উচ্চশিক্ষা ও scholarship পেতে সঠিক দিকনির্দেশনা অত্যন্ত গুরুত্বপূর্ণ। এই ওয়েবিনারে আপনি জানতে পারবেন কীভাবে Clinical অথবা Translational Health Science background থেকে বিশ্বের নামী দামী বিশ্ববিদ্যালয়গুলোতে scholarship-সহ higher studies-এর সুযোগ তৈরি করা যায়",
+        image: "/upcoming-webinar/clinical-translational.png",
+        videoUrl: "https://zoom.us/j/placeholder",
+        duration: "2h",
+        time: "9:00 PM - 11:00 PM",
+        instructor: "Md Saiful Islam",
+        instructorBio:
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
+        topics: [
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
+        ],
+        date: "16th January, 2026",
+        language: "Bengali",
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        published: true,
+        isUpcoming: true,
+        learningPoints: {
+            title: "এই ওয়েবিনারে যা যা শিখবেন",
+            points: [
+                "Clinical & Translational Health Science background-এর শিক্ষার্থীদের জন্য কোন দেশ সবচেয়ে উপযোগী",
+                "Academic profile কতটা শক্তিশালী হওয়া প্রয়োজন - CGPA, clinical experience, internship, research ও publication-এর গুরুত্ব এবং IELTS preparation strategy",
+                "Fully-funded বা scholarship, Research Assistantship (RA), Teaching Assistantship (TA) এবং Fellowship পাওয়ার কার্যকর কৌশল",
+                "Health Science background-এর জন্য একটি শক্তিশালী SOP, LOR এবং Academic CV কীভাবে তৈরি করবেন",
+                "সঠিক professor নির্বাচন, professional email writing strategy এবং interview preparation techniques",
+                "বিদেশে অধ্যয়নরত Health Science students ও alumni-দের সাথে যোগাযোগের গুরুত্ব এবং কেন এই network আপনার career-এ গুরুত্বপূর্ণ ভূমিকা রাখে",
+            ],
+        },
+        whyStudyAbroad: {
+            title: "কেন Clinical & Translational Health Science Background থেকে Abroad-এ Higher Studies করবেন?",
+            points: [
+                "বিদেশের degree আপনাকে আন্তর্জাতিক health organization, research institute, pharmaceutical ও biotech company-তে কাজ করার সুযোগ করে দেয়",
+                "Advanced laboratory, clinical trial facilities এবং cutting-edge research technology ব্যবহারের মাধ্যমে আপনি বাস্তবমুখী research experience অর্জন করতে পারবেন",
+                "Multidisciplinary ও multicultural environment-এ কাজ করার ফলে আপনার problem-solving skills ও professional confidence বৃদ্ধি পায়",
+                "বিশ্বের বিভিন্ন দেশের health professionals ও researchers-দের সাথে কাজ করে একটি শক্তিশালী global network তৈরি হয়",
+                "অধিকাংশ দেশেই পড়াশোনা শেষে work permit ও permanent residency-র সুযোগ থাকে, যা আপনাকে একটি নিরাপদ ও সমৃদ্ধ ভবিষ্যৎ গড়ে তুলতে সহায়তা করে",
+            ],
+        },
+    },
+    {
+        id: "from-code-to-intelligence-ai-engineering-career",
+        title: "Webinar on From Code to Intelligence: Building a Career in AI Engineering",
+        description:
+            "Artificial Intelligence এখন শুধু একটি buzzword নয়, এটি software engineering, data science ও product development-এর ভবিষ্যৎ নির্ধারণ করছে। কিন্তু অনেকেই জানেন না, AI Engineering আসলে কী, কোথা থেকে শুরু করতে হবে, এবং কীভাবে একটি structured roadmap অনুসরণ করে expert AI engineer হওয়া যায়",
+        image: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artificial-intelligence-youtube-thumbnail-design-template-e977846615d6ebe53c36c0dc9d995111_screen.jpg?ts=1684092259",
+        videoUrl: "https://zoom.us/j/placeholder",
+        duration: "2h",
+        time: "8:00 PM - 10:00 PM",
+        instructor: "Arif Mahmud Sisir",
+        instructorBio:
+            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
+        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+        views: 0,
+        topics: [
+            "Scholarship Opportunities",
+            "SOP & LOR Writing",
+            "University Selection",
+            "IELTS/TOEFL/GRE",
+            "Profile Building",
+            "Study Abroad",
+        ],
+        date: "18th January, 2026",
+        language: "Bengali",
+        category: COURSE_CATEGORIES.PROGRAMMING,
+        published: true,
+        isUpcoming: true,
+        learningPoints: {
+            title: "এই ওয়েবিনারে যা যা শিখবেন",
+            points: [
+                "AI Engineering কী এবং এটি Data Science, Machine Learning ও Software Engineering থেকে কীভাবে আলাদা",
+                "AI Engineer হতে প্রয়োজনীয় core skills যেমন Python, Data Structures, Algorithms,  ও Mathmatics",
+                "Machine Learning ও Deep Learning fundamentals—Supervised/Unsupervised Learning, Neural Networks ও Model Evaluation",
+                "Industry-relevant tools ও frameworks—TensorFlow, PyTorch, Scikit-learn, SQL, Git ও Cloud platforms",
+                "Real-world AI systems design—data pipeline, model training, deployment ও monitoring (MLOps overview)",
+                "AI project portfolio কীভাবে তৈরি করবেন—GitHub, Kaggle, real-world use cases ও capstone projects",
+                "Career roadmap, entry-level থেকে mid/senior AI Engineer পর্যন্ত growth path, job roles ও salary insight",
+            ],
+        },
+        whyStudyAbroad: {
+            title: "Why Build a Career in AI Engineering?",
+            points: [
+                "AI Engineers বিশ্বের সবচেয়ে high-demand ও high-paying tech professionals-দের মধ্যে অন্যতম",
+                "Global tech companies, startups, research labs ও product-based organizations-এ কাজের সুযোগ",
+                "Real-world problem solving ও intelligent system building-এর মাধ্যমে high-impact work করার সুযোগ",
+                "Remote job, international collaboration ও long-term career growth-এর বিশাল সম্ভাবনা",
+                "Continuous innovation ও learning-driven career path, যা future-proof",
+            ],
+        },
     },
 ];
+
+// Helper function to parse webinar date and check if it's in the future
+function isWebinarUpcoming(webinar: Webinar): boolean {
+    if (!webinar.isUpcoming) return false;
+
+    try {
+        // Parse date format: "11th January, 2026" or "14th January, 2026"
+        const dateStr = webinar.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+        const webinarDate = new Date(dateStr);
+        const today = new Date();
+
+        // Set time to start of day for accurate comparison
+        today.setHours(0, 0, 0, 0);
+        webinarDate.setHours(0, 0, 0, 0);
+
+        // Webinar is upcoming if its date is today or in the future
+        return webinarDate >= today;
+    } catch (error) {
+        console.error(`Error parsing date for webinar ${webinar.id}:`, error);
+        return false;
+    }
+}
 
 export function getWebinarById(id: string): Webinar | undefined {
     return webinars.find((webinar) => webinar.id === id);
@@ -93,4 +229,16 @@ export function getWebinarById(id: string): Webinar | undefined {
 
 export function getAllWebinars(): Webinar[] {
     return webinars.filter((webinar) => webinar.published);
+}
+
+export function getRegularWebinars(): Webinar[] {
+    return webinars.filter(
+        (webinar) => webinar.published && !isWebinarUpcoming(webinar)
+    );
+}
+
+export function getUpcomingWebinars(): Webinar[] {
+    return webinars.filter(
+        (webinar) => webinar.published && isWebinarUpcoming(webinar)
+    );
 }

@@ -34,6 +34,7 @@ interface Course {
     category?: string;
     createdAt: string;
     updatedAt: string;
+    rating?: number;
 }
 
 // Map category names to icons
@@ -80,7 +81,15 @@ export default function CoursesPage() {
             try {
                 const response = await fetch("/api/courses");
                 const data = await response.json();
-                setAllCourses(data.courses || []);
+                const coursesWithRatings = (data.courses || []).map(
+                    (course: Course) => ({
+                        ...course,
+                        rating: parseFloat(
+                            (4.4 + Math.random() * 0.6).toFixed(1)
+                        ),
+                    })
+                );
+                setAllCourses(coursesWithRatings);
             } catch (error) {
                 console.error("Failed to fetch courses:", error);
             } finally {
@@ -190,10 +199,11 @@ export default function CoursesPage() {
                                     onClick={() =>
                                         updateCategoryInUrl(category.id)
                                     }
-                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${activeCategory === category.id
+                                    className={`shrink-0 flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 ${
+                                        activeCategory === category.id
                                             ? "bg-primary border-primary text-white shadow-md"
                                             : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
-                                        }`}
+                                    }`}
                                 >
                                     <category.icon className="h-4 w-4" />
                                     <div className="text-left">
@@ -202,11 +212,12 @@ export default function CoursesPage() {
                                         </div>
                                         {category.count && (
                                             <div
-                                                className={`text-xs ${activeCategory ===
-                                                        category.id
+                                                className={`text-xs ${
+                                                    activeCategory ===
+                                                    category.id
                                                         ? "text-white/80"
                                                         : "text-muted-foreground"
-                                                    }`}
+                                                }`}
                                             >
                                                 {category.count}
                                             </div>
@@ -250,6 +261,7 @@ export default function CoursesPage() {
                                         title={course.title}
                                         description={course.description}
                                         thumbnail={course.thumbnail}
+                                        rating={course.rating}
                                     />
                                 ))}
                             </div>

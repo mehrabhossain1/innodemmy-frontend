@@ -14,36 +14,36 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "How are the class sessions conducted?",
-            answer: "All live sessions are conducted via Zoom using structured, instructor-led methods to ensure interactive and effective learning.",
+            answer: "All live sessions are conducted via Zoom using structured, instructor-led methods to ensure interactive and effective learning",
         },
         {
             question: "Can I join using a mobile device?",
-            answer: "Yes, you can join the course from any device ,  mobile, laptop, or desktop.",
+            answer: "Yes, you can join the course from any device ,  mobile, laptop, or desktop",
         },
         {
             question: "Will I have lifetime access to the recorded videos?",
-            answer: "No. Participants are encouraged to make full use of the live support provided throughout the program, as we believe that meaningful learning cannot be attained solely through recorded content. Session recordings may be re-broadcast when deemed necessary.",
+            answer: "No. Participants are encouraged to make full use of the live support provided throughout the program, as we believe that meaningful learning cannot be attained solely through recorded content. Session recordings may be re-broadcast when deemed necessary",
         },
         {
             question: "Will recordings of live classes be available?",
-            answer: "No, we encourage you to take live support as much as you need.",
+            answer: "No, we encourage you to take live support as much as you need",
         },
         {
             question:
                 "Where can I get support if I face difficulties while practicing?",
-            answer: "You will receive support through our WhatsApp group and dedicated Q&A sessions.",
+            answer: "You will receive support through our WhatsApp group and dedicated Q&A sessions",
         },
         {
             question: "Can this course help me get a job or scholarship?",
-            answer: "Yes, the course is designed to build your portfolio with real projects, research guidance, and publication-ready papers, which can significantly enhance your chances of landing a job or securing a scholarship.",
+            answer: "Yes, the course is designed to build your portfolio with real projects, research guidance, and publication-ready papers, which can significantly enhance your chances of landing a job or securing a scholarship",
         },
         {
             question: "Is there any support after the course ends?",
-            answer: "Yes, we provide exclusive post-course support for research, career guidance, and project-related queries.",
+            answer: "Yes, we provide exclusive post-course support for research, career guidance, and project-related queries",
         },
         {
             question: "Do you provide support for paper submission and review?",
-            answer: "Yes. We offer guidance throughout the paper submission process and provide support during the review stage to help ensure quality and compliance with publication standards.",
+            answer: "Yes. We offer guidance throughout the paper submission process and provide support during the review stage to help ensure quality and compliance with publication standards",
         },
     ];
 

@@ -14,32 +14,32 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Can I download the videos?",
-            answer: "No, the videos are available for online streaming only, but you can access them anytime through lifetime access.",
+            answer: "No, the videos are available for online streaming only, but you can access them anytime through lifetime access",
         },
         {
             question: "Can I join the course via mobile?",
-            answer: "Yes! You can join the course from any device, mobile, laptop, or desktop.",
+            answer: "Yes! You can join the course from any device, mobile, laptop, or desktop",
         },
         {
             question: "Will I have lifetime access to the videos?",
-            answer: "Yes, all pre-recorded videos, resources, and class recordings are available with lifetime access.",
+            answer: "Yes, all pre-recorded videos, resources, and class recordings are available with lifetime access",
         },
         {
             question: "Where will the live classes take place?",
-            answer: "Live classes will be conducted online, accessible from anywhere with a stable internet connection.",
+            answer: "Live classes will be conducted online, accessible from anywhere with a stable internet connection",
         },
         {
             question: "How will assessments be conducted?",
-            answer: "Assessments will include quizzes, practice projects, and practical exercises to evaluate your learning.",
+            answer: "Assessments will include quizzes, practice projects, and practical exercises to evaluate your learning",
         },
         {
             question: "Will live classes be recorded?",
-            answer: "Yes, all live classes will be recorded and made available for later viewing.",
+            answer: "Yes, all live classes will be recorded and made available for later viewing",
         },
         {
             question:
                 "Where can I get support if I face issues while practicing?",
-            answer: "You can get help through live support sessions and our exclusive learner community.",
+            answer: "You can get help through live support sessions and our exclusive learner community",
         },
     ];
 

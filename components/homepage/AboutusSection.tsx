@@ -177,7 +177,7 @@ export default function AboutusSection() {
     ];
 
     return (
-        <section className="relative w-full bg-gradient-to-b from-background via-muted/20 to-background py-12 md:py-16 lg:py-14">
+        <section className="relative w-full bg-gradient-to-b from-background via-muted/20 to-background">
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-10">
@@ -209,10 +209,10 @@ export default function AboutusSection() {
                                 }}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl lg:rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-50 group-hover:opacity-70"></div>
-                                <div className="relative bg-card rounded-xl lg:rounded-2xl p-4 md:p-6 lg:p-5 border border-border shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative bg-card rounded-xl lg:rounded-2xl p-4 md:p-6 lg:p-5 border border-border  transition-all duration-300 hover:-translate-y-1">
                                     <div className="flex flex-col items-center space-y-2 lg:space-y-2.5">
                                         <div
-                                            className={`p-2 md:p-3 lg:p-2.5 bg-gradient-to-br ${stat.color} rounded-lg lg:rounded-xl shadow-md group-hover:scale-110 transition-transform duration-300`}
+                                            className={`p-2 md:p-3 lg:p-2.5 bg-gradient-to-br ${stat.color} rounded-lg lg:rounded-xl  group-hover:scale-110 transition-transform duration-300`}
                                         >
                                             <stat.icon className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 text-white" />
                                         </div>
@@ -247,7 +247,7 @@ export default function AboutusSection() {
                 `}</style>
 
                 {/* Main About Content - Enhanced Design */}
-                <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl border border-border bg-card">
+                <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden  border border-border bg-card">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
 
                     <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">

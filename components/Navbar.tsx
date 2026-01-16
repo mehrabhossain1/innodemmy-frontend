@@ -21,7 +21,6 @@ import {
     Cpu,
     FlaskConical,
     Layers,
-    MoreHorizontal,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";
@@ -59,6 +58,14 @@ interface Course {
     category?: string;
 }
 
+interface Webinar {
+    _id: string;
+    slug?: string;
+    title: string;
+    description: string;
+    thumbnail?: string;
+}
+
 export default function Navbar() {
     const searchParams = useSearchParams();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -68,13 +75,22 @@ export default function Navbar() {
     >("login");
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const [isMoreOpen, setIsMoreOpen] = useState(false);
+    const [isMasterclassOpen, setIsMasterclassOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
-    const [loading, setLoading] = useState(true);
     const [coursesCloseTimeout, setCoursesCloseTimeout] =
         useState<NodeJS.Timeout | null>(null);
     const [moreCloseTimeout, setMoreCloseTimeout] =
         useState<NodeJS.Timeout | null>(null);
+    const [masterclassCloseTimeout, setMasterclassCloseTimeout] =
+        useState<NodeJS.Timeout | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState<{
+        courses: Course[];
+        webinars: Webinar[];
+    }>({ courses: [], webinars: [] });
+    const [isSearching, setIsSearching] = useState(false);
+    const [showSearchResults, setShowSearchResults] = useState(false);
     const { user, logout } = useAuth();
 
     // Handle auth query parameter from enrollment success
@@ -99,13 +115,78 @@ export default function Navbar() {
                 }
             } catch (error) {
                 console.error("Error fetching courses:", error);
-            } finally {
-                setLoading(false);
             }
         };
 
         fetchCourses();
     }, []);
+
+    // Search functionality
+    useEffect(() => {
+        const searchTimeout = setTimeout(async () => {
+            if (searchQuery.trim().length >= 2) {
+                setIsSearching(true);
+                try {
+                    // Search courses
+                    const coursesResponse = await fetch(
+                        `/api/courses?search=${encodeURIComponent(searchQuery)}`
+                    );
+                    const coursesData = coursesResponse.ok
+                        ? await coursesResponse.json()
+                        : { courses: [] };
+
+                    // Search webinars
+                    const webinarsResponse = await fetch(
+                        `/api/webinar?search=${encodeURIComponent(searchQuery)}`
+                    );
+                    const webinarsData = webinarsResponse.ok
+                        ? await webinarsResponse.json()
+                        : { webinars: [] };
+
+                    // Filter results locally if API doesn't support search
+                    const filteredCourses = coursesData.courses.filter(
+                        (course: Course) =>
+                            course.title
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase()) ||
+                            course.description
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase())
+                    );
+
+                    const filteredWebinars = Array.isArray(
+                        webinarsData.webinars
+                    )
+                        ? webinarsData.webinars.filter(
+                              (webinar: Webinar) =>
+                                  webinar.title
+                                      ?.toLowerCase()
+                                      .includes(searchQuery.toLowerCase()) ||
+                                  webinar.description
+                                      ?.toLowerCase()
+                                      .includes(searchQuery.toLowerCase())
+                          )
+                        : [];
+
+                    setSearchResults({
+                        courses: filteredCourses.slice(0, 5),
+                        webinars: filteredWebinars.slice(0, 3),
+                    });
+                    setShowSearchResults(true);
+                } catch (error) {
+                    console.error("Error searching:", error);
+                    setSearchResults({ courses: [], webinars: [] });
+                } finally {
+                    setIsSearching(false);
+                }
+            } else {
+                setSearchResults({ courses: [], webinars: [] });
+                setShowSearchResults(false);
+            }
+        }, 300);
+
+        return () => clearTimeout(searchTimeout);
+    }, [searchQuery]);
 
     // Build dynamic categories with course counts
     const courseCategories = getAllCategories()
@@ -320,12 +401,50 @@ export default function Navbar() {
                             )}
                         </div>
 
-                        <Link
-                            href="/webinar"
-                            className="px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20"
+                        {/* Masterclass Dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => {
+                                if (masterclassCloseTimeout) {
+                                    clearTimeout(masterclassCloseTimeout);
+                                    setMasterclassCloseTimeout(null);
+                                }
+                                setIsMasterclassOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                const timeout = setTimeout(() => {
+                                    setIsMasterclassOpen(false);
+                                }, 300);
+                                setMasterclassCloseTimeout(timeout);
+                            }}
                         >
-                            Free Masterclass
-                        </Link>
+                            <button className="cursor-pointer flex items-center gap-1 px-4 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20">
+                                Free Masterclass
+                                <ChevronDown
+                                    className={`h-4 w-4 transition-transform ${
+                                        isMasterclassOpen ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isMasterclassOpen && (
+                                <div className="absolute left-0 top-full mt-1 w-56 bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border py-1">
+                                    <Link
+                                        href="/upcoming-webinar"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Upcoming Masterclass
+                                    </Link>
+                                    <Link
+                                        href="/webinar"
+                                        className="flex items-center px-3 py-2 text-base font-semibold text-gray-700 dark:text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors"
+                                    >
+                                        Previous Masterclass
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
 
                         {/* More Dropdown */}
                         <div
@@ -384,14 +503,245 @@ export default function Navbar() {
                         {/* Search Bar */}
                         <div className="relative w-64">
                             <Search
-                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
                                 size={18}
                             />
                             <Input
                                 type="text"
                                 placeholder="Search courses..."
-                                className="pl-10 h-9 bg-gray-50 dark:bg-muted border-gray-200 dark:border-border focus:border-primary"
+                                className="pl-10 pr-8 h-9 bg-gray-50 dark:bg-muted border-gray-200 dark:border-border focus:border-primary"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onFocus={() =>
+                                    searchQuery.length >= 2 &&
+                                    setShowSearchResults(true)
+                                }
+                                onBlur={() =>
+                                    setTimeout(
+                                        () => setShowSearchResults(false),
+                                        200
+                                    )
+                                }
+                                onKeyDown={(e) => {
+                                    if (e.key === "Escape") {
+                                        setSearchQuery("");
+                                        setShowSearchResults(false);
+                                        e.currentTarget.blur();
+                                    }
+                                }}
                             />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => {
+                                        setSearchQuery("");
+                                        setShowSearchResults(false);
+                                    }}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                                    aria-label="Clear search"
+                                >
+                                    <X size={16} />
+                                </button>
+                            )}
+
+                            {/* Search Results Dropdown */}
+                            {showSearchResults && searchQuery.length >= 2 && (
+                                <div className="absolute top-full mt-2 w-[500px] bg-white dark:bg-card rounded-lg shadow-xl border border-gray-200 dark:border-border max-h-[500px] overflow-y-auto z-50">
+                                    {isSearching ? (
+                                        <div className="p-4 space-y-3">
+                                            {/* Loading Skeleton */}
+                                            {[1, 2, 3].map((i) => (
+                                                <div
+                                                    key={i}
+                                                    className="flex gap-3 p-2 animate-pulse"
+                                                >
+                                                    <div className="flex-shrink-0 w-16 h-12 rounded bg-gray-200 dark:bg-muted" />
+                                                    <div className="flex-1 space-y-2">
+                                                        <div className="h-4 bg-gray-200 dark:bg-muted rounded w-3/4" />
+                                                        <div className="h-3 bg-gray-200 dark:bg-muted rounded w-1/2" />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {/* Courses Results */}
+                                            {searchResults.courses.length >
+                                                0 && (
+                                                <div className="p-3">
+                                                    <div className="flex items-center justify-between mb-2 px-2">
+                                                        <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground">
+                                                            Courses
+                                                        </h3>
+                                                        <span className="text-xs text-muted-foreground">
+                                                            {
+                                                                searchResults
+                                                                    .courses
+                                                                    .length
+                                                            }{" "}
+                                                            {searchResults
+                                                                .courses
+                                                                .length === 1
+                                                                ? "result"
+                                                                : "results"}
+                                                        </span>
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        {searchResults.courses.map(
+                                                            (course) => (
+                                                                <Link
+                                                                    key={
+                                                                        course._id
+                                                                    }
+                                                                    href={
+                                                                        course.slug
+                                                                            ? `/courses/${course.slug}`
+                                                                            : `/courses/${course._id}`
+                                                                    }
+                                                                    className="flex gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+                                                                    onClick={() =>
+                                                                        setSearchQuery(
+                                                                            ""
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    {course.thumbnail && (
+                                                                        <div className="flex-shrink-0 w-16 h-12 rounded overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                            <Image
+                                                                                src={
+                                                                                    course.thumbnail
+                                                                                }
+                                                                                alt={
+                                                                                    course.title
+                                                                                }
+                                                                                width={
+                                                                                    128
+                                                                                }
+                                                                                height={
+                                                                                    96
+                                                                                }
+                                                                                className="w-full h-full object-cover"
+                                                                                quality={
+                                                                                    95
+                                                                                }
+                                                                                unoptimized
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-foreground line-clamp-1">
+                                                                            {
+                                                                                course.title
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </Link>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* Webinars Results */}
+                                            {searchResults.webinars.length >
+                                                0 && (
+                                                <div className="p-3 border-t border-gray-200 dark:border-border">
+                                                    <div className="flex items-center justify-between mb-2 px-2">
+                                                        <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground">
+                                                            Webinars
+                                                        </h3>
+                                                        <span className="text-xs text-muted-foreground">
+                                                            {
+                                                                searchResults
+                                                                    .webinars
+                                                                    .length
+                                                            }{" "}
+                                                            {searchResults
+                                                                .webinars
+                                                                .length === 1
+                                                                ? "result"
+                                                                : "results"}
+                                                        </span>
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        {searchResults.webinars.map(
+                                                            (webinar) => (
+                                                                <Link
+                                                                    key={
+                                                                        webinar._id
+                                                                    }
+                                                                    href={`/webinar/${
+                                                                        webinar.slug ||
+                                                                        webinar._id
+                                                                    }`}
+                                                                    className="flex gap-3 p-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+                                                                    onClick={() =>
+                                                                        setSearchQuery(
+                                                                            ""
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    {webinar.thumbnail && (
+                                                                        <div className="flex-shrink-0 w-16 h-12 rounded overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                            <Image
+                                                                                src={
+                                                                                    webinar.thumbnail
+                                                                                }
+                                                                                alt={
+                                                                                    webinar.title
+                                                                                }
+                                                                                width={
+                                                                                    128
+                                                                                }
+                                                                                height={
+                                                                                    96
+                                                                                }
+                                                                                className="w-full h-full object-cover"
+                                                                                quality={
+                                                                                    95
+                                                                                }
+                                                                                unoptimized
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <div className="text-sm font-medium text-gray-900 dark:text-foreground line-clamp-1">
+                                                                            {
+                                                                                webinar.title
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </Link>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* No Results */}
+                                            {searchResults.courses.length ===
+                                                0 &&
+                                                searchResults.webinars
+                                                    .length === 0 && (
+                                                    <div className="p-8 text-center">
+                                                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-muted mb-3">
+                                                            <Search
+                                                                className="text-gray-400"
+                                                                size={24}
+                                                            />
+                                                        </div>
+                                                        <div className="text-sm font-medium text-gray-900 dark:text-foreground mb-1">
+                                                            No results found
+                                                        </div>
+                                                        <div className="text-xs text-muted-foreground">
+                                                            Try searching with
+                                                            different keywords
+                                                        </div>
+                                                    </div>
+                                                )}
+                                        </>
+                                    )}
+                                </div>
+                            )}
                         </div>
 
                         <ThemeToggle />
@@ -494,15 +844,213 @@ export default function Navbar() {
                         {/* Search */}
                         <div className="relative mb-3">
                             <Search
-                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
                                 size={18}
                             />
                             <Input
                                 type="text"
                                 placeholder="Search courses..."
-                                className="pl-10 w-full"
+                                className="pl-10 pr-8 w-full"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery("")}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                                    aria-label="Clear search"
+                                >
+                                    <X size={16} />
+                                </button>
+                            )}
                         </div>
+
+                        {/* Mobile Search Results */}
+                        {searchQuery.length >= 2 && (
+                            <div className="mb-3 max-h-[300px] overflow-y-auto">
+                                {isSearching ? (
+                                    <div className="space-y-2 px-2">
+                                        {/* Loading Skeleton */}
+                                        {[1, 2].map((i) => (
+                                            <div
+                                                key={i}
+                                                className="flex gap-3 p-2 animate-pulse"
+                                            >
+                                                <div className="flex-shrink-0 w-16 h-12 rounded bg-gray-200 dark:bg-muted" />
+                                                <div className="flex-1 space-y-2">
+                                                    <div className="h-4 bg-gray-200 dark:bg-muted rounded w-3/4" />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <>
+                                        {/* Courses Results */}
+                                        {searchResults.courses.length > 0 && (
+                                            <div className="mb-3">
+                                                <div className="flex items-center justify-between px-3 mb-2">
+                                                    <h3 className="text-xs font-semibold text-muted-foreground uppercase">
+                                                        Courses
+                                                    </h3>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {
+                                                            searchResults
+                                                                .courses.length
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <div className="space-y-1">
+                                                    {searchResults.courses.map(
+                                                        (course) => (
+                                                            <Link
+                                                                key={course._id}
+                                                                href={
+                                                                    course.slug
+                                                                        ? `/courses/${course.slug}`
+                                                                        : `/courses/${course._id}`
+                                                                }
+                                                                className="flex gap-3 p-2 mx-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+                                                                onClick={() => {
+                                                                    setSearchQuery(
+                                                                        ""
+                                                                    );
+                                                                    setIsMobileMenuOpen(
+                                                                        false
+                                                                    );
+                                                                }}
+                                                            >
+                                                                {course.thumbnail && (
+                                                                    <div className="flex-shrink-0 w-16 h-12 rounded overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                        <Image
+                                                                            src={
+                                                                                course.thumbnail
+                                                                            }
+                                                                            alt={
+                                                                                course.title
+                                                                            }
+                                                                            width={
+                                                                                128
+                                                                            }
+                                                                            height={
+                                                                                96
+                                                                            }
+                                                                            className="w-full h-full object-cover"
+                                                                            quality={
+                                                                                95
+                                                                            }
+                                                                            unoptimized
+                                                                        />
+                                                                    </div>
+                                                                )}
+                                                                <div className="flex-1 min-w-0">
+                                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground line-clamp-1">
+                                                                        {
+                                                                            course.title
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </Link>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Webinars Results */}
+                                        {searchResults.webinars.length > 0 && (
+                                            <div className="mb-3">
+                                                <div className="flex items-center justify-between px-3 mb-2">
+                                                    <h3 className="text-xs font-semibold text-muted-foreground uppercase">
+                                                        Webinars
+                                                    </h3>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {
+                                                            searchResults
+                                                                .webinars.length
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <div className="space-y-1">
+                                                    {searchResults.webinars.map(
+                                                        (webinar) => (
+                                                            <Link
+                                                                key={
+                                                                    webinar._id
+                                                                }
+                                                                href={`/webinar/${
+                                                                    webinar.slug ||
+                                                                    webinar._id
+                                                                }`}
+                                                                className="flex gap-3 p-2 mx-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+                                                                onClick={() => {
+                                                                    setSearchQuery(
+                                                                        ""
+                                                                    );
+                                                                    setIsMobileMenuOpen(
+                                                                        false
+                                                                    );
+                                                                }}
+                                                            >
+                                                                {webinar.thumbnail && (
+                                                                    <div className="flex-shrink-0 w-16 h-12 rounded overflow-hidden bg-gray-100 dark:bg-muted">
+                                                                        <Image
+                                                                            src={
+                                                                                webinar.thumbnail
+                                                                            }
+                                                                            alt={
+                                                                                webinar.title
+                                                                            }
+                                                                            width={
+                                                                                128
+                                                                            }
+                                                                            height={
+                                                                                96
+                                                                            }
+                                                                            className="w-full h-full object-cover"
+                                                                            quality={
+                                                                                95
+                                                                            }
+                                                                            unoptimized
+                                                                        />
+                                                                    </div>
+                                                                )}
+                                                                <div className="flex-1 min-w-0">
+                                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground line-clamp-1">
+                                                                        {
+                                                                            webinar.title
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </Link>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* No Results */}
+                                        {searchResults.courses.length === 0 &&
+                                            searchResults.webinars.length ===
+                                                0 && (
+                                                <div className="p-6 text-center">
+                                                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-muted mb-2">
+                                                        <Search
+                                                            className="text-gray-400"
+                                                            size={20}
+                                                        />
+                                                    </div>
+                                                    <div className="text-sm font-medium text-gray-900 dark:text-foreground mb-1">
+                                                        No results found
+                                                    </div>
+                                                    <div className="text-xs text-muted-foreground">
+                                                        Try different keywords
+                                                    </div>
+                                                </div>
+                                            )}
+                                    </>
+                                )}
+                            </div>
+                        )}
 
                         <div className="flex items-center justify-between mb-3 px-3">
                             <span className="text-sm font-medium text-muted-foreground">

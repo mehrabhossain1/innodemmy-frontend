@@ -1,0 +1,719 @@
+"use client";
+
+import { useEffect, useState, useMemo } from "react";
+import { useRouter, useParams } from "next/navigation";
+import { getWebinarById, getUpcomingWebinars } from "@/lib/data/webinars";
+import { getAllCourses } from "@/lib/data/courses";
+import { Webinar, Course } from "@/lib/models";
+import CourseCard from "@/components/CourseCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft, Calendar, Clock, User, Users } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import WebinarLearningPoints from "@/components/WebinarLearningPoints";
+
+export default function UpcomingWebinarDetailsPage() {
+    const router = useRouter();
+    const params = useParams();
+    const [webinar, setWebinar] = useState<Webinar | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [countdown, setCountdown] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        phone: "",
+        qualification: "",
+        institution: "",
+    });
+
+    useEffect(() => {
+        // Load webinar data
+        if (params.id && typeof params.id === "string") {
+            const webinarData = getWebinarById(params.id);
+            if (webinarData) {
+                setWebinar(webinarData);
+            } else {
+                router.push("/");
+            }
+        }
+    }, [params.id, router]);
+
+    // Dynamic countdown timer based on webinar date and time
+    useEffect(() => {
+        if (!webinar?.date || !webinar?.time) return;
+
+        // Parse date string like "11th January, 2026"
+        const parseDateString = (dateStr: string) => {
+            const months: { [key: string]: number } = {
+                January: 0,
+                February: 1,
+                March: 2,
+                April: 3,
+                May: 4,
+                June: 5,
+                July: 6,
+                August: 7,
+                September: 8,
+                October: 9,
+                November: 10,
+                December: 11,
+            };
+
+            const parts = dateStr.replace(/,/g, "").split(" ");
+            const day = parseInt(parts[0]);
+            const month = months[parts[1]];
+            const year = parseInt(parts[2]);
+
+            return { day, month, year };
+        };
+
+        // Parse time string like "9:00 PM - 11:00 PM" to get start time
+        const parseTimeString = (timeStr: string) => {
+            const startTime = timeStr.split("-")[0].trim();
+            const timeParts = startTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
+
+            if (!timeParts) return { hour: 21, minute: 0 }; // default to 9 PM
+
+            let hour = parseInt(timeParts[1]);
+            const minute = parseInt(timeParts[2]);
+            const period = timeParts[3].toUpperCase();
+
+            if (period === "PM" && hour !== 12) {
+                hour += 12;
+            } else if (period === "AM" && hour === 12) {
+                hour = 0;
+            }
+
+            return { hour, minute };
+        };
+
+        const { day, month, year } = parseDateString(webinar.date);
+        const { hour, minute } = parseTimeString(webinar.time);
+
+        // Create date in Bangladesh Time (UTC+6)
+        // We need to subtract 6 hours when creating UTC date
+        const targetDate = new Date(
+            Date.UTC(year, month, day, hour - 6, minute, 0)
+        ).getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            setCountdown({ days, hours, minutes, seconds });
+        };
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(interval);
+    }, [webinar]);
+
+    // Get related courses (3 random courses)
+    const relatedCourses = useMemo(() => {
+        const allCourses = getAllCourses();
+        // Shuffle and pick first 3
+        return allCourses.sort(() => Math.random() - 0.5).slice(0, 3);
+    }, []);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setErrorMessage("");
+
+        if (!webinar) {
+            setErrorMessage("Webinar information not available");
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            // Validate phone number
+            if (!/^[0-9]{11}$/.test(formData.phone)) {
+                setErrorMessage("Phone number must be exactly 11 digits");
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Validate email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                setErrorMessage("Please enter a valid email address");
+                setIsSubmitting(false);
+                return;
+            }
+
+            const response = await fetch("/api/webinar-registrations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    webinarId: webinar.id,
+                    webinarTitle: webinar.title,
+                    webinarDate: webinar.date,
+                    webinarTime: webinar.time,
+                    ...formData,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setErrorMessage(data.error || "Registration failed");
+                setIsSubmitting(false);
+
+                // Track failed registration
+                if (
+                    typeof window !== "undefined" &&
+                    (window as Window & { dataLayer?: unknown[] }).dataLayer
+                ) {
+                    (
+                        window as Window & { dataLayer: unknown[] }
+                    ).dataLayer.push({
+                        event: "webinar_registration_failed",
+                        webinar_id: webinar.id,
+                        webinar_title: webinar.title,
+                        webinar_date: webinar.date,
+                        webinar_time: webinar.time,
+                        error_message: data.error || "Registration failed",
+                    });
+                }
+                return;
+            }
+
+            // Success - Track successful registration
+            if (
+                typeof window !== "undefined" &&
+                (window as Window & { dataLayer?: unknown[] }).dataLayer
+            ) {
+                (window as Window & { dataLayer: unknown[] }).dataLayer.push({
+                    event: "webinar_registration_complete",
+                    webinar_id: webinar.id,
+                    webinar_title: webinar.title,
+                    webinar_date: webinar.date,
+                    webinar_time: webinar.time,
+                    webinar_category: webinar.category,
+                    webinar_duration: webinar.duration,
+                    webinar_instructor: webinar.instructor,
+                    user_name: formData.fullName,
+                    user_email: formData.email,
+                    user_qualification: formData.qualification,
+                    user_institution: formData.institution,
+                });
+            }
+
+            setShowSuccess(true);
+            setFormData({
+                fullName: "",
+                email: "",
+                phone: "",
+                qualification: "",
+                institution: "",
+            });
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                setShowSuccess(false);
+            }, 5000);
+        } catch (error) {
+            console.error("Registration error:", error);
+            setErrorMessage("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // Show loading state while fetching webinar
+    if (!webinar) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-background">
+            {/* Success Message */}
+            {showSuccess && (
+                <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 animate-in slide-in-from-top duration-300">
+                    <div className="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg max-w-md">
+                        <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M5 13l4 4L19 7"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-base mb-1">
+                                    Registration Successful!
+                                </h3>
+                                <p className="text-sm text-white/90">
+                                    Your registration has been completed
+                                    successfully. You will receive detailed
+                                    information via email shortly.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Hero Section */}
+            <div className="bg-gradient-to-br from-accent/10 via-primary/10 to-background py-8">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <Link href="/upcoming-webinar">
+                        <Button
+                            variant="ghost"
+                            className="mb-6 hover:bg-accent/10"
+                        >
+                            <ArrowLeft className="mr-2 h-4 w-4" />
+                            Back to Upcoming Webinars
+                        </Button>
+                    </Link>
+
+                    <div className="grid lg:grid-cols-3 gap-6">
+                        {/* Left: Content - 2 columns */}
+                        <div className="lg:col-span-2 space-y-6">
+                            <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 w-fit">
+                                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                                UPCOMING WEBINAR
+                            </div>
+
+                            <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold leading-tight">
+                                {webinar.title}
+                            </h1>
+
+                            <p className="text-lg text-muted-foreground leading-relaxed">
+                                {webinar.description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-4 text-sm">
+                                <div className="flex items-center gap-2">
+                                    <Calendar className="h-5 w-5 text-accent" />
+                                    <span>{webinar.date}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Clock className="h-5 w-5 text-accent" />
+                                    <span>
+                                        {webinar.time} (Bangladesh Time)
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg
+                                        className="h-5 w-5 text-accent"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                        />
+                                    </svg>
+                                    <span>Platform: Zoom</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Users className="h-5 w-5 text-accent" />
+                                    <span>
+                                        726+ students have successfully enrolled
+                                        in this course!
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* What You'll Learn Section */}
+                            {webinar.learningPoints && (
+                                <WebinarLearningPoints
+                                    title={webinar.learningPoints.title}
+                                    points={webinar.learningPoints.points}
+                                />
+                            )}
+
+                            {/* Why Study Abroad Section */}
+                            {webinar.whyStudyAbroad && (
+                                <WebinarLearningPoints
+                                    title={webinar.whyStudyAbroad.title}
+                                    points={webinar.whyStudyAbroad.points}
+                                />
+                            )}
+                        </div>
+
+                        {/* Right: Registration Form & Instructor - 1 column */}
+                        <div className="lg:col-span-1 space-y-4">
+                            {/* Thumbnail with Countdown */}
+                            <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                                <Image
+                                    src={webinar.image}
+                                    alt={webinar.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                                {/* Badges */}
+                                <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-md text-xs font-bold flex items-center gap-1">
+                                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                                    UPCOMING
+                                </div>
+                                <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
+                                    {webinar.duration}
+                                </div>
+                            </div>
+
+                            {/* Instructor Card */}
+                            <div className="bg-card rounded-xl border-2 border-accent p-6 shadow-lg">
+                                {/* Header */}
+                                <div className="flex items-center gap-2 pb-3 mb-4 border-b-2 border-accent">
+                                    <div className="p-2 rounded-lg bg-accent">
+                                        <User className="h-4 w-4 text-white" />
+                                    </div>
+                                    <span className="text-sm font-bold text-accent uppercase tracking-wide">
+                                        Instructor
+                                    </span>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    {webinar.instructorImage && (
+                                        <div className="relative flex-shrink-0">
+                                            <Image
+                                                src={webinar.instructorImage}
+                                                alt={webinar.instructor}
+                                                width={80}
+                                                height={80}
+                                                className="rounded-full object-cover border-3 border-accent shadow-md"
+                                            />
+                                            {/* Verified badge */}
+                                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center shadow-md border-2 border-background">
+                                                <svg
+                                                    className="w-3 h-3 text-white"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={3}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className="space-y-2 flex-1 min-w-0">
+                                        <h3 className="font-bold text-lg text-foreground leading-tight">
+                                            {webinar.instructor}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                            {webinar.instructorBio}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Countdown Timer */}
+                            <div className="relative bg-gradient-to-br from-accent via-primary to-accent rounded-xl p-[3px] shadow-2xl animate-pulse">
+                                <div className="bg-background rounded-[10px] p-6">
+                                    <div className="text-center mb-5">
+                                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-2">
+                                            <svg
+                                                className="w-4 h-4 animate-bounce"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                            Limited Seats Available
+                                        </div>
+                                        <h3 className="font-bold text-xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                                            Register for Free
+                                        </h3>
+                                    </div>
+                                    <div className="grid grid-cols-4 gap-2.5">
+                                        {[
+                                            {
+                                                value: countdown.days
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Days",
+                                            },
+                                            {
+                                                value: countdown.hours
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Hrs",
+                                            },
+                                            {
+                                                value: countdown.minutes
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Min",
+                                            },
+                                            {
+                                                value: countdown.seconds
+                                                    .toString()
+                                                    .padStart(2, "0"),
+                                                label: "Sec",
+                                            },
+                                        ].map((item, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="relative bg-gradient-to-br from-accent/20 to-primary/20 backdrop-blur rounded-lg p-3 text-center shadow-lg hover:scale-105 transition-transform border border-accent/30"
+                                            >
+                                                <div className="text-3xl font-black bg-gradient-to-br from-accent via-primary to-accent bg-clip-text text-transparent drop-shadow-sm">
+                                                    {item.value}
+                                                </div>
+                                                <div className="text-xs font-bold text-accent uppercase mt-1 tracking-wider">
+                                                    {item.label}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-5 pt-4 border-t border-accent/20">
+                                        <p className="text-xs text-center font-semibold flex items-center justify-center gap-1.5">
+                                            <Users className="h-4 w-4 text-accent animate-pulse" />
+                                            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                                                726+ students have successfully
+                                                enrolled!
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Registration Form */}
+                            <div className="bg-card rounded-lg border border-border p-6">
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="space-y-4"
+                                >
+                                    {/* Error Message */}
+                                    {errorMessage && (
+                                        <div className="bg-red-500/10 border border-red-500/50 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
+                                            {errorMessage}
+                                        </div>
+                                    )}
+
+                                    <div>
+                                        <Label
+                                            htmlFor="fullName"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            আপনার নাম
+                                        </Label>
+                                        <Input
+                                            id="fullName"
+                                            name="fullName"
+                                            type="text"
+                                            placeholder="John Doe"
+                                            value={formData.fullName}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="email"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            আপনার ইমেইল
+                                        </Label>
+                                        <Input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            placeholder="example@email.com"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="phone"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            আপনার ফোন নম্বর
+                                        </Label>
+                                        <Input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            placeholder="01234567890"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="qualification"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            বর্তমান শিক্ষাগত যোগ্যতা
+                                        </Label>
+                                        <Input
+                                            id="qualification"
+                                            name="qualification"
+                                            type="text"
+                                            placeholder="HSC / BSc in EEE Final Year / Master's in Social Science"
+                                            value={formData.qualification}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <Label
+                                            htmlFor="institution"
+                                            className="text-sm font-medium mb-1.5 block"
+                                        >
+                                            শিক্ষা প্রতিষ্ঠান অথবা অফিসের নাম
+                                        </Label>
+                                        <Input
+                                            id="institution"
+                                            name="institution"
+                                            type="text"
+                                            placeholder="Your Institution or Office Name"
+                                            value={formData.institution}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="h-11"
+                                        />
+                                    </div>
+
+                                    <Button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full h-12 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-semibold text-base shadow-lg"
+                                    >
+                                        {isSubmitting
+                                            ? "Submitting..."
+                                            : "Register Now"}
+                                    </Button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Additional Content Section */}
+            <div className="container mx-auto px-4 max-w-7xl py-12">
+                <div className="max-w-7xl mx-auto space-y-8">
+                    {/* Related Courses */}
+                    {relatedCourses.length > 0 && (
+                        <div className="space-y-6">
+                            <div className="text-center">
+                                <h2 className="text-3xl font-bold mb-2">
+                                    Related Courses
+                                </h2>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {relatedCourses
+                                    .filter((course) => course._id)
+                                    .map((course) => (
+                                        <CourseCard
+                                            key={course._id}
+                                            id={course._id!}
+                                            slug={course.slug}
+                                            title={course.title}
+                                            description={course.description}
+                                            thumbnail={course.thumbnail}
+                                            modules={course.totalModules}
+                                            batchName={course.batchName}
+                                        />
+                                    ))}
+                            </div>
+                            <div className="text-center pt-4">
+                                <Link href="/courses">
+                                    <Button variant="outline" size="lg">
+                                        View All Courses
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Call to Action */}
+                    <div className="bg-gradient-to-r from-accent/10 to-primary/10 border-t border-border mt-16">
+                        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                            <div className="text-center max-w-3xl mx-auto">
+                                <h2 className="text-3xl font-bold mb-4">
+                                    Want to Learn More?
+                                </h2>
+                                <p className="text-muted-foreground mb-6 text-lg">
+                                    Explore our full courses and take your
+                                    skills to the next level with comprehensive
+                                    learning programs.
+                                </p>
+                                <Link href="/courses">
+                                    <Button
+                                        size="lg"
+                                        className="bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-white"
+                                    >
+                                        Browse All Courses
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

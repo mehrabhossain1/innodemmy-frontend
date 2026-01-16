@@ -31,6 +31,7 @@ interface Course {
     modules?: number;
     students?: number;
     duration?: string;
+    rating?: number;
 }
 
 interface ApiCourse {
@@ -106,6 +107,9 @@ export default function CoursesSection() {
                             duration: `${
                                 Math.floor(Math.random() * 10) + 8
                             } দিন বাকি`,
+                            rating: parseFloat(
+                                (4.4 + Math.random() * 0.6).toFixed(1)
+                            ),
                         })
                     );
                     setCourses(mappedCourses);
@@ -180,7 +184,7 @@ export default function CoursesSection() {
     }, [courses, activeCategory]);
 
     return (
-        <section className="relative py-12 md:py-16 lg:py-14 bg-background">
+        <section className="relative bg-background">
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-10 lg:mb-8">
@@ -208,7 +212,7 @@ export default function CoursesSection() {
                                     }
                                     className={`shrink-0 flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border transition-all duration-300 ${
                                         activeCategory === category.id
-                                            ? "bg-primary border-primary text-white shadow-md"
+                                            ? "bg-primary border-primary text-white"
                                             : "bg-white dark:bg-card border-gray-200 dark:border-border hover:border-primary text-foreground hover:bg-gray-50 dark:hover:bg-accent"
                                     }`}
                                 >
@@ -277,6 +281,7 @@ export default function CoursesSection() {
                                     modules={course.modules}
                                     students={course.students}
                                     duration={course.duration}
+                                    rating={course.rating}
                                 />
                             </div>
                         ))}
@@ -299,7 +304,7 @@ export default function CoursesSection() {
                     <Link href="/courses">
                         <Button
                             size="default"
-                            className="px-6 lg:px-7 py-5 lg:py-5 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-secondary/20 hover:border-secondary/40 group"
+                            className="px-6 lg:px-7 py-3 lg:py-3 h-auto text-sm lg:text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-2 border-secondary/20 hover:border-secondary/40 group"
                         >
                             View All Courses
                             <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform duration-300" />

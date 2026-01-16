@@ -7,10 +7,11 @@ import HeroSection from "@/components/homepage/HeroSection";
 import { TechnologyStackSection } from "@/components/homepage/TechnologyStackSection";
 import WhyBestChoiceSection from "@/components/homepage/WhyBestChoiceSection";
 import AboutusSection from "@/components/homepage/AboutusSection";
+import UpcomingWebinarSection from "@/components/homepage/UpcomingWebinarSection";
 
 export default function Home() {
     return (
-        <main className="">
+        <main className="space-y-20 bg-background/50">
             <HeroSection />
             <AboutusSection />
             <Suspense
@@ -20,6 +21,7 @@ export default function Home() {
             >
                 <CoursesSection />
             </Suspense>
+            <UpcomingWebinarSection />
             <FreeMasterclassSection />
             <WhyBestChoiceSection />
             <TechnologyStackSection />

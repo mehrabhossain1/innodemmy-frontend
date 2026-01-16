@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
 import CourseThumbnail from "@/assets/courses/ResearchbasedML.jpg";
+import FreeConsultationButton from "@/components/FreeConsultationButton";
 
 interface CompleteResearchHeroSectionProps {
     courseData: {
@@ -186,6 +187,11 @@ export default function CompleteResearchHeroSection({
                                         </Button>
                                     </Link>
                                 ) : null}
+
+                                {/* Free Consultation Button */}
+                                <div className="mt-2">
+                                    <FreeConsultationButton className="w-full py-3" />
+                                </div>
                             </div>
 
                             {/* Action Buttons */}

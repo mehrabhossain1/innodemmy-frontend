@@ -14,15 +14,15 @@ export default function FAQ() {
     const faqs: FAQItem[] = [
         {
             question: "Is the course online or offline?",
-            answer: "The course is fully online, providing flexibility to learn at your own pace.",
+            answer: "The course is fully online, providing flexibility to learn at your own pace",
         },
         {
             question: "Will I receive a certificate after completion?",
-            answer: "Yes, an internationally recognized certificate will be awarded upon successfully completing the program.",
+            answer: "Yes, an internationally recognized certificate will be awarded upon successfully completing the program",
         },
         {
             question: "Do I need prior experience in clinical research?",
-            answer: "Yes, You will need understanding of medical or science-related subjects.",
+            answer: "Yes, You will need understanding of medical or science-related subjects",
         },
         {
             question: "How long is the course?",
@@ -30,7 +30,7 @@ export default function FAQ() {
         },
         {
             question: "How can I register for the course?",
-            answer: "Simply visit our website, go to the course page, click on Enroll Now, and follow the next steps to complete your registration.",
+            answer: "Simply visit our website, go to the course page, click on Enroll Now, and follow the next steps to complete your registration",
         },
     ];
 

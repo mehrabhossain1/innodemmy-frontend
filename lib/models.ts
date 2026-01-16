@@ -119,9 +119,41 @@ export interface Webinar {
     views: number; // Number of views
     topics: string[]; // Topics covered in the webinar
     date: string; // Webinar date
+    time?: string; // Webinar time
     language?: string; // Language of the webinar
     category?: string; // Webinar category
     published?: boolean; // Whether the webinar is published
+    isUpcoming?: boolean; // Whether this is an upcoming webinar (shows only in upcoming section)
+    learningPoints?: {
+        title: string;
+        points: string[];
+    }; // Optional learning points section
+    whyStudyAbroad?: {
+        title: string;
+        points: string[];
+    }; // Optional why study abroad section
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+// Webinar Registration model
+export interface WebinarRegistration {
+    _id?: string;
+    webinarId: string; // Reference to the webinar
+    fullName: string;
+    email: string;
+    phone: string;
+    qualification: string;
+    institution: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+// Extended WebinarRegistration with webinar details
+export interface WebinarRegistrationWithDetails extends WebinarRegistration {
+    webinar?: {
+        id: string;
+        title: string;
+        date: string;
+    };
 }

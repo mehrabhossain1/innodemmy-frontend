@@ -25,7 +25,7 @@ export default function WhatYouGet() {
             image: "https://img.icons8.com/color/96/user-group-man-man.png",
             title: "Community Access",
             description:
-                "A research-driven ecosystem, collaboration, peer-review, networking, and knowledge exchange.",
+                "A research-driven ecosystem, collaboration, peer-review, networking, and knowledge exchange",
         },
         {
             image: "https://img.icons8.com/color/96/business.png",

@@ -21,7 +21,7 @@ import {
     FlaskConical,
     Layers,
 } from "lucide-react";
-import { getAllWebinars } from "@/lib/data/webinars";
+import { getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";
 import {
@@ -53,7 +53,7 @@ export default function WebinarPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("all");
     const [currentPage, setCurrentPage] = useState(1);
-    const allWebinars = getAllWebinars();
+    const allWebinars = getRegularWebinars();
 
     // Build dynamic categories with counts
     const categories = useMemo(() => {
@@ -160,6 +160,28 @@ export default function WebinarPage() {
 
             {/* Category Tabs */}
             <Container className="py-12">
+                {/* Search Bar */}
+                <div className="mb-6 max-w-xl mx-auto">
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input
+                            type="text"
+                            placeholder="Search webinars by title, description, or topics..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10 pr-10 h-12 rounded-xl border-2 focus:border-primary"
+                        />
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm("")}
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <X className="h-5 w-5" />
+                            </button>
+                        )}
+                    </div>
+                </div>
+
                 <div className="relative mb-8">
                     <div className="flex justify-center items-center overflow-x-auto pb-3 scrollbar-hide">
                         <div className="flex gap-2.5 overflow-x-auto scrollbar-hide">

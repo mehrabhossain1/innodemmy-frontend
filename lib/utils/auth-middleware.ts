@@ -2,83 +2,131 @@
  * Authentication middleware
  * Provides authentication for Next.js API routes
  */
-import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken, extractTokenFromHeader } from '../services/auth';
+import { NextRequest, NextResponse } from "next/server";
+import { verifyToken, extractTokenFromHeader } from "../services/auth";
 
 export interface AuthenticatedRequest extends NextRequest {
-  user?: {
-    userId: string;
-    email: string | null;
-    phone: string | null;
-    role: string;
-  };
+    user?: {
+        userId: string;
+        email: string | null;
+        phone: string | null;
+        role: string;
+    };
 }
 
 type ApiHandler<T = unknown> = (
-  request: AuthenticatedRequest,
-  context: T
+    request: AuthenticatedRequest,
+    context: T
 ) => Promise<NextResponse> | NextResponse;
 
 /**
  * Middleware for authenticated routes
  */
 export function withAuth<T = unknown>(handler: ApiHandler<T>) {
-  return async (request: NextRequest, context: T) => {
-    const authHeader = request.headers.get('authorization');
-    const token = extractTokenFromHeader(authHeader);
+    return async (request: NextRequest, context: T) => {
+        const authHeader = request.headers.get("authorization");
+        const token = extractTokenFromHeader(authHeader);
 
-    if (!token) {
-      return NextResponse.json({ error: 'No token provided' }, { status: 401 });
-    }
+        if (!token) {
+            return NextResponse.json(
+                { error: "No token provided" },
+                { status: 401 }
+            );
+        }
 
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
+        const decoded = verifyToken(token);
+        if (!decoded) {
+            return NextResponse.json(
+                { error: "Invalid token" },
+                { status: 401 }
+            );
+        }
 
-    // Add user info to request
-    const authRequest = request as AuthenticatedRequest;
-    authRequest.user = {
-      userId: decoded.userId,
-      email: decoded.email,
-      phone: decoded.phone,
-      role: decoded.role,
+        // Add user info to request
+        const authRequest = request as AuthenticatedRequest;
+        authRequest.user = {
+            userId: decoded.userId,
+            email: decoded.email,
+            phone: decoded.phone,
+            role: decoded.role,
+        };
+
+        return handler(authRequest, context);
     };
-
-    return handler(authRequest, context);
-  };
 }
 
 /**
  * Middleware for admin-only routes
  */
 export function withAdminAuth<T = unknown>(handler: ApiHandler<T>) {
-  return async (request: NextRequest, context: T) => {
-    const authHeader = request.headers.get('authorization');
+    return async (request: NextRequest, context: T) => {
+        const authHeader = request.headers.get("authorization");
+        const token = extractTokenFromHeader(authHeader);
+
+        if (!token) {
+            return NextResponse.json(
+                { error: "No token provided" },
+                { status: 401 }
+            );
+        }
+
+        const decoded = verifyToken(token);
+        if (!decoded) {
+            return NextResponse.json(
+                { error: "Invalid token" },
+                { status: 401 }
+            );
+        }
+
+        if (decoded.role !== "admin") {
+            return NextResponse.json(
+                { error: "Admin access required" },
+                { status: 403 }
+            );
+        }
+
+        // Add user info to request
+        const authRequest = request as AuthenticatedRequest;
+        authRequest.user = {
+            userId: decoded.userId,
+            email: decoded.email,
+            phone: decoded.phone,
+            role: decoded.role,
+        };
+
+        return handler(authRequest, context);
+    };
+}
+
+/**
+ * Verify authentication without wrapping handler
+ * Returns user info if authenticated
+ */
+export async function verifyAuth(request: NextRequest) {
+    const authHeader = request.headers.get("authorization");
+    console.log("Auth header:", authHeader ? "Present" : "Missing");
+
     const token = extractTokenFromHeader(authHeader);
+    console.log("Extracted token:", token ? "Token extracted" : "No token");
 
     if (!token) {
-      return NextResponse.json({ error: 'No token provided' }, { status: 401 });
+        return { user: null, error: "No token provided" };
     }
 
     const decoded = verifyToken(token);
+    console.log("Decoded token:", decoded);
+
     if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+        return { user: null, error: "Invalid token" };
     }
 
-    if (decoded.role !== 'admin') {
-      return NextResponse.json({ error: 'Admin access required' }, { status: 403 });
-    }
-
-    // Add user info to request
-    const authRequest = request as AuthenticatedRequest;
-    authRequest.user = {
-      userId: decoded.userId,
-      email: decoded.email,
-      phone: decoded.phone,
-      role: decoded.role,
+    return {
+        user: {
+            userId: decoded.userId,
+            email: decoded.email,
+            phone: decoded.phone,
+            role: decoded.role,
+        },
+        error: null,
     };
-
-    return handler(authRequest, context);
-  };
 }

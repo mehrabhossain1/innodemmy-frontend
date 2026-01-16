@@ -3,6 +3,7 @@ import { Video, Play, Star } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
+import FreeConsultationButton from "@/components/FreeConsultationButton";
 
 interface AdvancedEvidenceHeroSectionProps {
     courseData: {
@@ -177,6 +178,11 @@ export default function AdvancedEvidenceHeroSection({
                                 >
                                     {courseData.enrollButtonTextShort}
                                 </Button>
+
+                                {/* Free Consultation Badge */}
+                                <div className="mt-2">
+                                    <FreeConsultationButton className="w-full py-3" />
+                                </div>
                             </div>
 
                             {/* Action Buttons */}

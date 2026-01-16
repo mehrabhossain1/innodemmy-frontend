@@ -30,7 +30,7 @@ export default function FAQ() {
         },
         {
             question: "How can I register for the course?",
-            answer: 'Our website → Course Page → "Enroll Now" → simple registration process complete।',
+            answer: 'Our website → Course Page → "Enroll Now" → simple registration process complete',
         },
     ];
 

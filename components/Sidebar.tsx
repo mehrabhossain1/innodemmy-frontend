@@ -16,6 +16,7 @@ import {
     BarChart3,
     GraduationCap,
     FileText,
+    Video,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 
@@ -33,9 +34,19 @@ export default function Sidebar() {
 
     const adminNavItems = [
         { href: "/admin/dashboard", label: "Dashboard", icon: Home },
-        { href: "/admin/enrollments", label: "Enrollments", icon: GraduationCap },
+        {
+            href: "/admin/enrollments",
+            label: "Enrollments",
+            icon: GraduationCap,
+        },
         { href: "/admin/courses", label: "Courses", icon: BookOpen },
         { href: "/admin/blogs", label: "Blogs", icon: FileText },
+        {
+            href: "/admin/webinar-registrations",
+            label: "Webinar Registrations",
+            icon: Video,
+        },
+        { href: "/admin/users", label: "Users", icon: Users },
     ];
 
     const navItems = user?.role === "admin" ? adminNavItems : studentNavItems;

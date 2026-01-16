@@ -131,7 +131,9 @@ export default function PythonEssentialsForMachineLearning() {
                 <FAQ />
             </div>
 
-            <BookTheCallCard />
+            <div id="book-call">
+                <BookTheCallCard />
+            </div>
 
             {/* Sticky Enrollment Bar */}
             <StickyEnrollmentBar
