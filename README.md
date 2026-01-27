@@ -484,16 +484,6 @@ EMAIL_DEV_MODE=false
 
 ---
 
-## Author
-
-**[Your Name]**
-
-- GitHub: [github.com/your-username](https://github.com/your-username)
-- LinkedIn: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
-- Email: your.email@example.com
-
----
-
 ## License
 
 This project is private and proprietary. All rights reserved.
