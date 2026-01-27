@@ -470,20 +470,6 @@ EMAIL_DEV_MODE=false
 
 ---
 
-## Demo / Screenshots
-
-> Add screenshots of key pages here:
->
-> - [ ] Homepage with hero carousel
-> - [ ] Course catalog with filters
-> - [ ] Course detail page
-> - [ ] Enrollment dialog with payment instructions
-> - [ ] Student dashboard with enrolled courses
-> - [ ] Admin dashboard overview
-> - [ ] Admin enrollment approval interface
-
----
-
 ## License
 
 This project is private and proprietary. All rights reserved.
