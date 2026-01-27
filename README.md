@@ -497,12 +497,3 @@ EMAIL_DEV_MODE=false
 ## License
 
 This project is private and proprietary. All rights reserved.
-
----
-
-## Support
-
-For questions or issues:
-
-- **Email**: Contact@innodemy.com
-- **Phone**: +880 1704 258972
