@@ -163,33 +163,6 @@ export default function Footer() {
                                         About Us
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                        href="/privacy-policy"
-                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
-                                    >
-                                        <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/refund-policy"
-                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
-                                    >
-                                        <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                                        Refund Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/terms-and-condition"
-                                        className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors duration-200 text-sm flex items-center group"
-                                    >
-                                        <span className="w-1.5 h-1.5 bg-primary/50 rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                                        Terms and Condition
-                                    </Link>
-                                </li>
                             </ul>
                         </div>
 
@@ -381,26 +354,6 @@ export default function Footer() {
                                     Innodemy
                                 </span>
                             </p>
-                            <div className="flex items-center justify-center gap-4">
-                                <Link
-                                    href="/privacy-policy"
-                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
-                                >
-                                    Privacy Policy
-                                </Link>
-                                <Link
-                                    href="/terms-and-condition"
-                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
-                                >
-                                    Terms of Service
-                                </Link>
-                                <Link
-                                    href="/refund-policy"
-                                    className="text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
-                                >
-                                    Refund Policy
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>
