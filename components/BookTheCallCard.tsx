@@ -9,20 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
     CheckCircle,
     Calendar,
-    GraduationCap,
-    Target,
-    Lightbulb,
+    Video,
 } from "lucide-react";
 import Container from "./Container";
 import Link from "next/link";
+import NextImage from "next/image";
 
 interface FormData {
     fullName: string;
@@ -37,29 +30,8 @@ interface FormErrors {
     phoneNumber?: string;
 }
 
-const accordionItems = [
-    {
-        id: "gateway",
-        title: "Gateway to Advanced Opportunities",
-        content:
-            "Innodemy is more than a skill development platform ,  it's a gateway to advanced research opportunities and career transitions for students and professionals.",
-        icon: GraduationCap,
-    },
-    {
-        id: "comprehensive",
-        title: "Comprehensive Career Guidance",
-        content:
-            "Each course is strategically designed to provide learners with comprehensive guidance, from skill acquisition to career preparation, scholarships, and higher education.",
-        icon: Target,
-    },
-    {
-        id: "beyond-teaching",
-        title: "Beyond Teaching - Complete Support",
-        content:
-            "Innodemy goes beyond teaching ,  supporting learners throughout their career journey with expert guidance, real-world experience, and practical problem-solving.",
-        icon: Lightbulb,
-    },
-];
+// Consultation illustration (place image at public/images/consultation-illustration.png)
+const CONSULTATION_IMAGE = "/images/consultation-illustration.png";
 
 export default function BookTheCallCard() {
     const [formData, setFormData] = useState<FormData>({
@@ -72,6 +44,7 @@ export default function BookTheCallCard() {
     const [errors, setErrors] = useState<FormErrors>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {};
@@ -226,67 +199,48 @@ export default function BookTheCallCard() {
 
                     <div className="relative bg-card/50 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden border-2 border-border">
                         <div className="grid lg:grid-cols-2 gap-0">
-                            {/* Left Side - Accordion */}
-                            <div className="space-y-4 lg:space-y-4 p-4 md:p-5 lg:p-6">
-                                <div className="space-y-2 lg:space-y-3">
-                                    <h3 className="text-lg lg:text-xl font-bold text-foreground">
-                                        What Sets Us Apart
-                                    </h3>
-
-                                    <Accordion
-                                        type="single"
-                                        collapsible
-                                        className="space-y-2 lg:space-y-2"
-                                    >
-                                        {accordionItems.map((item) => {
-                                            const IconComponent = item.icon;
-                                            return (
-                                                <AccordionItem
-                                                    key={item.id}
-                                                    value={item.id}
-                                                    className="border-2 border-border rounded-lg lg:rounded-xl px-2.5 lg:px-3 data-[state=open]:border-primary/50 bg-card backdrop-blur-sm transition-all duration-300"
-                                                >
-                                                    <AccordionTrigger className="hover:no-underline py-2.5 lg:py-2.5">
-                                                        <div className="flex items-center space-x-2 lg:space-x-2.5 text-left">
-                                                            <div className="flex-shrink-0 p-1.5 lg:p-1.5 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md lg:rounded-lg">
-                                                                <IconComponent className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-primary" />
-                                                            </div>
-                                                            <span className="font-semibold text-foreground text-xs lg:text-sm">
-                                                                {item.title}
-                                                            </span>
-                                                        </div>
-                                                    </AccordionTrigger>
-                                                    <AccordionContent className="pb-2.5 lg:pb-3 pt-1 lg:pt-1">
-                                                        <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed ml-7 lg:ml-8">
-                                                            {item.content}
-                                                        </p>
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                            );
-                                        })}
-                                    </Accordion>
+                            {/* Left Side - Animated Illustration */}
+                            <div className="space-y-4 p-4 md:p-5 lg:p-6 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
+                                <div className="relative w-full max-w-sm lg:max-w-md mx-auto min-h-[200px] lg:min-h-[260px] flex items-center justify-center animate-[float_3s_ease-in-out_infinite]">
+                                    {imageError ? (
+                                        <div className="flex flex-col items-center justify-center gap-3 text-center p-6 rounded-xl bg-primary/10 border-2 border-primary/20">
+                                            <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
+                                                <Video className="w-10 h-10 text-primary" />
+                                            </div>
+                                            <p className="text-sm font-semibold text-foreground">
+                                                Talk to our experts
+                                            </p>
+                                            <p className="text-xs text-muted-foreground max-w-[200px]">
+                                                Free consultation for your career journey
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <NextImage
+                                            src={CONSULTATION_IMAGE}
+                                            alt="Free consultation - talk to our experts"
+                                            width={480}
+                                            height={260}
+                                            className="w-full h-auto max-h-[260px] object-contain drop-shadow-lg"
+                                            unoptimized
+                                            onError={() => setImageError(true)}
+                                        />
+                                    )}
                                 </div>
-
                                 {/* Call to Action */}
-                                <div className="relative group/cta">
-                                    {/* CTA Glow */}
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary/70 rounded-lg lg:rounded-xl opacity-0 group-hover/cta:opacity-20 blur transition-all duration-300"></div>
-
-                                    <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg lg:rounded-xl p-3 lg:p-4 border-2 border-primary/30 backdrop-blur-sm">
-                                        <h4 className="text-sm lg:text-base font-bold text-foreground mb-1 lg:mb-1.5">
-                                            Ready to Start Your Journey?
-                                        </h4>
-                                        <p className="text-muted-foreground mb-2.5 lg:mb-3 text-xs lg:text-sm leading-relaxed">
-                                            Join thousands of learners who have
-                                            transformed their careers with
-                                            Innodemy.
-                                        </p>
-                                        <Link href="/courses">
-                                            <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
-                                                Explore Courses
-                                            </Button>
-                                        </Link>
-                                    </div>
+                                <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg lg:rounded-xl p-3 lg:p-4 border-2 border-primary/30 backdrop-blur-sm">
+                                    <h4 className="text-sm lg:text-base font-bold text-foreground mb-1 lg:mb-1.5">
+                                        Ready to Start Your Journey?
+                                    </h4>
+                                    <p className="text-muted-foreground mb-2.5 lg:mb-3 text-xs lg:text-sm leading-relaxed">
+                                        Join thousands of learners who have
+                                        transformed their careers with
+                                        Innodemy.
+                                    </p>
+                                    <Link href="/courses">
+                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
+                                            Explore Courses
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
 
