@@ -282,6 +282,7 @@ export default function CoursesSection() {
                                     students={course.students}
                                     duration={course.duration}
                                     rating={course.rating}
+                                    category={course.category}
                                 />
                             </div>
                         ))}
