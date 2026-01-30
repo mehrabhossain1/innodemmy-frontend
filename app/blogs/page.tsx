@@ -12,6 +12,7 @@ import {
     FileText,
     Newspaper,
     BookMarked,
+    Search,
 } from "lucide-react";
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
@@ -160,9 +161,9 @@ export default function BlogsPage() {
 
             <Container className="py-10">
                 {/* Search Bar */}
-                <div className="mb-6 max-w-xl mx-auto">
+                <div className="mb-6 max-w-xl">
                     <div className="relative">
-                        <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                         <input
                             type="text"
                             placeholder="Search articles by title, content, or author..."
