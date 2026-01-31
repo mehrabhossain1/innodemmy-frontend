@@ -60,6 +60,14 @@ const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
     <img src="/icons/image5.png" alt="Research & Writing" className={className} />
 );
 
+const DataScienceIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/Data%20Science%20%26%20AI.png"
+        alt="Data Science & AI"
+        className={className}
+    />
+);
+
 // Adapter to normalize Lucide icons (ForwardRef components) to a plain ComponentType
 const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
     return ({ className }) => <Icon className={className} />;
@@ -68,7 +76,7 @@ const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: wrapIcon(Cpu),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
     [COURSE_CATEGORIES.VLSI]: wrapIcon(Layers),
     [COURSE_CATEGORIES.RESEARCH_WRITING]: ResearchIcon,
 };
