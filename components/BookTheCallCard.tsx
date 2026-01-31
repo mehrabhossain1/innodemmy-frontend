@@ -31,7 +31,7 @@ interface FormErrors {
 }
 
 // Consultation illustration (Storyset education illustration)
-const CONSULTATION_IMAGE = "/images/storyset-education.svg";
+const CONSULTATION_IMAGE = "/icons/education.png";
 
 export default function BookTheCallCard() {
     const [formData, setFormData] = useState<FormData>({
@@ -225,9 +225,7 @@ export default function BookTheCallCard() {
                                                 unoptimized
                                                 onError={() => setImageError(true)}
                                             />
-                                            <div className="mt-2 text-xs text-muted-foreground">
-                                                Education illustrations by <a href="https://storyset.com/education" target="_blank" rel="noreferrer" className="text-primary underline">Storyset</a>
-                                            </div>
+                                           
                                         </div>
                                     )}
                                 </div>
