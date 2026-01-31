@@ -30,8 +30,8 @@ interface FormErrors {
     phoneNumber?: string;
 }
 
-// Consultation illustration (place image at public/images/consultation-illustration.png)
-const CONSULTATION_IMAGE = "/images/consultation-illustration.png";
+// Consultation illustration (Storyset education illustration)
+const CONSULTATION_IMAGE = "/images/storyset-education.svg";
 
 export default function BookTheCallCard() {
     const [formData, setFormData] = useState<FormData>({
@@ -215,15 +215,20 @@ export default function BookTheCallCard() {
                                             </p>
                                         </div>
                                     ) : (
-                                        <NextImage
-                                            src={CONSULTATION_IMAGE}
-                                            alt="Free consultation - talk to our experts"
-                                            width={480}
-                                            height={260}
-                                            className="w-full h-auto max-h-[260px] object-contain drop-shadow-lg"
-                                            unoptimized
-                                            onError={() => setImageError(true)}
-                                        />
+                                        <div className="w-full flex flex-col items-center">
+                                            <NextImage
+                                                src={CONSULTATION_IMAGE}
+                                                alt="Free consultation - talk to our experts"
+                                                width={480}
+                                                height={260}
+                                                className="w-full h-auto max-h-[260px] object-contain drop-shadow-lg rounded-md"
+                                                unoptimized
+                                                onError={() => setImageError(true)}
+                                            />
+                                            <div className="mt-2 text-xs text-muted-foreground">
+                                                Education illustrations by <a href="https://storyset.com/education" target="_blank" rel="noreferrer" className="text-primary underline">Storyset</a>
+                                            </div>
+                                        </div>
                                     )}
                                 </div>
                                 {/* Call to Action */}
