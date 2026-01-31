@@ -1,4 +1,4 @@
-const { MongoClient, ObjectId } = require('mongodb');
+import { MongoClient, ObjectId } from 'mongodb';
 
 // Get MongoDB URI from environment or use default
 const MONGODB_URI = process.env.MONGODB_URI;

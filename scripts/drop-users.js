@@ -3,7 +3,7 @@
  * Run this with: node scripts/drop-users.js
  */
 
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 async function dropAllUsers() {
   // Read MongoDB URI from environment or use hardcoded value

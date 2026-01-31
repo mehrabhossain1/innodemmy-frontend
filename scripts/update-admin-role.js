@@ -3,7 +3,7 @@
  * Run this with: node scripts/update-admin-role.js
  */
 
-const { MongoClient, ObjectId } = require('mongodb');
+import { MongoClient, ObjectId } from 'mongodb';
 
 async function updateAdminRole() {
   // MongoDB URI

@@ -42,7 +42,7 @@ interface Course {
     modules: Module[];
 }
 
-// Sample course data with YouTube video links for testing
+
 const sampleCourse: Course = {
     id: "react-bootcamp",
     title: "Complete React Development Bootcamp",

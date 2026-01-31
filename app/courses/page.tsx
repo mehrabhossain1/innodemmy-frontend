@@ -44,8 +44,10 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons to a plain ComponentType
-const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
-    return ({ className }) => <Icon className={className} />;
+const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+    return WrappedIcon;
 };
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -134,7 +136,7 @@ export default function CoursesPage() {
             {
                 id: "all",
                 label: "All Courses",
-                icon: Code,
+                icon: wrapIcon(Code),
                 count: `${allCourses.length} Courses`,
             },
         ];
@@ -147,7 +149,7 @@ export default function CoursesPage() {
                 tabs.push({
                     id: category,
                     label: category,
-                    icon: categoryIcons[category] || Code,
+                    icon: categoryIcons[category] || wrapIcon(Code),
                     count: `${count} ${count === 1 ? "Course" : "Courses"}`,
                 });
             }

@@ -61,8 +61,10 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons to a plain ComponentType
-const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
-    return ({ className }) => <Icon className={className} />;
+const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+    return WrappedIcon;
 };
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
