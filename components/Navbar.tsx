@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -34,11 +35,25 @@ import {
 import logo from "@/assets/Logo.png";
 
 // Map category names to icons
-const categoryIcons: Record<string, typeof Code> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
-    [COURSE_CATEGORIES.PROGRAMMING]: Code,
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
-    [COURSE_CATEGORIES.VLSI]: Layers,
+const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/image5.png"
+        alt="Research & Writing"
+        className={className}
+    />
+);
+
+// Adapter to normalize Lucide icons to a plain ComponentType
+const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
+    return ({ className }) => <Icon className={className} />;
+};
+
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: wrapIcon(FlaskConical),
+    [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: wrapIcon(Cpu),
+    [COURSE_CATEGORIES.VLSI]: wrapIcon(Layers),
+    [COURSE_CATEGORIES.RESEARCH_WRITING]: ResearchIcon,
 };
 
 // Map category names to colors
@@ -197,7 +212,7 @@ export default function Navbar() {
             return {
                 id: category,
                 name: category,
-                icon: categoryIcons[category] || Code,
+                icon: categoryIcons[category] || wrapIcon(Code),
                 count: `${categoryCoursesCount} ${
                     categoryCoursesCount === 1 ? "Course" : "Courses"
                 }`,

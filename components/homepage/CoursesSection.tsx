@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import type { FC } from "react";
 import { Button } from "@/components/ui/button";
 import {
     ArrowRight,
@@ -47,11 +48,21 @@ interface ApiCourse {
 }
 
 // Map category names to icons
-const categoryIcons: Record<string, typeof Code> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
-    [COURSE_CATEGORIES.PROGRAMMING]: Code,
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
-    [COURSE_CATEGORIES.VLSI]: Layers,
+const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
+    <img src="/icons/image5.png" alt="Research & Writing" className={className} />
+);
+
+// Adapter to normalize Lucide icons (ForwardRef components) to a plain ComponentType
+const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
+    return ({ className }) => <Icon className={className} />;
+};
+
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: wrapIcon(FlaskConical),
+    [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: wrapIcon(Cpu),
+    [COURSE_CATEGORIES.VLSI]: wrapIcon(Layers),
+    [COURSE_CATEGORIES.RESEARCH_WRITING]: ResearchIcon,
 };
 
 export default function CoursesSection() {
@@ -151,7 +162,7 @@ export default function CoursesSection() {
             {
                 id: "all",
                 label: "All Courses",
-                icon: Code,
+                icon: wrapIcon(Code),
                 count: `${courses.length} Courses`,
             },
         ];
@@ -164,7 +175,7 @@ export default function CoursesSection() {
                 tabs.push({
                     id: category,
                     label: category,
-                    icon: categoryIcons[category] || Code,
+                    icon: categoryIcons[category] || wrapIcon(Code),
                     count: `${count} ${count === 1 ? "Course" : "Courses"}`,
                 });
             }
