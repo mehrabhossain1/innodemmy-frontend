@@ -35,6 +35,14 @@ import {
 import logo from "@/assets/Logo.png";
 
 // Map category names to icons
+const ClinicalIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/clinical%20Research.png"
+        alt="Clinical Research"
+        className={className}
+    />
+);
+
 const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
     <img
         src="/icons/image5.png"
@@ -49,7 +57,7 @@ const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
 };
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: wrapIcon(FlaskConical),
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: wrapIcon(Cpu),
     [COURSE_CATEGORIES.VLSI]: wrapIcon(Layers),
