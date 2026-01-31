@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -34,11 +35,45 @@ import {
 import logo from "@/assets/Logo.png";
 
 // Map category names to icons
-const categoryIcons: Record<string, typeof Code> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
-    [COURSE_CATEGORIES.PROGRAMMING]: Code,
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
-    [COURSE_CATEGORIES.VLSI]: Layers,
+const ClinicalIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/clinical%20Research.png"
+        alt="Clinical Research"
+        className={className}
+    />
+);
+
+const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/image5.png"
+        alt="Research & Writing"
+        className={className}
+    />
+);
+
+const DataScienceIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/Data%20Science%20%26%20AI.png"
+        alt="Data Science & AI"
+        className={className}
+    />
+);
+
+const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
+    <img src="/icons/vlsi.png" alt="VLSI" className={className} />
+);
+
+// Adapter to normalize Lucide icons to a plain ComponentType
+const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
+    return ({ className }) => <Icon className={className} />;
+};
+
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
+    [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
+    [COURSE_CATEGORIES.VLSI]: VLSIIcon,
+    [COURSE_CATEGORIES.RESEARCH_WRITING]: ResearchIcon,
 };
 
 // Map category names to colors
@@ -197,7 +232,7 @@ export default function Navbar() {
             return {
                 id: category,
                 name: category,
-                icon: categoryIcons[category] || Code,
+                icon: categoryIcons[category] || wrapIcon(Code),
                 count: `${categoryCoursesCount} ${
                     categoryCoursesCount === 1 ? "Course" : "Courses"
                 }`,

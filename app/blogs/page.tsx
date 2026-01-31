@@ -12,6 +12,7 @@ import {
     FileText,
     Newspaper,
     BookMarked,
+    Search,
 } from "lucide-react";
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
@@ -34,6 +35,9 @@ const categoryIcons: Record<string, typeof FileText> = {
 };
 
 const ITEMS_PER_PAGE = 9;
+
+// Banner image for first blog card (public/blogs folder)
+const BLOG_BANNER_IMAGE = "/blogs/web-banner-innodemy.png";
 
 export default function BlogsPage() {
     const topRef = useRef<HTMLDivElement>(null);
@@ -160,9 +164,9 @@ export default function BlogsPage() {
 
             <Container className="py-10">
                 {/* Search Bar */}
-                <div className="mb-6 max-w-xl mx-auto">
+                <div className="mb-6 max-w-xl">
                     <div className="relative">
-                        <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                         <input
                             type="text"
                             placeholder="Search articles by title, content, or author..."
@@ -246,7 +250,7 @@ export default function BlogsPage() {
                         {filteredBlogs.length > 0 ? (
                             <>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {paginatedBlogs.map((blog) => (
+                                    {paginatedBlogs.map((blog, index) => (
                                         <BlogCard
                                             key={blog._id}
                                             id={blog._id!}
@@ -263,9 +267,12 @@ export default function BlogsPage() {
                                                     .split("T")[0]
                                             }
                                             image={
-                                                blog.thumbnail ||
-                                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                                index === 0
+                                                    ? BLOG_BANNER_IMAGE
+                                                    : blog.thumbnail ||
+                                                      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                             }
+                                            unoptimized={index === 0}
                                             category={
                                                 blog.category || "Uncategorized"
                                             }

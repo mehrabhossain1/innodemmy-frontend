@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState, useRef } from "react";
+import type { FC } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {
     COURSE_CATEGORIES,
@@ -38,11 +39,20 @@ interface Course {
 }
 
 // Map category names to icons
-const categoryIcons: Record<string, typeof Code> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
-    [COURSE_CATEGORIES.PROGRAMMING]: Code,
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
-    [COURSE_CATEGORIES.VLSI]: Layers,
+const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
+    <img src="/icons/vlsi.png" alt="VLSI" className={className} />
+);
+
+// Adapter to normalize Lucide icons to a plain ComponentType
+const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
+    return ({ className }) => <Icon className={className} />;
+};
+
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: wrapIcon(FlaskConical),
+    [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: wrapIcon(Cpu),
+    [COURSE_CATEGORIES.VLSI]: VLSIIcon,
 };
 
 export default function CoursesPage() {

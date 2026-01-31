@@ -12,6 +12,7 @@ interface BlogCardProps {
     category: string;
     author: string;
     readTime: string;
+    unoptimized?: boolean;
 }
 
 export default function BlogCard({
@@ -23,6 +24,7 @@ export default function BlogCard({
     category,
     author,
     readTime,
+    unoptimized = false,
 }: BlogCardProps) {
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString("en-US", {
@@ -37,13 +39,21 @@ export default function BlogCard({
             {/* Blog Image */}
             <div className="relative overflow-hidden">
                 <Link href={`/blogs/${id}`}>
-                    <Image
-                        src={image || "/placeholder.svg"}
-                        alt={title}
-                        width={400}
-                        height={240}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                    {unoptimized ? (
+                        <img
+                            src={image || "/placeholder.svg"}
+                            alt={title}
+                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    ) : (
+                        <Image
+                            src={image || "/placeholder.svg"}
+                            alt={title}
+                            width={400}
+                            height={240}
+                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    )}
                 </Link>
                 <div className="absolute top-3 left-3">
                     <Badge

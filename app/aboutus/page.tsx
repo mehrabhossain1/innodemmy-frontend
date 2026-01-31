@@ -100,7 +100,7 @@ export default function AboutUsPage() {
                                             Fakrul Islam Javed
                                         </h3>
                                         <p className="text-primary font-semibold">
-                                            Co-Founder & CEO
+                                            Founder
                                         </p>
                                     </div>
                                 </div>

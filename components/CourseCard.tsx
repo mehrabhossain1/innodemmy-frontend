@@ -15,7 +15,10 @@ interface CourseCardProps {
     batchName?: string;
     rating?: number;
     totalRatings?: number;
+    category?: string;
 }
+
+const CLINICAL_RESEARCH_CATEGORY = "CLINICAL RESEARCH";
 
 export default function CourseCard({
     id,
@@ -29,6 +32,7 @@ export default function CourseCard({
     batchName = "Batch-2",
     rating,
     totalRatings,
+    category,
 }: CourseCardProps) {
     // Generate consistent random values based on id for rating and totalRatings
     const generateRating = () => {
@@ -129,12 +133,14 @@ export default function CourseCard({
                             </div>
                             <span>{modules}+ Lessons</span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <div className="w-5 h-5 flex items-center justify-center">
-                                <FolderOpen className="h-3.5 w-3.5 text-blue-500" />
+                        {category !== CLINICAL_RESEARCH_CATEGORY && (
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div className="w-5 h-5 flex items-center justify-center">
+                                    <FolderOpen className="h-3.5 w-3.5 text-blue-500" />
+                                </div>
+                                <span>{students}+ Projects</span>
                             </div>
-                            <span>{students}+ Projects</span>
-                        </div>
+                        )}
                     </div>
 
                     {/* Button */}

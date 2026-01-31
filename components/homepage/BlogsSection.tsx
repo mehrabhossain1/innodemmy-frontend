@@ -16,6 +16,9 @@ import * as React from "react";
 import { Blog } from "@/lib/models";
 import Container from "../Container";
 
+// Banner image for first blog card (public/blogs folder)
+const BLOG_BANNER_IMAGE = "/blogs/web-banner-innodemy.png";
+
 export default function BlogsSection() {
     const [blogs, setBlogs] = React.useState<Blog[]>([]);
     const [loading, setLoading] = React.useState(true);
@@ -118,9 +121,12 @@ export default function BlogsSection() {
                                                     .split("T")[0]
                                             }
                                             image={
-                                                blog.thumbnail ||
-                                                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                                index === 0
+                                                    ? BLOG_BANNER_IMAGE
+                                                    : blog.thumbnail ||
+                                                      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                             }
+                                            unoptimized={index === 0}
                                             category={
                                                 blog.category || "Uncategorized"
                                             }

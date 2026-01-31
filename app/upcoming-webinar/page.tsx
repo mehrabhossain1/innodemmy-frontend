@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -39,11 +40,36 @@ import {
 } from "@/components/ui/pagination";
 
 // Map category names to icons
-const categoryIcons: Record<string, typeof Code> = {
-    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: FlaskConical,
-    [COURSE_CATEGORIES.PROGRAMMING]: Code,
-    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: Cpu,
-    [COURSE_CATEGORIES.VLSI]: Layers,
+const ClinicalIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/clinical%20Research.png"
+        alt="Clinical Research"
+        className={className}
+    />
+);
+
+const DataScienceIcon: FC<{ className?: string }> = ({ className }) => (
+    <img
+        src="/icons/Data%20Science%20%26%20AI.png"
+        alt="Data Science & AI"
+        className={className}
+    />
+);
+
+const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
+    <img src="/icons/vlsi.png" alt="VLSI" className={className} />
+);
+
+// Adapter to normalize Lucide icons to a plain ComponentType
+const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
+    return ({ className }) => <Icon className={className} />;
+};
+
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
+    [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
+    [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
+    [COURSE_CATEGORIES.VLSI]: VLSIIcon,
 };
 
 const ITEMS_PER_PAGE = 9;
@@ -73,7 +99,7 @@ export default function UpcomingWebinarPage() {
             {
                 id: "all",
                 label: "All Masterclasses",
-                icon: Code,
+                icon: wrapIcon(Code),
                 count: `${allWebinars.length} Masterclasses`,
             },
         ];
@@ -86,7 +112,7 @@ export default function UpcomingWebinarPage() {
                 tabs.push({
                     id: category,
                     label: category,
-                    icon: categoryIcons[category] || Code,
+                    icon: categoryIcons[category] || wrapIcon(Code),
                     count: `${count} ${
                         count === 1 ? "Masterclass" : "Masterclasses"
                     }`,

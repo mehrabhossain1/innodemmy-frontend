@@ -9,6 +9,10 @@ import Link from "next/link";
 import { Blog } from "@/lib/models";
 import { HtmlContent } from "@/components/ui/html-content";
 
+// Banner for specific blog / when no valid thumbnail (public/blogs folder)
+const BLOG_BANNER_SRC = "/blogs/web-banner-innodemy.png";
+const BLOG_ID_USE_BANNER = "69653175f5a433918988e0df";
+
 // Fetch blog from API
 const getBlogData = async (id: string): Promise<Blog | null> => {
     try {
@@ -264,9 +268,15 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                         </div>
                     </header>
 
-                    {/* Featured Image */}
-                    {blog.thumbnail && (
-                        <div className="mb-8">
+                    {/* Featured Image - use banner for this blog or when no thumbnail */}
+                    <div className="mb-8">
+                        {id === BLOG_ID_USE_BANNER || !blog.thumbnail ? (
+                            <img
+                                src={BLOG_BANNER_SRC}
+                                alt={blog.title}
+                                className="w-full h-64 sm:h-96 object-cover rounded-xl shadow-lg"
+                            />
+                        ) : (
                             <Image
                                 src={blog.thumbnail}
                                 alt={blog.title}
@@ -274,8 +284,8 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
                                 height={400}
                                 className="w-full h-64 sm:h-96 object-cover rounded-xl shadow-lg"
                             />
-                        </div>
-                    )}
+                        )}
+                    </div>
 
                     {/* Article Content */}
                     <HtmlContent

@@ -93,7 +93,7 @@ const technologies: Technology[] = [
 
 const TechnologyCard = ({ name, image, color }: Technology) => {
     return (
-        <div className="relative w-64 group">
+        <div className="relative w-48 group">
             {/* Glow Effect */}
             <div
                 className={cn(
@@ -104,55 +104,38 @@ const TechnologyCard = ({ name, image, color }: Technology) => {
 
             <div
                 className={cn(
-                    "relative cursor-pointer overflow-hidden rounded-xl border p-4",
+                    "relative cursor-pointer overflow-hidden rounded-xl border p-3",
                     "bg-white/5 backdrop-blur-sm hover:bg-white/10",
                     "border-white/10 hover:border-white/20",
                     "transition-all duration-300 ease-out",
                     "hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-0.5"
                 )}
             >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center gap-3">
                     {/* Image Container */}
                     <div className="relative">
                         <div
                             className={cn(
-                                "flex items-center justify-center w-12 h-12 rounded-lg",
-                                "bg-white p-2 shadow-lg transition-all duration-300",
+                                "flex items-center justify-center w-8 h-8 rounded-lg",
+                                "bg-white p-1.5 shadow-lg transition-all duration-300",
                                 "group-hover:scale-110 group-hover:rotate-3"
                             )}
                         >
                             <Image
                                 src={image}
                                 alt={name}
-                                width={40}
-                                height={40}
+                                width={24}
+                                height={24}
                                 className="object-contain"
                             />
                         </div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white group-hover:text-secondary transition-colors duration-300">
+                    <div>
+                        <h3 className="text-sm font-bold text-white group-hover:text-secondary transition-colors duration-300">
                             {name}
                         </h3>
-                    </div>
-
-                    {/* Arrow Indicator */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                        <svg
-                            className="w-4 h-4 text-secondary"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
                     </div>
                 </div>
             </div>
