@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,10 @@ const DataScienceIcon: FC<{ className?: string }> = ({ className }) => (
     />
 );
 
+const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
+    <img src="/icons/vlsi.png" alt="VLSI" className={className} />
+);
+
 // Adapter to normalize Lucide icons to a plain ComponentType
 const wrapIcon = (Icon: any): React.ComponentType<{ className?: string }> => {
     return ({ className }) => <Icon className={className} />;
@@ -64,7 +69,7 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
-    [COURSE_CATEGORIES.VLSI]: wrapIcon(Layers),
+    [COURSE_CATEGORIES.VLSI]: VLSIIcon,
 };
 
 const ITEMS_PER_PAGE = 9;
