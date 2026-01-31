@@ -383,7 +383,7 @@ export default function BookTheCallCard() {
                                     <Button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white py-3 lg:py-3.5 h-auto text-sm lg:text-base font-semibold shadow-lg shadow-secondary/20 hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 rounded-lg lg:rounded-xl border-0"
+                                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white py-4 lg:py-4 h-auto text-base lg:text-lg font-bold shadow-2xl shadow-secondary/30 hover:shadow-3xl hover:shadow-secondary/40 transform-gpu hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-300 rounded-xl border-0"
                                     >
                                         {isSubmitting ? (
                                             <div className="flex items-center justify-center space-x-2">
