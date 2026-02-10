@@ -63,8 +63,8 @@ export const webinars: Webinar[] = [
         time: "9:00 PM - 11:00 PM",
         instructor: "Mamunur Rashid Alex",
         instructorBio:
-            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
-        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+            "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
+        instructorImage: "/instructors/Mamunur-Rashid-Alex.jpeg",
         views: 0,
         topics: [
             "Scholarship Opportunities",
@@ -111,16 +111,16 @@ export const webinars: Webinar[] = [
         time: "9:00 PM - 11:00 PM",
         instructor: "Md Saiful Islam",
         instructorBio:
-            "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
-        instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
+            "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
+        instructorImage: "/instructors/Mamunur-Rashid-Alex.jpeg",
         views: 0,
         topics: [
-            "Scholarship Opportunities",
-            "SOP & LOR Writing",
-            "University Selection",
-            "IELTS/TOEFL/GRE",
-            "Profile Building",
-            "Study Abroad",
+            "Research Paper Writing",
+            "Publication Strategies",
+            "Journal Selection",
+            "Literature Review",
+            "Reference Management",
+            "Manuscript Submission",
         ],
         date: "16th January, 2026",
         language: "Bengali",
@@ -233,12 +233,12 @@ export function getAllWebinars(): Webinar[] {
 
 export function getRegularWebinars(): Webinar[] {
     return webinars.filter(
-        (webinar) => webinar.published && !isWebinarUpcoming(webinar)
+        (webinar) => webinar.published && !isWebinarUpcoming(webinar),
     );
 }
 
 export function getUpcomingWebinars(): Webinar[] {
     return webinars.filter(
-        (webinar) => webinar.published && isWebinarUpcoming(webinar)
+        (webinar) => webinar.published && isWebinarUpcoming(webinar),
     );
 }
