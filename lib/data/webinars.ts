@@ -64,7 +64,7 @@ export const webinars: Webinar[] = [
         instructor: "Mamunur Rashid Alex",
         instructorBio:
             "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
-        instructorImage: "/instructors/Mamunur-Rashid-Alex.jpeg",
+        instructorImage: "/instructors/alex.jpeg",
         views: 0,
         topics: [
             "Scholarship Opportunities",
@@ -112,7 +112,7 @@ export const webinars: Webinar[] = [
         instructor: "Md Saiful Islam",
         instructorBio:
             "Clinical & Health Science Expert | Specialist in guiding students through higher studies and scholarship opportunities for Clinical & Translational Health Science backgrounds",
-        instructorImage: "/instructors/Md-Saiful-Islam.jpeg",
+        instructorImage: "/instructors/saiful.jpeg",
         views: 0,
         topics: [
             "Clinical Health Science",
@@ -154,14 +154,14 @@ export const webinars: Webinar[] = [
         title: "Webinar on From Code to Intelligence: Building a Career in AI Engineering",
         description:
             "Artificial Intelligence এখন শুধু একটি buzzword নয়, এটি software engineering, data science ও product development-এর ভবিষ্যৎ নির্ধারণ করছে। কিন্তু অনেকেই জানেন না, AI Engineering আসলে কী, কোথা থেকে শুরু করতে হবে, এবং কীভাবে একটি structured roadmap অনুসরণ করে expert AI engineer হওয়া যায়",
-        image: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artificial-intelligence-youtube-thumbnail-design-template-e977846615d6ebe53c36c0dc9d995111_screen.jpg?ts=1684092259",
+        image: "/upcoming-webinar/ai-code.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
         duration: "2h",
         time: "8:00 PM - 10:00 PM",
         instructor: "Arif Mahmud Sisir",
         instructorBio:
             "AI Engineering Expert & Technical Mentor | Specialist in Machine Learning, Deep Learning & AI Career Development | Helping aspiring engineers build successful careers in Artificial Intelligence",
-        instructorImage: "/instructors/Arif-Mahmud-Sisir.jpeg",
+        instructorImage: "/instructors/shishir.png",
         views: 0,
         topics: [
             "AI Engineering",
