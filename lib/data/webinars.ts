@@ -157,7 +157,7 @@ export const webinars: Webinar[] = [
         image: "/upcoming-webinar/ai-code.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
         duration: "2h",
-        time: "8:00 PM - 10:00 PM",
+        time: "3:00 PM - 4:00 PM",
         instructor: "Arif Mahmud Sisir",
         instructorBio:
             "AI Engineering Expert & Technical Mentor | Specialist in Machine Learning, Deep Learning & AI Career Development | Helping aspiring engineers build successful careers in Artificial Intelligence",
@@ -171,7 +171,7 @@ export const webinars: Webinar[] = [
             "Career Development",
             "AI Project Portfolio",
         ],
-        date: "18th January, 2026",
+        date: "6th March, 2026",
         language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
         published: true,
