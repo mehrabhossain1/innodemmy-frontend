@@ -2,46 +2,55 @@ import Image, { StaticImageData } from "next/image";
 import Container from "@/components/Container";
 import SectionTitle from "@/components/course/SectionTitle";
 import ArifMahmudSisir from "@/assets/instructors/Arif Mahmud Sisir.jpg";
-import MAzizulHakimShuvo from "@/assets/instructors/M Azizul Hakim Shuvo.jpg";
 import MamunurRashidAlex from "@/assets/instructors/Mamunur Rashid Alex.jpg";
-import MdNafeeAlIslam from "@/assets/instructors/Md Nafee Al Islam.jpg";
+import FakirSharifHossain from "@/assets/instructors/FakirSir.jpeg";
+import AlifArman from "@/assets/instructors/Alif.png";
+import USProfessor from "@/assets/instructors/USProfessor.png";
 
 interface Instructor {
     id: number;
     name: string;
     title: string;
     institution: string;
-    image: StaticImageData;
+    image: StaticImageData | string;
 }
 
 const instructors: Instructor[] = [
     {
         id: 1,
-        name: "Arif Mahmud Sisir",
-        title: "BSc. in Computer Science and Engineering",
-        institution: "Southeast University",
-        image: ArifMahmudSisir,
+        name: "Dr. Fakir Sharif Hossain",
+        title: "Associate Professor & Additional Director (ETL), IQAC",
+        institution:
+            "Department of Electrical and Electronic Engineering, Ahsanullah University of Science and Technology",
+        image: FakirSharifHossain,
     },
     {
         id: 2,
-        name: "Mamunur Rashid Alex",
-        title: "MSc. in Computer Science and Engineering",
-        institution: "North South University",
-        image: MamunurRashidAlex,
+        name: "Alif Arman",
+        title: "Artificial Intelligence Engineer & ML Model Architect",
+        institution: "Sysnova Information Systems Limited",
+        image: AlifArman,
     },
     {
         id: 3,
-        name: "Md Nafee Al Islam, PhD",
-        title: "Assistant Professor of Computer Science",
-        institution: "University of San Diego, California",
-        image: MdNafeeAlIslam,
+        name: "Arif Mahmud Sisir",
+        title: "AI Developer",
+        institution: "Sparktech Agency",
+        image: ArifMahmudSisir,
     },
     {
         id: 4,
-        name: "M Azizul Hakim Shuvo",
-        title: "PhD in Computer Science",
-        institution: "University of Nevada, Reno",
-        image: MAzizulHakimShuvo,
+        name: "Mamunur Rashid Alex, MSc",
+        title: "AI Researcher & Academic Mentor",
+        institution: "Specializing in Research Paper Writing & Publication",
+        image: MamunurRashidAlex,
+    },
+    {
+        id: 5,
+        name: "Guest Professor",
+        title: "Department of Computer Science",
+        institution: "From a University in USA",
+        image: USProfessor,
     },
 ];
 
@@ -51,11 +60,11 @@ export default function InstructorsAndMentors() {
             <Container>
                 <SectionTitle title="Instructors and Mentors" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="flex flex-wrap justify-center gap-6">
                     {instructors.map((instructor) => (
                         <div
                             key={instructor.id}
-                            className="group relative bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-100 dark:border-gray-700 hover:border-yellow-400 dark:hover:border-yellow-500 hover:-translate-y-1"
+                            className="group relative bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-100 dark:border-gray-700 hover:border-yellow-400 dark:hover:border-yellow-500 hover:-translate-y-1 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
                         >
                             <div className="flex flex-col items-center text-center">
                                 <div className="relative w-28 h-28 mb-4 overflow-hidden rounded-full ring-4 ring-yellow-400/30 group-hover:ring-yellow-500/60 transition-all duration-300 shadow-lg">
