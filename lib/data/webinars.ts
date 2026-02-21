@@ -60,11 +60,11 @@ export const webinars: Webinar[] = [
         image: "/upcoming-webinar/research-pager.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
         duration: "2h",
-        time: "9:00 PM - 11:00 PM",
-        instructor: "Mamunur Rashid Alex",
+        time: "10:15 PM - 11:15 PM",
+        instructor: "Md Nafee Al Islam, PhD",
         instructorBio:
             "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
-        instructorImage: "/instructors/alex.jpeg",
+        instructorImage: "/instructors/Nafee.jpg",
         views: 0,
         topics: [
             "Scholarship Opportunities",
@@ -74,7 +74,7 @@ export const webinars: Webinar[] = [
             "Profile Building",
             "Study Abroad",
         ],
-        date: "14th January, 2026",
+        date: "12th March, 2026",
         language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
         published: true,
