@@ -232,13 +232,43 @@ export function getAllWebinars(): Webinar[] {
 }
 
 export function getRegularWebinars(): Webinar[] {
-    return webinars.filter(
-        (webinar) => webinar.published && !isWebinarUpcoming(webinar),
-    );
+    return webinars
+        .filter((webinar) => webinar.published && !isWebinarUpcoming(webinar))
+        .sort((a, b) => {
+            try {
+                // Parse dates: "11th January, 2026" -> "11 January, 2026"
+                const dateStrA = a.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+                const dateStrB = b.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+
+                const dateA = new Date(dateStrA);
+                const dateB = new Date(dateStrB);
+
+                // Sort descending (most recent past date first)
+                return dateB.getTime() - dateA.getTime();
+            } catch (error) {
+                console.error("Error sorting webinars by date:", error);
+                return 0;
+            }
+        });
 }
 
 export function getUpcomingWebinars(): Webinar[] {
-    return webinars.filter(
-        (webinar) => webinar.published && isWebinarUpcoming(webinar),
-    );
+    return webinars
+        .filter((webinar) => webinar.published && isWebinarUpcoming(webinar))
+        .sort((a, b) => {
+            try {
+                // Parse dates: "6th March, 2026" -> "6 March, 2026"
+                const dateStrA = a.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+                const dateStrB = b.date.replace(/(\d+)(st|nd|rd|th)/, "$1");
+
+                const dateA = new Date(dateStrA);
+                const dateB = new Date(dateStrB);
+
+                // Sort ascending (soonest date first)
+                return dateA.getTime() - dateB.getTime();
+            } catch (error) {
+                console.error("Error sorting webinars by date:", error);
+                return 0;
+            }
+        });
 }
