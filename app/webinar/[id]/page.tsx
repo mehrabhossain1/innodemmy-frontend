@@ -10,7 +10,6 @@ import {
     ArrowLeft,
     Calendar,
     Clock,
-    Eye,
     User,
     Lock,
     LogIn,
@@ -137,12 +136,12 @@ export default function WebinarDetailsPage() {
                                     <Clock className="h-5 w-5 text-primary" />
                                     <span>{webinar.duration}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Eye className="h-5 w-5 text-primary" />
-                                    <span>
-                                        {webinar.views.toLocaleString()} views
-                                    </span>
-                                </div>
+                                {webinar.time && (
+                                    <div className="flex items-center gap-2">
+                                        <Calendar className="h-5 w-5 text-primary" />
+                                        <span>{webinar.time}</span>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Learning Points Section */}
@@ -494,25 +493,22 @@ function WebinarCard({ webinar }: { webinar: Webinar }) {
                             <Calendar className="h-3.5 w-3.5" />
                             <span>{webinar.date}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                            <Eye className="h-3.5 w-3.5" />
-                            <span>{webinar.views.toLocaleString()} views</span>
-                        </div>
+                        {webinar.time && (
+                            <div className="flex items-center gap-1">
+                                <Clock className="h-3.5 w-3.5" />
+                                <span>{webinar.time}</span>
+                            </div>
+                        )}
                     </div>
 
-                    {/* Topics */}
+                    {/* Duration & Category */}
                     <div className="flex flex-wrap gap-2">
-                        {webinar.topics.slice(0, 3).map((topic, idx) => (
-                            <span
-                                key={idx}
-                                className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium"
-                            >
-                                {topic}
-                            </span>
-                        ))}
-                        {webinar.topics.length > 3 && (
+                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">
+                            {webinar.duration}
+                        </span>
+                        {webinar.category && (
                             <span className="text-xs bg-gray-100 dark:bg-muted text-muted-foreground px-2 py-1 rounded-md font-medium">
-                                +{webinar.topics.length - 3} more
+                                {webinar.category}
                             </span>
                         )}
                     </div>

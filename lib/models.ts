@@ -116,13 +116,9 @@ export interface Webinar {
     instructor: string; // Instructor name
     instructorBio?: string; // Instructor biography
     instructorImage?: string; // Instructor profile image
-    views: number; // Number of views
-    topics: string[]; // Topics covered in the webinar
     date: string; // Webinar date
     time?: string; // Webinar time
-    language?: string; // Language of the webinar
     category?: string; // Webinar category
-    published?: boolean; // Whether the webinar is published
     isUpcoming?: boolean; // Whether this is an upcoming webinar (shows only in upcoming section)
     learningPoints?: {
         title: string;

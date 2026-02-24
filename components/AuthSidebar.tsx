@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import {
+    useLogin,
+    useRegister,
+    useForgotPassword,
+    useResetPassword,
+} from "@/lib/hooks";
 import {
     X,
     Mail,
@@ -10,13 +15,13 @@ import {
     CheckCircle2,
     ArrowLeft,
     KeyRound,
-    RefreshCw,
+    Loader2,
+    Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useAuth } from "@/lib/hooks/useAuth";
 
 interface AuthSidebarProps {
     isOpen: boolean;
@@ -24,12 +29,7 @@ interface AuthSidebarProps {
     initialView?: "login" | "register";
 }
 
-type AuthView =
-    | "login"
-    | "register"
-    | "verify-email"
-    | "forgot-password"
-    | "reset-password";
+type AuthView = "login" | "register" | "forgot-password" | "reset-password";
 
 export default function AuthSidebar({
     isOpen,
@@ -39,6 +39,12 @@ export default function AuthSidebar({
     const [activeView, setActiveView] = useState<AuthView>(initialView);
     const [pendingEmail, setPendingEmail] = useState("");
 
+    // React Query mutations
+    const loginMutation = useLogin();
+    const registerMutation = useRegister();
+    const forgotPasswordMutation = useForgotPassword();
+    const resetPasswordMutation = useResetPassword();
+
     // Update active view when initialView changes
     useEffect(() => {
         if (isOpen) {
@@ -47,19 +53,16 @@ export default function AuthSidebar({
     }, [isOpen, initialView]);
 
     const [loginData, setLoginData] = useState({
-        email: "",
+        identifier: "", // email or phone
         password: "",
     });
 
     const [registerData, setRegisterData] = useState({
         name: "",
         email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
-    });
-
-    const [verifyData, setVerifyData] = useState({
-        code: "",
     });
 
     const [forgotPasswordData, setForgotPasswordData] = useState({
@@ -72,63 +75,40 @@ export default function AuthSidebar({
         confirmPassword: "",
     });
 
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const [resendCooldown, setResendCooldown] = useState(0);
 
-    const router = useRouter();
-    const { login } = useAuth();
-
-    // Cooldown timer for resend OTP
+    // Close sidebar on successful auth
     useEffect(() => {
-        if (resendCooldown > 0) {
-            const timer = setTimeout(
-                () => setResendCooldown(resendCooldown - 1),
-                1000
-            );
-            return () => clearTimeout(timer);
+        if (loginMutation.isSuccess || registerMutation.isSuccess) {
+            setTimeout(() => {
+                onClose();
+            }, 1000);
         }
-    }, [resendCooldown]);
+    }, [loginMutation.isSuccess, registerMutation.isSuccess, onClose]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         setSuccess("");
-        setLoading(true);
+
+        if (!loginData.identifier || !loginData.password) {
+            setError("Please fill in all fields");
+            return;
+        }
 
         try {
-            const response = await fetch("/api/auth/signin", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginData),
+            await loginMutation.mutateAsync({
+                identifier: loginData.identifier,
+                password: loginData.password,
             });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                login(data.token, data.user);
-                setSuccess("Login successful! Redirecting...");
-                setLoginData({ email: "", password: "" });
-
-                setTimeout(() => {
-                    onClose();
-                    if (data.user.role === "admin") {
-                        router.push("/admin/dashboard");
-                    } else {
-                        router.push("/dashboard");
-                    }
-                }, 1000);
-            } else {
-                setError(data.error || "Login failed");
-            }
-        } catch (err) {
-            console.error("Login error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
+            // Success handled by mutation onSuccess (redirects + toast)
+            setSuccess("Login successful! Redirecting...");
+            setLoginData({ identifier: "", password: "" });
+        } catch (err: unknown) {
+            const errorMessage =
+                err instanceof Error ? err.message : "Login failed";
+            setError(errorMessage);
         }
     };
 
@@ -136,140 +116,42 @@ export default function AuthSidebar({
         e.preventDefault();
         setError("");
         setSuccess("");
-        setLoading(true);
 
         if (registerData.password !== registerData.confirmPassword) {
             setError("Passwords do not match");
-            setLoading(false);
             return;
         }
 
         if (registerData.password.length < 6) {
             setError("Password must be at least 6 characters long");
-            setLoading(false);
+            return;
+        }
+
+        if (!registerData.email && !registerData.phone) {
+            setError("Please provide either email or phone number");
             return;
         }
 
         try {
-            const response = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: registerData.name,
-                    email: registerData.email,
-                    password: registerData.password,
-                }),
+            await registerMutation.mutateAsync({
+                name: registerData.name,
+                email: registerData.email || undefined,
+                phone: registerData.phone || undefined,
+                password: registerData.password,
             });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                // Auto-login the user after successful registration
-                login(data.token, data.user);
-                setSuccess("Account created successfully! Redirecting...");
-                setRegisterData({
-                    name: "",
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
-                });
-
-                setTimeout(() => {
-                    onClose();
-                    if (data.user.role === "admin") {
-                        router.push("/admin/dashboard");
-                    } else {
-                        router.push("/dashboard");
-                    }
-                }, 1000);
-            } else {
-                setError(data.error || "Registration failed");
-            }
-        } catch (err) {
-            console.error("Registration error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleVerifyEmail = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-        setSuccess("");
-        setLoading(true);
-
-        try {
-            const response = await fetch("/api/auth/verify-email", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: pendingEmail,
-                    code: verifyData.code,
-                }),
+            // Success handled by mutation onSuccess
+            setSuccess("Account created successfully! Redirecting...");
+            setRegisterData({
+                name: "",
+                email: "",
+                phone: "",
+                password: "",
+                confirmPassword: "",
             });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                login(data.token, data.user);
-                setSuccess("Email verified successfully! Redirecting...");
-                setVerifyData({ code: "" });
-
-                setTimeout(() => {
-                    onClose();
-                    router.push("/dashboard");
-                }, 1000);
-            } else {
-                if (data.expired || data.maxAttemptsReached) {
-                    setError(
-                        data.error + " Click 'Resend Code' to get a new one."
-                    );
-                } else {
-                    setError(data.error || "Verification failed");
-                }
-            }
-        } catch (err) {
-            console.error("Verification error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleResendOTP = async () => {
-        if (resendCooldown > 0) return;
-
-        setError("");
-        setSuccess("");
-        setLoading(true);
-
-        try {
-            const response = await fetch("/api/auth/resend-otp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email: pendingEmail }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                setSuccess("Verification code resent! Check your email.");
-                setResendCooldown(60); // 60 seconds cooldown
-            } else {
-                setError(data.error || "Failed to resend code");
-            }
-        } catch (err) {
-            console.error("Resend OTP error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
+        } catch (err: unknown) {
+            const errorMessage =
+                err instanceof Error ? err.message : "Registration failed";
+            setError(errorMessage);
         }
     };
 
@@ -277,35 +159,28 @@ export default function AuthSidebar({
         e.preventDefault();
         setError("");
         setSuccess("");
-        setLoading(true);
+
+        if (!forgotPasswordData.email) {
+            setError("Please enter your email address");
+            return;
+        }
 
         try {
-            const response = await fetch("/api/auth/forgot-password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email: forgotPasswordData.email }),
+            await forgotPasswordMutation.mutateAsync({
+                email: forgotPasswordData.email,
             });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                setPendingEmail(forgotPasswordData.email);
-                setSuccess("Password reset code sent! Check your email.");
-
-                setTimeout(() => {
-                    setActiveView("reset-password");
-                    setSuccess("");
-                }, 2000);
-            } else {
-                setError(data.error || "Failed to send reset code");
-            }
-        } catch (err) {
-            console.error("Forgot password error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
+            setPendingEmail(forgotPasswordData.email);
+            setSuccess("Password reset link sent! Check your email.");
+            setTimeout(() => {
+                setActiveView("reset-password");
+                setSuccess("");
+            }, 2000);
+        } catch (err: unknown) {
+            const errorMessage =
+                err instanceof Error
+                    ? err.message
+                    : "Failed to send reset link";
+            setError(errorMessage);
         }
     };
 
@@ -313,61 +188,38 @@ export default function AuthSidebar({
         e.preventDefault();
         setError("");
         setSuccess("");
-        setLoading(true);
 
         if (
             resetPasswordData.newPassword !== resetPasswordData.confirmPassword
         ) {
             setError("Passwords do not match");
-            setLoading(false);
             return;
         }
 
         if (resetPasswordData.newPassword.length < 6) {
             setError("Password must be at least 6 characters long");
-            setLoading(false);
             return;
         }
 
         try {
-            const response = await fetch("/api/auth/reset-password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: pendingEmail,
-                    code: resetPasswordData.code,
-                    newPassword: resetPasswordData.newPassword,
-                }),
+            await resetPasswordMutation.mutateAsync({
+                token: resetPasswordData.code,
+                newPassword: resetPasswordData.newPassword,
             });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                setSuccess("Password reset successful! You can now login.");
-                setResetPasswordData({
-                    code: "",
-                    newPassword: "",
-                    confirmPassword: "",
-                });
-
-                setTimeout(() => {
-                    setActiveView("login");
-                    setSuccess("");
-                }, 2000);
-            } else {
-                if (data.expired || data.maxAttemptsReached) {
-                    setError(data.error + " Please request a new code.");
-                } else {
-                    setError(data.error || "Password reset failed");
-                }
-            }
-        } catch (err) {
-            console.error("Reset password error:", err);
-            setError("Unable to connect to the server. Please try again.");
-        } finally {
-            setLoading(false);
+            setSuccess("Password reset successful! You can now login.");
+            setResetPasswordData({
+                code: "",
+                newPassword: "",
+                confirmPassword: "",
+            });
+            setTimeout(() => {
+                setActiveView("login");
+                setSuccess("");
+            }, 2000);
+        } catch (err: unknown) {
+            const errorMessage =
+                err instanceof Error ? err.message : "Password reset failed";
+            setError(errorMessage);
         }
     };
 
@@ -376,7 +228,6 @@ export default function AuthSidebar({
         setError("");
         setSuccess("");
         setPendingEmail("");
-        setVerifyData({ code: "" });
         setResetPasswordData({
             code: "",
             newPassword: "",
@@ -403,8 +254,7 @@ export default function AuthSidebar({
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
-                        {(activeView === "verify-email" ||
-                            activeView === "forgot-password" ||
+                        {(activeView === "forgot-password" ||
                             activeView === "reset-password") && (
                             <button
                                 onClick={resetToLogin}
@@ -417,8 +267,6 @@ export default function AuthSidebar({
                             <h2 className="text-2xl font-bold text-foreground">
                                 {activeView === "login" && "Welcome Back!"}
                                 {activeView === "register" && "Join Innodemy"}
-                                {activeView === "verify-email" &&
-                                    "Verify Email"}
                                 {activeView === "forgot-password" &&
                                     "Reset Password"}
                                 {activeView === "reset-password" &&
@@ -429,8 +277,6 @@ export default function AuthSidebar({
                                     "Sign in to continue your learning journey"}
                                 {activeView === "register" &&
                                     "Create your account to get started"}
-                                {activeView === "verify-email" &&
-                                    "Enter the code sent to your email"}
                                 {activeView === "forgot-password" &&
                                     "We'll send you a reset code"}
                                 {activeView === "reset-password" &&
@@ -511,26 +357,27 @@ export default function AuthSidebar({
                         <form onSubmit={handleLogin} className="space-y-5">
                             <div className="space-y-2">
                                 <Label
-                                    htmlFor="login-email"
+                                    htmlFor="login-identifier"
                                     className="text-foreground font-medium"
                                 >
-                                    Email Address
+                                    Email or Phone
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                                     <Input
-                                        id="login-email"
-                                        type="email"
-                                        placeholder="your@email.com"
-                                        value={loginData.email}
+                                        id="login-identifier"
+                                        type="text"
+                                        placeholder="Email or phone number"
+                                        value={loginData.identifier}
                                         onChange={(e) =>
                                             setLoginData({
                                                 ...loginData,
-                                                email: e.target.value,
+                                                identifier: e.target.value,
                                             })
                                         }
                                         className="h-12 pl-10"
                                         required
+                                        disabled={loginMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -557,6 +404,7 @@ export default function AuthSidebar({
                                         }
                                         className="h-12 pl-10"
                                         required
+                                        disabled={loginMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -564,15 +412,15 @@ export default function AuthSidebar({
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
-                                disabled={loading}
+                                disabled={loginMutation.isPending}
                             >
-                                {loading ? (
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                        Signing in...
-                                    </div>
+                                {loginMutation.isPending ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                        Logging in...
+                                    </>
                                 ) : (
-                                    "Sign In"
+                                    "Login"
                                 )}
                             </Button>
 
@@ -625,6 +473,7 @@ export default function AuthSidebar({
                                         }
                                         className="h-12 pl-10"
                                         required
+                                        disabled={registerMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -634,8 +483,7 @@ export default function AuthSidebar({
                                     htmlFor="register-email"
                                     className="text-foreground font-medium"
                                 >
-                                    Email Address{" "}
-                                    <span className="text-red-500">*</span>
+                                    Email Address (Optional)
                                 </Label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -651,7 +499,36 @@ export default function AuthSidebar({
                                             })
                                         }
                                         className="h-12 pl-10"
-                                        required
+                                        disabled={registerMutation.isPending}
+                                    />
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                    Provide either email or phone
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label
+                                    htmlFor="register-phone"
+                                    className="text-foreground font-medium"
+                                >
+                                    Phone Number (Optional)
+                                </Label>
+                                <div className="relative">
+                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                                    <Input
+                                        id="register-phone"
+                                        type="tel"
+                                        placeholder="+880 1700 000000"
+                                        value={registerData.phone}
+                                        onChange={(e) =>
+                                            setRegisterData({
+                                                ...registerData,
+                                                phone: e.target.value,
+                                            })
+                                        }
+                                        className="h-12 pl-10"
+                                        disabled={registerMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -679,6 +556,7 @@ export default function AuthSidebar({
                                         }
                                         className="h-12 pl-10"
                                         required
+                                        disabled={registerMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -706,6 +584,7 @@ export default function AuthSidebar({
                                         }
                                         className="h-12 pl-10"
                                         required
+                                        disabled={registerMutation.isPending}
                                     />
                                 </div>
                             </div>
@@ -713,13 +592,13 @@ export default function AuthSidebar({
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary/70 text-white shadow-lg shadow-secondary/20"
-                                disabled={loading}
+                                disabled={registerMutation.isPending}
                             >
-                                {loading ? (
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                {registerMutation.isPending ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                                         Creating Account...
-                                    </div>
+                                    </>
                                 ) : (
                                     "Create Account"
                                 )}
@@ -755,85 +634,6 @@ export default function AuthSidebar({
                                 </Link>
                                 .
                             </p>
-                        </form>
-                    )}
-
-                    {/* Verify Email Form */}
-                    {activeView === "verify-email" && (
-                        <form
-                            onSubmit={handleVerifyEmail}
-                            className="space-y-5"
-                        >
-                            <div className="bg-accent/50 p-4 rounded-lg border border-border">
-                                <p className="text-sm text-muted-foreground">
-                                    We sent a 6-digit verification code to:
-                                </p>
-                                <p className="text-sm font-semibold text-foreground mt-1">
-                                    {pendingEmail}
-                                </p>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label
-                                    htmlFor="verify-code"
-                                    className="text-foreground font-medium"
-                                >
-                                    Verification Code
-                                </Label>
-                                <div className="relative">
-                                    <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                                    <Input
-                                        id="verify-code"
-                                        type="text"
-                                        placeholder="Enter 6-digit code"
-                                        value={verifyData.code}
-                                        onChange={(e) =>
-                                            setVerifyData({
-                                                code: e.target.value
-                                                    .replace(/\D/g, "")
-                                                    .slice(0, 6),
-                                            })
-                                        }
-                                        className="h-12 pl-10 text-center text-2xl tracking-widest"
-                                        maxLength={6}
-                                        required
-                                    />
-                                </div>
-                                <p className="text-xs text-muted-foreground">
-                                    Code expires in 10 minutes. Max 3 attempts.
-                                </p>
-                            </div>
-
-                            <Button
-                                type="submit"
-                                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
-                                disabled={
-                                    loading || verifyData.code.length !== 6
-                                }
-                            >
-                                {loading ? (
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                        Verifying...
-                                    </div>
-                                ) : (
-                                    "Verify Email"
-                                )}
-                            </Button>
-
-                            <div className="text-center">
-                                <button
-                                    type="button"
-                                    onClick={handleResendOTP}
-                                    disabled={resendCooldown > 0 || loading}
-                                    className="text-sm text-primary hover:underline font-medium disabled:text-muted-foreground disabled:no-underline flex items-center gap-2 justify-center mx-auto"
-                                >
-                                    <RefreshCw className="w-4 h-4" />
-                                    {resendCooldown > 0
-                                        ? `Resend Code (${resendCooldown}s)`
-                                        : "Resend Code"}
-                                </button>
-                            </div>
                         </form>
                     )}
 
@@ -878,9 +678,9 @@ export default function AuthSidebar({
                             <Button
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
-                                disabled={loading}
+                                disabled={forgotPasswordMutation.isPending}
                             >
-                                {loading ? (
+                                {forgotPasswordMutation.isPending ? (
                                     <div className="flex items-center gap-2">
                                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Sending Code...
@@ -994,11 +794,11 @@ export default function AuthSidebar({
                                 type="submit"
                                 className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white shadow-lg shadow-primary/20"
                                 disabled={
-                                    loading ||
+                                    resetPasswordMutation.isPending ||
                                     resetPasswordData.code.length !== 6
                                 }
                             >
-                                {loading ? (
+                                {resetPasswordMutation.isPending ? (
                                     <div className="flex items-center gap-2">
                                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                                         Resetting Password...

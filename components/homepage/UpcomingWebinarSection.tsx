@@ -18,7 +18,7 @@ import { getUpcomingWebinars } from "@/lib/data/webinars";
 
 export default function UpcomingWebinarSection() {
     const plugin = React.useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: true })
+        Autoplay({ delay: 4000, stopOnInteraction: true }),
     );
     const webinars = getUpcomingWebinars();
 
@@ -158,7 +158,7 @@ export default function UpcomingWebinarSection() {
                                                         <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                                                             <span className="text-[10px] lg:text-xs font-bold text-primary">
                                                                 {webinar.instructor.charAt(
-                                                                    0
+                                                                    0,
                                                                 )}
                                                             </span>
                                                         </div>
@@ -173,24 +173,14 @@ export default function UpcomingWebinarSection() {
                                                     </div>
                                                 </div>
 
-                                                {/* Topics */}
-                                                <div className="flex flex-wrap gap-1 lg:gap-1.5">
-                                                    {webinar.topics
-                                                        .slice(0, 2)
-                                                        .map((topic, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-accent/10 to-primary/10 text-accent border border-accent/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
-                                                            >
-                                                                {topic}
-                                                            </span>
-                                                        ))}
-                                                    {webinar.topics.length >
-                                                        2 && (
-                                                        <span className="text-[10px] lg:text-xs bg-muted/50 text-muted-foreground px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium border border-border">
-                                                            +
-                                                            {webinar.topics
-                                                                .length - 2}
+                                                {/* Duration & Time */}
+                                                <div className="flex flex-wrap gap-1.5 lg:gap-2">
+                                                    <span className="text-[10px] lg:text-xs bg-gradient-to-r from-accent/10 to-primary/10 text-accent border border-accent/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium">
+                                                        {webinar.duration}
+                                                    </span>
+                                                    {webinar.time && (
+                                                        <span className="text-[10px] lg:text-xs bg-gradient-to-r from-primary/10 to-accent/10 text-primary border border-primary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium">
+                                                            {webinar.time}
                                                         </span>
                                                     )}
                                                 </div>

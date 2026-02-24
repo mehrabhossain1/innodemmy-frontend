@@ -16,19 +16,9 @@ export const webinars: Webinar[] = [
         instructorBio:
             "PhD in ECE candidate - University of Florida | Research Scholar, SRC Research Scholars Program | Graduate Research Assistant, RISING Lab at The University of Florida | MS, Computer Science, Florida State University",
         instructorImage: "/instructors/Kazi-Mejbaul-Islam.jpeg",
-        views: 0,
-        topics: [
-            "Scholarship Opportunities",
-            "SOP & LOR Writing",
-            "University Selection",
-            "IELTS/TOEFL/GRE",
-            "Profile Building",
-            "Study Abroad",
-        ],
+
         date: "11th January, 2026",
-        language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
         isUpcoming: true,
         learningPoints: {
             title: "কী কী শিখতে পারবেন এই ওয়েবিনারে?",
@@ -65,19 +55,9 @@ export const webinars: Webinar[] = [
         instructorBio:
             "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
         instructorImage: "/instructors/Nafee.jpg",
-        views: 0,
-        topics: [
-            "Scholarship Opportunities",
-            "SOP & LOR Writing",
-            "University Selection",
-            "IELTS/TOEFL/GRE",
-            "Profile Building",
-            "Study Abroad",
-        ],
+
         date: "12th March, 2026",
-        language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
         isUpcoming: true,
         learningPoints: {
             title: "এই ওয়েবিনারে যা যা শিখবেন",
@@ -113,19 +93,9 @@ export const webinars: Webinar[] = [
         instructorBio:
             "Clinical & Health Science Expert | Specialist in guiding students through higher studies and scholarship opportunities for Clinical & Translational Health Science backgrounds",
         instructorImage: "/instructors/saiful.jpeg",
-        views: 0,
-        topics: [
-            "Clinical Health Science",
-            "Scholarship Opportunities",
-            "Academic Profile Building",
-            "SOP & LOR Writing",
-            "Research & Publication",
-            "International Higher Studies",
-        ],
+
         date: "16th January, 2026",
-        language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
         isUpcoming: true,
         learningPoints: {
             title: "এই ওয়েবিনারে যা যা শিখবেন",
@@ -162,19 +132,9 @@ export const webinars: Webinar[] = [
         instructorBio:
             "AI Engineering Expert & Technical Mentor | Specialist in Machine Learning, Deep Learning & AI Career Development | Helping aspiring engineers build successful careers in Artificial Intelligence",
         instructorImage: "/instructors/shishir.png",
-        views: 0,
-        topics: [
-            "AI Engineering",
-            "Machine Learning",
-            "Deep Learning",
-            "MLOps & Deployment",
-            "Career Development",
-            "AI Project Portfolio",
-        ],
+
         date: "6th March, 2026",
-        language: "Bengali",
         category: COURSE_CATEGORIES.PROGRAMMING,
-        published: true,
         isUpcoming: true,
         learningPoints: {
             title: "এই ওয়েবিনারে যা যা শিখবেন",
@@ -228,12 +188,12 @@ export function getWebinarById(id: string): Webinar | undefined {
 }
 
 export function getAllWebinars(): Webinar[] {
-    return webinars.filter((webinar) => webinar.published);
+    return webinars;
 }
 
 export function getRegularWebinars(): Webinar[] {
     return webinars
-        .filter((webinar) => webinar.published && !isWebinarUpcoming(webinar))
+        .filter((webinar) => !isWebinarUpcoming(webinar))
         .sort((a, b) => {
             try {
                 // Parse dates: "11th January, 2026" -> "11 January, 2026"
@@ -254,7 +214,7 @@ export function getRegularWebinars(): Webinar[] {
 
 export function getUpcomingWebinars(): Webinar[] {
     return webinars
-        .filter((webinar) => webinar.published && isWebinarUpcoming(webinar))
+        .filter((webinar) => isWebinarUpcoming(webinar))
         .sort((a, b) => {
             try {
                 // Parse dates: "6th March, 2026" -> "6 March, 2026"

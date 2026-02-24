@@ -61,13 +61,20 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons to a plain ComponentType
-const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
-    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
-    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+const wrapIcon = (
+    Icon: React.ComponentType<{ className?: string }>,
+): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => (
+        <Icon className={className} />
+    );
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || "Icon"}`;
     return WrappedIcon;
 };
 
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIcons: Record<
+    string,
+    React.ComponentType<{ className?: string }>
+> = {
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
@@ -132,9 +139,9 @@ export default function WebinarPage() {
                 webinar.description
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
-                webinar.topics.some((topic) =>
-                    topic.toLowerCase().includes(searchTerm.toLowerCase())
-                );
+                webinar.instructor
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
             const matchesCategory =
                 activeCategory === "all" || webinar.category === activeCategory;
             return matchesSearch && matchesCategory;
@@ -267,7 +274,7 @@ export default function WebinarPage() {
                                         <PaginationPrevious
                                             onClick={() =>
                                                 setCurrentPage((prev) =>
-                                                    Math.max(1, prev - 1)
+                                                    Math.max(1, prev - 1),
                                                 )
                                             }
                                             className={
@@ -296,8 +303,8 @@ export default function WebinarPage() {
                                                 setCurrentPage((prev) =>
                                                     Math.min(
                                                         totalPages,
-                                                        prev + 1
-                                                    )
+                                                        prev + 1,
+                                                    ),
                                                 )
                                             }
                                             className={
@@ -431,25 +438,22 @@ function WebinarCard({ webinar }: { webinar: Webinar }) {
                             <Calendar className="h-3.5 w-3.5" />
                             <span>{webinar.date}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                            <Eye className="h-3.5 w-3.5" />
-                            <span>{webinar.views.toLocaleString()} views</span>
-                        </div>
+                        {webinar.time && (
+                            <div className="flex items-center gap-1">
+                                <Eye className="h-3.5 w-3.5" />
+                                <span>{webinar.time}</span>
+                            </div>
+                        )}
                     </div>
 
-                    {/* Topics */}
+                    {/* Duration & Category */}
                     <div className="flex flex-wrap gap-2">
-                        {webinar.topics.slice(0, 3).map((topic, idx) => (
-                            <span
-                                key={idx}
-                                className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium"
-                            >
-                                {topic}
-                            </span>
-                        ))}
-                        {webinar.topics.length > 3 && (
+                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">
+                            {webinar.duration}
+                        </span>
+                        {webinar.category && (
                             <span className="text-xs bg-gray-100 dark:bg-muted text-muted-foreground px-2 py-1 rounded-md font-medium">
-                                +{webinar.topics.length - 3} more
+                                {webinar.category}
                             </span>
                         )}
                     </div>

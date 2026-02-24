@@ -18,7 +18,7 @@ import { getRegularWebinars } from "@/lib/data/webinars";
 
 export default function FreeMasterclassSection() {
     const plugin = React.useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: true })
+        Autoplay({ delay: 4000, stopOnInteraction: true }),
     );
     const webinars = getRegularWebinars();
 
@@ -125,7 +125,7 @@ export default function FreeMasterclassSection() {
                                                         <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                                                             <span className="text-[10px] lg:text-xs font-bold text-primary">
                                                                 {masterclass.instructor.charAt(
-                                                                    0
+                                                                    0,
                                                                 )}
                                                             </span>
                                                         </div>
@@ -142,24 +142,18 @@ export default function FreeMasterclassSection() {
                                                     </div>
                                                 </div>
 
-                                                {/* Topics */}
+                                                {/* Info Tags */}
                                                 <div className="flex flex-wrap gap-1 lg:gap-1.5">
-                                                    {masterclass.topics
-                                                        .slice(0, 2)
-                                                        .map((topic, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className="text-[10px] lg:text-xs bg-gradient-to-r from-secondary/10 to-primary/10 text-secondary border border-secondary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium"
-                                                            >
-                                                                {topic}
-                                                            </span>
-                                                        ))}
-                                                    {masterclass.topics.length >
-                                                        2 && (
+                                                    {masterclass.category && (
+                                                        <span className="text-[10px] lg:text-xs bg-gradient-to-r from-secondary/10 to-primary/10 text-secondary border border-secondary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium">
+                                                            {
+                                                                masterclass.category
+                                                            }
+                                                        </span>
+                                                    )}
+                                                    {masterclass.time && (
                                                         <span className="text-[10px] lg:text-xs bg-muted/50 text-muted-foreground px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium border border-border">
-                                                            +
-                                                            {masterclass.topics
-                                                                .length - 2}
+                                                            {masterclass.time}
                                                         </span>
                                                     )}
                                                 </div>
