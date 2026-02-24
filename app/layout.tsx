@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import ConditionalLayout from "@/components/ConditionalLayout";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { Providers } from "./providers";
 import SupportButton from "@/components/SupportButton";
 
 const hindSiliguri = Hind_Siliguri({
@@ -137,15 +137,10 @@ export default function RootLayout({
                     />
                 </noscript>
                 {/* End Google Tag Manager (noscript) */}
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
+                <Providers>
                     <ConditionalLayout>{children}</ConditionalLayout>
                     <SupportButton />
-                </ThemeProvider>
+                </Providers>
             </body>
         </html>
     );
