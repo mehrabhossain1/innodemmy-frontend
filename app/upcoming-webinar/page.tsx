@@ -368,7 +368,6 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                         webinar_instructor: webinar.instructor,
                         webinar_date: webinar.date,
                         webinar_category: webinar.category,
-                        webinar_duration: webinar.duration,
                         click_location: "webinar_listing_page",
                     });
                 }
@@ -396,10 +395,6 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                         <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-md text-xs font-bold flex items-center gap-1">
                             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
                             UPCOMING
-                        </div>
-                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            {webinar.duration}
                         </div>
                     </div>
                 </div>
@@ -446,9 +441,6 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
 
                     {/* Duration & Category */}
                     <div className="flex flex-wrap gap-2">
-                        <span className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-md font-medium">
-                            {webinar.duration}
-                        </span>
                         {webinar.category && (
                             <span className="text-xs bg-gray-100 dark:bg-muted text-muted-foreground px-2 py-1 rounded-md font-medium">
                                 {webinar.category}
