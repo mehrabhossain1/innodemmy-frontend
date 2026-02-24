@@ -359,20 +359,60 @@ export default function UpcomingWebinarDetailsPage() {
                                 </div>
                             </div>
 
-                            {/* What You'll Learn Section */}
+                            {/* Learning Points Section */}
                             {webinar.learningPoints && (
-                                <WebinarLearningPoints
-                                    title={webinar.learningPoints.title}
-                                    points={webinar.learningPoints.points}
-                                />
+                                <div className="space-y-3">
+                                    <h3 className="font-semibold text-xl md:text-2xl">
+                                        {webinar.learningPoints.title}
+                                    </h3>
+                                    <div className="space-y-3">
+                                        {webinar.learningPoints.points.map(
+                                            (point, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="flex items-start gap-3"
+                                                >
+                                                    <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <span className="text-primary font-bold text-base">
+                                                            {idx + 1}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-muted-foreground text-base leading-relaxed flex-1">
+                                                        {point}
+                                                    </p>
+                                                </div>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
                             )}
 
                             {/* Why Study Abroad Section */}
                             {webinar.whyStudyAbroad && (
-                                <WebinarLearningPoints
-                                    title={webinar.whyStudyAbroad.title}
-                                    points={webinar.whyStudyAbroad.points}
-                                />
+                                <div className="space-y-3">
+                                    <h3 className="font-semibold text-xl md:text-2xl">
+                                        {webinar.whyStudyAbroad.title}
+                                    </h3>
+                                    <div className="space-y-3">
+                                        {webinar.whyStudyAbroad.points.map(
+                                            (point, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="flex items-start gap-3"
+                                                >
+                                                    <div className="w-7 h-7 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <span className="text-secondary font-bold text-base">
+                                                            {idx + 1}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-muted-foreground text-base leading-relaxed flex-1">
+                                                        {point}
+                                                    </p>
+                                                </div>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
                             )}
                         </div>
 
