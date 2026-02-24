@@ -103,7 +103,7 @@ export default function UpcomingWebinarDetailsPage() {
         // Create date in Bangladesh Time (UTC+6)
         // We need to subtract 6 hours when creating UTC date
         const targetDate = new Date(
-            Date.UTC(year, month, day, hour - 6, minute, 0)
+            Date.UTC(year, month, day, hour - 6, minute, 0),
         ).getTime();
 
         const updateCountdown = () => {
@@ -117,10 +117,10 @@ export default function UpcomingWebinarDetailsPage() {
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
-                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
             );
             const minutes = Math.floor(
-                (distance % (1000 * 60 * 60)) / (1000 * 60)
+                (distance % (1000 * 60 * 60)) / (1000 * 60),
             );
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -357,13 +357,6 @@ export default function UpcomingWebinarDetailsPage() {
                                     </svg>
                                     <span>Platform: Zoom</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Users className="h-5 w-5 text-accent" />
-                                    <span>
-                                        726+ students have successfully enrolled
-                                        in this course!
-                                    </span>
-                                </div>
                             </div>
 
                             {/* What You'll Learn Section */}
@@ -393,14 +386,6 @@ export default function UpcomingWebinarDetailsPage() {
                                     fill
                                     className="object-cover"
                                 />
-                                {/* Badges */}
-                                <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-md text-xs font-bold flex items-center gap-1">
-                                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                                    UPCOMING
-                                </div>
-                                <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
-                                    {webinar.duration}
-                                </div>
                             </div>
 
                             {/* Instructor Card */}
@@ -515,15 +500,6 @@ export default function UpcomingWebinarDetailsPage() {
                                                 </div>
                                             </div>
                                         ))}
-                                    </div>
-                                    <div className="mt-5 pt-4 border-t border-accent/20">
-                                        <p className="text-xs text-center font-semibold flex items-center justify-center gap-1.5">
-                                            <Users className="h-4 w-4 text-accent animate-pulse" />
-                                            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                                                726+ students have successfully
-                                                enrolled!
-                                            </span>
-                                        </p>
                                     </div>
                                 </div>
                             </div>
