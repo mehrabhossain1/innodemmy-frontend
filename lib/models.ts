@@ -112,7 +112,6 @@ export interface Webinar {
     description: string; // Detailed description
     image: string; // Thumbnail image URL
     videoUrl: string; // Video URL (YouTube, Vimeo, etc.)
-    duration: string; // Duration in format like "2h 30m"
     instructor: string; // Instructor name
     instructorBio?: string; // Instructor biography
     instructorImage?: string; // Instructor profile image

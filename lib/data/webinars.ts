@@ -10,7 +10,6 @@ export const webinars: Webinar[] = [
         image: "/upcoming-webinar/higher-studies.jpeg",
         videoUrl:
             "https://drive.google.com/file/d/1z1CQDw9ex77RYazgCmS0YSO-YJURYonn/preview",
-        duration: "2h",
         time: "9:00 PM - 11:00 PM",
         instructor: "Kazi Mejbaul Islam",
         instructorBio:
@@ -49,7 +48,6 @@ export const webinars: Webinar[] = [
             "Research paper লেখা ও publish করা higher studies, scholarship এবং academic বা research career-এর জন্য একটি অত্যন্ত গুরুত্বপূর্ণ যোগ্যতা। এই ওয়েবিনারে আপনি শিখবেন - research paper কীভাবে শুরু থেকে লিখবেন, কোন Journal বা Conference আপনার research-এর জন্য উপযুক্ত, এবং কীভাবে rejection এড়িয়ে publication-এর সম্ভাবনা বাড়ানো যায়",
         image: "/upcoming-webinar/research-pager.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
-        duration: "2h",
         time: "10:15 PM - 11:15 PM",
         instructor: "Md Nafee Al Islam, PhD",
         instructorBio:
@@ -87,7 +85,6 @@ export const webinars: Webinar[] = [
             "Clinical & Translational Health Science background থেকে বিদেশে উচ্চশিক্ষা ও scholarship পেতে সঠিক দিকনির্দেশনা অত্যন্ত গুরুত্বপূর্ণ। এই ওয়েবিনারে আপনি জানতে পারবেন কীভাবে Clinical অথবা Translational Health Science background থেকে বিশ্বের নামী দামী বিশ্ববিদ্যালয়গুলোতে scholarship-সহ higher studies-এর সুযোগ তৈরি করা যায়",
         image: "/upcoming-webinar/clinical-translational.png",
         videoUrl: "https://zoom.us/j/placeholder",
-        duration: "2h",
         time: "9:00 PM - 11:00 PM",
         instructor: "Md Saiful Islam",
         instructorBio:
@@ -126,7 +123,6 @@ export const webinars: Webinar[] = [
             "Artificial Intelligence এখন শুধু একটি buzzword নয়, এটি software engineering, data science ও product development-এর ভবিষ্যৎ নির্ধারণ করছে। কিন্তু অনেকেই জানেন না, AI Engineering আসলে কী, কোথা থেকে শুরু করতে হবে, এবং কীভাবে একটি structured roadmap অনুসরণ করে expert AI engineer হওয়া যায়",
         image: "/upcoming-webinar/ai-code.jpeg",
         videoUrl: "https://zoom.us/j/placeholder",
-        duration: "2h",
         time: "3:00 PM - 4:00 PM",
         instructor: "Arif Mahmud Sisir",
         instructorBio:

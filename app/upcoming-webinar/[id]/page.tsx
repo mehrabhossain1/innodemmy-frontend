@@ -223,7 +223,6 @@ export default function UpcomingWebinarDetailsPage() {
                     webinar_date: webinar.date,
                     webinar_time: webinar.time,
                     webinar_category: webinar.category,
-                    webinar_duration: webinar.duration,
                     webinar_instructor: webinar.instructor,
                     user_name: formData.fullName,
                     user_email: formData.email,
