@@ -5,23 +5,9 @@ import type { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    Search,
-    Calendar,
-    Clock,
-    Eye,
-    User,
-    ArrowLeft,
-    Play,
-    X,
-    Code,
-    Cpu,
-    FlaskConical,
-    Layers,
-} from "lucide-react";
+import { Search, Calendar, ArrowLeft, Play, Code } from "lucide-react";
 import { getUpcomingWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";
@@ -36,7 +22,6 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-    PaginationEllipsis,
 } from "@/components/ui/pagination";
 
 // Map category names to icons

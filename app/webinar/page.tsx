@@ -398,10 +398,6 @@ function WebinarCard({ webinar }: { webinar: Webinar }) {
                         <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold">
                             FREE
                         </div>
-                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            {webinar.duration}
-                        </div>
                     </div>
                 </div>
 
@@ -446,17 +442,14 @@ function WebinarCard({ webinar }: { webinar: Webinar }) {
                         )}
                     </div>
 
-                    {/* Duration & Category */}
-                    <div className="flex flex-wrap gap-2">
-                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">
-                            {webinar.duration}
-                        </span>
-                        {webinar.category && (
+                    {/* Category */}
+                    {webinar.category && (
+                        <div className="flex flex-wrap gap-2">
                             <span className="text-xs bg-gray-100 dark:bg-muted text-muted-foreground px-2 py-1 rounded-md font-medium">
                                 {webinar.category}
                             </span>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </CardContent>
             </Card>
         </Link>

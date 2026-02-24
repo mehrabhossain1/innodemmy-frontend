@@ -87,8 +87,6 @@ export default function UpcomingWebinarSection() {
                                                 webinar_date: webinar.date,
                                                 webinar_category:
                                                     webinar.category,
-                                                webinar_duration:
-                                                    webinar.duration,
                                                 click_location:
                                                     "homepage_carousel",
                                             });
@@ -118,11 +116,6 @@ export default function UpcomingWebinarSection() {
                                                             fill="currentColor"
                                                         />
                                                     </div>
-                                                </div>
-
-                                                {/* Duration Badge */}
-                                                <div className="absolute top-2 lg:top-3 right-2 lg:right-3 bg-black/80 backdrop-blur-sm text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-semibold border border-white/10">
-                                                    {webinar.duration}
                                                 </div>
 
                                                 {/* Live Badge */}
@@ -173,17 +166,14 @@ export default function UpcomingWebinarSection() {
                                                     </div>
                                                 </div>
 
-                                                {/* Duration & Time */}
-                                                <div className="flex flex-wrap gap-1.5 lg:gap-2">
-                                                    <span className="text-[10px] lg:text-xs bg-gradient-to-r from-accent/10 to-primary/10 text-accent border border-accent/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium">
-                                                        {webinar.duration}
-                                                    </span>
-                                                    {webinar.time && (
+                                                {/* Time */}
+                                                {webinar.time && (
+                                                    <div className="flex flex-wrap gap-1.5 lg:gap-2">
                                                         <span className="text-[10px] lg:text-xs bg-gradient-to-r from-primary/10 to-accent/10 text-primary border border-primary/20 px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full font-medium">
                                                             {webinar.time}
                                                         </span>
-                                                    )}
-                                                </div>
+                                                    </div>
+                                                )}
 
                                                 {/* Stats Bar */}
                                                 <div className="flex items-center justify-between pt-2 lg:pt-3 border-t border-border">
