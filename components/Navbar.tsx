@@ -19,9 +19,6 @@ import {
     LogOut,
     ChevronDown,
     Code,
-    Cpu,
-    FlaskConical,
-    Layers,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import Image from "next/image";

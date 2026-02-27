@@ -39,7 +39,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
 
     useEffect(() => {
         fetchBlog();
-    }, [id]);
+    }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const fetchBlog = async () => {
         try {

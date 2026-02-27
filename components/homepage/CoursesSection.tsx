@@ -6,10 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
     ArrowRight,
     Code,
-    TrendingUp,
-    Cpu,
-    FlaskConical,
-    Layers,
 } from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";

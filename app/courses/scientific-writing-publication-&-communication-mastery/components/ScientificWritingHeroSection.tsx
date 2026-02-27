@@ -1,5 +1,5 @@
 "use client";
-import { Video, Play, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CourseHighlights from "./CourseHighlights";
@@ -12,13 +12,11 @@ interface ScientificWritingHeroSectionProps {
         price: number;
         originalPrice: number;
         thumbnailUrl: string;
-        videoLabel: string;
         enrollButtonTextShort: string;
         liveCourseLabel: string;
         rating?: number;
         totalRatings?: number;
     };
-    onVideoClick: () => void;
     onEnrollClick: () => void;
 }
 
@@ -26,7 +24,6 @@ const ENROLLMENT_PHONE = "01521428597";
 
 export default function ScientificWritingHeroSection({
     courseData,
-    onVideoClick,
     onEnrollClick,
 }: ScientificWritingHeroSectionProps) {
     // Generate consistent rating values
@@ -113,31 +110,16 @@ export default function ScientificWritingHeroSection({
                         <CourseHighlights />
                     </div>
 
-                    {/* Right: Video & Enrollment - 1 column */}
+                    {/* Right: Course Image & Enrollment - 1 column */}
                     <div className="lg:col-span-1 lg:sticky lg:top-4 lg:self-start">
-                        {/* Video Thumbnail */}
-                        <div
-                            className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 group cursor-pointer border border-gray-100 dark:border-gray-700"
-                            onClick={onVideoClick}
-                        >
+                        {/* Course Image */}
+                        <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-4 border border-gray-100 dark:border-gray-700">
                             <Image
                                 src={courseData.thumbnailUrl}
                                 alt={courseData.title}
                                 fill
                                 className="object-cover"
                             />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                                    <Play className="w-12 h-12 text-primary fill-primary" />
-                                </div>
-                            </div>
-                            {/* Video Corner Label */}
-                            <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
-                                <Video className="w-4 h-4" />
-                                <span className="text-xs font-bold">
-                                    {courseData.videoLabel}
-                                </span>
-                            </div>
                         </div>
 
                         {/* Enrollment Card */}

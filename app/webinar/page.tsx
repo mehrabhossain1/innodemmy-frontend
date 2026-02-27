@@ -13,14 +13,10 @@ import {
     Calendar,
     Clock,
     Eye,
-    User,
     ArrowLeft,
     Play,
     X,
     Code,
-    Cpu,
-    FlaskConical,
-    Layers,
 } from "lucide-react";
 import { getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
@@ -36,7 +32,6 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-    PaginationEllipsis,
 } from "@/components/ui/pagination";
 
 // Map category names to icons

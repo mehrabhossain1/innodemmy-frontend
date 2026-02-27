@@ -61,7 +61,7 @@ export default function BookTheCallModal() {
             await new Promise((r) => setTimeout(r, 1200));
             setIsSubmitted(true);
             setFormData({ fullName: "", email: "", phoneNumber: "", message: "" });
-        } catch (err) {
+        } catch {
             // ignore for now
         } finally {
             setIsSubmitting(false);

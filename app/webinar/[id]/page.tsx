@@ -7,7 +7,7 @@ import { getWebinarById, getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import {
-    ArrowLeft,
+    ArrowLeft,    
     Calendar,
     Clock,
     Eye,

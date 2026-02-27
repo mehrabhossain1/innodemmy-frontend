@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getCourseById } from '@/lib/data/courses';
 
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -30,8 +30,8 @@ export async function GET(
 }
 
 export async function PUT(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  _request: Request,
+  { params: _params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // PUT endpoint disabled for hardcoded data
@@ -51,8 +51,8 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  _request: Request,
+  { params: _params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // DELETE endpoint disabled for hardcoded data

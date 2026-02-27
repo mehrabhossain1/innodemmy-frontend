@@ -13,7 +13,6 @@ import {
     User,
     Menu,
     X,
-    BarChart3,
     GraduationCap,
     FileText,
     Video,

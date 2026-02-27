@@ -1,6 +1,6 @@
 "use client";
 import SectionTitle from "@/components/course/SectionTitle";
-import { ChevronDown, Video, FileText } from "lucide-react";
+import { ChevronDown, Video } from "lucide-react";
 import { useState } from "react";
 
 interface Session {

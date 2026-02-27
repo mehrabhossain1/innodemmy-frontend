@@ -6,7 +6,7 @@ interface FreeConsultationButtonProps {
 }
 
 export default function FreeConsultationButton({
-    className = "",
+    className: _className = "",
 }: FreeConsultationButtonProps) {
     // Reuse modal which uses the same form as the on-page section
     return <BookTheCallModal />;

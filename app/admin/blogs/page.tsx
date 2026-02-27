@@ -14,11 +14,9 @@ import {
     Eye,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Blog } from "@/lib/models";
 
 export default function AdminBlogsPage() {
-    const router = useRouter();
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");

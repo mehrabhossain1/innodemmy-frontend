@@ -16,7 +16,7 @@ export async function GET() {
     }
 }
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
     try {
         // POST endpoint disabled for hardcoded data
         // To add courses, update lib/data/courses.ts directly

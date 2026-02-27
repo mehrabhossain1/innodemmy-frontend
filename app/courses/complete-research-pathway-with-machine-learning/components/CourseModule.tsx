@@ -723,17 +723,6 @@ export default function CourseModule() {
         setExpandedTopic(expandedTopic === topicKey ? null : topicKey);
     };
 
-    // Get instructor full name
-    const getInstructorName = (code: string) => {
-        const instructors: { [key: string]: string } = {
-            A: "Arif Mahmud Sisir",
-            M: "M Azizul Hakim Shuvo",
-            R: "Mamunur Rashid Alex",
-            N: "Md Nafee Al Islam",
-        };
-        return instructors[code] || code;
-    };
-
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl">
             <SectionTitle title="Course Module" />

@@ -126,6 +126,7 @@ export default function RootLayout({
             </head>
             <body
                 className={`${hindSiliguri.variable} ${hindSiliguri.className} antialiased`}
+                suppressHydrationWarning
             >
                 {/* Google Tag Manager (noscript) */}
                 <noscript>

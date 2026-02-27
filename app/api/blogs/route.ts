@@ -4,7 +4,7 @@ import { getPublishedBlogs, createBlog } from "@/lib/services/blogs";
 /**
  * GET /api/blogs - Get all published blogs
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         const blogs = await getPublishedBlogs();
 

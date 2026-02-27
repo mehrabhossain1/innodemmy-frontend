@@ -26,7 +26,7 @@ export async function findCourseById(id: string | ObjectId) {
         try {
             const course = await collection.findOne({ _id: new ObjectId(id) });
             if (course) return course;
-        } catch (error) {
+        } catch {
             // If ObjectId conversion fails, continue to slug search
             console.log("Failed to find course by ObjectId, trying slug");
         }

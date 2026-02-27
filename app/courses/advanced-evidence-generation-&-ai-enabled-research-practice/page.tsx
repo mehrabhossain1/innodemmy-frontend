@@ -13,7 +13,6 @@ import ResourcePersons from "./components/ResourcePersons";
 import BookTheCallCard from "@/components/BookTheCallCard";
 
 const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
-    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
 
     // Navigation items
@@ -34,11 +33,8 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
         price: 8000,
         originalPrice: 12000,
         currency: "৳",
-        videoUrl:
-            "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr&autoplay=1",
         thumbnailUrl: "/courses/ClinicalAdvanced.jpg",
         checkoutLink: "/checkout?course=advanced-evidence-generation",
-        videoLabel: "Click to watch the demo class",
         enrollButtonText: "Enroll in Batch →",
         enrollButtonTextShort: "Enroll Now",
         promoLabel: "Promo Applied",
@@ -56,39 +52,9 @@ const AdvancedEvidenceGenerationAiEnabledResearchPractice = () => {
                 courseId="advanced-evidence-generation-ai-enabled-research-practice"
             />
 
-            {/* Video Modal */}
-            {isVideoPlaying && (
-                <div className="fixed inset-0 bg-black/80 dark:bg-black/90 z-50 flex items-center justify-center p-4">
-                    <div className="relative w-full max-w-4xl">
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setIsVideoPlaying(false)}
-                            className="absolute -top-12 right-0 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                        >
-                            ✕
-                        </button>
-                        {/* Video Container */}
-                        <div className="relative aspect-video bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
-                            <iframe
-                                width="100%"
-                                height="100%"
-                                src={courseData.videoUrl}
-                                title={courseData.title}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                allowFullScreen
-                                className="absolute inset-0"
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {/* Hero Section */}
             <AdvancedEvidenceHeroSection
                 courseData={courseData}
-                onVideoClick={() => setIsVideoPlaying(true)}
                 onEnrollClick={() => setIsEnrollmentModalOpen(true)}
             />
 

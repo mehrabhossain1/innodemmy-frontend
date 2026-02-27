@@ -14,7 +14,7 @@ export default function StickyNavigation({ items }: StickyNavigationProps) {
     const [activeSection, setActiveSection] = useState<string>(
         items[0]?.id || ""
     );
-    const [isSticky, setIsSticky] = useState(false);
+    const [, setIsSticky] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {

@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
                 if (ObjectId.isValid(courseId)) {
                     courseObjectId = new ObjectId(courseId);
                 }
-            } catch (error) {
+            } catch {
                 // If courseId is not valid ObjectId, we'll store it as string
                 console.log("CourseId is not a valid ObjectId, will store as string");
             }
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
                     // Store as string if not valid ObjectId format
                     finalCourseId = courseId;
                 }
-            } catch (error) {
+            } catch {
                 // If conversion fails, store as string
                 finalCourseId = courseId;
             }

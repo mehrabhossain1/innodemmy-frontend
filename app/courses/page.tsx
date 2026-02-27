@@ -4,21 +4,17 @@ import Container from "@/components/Container";
 import CourseCard from "@/components/CourseCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
     ArrowLeft,
     BookOpen,
     Filter,
-    Search,
-    TrendingUp,
-    X,
     Code,
     Cpu,
     FlaskConical,
-    Layers,
+    TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { FC } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {

@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { getWebinarById, getUpcomingWebinars } from "@/lib/data/webinars";
+import { getWebinarById } from "@/lib/data/webinars";
 import { getAllCourses } from "@/lib/data/courses";
-import { Webinar, Course } from "@/lib/models";
+import { Webinar } from "@/lib/models";
 import CourseCard from "@/components/CourseCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +12,6 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, Calendar, Clock, User, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 import WebinarLearningPoints from "@/components/WebinarLearningPoints";
 
 export default function UpcomingWebinarDetailsPage() {

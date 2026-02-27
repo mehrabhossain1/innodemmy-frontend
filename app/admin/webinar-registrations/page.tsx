@@ -59,7 +59,7 @@ export default function AdminWebinarRegistrationsPage() {
         if (user) {
             fetchRegistrations();
         }
-    }, [user, router]);
+    }, [user, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         // Filter registrations based on search term

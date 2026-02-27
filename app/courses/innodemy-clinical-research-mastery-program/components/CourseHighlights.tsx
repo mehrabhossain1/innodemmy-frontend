@@ -3,7 +3,6 @@ import {
     Rocket,
     Video,
     Briefcase,
-    Award,
     Users,
     Calendar,
     BookOpen,
