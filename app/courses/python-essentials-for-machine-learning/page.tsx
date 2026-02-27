@@ -97,6 +97,7 @@ export default function PythonEssentialsForMachineLearning() {
             {/* Hero Section */}
             <PythonHeroSection
                 courseData={courseData}
+                onVideoClick={() => {}}
                 onEnrollClick={handleEnrollmentClick}
             />
 

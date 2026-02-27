@@ -95,6 +95,7 @@ const ResearchFoundationScientificLiteracy = () => {
             {/* Hero Section */}
             <ResearchFoundationHeroSection
                 courseData={courseData}
+                onVideoClick={() => {}}
                 onEnrollClick={handleEnrollmentClick}
             />
 
