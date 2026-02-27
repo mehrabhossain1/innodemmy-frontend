@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PythonHeroSection from "./components/PythonHeroSection";
 import EnrollmentModal from "@/components/course/EnrollmentModal";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
@@ -43,6 +43,46 @@ export default function PythonEssentialsForMachineLearning() {
         liveCourseLabel: "Live Course",
     };
 
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "python-essentials-for-machine-learning",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "Machine Learning",
+                courseType: "Live Course",
+            });
+        }
+    }, [courseData.originalPrice, courseData.price, courseData.title]);
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id: "python-essentials-for-machine-learning",
+                            item_name: courseData.title,
+                            item_category: "Machine Learning",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
     return (
         <div className="pb-24">
             {/* Enrollment Modal */}
@@ -57,7 +97,7 @@ export default function PythonEssentialsForMachineLearning() {
             {/* Hero Section */}
             <PythonHeroSection
                 courseData={courseData}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -108,7 +148,7 @@ export default function PythonEssentialsForMachineLearning() {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
             />
         </div>
     );

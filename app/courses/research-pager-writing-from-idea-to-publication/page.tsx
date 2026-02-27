@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ResearchPaperHeroSection from "./components/ResearchPaperHeroSection";
 import CourseModule from "./components/CourseModule";
 import WhatYouGet from "./components/WhatYouGet";
@@ -41,6 +41,46 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
         liveCourseLabel: "Live Course",
     };
 
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "research-paper-writing-from-idea-to-publication",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "Research & Publication",
+                courseType: "Live Course",
+            });
+        }
+    }, [courseData.originalPrice, courseData.price, courseData.title]);
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id: "research-paper-writing-from-idea-to-publication",
+                            item_name: courseData.title,
+                            item_category: "Research & Publication",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
     return (
         <div className="pb-24">
             {/* Enrollment Modal */}
@@ -55,7 +95,7 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
             {/* Hero Section */}
             <ResearchPaperHeroSection
                 courseData={courseData}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -101,7 +141,7 @@ export default function ResearchPaperWritingFromIdeaToPublication() {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
                 showPromo={true}
             />
         </div>

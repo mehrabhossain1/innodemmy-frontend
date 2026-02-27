@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DataScienceHeroSection from "./components/DataScienceHeroSection";
 import WhatYouGet from "./components/WhatYouGet";
 import Projects from "./components/Projects";
@@ -44,6 +44,46 @@ export default function DataScienceAndMachineLearning() {
         liveCourseLabel: "Live Course",
     };
 
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "data-science-and-machine-learning",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "Data Science & Machine Learning",
+                courseType: "Live Course",
+            });
+        }
+    }, [courseData.originalPrice, courseData.price, courseData.title]);
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id: "data-science-and-machine-learning",
+                            item_name: courseData.title,
+                            item_category: "Data Science & Machine Learning",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
     return (
         <div className="pb-24">
             {/* Enrollment Modal */}
@@ -58,7 +98,8 @@ export default function DataScienceAndMachineLearning() {
             {/* Hero Section */}
             <DataScienceHeroSection
                 courseData={courseData}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onVideoClick={() => {}}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -110,7 +151,7 @@ export default function DataScienceAndMachineLearning() {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
                 showPromo={true}
             />
         </div>

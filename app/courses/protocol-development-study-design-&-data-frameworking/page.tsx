@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProtocolDevelopmentHeroSection from "./components/ProtocolDevelopmentHeroSection";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
 import CourseModule from "./components/CourseModule";
@@ -44,6 +44,46 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
         liveCourseLabel: "Live Course",
     };
 
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "protocol-development-study-design-data-frameworking",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "Clinical Research",
+                courseType: "Live Course",
+            });
+        }
+    }, [courseData.originalPrice, courseData.price, courseData.title]);
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id: "protocol-development-study-design-data-frameworking",
+                            item_name: courseData.title,
+                            item_category: "Clinical Research",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
     return (
         <div className="pb-24">
             {/* Enrollment Modal */}
@@ -58,7 +98,7 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
             {/* Hero Section */}
             <ProtocolDevelopmentHeroSection
                 courseData={courseData}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -105,7 +145,7 @@ const ProtocolDevelopmentStudyDesignDataFrameworking = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
                 showPromo={true}
             />
         </div>

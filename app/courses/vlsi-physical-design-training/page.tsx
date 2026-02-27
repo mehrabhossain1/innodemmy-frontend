@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VLSIHeroSection from "@/app/courses/vlsi-physical-design-training/components/VLSIHeroSection";
 import VLSICourseModule from "@/app/courses/vlsi-physical-design-training/components/VLSICourseModule";
 import StickyEnrollmentBar from "@/components/course/StickyEnrollmentBar";
@@ -48,6 +48,46 @@ const VlsiPhysicalDesignTraining = () => {
         liveCourseLabel: "Live Course",
     };
 
+    // GTM Data Layer - Push course page view
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "course_page_view",
+                pageType: "course_detail",
+                courseId: "vlsi-physical-design-training",
+                courseName: courseData.title,
+                coursePrice: courseData.price,
+                courseOriginalPrice: courseData.originalPrice,
+                currency: "BDT",
+                courseCategory: "VLSI",
+                courseType: "Live Course",
+            });
+        }
+    }, [courseData.originalPrice, courseData.price, courseData.title]);
+
+    // GTM - Track enrollment click
+    const handleEnrollmentClick = () => {
+        setIsEnrollmentModalOpen(true);
+        if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+                event: "begin_checkout",
+                ecommerce: {
+                    currency: "BDT",
+                    value: courseData.price,
+                    items: [
+                        {
+                            item_id: "vlsi-physical-design-training",
+                            item_name: courseData.title,
+                            item_category: "VLSI",
+                            price: courseData.price,
+                            quantity: 1,
+                        },
+                    ],
+                },
+            });
+        }
+    };
+
     return (
         <div className="pb-24">
             {/* Enrollment Modal */}
@@ -62,7 +102,7 @@ const VlsiPhysicalDesignTraining = () => {
             {/* Hero Section */}
             <VLSIHeroSection
                 courseData={courseData}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
             />
 
             {/* Sticky Navigation */}
@@ -119,7 +159,7 @@ const VlsiPhysicalDesignTraining = () => {
                 currency={courseData.currency}
                 promoLabel={courseData.promoLabel}
                 enrollButtonText={courseData.enrollButtonText}
-                onEnrollClick={() => setIsEnrollmentModalOpen(true)}
+                onEnrollClick={handleEnrollmentClick}
                 showPromo={true}
             />
         </div>
