@@ -30,8 +30,8 @@ interface FormErrors {
     phoneNumber?: string;
 }
 
-// Consultation illustration (Storyset education illustration)
-const CONSULTATION_IMAGE = "/icons/education.png";
+// Consultation illustration - animated course/consultation GIF
+const CONSULTATION_IMAGE = "/courses/COurse.gif";
 
 export default function BookTheCallCard() {
     const [formData, setFormData] = useState<FormData>({
