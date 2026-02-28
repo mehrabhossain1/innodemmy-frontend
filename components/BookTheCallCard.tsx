@@ -14,7 +14,6 @@ import {
     Video,
 } from "lucide-react";
 import Container from "./Container";
-import Link from "next/link";
 import NextImage from "next/image";
 
 interface FormData {
@@ -228,22 +227,6 @@ export default function BookTheCallCard() {
                                            
                                         </div>
                                     )}
-                                </div>
-                                {/* Call to Action */}
-                                <div className="relative bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg lg:rounded-xl p-3 lg:p-4 border-2 border-primary/30 backdrop-blur-sm">
-                                    <h4 className="text-sm lg:text-base font-bold text-foreground mb-1 lg:mb-1.5">
-                                        Ready to Start Your Journey?
-                                    </h4>
-                                    <p className="text-muted-foreground mb-2.5 lg:mb-3 text-xs lg:text-sm leading-relaxed">
-                                        Join thousands of learners who have
-                                        transformed their careers with
-                                        Innodemy.
-                                    </p>
-                                    <Link href="/courses">
-                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 font-semibold text-sm lg:text-base py-3 lg:py-3.5 h-auto rounded-lg">
-                                            Explore Courses
-                                        </Button>
-                                    </Link>
                                 </div>
                             </div>
 
