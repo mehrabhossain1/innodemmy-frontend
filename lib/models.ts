@@ -158,3 +158,15 @@ export interface WebinarRegistrationWithDetails extends WebinarRegistration {
         date: string;
     };
 }
+
+// ConsultationRequest model
+export interface ConsultationRequest {
+    _id?: string;
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    message?: string;
+    status: "pending" | "contacted" | "completed";
+    createdAt: Date;
+    updatedAt: Date;
+}

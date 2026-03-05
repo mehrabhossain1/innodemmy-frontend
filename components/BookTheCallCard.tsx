@@ -8,11 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    CheckCircle,
-    Calendar,
-    Video,
-} from "lucide-react";
+import { CheckCircle, Calendar, Video } from "lucide-react";
 import Container from "./Container";
 import NextImage from "next/image";
 
@@ -64,12 +60,13 @@ export default function BookTheCallCard() {
         }
 
         // Phone number validation
-        const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
+        const phoneRegex =
+            /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,9}$/;
         if (!formData.phoneNumber.trim()) {
             newErrors.phoneNumber = "Phone number is required";
-        } else if (
-            !phoneRegex.test(formData.phoneNumber.replace(/[\s\-$$$$]/g, ""))
-        ) {
+        } else if (formData.phoneNumber.replace(/[\s\-()]/g, "").length < 10) {
+            newErrors.phoneNumber = "Phone number must be at least 10 digits";
+        } else if (!phoneRegex.test(formData.phoneNumber)) {
             newErrors.phoneNumber = "Please enter a valid phone number";
         }
 
@@ -94,19 +91,33 @@ export default function BookTheCallCard() {
 
         setIsSubmitting(true);
 
-        // Simulate API call
         try {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            setIsSubmitted(true);
-            // Reset form after successful submission
-            setFormData({
-                fullName: "",
-                email: "",
-                phoneNumber: "",
-                message: "",
+            const response = await fetch("/api/consultation-requests", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
             });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setIsSubmitted(true);
+                // Reset form after successful submission
+                setFormData({
+                    fullName: "",
+                    email: "",
+                    phoneNumber: "",
+                    message: "",
+                });
+            } else {
+                console.error("Submission failed:", data.error);
+                alert(data.error || "Failed to submit consultation request");
+            }
         } catch (error) {
             console.error("Submission error:", error);
+            alert("An error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -210,7 +221,8 @@ export default function BookTheCallCard() {
                                                 Talk to our experts
                                             </p>
                                             <p className="text-xs text-muted-foreground max-w-[200px]">
-                                                Free consultation for your career journey
+                                                Free consultation for your
+                                                career journey
                                             </p>
                                         </div>
                                     ) : (
@@ -222,9 +234,10 @@ export default function BookTheCallCard() {
                                                 height={260}
                                                 className="w-full h-auto max-h-[260px] object-contain drop-shadow-lg rounded-md"
                                                 unoptimized
-                                                onError={() => setImageError(true)}
+                                                onError={() =>
+                                                    setImageError(true)
+                                                }
                                             />
-                                           
                                         </div>
                                     )}
                                 </div>
@@ -262,7 +275,7 @@ export default function BookTheCallCard() {
                                             onChange={(e) =>
                                                 handleInputChange(
                                                     "fullName",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                             className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
@@ -294,7 +307,7 @@ export default function BookTheCallCard() {
                                             onChange={(e) =>
                                                 handleInputChange(
                                                     "email",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                             className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
@@ -326,7 +339,7 @@ export default function BookTheCallCard() {
                                             onChange={(e) =>
                                                 handleInputChange(
                                                     "phoneNumber",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                             className={`bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 text-sm lg:text-base ${
@@ -357,7 +370,7 @@ export default function BookTheCallCard() {
                                             onChange={(e) =>
                                                 handleInputChange(
                                                     "message",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                             rows={2}

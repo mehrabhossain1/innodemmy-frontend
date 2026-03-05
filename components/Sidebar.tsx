@@ -16,6 +16,7 @@ import {
     GraduationCap,
     FileText,
     Video,
+    MessageSquare,
 } from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 
@@ -44,6 +45,11 @@ export default function Sidebar() {
             href: "/admin/webinar-registrations",
             label: "Webinar Registrations",
             icon: Video,
+        },
+        {
+            href: "/admin/consultation-requests",
+            label: "Consultation Requests",
+            icon: MessageSquare,
         },
         { href: "/admin/users", label: "Users", icon: Users },
     ];
