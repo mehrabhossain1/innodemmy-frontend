@@ -12,6 +12,7 @@ import InstructorsAndMentors from "./components/InstructorsAndMentors";
 import CourseModule from "./components/CourseModule";
 import FAQ from "./components/FAQ";
 import BookTheCallCard from "@/components/BookTheCallCard";
+import DemoVideos from "./components/DemoVideos";
 
 export default function CompleteResearchPathwayWithMachineLearning() {
     const [isEnrollmentModalOpen, setIsEnrollmentModalOpen] = useState(false);
@@ -74,6 +75,7 @@ export default function CompleteResearchPathwayWithMachineLearning() {
 
     // Navigation items
     const navigationItems = [
+        { id: "demo-videos", label: "Demo Classes" },
         { id: "course-module", label: "Course Module" },
         { id: "resource-persons", label: "Instructors and Mentors" },
         { id: "what-you-get", label: "What You will Get" },
@@ -121,6 +123,11 @@ export default function CompleteResearchPathwayWithMachineLearning() {
 
             {/* Sticky Navigation */}
             <StickyNavigation items={navigationItems} />
+
+            {/* Demo Videos */}
+            <div id="demo-videos">
+                <DemoVideos />
+            </div>
 
             {/* Course Module */}
             <div id="course-module">
