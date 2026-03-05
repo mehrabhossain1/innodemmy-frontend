@@ -39,7 +39,7 @@ export function middleware(request: NextRequest) {
             "img-src 'self' data: blob: https: http:",
             "font-src 'self' https://fonts.gstatic.com",
             "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.mongodb.net",
-            "frame-src 'self' https://www.youtube.com https://youtube.com https://player.vimeo.com",
+            "frame-src 'self' https://www.youtube.com https://youtube.com https://player.vimeo.com https://drive.google.com",
             "media-src 'self' https: blob:",
             "object-src 'none'",
             "base-uri 'self'",
