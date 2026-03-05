@@ -18,7 +18,7 @@ export const coursesData: Course[] = [
             "https://www.youtube.com/embed/--9W4yF149Y?si=sT1A8q-UtEtGAlOr",
         courseStartDate: new Date("2025-12-01"),
         category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
-        batchName: "Batch 1",
+        batchName: "Batch Apr_26",
         price: 20000,
         totalLiveClasses: 36,
         totalWeeks: 18,
@@ -2225,7 +2225,7 @@ export function getCourseById(id: string): Course | undefined {
  */
 export function getCoursesByCategory(category: string): Course[] {
     return coursesData.filter(
-        (course) => course.category?.toLowerCase() === category.toLowerCase()
+        (course) => course.category?.toLowerCase() === category.toLowerCase(),
     );
 }
 

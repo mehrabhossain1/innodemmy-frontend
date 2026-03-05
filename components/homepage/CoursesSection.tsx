@@ -3,10 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import type { FC } from "react";
 import { Button } from "@/components/ui/button";
-import {
-    ArrowRight,
-    Code,
-} from "lucide-react";
+import { ArrowRight, Code } from "lucide-react";
 import CourseCard from "../CourseCard";
 import Link from "next/link";
 import Container from "../Container";
@@ -24,6 +21,7 @@ interface Course {
     image: string;
     batchName?: string;
     instructor?: string;
+    totalProjects?: number;
     category?: string;
     modules?: number;
     students?: number;
@@ -41,6 +39,7 @@ interface ApiCourse {
     batchName?: string;
     instructor?: string;
     category?: string;
+    totalProjects?: number;
 }
 
 // Map category names to icons
@@ -53,7 +52,11 @@ const ClinicalIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 const ResearchIcon: FC<{ className?: string }> = ({ className }) => (
-    <img src="/icons/image5.png" alt="Research & Writing" className={className} />
+    <img
+        src="/icons/image5.png"
+        alt="Research & Writing"
+        className={className}
+    />
 );
 
 const DataScienceIcon: FC<{ className?: string }> = ({ className }) => (
@@ -69,13 +72,20 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons (ForwardRef components) to a plain ComponentType
-const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
-    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
-    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+const wrapIcon = (
+    Icon: React.ComponentType<{ className?: string }>,
+): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => (
+        <Icon className={className} />
+    );
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || "Icon"}`;
     return WrappedIcon;
 };
 
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIcons: Record<
+    string,
+    React.ComponentType<{ className?: string }>
+> = {
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
@@ -92,7 +102,7 @@ export default function CoursesSection() {
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState(
-        categoryFromUrl || "all"
+        categoryFromUrl || "all",
     );
 
     // Function to update URL with category filter
@@ -137,9 +147,9 @@ export default function CoursesSection() {
                                 Math.floor(Math.random() * 10) + 8
                             } দিন বাকি`,
                             rating: parseFloat(
-                                (4.4 + Math.random() * 0.6).toFixed(1)
+                                (4.4 + Math.random() * 0.6).toFixed(1),
                             ),
-                        })
+                        }),
                     );
                     setCourses(mappedCourses);
                 } else {
@@ -305,6 +315,8 @@ export default function CoursesSection() {
                                     slug={course.slug}
                                     id={course.id}
                                     title={course.title}
+                                    batchName={course.batchName}
+                                    totalProjects={course.totalProjects}
                                     description={course.description}
                                     thumbnail={course.image}
                                     modules={course.modules}
