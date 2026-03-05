@@ -36,6 +36,7 @@ export function GTMProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         if (user) {
             pushToDataLayer({
+                event: "user_data",
                 user_id: user._id,
                 user_role: user.role,
                 user_name: user.name,

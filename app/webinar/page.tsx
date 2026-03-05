@@ -8,16 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    Search,
-    Calendar,
-    Clock,
-    Eye,
-    ArrowLeft,
-    Play,
-    X,
-    Code,
-} from "lucide-react";
+import { Search, Calendar, Eye, ArrowLeft, Play, X, Code } from "lucide-react";
 import { getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";

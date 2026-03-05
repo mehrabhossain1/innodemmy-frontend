@@ -38,7 +38,7 @@ interface PurchaseData {
  * Push data to GTM data layer
  * In development mode, logs to console instead
  */
-export const pushToDataLayer = (data: Record<string, unknown>) => {
+export const pushToDataLayer = (data: DataLayerEvent) => {
     if (typeof window === "undefined") return;
 
     if (isDevelopment) {
