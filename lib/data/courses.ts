@@ -20,7 +20,7 @@ export const coursesData: Course[] = [
         category: COURSE_CATEGORIES.DATA_SCIENCE_AI,
         batchName: "Batch Apr_26",
         price: 20000,
-        totalLiveClasses: 36,
+        totalLiveClasses: 40,
         totalWeeks: 18,
         totalModules: 19,
         totalProjects: 5,

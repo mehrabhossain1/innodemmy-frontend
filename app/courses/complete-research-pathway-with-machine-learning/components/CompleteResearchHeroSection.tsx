@@ -36,7 +36,7 @@ export default function CompleteResearchHeroSection({
     const handleWhatsAppClick = () => {
         const message = `Hi, I'm interested in enrolling in "${courseData.title}". Can you help me with the enrollment process?`;
         const whatsappUrl = `https://wa.me/88${ENROLLMENT_PHONE}?text=${encodeURIComponent(
-            message
+            message,
         )}`;
         window.open(whatsappUrl, "_blank");
     };
@@ -143,15 +143,15 @@ export default function CompleteResearchHeroSection({
                                                     ((courseData.originalPrice -
                                                         courseData.price) /
                                                         courseData.originalPrice) *
-                                                        100
+                                                        100,
                                                 )}
                                                 % OFF
                                             </span>
                                         </div>
                                     </div>
-                                    <button className="bg-primary dark:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 dark:hover:bg-primary transition-all duration-200 shadow-sm hover:shadow-md">
+                                    {/* <button className="bg-primary dark:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 dark:hover:bg-primary transition-all duration-200 shadow-sm hover:shadow-md">
                                         📋 Coupon
-                                    </button>
+                                    </button> */}
                                 </div>
 
                                 {/* Enrollment Button */}

@@ -45,7 +45,7 @@ export default function CourseHighlights() {
                         </div>
                         <div className="flex items-baseline gap-2">
                             <div className="text-3xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 bg-clip-text text-transparent">
-                                36
+                                40+
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
                                 Live Classes
@@ -65,7 +65,7 @@ export default function CourseHighlights() {
                         </div>
                         <div className="flex items-baseline gap-2">
                             <div className="text-3xl font-bold bg-gradient-to-br from-orange-600 to-orange-800 bg-clip-text text-transparent">
-                                5
+                                5+
                             </div>
                             <div className="text-sm font-semibold text-gray-600 dark:text-gray-300">
                                 Projects
@@ -86,10 +86,10 @@ export default function CourseHighlights() {
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
-                                Batch Number
+                                Batch Name
                             </div>
                             <div className="text-sm font-bold text-gray-900 dark:text-white">
-                                1
+                                Apr_26
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ export default function CourseHighlights() {
                                 Start Date
                             </div>
                             <div className="text-sm font-bold text-gray-900 dark:text-white">
-                                January 15
+                                April 5th, 2026
                             </div>
                         </div>
                     </div>
