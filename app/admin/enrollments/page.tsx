@@ -316,7 +316,13 @@ export default function AdminEnrollmentsPage() {
                                     <TableCell className="text-sm text-gray-600">
                                         {new Date(
                                             enrollment.createdAt,
-                                        ).toLocaleDateString()}
+                                        ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                        })}
                                     </TableCell>
                                     <TableCell>
                                         {enrollment.status === "pending" && (

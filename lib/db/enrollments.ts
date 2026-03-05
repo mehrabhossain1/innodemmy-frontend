@@ -29,7 +29,10 @@ export async function findEnrollmentById(id: string) {
  */
 export async function getAllEnrollments() {
     const collection = await getEnrollmentsCollection();
-    const enrollments = await collection.find({}).toArray();
+    const enrollments = await collection
+        .find({})
+        .sort({ createdAt: -1 })
+        .toArray();
     return enrollments;
 }
 
@@ -62,7 +65,7 @@ export async function getEnrollmentsByCourseId(courseId: string) {
  */
 export async function getEnrollmentCountByCourse(
     courseId: string,
-    status?: "pending" | "approved" | "rejected"
+    status?: "pending" | "approved" | "rejected",
 ) {
     const collection = await getEnrollmentsCollection();
     const filter: Record<string, string> = { courseId };
@@ -77,7 +80,7 @@ export async function getEnrollmentCountByCourse(
  * Get enrollments by status
  */
 export async function getEnrollmentsByStatus(
-    status: "pending" | "approved" | "rejected"
+    status: "pending" | "approved" | "rejected",
 ) {
     const collection = await getEnrollmentsCollection();
     const enrollments = await collection
@@ -113,7 +116,7 @@ export async function hasApprovedEnrollment(userId: string, courseId: string) {
  * Create a new enrollment
  */
 export async function createEnrollment(
-    enrollmentData: Omit<Enrollment, "_id">
+    enrollmentData: Omit<Enrollment, "_id">,
 ) {
     const collection = await getEnrollmentsCollection();
     const result = await collection.insertOne({
@@ -131,12 +134,12 @@ export async function createEnrollment(
  */
 export async function updateEnrollment(
     id: string,
-    enrollmentData: Partial<Omit<Enrollment, "_id">>
+    enrollmentData: Partial<Omit<Enrollment, "_id">>,
 ) {
     const collection = await getEnrollmentsCollection();
     await collection.updateOne(
         { _id: new ObjectId(id) },
-        { $set: { ...enrollmentData, updatedAt: new Date() } }
+        { $set: { ...enrollmentData, updatedAt: new Date() } },
     );
 
     const enrollment = await collection.findOne({ _id: new ObjectId(id) });
