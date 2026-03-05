@@ -18,7 +18,7 @@ import { getUpcomingWebinars } from "@/lib/data/webinars";
 
 export default function UpcomingWebinarSection() {
     const plugin = React.useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: true })
+        Autoplay({ delay: 4000, stopOnInteraction: true }),
     );
     const webinars = getUpcomingWebinars();
 
@@ -121,9 +121,9 @@ export default function UpcomingWebinarSection() {
                                                 </div>
 
                                                 {/* Duration Badge */}
-                                                <div className="absolute top-2 lg:top-3 right-2 lg:right-3 bg-black/80 backdrop-blur-sm text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-semibold border border-white/10">
+                                                {/* <div className="absolute top-2 lg:top-3 right-2 lg:right-3 bg-black/80 backdrop-blur-sm text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-semibold border border-white/10">
                                                     {webinar.duration}
-                                                </div>
+                                                </div> */}
 
                                                 {/* Live Badge */}
                                                 <div className="absolute top-2 lg:top-3 left-2 lg:left-3 bg-gradient-to-r from-red-500 to-orange-500 text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-bold shadow-lg flex items-center gap-1">
@@ -158,7 +158,7 @@ export default function UpcomingWebinarSection() {
                                                         <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                                                             <span className="text-[10px] lg:text-xs font-bold text-primary">
                                                                 {webinar.instructor.charAt(
-                                                                    0
+                                                                    0,
                                                                 )}
                                                             </span>
                                                         </div>

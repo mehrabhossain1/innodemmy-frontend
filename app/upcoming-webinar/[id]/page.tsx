@@ -102,7 +102,7 @@ export default function UpcomingWebinarDetailsPage() {
         // Create date in Bangladesh Time (UTC+6)
         // We need to subtract 6 hours when creating UTC date
         const targetDate = new Date(
-            Date.UTC(year, month, day, hour - 6, minute, 0)
+            Date.UTC(year, month, day, hour - 6, minute, 0),
         ).getTime();
 
         const updateCountdown = () => {
@@ -116,10 +116,10 @@ export default function UpcomingWebinarDetailsPage() {
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
-                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
             );
             const minutes = Math.floor(
-                (distance % (1000 * 60 * 60)) / (1000 * 60)
+                (distance % (1000 * 60 * 60)) / (1000 * 60),
             );
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -397,9 +397,9 @@ export default function UpcomingWebinarDetailsPage() {
                                     <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
                                     UPCOMING
                                 </div>
-                                <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
+                                {/* <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold">
                                     {webinar.duration}
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* Instructor Card */}

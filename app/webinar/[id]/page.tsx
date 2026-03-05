@@ -7,7 +7,7 @@ import { getWebinarById, getRegularWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import { Button } from "@/components/ui/button";
 import {
-    ArrowLeft,    
+    ArrowLeft,
     Calendar,
     Clock,
     Eye,
@@ -133,10 +133,10 @@ export default function WebinarDetailsPage() {
                                     <Calendar className="h-5 w-5 text-primary" />
                                     <span>Date: {webinar.date}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                {/* <div className="flex items-center gap-2">
                                     <Clock className="h-5 w-5 text-primary" />
                                     <span>{webinar.duration}</span>
-                                </div>
+                                </div> */}
                                 <div className="flex items-center gap-2">
                                     <Eye className="h-5 w-5 text-primary" />
                                     <span>

@@ -56,13 +56,20 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons to a plain ComponentType
-const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
-    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
-    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+const wrapIcon = (
+    Icon: React.ComponentType<{ className?: string }>,
+): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => (
+        <Icon className={className} />
+    );
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || "Icon"}`;
     return WrappedIcon;
 };
 
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIcons: Record<
+    string,
+    React.ComponentType<{ className?: string }>
+> = {
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
@@ -128,7 +135,7 @@ export default function WebinarPage() {
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
                 webinar.topics.some((topic) =>
-                    topic.toLowerCase().includes(searchTerm.toLowerCase())
+                    topic.toLowerCase().includes(searchTerm.toLowerCase()),
                 );
             const matchesCategory =
                 activeCategory === "all" || webinar.category === activeCategory;
@@ -262,7 +269,7 @@ export default function WebinarPage() {
                                         <PaginationPrevious
                                             onClick={() =>
                                                 setCurrentPage((prev) =>
-                                                    Math.max(1, prev - 1)
+                                                    Math.max(1, prev - 1),
                                                 )
                                             }
                                             className={
@@ -291,8 +298,8 @@ export default function WebinarPage() {
                                                 setCurrentPage((prev) =>
                                                     Math.min(
                                                         totalPages,
-                                                        prev + 1
-                                                    )
+                                                        prev + 1,
+                                                    ),
                                                 )
                                             }
                                             className={
@@ -386,10 +393,10 @@ function WebinarCard({ webinar }: { webinar: Webinar }) {
                         <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold">
                             FREE
                         </div>
-                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
+                        {/* <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
                             <Clock className="h-3 w-3" />
                             {webinar.duration}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

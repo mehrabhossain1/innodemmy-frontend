@@ -63,7 +63,7 @@ export const webinars: Webinar[] = [
         time: "10:15 PM - 11:15 PM",
         instructor: "Md Nafee Al Islam, PhD",
         instructorBio:
-            "Research Expert & Academic Mentor specializing in Research Paper Writing & Publication | Experienced in guiding students through the research publication process",
+            "PhD, University of Notre Dame | Assistant Professor, Computer Science University of San Diego, USA",
         instructorImage: "/instructors/Nafee.jpg",
         views: 0,
         topics: [

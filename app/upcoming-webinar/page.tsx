@@ -7,14 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    Search,
-    Calendar,
-    Clock,
-    ArrowLeft,
-    Play,
-    Code,
-} from "lucide-react";
+import { Search, Calendar, Clock, ArrowLeft, Play, Code } from "lucide-react";
 import { getUpcomingWebinars } from "@/lib/data/webinars";
 import { Webinar } from "@/lib/models";
 import Container from "@/components/Container";
@@ -53,13 +46,20 @@ const VLSIIcon: FC<{ className?: string }> = ({ className }) => (
 );
 
 // Adapter to normalize Lucide icons to a plain ComponentType
-const wrapIcon = (Icon: React.ComponentType<{ className?: string }>): React.ComponentType<{ className?: string }> => {
-    const WrappedIcon = ({ className }: { className?: string }) => <Icon className={className} />;
-    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || 'Icon'}`;
+const wrapIcon = (
+    Icon: React.ComponentType<{ className?: string }>,
+): React.ComponentType<{ className?: string }> => {
+    const WrappedIcon = ({ className }: { className?: string }) => (
+        <Icon className={className} />
+    );
+    WrappedIcon.displayName = `Wrapped${Icon.displayName || Icon.name || "Icon"}`;
     return WrappedIcon;
 };
 
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const categoryIcons: Record<
+    string,
+    React.ComponentType<{ className?: string }>
+> = {
     [COURSE_CATEGORIES.CLINICAL_RESEARCH]: ClinicalIcon,
     [COURSE_CATEGORIES.PROGRAMMING]: wrapIcon(Code),
     [COURSE_CATEGORIES.DATA_SCIENCE_AI]: DataScienceIcon,
@@ -127,7 +127,7 @@ export default function UpcomingWebinarPage() {
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
                 webinar.topics.some((topic) =>
-                    topic.toLowerCase().includes(searchTerm.toLowerCase())
+                    topic.toLowerCase().includes(searchTerm.toLowerCase()),
                 );
             const matchesCategory =
                 activeCategory === "all" || webinar.category === activeCategory;
@@ -238,7 +238,7 @@ export default function UpcomingWebinarPage() {
                                         <PaginationPrevious
                                             onClick={() =>
                                                 setCurrentPage((prev) =>
-                                                    Math.max(1, prev - 1)
+                                                    Math.max(1, prev - 1),
                                                 )
                                             }
                                             className={
@@ -267,8 +267,8 @@ export default function UpcomingWebinarPage() {
                                                 setCurrentPage((prev) =>
                                                     Math.min(
                                                         totalPages,
-                                                        prev + 1
-                                                    )
+                                                        prev + 1,
+                                                    ),
                                                 )
                                             }
                                             className={
@@ -382,10 +382,10 @@ function UpcomingWebinarCard({ webinar }: { webinar: Webinar }) {
                             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
                             UPCOMING
                         </div>
-                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
+                        {/* <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
                             <Clock className="h-3 w-3" />
                             {webinar.duration}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

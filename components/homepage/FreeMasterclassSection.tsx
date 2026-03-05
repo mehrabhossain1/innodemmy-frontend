@@ -18,7 +18,7 @@ import { getRegularWebinars } from "@/lib/data/webinars";
 
 export default function FreeMasterclassSection() {
     const plugin = React.useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: true })
+        Autoplay({ delay: 4000, stopOnInteraction: true }),
     );
     const webinars = getRegularWebinars();
 
@@ -89,9 +89,9 @@ export default function FreeMasterclassSection() {
                                                 </div>
 
                                                 {/* Duration Badge */}
-                                                <div className="absolute top-2 lg:top-3 right-2 lg:right-3 bg-black/80 backdrop-blur-sm text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-semibold border border-white/10">
+                                                {/* <div className="absolute top-2 lg:top-3 right-2 lg:right-3 bg-black/80 backdrop-blur-sm text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-semibold border border-white/10">
                                                     {masterclass.duration}
-                                                </div>
+                                                </div> */}
 
                                                 {/* Free Badge */}
                                                 <div className="absolute top-2 lg:top-3 left-2 lg:left-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg text-[10px] lg:text-xs font-bold shadow-lg">
@@ -125,7 +125,7 @@ export default function FreeMasterclassSection() {
                                                         <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                                                             <span className="text-[10px] lg:text-xs font-bold text-primary">
                                                                 {masterclass.instructor.charAt(
-                                                                    0
+                                                                    0,
                                                                 )}
                                                             </span>
                                                         </div>
