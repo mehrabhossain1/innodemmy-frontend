@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import ConditionalLayout from "@/components/ConditionalLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { GTMProvider } from "@/lib/contexts/GTMContext";
 import SupportButton from "@/components/SupportButton";
 
 const hindSiliguri = Hind_Siliguri({
@@ -82,61 +83,57 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                {/* Initialize Data Layer BEFORE GTM */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                                'originalLocation': document.location.protocol + '//' + 
+                                    document.location.hostname + 
+                                    document.location.pathname + 
+                                    document.location.search
+                            });
+                        `,
+                    }}
+                />
+
                 {/* Google Tag Manager */}
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','GTM-M885J4SH');
-                        `,
-                    }}
-                />
-                {/* End Google Tag Manager */}
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            !function(f,b,e,v,n,t,s)
-                            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                            n.queue=[];t=b.createElement(e);t.async=!0;
-                            t.src=v;s=b.getElementsByTagName(e)[0];
-                            s.parentNode.insertBefore(t,s)}(window, document,'script',
-                            'https://connect.facebook.net/en_US/fbevents.js');
-                            fbq('init', '790890226728568');
-                            fbq('track', 'PageView');
-                        `,
-                    }}
-                />
-                <noscript>
-                    <img
-                        height="1"
-                        width="1"
-                        style={{ display: "none" }}
-                        src="https://www.facebook.com/tr?id=790890226728568&ev=PageView&noscript=1"
-                        alt=""
+                {gtmId && (
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                })(window,document,'script','dataLayer','${gtmId}');
+                            `,
+                        }}
                     />
-                </noscript>
+                )}
+                {/* End Google Tag Manager */}
             </head>
             <body
                 className={`${hindSiliguri.variable} ${hindSiliguri.className} antialiased`}
                 suppressHydrationWarning
             >
                 {/* Google Tag Manager (noscript) */}
-                <noscript>
-                    <iframe
-                        src="https://www.googletagmanager.com/ns.html?id=GTM-M885J4SH"
-                        height="0"
-                        width="0"
-                        style={{ display: "none", visibility: "hidden" }}
-                    />
-                </noscript>
+                {gtmId && (
+                    <noscript>
+                        <iframe
+                            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+                            height="0"
+                            width="0"
+                            style={{ display: "none", visibility: "hidden" }}
+                        />
+                    </noscript>
+                )}
                 {/* End Google Tag Manager (noscript) */}
                 <ThemeProvider
                     attribute="class"
@@ -144,8 +141,10 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <ConditionalLayout>{children}</ConditionalLayout>
-                    <SupportButton />
+                    <GTMProvider>
+                        <ConditionalLayout>{children}</ConditionalLayout>
+                        <SupportButton />
+                    </GTMProvider>
                 </ThemeProvider>
             </body>
         </html>

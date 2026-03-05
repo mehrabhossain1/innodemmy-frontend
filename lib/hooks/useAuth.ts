@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { trackAuth } from "@/lib/utils/gtm";
 
 export interface User {
     _id?: string;
@@ -40,12 +41,20 @@ export function useAuth() {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userData));
         setUser(userData);
+
+        // Track login event in GTM
+        trackAuth("login", userData._id);
     };
 
     const logout = () => {
+        const userId = user?._id;
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         setUser(null);
+
+        // Track logout event in GTM
+        trackAuth("logout", userId);
+
         router.push("/");
     };
 

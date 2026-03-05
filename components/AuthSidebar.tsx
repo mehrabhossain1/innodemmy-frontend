@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { trackAuth } from "@/lib/utils/gtm";
 
 interface AuthSidebarProps {
     isOpen: boolean;
@@ -85,7 +86,7 @@ export default function AuthSidebar({
         if (resendCooldown > 0) {
             const timer = setTimeout(
                 () => setResendCooldown(resendCooldown - 1),
-                1000
+                1000,
             );
             return () => clearTimeout(timer);
         }
@@ -166,6 +167,9 @@ export default function AuthSidebar({
             const data = await response.json();
 
             if (response.ok && data.success) {
+                // Track signup event in GTM
+                trackAuth("signup", data.user._id);
+
                 // Auto-login the user after successful registration
                 login(data.token, data.user);
                 setSuccess("Account created successfully! Redirecting...");
@@ -227,7 +231,7 @@ export default function AuthSidebar({
             } else {
                 if (data.expired || data.maxAttemptsReached) {
                     setError(
-                        data.error + " Click 'Resend Code' to get a new one."
+                        data.error + " Click 'Resend Code' to get a new one.",
                     );
                 } else {
                     setError(data.error || "Verification failed");
