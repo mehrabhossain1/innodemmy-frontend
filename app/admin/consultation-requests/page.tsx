@@ -24,6 +24,13 @@ import {
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 interface ConsultationRequest {
     _id: string;
@@ -44,6 +51,7 @@ export default function AdminConsultationRequestsPage() {
     >([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [updatingId, setUpdatingId] = useState<string | null>(null);
 
     useEffect(() => {
         if (user && user.role !== "admin") {
@@ -161,6 +169,56 @@ export default function AdminConsultationRequestsPage() {
         document.body.removeChild(link);
     };
 
+    const updateStatus = async (
+        requestId: string,
+        newStatus: "pending" | "contacted" | "completed",
+    ) => {
+        try {
+            setUpdatingId(requestId);
+            const token = localStorage.getItem("token");
+
+            const response = await fetch(
+                `/api/admin/consultation-requests/${requestId}/status`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ status: newStatus }),
+                },
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Update the local state
+                setRequests((prev) =>
+                    prev.map((req) =>
+                        req._id === requestId
+                            ? { ...req, status: newStatus }
+                            : req,
+                    ),
+                );
+                setFilteredRequests((prev) =>
+                    prev.map((req) =>
+                        req._id === requestId
+                            ? { ...req, status: newStatus }
+                            : req,
+                    ),
+                );
+            } else {
+                console.error("Failed to update status:", data);
+                alert(data.error || "Failed to update status");
+            }
+        } catch (error) {
+            console.error("Error updating status:", error);
+            alert("Failed to update status");
+        } finally {
+            setUpdatingId(null);
+        }
+    };
+
     const getStatusBadge = (status: string) => {
         switch (status) {
             case "pending":
@@ -270,6 +328,9 @@ export default function AdminConsultationRequestsPage() {
                                     <TableHead className="min-w-[180px]">
                                         Requested On
                                     </TableHead>
+                                    <TableHead className="min-w-[150px]">
+                                        Actions
+                                    </TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -327,6 +388,56 @@ export default function AdminConsultationRequestsPage() {
                                                 hour: "2-digit",
                                                 minute: "2-digit",
                                             })}
+                                        </TableCell>
+                                        <TableCell>
+                                            <Select
+                                                value={req.status}
+                                                onValueChange={(value) =>
+                                                    updateStatus(
+                                                        req._id,
+                                                        value as
+                                                            | "pending"
+                                                            | "contacted"
+                                                            | "completed",
+                                                    )
+                                                }
+                                                disabled={
+                                                    updatingId === req._id
+                                                }
+                                            >
+                                                <SelectTrigger className="w-full">
+                                                    {updatingId === req._id ? (
+                                                        <div className="flex items-center gap-2">
+                                                            <Loader2 className="h-3 w-3 animate-spin" />
+                                                            <span>
+                                                                Updating...
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <SelectValue />
+                                                    )}
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="pending">
+                                                        <div className="flex items-center gap-2">
+                                                            <Clock className="h-3 w-3" />
+                                                            Pending
+                                                        </div>
+                                                    </SelectItem>
+                                                    <SelectItem value="contacted">
+                                                        <div className="flex items-center gap-2">
+                                                            <Phone className="h-3 w-3" />
+                                                            Contacted
+                                                        </div>
+                                                    </SelectItem>
+                                                    <SelectItem value="completed">
+                                                        <div className="flex items-center gap-2">
+                                                            <CheckCircle className="h-3 w-3" />
+                                                            Completed
+                                                        </div>
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
                                         </TableCell>
                                     </TableRow>
                                 ))}
