@@ -11,7 +11,15 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle, Clock, Loader2 } from "lucide-react";
+import {
+    CheckCircle,
+    XCircle,
+    Clock,
+    Loader2,
+    Eye,
+    ImageIcon,
+    X,
+} from "lucide-react";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
@@ -27,6 +35,7 @@ interface Enrollment {
     paymentMethod: string;
     transactionId: string;
     paymentNumberLastDigits?: string;
+    paymentProof?: string;
     amount: number;
     createdAt: string;
     user?: {
@@ -43,6 +52,7 @@ export default function AdminEnrollmentsPage() {
     const router = useRouter();
     const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedProof, setSelectedProof] = useState<string | null>(null);
     const [actionLoading, setActionLoading] = useState<string | null>(null);
 
     useEffect(() => {
@@ -63,13 +73,18 @@ export default function AdminEnrollmentsPage() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            
+
             if (response.ok) {
                 const data = await response.json();
                 setEnrollments(data.enrollments || []);
             } else {
                 const errorText = await response.text();
-                console.error("Failed to fetch enrollments. Status:", response.status, "Error:", errorText);
+                console.error(
+                    "Failed to fetch enrollments. Status:",
+                    response.status,
+                    "Error:",
+                    errorText,
+                );
             }
         } catch (error) {
             console.error("Failed to fetch enrollments:", error);
@@ -89,7 +104,7 @@ export default function AdminEnrollmentsPage() {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
-                }
+                },
             );
 
             if (response.ok) {
@@ -118,7 +133,7 @@ export default function AdminEnrollmentsPage() {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
-                }
+                },
             );
 
             if (response.ok) {
@@ -199,6 +214,7 @@ export default function AdminEnrollmentsPage() {
                             <TableHead>Payment Method</TableHead>
                             <TableHead>Transaction ID</TableHead>
                             <TableHead>Last 4 Digits</TableHead>
+                            <TableHead>Proof</TableHead>
                             <TableHead>Amount</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Date</TableHead>
@@ -221,10 +237,14 @@ export default function AdminEnrollmentsPage() {
                                     <TableCell>
                                         <div>
                                             <div className="font-medium">
-                                                {enrollment.user?.name || enrollment.name || "N/A"}
+                                                {enrollment.user?.name ||
+                                                    enrollment.name ||
+                                                    "N/A"}
                                             </div>
                                             <div className="text-sm text-gray-500">
-                                                {enrollment.user?.email || enrollment.email || "N/A"}
+                                                {enrollment.user?.email ||
+                                                    enrollment.email ||
+                                                    "N/A"}
                                             </div>
                                         </div>
                                     </TableCell>
@@ -232,7 +252,9 @@ export default function AdminEnrollmentsPage() {
                                         {enrollment.phone || "N/A"}
                                     </TableCell>
                                     <TableCell>
-                                        {enrollment.course?.title || enrollment.courseTitle || "N/A"}
+                                        {enrollment.course?.title ||
+                                            enrollment.courseTitle ||
+                                            "N/A"}
                                     </TableCell>
                                     <TableCell className="capitalize">
                                         {enrollment.paymentMethod}
@@ -241,7 +263,30 @@ export default function AdminEnrollmentsPage() {
                                         {enrollment.transactionId}
                                     </TableCell>
                                     <TableCell className="font-mono text-sm">
-                                        {enrollment.paymentNumberLastDigits || "N/A"}
+                                        {enrollment.paymentNumberLastDigits ||
+                                            "N/A"}
+                                    </TableCell>
+                                    <TableCell>
+                                        {enrollment.paymentProof ? (
+                                            <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() =>
+                                                    setSelectedProof(
+                                                        enrollment.paymentProof!,
+                                                    )
+                                                }
+                                                className="gap-1"
+                                            >
+                                                <Eye className="w-4 h-4" />
+                                                View
+                                            </Button>
+                                        ) : (
+                                            <span className="text-xs text-gray-400 flex items-center gap-1">
+                                                <ImageIcon className="w-3 h-3" />
+                                                No proof
+                                            </span>
+                                        )}
                                     </TableCell>
                                     <TableCell>
                                         {enrollment.amount} BDT
@@ -251,7 +296,7 @@ export default function AdminEnrollmentsPage() {
                                     </TableCell>
                                     <TableCell className="text-sm text-gray-600">
                                         {new Date(
-                                            enrollment.createdAt
+                                            enrollment.createdAt,
                                         ).toLocaleDateString()}
                                     </TableCell>
                                     <TableCell>
@@ -261,7 +306,7 @@ export default function AdminEnrollmentsPage() {
                                                     size="sm"
                                                     onClick={() =>
                                                         handleApprove(
-                                                            enrollment._id
+                                                            enrollment._id,
                                                         )
                                                     }
                                                     disabled={
@@ -285,7 +330,7 @@ export default function AdminEnrollmentsPage() {
                                                     variant="destructive"
                                                     onClick={() =>
                                                         handleReject(
-                                                            enrollment._id
+                                                            enrollment._id,
                                                         )
                                                     }
                                                     disabled={
@@ -312,6 +357,36 @@ export default function AdminEnrollmentsPage() {
                     </TableBody>
                 </Table>
             </div>
+
+            {/* Payment Proof Modal */}
+            {selectedProof && (
+                <div
+                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                    onClick={() => setSelectedProof(null)}
+                >
+                    <div
+                        className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg shadow-2xl overflow-hidden"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setSelectedProof(null)}
+                            className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+                        <div className="p-4">
+                            <h3 className="text-xl font-bold mb-4 text-gray-900">
+                                Payment Proof
+                            </h3>
+                            <img
+                                src={selectedProof}
+                                alt="Payment proof"
+                                className="w-full h-auto max-h-[calc(90vh-8rem)] object-contain rounded-lg"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

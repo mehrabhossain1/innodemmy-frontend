@@ -15,6 +15,7 @@ import {
     Mail,
     LogIn,
     UserPlus,
+    ImageIcon,
 } from "lucide-react";
 
 interface EnrollmentModalProps {
@@ -40,11 +41,13 @@ export default function EnrollmentModal({
         transactionId: "",
         paymentNumberLastDigits: "",
         paymentMethod: "bkash" as "bkash" | "nagad",
+        paymentProof: "" as string,
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -87,6 +90,36 @@ export default function EnrollmentModal({
         }));
     };
 
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Validate file type
+        if (!file.type.startsWith("image/")) {
+            setErrorMessage("Please upload an image file");
+            return;
+        }
+
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            setErrorMessage("Image size should be less than 5MB");
+            return;
+        }
+
+        // Convert to base64
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String = reader.result as string;
+            setFormData((prev) => ({
+                ...prev,
+                paymentProof: base64String,
+            }));
+            setPreviewImage(base64String);
+            setErrorMessage("");
+        };
+        reader.readAsDataURL(file);
+    };
+
     const handleSuccessClose = () => {
         setShowSuccess(false);
         setFormData({
@@ -96,7 +129,9 @@ export default function EnrollmentModal({
             transactionId: "",
             paymentNumberLastDigits: "",
             paymentMethod: "bkash",
+            paymentProof: "",
         });
+        setPreviewImage(null);
         onClose();
     };
 
@@ -121,9 +156,9 @@ export default function EnrollmentModal({
                     {/* Login/Signup Prompt */}
                     <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20 dark:via-primary/10 border-2 border-primary/20 dark:border-primary/30 rounded-lg p-6 mb-6">
                         <p className="text-base text-gray-700 dark:text-gray-300 mb-4 font-medium">
-                            <strong className="text-primary">Next Step:</strong> Create an account or
-                            login to access your enrolled courses and track your
-                            progress.
+                            <strong className="text-primary">Next Step:</strong>{" "}
+                            Create an account or login to access your enrolled
+                            courses and track your progress.
                         </p>
                         <div className="flex gap-3">
                             <Button
@@ -191,7 +226,10 @@ export default function EnrollmentModal({
                     <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                         <p className="text-base">
                             Send{" "}
-                            <strong className="text-primary text-lg">৳{coursePrice.toLocaleString()}</strong> to:
+                            <strong className="text-primary text-lg">
+                                ৳{coursePrice.toLocaleString()}
+                            </strong>{" "}
+                            to:
                         </p>
                         <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-2 border-primary/30 dark:border-primary/40 shadow-sm">
                             <div className="flex items-center justify-between">
@@ -205,7 +243,9 @@ export default function EnrollmentModal({
                         </div>
                         <p className="mt-3 pt-3 border-t border-primary/20 dark:border-primary/30 text-base">
                             After payment, knock us on WhatsApp:{" "}
-                            <strong className="font-mono text-primary">01521428597</strong>
+                            <strong className="font-mono text-primary">
+                                01521428597
+                            </strong>
                         </p>
                     </div>
                 </div>
@@ -381,6 +421,66 @@ export default function EnrollmentModal({
                         Enter the last 4 digits of the number you used for
                         payment
                     </p>
+
+                    {/* Payment Proof Upload - Full Width */}
+                    <div className="space-y-3">
+                        <Label
+                            htmlFor="paymentProof"
+                            className="text-gray-700 dark:text-gray-300 text-sm font-semibold flex items-center gap-2"
+                        >
+                            <ImageIcon className="w-4 h-4 text-primary" />
+                            Payment Screenshot{" "}
+                            <span className="text-xs font-normal text-gray-500">
+                                (Optional but recommended)
+                            </span>
+                        </Label>
+                        <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center hover:border-primary transition-colors">
+                            <input
+                                id="paymentProof"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                className="hidden"
+                            />
+                            {previewImage ? (
+                                <div className="space-y-3">
+                                    <img
+                                        src={previewImage}
+                                        alt="Payment proof preview"
+                                        className="max-h-48 mx-auto rounded-lg border border-gray-200 dark:border-gray-600"
+                                    />
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => {
+                                            setPreviewImage(null);
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                paymentProof: "",
+                                            }));
+                                        }}
+                                        className="text-xs"
+                                    >
+                                        Remove Image
+                                    </Button>
+                                </div>
+                            ) : (
+                                <label
+                                    htmlFor="paymentProof"
+                                    className="cursor-pointer block"
+                                >
+                                    <ImageIcon className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-500 mb-2" />
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                                        Click to upload payment screenshot
+                                    </p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-500">
+                                        PNG, JPG up to 5MB
+                                    </p>
+                                </label>
+                            )}
+                        </div>
+                    </div>
 
                     {/* Error Message */}
                     {errorMessage && (

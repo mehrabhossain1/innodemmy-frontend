@@ -65,6 +65,7 @@ export interface Enrollment {
     status: EnrollmentStatus;
     paymentMethod: PaymentMethod;
     transactionId: string;
+    paymentProof?: string; // URL/path to payment screenshot uploaded by user
     amount: number; // Amount paid
     adminNotes?: string; // Admin can add notes when approving/rejecting
     approvedBy?: string; // Admin user ID who approved
