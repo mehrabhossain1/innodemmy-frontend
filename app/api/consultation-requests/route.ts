@@ -1,9 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createConsultationRequest } from "@/lib/db/consultation-requests";
+import { withRateLimit, RATE_LIMITS } from "@/lib/utils/rate-limit";
+import {
+    sanitizeText,
+    sanitizeEmail,
+    sanitizePhone,
+} from "@/lib/utils/sanitize";
 
-export async function POST(request: NextRequest) {
+async function consultationHandler(request: NextRequest) {
     try {
-        const { fullName, email, phoneNumber, message } = await request.json();
+        const body = await request.json();
+
+        // Sanitize inputs
+        const fullName = sanitizeText(body.fullName, 100);
+        const email = sanitizeEmail(body.email);
+        const phoneNumber = sanitizePhone(body.phoneNumber);
+        const message = sanitizeText(body.message, 1000);
 
         // Validate required fields
         if (!fullName || !email || !phoneNumber) {
@@ -59,3 +71,5 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.FORM_SUBMIT, consultationHandler);

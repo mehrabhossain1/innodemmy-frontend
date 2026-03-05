@@ -1,19 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDatabase } from "@/lib/mongodb";
+import { withRateLimit, RATE_LIMITS } from "@/lib/utils/rate-limit";
+import {
+    sanitizeText,
+    sanitizeEmail,
+    sanitizePhone,
+} from "@/lib/utils/sanitize";
 
-export async function POST(request: NextRequest) {
+async function webinarRegistrationHandler(request: NextRequest) {
     try {
-        const {
-            webinarId,
-            webinarTitle,
-            webinarDate,
-            webinarTime,
-            fullName,
-            email,
-            phone,
-            qualification,
-            institution,
-        } = await request.json();
+        const body = await request.json();
+
+        // Sanitize all inputs
+        const webinarId = sanitizeText(body.webinarId, 100);
+        const webinarTitle = sanitizeText(body.webinarTitle, 200);
+        const webinarDate = sanitizeText(body.webinarDate, 50);
+        const webinarTime = sanitizeText(body.webinarTime, 50);
+        const fullName = sanitizeText(body.fullName, 100);
+        const email = sanitizeEmail(body.email);
+        const phone = sanitizePhone(body.phone);
+        const qualification = sanitizeText(body.qualification, 200);
+        const institution = sanitizeText(body.institution, 200);
 
         // Validate required fields
         if (
@@ -26,7 +33,7 @@ export async function POST(request: NextRequest) {
         ) {
             return NextResponse.json(
                 { error: "All fields are required" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -35,7 +42,7 @@ export async function POST(request: NextRequest) {
         if (!emailRegex.test(email)) {
             return NextResponse.json(
                 { error: "Invalid email format" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -44,7 +51,7 @@ export async function POST(request: NextRequest) {
         if (!phoneRegex.test(phone)) {
             return NextResponse.json(
                 { error: "Phone number must be 11 digits" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -62,7 +69,7 @@ export async function POST(request: NextRequest) {
                 {
                     error: "This phone number is already registered for this webinar",
                 },
-                { status: 409 }
+                { status: 409 },
             );
         }
 
@@ -94,13 +101,18 @@ export async function POST(request: NextRequest) {
                 message: "Registration successful",
                 registrationId: result.insertedId,
             },
-            { status: 201 }
+            { status: 201 },
         );
     } catch (error) {
         console.error("Webinar registration error:", error);
         return NextResponse.json(
             { error: "Internal server error" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
+
+export const POST = withRateLimit(
+    RATE_LIMITS.FORM_SUBMIT,
+    webinarRegistrationHandler,
+);

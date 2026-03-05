@@ -1,49 +1,44 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { login } from '@/lib/services/auth';
-import { withRateLimit, RATE_LIMITS } from '@/lib/utils/rate-limit';
+import { NextRequest, NextResponse } from "next/server";
+import { login } from "@/lib/services/auth";
+import { withRateLimit, RATE_LIMITS } from "@/lib/utils/rate-limit";
 
 async function signinHandler(request: NextRequest) {
-  try {
-    const { email, password } = await request.json();
+    try {
+        const { email, password } = await request.json();
 
-    console.log('Login attempt with:', { email });
+        if (!email || !password) {
+            return NextResponse.json(
+                { success: false, error: "Email and password are required" },
+                { status: 400 },
+            );
+        }
 
-    if (!email || !password) {
-      return NextResponse.json(
-        { success: false, error: 'Email and password are required' },
-        { status: 400 }
-      );
-    }
+        // Login user
+        const result = await login(email, password);
 
-    // Login user
-    const result = await login(email, password);
+        return NextResponse.json({
+            success: true,
+            user: result.user,
+            token: result.token,
+        });
+    } catch (error) {
+        console.error("Signin error:", error);
 
-    console.log('Login successful for:', { email });
+        // Handle specific errors
+        if (error instanceof Error) {
+            if (error.message.includes("Invalid credentials")) {
+                return NextResponse.json(
+                    { success: false, error: "Invalid email or password" },
+                    { status: 401 },
+                );
+            }
+        }
 
-    return NextResponse.json({
-      success: true,
-      user: result.user,
-      token: result.token,
-    });
-  } catch (error) {
-    console.error('Signin error:', error);
-
-    // Handle specific errors
-    if (error instanceof Error) {
-      if (error.message.includes('Invalid credentials')) {
         return NextResponse.json(
-          { success: false, error: 'Invalid email or password' },
-          { status: 401 }
+            { success: false, error: "Login failed. Please try again." },
+            { status: 500 },
         );
-      }
     }
-
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json(
-      { success: false, error: `Login failed: ${errorMessage}` },
-      { status: 500 }
-    );
-  }
 }
 
 export const POST = withRateLimit(RATE_LIMITS.LOGIN, signinHandler);

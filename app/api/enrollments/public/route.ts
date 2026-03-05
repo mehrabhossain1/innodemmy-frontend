@@ -1,21 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDatabase } from "@/lib/db/connection";
 import { ObjectId } from "mongodb";
+import { withRateLimit, RATE_LIMITS } from "@/lib/utils/rate-limit";
+import {
+    sanitizeText,
+    sanitizeEmail,
+    sanitizePhone,
+    sanitizeBase64Image,
+} from "@/lib/utils/sanitize";
 
-export async function POST(request: NextRequest) {
+async function enrollmentHandler(request: NextRequest) {
     try {
-        const {
-            name,
-            email,
-            phone,
-            transactionId,
-            paymentNumberLastDigits,
-            paymentMethod,
-            courseId,
-            courseTitle,
-            amount,
-            paymentProof,
-        } = await request.json();
+        const body = await request.json();
+
+        // Sanitize all inputs
+        const name = sanitizeText(body.name, 100);
+        const email = sanitizeEmail(body.email);
+        const phone = sanitizePhone(body.phone);
+        const transactionId = sanitizeText(body.transactionId, 50);
+        const paymentNumberLastDigits = sanitizeText(
+            body.paymentNumberLastDigits,
+            4,
+        );
+        const paymentMethod = body.paymentMethod;
+        const courseId = body.courseId;
+        const courseTitle = sanitizeText(body.courseTitle, 200);
+        const amount = Number(body.amount) || 0;
+        const paymentProof = sanitizeBase64Image(body.paymentProof);
 
         // Validate required fields
         if (
@@ -166,3 +177,5 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
+export const POST = withRateLimit(RATE_LIMITS.ENROLLMENT, enrollmentHandler);

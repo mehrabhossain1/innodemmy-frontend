@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    /* config options here */
+    // Remove X-Powered-By header to avoid exposing Next.js
+    poweredByHeader: false,
+
     images: {
         remotePatterns: [
             {
@@ -9,6 +11,13 @@ const nextConfig: NextConfig = {
                 hostname: "**",
             },
         ],
+    },
+
+    // Security: limit API request body size (1MB default, blocks huge payloads)
+    experimental: {
+        serverActions: {
+            bodySizeLimit: "2mb",
+        },
     },
 };
 

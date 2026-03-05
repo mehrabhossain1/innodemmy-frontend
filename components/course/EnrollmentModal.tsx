@@ -613,13 +613,13 @@ export default function EnrollmentModal({
                                 maxLength={4}
                                 className="h-8 text-sm font-mono"
                             />
+                            <p className="text-xs mt-1 text-gray-500 dark:text-gray-400 -mt-1">
+                                {formData.paymentMethod === "citybank"
+                                    ? "যে অ্যাকাউন্ট থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"
+                                    : "যে নম্বর থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"}
+                            </p>
                         </div>
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-                        {formData.paymentMethod === "citybank"
-                            ? "যে অ্যাকাউন্ট থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"
-                            : "যে নম্বর থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"}
-                    </p>
 
                     {/* Payment Proof Upload - Full Width */}
                     <div className="space-y-3">
