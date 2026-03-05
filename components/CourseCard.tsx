@@ -17,6 +17,7 @@ interface CourseCardProps {
     totalRatings?: number;
     category?: string;
     totalProjects?: number;
+    totalModules?: number;
 }
 
 const CLINICAL_RESEARCH_CATEGORY = "CLINICAL RESEARCH";
@@ -26,7 +27,7 @@ export default function CourseCard({
     slug,
     title,
     thumbnail,
-    modules = 60,
+    totalModules = 19,
     totalProjects = 5,
     batchName = "Batch-2",
     rating,
@@ -130,7 +131,7 @@ export default function CourseCard({
                             <div className="w-5 h-5 flex items-center justify-center">
                                 <BookOpen className="h-3.5 w-3.5 text-orange-500" />
                             </div>
-                            <span>{modules}+ Lessons</span>
+                            <span>{totalModules} Modules</span>
                         </div>
                         {category !== CLINICAL_RESEARCH_CATEGORY && (
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">

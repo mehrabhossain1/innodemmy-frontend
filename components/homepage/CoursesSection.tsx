@@ -27,6 +27,7 @@ interface Course {
     students?: number;
     duration?: string;
     rating?: number;
+    totalModules?: number;
 }
 
 interface ApiCourse {
@@ -40,6 +41,7 @@ interface ApiCourse {
     instructor?: string;
     category?: string;
     totalProjects?: number;
+    totalModules?: number;
 }
 
 // Map category names to icons
@@ -319,6 +321,7 @@ export default function CoursesSection() {
                                     totalProjects={course.totalProjects}
                                     description={course.description}
                                     thumbnail={course.image}
+                                    totalModules={course.totalModules}
                                     modules={course.modules}
                                     students={course.students}
                                     duration={course.duration}
