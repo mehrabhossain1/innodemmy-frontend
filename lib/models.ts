@@ -52,7 +52,7 @@ export interface Course {
 }
 
 // Enrollment payment method types
-export type PaymentMethod = "bkash" | "nagad";
+export type PaymentMethod = "bkash" | "nagad" | "citybank";
 
 // Enrollment status types
 export type EnrollmentStatus = "pending" | "approved" | "rejected";

@@ -16,6 +16,10 @@ import {
     LogIn,
     UserPlus,
     ImageIcon,
+    Copy,
+    Check,
+    Landmark,
+    Smartphone,
 } from "lucide-react";
 
 interface EnrollmentModalProps {
@@ -40,7 +44,7 @@ export default function EnrollmentModal({
         phone: "",
         transactionId: "",
         paymentNumberLastDigits: "",
-        paymentMethod: "bkash" as "bkash" | "nagad",
+        paymentMethod: "bkash" as "bkash" | "nagad" | "citybank",
         paymentProof: "" as string,
     });
 
@@ -48,6 +52,25 @@ export default function EnrollmentModal({
     const [showSuccess, setShowSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [previewImage, setPreviewImage] = useState<string | null>(null);
+    const [copiedField, setCopiedField] = useState<string | null>(null);
+
+    const copyToClipboard = async (text: string, field: string) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopiedField(field);
+            setTimeout(() => setCopiedField(null), 2000);
+        } catch {
+            // Fallback for older browsers
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            setCopiedField(field);
+            setTimeout(() => setCopiedField(null), 2000);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -132,6 +155,7 @@ export default function EnrollmentModal({
             paymentProof: "",
         });
         setPreviewImage(null);
+        setCopiedField(null);
         onClose();
     };
 
@@ -229,18 +253,163 @@ export default function EnrollmentModal({
                             <strong className="text-primary text-lg">
                                 ৳{coursePrice.toLocaleString()}
                             </strong>{" "}
-                            to:
+                            via any of the following methods:
                         </p>
-                        <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-2 border-primary/30 dark:border-primary/40 shadow-sm">
-                            <div className="flex items-center justify-between">
-                                <span className="font-semibold text-base text-gray-800 dark:text-gray-200">
-                                    bKash/Nagad:
-                                </span>
-                                <span className="font-mono bg-primary/20 dark:bg-primary/30 px-4 py-2 rounded-lg text-base font-bold text-primary border border-primary/30">
-                                    01521428597
+
+                        {/* bKash / Nagad */}
+                        <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 space-y-2">
+                            <div className="flex items-center gap-2 mb-2">
+                                <Smartphone className="w-4 h-4 text-pink-500" />
+                                <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">
+                                    bKash / Nagad (Send Money)
                                 </span>
                             </div>
+                            <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-600 rounded-lg px-4 py-2.5">
+                                <span className="font-mono text-base font-bold text-gray-900 dark:text-white">
+                                    01521428597
+                                </span>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        copyToClipboard("01521428597", "mfs")
+                                    }
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary text-xs font-semibold transition-all duration-200"
+                                >
+                                    {copiedField === "mfs" ? (
+                                        <>
+                                            <Check className="w-3.5 h-3.5" />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-3.5 h-3.5" />
+                                            Copy
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </div>
+
+                        {/* City Bank */}
+                        <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 space-y-2">
+                            <div className="flex items-center gap-2 mb-2">
+                                <Landmark className="w-4 h-4 text-sky-600" />
+                                <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">
+                                    City Bank (Bank Transfer)
+                                </span>
+                            </div>
+                            <div className="space-y-1.5 text-sm">
+                                <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-600 rounded-lg px-4 py-2">
+                                    <div>
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            Account Name
+                                        </span>
+                                        <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                                            Md. Fakrul Islam Javed
+                                        </p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            copyToClipboard(
+                                                "Md. Fakrul Islam Javed",
+                                                "accName",
+                                            )
+                                        }
+                                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary text-xs font-semibold transition-all duration-200"
+                                    >
+                                        {copiedField === "accName" ? (
+                                            <>
+                                                <Check className="w-3.5 h-3.5" />
+                                                Copied!
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Copy className="w-3.5 h-3.5" />
+                                                Copy
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                                <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-600 rounded-lg px-4 py-2">
+                                    <div>
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            Account Number
+                                        </span>
+                                        <p className="font-mono font-bold text-gray-900 dark:text-white text-sm">
+                                            2303077102001
+                                        </p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            copyToClipboard(
+                                                "2303077102001",
+                                                "accNo",
+                                            )
+                                        }
+                                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary text-xs font-semibold transition-all duration-200"
+                                    >
+                                        {copiedField === "accNo" ? (
+                                            <>
+                                                <Check className="w-3.5 h-3.5" />
+                                                Copied!
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Copy className="w-3.5 h-3.5" />
+                                                Copy
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                                <div className="grid grid-cols-3 gap-1.5">
+                                    <div className="bg-gray-50 dark:bg-gray-600 rounded-lg px-3 py-2">
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            Branch
+                                        </span>
+                                        <p className="font-medium text-gray-900 dark:text-white text-xs">
+                                            Foreign Exchange
+                                        </p>
+                                    </div>
+                                    <div className="bg-gray-50 dark:bg-gray-600 rounded-lg px-3 py-2">
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            District
+                                        </span>
+                                        <p className="font-medium text-gray-900 dark:text-white text-xs">
+                                            Dhaka South
+                                        </p>
+                                    </div>
+                                    <div className="bg-gray-50 dark:bg-gray-600 rounded-lg px-3 py-2 relative group">
+                                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            Routing
+                                        </span>
+                                        <div className="flex items-center gap-1">
+                                            <p className="font-mono font-medium text-gray-900 dark:text-white text-xs">
+                                                225272321
+                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    copyToClipboard(
+                                                        "225272321",
+                                                        "routing",
+                                                    )
+                                                }
+                                                className="text-primary hover:text-primary/80 transition-colors"
+                                            >
+                                                {copiedField === "routing" ? (
+                                                    <Check className="w-3 h-3" />
+                                                ) : (
+                                                    <Copy className="w-3 h-3" />
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <p className="mt-3 pt-3 border-t border-primary/20 dark:border-primary/30 text-base">
                             After payment, knock us on WhatsApp:{" "}
                             <strong className="font-mono text-primary">
@@ -329,7 +498,7 @@ export default function EnrollmentModal({
                             Payment Method{" "}
                             <span className="text-red-500">*</span>
                         </Label>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-3 gap-3">
                             <button
                                 type="button"
                                 onClick={() =>
@@ -338,13 +507,14 @@ export default function EnrollmentModal({
                                         paymentMethod: "bkash",
                                     }))
                                 }
-                                className={`p-4 rounded-lg border-2 transition-all duration-200 text-center hover:scale-[1.02] ${
+                                className={`p-3 rounded-lg border-2 transition-all duration-200 text-center hover:scale-[1.02] ${
                                     formData.paymentMethod === "bkash"
                                         ? "border-pink-500 bg-pink-50 dark:bg-pink-900/30 shadow-md shadow-pink-500/20"
                                         : "border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-400 bg-white dark:bg-gray-700"
                                 }`}
                             >
-                                <div className="text-lg font-bold text-pink-600 dark:text-pink-400">
+                                <Smartphone className="w-5 h-5 mx-auto mb-1 text-pink-500" />
+                                <div className="text-sm font-bold text-pink-600 dark:text-pink-400">
                                     bKash
                                 </div>
                             </button>
@@ -356,14 +526,34 @@ export default function EnrollmentModal({
                                         paymentMethod: "nagad",
                                     }))
                                 }
-                                className={`p-4 rounded-lg border-2 transition-all duration-200 text-center hover:scale-[1.02] ${
+                                className={`p-3 rounded-lg border-2 transition-all duration-200 text-center hover:scale-[1.02] ${
                                     formData.paymentMethod === "nagad"
                                         ? "border-orange-500 bg-orange-50 dark:bg-orange-900/30 shadow-md shadow-orange-500/20"
                                         : "border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-400 bg-white dark:bg-gray-700"
                                 }`}
                             >
-                                <div className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                                <Smartphone className="w-5 h-5 mx-auto mb-1 text-orange-500" />
+                                <div className="text-sm font-bold text-orange-600 dark:text-orange-400">
                                     Nagad
+                                </div>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        paymentMethod: "citybank",
+                                    }))
+                                }
+                                className={`p-3 rounded-lg border-2 transition-all duration-200 text-center hover:scale-[1.02] ${
+                                    formData.paymentMethod === "citybank"
+                                        ? "border-sky-500 bg-sky-50 dark:bg-sky-900/30 shadow-md shadow-sky-500/20"
+                                        : "border-gray-200 dark:border-gray-600 hover:border-sky-300 dark:hover:border-sky-400 bg-white dark:bg-gray-700"
+                                }`}
+                            >
+                                <Landmark className="w-5 h-5 mx-auto mb-1 text-sky-600" />
+                                <div className="text-sm font-bold text-sky-600 dark:text-sky-400">
+                                    City Bank
                                 </div>
                             </button>
                         </div>
@@ -378,14 +568,20 @@ export default function EnrollmentModal({
                                 className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
                             >
                                 <Hash className="w-3 h-3 text-primary" />
-                                Transaction ID{" "}
+                                {formData.paymentMethod === "citybank"
+                                    ? "Reference / Deposit Slip No."
+                                    : "Transaction ID"}{" "}
                                 <span className="text-red-500">*</span>
                             </Label>
                             <Input
                                 id="transactionId"
                                 name="transactionId"
                                 type="text"
-                                placeholder="e.g. 9A1B2C3D4E"
+                                placeholder={
+                                    formData.paymentMethod === "citybank"
+                                        ? "e.g. DEP123456"
+                                        : "e.g. 9A1B2C3D4E"
+                                }
                                 value={formData.transactionId}
                                 onChange={handleChange}
                                 required
@@ -400,7 +596,9 @@ export default function EnrollmentModal({
                                 className="text-gray-700 dark:text-gray-300 text-xs font-medium flex items-center gap-1"
                             >
                                 <Phone className="w-3 h-3 text-primary" />
-                                Last 4 Digits{" "}
+                                {formData.paymentMethod === "citybank"
+                                    ? "Sender A/C (Last 4 Digits)"
+                                    : "Sender Number (Last 4 Digits)"}{" "}
                                 <span className="text-red-500">*</span>
                             </Label>
                             <Input
@@ -418,8 +616,9 @@ export default function EnrollmentModal({
                         </div>
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-                        Enter the last 4 digits of the number you used for
-                        payment
+                        {formData.paymentMethod === "citybank"
+                            ? "যে অ্যাকাউন্ট থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"
+                            : "যে নম্বর থেকে পেমেন্ট করেছেন তার শেষ ৪ ডিজিট"}
                     </p>
 
                     {/* Payment Proof Upload - Full Width */}

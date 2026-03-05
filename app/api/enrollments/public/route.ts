@@ -35,9 +35,11 @@ export async function POST(request: NextRequest) {
         }
 
         // Validate payment method
-        if (!["bkash", "nagad"].includes(paymentMethod)) {
+        if (!["bkash", "nagad", "citybank"].includes(paymentMethod)) {
             return NextResponse.json(
-                { error: 'Invalid payment method. Must be "bkash" or "nagad"' },
+                {
+                    error: 'Invalid payment method. Must be "bkash", "nagad", or "citybank"',
+                },
                 { status: 400 },
             );
         }

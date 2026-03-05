@@ -213,7 +213,7 @@ export default function AdminEnrollmentsPage() {
                             <TableHead>Course</TableHead>
                             <TableHead>Payment Method</TableHead>
                             <TableHead>Transaction ID</TableHead>
-                            <TableHead>Last 4 Digits</TableHead>
+                            <TableHead>Sender No. (Last 4)</TableHead>
                             <TableHead>Proof</TableHead>
                             <TableHead>Amount</TableHead>
                             <TableHead>Status</TableHead>
@@ -225,7 +225,7 @@ export default function AdminEnrollmentsPage() {
                         {enrollments.length === 0 ? (
                             <TableRow>
                                 <TableCell
-                                    colSpan={10}
+                                    colSpan={11}
                                     className="text-center py-8 text-gray-500"
                                 >
                                     No enrollment requests found
@@ -257,7 +257,26 @@ export default function AdminEnrollmentsPage() {
                                             "N/A"}
                                     </TableCell>
                                     <TableCell className="capitalize">
-                                        {enrollment.paymentMethod}
+                                        <Badge
+                                            variant="outline"
+                                            className={
+                                                enrollment.paymentMethod ===
+                                                "bkash"
+                                                    ? "border-pink-300 text-pink-600 bg-pink-50"
+                                                    : enrollment.paymentMethod ===
+                                                        "nagad"
+                                                      ? "border-orange-300 text-orange-600 bg-orange-50"
+                                                      : enrollment.paymentMethod ===
+                                                          "citybank"
+                                                        ? "border-sky-300 text-sky-600 bg-sky-50"
+                                                        : ""
+                                            }
+                                        >
+                                            {enrollment.paymentMethod ===
+                                            "citybank"
+                                                ? "City Bank"
+                                                : enrollment.paymentMethod}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell className="font-mono text-sm">
                                         {enrollment.transactionId}
