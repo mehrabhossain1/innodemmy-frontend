@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
         if (!fullName || !email || !phoneNumber) {
             return NextResponse.json(
                 { error: "Full name, email, and phone number are required" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -18,16 +18,17 @@ export async function POST(request: NextRequest) {
         if (!emailRegex.test(email)) {
             return NextResponse.json(
                 { error: "Invalid email format" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
         // Validate phone number format
-        const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
-        if (!phoneRegex.test(phoneNumber.replace(/[\s\-()]/g, ""))) {
+        const phoneRegex = /^[\+]?[0-9]{10,15}$/;
+        const cleanedPhone = phoneNumber.replace(/[\s\-()]/g, "");
+        if (!phoneRegex.test(cleanedPhone)) {
             return NextResponse.json(
                 { error: "Invalid phone number format" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -48,13 +49,13 @@ export async function POST(request: NextRequest) {
                 message: "Consultation request submitted successfully",
                 requestId,
             },
-            { status: 201 }
+            { status: 201 },
         );
     } catch (error) {
         console.error("Consultation request error:", error);
         return NextResponse.json(
             { error: "Internal server error" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
