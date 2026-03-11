@@ -31,6 +31,11 @@ export default function DemoVideos() {
             title: "3 - Fundamentals of Machine Learning",
             driveId: "1IAkij53O8VwXtkmnGmCfIxIuHk8q1l2e", // Replace with your actual video IDs later
         },
+        {
+            id: "demo-4",
+            title: "4 - The Researchers Roadmap",
+            driveId: "1iZ5AQdl5coby3KyRUoFfz0iYyL8u_g_q", // Replace with your actual video IDs later
+        },
     ];
 
     return (
@@ -47,7 +52,7 @@ export default function DemoVideos() {
                 </p>
 
                 {/* Video Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {demoVideos.map((video) => (
                         <div
                             key={video.id}

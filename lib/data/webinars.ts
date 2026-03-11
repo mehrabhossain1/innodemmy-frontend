@@ -155,7 +155,8 @@ export const webinars: Webinar[] = [
         description:
             "Artificial Intelligence এখন শুধু একটি buzzword নয়, এটি software engineering, data science ও product development-এর ভবিষ্যৎ নির্ধারণ করছে। কিন্তু অনেকেই জানেন না, AI Engineering আসলে কী, কোথা থেকে শুরু করতে হবে, এবং কীভাবে একটি structured roadmap অনুসরণ করে expert AI engineer হওয়া যায়",
         image: "/upcoming-webinar/ai-code.jpeg",
-        videoUrl: "https://zoom.us/j/placeholder",
+        videoUrl:
+            "https://www.youtube.com/embed/qjnwfvEuujQ?si=sOHhxzgMQs0Kg7lM",
         duration: "2h",
         time: "3:00 PM - 4:00 PM",
         instructor: "Arif Mahmud Sisir",

@@ -133,10 +133,7 @@ export default function WebinarDetailsPage() {
                                     <Calendar className="h-5 w-5 text-primary" />
                                     <span>Date: {webinar.date}</span>
                                 </div>
-                                {/* <div className="flex items-center gap-2">
-                                    <Clock className="h-5 w-5 text-primary" />
-                                    <span>{webinar.duration}</span>
-                                </div> */}
+
                                 <div className="flex items-center gap-2">
                                     <Eye className="h-5 w-5 text-primary" />
                                     <span>
@@ -221,9 +218,7 @@ export default function WebinarDetailsPage() {
                                         <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
                                             FREE
                                         </div>
-                                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-md text-xs font-semibold z-10">
-                                            {webinar.duration}
-                                        </div>
+
                                         {/* Play Button Overlay */}
                                         <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-black/50 flex items-center justify-center z-[5]">
                                             <div className="text-center space-y-4">
